@@ -4,7 +4,16 @@ from e_commerce_website.jewelry.models import Category, Metal, StoneType
 
 def index_page(request):
     
-    categories = Category.TitleChoices.choices
+    categories = Category.objects.all()
+    categories_choices = [x[1] for x in Category.TitleChoices.choices]
+    
+    categories_by_choices = {}
+    
+    index = 0
+
+    for category in categories:
+        categories_by_choices[category] = categories_choices[index]
+        index += 1
     
     metals = Metal.TitleChoices.choices
     
@@ -14,7 +23,7 @@ def index_page(request):
     
     
     context = {
-        'categories': categories,
+        'categories_by_choices': categories_by_choices,
         'metals': metals,
         'stones': filtered_stones,
     }

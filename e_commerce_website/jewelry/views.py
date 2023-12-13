@@ -1,8 +1,18 @@
-# from django.shortcuts import render
-# from .models import JewelryDetails
+from django.shortcuts import render
+from .models import JewelryDetails
 # # from .forms import JewelryDetailsForm
 
-# from django.db.models import Q
+from django.db.models import Q
+
+def show_jewelries(request, category_pk):
+    
+    jewelries = JewelryDetails.objects.filter(Q(jewelry__customer_gender=1), Q(jewelry__category=category_pk))
+    
+    context = {
+        'jewelries': jewelries,
+    }
+    
+    return render(request, 'jewelry/jewelries.html', context)
 
 # def show_jewelries(request, category_pk):
     

@@ -1,15 +1,15 @@
-{% comment %} {% extends 'base/base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
 
 {%for jewelry in jewelries%}
    <div> 
-    <a href="{% url 'show_jewelry_details' jewelry__category=category_pk jewelry_pk=jewelry.pk  %}">
+    {% comment %} <a href="{% url 'show_jewelry_details' jewelry__category=category_pk jewelry_pk=jewelry.pk  %}"> {% endcomment %}
     <img width="400" height="600" src="{{ jewelry.first_image_url }}" alt="img8">
     <h2>{{jewelry.jewelry.title}}</h2>
     </div>
 {% endfor %}
-{% endblock %} {% endcomment %}
+{% endblock %} 
 
 
 
