@@ -1,0 +1,63 @@
+{% load static %}
+<h1> Fine Jewelry </h1>
+<nav>
+  <ul class="menu">
+    <li class="left-menu"><a href="#">Search</a></li>
+    <li>
+      <a>Lady's</a>
+      <ul class="submenu">
+        <li>
+            <p>Choose by Category</p>
+            <div class="dropdown">
+            <a href="{% url 'earrings' category_pk=1 %}">Earrings</a>
+            {% comment %} <div class="dropdown-content">
+              <a href="{% url 'drop' %}">Drop</a>
+              <p href="#">Hoop</p>
+              <p href="#">Stud</p>
+              <p href="#">All Earrings</p>
+            </div>
+            </div> {% endcomment %}
+            <p href="#">Necklaces</p>
+            <p href="#">Bracelets</p>
+            <p href="#">Rings</p>
+            <p href="#">All Jewelries</p>
+        </li>
+        <li>
+            <a href="#">Choose by Metal</a>
+            <p href="#">Yellow Gold</>
+            <p href="#">Rose Gold</>
+            <p href="#">White Gold</>
+            <p href="#">Sterling Silver</>
+            <p href="#">Mixed Metals</>
+        </li>
+        <li>
+            <a href="#">Choose by Gemstone</a>
+            <p href="#">Diamonds</p>
+            <p href="#">Sapphire</p>
+            <p href="#">Ruby</p>
+            <p href="#">Pearls</p>
+            <p href="#">Amethyst</p>
+        </li>
+      </ul>
+    </li>
+    <li>
+        <a href="#">Wedding</a>
+        <ul class="submenu">
+            <li><a href="#">Engagement Rings</a></li>
+            <li><a href="#">Bands for Her</a></li>
+            <li><a href="#">Bands for Him</a></li>
+          </ul>
+    </li>
+    <li>
+        <a href="#">Gentlemen's</a>
+        <ul class="submenu">
+            <li><a href="#">Choose by Category</a></li>
+            <li><a href="#">Choose by Metal</a></li>
+            <li><a href="#">Choose by Stone</a></li>
+          </ul>
+        <li class="right-menu"><a href="#">Sign In</a></li>
+        <li class="right-menu"><a href="#">My Bag</a></li>
+        <li class="right-menu"><a href="#">Like</a></li>
+    </li>
+  </ul>
+</nav>
