@@ -51,7 +51,7 @@ class Style(models.Model):
         BANGLE = "BA", _("Bangle")
         CUFF = "CU", _("Cuff")
         BAND = "BN", _('Band')
-        PETITE = "PE", _('Petite')
+        PETITE = "PT", _('Petite')
         PINKY = "PI", _('Pinky')
         STATEMENT = "SA", _('Statement')
         ENGAGEMENT = "EN", _('Engagement')
@@ -76,7 +76,7 @@ class Metal(models.Model):
         
         YELLOW_GOLD = "YG", _("Yellow Gold")
         ROSE_GOLD = "RG", _("Rose Gold")
-        WHITE_GOLD = "WG", -("White Gold")
+        WHITE_GOLD = "WG", _("White Gold")
         STERLING_SILVER = "SS", _("Sterling Silver")
     
     max_choice_length = calculate_max_choices_length(TitleChoices)
@@ -114,7 +114,7 @@ class StoneType(models.Model):
         CH = "CH", _("Chariote")
         CR = "CR", _("Chrysocolla")
         CI = "CI", _("Citrine")
-        CY = "CR", _("Crystal")
+        CY = "CY", _("Crystal")
         DI = "DI", _("Diamond")
         EM = "EM", _("Emerald")
         GA = "GA", _("Garnet")
@@ -152,7 +152,7 @@ class StoneColor(models.Model):
         WH = "WH", _('White')
         BL = "BL", _('Black')
         BR = "BR", _('Brown')
-        BU = "BL", _('Blue')
+        BU = "BU", _('Blue')
         GR = "GR", _('Green')
         PI = "PI", _('Pink')
         YE = "YE", _('Yellow')
@@ -212,4 +212,169 @@ class Size(models.Model):
         on_delete=models.CASCADE,
         related_name='size_category',
     )
+
+
+class Title(models.Model):
+    content = models.CharField()
+    
+    
+class Jewelry(models.Model):
+    
+    customer_gender = models.ForeignKey(
+        to=CustomerGender,
+        on_delete=models.CASCADE,
+        related_name='customer_gender',
+    )
+    
+    category = models.ForeignKey(
+        to=Category,
+        on_delete=models.CASCADE,
+        related_name='jewelry_category',
+    )
+    
+    style = models.ForeignKey(
+        to=Style,
+        on_delete=models.CASCADE,
+        related_name='style',
+    )
+    
+    title = models.ForeignKey(
+        to=Title,
+        on_delete=models.CASCADE,
+        related_name='title',
+    )
+    
+
+class JewelryDetails(models.Model):
+    jewelry = models.ForeignKey(
+        to=Jewelry,
+        on_delete=models.CASCADE,
+        related_name='jewelry',
+    )
+    
+    metals = models.ManyToManyField(
+        to=Metal,
+        through='JewelryMetal', 
+    )
+    
+    gold_carats = models.ManyToManyField(
+        to=GoldCaratWeight,
+        through='JewelryMetal', 
+    )
+    
+    stone_types = models.ManyToManyField(
+        to=StoneType,
+        through='JewelryStone',
+    )
+    
+    stone_colors = models.ManyToManyField(
+        to=StoneColor,
+        through='JewelryStone',
+    )
+    
+    size = models.ManyToManyField(
+        to=Size,
+        through='JewelrySize',
+    )
+    
+    quantity = models.PositiveIntegerField()
+
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+    )
+    
+    discounted_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )
+    
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        editable=False,
+    )
+    
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        editable=False,
+    )
+    
+    first_image_url = models.URLField()
+    
+    second_image_url = models.URLField()
+
+
+class JewelryMetal(models.Model):
+    
+    class Meta:
+        unique_together = ('jewelry', 'metal', 'gold_carat')
+        
+    jewelry = models.ForeignKey(
+        to=JewelryDetails,
+        on_delete=models.CASCADE,
+        related_name='jewelry_metals',
+    )
+    
+    metal = models.ForeignKey(
+        to=Metal,
+        on_delete=models.CASCADE,
+        related_name='metals',
+    ) 
+    
+    gold_carat = models.ForeignKey(
+        to=GoldCaratWeight,
+        on_delete=models.CASCADE,
+        related_name='jewelry_gold_carats',
+        null=True,
+        blank=True,
+    ) 
+    
+class JewelryStone(models.Model):
+    
+    class Meta:
+        unique_together = ('jewelry', 'stone_type', 'stone_color')
+        
+    jewelry = models.ForeignKey(
+        to=JewelryDetails,
+        on_delete=models.CASCADE,
+        related_name='jewelry_stones',
+    )
+    
+    stone_type = models.ForeignKey(
+        to=StoneType,
+        on_delete=models.CASCADE,
+        related_name='stone_types',
+    )
+    
+    stone_color = models.ForeignKey(
+        to=StoneColor,
+        on_delete=models.CASCADE,
+        related_name='stone_colors',
+    )
+    
+    stone_carat = models.DecimalField(
+        max_digits=5,
+        decimal_places=2,
+        null=True,
+        blank=True,
+    )
+
+    
+class JewelrySize(models.Model):
+    class Meta:
+        unique_together = ('jewelry', 'size')
+        
+    jewelry = models.ForeignKey(
+        to=JewelryDetails,
+        on_delete=models.CASCADE,
+        related_name='jewelry_sizes',
+    )
+    
+    size = models.ForeignKey(
+        to=Size,
+        on_delete=models.CASCADE,
+        related_name='sizes',
+    ) 
     

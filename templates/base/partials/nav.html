@@ -8,35 +8,23 @@
       <ul class="submenu">
         <li>
             <p>Choose by Category</p>
-            <div class="dropdown">
-            <a href="{% url 'earrings' category_pk=1 %}">Earrings</a>
-            {% comment %} <div class="dropdown-content">
-              <a href="{% url 'drop' %}">Drop</a>
-              <p href="#">Hoop</p>
-              <p href="#">Stud</p>
-              <p href="#">All Earrings</p>
-            </div>
-            </div> {% endcomment %}
-            <p href="#">Necklaces</p>
-            <p href="#">Bracelets</p>
-            <p href="#">Rings</p>
-            <p href="#">All Jewelries</p>
+            {% for category in categories %}
+            <a href="#">{{ category.1 }}</a>
+            {% endfor %}
+            <a href="#">All Jewelries</a>
         </li>
         <li>
-            <a href="#">Choose by Metal</a>
-            <p href="#">Yellow Gold</>
-            <p href="#">Rose Gold</>
-            <p href="#">White Gold</>
-            <p href="#">Sterling Silver</>
-            <p href="#">Mixed Metals</>
+            <p href="#">Choose by Metal</p>
+            {% for metal in metals %}
+            <a href="#">{{ metal.1 }}</a>
+            {% endfor %}
+            <a href="#">Mixed Metals</a>
         </li>
         <li>
-            <a href="#">Choose by Gemstone</a>
-            <p href="#">Diamonds</p>
-            <p href="#">Sapphire</p>
-            <p href="#">Ruby</p>
-            <p href="#">Pearls</p>
-            <p href="#">Amethyst</p>
+            <p href="#">Choose by Gemstone</p>
+            {% for stone in stones %}
+            <a href="#">{{ stone.1 }}</a>
+            {% endfor %}
         </li>
       </ul>
     </li>

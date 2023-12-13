@@ -1,0 +1,48 @@
+{% comment %} {% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+
+{%for jewelry in jewelries%}
+   <div> 
+    <a href="{% url 'show_jewelry_details' jewelry__category=category_pk jewelry_pk=jewelry.pk  %}">
+    <img width="400" height="600" src="{{ jewelry.first_image_url }}" alt="img8">
+    <h2>{{jewelry.jewelry.title}}</h2>
+    </div>
+{% endfor %}
+{% endblock %} {% endcomment %}
+
+
+
+{% comment %} {% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Display data from the database -->
+<ul>
+    {% for jewelry in jewelries %}
+    <li>{{ jewelry.title.content }}:
+        <ul>
+            {% for metal in jewelry.metals.all %}
+            <li>{{ metal.title }}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for stone in jewelry.stone_types.all %}
+            <li>{{ stone.title }}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for stone in jewelry.stone_colors.all %}
+            <li>{{ stone.title }}</li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %} {% endcomment %}

@@ -1,0 +1,54 @@
+{% comment %} {% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+<h1>Title</h1>
+     <div>
+         {{jewelry.jewelry.title.content}}
+     </div>
+
+     <h1>Images</h1>
+
+    <ul >
+         <img width="400" height="600" src="{{ jewelry.first_image_url }}" alt="img8">
+    </ul>
+
+     <ul >
+         <img  width="400" height="600"  src="{{ jewelry.second_image_url }}" alt="img8">
+     </ul> 
+
+     <h1>Metals</h1>
+     <div>
+         {% for metal in jewelry.metals.all %}
+             <li>{{ metal.name }}</li>
+             {% for gold_carat in jewelry.gold_carats.all %}
+                 <li>{{ gold_carat.weight }}K</li>
+             {%endfor%}
+         {% endfor %}
+     </div>
+
+     <h1>Stones</h1>
+     <div>
+         {% for stone_type in jewelry.stone_types.all %}
+             <li>{{ stone_type.name }} </li>
+             {% for stone_color in jewelry.stone_colors.all %}
+                 <li>{{ stone_color.name }} </li>
+             {% endfor %}
+         {% endfor %}
+     </div>
+
+     <h1>Style</h1>
+     <ul>
+         {{jewelry.jewelry.style.name}}
+     </ul>
+
+     <h1>Quantity</h1>
+     <div>
+         {{ jewelry.quantity }}
+     </div>
+
+     <h1>Price</h1>
+     <div>
+         {{ jewelry.price }}
+     </div>
+
+{% endblock %} {% endcomment %}
