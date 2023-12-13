@@ -6,7 +6,7 @@
    <div> 
     {% comment %} <a href="{% url 'show_jewelry_details' jewelry__category=category_pk jewelry_pk=jewelry.pk  %}"> {% endcomment %}
     <img width="400" height="600" src="{{ jewelry.first_image_url }}" alt="img8">
-    <h2>{{jewelry.jewelry.title}}</h2>
+    <h2>{{jewelry.jewelry.title.content}}</h2>
     </div>
 {% endfor %}
 {% endblock %} 

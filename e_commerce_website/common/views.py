@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 from e_commerce_website.jewelry.models import Category, Metal, StoneType
 
-def index_page(request):
-    
+
+def get_nav_bar_context():
     categories = Category.objects.all()
     categories_choices = [x[1] for x in Category.TitleChoices.choices]
     
@@ -27,4 +27,11 @@ def index_page(request):
         'metals': metals,
         'stones': filtered_stones,
     }
+    
+    return context
+
+def index_page(request):
+    
+    context = get_nav_bar_context()
+    
     return render(request, 'common/index-page.html', context)

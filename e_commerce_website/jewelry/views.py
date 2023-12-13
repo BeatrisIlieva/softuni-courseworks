@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from e_commerce_website.common.views import get_nav_bar_context, index_page
 from .models import JewelryDetails
 # # from .forms import JewelryDetailsForm
 
@@ -6,11 +8,15 @@ from django.db.models import Q
 
 def show_jewelries(request, category_pk):
     
+    add_context = context = get_nav_bar_context()
+    
     jewelries = JewelryDetails.objects.filter(Q(jewelry__customer_gender=1), Q(jewelry__category=category_pk))
     
     context = {
         'jewelries': jewelries,
     }
+    
+    context.update(add_context)
     
     return render(request, 'jewelry/jewelries.html', context)
 
