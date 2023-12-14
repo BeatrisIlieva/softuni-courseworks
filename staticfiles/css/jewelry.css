@@ -1,3 +1,8 @@
+.separator-line {
+    border-top: 1px solid #ccc; /* Adjust the color and size as needed */
+    margin-bottom: 20px; /* Add some spacing between the line and the content below */
+  }
+
 body {
     background-color: white;
     }

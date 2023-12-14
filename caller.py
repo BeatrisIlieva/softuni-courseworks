@@ -33,17 +33,20 @@ jewelries_by_details = JewelryDetails.objects.all()
 stone_types = StoneType.objects.all()
 stone_colors = StoneColor.objects.all()
 
-categories_choices = [x[1] for x in Category.TitleChoices.choices]
+# categories_choices = [x[1] for x in Category.TitleChoices.choices]
 
-print(categories_choices)
+# print(categories_choices)
 
-categories_by_choices = {}
+# categories_by_choices = {}
 
-index = 0
+# index = 0
 
-for category in categories:
-    categories_by_choices[category] = categories_choices[index]
-    index += 1
+# for category in categories:
+#     categories_by_choices[category] = categories_choices[index]
+#     index += 1
     
-print(categories_by_choices)
+# print(categories_by_choices)
         
+jewelry = JewelryDetails.objects.filter(pk=1).get()
+customer_gender = jewelry.jewelry.customer_gender.pk
+print(customer_gender)

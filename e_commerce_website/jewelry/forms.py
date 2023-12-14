@@ -1,20 +1,28 @@
-# from django import forms
-# from .models import JewelryDetails
+from django import forms
+from django.shortcuts import render
 
-# class JewelryDetailsForm(forms.ModelForm):
-#     class Meta:
-#         model = JewelryDetails
+from e_commerce_website.jewelry.models import JewelryDetails, Style
+
+class JewelryForm(forms.Form):
+    styles = Style.TitleChoices.choices
+    
+    style = forms.ChoiceField(
+        choices=styles,
+        required=False,
+        widget=forms.CheckboxSelectMultiple(),
+    )
+
+
+# def index_page(request):
+    
+#     if request.method == 'get':
+#         form = JewelryForm()
         
-#         fields = [
-#             'jewelry__style__title',
-#             'metals',
-#             'stone_types',
-#             'stone_colors',
-#             ]
+#     else:
+#         form = JewelryForm(request.POST)
         
-#         widgets = {
-#             'jewelry__style__title': forms.CheckboxSelectMultiple,
-#             'metals': forms.CheckboxSelectMultiple,
-#             'stone_colors': forms.CheckboxSelectMultiple,
-#             'stone_types': forms.CheckboxSelectMultiple,
-#         }
+#     context = {
+#         'form': form,
+#     }
+    
+#     return render(request, 'common/index-page.html', context)

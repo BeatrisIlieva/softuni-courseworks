@@ -1,59 +1,55 @@
 from django.shortcuts import render
 
-from e_commerce_website.common.views import get_nav_bar_context, index_page
+from e_commerce_website.common.views import get_nav_bar_context
+from e_commerce_website.jewelry.forms import JewelryForm
 from .models import JewelryDetails
-# # from .forms import JewelryDetailsForm
 
 from django.db.models import Q
 
-def show_jewelries(request, category_pk):
+def show_jewelries(request, customer_gender_pk, category_pk):
     
-    add_context = context = get_nav_bar_context()
+    selection_form = JewelryForm(request.GET)
+    selection_pattern = None
+    print(selection_pattern)
+    if selection_form.is_valid():
+        selection_pattern = selection_form.cleaned_data['style']
+        print(selection_pattern)
+
+    jewelries = JewelryDetails.objects.all()
+    if selection_pattern:
+        jewelries = jewelries.filter(jewelry_style=selection_pattern)
     
-    jewelries = JewelryDetails.objects.filter(Q(jewelry__customer_gender=1), Q(jewelry__category=category_pk))
+    if request.method == 'get':
+        form = JewelryForm()
+        
+    else:
+        form = JewelryForm(request.POST)
+    
+    jewelries = JewelryDetails.objects.filter(Q(jewelry__customer_gender=customer_gender_pk), Q(jewelry__category=category_pk))
     
     context = {
         'jewelries': jewelries,
+        'form': form,
     }
     
-    context.update(add_context)
+    nav_bar_context = get_nav_bar_context()
+    
+    context.update(nav_bar_context)
     
     return render(request, 'jewelry/jewelries.html', context)
 
-# def show_jewelries(request, category_pk):
-    
-#     jewelries = JewelryDetails.objects.filter(jewelry__category=category_pk)
-    
-#     context = {
-#         'jewelries': jewelries,
-#     }
-    
-#     return render(request, 'jewelries/jewelries.html', context)
 
-
-# def show_jewelry_details(request, jewelry_pk, category_pk):
+def show_jewelry_details(request, jewelry_pk):
     
-#     jewelry = JewelryDetails.objects.get(Q(jewelry_pk=jewelry_pk) & Q(jewelry__category=category_pk))
+    jewelry = JewelryDetails.objects.filter(pk=jewelry_pk).get()
     
-#     context = {
-#         'jewelry': jewelry
-#     }
+    context = {
+        'jewelry': jewelry,
+    }
     
-#     return render(request, 'jewelry/jewelry_details.html', context)
-
-
-# def product_create_view(request):
-#     if request.method == 'POST':
-#         form = JewelryDetailsForm(request.POST)
-        
-#         if form.is_valid():
-#             form.save()
-#             # Handle form submission, data saving, etc.
-#             # Redirect or perform other actions as needed
-#     else:
-#         form = JewelryDetailsForm()
-
-#     jewelries = JewelryDetails.objects.all()  # Fetch all products
-
-#     return render(request, 'jewelries/jewelries.html', {'form': form, 'jewelries': jewelries})
+    nav_bar_context = get_nav_bar_context()
+    
+    context.update(nav_bar_context)
+    
+    return render(request, 'jewelry/jewelry_details.html', context)
 
