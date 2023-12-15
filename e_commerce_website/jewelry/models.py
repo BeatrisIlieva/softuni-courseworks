@@ -246,6 +246,7 @@ class Jewelry(models.Model):
     
 
 class JewelryDetails(models.Model):
+
     jewelry = models.ForeignKey(
         to=Jewelry,
         on_delete=models.CASCADE,

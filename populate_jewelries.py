@@ -35,6 +35,7 @@ def bulk_create_title(*args):
 bulk_create_title(
     [
         Title(content='Petite DY Elements Drop Earrings'),
+        Title(content='Pavé Crossover Hoop Earrings'),
     ]
 )
 
@@ -49,6 +50,12 @@ bulk_create_jewelry(
             category=categories[0],
             title=titles[0],
             style=styles[0],
+            customer_gender=customer_genders[0],
+        ),
+        Jewelry(
+            category=categories[0],
+            title=titles[1],
+            style=styles[1],
             customer_gender=customer_genders[0],
         ),
     ]
@@ -75,7 +82,15 @@ bulk_create_jewelry_by_details(
             price=2250.00,
             first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702119059/E17658D88DLADI_a75izb.webp',
             second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702119053/E17658D88DLADI-alt1_muldrn.webp',
+        ),
+        JewelryDetails(
+            jewelry=jewelries[1],
+            quantity=10,
+            price=12500.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702638436/earrings_hoop/E17482D8WADI_ezf0ht.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702638441/earrings_hoop/E17482D8WADI-alt1_orfjz7.webp',
         )
+
     ]
 )
 
@@ -94,6 +109,11 @@ bulk_create_jewelry_by_metal(
         JewelryMetal(
             jewelry=jewelries_by_details[1],
             metal=metals[0],
+            gold_carat=gold_carats[3],
+        ),
+        JewelryMetal(
+            jewelry=jewelries_by_details[2],
+            metal=metals[2],
             gold_carat=gold_carats[3],
         ),
     ]
@@ -117,8 +137,14 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[11],
             stone_color=stone_colors[3],
             stone_carat=0.22,
-        ),  
-        
+        ),
+        JewelryStone(
+            jewelry=jewelries_by_details[2],
+            stone_type=stone_types[11],
+            stone_color=stone_colors[3],
+            stone_carat=3.32,
+        ),
+
     ]
 )
 

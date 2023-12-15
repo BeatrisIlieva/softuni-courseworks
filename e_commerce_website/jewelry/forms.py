@@ -1,16 +1,37 @@
 from django import forms
 from django.shortcuts import render
 
-from e_commerce_website.jewelry.models import JewelryDetails, Style
+from e_commerce_website.jewelry.models import JewelryDetails, Style, Metal, Jewelry
 
-class JewelryForm(forms.Form):
-    styles = Style.TitleChoices.choices
-    
-    style = forms.ChoiceField(
-        choices=styles,
-        required=False,
-        widget=forms.CheckboxSelectMultiple(),
-    )
+
+# class JewelryForm(forms.ModelForm):
+#     # styles = Style.TitleChoices.choices
+#     #
+#     # style = forms.ChoiceField(
+#     #     choices=styles,
+#     #     required=False,
+#     #     widget=forms.CheckboxSelectMultiple(),
+#     # )
+#     # class Meta:
+#         # model = JewelryDetails
+#         # fields = ('jewelry', 'metals')
+#         # widgets = {
+#         #     'jewelry': forms.CheckboxSelectMultiple(),
+#         #     'metals': forms.CheckboxSelectMultiple(),
+#         # }
+#
+#     metals = forms.ChoiceField(
+#         choices=[(metal.id, metal.title) for metal in Metal.objects.all()],
+#         required=False,
+#         label='Choose Metal',
+#         widget=forms.Select(attrs={'class': 'form-control'})  # You can add additional attributes here if needed
+#     )
+#
+#     class Meta:
+#         model = JewelryDetails
+#         # fields = ('jewelry', 'metals')
+#         fields = ('metals',)
+
 
 
 # def index_page(request):
@@ -26,3 +47,43 @@ class JewelryForm(forms.Form):
 #     }
     
 #     return render(request, 'common/index-page.html', context)
+
+class JewelryForm(forms.Form):
+
+    # CHOICES = JewelryDetails.Choices.choices
+    #
+    # choices = forms.MultipleChoiceField(
+    #     choices=CHOICES,
+    #     required=False,
+    #     widget=forms.CheckboxSelectMultiple,
+    # )
+
+    STYLE_CHOICES = Style.TitleChoices.choices
+
+    style_choices = forms.MultipleChoiceField(
+        choices=STYLE_CHOICES,
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+
+    METAL_CHOICES = Metal.TitleChoices.choices
+
+    metal_choices = forms.MultipleChoiceField(
+        choices=METAL_CHOICES,
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+
+    # METALS = Metal.TitleChoices.choices
+    #
+    # metals = forms.ChoiceField(
+    #     choices=METALS,
+    #     required=False,
+    # )
+    #
+    # JEWELRIES = Jewelry
+
+
+

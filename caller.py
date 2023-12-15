@@ -47,6 +47,10 @@ stone_colors = StoneColor.objects.all()
     
 # print(categories_by_choices)
         
-jewelry = JewelryDetails.objects.filter(pk=1).get()
-customer_gender = jewelry.jewelry.customer_gender.pk
-print(customer_gender)
+# jewelry = JewelryDetails.objects.filter(pk=1).get()
+# customer_gender = jewelry.jewelry.customer_gender.pk
+# print(customer_gender)
+
+style_names = Style.objects.filter(title__in=['ST', 'EN'])
+style_ids = [s.pk for s in style_names]
+print(style_ids)
