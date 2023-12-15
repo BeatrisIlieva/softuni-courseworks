@@ -2,10 +2,25 @@
 {% load static %}
 {% block page_content %}
 <form action="{% url 'show_jewelries' customer_gender_pk=1 category_pk=1 %}" method="get">
-    {{form}}
-    <button>Earrings</button>
-    {% csrf_token %}
-  </form>
+    {% for field in style_form %}
+        <label for="{{ field.id_for_label }}">
+            <strong>{{ field.label }}</strong>
+                {{ field }}
+        </label>
+    {% endfor %}
+        <button>Apply</button>
+        {% csrf_token %}
+</form>
+    <form action="{% url 'show_jewelries' customer_gender_pk=1 category_pk=1 %}" method="get">
+    {% for field in metal_form %}
+        <label for="{{ field.id_for_label }}">
+            <strong>{{ field.label }}</strong>
+                {{ field }}
+        </label>
+    {% endfor %}
+        <button>Apply</button>
+        {% csrf_token %}
+</form>
 <div class="separator-line">
     <div class="image-container">
         <div>
