@@ -48,7 +48,7 @@ from e_commerce_website.jewelry.models import JewelryDetails, Style, Metal, Jewe
     
 #     return render(request, 'common/index-page.html', context)
 
-class StyleForm(forms.Form):
+class JewelryForm(forms.Form):
 
     STYLE_CHOICES = Style.TitleChoices.choices
 
@@ -58,8 +58,6 @@ class StyleForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
     )
 
-class MetalForm(forms.Form):
-
     METAL_CHOICES = Metal.TitleChoices.choices
 
     metal_choices = forms.MultipleChoiceField(
@@ -68,15 +66,6 @@ class MetalForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
     )
 
-
-    # METALS = Metal.TitleChoices.choices
-    #
-    # metals = forms.ChoiceField(
-    #     choices=METALS,
-    #     required=False,
-    # )
-    #
-    # JEWELRIES = Jewelry
 
 
 
