@@ -43,9 +43,13 @@ def show_jewelries(request, customer_gender_pk, category_pk):
             # We give to the form the possible choices
             selection_form.fields['metal_choices'].choices = metal_choices
 
-            stones = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=style_ids).select_related('stone_type')
-            stone_choices = set((stone_type.stone_type.title, stone_type.stone_type.get_title_display()) for stone_type in stones)
-            selection_form.fields['stone_type_choices'].choices = stone_choices
+            stone_types = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=style_ids).select_related('stone_type')
+            stone_type_choices = set((stone_type.stone_type.title, stone_type.stone_type.get_title_display()) for stone_type in stone_types)
+            selection_form.fields['stone_type_choices'].choices = stone_type_choices
+
+            stone_colors = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=style_ids).select_related('stone_color')
+            stone_color_choices = set((stone_color.stone_color.title, stone_color.stone_color.get_title_display()) for stone_color in stone_colors)
+            selection_form.fields['stone_color_choices'].choices = stone_color_choices
 
         elif search_pattern_metals:
 
