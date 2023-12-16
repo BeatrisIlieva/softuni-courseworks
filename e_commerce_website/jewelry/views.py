@@ -8,8 +8,10 @@ from django.db.models import Q
 
 
 def show_jewelries(request, customer_gender_pk, category_pk):
-    jewelries = JewelryDetails.objects.filter(
-        Q(jewelry__customer_gender=customer_gender_pk),
+    jewelries = JewelryDetails.objects.\
+        filter(
+        Q(jewelry__customer_gender=customer_gender_pk)
+            &
         Q(jewelry__category=category_pk)
     )
 
@@ -17,11 +19,18 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
     if selection_form.is_valid():
         # Getting the styles from the `Style` model and filtering them based on the selected category
-        styles = Style.objects.filter(category=category_pk).select_related('category')
+        styles = Style.objects.\
+            filter(category=category_pk).\
+            select_related('category')
+
         # Filtering the `style_choices` from the form based on the `styles`
-        style_choices = [(style.title, style.get_title_display()) for style in styles]
+        style_choices = [
+            (style.title, style.get_title_display()) for style in styles
+        ]
+
         # Changing the form fields based on the new `style_choices`
         selection_form.fields['style_choices'].choices = style_choices
+
         # Defining all possible search patterns
         search_pattern_styles = selection_form.cleaned_data['style_choices']
         search_pattern_metals = selection_form.cleaned_data['metal_choices']
@@ -30,46 +39,94 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
         if search_pattern_styles:
             # Filtering the `style_names` - (objects) from the `Style` table, based on the selection
-            style_names = Style.objects.filter(title__in=search_pattern_styles)
+            style_names = Style.objects.\
+                filter(title__in=search_pattern_styles)
+
             # Getting the pks of the style objects
             style_ids = [s.pk for s in style_names]
+
             # Filtering the `JewelryDetails` objects based on the style pks in the `Jewelry` table
-            jewelries = jewelries.filter(jewelry__style_id__in=style_ids)
+            jewelries = jewelries.\
+                filter(jewelry__style_id__in=style_ids)
+
             # `JewelryMetal` has a foreign key to `JewelryDetails` which has a foreign key to `Jewelry`
             # where the style pk is stored. Thus, we take the objects from the `JewelryMetal` that have
             # a pk of the respective `Jewelry` and filter the possible metals based on the selected style
-            metals = JewelryMetal.objects.filter(jewelry__jewelry__style_id__in=style_ids).select_related('metal')
+            metals = JewelryMetal.objects.\
+                filter(jewelry__jewelry__style_id__in=style_ids).\
+                select_related('metal')
+
             # Because the objects might be more than one, we use set()
-            metal_choices = set((metal.metal.title, metal.metal.get_title_display()) for metal in metals)
+            metal_choices = set(
+                (metal.metal.title, metal.metal.get_title_display())
+                for metal in metals
+            )
+
             # We give to the form the possible choices
             selection_form.fields['metal_choices'].choices = metal_choices
 
-            stone_types = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=style_ids).select_related('stone_type')
-            stone_type_choices = set((stone_type.stone_type.title, stone_type.stone_type.get_title_display()) for stone_type in stone_types)
+            stone_types = JewelryStone.objects.\
+                filter(jewelry__jewelry__style_id__in=style_ids).\
+                select_related('stone_type')
+
+            stone_type_choices = set(
+                (stone_type.stone_type.title, stone_type.stone_type.get_title_display())
+                for stone_type in stone_types
+            )
+
             selection_form.fields['stone_type_choices'].choices = stone_type_choices
 
-            stone_colors = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=style_ids).select_related('stone_color')
-            stone_color_choices = set((stone_color.stone_color.title, stone_color.stone_color.get_title_display()) for stone_color in stone_colors)
+            stone_colors = JewelryStone.objects.\
+                filter(jewelry__jewelry__style_id__in=style_ids).\
+                select_related('stone_color')
+
+            stone_color_choices = set(
+                (stone_color.stone_color.title, stone_color.stone_color.get_title_display())
+                for stone_color in stone_colors
+            )
+
             selection_form.fields['stone_color_choices'].choices = stone_color_choices
 
         elif search_pattern_metals:
 
-            metal_names = Metal.objects.filter(title__in=search_pattern_metals)
+            metal_names = Metal.objects.\
+                filter(title__in=search_pattern_metals)
+
             metal_ids = [m.pk for m in metal_names]
 
-            jewelries = jewelries.filter(jewelry_metals__metal_id__in=metal_ids)
+            jewelries = jewelries.\
+                filter(jewelry_metals__metal_id__in=metal_ids)
 
-            styles = Style.objects.prefetch_related('style__jewelry__jewelry_metals').filter(
-                style__jewelry__metals__in=metal_ids)
-            style_choices = set((style.title, style.get_title_display()) for style in styles)
+            styles = Style.objects.\
+                prefetch_related('style__jewelry__jewelry_metals').\
+                filter(style__jewelry__metals__in=metal_ids)
+
+            style_choices = set(
+                (style.title, style.get_title_display())
+                for style in styles
+            )
             selection_form.fields['style_choices'].choices = style_choices
 
-            stone_types = JewelryStone.objects.prefetch_related('jewelry__stone_types__stone_types').filter(stone_type__jewelrydetails__metals__in=metal_ids)
-            stone_type_choices = set((stone_type.stone_type.title, stone_type.stone_type.get_title_display()) for stone_type in stone_types)
+            stone_types = JewelryStone.objects.\
+                prefetch_related('jewelry__stone_types__stone_types').\
+                filter(stone_type__jewelrydetails__metals__in=metal_ids)
+
+            stone_type_choices = set(
+                (stone_type.stone_type.title, stone_type.stone_type.get_title_display())
+                for stone_type in stone_types
+            )
+
             selection_form.fields['stone_type_choices'].choices = stone_type_choices
 
-            stone_colors = JewelryStone.objects.prefetch_related('jewelry__stone_colors__stone_colors').filter(stone_color__jewelrydetails__metals__in=metal_ids)
-            stone_color_choices = set((stone_color.stone_color.title, stone_color.stone_color.get_title_display()) for stone_color in stone_colors)
+            stone_colors = JewelryStone.objects.\
+                prefetch_related('jewelry__stone_colors__stone_colors').\
+                filter(stone_color__jewelrydetails__metals__in=metal_ids)
+
+            stone_color_choices = set(
+                (stone_color.stone_color.title, stone_color.stone_color.get_title_display())
+                for stone_color in stone_colors
+            )
+
             selection_form.fields['stone_color_choices'].choices = stone_color_choices
 
 
