@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from e_commerce_website.common.views import get_nav_bar_context
 from .forms import JewelryForm
-from .models import JewelryDetails, Style, Metal, JewelryMetal
+from .models import JewelryDetails, Style, Metal, JewelryMetal, JewelryStone
 
 from django.db.models import Q
 
@@ -25,6 +25,7 @@ def show_jewelries(request, customer_gender_pk, category_pk):
         # Defining all possible search patterns
         search_pattern_styles = selection_form.cleaned_data['style_choices']
         search_pattern_metals = selection_form.cleaned_data['metal_choices']
+        search_pattern_stone_types = selection_form.cleaned_data['stone_type_choices']
 
         if search_pattern_styles:
             # Filtering the `style_names` - (objects) from the `Style` table, based on the selection
@@ -42,6 +43,10 @@ def show_jewelries(request, customer_gender_pk, category_pk):
             # We give to the form the possible choices
             selection_form.fields['metal_choices'].choices = metal_choices
 
+            stones = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=style_ids).select_related('stone_type')
+            stone_choices = set((stone_type.stone_type.title, stone_type.stone_type.get_title_display()) for stone_type in stones)
+            selection_form.fields['stone_type_choices'].choices = stone_choices
+
         elif search_pattern_metals:
 
             metal_names = Metal.objects.filter(title__in=search_pattern_metals)
@@ -54,6 +59,9 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
             style_choices = set((style.title, style.get_title_display()) for style in styles)
             selection_form.fields['style_choices'].choices = style_choices
+
+        elif search_pattern_stone_types:
+            pass
 
     # if search_pattern_styles:
     #     query_style = Q(jewelry__style_id__in=style_ids)

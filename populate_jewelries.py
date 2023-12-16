@@ -140,7 +140,7 @@ bulk_create_jewelry_by_stone(
         ),
         JewelryStone(
             jewelry=jewelries_by_details[2],
-            stone_type=stone_types[11],
+            stone_type=stone_types[7],
             stone_color=stone_colors[3],
             stone_carat=3.32,
         ),

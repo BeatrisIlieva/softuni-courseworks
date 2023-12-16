@@ -17,7 +17,7 @@ from e_commerce_website.jewelry.models import (
     StoneColor,
     StoneType,
     Style,
-    Title, JewelryMetal
+    Title, JewelryMetal, JewelryStone
 )
 
 
@@ -122,12 +122,15 @@ jewelries = JewelryDetails.objects.filter(
     Q(jewelry_metals__metal_id__in=[1])).select_related('jewelry__style')
 
 
+# styles = Style.objects.prefetch_related('style__jewelry__jewelry_metals').filter(style__jewelry__metals__in=[1, 3])
+#
+# style_choices = [(style.title, style.get_title_display()) for style in styles]
+# print(style_choices)
 
-# style_names = Style.objects.filter(title__in=search_pattern_styles)
-# # Getting the pks of the style objects
-# style_ids = [s.pk for s in style_names]
+# stones = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=[1, 2]).select_related('stone_type')
+# print(stones)
+# stone_choices = set((stone.title, stone.get_title_display()) for stone in stones)
 
-styles = Style.objects.prefetch_related('style__jewelry__jewelry_metals').filter(style__jewelry__metals__in=[1, 3])
-
-style_choices = [(style.title, style.get_title_display()) for style in styles]
-print(style_choices)
+stones = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=[1]).select_related('stone_type')
+stone_choices = set((stone_type.stone_type.title, stone_type.stone_type.get_title_display()) for stone_type in stones)
+print(stone_choices)
