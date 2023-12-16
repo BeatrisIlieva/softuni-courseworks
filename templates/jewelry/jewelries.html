@@ -3,13 +3,18 @@
 {% block page_content %}
 <form action="{% url 'show_jewelries' customer_gender_pk=1 category_pk=1 %}" method="get">
     {% for field in form %}
+    <div>
         <label for="{{ field.id_for_label }}">
             <strong>{{ field.label }}</strong>
                 {{ field }}
         </label>
-    {% endfor %}
         <button>Apply</button>
         {% csrf_token %}
+    </div>
+    {% endfor %}
+</form>
+{#        <button>Apply</button>#}
+{#        {% csrf_token %}#}
 <div class="separator-line">
     <div class="image-container">
         <div>

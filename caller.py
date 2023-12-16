@@ -109,9 +109,25 @@ stone_colors = StoneColor.objects.all()
 # metals = Style.objects.filter(category=category_pk).select_related('category')
 # style_choices = [(style.title, style.get_title_display()) for style in styles]
 
-metals = JewelryMetal.objects.filter(jewelry__jewelry__style=2).select_related('metal')
-metal_choices = [(metal.metal.title, metal.metal.get_title_display()) for metal in metals]
-print(metals)
-print(metal_choices)
+# metals = JewelryMetal.objects.filter(jewelry__jewelry__style=2).select_related('metal')
+# metal_choices = [(metal.metal.title, metal.metal.get_title_display()) for metal in metals]
+# print(metals)
+# print(metal_choices)
 
 
+
+jewelries = JewelryDetails.objects.filter(
+    Q(jewelry__customer_gender=1),
+    Q(jewelry__category=1),
+    Q(jewelry_metals__metal_id__in=[1])).select_related('jewelry__style')
+
+
+
+# style_names = Style.objects.filter(title__in=search_pattern_styles)
+# # Getting the pks of the style objects
+# style_ids = [s.pk for s in style_names]
+
+styles = Style.objects.prefetch_related('style__jewelry__jewelry_metals').filter(style__jewelry__metals__in=[1, 3])
+
+style_choices = [(style.title, style.get_title_display()) for style in styles]
+print(style_choices)
