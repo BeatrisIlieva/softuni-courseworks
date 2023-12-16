@@ -26,6 +26,7 @@ def show_jewelries(request, customer_gender_pk, category_pk):
         search_pattern_styles = selection_form.cleaned_data['style_choices']
         search_pattern_metals = selection_form.cleaned_data['metal_choices']
         search_pattern_stone_types = selection_form.cleaned_data['stone_type_choices']
+        search_pattern_stone_colors = selection_form.cleaned_data['stone_color_choices']
 
         if search_pattern_styles:
             # Filtering the `style_names` - (objects) from the `Style` table, based on the selection
@@ -60,27 +61,25 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
             styles = Style.objects.prefetch_related('style__jewelry__jewelry_metals').filter(
                 style__jewelry__metals__in=metal_ids)
-
             style_choices = set((style.title, style.get_title_display()) for style in styles)
             selection_form.fields['style_choices'].choices = style_choices
+
+            stone_types = JewelryStone.objects.prefetch_related('jewelry__stone_types__stone_types').filter(stone_type__jewelrydetails__metals__in=metal_ids)
+            stone_type_choices = set((stone_type.stone_type.title, stone_type.stone_type.get_title_display()) for stone_type in stone_types)
+            selection_form.fields['stone_type_choices'].choices = stone_type_choices
+
+            stone_colors = JewelryStone.objects.prefetch_related('jewelry__stone_colors__stone_colors').filter(stone_color__jewelrydetails__metals__in=metal_ids)
+            stone_color_choices = set((stone_color.stone_color.title, stone_color.stone_color.get_title_display()) for stone_color in stone_colors)
+            selection_form.fields['stone_color_choices'].choices = stone_color_choices
+
 
         elif search_pattern_stone_types:
             pass
 
-    # if search_pattern_styles:
-    #     query_style = Q(jewelry__style_id__in=style_ids)
-    #
-    # if search_pattern_metals:
-    #     query_metals = Q(jewelry_metals__metal_id__in=metal_ids)
-    #
-    # if search_pattern_styles and search_pattern_metals:
-    #     jewelries = jewelries.filter(query_style & query_metals)
-    #
-    # if search_pattern_styles:
-    #     jewelries = jewelries.filter(query_style)
-    #
-    # if search_pattern_metals:
-    #     jewelries = jewelries.filter(query_metals)
+
+        elif search_pattern_stone_colors:
+            pass
+
 
     context = {
         'jewelries': jewelries,
