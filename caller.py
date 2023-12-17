@@ -31,7 +31,7 @@ categories = Category.objects.all()
 titles = Title.objects.all()
 sizes = Size.objects.all()
 styles = Style.objects.all()
-metals = Metal.objects.all()
+# metals = Metal.objects.all()
 gold_carats = GoldCaratWeight.objects.all()
 customer_genders = CustomerGender.objects.all()
 jewelries = Jewelry.objects.all()
@@ -226,23 +226,36 @@ stone_colors = StoneColor.objects.all()
 #         ]
 # print(filtered_price_choices)
 
-all_price_choices = JewelryDetails.PriceChoices.choices
+# all_price_choices = JewelryDetails.PriceChoices.choices
+#
+# # jewelries_prices = set()
+# # for jewelry in jewelries_by_details:
+# #     jewelries_prices.add(jewelry.price)
+# jewelries_prices = jewelries_by_details.values_list('price', flat=True).distinct().order_by('price')
+# prices = []
+# for price in jewelries_prices:
+#     for value, display in all_price_choices:
+#         if price <= float(value.split(',')[1]):
+#             prices.append((value, display))
+#             break
+# # print(prices)
+#
+# min_price
+#
+# jewelries_by_details = jewelries_by_details.filter(price__lte)
 
-# jewelries_prices = set()
-# for jewelry in jewelries_by_details:
-#     jewelries_prices.add(jewelry.price)
-jewelries_prices = jewelries_by_details.values_list('price', flat=True).distinct().order_by('price')
-prices = []
-for price in jewelries_prices:
-    for value, display in all_price_choices:
-        if price <= float(value.split(',')[1]):
-            prices.append((value, display))
-            break
-# print(prices)
 
-min_price
+metals = JewelryMetal.objects.select_related('metal'). \
+    filter(jewelry__jewelry_id__in=[1])
 
-jewelries_by_details = jewelries_by_details.filter(price__lte)
+metal_choices = set(
+    (metal.metal.title, metal.metal.get_title_display())
+    for metal in metals
+)
+
+
+
+print(metal_choices)
 
 
 
