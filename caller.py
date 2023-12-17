@@ -1,11 +1,17 @@
 import os
+from _decimal import Decimal
+
 import django
+from django import forms
+
 from django.db.models import Q
+
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "e_commerce_website.settings")
 django.setup()
+from django.db import models
 
-
+from django.utils.translation import gettext_lazy as _
 from e_commerce_website.jewelry.models import (
     Category,
     CustomerGender,
@@ -116,10 +122,10 @@ stone_colors = StoneColor.objects.all()
 
 
 
-jewelries = JewelryDetails.objects.filter(
-    Q(jewelry__customer_gender=1),
-    Q(jewelry__category=1),
-    Q(jewelry_metals__metal_id__in=[1])).select_related('jewelry__style')
+# jewelries = JewelryDetails.objects.filter(
+#     Q(jewelry__customer_gender=1),
+#     Q(jewelry__category=1),
+# )
 
 
 # styles = Style.objects.prefetch_related('style__jewelry__jewelry_metals').filter(style__jewelry__metals__in=[1, 3])
@@ -131,6 +137,114 @@ jewelries = JewelryDetails.objects.filter(
 # print(stones)
 # stone_choices = set((stone.title, stone.get_title_display()) for stone in stones)
 
-stones = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=[1]).select_related('stone_type')
-stone_choices = set((stone_type.stone_type.title, stone_type.stone_type.get_title_display()) for stone_type in stones)
-print(stone_choices)
+# stones = JewelryStone.objects.filter(jewelry__jewelry__style_id__in=[1]).select_related('stone_type')
+# stone_choices = set((stone_type.stone_type.title, stone_type.stone_type.get_title_display()) for stone_type in stones)
+# print(stone_choices)
+
+# class JewelryForm(forms.Form):
+#     PRICE_CHOICES = (
+#         ((0, 750), '$0-$749.99'),
+#         ((750, 1500), '$750-$1499.99'),
+#         ((1500, 3000), '$1500-$2999.99'),
+#         ((3000, 5000), '$3000-$4999.99'),
+#         ((5000, 100000), 'Above$5000'),
+#     )
+#
+#     order_by_price = forms.MultipleChoiceField(
+#         choices=PRICE_CHOICES,
+#         required=False,
+#         widget=forms.CheckboxSelectMultiple,
+#     )
+#
+# price_choices = []
+# for el in JewelryForm.PRICE_CHOICES:
+#     jewelries = JewelryDetails.objects.all(). \
+#         filter(Q(price__gte=el[0][0]) & Q(price__lte=el[0][1]))
+#     if jewelries:
+#        price_choices.extend(el[0])
+# print(price_choices)
+
+
+# class PriceChoices(models.TextChoices):
+#     V_750 = '0, 750', _('$0-$749.99')
+#     V_1500 = '750, 1500', _('$750-$1499.99')
+#     V_3000 = '1500, 3000', _('$1500-$2999.99')
+#     V_5000 = '3000, 5000', _('$3000-$4999.99')
+#     V_100000 = '5000, 10000', _('Above$5000')
+
+
+
+# jewelries = JewelryDetails.objects.filter(
+#     Q(price__gte=JewelryDetails.PriceChoices.V_750[0]) &
+#     Q(price__lte=JewelryDetails.PriceChoices.V_750[1]))
+# print(jewelries)
+# print(jewelry)
+# jewelries = JewelryDetails.objects.filter(
+#     Q(price__gte=JewelryDetails.PriceChoices.V_750[0]) &
+#     Q(price__lte=JewelryDetails.PriceChoices.V_750[1]))
+
+# jewelries = JewelryDetails.objects.filter(price__range=(int(JewelryDetails.PriceChoices.V_750.title()[0]), int(JewelryDetails.PriceChoices.V_750.title()[1])))
+# print(jewelries)
+# all_price_choices = JewelryDetails.PriceChoices.choices
+#
+# filtered_price_choices = [
+#         (value, display) for value, display in all_price_choices
+#         if float(value.split(',')[1]) <= 2000
+#     ]
+#
+# print(filtered_price_choices)
+
+
+
+#     # Filter choices based on the maximum price among the three products
+# max_price = 13000
+#
+# filtered_price_choices = [
+#     (value, display) for value, display in all_price_choices
+#     if float(value.split(',')[1]) <= 2000
+# ]
+#
+# for price, display in all_price_choices:
+#     print(float(price.split(',')[1]))
+# all_price_choices = JewelryDetails.PriceChoices.choices
+# price_filters = Q()
+#
+# for price, display in all_price_choices:
+#     price_filters |= Q(price__lte=(float(price.split(',')[1])))
+#
+# jewelries = JewelryDetails.objects.all()
+#
+# jewelries = jewelries.filter(price_filters)
+# jewelries_prices = []
+#
+# for jewelry in jewelries:
+#     jewelries_prices.append(jewelry.price)
+#
+# filtered_price_choices = [
+#             (value, display) for value, display in all_price_choices
+#             if float(value.split(',')[1]) >= 750 or float(value.split(',')[1]) >= 1500
+#         ]
+# print(filtered_price_choices)
+
+all_price_choices = JewelryDetails.PriceChoices.choices
+
+# jewelries_prices = set()
+# for jewelry in jewelries_by_details:
+#     jewelries_prices.add(jewelry.price)
+jewelries_prices = jewelries_by_details.values_list('price', flat=True).distinct().order_by('price')
+prices = []
+for price in jewelries_prices:
+    for value, display in all_price_choices:
+        if price <= float(value.split(',')[1]):
+            prices.append((value, display))
+            break
+# print(prices)
+
+
+
+
+
+
+
+
+
