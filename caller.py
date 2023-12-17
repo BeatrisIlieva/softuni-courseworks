@@ -240,7 +240,9 @@ for price in jewelries_prices:
             break
 # print(prices)
 
+min_price
 
+jewelries_by_details = jewelries_by_details.filter(price__lte)
 
 
 

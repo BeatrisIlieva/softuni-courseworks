@@ -1,4 +1,5 @@
 import re
+from decimal import Decimal
 
 from django.shortcuts import render
 
@@ -8,33 +9,12 @@ from .models import JewelryDetails, Style, Metal, JewelryMetal, JewelryStone, St
 
 from django.db.models import Q
 
-def show_price_ranges(jewelries, selection_pattern_price):
-    pattern = r'\b(\d+),\s*(\d+)\b'
-    matches_list = re.findall(pattern, str(selection_pattern_price))
-
-    price_filters = []
-
-    for match in matches_list:
-        min_price, max_price = match
-        price_filters.append(
-            Q(price__gte=min_price) &
-            Q(price__lte=max_price)
-        )
-
-    if price_filters:
-        combined_filter = price_filters.pop()
-        for price_filter in price_filters:
-            combined_filter |= price_filter
-
-        jewelries = jewelries.filter(combined_filter)
-
-    return jewelries
 
 def show_jewelries(request, customer_gender_pk, category_pk):
     jewelries = JewelryDetails.objects. \
         filter(
         Q(jewelry__customer_gender=customer_gender_pk)
-            &
+        &
         Q(jewelry__category=category_pk)
     )
 
@@ -42,6 +22,19 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
     if selection_form.is_valid():
         all_price_choices = JewelryDetails.PriceChoices.choices
+
+        def show_available_prices(jewelries):
+            jewelries_prices = jewelries.values_list('price', flat=True).distinct().order_by('price')
+
+            prices = []
+
+            for price in jewelries_prices:
+                for value, display in all_price_choices:
+                    if price <= float(value.split(',')[1]):
+                        prices.append((value, display))
+                        break
+
+            return (prices)
 
         # Getting the styles from the `Style` model and filtering them based on the selected category
         styles = Style.objects. \
@@ -64,10 +57,63 @@ def show_jewelries(request, customer_gender_pk, category_pk):
         selection_pattern_stone_colors = selection_form.cleaned_data['stone_color_choices']
 
         if selection_pattern_price:
-            pass
+            query_price = Q()
+
+            for price in selection_pattern_price:
+                min_price, max_price = map(float, price.split(','))
+                decimal_min_price, decimal_max_price = (Decimal(min_price), Decimal(max_price))
+                query_price |= Q(price__gte=decimal_min_price) & Q(price__lte=decimal_max_price)
+
+            jewelries = jewelries.filter(query_price)
+
+            jewelry_ids = [j.pk for j in jewelries]
+
+            styles = Style.objects. \
+                prefetch_related('category__jewelry_category__style') \
+                .filter(style__jewelry__in=jewelry_ids)
+
+            style_choices = set(
+                (style.title, style.get_title_display())
+                for style in styles
+            )
+            selection_form.fields['style_choices'].choices = style_choices
+
+            metals = JewelryMetal.objects. \
+                filter(jewelry__in=jewelry_ids). \
+                select_related('metal')
+
+            # Because the objects might be more than one, we use set()
+            metal_choices = set(
+                (metal.metal.title, metal.metal.get_title_display())
+                for metal in metals
+            )
+
+            # We give to the form the possible choices
+            selection_form.fields['metal_choices'].choices = metal_choices
+
+            stone_types = JewelryStone.objects. \
+                filter(jewelry__in=jewelry_ids). \
+                select_related('stone_type')
+
+            stone_type_choices = set(
+                (stone_type.stone_type.title, stone_type.stone_type.get_title_display())
+                for stone_type in stone_types
+            )
+
+            selection_form.fields['stone_type_choices'].choices = stone_type_choices
+
+            stone_colors = JewelryStone.objects. \
+                filter(jewelry__in=jewelry_ids). \
+                select_related('stone_color')
+
+            stone_color_choices = set(
+                (stone_color.stone_color.title, stone_color.stone_color.get_title_display())
+                for stone_color in stone_colors
+            )
+
+            selection_form.fields['stone_color_choices'].choices = stone_color_choices
 
         if selection_pattern_styles:
-
             # Filtering the `style_names` - (objects) from the `Style` table, based on the selection
             style_names = Style.objects. \
                 filter(title__in=selection_pattern_styles)
@@ -117,17 +163,7 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
             selection_form.fields['stone_color_choices'].choices = stone_color_choices
 
-            jewelries_prices = jewelries.values_list('price', flat=True).distinct().order_by('price')
-
-            prices = []
-
-            for price in jewelries_prices:
-                for value, display in all_price_choices:
-                    if price <= float(value.split(',')[1]):
-                        prices.append((value, display))
-                        break
-
-            selection_form.fields['order_by_price'].choices = prices
+            selection_form.fields['order_by_price'].choices = show_available_prices(jewelries)
 
         if selection_pattern_metals:
             metal_names = Metal.objects. \
@@ -169,6 +205,8 @@ def show_jewelries(request, customer_gender_pk, category_pk):
             )
 
             selection_form.fields['stone_color_choices'].choices = stone_color_choices
+
+            selection_form.fields['order_by_price'].choices = show_available_prices(jewelries)
 
         if selection_pattern_stone_types:
             stone_type_names = StoneType.objects. \
@@ -212,6 +250,7 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
             selection_form.fields['stone_color_choices'].choices = stone_color_choices
 
+            selection_form.fields['order_by_price'].choices = show_available_prices(jewelries)
 
         if selection_pattern_stone_colors:
             stone_color_names = StoneColor.objects. \
@@ -232,7 +271,6 @@ def show_jewelries(request, customer_gender_pk, category_pk):
             )
 
             selection_form.fields['style_choices'].choices = style_choices
-
 
             metals = JewelryMetal.objects. \
                 filter(jewelry__jewelry_stones__stone_color__in=stone_color_ids). \
@@ -256,6 +294,8 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
             selection_form.fields['stone_type_choices'].choices = stone_type_choices
 
+            selection_form.fields['order_by_price'].choices = show_available_prices(jewelries)
+
     context = {
         'jewelries': jewelries,
         'form': selection_form,
@@ -269,7 +309,7 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
 
 def show_jewelry_details(request, jewelry_pk):
-    jewelry = JewelryDetails.objects.\
+    jewelry = JewelryDetails.objects. \
         filter(pk=jewelry_pk).get()
 
     context = {
