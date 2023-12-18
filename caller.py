@@ -4,8 +4,7 @@ from _decimal import Decimal
 import django
 from django import forms
 
-from django.db.models import Q
-
+from django.db.models import Q, Count
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "e_commerce_website.settings")
 django.setup()
@@ -297,86 +296,116 @@ stone_colors = StoneColor.objects.all()
 # ]
 #
 # print(style_choices)
-jewelries = jewelries_by_details
-def get_objects_ids(objects):
-    return [o.id for o in objects]
+# jewelries = jewelries_by_details
+# def get_objects_ids(objects):
+#     return [o.id for o in objects]
+#
+#
+# def show_available_prices(jewelries):
+#     all_price_choices = JewelryDetails.PriceChoices.choices
+#
+#     jewelries_prices = jewelries.values_list('price', flat=True).distinct().order_by('price')
+#
+#     prices = []
+#
+#     for price in jewelries_prices:
+#         for value, display in all_price_choices:
+#             if price <= float(value.split(',')[1]):
+#                 prices.append((value, display))
+#                 break
+#
+#     return (prices)
+#
+#
+# def show_jewelries_by_price(selection_pattern_price, jewelries):
+#     query_price = Q()
+#
+#     for price in selection_pattern_price:
+#         min_price, max_price = map(float, price.split(','))
+#         decimal_min_price, decimal_max_price = (Decimal(min_price), Decimal(max_price))
+#         query_price |= Q(price__gte=decimal_min_price) & Q(price__lte=decimal_max_price)
+#
+#     jewelries = jewelries.filter(query_price)
+#
+#     jewelry_ids = get_objects_ids(jewelries)
+#
+#     styles = Style.objects. \
+#         prefetch_related('category__jewelry_category__style') \
+#         .filter(style__jewelry__in=jewelry_ids)
+#
+#     style_choices = set(
+#         (style.title, style.get_title_display())
+#         for style in styles
+#     )
+#
+#     # metals = JewelryMetal.objects.select_related('metal'). \
+#     #     filter(jewelry__metals__in=jewelry_ids)
+#
+#     # metals = JewelryMetal.objects.prefetch_related('jewelry__metals__metals'). \
+#     #     filter(jewelry__jewelry_id__in=jewelry_ids)
+#
+#     metals = JewelryMetal.objects.select_related('jewelry'). \
+#         filter(jewelry_id__in=jewelry_ids)
+#
+#     metal_choices = set(
+#         (metal.metal.title, metal.metal.get_title_display())
+#         for metal in metals
+#     )
+#
+#     stone_types = JewelryStone.objects. \
+#         filter(jewelry__in=jewelry_ids). \
+#         select_related('stone_type')
+#
+#     stone_type_choices = set(
+#         (stone_type.stone_type.title, stone_type.stone_type.get_title_display())
+#         for stone_type in stone_types
+#     )
+#
+#     stone_colors = JewelryStone.objects. \
+#         filter(jewelry__in=jewelry_ids). \
+#         select_related('stone_color')
+#
+#     stone_color_choices = set(
+#         (stone_color.stone_color.title, stone_color.stone_color.get_title_display())
+#         for stone_color in stone_colors
+#     )
+#
+#     price_choices = show_available_prices(jewelries)
+#     print(price_choices)
+#     return jewelries, style_choices, metal_choices, stone_type_choices, stone_color_choices, price_choices
+#
+#
+# print(show_jewelries_by_price(['5000, 1_000_000'], jewelries))
+# annotate(num_jewelries=Count('jewelries'))
 
+counter = jewelries_by_details.prefetch_related('jewelry__style__category').filter(jewelry__style__in=[1, 2]).count()
+print(counter)
 
-def show_available_prices(jewelries):
-    all_price_choices = JewelryDetails.PriceChoices.choices
+jewelries_count = {}
+cur_styles = Style.objects. \
+    filter(category=1). \
+    select_related('category')
+style_ids = [s.id for s in cur_styles]
+for style_id in style_ids:
+    if style_id not in jewelries_count.keys():
+        jewelries_count[style_id] = jewelries_by_details.prefetch_related('jewelry__style__category').filter(
+            jewelry__style=style_id).count()
+    else:
+        jewelries_count[style_id] += jewelries_by_details.prefetch_related('jewelry__style__category').filter(
+            jewelry__style=style_id).count()
 
-    jewelries_prices = jewelries.values_list('price', flat=True).distinct().order_by('price')
+print(jewelries_count)
+print(cur_styles)
 
-    prices = []
+counter_j = jewelries_by_details.prefetch_related('jewelry__style__category').filter(jewelry__style=1).count()
+print(counter_j)
 
-    for price in jewelries_prices:
-        for value, display in all_price_choices:
-            if price <= float(value.split(',')[1]):
-                prices.append((value, display))
-                break
-
-    return (prices)
-
-
-def show_jewelries_by_price(selection_pattern_price, jewelries):
-    query_price = Q()
-
-    for price in selection_pattern_price:
-        min_price, max_price = map(float, price.split(','))
-        decimal_min_price, decimal_max_price = (Decimal(min_price), Decimal(max_price))
-        query_price |= Q(price__gte=decimal_min_price) & Q(price__lte=decimal_max_price)
-
-    jewelries = jewelries.filter(query_price)
-
-    jewelry_ids = get_objects_ids(jewelries)
-
-    styles = Style.objects. \
-        prefetch_related('category__jewelry_category__style') \
-        .filter(style__jewelry__in=jewelry_ids)
-
-    style_choices = set(
-        (style.title, style.get_title_display())
-        for style in styles
-    )
-
-    # metals = JewelryMetal.objects.select_related('metal'). \
-    #     filter(jewelry__metals__in=jewelry_ids)
-
-    # metals = JewelryMetal.objects.prefetch_related('jewelry__metals__metals'). \
-    #     filter(jewelry__jewelry_id__in=jewelry_ids)
-
-    metals = JewelryMetal.objects.select_related('jewelry'). \
-        filter(jewelry_id__in=jewelry_ids)
-
-    metal_choices = set(
-        (metal.metal.title, metal.metal.get_title_display())
-        for metal in metals
-    )
-
-    stone_types = JewelryStone.objects. \
-        filter(jewelry__in=jewelry_ids). \
-        select_related('stone_type')
-
-    stone_type_choices = set(
-        (stone_type.stone_type.title, stone_type.stone_type.get_title_display())
-        for stone_type in stone_types
-    )
-
-    stone_colors = JewelryStone.objects. \
-        filter(jewelry__in=jewelry_ids). \
-        select_related('stone_color')
-
-    stone_color_choices = set(
-        (stone_color.stone_color.title, stone_color.stone_color.get_title_display())
-        for stone_color in stone_colors
-    )
-
-    price_choices = show_available_prices(jewelries)
-    print(price_choices)
-    return jewelries, style_choices, metal_choices, stone_type_choices, stone_color_choices, price_choices
-
-
-print(show_jewelries_by_price(['5000, 1_000_000'], jewelries))
+{% for key, value in jewelries_count_by_style.items %}
+                            {% if subfield.name == 'style_choices' %}
+                                {{ subfield }}
+                            <span>{{ value }}</span>
+                            {% endif %}
+                        {% endfor %}
 
 
 

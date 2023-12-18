@@ -1,21 +1,22 @@
 {% extends 'base/base.html' %}
+{% load custom_filters %}
 {% load static %}
 {% block page_content %}
     <form action="{% url 'show_jewelries' customer_gender_id=1 category_id=1 %}" method="get">
         {% for field in form %}
             <div>
                 <label for="{{ field.id_for_label }}">
-{#                    <div>#}
                         <strong>{{ field.label }} </strong>
                         <div>
                             {% for subfield in field %}
-                                <div>
-                                    {{ subfield }}
-                                    <span>(2)</span>
-                                </div>
+                        <div>
+                            {{ subfield }}
+                            {% if subfield.id_for_label in jewelries_count_by_style.keys %}
+                            <span>{{ jewelries_count_by_style|get_value_from_dict:subfield.id_for_label }}</span>
+                            {% endif %}
+                        </div>
                             {% endfor %}
                         </div>
-{#                    </div>#}
                 </label>
                 <button>Apply</button>
                 {% csrf_token %}
