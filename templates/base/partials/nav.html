@@ -9,7 +9,7 @@
         <li>
             <p>Choose by Category</p>
             {% for category, title in categories_by_choices.items %}
-            <a href="{% url 'show_jewelries' customer_gender_pk=female_gender.pk category_pk=category.pk %}">{{ title }}</a>
+            <a href="{% url 'show_jewelries' customer_gender_id=female_gender.id category_id=category.id %}">{{ title }}</a>
             {% endfor %}
               <a href="#">All Jewelries</a>
         </li>

@@ -53,12 +53,12 @@ stone_colors = StoneColor.objects.all()
     
 # print(categories_by_choices)
         
-# jewelry = JewelryDetails.objects.filter(pk=1).get()
-# customer_gender = jewelry.jewelry.customer_gender.pk
+# jewelry = JewelryDetails.objects.filter(id=1).get()
+# customer_gender = jewelry.jewelry.customer_gender.id
 # print(customer_gender)
 
 # style_names = Style.objects.filter(title__in=['ST', 'EN'])
-# style_ids = [s.pk for s in style_names]
+# style_ids = [s.id for s in style_names]
 # print(style_ids)
 
 # jewelries = JewelryDetails.objects.filter(Q(jewelry__customer_gender=1),
@@ -112,7 +112,7 @@ stone_colors = StoneColor.objects.all()
 # print(styles)
 
 
-# metals = Style.objects.filter(category=category_pk).select_related('category')
+# metals = Style.objects.filter(category=category_id).select_related('category')
 # style_choices = [(style.title, style.get_title_display()) for style in styles]
 
 # metals = JewelryMetal.objects.filter(jewelry__jewelry__style=2).select_related('metal')
@@ -298,8 +298,8 @@ stone_colors = StoneColor.objects.all()
 #
 # print(style_choices)
 jewelries = jewelries_by_details
-def get_objects_pks(objects):
-    return [o.pk for o in objects]
+def get_objects_ids(objects):
+    return [o.id for o in objects]
 
 
 def show_available_prices(jewelries):
@@ -328,7 +328,7 @@ def show_jewelries_by_price(selection_pattern_price, jewelries):
 
     jewelries = jewelries.filter(query_price)
 
-    jewelry_ids = get_objects_pks(jewelries)
+    jewelry_ids = get_objects_ids(jewelries)
 
     styles = Style.objects. \
         prefetch_related('category__jewelry_category__style') \

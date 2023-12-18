@@ -14,6 +14,7 @@ class JewelryForm(forms.Form):
         choices=PRICE_CHOICES,
         required=False,
         widget=forms.CheckboxSelectMultiple,
+
     )
 
     style_choices = forms.MultipleChoiceField(

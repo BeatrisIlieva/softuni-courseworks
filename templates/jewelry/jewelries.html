@@ -1,29 +1,50 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-<form action="{% url 'show_jewelries' customer_gender_pk=1 category_pk=1 %}" method="get">
-    {% for field in form %}
-    <div>
-        <label for="{{ field.id_for_label }}">
-            <strong>{{ field.label }}</strong>
-                {{ field }}
-        </label>
-        <button>Apply</button>
-        {% csrf_token %}
-    </div>
-    {% endfor %}
-</form>
-{#        <button>Apply</button>#}
-{#        {% csrf_token %}#}
-<div class="separator-line">
-    <div class="image-container">
-        <div>
-            {% for jewelry in jewelries %}
-            <a href="{% url 'show_jewelry_details' jewelry_pk=jewelry.pk %}"> 
-            <img width="300"  height="400" src="{{ jewelry.first_image_url }}" alt="image1">
-            {% endfor %}
+    <form action="{% url 'show_jewelries' customer_gender_id=1 category_id=1 %}" method="get">
+        {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}">
+{#                    <div>#}
+                        <strong>{{ field.label }} </strong>
+                        <div>
+                            {% for subfield in field %}
+                                <div>
+                                    {{ subfield }}
+                                    <span>(2)</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+{#                    </div>#}
+                </label>
+                <button>Apply</button>
+                {% csrf_token %}
+            </div>
+        {% endfor %}
+    </form>
+    <div class="separator-line">
+        <div class="image-container">
+            <div>
+                {% for jewelry in jewelries %}
+                    <a href="{% url 'show_jewelry_details' jewelry_id=jewelry.id %}">
+                    <img width="300" height="400" src="{{ jewelry.first_image_url }}" alt="image1">
+                    </a>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
-{% endblock %} 
+{% endblock %}
 
+
+{#<form action="{% url 'show_jewelries' customer_gender_id=1 category_id=1 %}" method="get">#}
+{#    {% for field in form %}#}
+{#    <div>#}
+{#        <label for="{{ field.id_for_label }}">#}
+{#            <strong>{{ field.label}} </strong>#}
+{#               {{ field}}#}
+{#        </label>#}
+{#        <button>Apply</button>#}
+{#        {% csrf_token %}#}
+{#    </div>#}
+{#    {% endfor %}#}
+{#</form>#}

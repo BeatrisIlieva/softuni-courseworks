@@ -36,7 +36,7 @@ def show_jewelries_by_price(selection_pattern_price, jewelries):
 
     jewelries = jewelries.filter(query_price)
 
-    jewelry_ids = [j.pk for j in jewelries]
+    jewelry_ids = [j.id for j in jewelries]
 
     styles = Style.objects. \
         prefetch_related('category__jewelry_category__style') \
@@ -85,16 +85,16 @@ def show_jewelries_by_style(selection_pattern_styles, jewelries):
     style_names = Style.objects. \
         filter(title__in=selection_pattern_styles)
 
-    # Getting the pks of the style objects
-    style_ids = [s.pk for s in style_names]
+    # Getting the ids of the style objects
+    style_ids = [s.id for s in style_names]
 
-    # Filtering the `JewelryDetails` objects based on the style pks in the `Jewelry` table
+    # Filtering the `JewelryDetails` objects based on the style ids in the `Jewelry` table
     jewelries = jewelries. \
         filter(jewelry__style_id__in=style_ids)
 
     # `JewelryMetal` has a foreign key to `JewelryDetails` which has a foreign key to `Jewelry`
-    # where the style pk is stored. Thus, we take the objects from the `JewelryMetal` that have
-    # a pk of the respective `Jewelry` and filter the possible metals based on the selected style
+    # where the style id is stored. Thus, we take the objects from the `JewelryMetal` that have
+    # a id of the respective `Jewelry` and filter the possible metals based on the selected style
     metals = JewelryMetal.objects. \
         filter(jewelry__jewelry__style_id__in=style_ids). \
         select_related('metal')
@@ -132,7 +132,7 @@ def show_jewelries_by_metals(selection_pattern_metals, jewelries):
     metal_names = Metal.objects. \
         filter(title__in=selection_pattern_metals)
 
-    metal_ids = [m.pk for m in metal_names]
+    metal_ids = [m.id for m in metal_names]
 
     jewelries = jewelries. \
         filter(jewelry_metals__metal_id__in=metal_ids)
@@ -171,7 +171,7 @@ def show_jewelries_by_stone_types(selection_pattern_stone_types, jewelries):
     stone_type_names = StoneType.objects. \
         filter(title__in=selection_pattern_stone_types)
 
-    stone_type_ids = [s.pk for s in stone_type_names]
+    stone_type_ids = [s.id for s in stone_type_names]
 
     jewelries = jewelries. \
         filter(jewelry_stones__stone_type_id__in=stone_type_ids)
@@ -209,7 +209,7 @@ def show_jewelries_by_stone_colors(selection_pattern_stone_colors, jewelries):
     stone_color_names = StoneColor.objects. \
         filter(title__in=selection_pattern_stone_colors)
 
-    stone_color_ids = [c.pk for c in stone_color_names]
+    stone_color_ids = [c.id for c in stone_color_names]
 
     jewelries = jewelries. \
         filter(jewelry_stones__stone_color_id__in=stone_color_ids)
@@ -247,12 +247,12 @@ def show_jewelries_by_stone_colors(selection_pattern_stone_colors, jewelries):
     return jewelries, style_choices, metal_choices, stone_type_choices
 
 
-def show_jewelries(request, customer_gender_pk, category_pk):
+def show_jewelries(request, customer_gender_id, category_id):
     jewelries = JewelryDetails.objects. \
         filter(
-        Q(jewelry__customer_gender=customer_gender_pk)
+        Q(jewelry__customer_gender=customer_gender_id)
         &
-        Q(jewelry__category=category_pk)
+        Q(jewelry__category=category_id)
     )
 
     selection_form = JewelryForm(request.GET)
@@ -261,7 +261,7 @@ def show_jewelries(request, customer_gender_pk, category_pk):
 
         # Getting the styles from the `Style` model and filtering them based on the selected category
         styles = Style.objects. \
-            filter(category=category_pk). \
+            filter(category=category_id). \
             select_related('category')
 
         # Filtering the `style_choices` from the form based on the `styles`
@@ -335,9 +335,9 @@ def show_jewelries(request, customer_gender_pk, category_pk):
     return render(request, 'jewelry/jewelries.html', context)
 
 
-def show_jewelry_details(request, jewelry_pk):
+def show_jewelry_details(request, jewelry_id):
     jewelry = JewelryDetails.objects. \
-        filter(pk=jewelry_pk).get()
+        filter(id=jewelry_id).get()
 
     context = {
         'jewelry': jewelry,
