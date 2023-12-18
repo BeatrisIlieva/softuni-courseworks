@@ -245,21 +245,138 @@ stone_colors = StoneColor.objects.all()
 # jewelries_by_details = jewelries_by_details.filter(price__lte)
 
 
-metals = JewelryMetal.objects.select_related('metal'). \
-    filter(jewelry__jewelry_id__in=[1])
+# metals = JewelryMetal.objects.prefetch_related('metal'). \
+#     filter(jewelry__jewelry_id__in=[2])
+#
+# metal_choices = set(
+#     (metal.metal.title, metal.metal.get_title_display())
+#     for metal in metals
+# )
+#
+#
+#
+# print(metal_choices)
+#
+# all_styles = Style.TitleChoices.choices
+#
+# style_choices = []
+# jewelries = jewelries.prefetch_related('jewelry__style__category_id').filter(jewelry__in=jewelry_ids)
+# for value, display in all_styles:
+#     if price <= float(value.split(',')[1]):
+#         prices.append((value, display))
+#         break
 
-metal_choices = set(
-    (metal.metal.title, metal.metal.get_title_display())
-    for metal in metals
-)
+# metals = JewelryMetal.objects.select_related('metal'). \
+#     filter(jewelry__metals__in=[3])
+#
+# metal_choices = set(
+#     (metal.metal.title, metal.metal.get_title_display())
+#     for metal in metals
+# )
+#
+# print(metal_choices)
 
 
+# metals = JewelryMetal.objects.select_related('jewelry'). \
+#     filter(jewelry_id__in=[1, 2, 3])
+#
+# metal_choices = [
+#     (metal.metal.title, metal.metal.get_title_display())
+#     for metal in metals
+# ]
+#
+# print(metal_choices)
 
-print(metal_choices)
+# styles = Style.objects. \
+#     prefetch_related('category__jewelry_category__style') \
+#     .filter(style__jewelry__in=[2])
+#
+# style_choices = [
+#     (style.title, style.get_title_display())
+#     for style in styles
+# ]
+#
+# print(style_choices)
+jewelries = jewelries_by_details
+def get_objects_pks(objects):
+    return [o.pk for o in objects]
 
 
+def show_available_prices(jewelries):
+    all_price_choices = JewelryDetails.PriceChoices.choices
+
+    jewelries_prices = jewelries.values_list('price', flat=True).distinct().order_by('price')
+
+    prices = []
+
+    for price in jewelries_prices:
+        for value, display in all_price_choices:
+            if price <= float(value.split(',')[1]):
+                prices.append((value, display))
+                break
+
+    return (prices)
 
 
+def show_jewelries_by_price(selection_pattern_price, jewelries):
+    query_price = Q()
+
+    for price in selection_pattern_price:
+        min_price, max_price = map(float, price.split(','))
+        decimal_min_price, decimal_max_price = (Decimal(min_price), Decimal(max_price))
+        query_price |= Q(price__gte=decimal_min_price) & Q(price__lte=decimal_max_price)
+
+    jewelries = jewelries.filter(query_price)
+
+    jewelry_ids = get_objects_pks(jewelries)
+
+    styles = Style.objects. \
+        prefetch_related('category__jewelry_category__style') \
+        .filter(style__jewelry__in=jewelry_ids)
+
+    style_choices = set(
+        (style.title, style.get_title_display())
+        for style in styles
+    )
+
+    # metals = JewelryMetal.objects.select_related('metal'). \
+    #     filter(jewelry__metals__in=jewelry_ids)
+
+    # metals = JewelryMetal.objects.prefetch_related('jewelry__metals__metals'). \
+    #     filter(jewelry__jewelry_id__in=jewelry_ids)
+
+    metals = JewelryMetal.objects.select_related('jewelry'). \
+        filter(jewelry_id__in=jewelry_ids)
+
+    metal_choices = set(
+        (metal.metal.title, metal.metal.get_title_display())
+        for metal in metals
+    )
+
+    stone_types = JewelryStone.objects. \
+        filter(jewelry__in=jewelry_ids). \
+        select_related('stone_type')
+
+    stone_type_choices = set(
+        (stone_type.stone_type.title, stone_type.stone_type.get_title_display())
+        for stone_type in stone_types
+    )
+
+    stone_colors = JewelryStone.objects. \
+        filter(jewelry__in=jewelry_ids). \
+        select_related('stone_color')
+
+    stone_color_choices = set(
+        (stone_color.stone_color.title, stone_color.stone_color.get_title_display())
+        for stone_color in stone_colors
+    )
+
+    price_choices = show_available_prices(jewelries)
+    print(price_choices)
+    return jewelries, style_choices, metal_choices, stone_type_choices, stone_color_choices, price_choices
+
+
+print(show_jewelries_by_price(['5000, 1_000_000'], jewelries))
 
 
 
