@@ -408,10 +408,10 @@ stone_colors = StoneColor.objects.all()
 #                         {% endfor %}
 
 
-cur_jewelries = JewelryDetails.objects\
-    .filter(Q(jewelry__style=1) & Q(jewelry_stones__stone_type))\
-    .prefetch_related('jewelry__style__category')\
-    .prefetch_related('jewelry_stones__stone_type')
+cur_jewelries = JewelryDetails.objects .\
+        prefetch_related('jewelry_metals__metal'). \
+        filter(jewelry_metals__metal_id=3). \
+        count()
 
 print(cur_jewelries)
 

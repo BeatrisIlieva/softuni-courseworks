@@ -3,8 +3,8 @@ from django.shortcuts import render
 from e_commerce_website.common.views import get_nav_bar_context
 from .common_funcs import get_objects_ids
 from .forms import JewelryForm
-from .metal_funcs import get_metal_ids, define_fields_by_metal_choice
-from .models import JewelryDetails, StoneType
+from .metal_funcs import get_metal_ids, define_fields_by_metal_choice, define_jewelries_count_before_selected_metal
+from .models import JewelryDetails, StoneType, Metal
 
 from django.db.models import Q
 
@@ -37,13 +37,23 @@ def display_jewelries(request, customer_gender_id, category_id):
 
     jewelries_count_by_style = {}
 
-    jewelries_count_by_stone_type = {}
-
     style_ids = get_objects_ids(styles)
 
     jewelries_count_by_style = define_jewelries_count_before_selected_style(
         style_ids, jewelries, jewelries_count_by_style
     )
+
+    jewelries_count_by_metal = {}
+
+    metals = Metal.objects.all()
+
+    metal_ids = get_objects_ids(metals)
+
+    jewelries_count_by_metal = define_jewelries_count_before_selected_metal(
+        metal_ids, jewelries, jewelries_count_by_metal
+    )
+
+    jewelries_count_by_stone_type = {}
 
     stone_types = StoneType.objects.all()
 
@@ -171,6 +181,7 @@ def display_jewelries(request, customer_gender_id, category_id):
         'form': selection_form,
         'jewelries_count_by_style': jewelries_count_by_style,
         'jewelries_count_by_stone_type': jewelries_count_by_stone_type,
+        'jewelries_count_by_metal': jewelries_count_by_metal,
     }
 
     nav_bar_context = get_nav_bar_context()

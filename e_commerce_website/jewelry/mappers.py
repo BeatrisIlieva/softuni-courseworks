@@ -16,6 +16,13 @@ STYLE_MAPPER = {
     15: 'id_style_choices_14',
 }
 
+METAL_MAPPER = {
+    1: 'id_metal_choices_0',
+    2: 'id_metal_choices_1',
+    3: 'id_metal_choices_2',
+    4: 'id_metal_choices_3',
+}
+
 STONE_TYPE_MAPPER = {
    1: 'id_stone_type_choices_0',
    2: 'id_stone_type_choices_1',

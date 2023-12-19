@@ -1,4 +1,5 @@
 from e_commerce_website.jewelry.common_funcs import get_objects_ids
+from e_commerce_website.jewelry.mappers import METAL_MAPPER
 from e_commerce_website.jewelry.models import Metal, Style, JewelryStone
 from e_commerce_website.jewelry.price_funcs import show_available_prices
 
@@ -11,6 +12,15 @@ def get_metal_ids(selection_pattern_metals):
 
     return metal_ids
 
+def define_jewelries_count_before_selected_metal(metal_ids, jewelries, jewelries_count_by_metal):
+    for metal_id in metal_ids:
+        id_for_label = METAL_MAPPER[metal_id]
+        jewelries_count_by_metal[id_for_label] = jewelries.\
+            prefetch_related('jewelry_metals__metal').\
+            filter(jewelry_metals__metal_id=metal_id).\
+            count()
+
+    return jewelries_count_by_metal
 
 def define_fields_by_metal_choice(selection_pattern_metals, jewelries):
     metal_ids = get_metal_ids(selection_pattern_metals)
