@@ -409,7 +409,7 @@ stone_colors = StoneColor.objects.all()
 
 
 cur_jewelries = JewelryDetails.objects\
-    .filter(Q(jewelry__style=1) & Q(jewelry_stones__stone_type_id__exact=4))\
+    .filter(Q(jewelry__style=1) & Q(jewelry_stones__stone_type))\
     .prefetch_related('jewelry__style__category')\
     .prefetch_related('jewelry_stones__stone_type')
 

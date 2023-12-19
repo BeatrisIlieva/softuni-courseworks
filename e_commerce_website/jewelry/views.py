@@ -157,7 +157,7 @@ def display_jewelries(request, customer_gender_id, category_id):
             )
 
             style_choices, metal_choices, stone_type_choices, price_choices = \
-                define_fields_by_stone_color_choice(selection_pattern_stone_types, jewelries)
+                define_fields_by_stone_color_choice(selection_pattern_stone_colors, jewelries)
 
             update_selection_forms(
                 price_choices=price_choices,

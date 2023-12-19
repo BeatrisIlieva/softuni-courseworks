@@ -1,4 +1,7 @@
+from django.db.models import Q
+
 from e_commerce_website.jewelry.common_funcs import get_objects_ids
+from e_commerce_website.jewelry.mappers import STYLE_MAPPER
 from e_commerce_website.jewelry.models import Style, JewelryMetal, JewelryStone, JewelryDetails
 from e_commerce_website.jewelry.price_funcs import show_available_prices
 
@@ -29,19 +32,8 @@ def get_related_style_choices(styles):
 
 
 def define_jewelries_count_before_selected_style(style_ids, jewelries, jewelries_count_by_style):
-    for index, style_id in enumerate(style_ids):
-        id_for_label = f'id_style_choices_{index}'
-        jewelries_count_by_style[id_for_label] = jewelries.prefetch_related('jewelry__style__category').filter(
-            jewelry__style=style_id).count()
-
-    return jewelries_count_by_style
-
-
-def define_jewelries_count_after_selected_style(jewelries, style_ids, jewelries_count_by_style):
-
-    for index, style_id in enumerate(style_ids):
-        id_for_label = f'id_style_choices_{index}'
-
+    for style_id in style_ids:
+        id_for_label = STYLE_MAPPER[style_id]
         jewelries_count_by_style[id_for_label] = jewelries.\
             prefetch_related('jewelry__style__category').\
             filter(jewelry__style=style_id).\
@@ -82,4 +74,4 @@ def define_fields_by_style_choice(selection_pattern_styles, jewelries):
 
     price_choices = show_available_prices(jewelries)
 
-    return metal_choices, stone_type_choices, stone_color_choices, price_choices, jewelries_count_by_style
+    return metal_choices, stone_type_choices, stone_color_choices, price_choices
