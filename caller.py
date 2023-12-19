@@ -378,34 +378,41 @@ stone_colors = StoneColor.objects.all()
 # print(show_jewelries_by_price(['5000, 1_000_000'], jewelries))
 # annotate(num_jewelries=Count('jewelries'))
 
-counter = jewelries_by_details.prefetch_related('jewelry__style__category').filter(jewelry__style__in=[1, 2]).count()
-print(counter)
+# counter = jewelries_by_details.prefetch_related('jewelry__style__category').filter(jewelry__style__in=[1, 2]).count()
+# print(counter)
+#
+# jewelries_count = {}
+# cur_styles = Style.objects. \
+#     filter(category=1). \
+#     select_related('category')
+# style_ids = [s.id for s in cur_styles]
+# for style_id in style_ids:
+#     if style_id not in jewelries_count.keys():
+#         jewelries_count[style_id] = jewelries_by_details.prefetch_related('jewelry__style__category').filter(
+#             jewelry__style=style_id).count()
+#     else:
+#         jewelries_count[style_id] += jewelries_by_details.prefetch_related('jewelry__style__category').filter(
+#             jewelry__style=style_id).count()
+#
+# print(jewelries_count)
+# print(cur_styles)
+#
+# counter_j = jewelries_by_details.prefetch_related('jewelry__style__category').filter(jewelry__style=1).count()
+# print(counter_j)
+#
+# {% for key, value in jewelries_count_by_style.items %}
+#                             {% if subfield.name == 'style_choices' %}
+#                                 {{ subfield }}
+#                             <span>{{ value }}</span>
+#                             {% endif %}
+#                         {% endfor %}
 
-jewelries_count = {}
-cur_styles = Style.objects. \
-    filter(category=1). \
-    select_related('category')
-style_ids = [s.id for s in cur_styles]
-for style_id in style_ids:
-    if style_id not in jewelries_count.keys():
-        jewelries_count[style_id] = jewelries_by_details.prefetch_related('jewelry__style__category').filter(
-            jewelry__style=style_id).count()
-    else:
-        jewelries_count[style_id] += jewelries_by_details.prefetch_related('jewelry__style__category').filter(
-            jewelry__style=style_id).count()
 
-print(jewelries_count)
-print(cur_styles)
+cur_jewelries = JewelryDetails.objects\
+    .filter(Q(jewelry__style=1) & Q(jewelry_stones__stone_type_id__exact=4))\
+    .prefetch_related('jewelry__style__category')\
+    .prefetch_related('jewelry_stones__stone_type')
 
-counter_j = jewelries_by_details.prefetch_related('jewelry__style__category').filter(jewelry__style=1).count()
-print(counter_j)
-
-{% for key, value in jewelries_count_by_style.items %}
-                            {% if subfield.name == 'style_choices' %}
-                                {{ subfield }}
-                            <span>{{ value }}</span>
-                            {% endif %}
-                        {% endfor %}
-
+print(cur_jewelries)
 
 
