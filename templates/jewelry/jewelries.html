@@ -13,10 +13,12 @@
                             {{ subfield }}
                             {% if subfield.id_for_label in jewelries_count_by_style.keys %}
                             <span>{{ jewelries_count_by_style|get_value_from_dict:subfield.id_for_label }}</span>
-                            {% elif subfield.id_for_label in jewelries_count_by_stone_type.keys%}
-                            <span>{{ jewelries_count_by_stone_type|get_value_from_dict:subfield.id_for_label }}</span>
                             {% elif subfield.id_for_label in jewelries_count_by_metal.keys%}
                             <span>{{ jewelries_count_by_metal|get_value_from_dict:subfield.id_for_label }}</span>
+                            {% elif subfield.id_for_label in jewelries_count_by_stone_type.keys%}
+                            <span>{{ jewelries_count_by_stone_type|get_value_from_dict:subfield.id_for_label }}</span>
+                            {% elif subfield.id_for_label in jewelries_count_by_stone_color.keys%}
+                            <span>{{ jewelries_count_by_stone_color|get_value_from_dict:subfield.id_for_label }}</span>
                             {% endif %}
                         </div>
                             {% endfor %}

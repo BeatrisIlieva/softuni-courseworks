@@ -1,4 +1,5 @@
 from e_commerce_website.jewelry.common_funcs import get_objects_ids
+from e_commerce_website.jewelry.mappers import STONE_COLOR_MAPPER
 from e_commerce_website.jewelry.models import StoneColor, Style, JewelryMetal, JewelryStone
 from e_commerce_website.jewelry.price_funcs import show_available_prices
 
@@ -10,6 +11,19 @@ def get_stone_color_ids(selection_pattern_stone_colors):
     stone_color_ids = get_objects_ids(stone_color_titles)
 
     return stone_color_ids
+
+def define_jewelries_count_before_selected_stone_color(
+        stone_color_ids, jewelries, jewelries_count_by_stone_color
+    ):
+
+    for stone_color_id in stone_color_ids:
+        id_for_label = STONE_COLOR_MAPPER[stone_color_id]
+        jewelries_count_by_stone_color[id_for_label] = jewelries.\
+            prefetch_related('jewelry_stones__stone_color').\
+            filter(jewelry_stones__stone_color_id__exact=stone_color_id).\
+            count()
+
+    return jewelries_count_by_stone_color
 
 
 def define_fields_by_stone_color_choice(selection_pattern_stone_colors, jewelries):

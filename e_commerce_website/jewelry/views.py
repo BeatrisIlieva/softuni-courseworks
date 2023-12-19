@@ -4,12 +4,13 @@ from e_commerce_website.common.views import get_nav_bar_context
 from .common_funcs import get_objects_ids
 from .forms import JewelryForm
 from .metal_funcs import get_metal_ids, define_fields_by_metal_choice, define_jewelries_count_before_selected_metal
-from .models import JewelryDetails, StoneType, Metal
+from .models import JewelryDetails, StoneType, Metal, StoneColor
 
 from django.db.models import Q
 
 from .price_funcs import get_query_price, define_fields_by_price_choice
-from .stone_color_funcs import get_stone_color_ids, define_fields_by_stone_color_choice
+from .stone_color_funcs import get_stone_color_ids, define_fields_by_stone_color_choice, \
+    define_jewelries_count_before_selected_stone_color
 from .stone_type_funcs import get_stone_type_ids, define_fields_by_stone_type_choice, \
     define_jewelries_count_before_selected_stone_type
 from .style_funcs import get_related_styles, get_related_style_choices, define_jewelries_count_before_selected_style, \
@@ -61,6 +62,16 @@ def display_jewelries(request, customer_gender_id, category_id):
 
     jewelries_count_by_stone_type = define_jewelries_count_before_selected_stone_type(
         stone_type_ids, jewelries, jewelries_count_by_stone_type
+    )
+
+    jewelries_count_by_stone_color = {}
+
+    stone_colors = StoneColor.objects.all()
+
+    stone_color_ids = get_objects_ids(stone_colors)
+
+    jewelries_count_by_stone_color = define_jewelries_count_before_selected_stone_color(
+        stone_color_ids, jewelries, jewelries_count_by_stone_color
     )
 
     def update_selection_forms(**kwargs):
@@ -182,6 +193,7 @@ def display_jewelries(request, customer_gender_id, category_id):
         'jewelries_count_by_style': jewelries_count_by_style,
         'jewelries_count_by_stone_type': jewelries_count_by_stone_type,
         'jewelries_count_by_metal': jewelries_count_by_metal,
+        'jewelries_count_by_stone_color': jewelries_count_by_stone_color,
     }
 
     nav_bar_context = get_nav_bar_context()

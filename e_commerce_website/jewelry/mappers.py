@@ -53,3 +53,16 @@ STONE_TYPE_MAPPER = {
    27: 'id_stone_type_choices_26',
    28: 'id_stone_type_choices_27',
 }
+
+STONE_COLOR_MAPPER = {
+    1: 'id_stone_color_choices_0',
+    2: 'id_stone_color_choices_1',
+    3: 'id_stone_color_choices_2',
+    4: 'id_stone_color_choices_3',
+    5: 'id_stone_color_choices_4',
+    6: 'id_stone_color_choices_5',
+    7: 'id_stone_color_choices_6',
+    8: 'id_stone_color_choices_7',
+    9: 'id_stone_color_choices_8',
+    10: 'id_stone_color_choices_9',
+}

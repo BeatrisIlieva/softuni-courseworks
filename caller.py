@@ -408,11 +408,17 @@ stone_colors = StoneColor.objects.all()
 #                         {% endfor %}
 
 
+# cur_jewelries = JewelryDetails.objects .\
+#         prefetch_related('jewelry_stones__stone_color'). \
+#         filter(jewelry_metals__metal_id=3). \
+#         count()
+#
+# print(cur_jewelries)
+
 cur_jewelries = JewelryDetails.objects .\
-        prefetch_related('jewelry_metals__metal'). \
-        filter(jewelry_metals__metal_id=3). \
+        prefetch_related('jewelry_stones__stone_color'). \
+        filter(jewelry_stones__stone_color_id__exact=5). \
         count()
 
 print(cur_jewelries)
-
 
