@@ -4,7 +4,7 @@ from collections import OrderedDict
 from django.db.models import Q
 
 from e_commerce_website.jewelry.common_funcs import get_objects_ids
-from e_commerce_website.jewelry.models import JewelryDetails, Style, JewelryMetal, JewelryStone
+from e_commerce_website.jewelry.models import JewelryDetails, Style, JewelryMetal, JewelryStone, Metal
 
 
 def show_available_prices(jewelries):
@@ -36,9 +36,10 @@ def get_query_price(selection_pattern_price):
     return query_price
 
 
-def define_fields_by_price_choice(selection_pattern_price, jewelries):
-    jewelry_ids = get_objects_ids(jewelries)
+def define_fields_by_price_choice(jewelries):
 
+    jewelry_ids = get_objects_ids(jewelries)
+    print(jewelries)
     styles = Style.objects. \
         prefetch_related('category__jewelry_category__style') \
         .filter(style__jewelry__in=jewelry_ids)
@@ -48,11 +49,16 @@ def define_fields_by_price_choice(selection_pattern_price, jewelries):
         for style in styles
     ).items())
 
-    metals = JewelryMetal.objects.select_related('jewelry'). \
-        filter(jewelry_id__in=jewelry_ids)
+    # metals = JewelryMetal.objects.select_related('jewelry'). \
+    #     filter(jewelry_id__in=jewelry_ids)
+
+    metals = Metal.objects.prefetch_related('jewelrydetails_set__jewelry_metals__metal'). \
+        filter(jewelrydetails__in=jewelry_ids)
+
+    print(metals)
 
     metal_choices = list(OrderedDict(
-        (metal.metal.title, metal.metal.get_title_display())
+        (metal.title, metal.get_title_display())
         for metal in metals
     ).items())
 
@@ -74,4 +80,6 @@ def define_fields_by_price_choice(selection_pattern_price, jewelries):
         for stone_color in stone_colors
     ).items())
 
-    return style_choices, metal_choices, stone_type_choices, stone_color_choices
+    price_choices = show_available_prices(jewelries)
+
+    return style_choices, metal_choices, stone_type_choices, stone_color_choices, price_choices

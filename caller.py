@@ -513,10 +513,15 @@ def define_jewelries_count_before_selected_style(jewelries_by_details):
 
 # cur_styles = Style.objects.filter(category=1).select_related('category')
 
-cur_styles = Style.objects. \
-    filter(category=1)\
-    .prefetch_related('category__jewelry_category__style')\
-    .prefetch_related('style__jewelry')\
-    .filter(style__jewelry__in=[1, 2, 3, 4])
+# cur_styles = Style.objects. \
+#     filter(category=1)\
+#     .prefetch_related('category__jewelry_category__style')\
+#     .prefetch_related('style__jewelry')\
+#     .filter(style__jewelry__in=[1, 2, 3, 4])
+#
+# print(cur_styles)
 
-print(cur_styles)
+metals = Metal.objects.prefetch_related('jewelrydetails_set__jewelry_metals__metal'). \
+        filter(jewelrydetails__in=[3])
+
+print(metals)

@@ -4,6 +4,13 @@ from e_commerce_website.jewelry.common_funcs import get_objects_ids
 from e_commerce_website.jewelry.models import StoneColor, Style, JewelryMetal, JewelryStone
 from e_commerce_website.jewelry.price_funcs import show_available_prices
 
+def get_related_stone_color_objects(jewelries):
+    jewelry_ids = get_objects_ids(jewelries)
+    stone_colors = StoneColor.objects. \
+        prefetch_related('jewelrydetails_set__stone_colors__stone_colors'). \
+        filter(jewelrydetails__in=jewelry_ids)
+
+    return stone_colors
 def get_related_stone_color_choices(stone_colors):
     stone_color_choices = list(OrderedDict(
         (color.title, color.get_title_display()) for color in stone_colors
@@ -22,6 +29,8 @@ def get_stone_color_ids(selection_pattern_stone_colors):
 
 def define_fields_by_stone_color_choice(selection_pattern_stone_colors, jewelries):
     stone_color_ids = get_stone_color_ids(selection_pattern_stone_colors)
+
+    jewelry_ids = get_objects_ids(jewelries)
 
     jewelries = jewelries. \
         filter(jewelry_stones__stone_color_id__in=stone_color_ids)
@@ -55,4 +64,10 @@ def define_fields_by_stone_color_choice(selection_pattern_stone_colors, jewelrie
 
     price_choices = show_available_prices(jewelries)
 
-    return style_choices, metal_choices, stone_type_choices, price_choices
+    stone_colors = StoneColor.objects. \
+        prefetch_related('jewelrydetails_set__stone_colors__stone_colors'). \
+        filter(jewelrydetails__in=jewelry_ids)
+
+    stone_color_choices = get_related_stone_color_choices(stone_colors)
+
+    return style_choices, metal_choices, stone_type_choices, price_choices, stone_color_choices
