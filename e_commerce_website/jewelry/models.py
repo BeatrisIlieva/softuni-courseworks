@@ -253,23 +253,6 @@ class JewelryDetails(models.Model):
         V_5000 = '3000, 4999.99', _('$3000-$4999.99')
         V_100000 = '5000, 1_000_000', _('Above$5000')
 
-    price_choice_indexes = {
-        choice[0]: idx for idx, choice in enumerate(PriceChoices.choices)
-    }
-
-    @property
-    def price_range(self):
-        if 0 <= self.price <= 749.00:
-            return self.PriceChoices.V_750
-        elif 750 <= self.price <= 1499.99:
-            return self.PriceChoices.V_1500
-        elif 1500 <= self.price <= 2999.99:
-            return self.PriceChoices.V_3000
-        elif 3000 <= self.price <= 4999.99:
-            return self.PriceChoices.V_5000
-        else:
-            return self.PriceChoices.V_100000
-
     jewelry = models.ForeignKey(
         to=Jewelry,
         on_delete=models.CASCADE,

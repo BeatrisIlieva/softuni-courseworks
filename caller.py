@@ -502,11 +502,21 @@ def define_jewelries_count_before_selected_style(jewelries_by_details):
 
 
 
-colors = StoneColor.objects.prefetch_related('jewelrydetails_set__stone_colors__stone_colors').filter(jewelrydetails__in=[1,2,3])
-print([s.title for s in colors])
+# colors = StoneColor.objects.prefetch_related('jewelrydetails_set__stone_colors__stone_colors').filter(jewelrydetails__in=[1,2,3])
+# print([s.title for s in colors])
+#
+# metals = JewelryMetal.objects.select_related('jewelry'). \
+#     filter(jewelry__metals__in=[1,2,3])
+# metal_choices = [(metal.metal.title, metal.metal.get_title_display()) for metal in metals]
+#
+# print(metal_choices)
 
-metals = JewelryMetal.objects.select_related('jewelry'). \
-    filter(jewelry__metals__in=[1,2,3])
-metal_choices = [(metal.metal.title, metal.metal.get_title_display()) for metal in metals]
+# cur_styles = Style.objects.filter(category=1).select_related('category')
 
-print(metal_choices)
+cur_styles = Style.objects. \
+    filter(category=1)\
+    .prefetch_related('category__jewelry_category__style')\
+    .prefetch_related('style__jewelry')\
+    .filter(style__jewelry__in=[1, 2, 3, 4])
+
+print(cur_styles)

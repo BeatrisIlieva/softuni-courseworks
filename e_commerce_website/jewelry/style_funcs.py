@@ -5,14 +5,6 @@ from e_commerce_website.jewelry.models import Style, JewelryMetal, JewelryStone
 from e_commerce_website.jewelry.price_funcs import show_available_prices
 
 
-def get_related_styles(category_id):
-    styles = Style.objects. \
-        filter(category=category_id). \
-        select_related('category')
-
-    return styles
-
-
 def get_style_ids(selection_pattern_styles):
     style_titles = Style.objects. \
         filter(title__in=selection_pattern_styles)
@@ -28,36 +20,6 @@ def get_related_style_choices(styles):
     ).items())
 
     return style_choices
-
-
-# def define_jewelries_count_before_selected_style(style_ids, jewelries, jewelries_count_by_style):
-#
-#     for style_id in style_ids:
-#         if style_id == 1:
-#             jewelries_count_by_style['Drop'] = jewelries.\
-#             prefetch_related('jewelry__style__category').\
-#             filter(jewelry__style=style_id).\
-#             count()
-#         elif style_id == 2:
-#             jewelries_count_by_style['Hoop'] = jewelries.\
-#             prefetch_related('jewelry__style__category').\
-#             filter(jewelry__style=style_id).\
-#             count()
-#         elif style_id == 2:
-#             jewelries_count_by_style['Stud'] = jewelries.\
-#             prefetch_related('jewelry__style__category').\
-#             filter(jewelry__style=style_id).\
-#             count()
-#
-#
-#     # for index, style_id in enumerate(style_ids):
-#     #     id_for_label = f'id_style_choices_{index}'
-#     #     jewelries_count_by_style[id_for_label] = jewelries.\
-#     #         prefetch_related('jewelry__style__category').\
-#     #         filter(jewelry__style=style_id).\
-#     #         count()
-#
-#     return jewelries_count_by_style
 
 
 def define_fields_by_style_choice(selection_pattern_styles, jewelries):
