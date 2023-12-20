@@ -1,9 +1,7 @@
 from collections import OrderedDict
 
 from e_commerce_website.jewelry.common_funcs import get_objects_ids
-from e_commerce_website.jewelry.counter_funcs import define_jewelries_count_before_selected_metal
-from e_commerce_website.jewelry.models import Style, JewelryMetal, JewelryStone, Metal
-from e_commerce_website.jewelry.price_funcs import show_available_prices
+from e_commerce_website.jewelry.models import Style
 
 
 def get_related_styles_objects(jewelries):
