@@ -19,6 +19,8 @@
                             <span>{{ jewelries_count_by_stone_type|get_value_from_dict:subfield.choice_label}}</span>
                             {% elif subfield.choice_label in jewelries_count_by_stone_color.keys%}
                             <span>{{ jewelries_count_by_stone_color|get_value_from_dict:subfield.choice_label }}</span>
+                            {% elif subfield.choice_label in jewelries_count_by_price.keys%}
+                            <span>{{ jewelries_count_by_price|get_value_from_dict:subfield.choice_label }}</span>
                             {% endif %}
                         </div>
                             {% endfor %}

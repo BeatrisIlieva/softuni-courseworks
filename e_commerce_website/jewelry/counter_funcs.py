@@ -1,3 +1,10 @@
+from _decimal import Decimal
+
+from django.db.models import Q
+
+from e_commerce_website.jewelry.models import JewelryDetails
+
+
 def define_jewelries_count_before_selected_style(jewelries, styles):
     jewelries_count_by_style = {}
     for style in styles:
@@ -40,3 +47,16 @@ def define_jewelries_count_before_selected_stone_color(jewelries, stone_colors):
             count()
 
     return jewelries_count_by_stone_color
+
+
+def define_jewelries_count_by_price(jewelries):
+    jewelries_count_by_price = {}
+    all_price_choices = JewelryDetails.PriceChoices.choices
+
+    for value, display in all_price_choices:
+        min_price, max_price = float(value.split(',')[0]), float(value.split(',')[1])
+        decimal_min_price, decimal_max_price = (Decimal(min_price), Decimal(max_price))
+        count = jewelries.filter(Q(price__gte=decimal_min_price) & Q(price__lte=decimal_max_price)).count()
+        jewelries_count_by_price[display] = count
+
+    return jewelries_count_by_price

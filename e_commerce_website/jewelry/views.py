@@ -4,7 +4,7 @@ from e_commerce_website.common.views import get_nav_bar_context
 from .common_funcs import get_objects_ids
 from .counter_funcs import define_jewelries_count_before_selected_style, \
     define_jewelries_count_before_selected_stone_color, define_jewelries_count_before_selected_metal, \
-    define_jewelries_count_before_selected_stone_type
+    define_jewelries_count_before_selected_stone_type, define_jewelries_count_by_price
 from .forms import JewelryForm
 from .metal_funcs import get_metal_ids, define_fields_by_metal_choice, \
     get_related_metal_choices, get_related_metal_objects
@@ -35,7 +35,7 @@ def display_jewelries(request, customer_gender_id, category_id):
     selection_form = JewelryForm(request.GET)
 
     prices = show_available_prices(jewelries)
-    # Count by price
+    jewelries_count_by_price = define_jewelries_count_by_price(jewelries)
 
     styles = get_related_styles_objects(jewelries)
     jewelries_count_by_style = define_jewelries_count_before_selected_style(jewelries, styles)
@@ -113,6 +113,8 @@ def display_jewelries(request, customer_gender_id, category_id):
             stone_colors = get_related_stone_color_objects(jewelries)
             jewelries_count_by_stone_color = define_jewelries_count_before_selected_stone_color(jewelries, stone_colors)
 
+            jewelries_count_by_price = define_jewelries_count_by_price(jewelries)
+
             style_choices = get_related_style_choices(styles)
             metal_choices = get_related_metal_choices(metals)
             stone_type_choices = get_related_stone_type_choices(stone_types)
@@ -146,16 +148,13 @@ def display_jewelries(request, customer_gender_id, category_id):
             stone_colors = get_related_stone_color_objects(jewelries)
             jewelries_count_by_stone_color = define_jewelries_count_before_selected_stone_color(jewelries, stone_colors)
 
+            jewelries_count_by_price = define_jewelries_count_by_price(jewelries)
+
             style_choices = get_related_style_choices(styles)
             metal_choices = get_related_metal_choices(metals)
             stone_type_choices = get_related_stone_type_choices(stone_types)
             stone_color_choices = get_related_stone_color_choices(stone_colors)
             price_choices = show_available_prices(jewelries)
-
-            styles = Style.objects. \
-                filter(title__in=selection_pattern_styles)
-
-            jewelries_count_by_style = define_jewelries_count_before_selected_style(jewelries, styles)
 
             update_selection_forms(
                 price_choices=price_choices,
@@ -184,16 +183,13 @@ def display_jewelries(request, customer_gender_id, category_id):
             stone_colors = get_related_stone_color_objects(jewelries)
             jewelries_count_by_stone_color = define_jewelries_count_before_selected_stone_color(jewelries, stone_colors)
 
+            jewelries_count_by_price = define_jewelries_count_by_price(jewelries)
+
             style_choices = get_related_style_choices(styles)
             metal_choices = get_related_metal_choices(metals)
             stone_type_choices = get_related_stone_type_choices(stone_types)
             stone_color_choices = get_related_stone_color_choices(stone_colors)
             price_choices = show_available_prices(jewelries)
-
-            metals = Metal.objects. \
-                filter(title__in=selection_pattern_metals)
-
-            jewelries_count_by_metal = define_jewelries_count_before_selected_metal(jewelries, metals)
 
             update_selection_forms(
                 price_choices=price_choices,
@@ -222,16 +218,13 @@ def display_jewelries(request, customer_gender_id, category_id):
             stone_colors = get_related_stone_color_objects(jewelries)
             jewelries_count_by_stone_color = define_jewelries_count_before_selected_stone_color(jewelries, stone_colors)
 
+            jewelries_count_by_price = define_jewelries_count_by_price(jewelries)
+
             style_choices = get_related_style_choices(styles)
             metal_choices = get_related_metal_choices(metals)
             stone_type_choices = get_related_stone_type_choices(stone_types)
             stone_color_choices = get_related_stone_color_choices(stone_colors)
             price_choices = show_available_prices(jewelries)
-
-            stone_types = StoneType.objects. \
-                filter(title__in=selection_pattern_stone_types)
-
-            jewelries_count_by_stone_type = define_jewelries_count_before_selected_stone_type(jewelries, stone_types)
 
             update_selection_forms(
                 price_choices=price_choices,
@@ -260,16 +253,13 @@ def display_jewelries(request, customer_gender_id, category_id):
             stone_colors = get_related_stone_color_objects(jewelries)
             jewelries_count_by_stone_color = define_jewelries_count_before_selected_stone_color(jewelries, stone_colors)
 
+            jewelries_count_by_price = define_jewelries_count_by_price(jewelries)
+
             style_choices = get_related_style_choices(styles)
             metal_choices = get_related_metal_choices(metals)
             stone_type_choices = get_related_stone_type_choices(stone_types)
             stone_color_choices = get_related_stone_color_choices(stone_colors)
             price_choices = show_available_prices(jewelries)
-
-            stone_colors = StoneColor.objects. \
-                filter(title__in=selection_pattern_stone_colors)
-
-            jewelries_count_by_stone_color = define_jewelries_count_before_selected_stone_color(jewelries, stone_colors)
 
             update_selection_forms(
                 price_choices=price_choices,
@@ -286,6 +276,7 @@ def display_jewelries(request, customer_gender_id, category_id):
         'jewelries_count_by_stone_type': jewelries_count_by_stone_type,
         'jewelries_count_by_metal': jewelries_count_by_metal,
         'jewelries_count_by_stone_color': jewelries_count_by_stone_color,
+        'jewelries_count_by_price': jewelries_count_by_price,
     }
 
     nav_bar_context = get_nav_bar_context()
