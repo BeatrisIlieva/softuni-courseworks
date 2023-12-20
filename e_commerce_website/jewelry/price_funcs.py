@@ -1,4 +1,5 @@
 from _decimal import Decimal
+from collections import OrderedDict
 
 from django.db.models import Q
 
@@ -42,35 +43,35 @@ def define_fields_by_price_choice(selection_pattern_price, jewelries):
         prefetch_related('category__jewelry_category__style') \
         .filter(style__jewelry__in=jewelry_ids)
 
-    style_choices = set(
+    style_choices = list(OrderedDict(
         (style.title, style.get_title_display())
         for style in styles
-    )
+    ).items())
 
     metals = JewelryMetal.objects.select_related('jewelry'). \
         filter(jewelry_id__in=jewelry_ids)
 
-    metal_choices = set(
+    metal_choices = list(OrderedDict(
         (metal.metal.title, metal.metal.get_title_display())
         for metal in metals
-    )
+    ).items())
 
     stone_types = JewelryStone.objects. \
         filter(jewelry__in=jewelry_ids). \
         select_related('stone_type')
 
-    stone_type_choices = set(
+    stone_type_choices = list(OrderedDict(
         (stone_type.stone_type.title, stone_type.stone_type.get_title_display())
         for stone_type in stone_types
-    )
+    ).items())
 
     stone_colors = JewelryStone.objects. \
         filter(jewelry__in=jewelry_ids). \
         select_related('stone_color')
 
-    stone_color_choices = set(
+    stone_color_choices = list(OrderedDict(
         (stone_color.stone_color.title, stone_color.stone_color.get_title_display())
         for stone_color in stone_colors
-    )
+    ).items())
 
     return style_choices, metal_choices, stone_type_choices, stone_color_choices

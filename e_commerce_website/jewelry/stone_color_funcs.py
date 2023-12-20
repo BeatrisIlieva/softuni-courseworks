@@ -1,8 +1,15 @@
+from collections import OrderedDict
+
 from e_commerce_website.jewelry.common_funcs import get_objects_ids
-from e_commerce_website.jewelry.mappers import STONE_COLOR_MAPPER
 from e_commerce_website.jewelry.models import StoneColor, Style, JewelryMetal, JewelryStone
 from e_commerce_website.jewelry.price_funcs import show_available_prices
 
+def get_related_stone_color_choices(stone_colors):
+    stone_color_choices = list(OrderedDict(
+        (color.title, color.get_title_display()) for color in stone_colors
+    ).items())
+
+    return stone_color_choices
 
 def get_stone_color_ids(selection_pattern_stone_colors):
     stone_color_titles = StoneColor.objects. \
@@ -11,19 +18,6 @@ def get_stone_color_ids(selection_pattern_stone_colors):
     stone_color_ids = get_objects_ids(stone_color_titles)
 
     return stone_color_ids
-
-def define_jewelries_count_before_selected_stone_color(
-        stone_color_ids, jewelries, jewelries_count_by_stone_color
-    ):
-
-    for stone_color_id in stone_color_ids:
-        id_for_label = STONE_COLOR_MAPPER[stone_color_id]
-        jewelries_count_by_stone_color[id_for_label] = jewelries.\
-            prefetch_related('jewelry_stones__stone_color').\
-            filter(jewelry_stones__stone_color_id__exact=stone_color_id).\
-            count()
-
-    return jewelries_count_by_stone_color
 
 
 def define_fields_by_stone_color_choice(selection_pattern_stone_colors, jewelries):
@@ -36,28 +30,29 @@ def define_fields_by_stone_color_choice(selection_pattern_stone_colors, jewelrie
         prefetch_related('style__jewelry__stone_colors'). \
         filter(style__jewelry__stone_colors__in=stone_color_ids)
 
-    style_choices = set(
+    style_choices = list(OrderedDict(
         (style.title, style.get_title_display())
         for style in styles
-    )
+    ).items())
 
     metals = JewelryMetal.objects. \
         filter(jewelry__jewelry_stones__stone_color__in=stone_color_ids). \
         select_related('metal')
 
-    metal_choices = set(
+    metal_choices = list(OrderedDict(
         (metal.metal.title, metal.metal.get_title_display())
         for metal in metals
-    )
+    ).items())
 
     stone_types = JewelryStone.objects. \
         prefetch_related('jewelry__stone_types__stone_types'). \
         filter(stone_type__jewelrydetails__stone_colors__in=stone_color_ids)
 
-    stone_type_choices = set(
+    stone_type_choices = list(OrderedDict(
         (stone_type.stone_type.title, stone_type.stone_type.get_title_display())
         for stone_type in stone_types
-    )
+    ).items())
 
     price_choices = show_available_prices(jewelries)
+
     return style_choices, metal_choices, stone_type_choices, price_choices

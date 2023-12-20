@@ -2,18 +2,20 @@ from django.shortcuts import render
 
 from e_commerce_website.common.views import get_nav_bar_context
 from .common_funcs import get_objects_ids
+from .counter_funcs import define_jewelries_count_before_selected_style, \
+    define_jewelries_count_before_selected_stone_color, define_jewelries_count_before_selected_metal, \
+    define_jewelries_count_before_selected_stone_type
 from .forms import JewelryForm
-from .metal_funcs import get_metal_ids, define_fields_by_metal_choice, define_jewelries_count_before_selected_metal
+from .metal_funcs import get_metal_ids, define_fields_by_metal_choice, \
+    get_related_metal_choices
 from .models import JewelryDetails, StoneType, Metal, StoneColor
 
 from django.db.models import Q
 
 from .price_funcs import get_query_price, define_fields_by_price_choice
-from .stone_color_funcs import get_stone_color_ids, define_fields_by_stone_color_choice, \
-    define_jewelries_count_before_selected_stone_color
-from .stone_type_funcs import get_stone_type_ids, define_fields_by_stone_type_choice, \
-    define_jewelries_count_before_selected_stone_type
-from .style_funcs import get_related_styles, get_related_style_choices, define_jewelries_count_before_selected_style, \
+from .stone_color_funcs import get_stone_color_ids, define_fields_by_stone_color_choice, get_related_stone_color_choices
+from .stone_type_funcs import get_stone_type_ids, define_fields_by_stone_type_choice
+from .style_funcs import get_related_styles, get_related_style_choices, \
     get_style_ids, define_fields_by_style_choice
 
 
@@ -28,6 +30,8 @@ def display_jewelries(request, customer_gender_id, category_id):
         query_category
     )
 
+    jewelry_ids = get_objects_ids(jewelries)
+
     selection_form = JewelryForm(request.GET)
 
     styles = get_related_styles(category_id)
@@ -36,43 +40,45 @@ def display_jewelries(request, customer_gender_id, category_id):
 
     selection_form.fields['style_choices'].choices = style_choices
 
-    jewelries_count_by_style = {}
-
-    style_ids = get_objects_ids(styles)
-
     jewelries_count_by_style = define_jewelries_count_before_selected_style(
-        style_ids, jewelries, jewelries_count_by_style
+        jewelries, styles
     )
 
-    jewelries_count_by_metal = {}
+    metals = Metal.objects.\
+        prefetch_related('jewelrydetails_set__jewelry_metals__metal').\
+        filter(jewelrydetails__in=jewelry_ids)
 
-    metals = Metal.objects.all()
+    metal_choices = get_related_metal_choices(metals)
 
-    metal_ids = get_objects_ids(metals)
+    selection_form.fields['metal_choices'].choices = metal_choices
 
     jewelries_count_by_metal = define_jewelries_count_before_selected_metal(
-        metal_ids, jewelries, jewelries_count_by_metal
+        jewelries, metals
     )
 
-    jewelries_count_by_stone_type = {}
+    stone_colors = StoneColor.objects.\
+        prefetch_related('jewelrydetails_set__stone_colors__stone_colors').\
+        filter(jewelrydetails__in=jewelry_ids)
 
-    stone_types = StoneType.objects.all()
+    stone_color_choices = get_related_stone_color_choices(stone_colors)
 
-    stone_type_ids = get_objects_ids(stone_types)
-
-    jewelries_count_by_stone_type = define_jewelries_count_before_selected_stone_type(
-        stone_type_ids, jewelries, jewelries_count_by_stone_type
-    )
-
-    jewelries_count_by_stone_color = {}
-
-    stone_colors = StoneColor.objects.all()
-
-    stone_color_ids = get_objects_ids(stone_colors)
+    selection_form.fields['stone_color_choices'].choices = stone_color_choices
 
     jewelries_count_by_stone_color = define_jewelries_count_before_selected_stone_color(
-        stone_color_ids, jewelries, jewelries_count_by_stone_color
+        jewelries, stone_colors
     )
+
+    stone_types = StoneType.objects.\
+        prefetch_related('jewelrydetails_set__stone_types__stone_types').\
+        filter(jewelrydetails__in=jewelry_ids)
+
+
+    jewelries_count_by_stone_type = define_jewelries_count_before_selected_stone_type(
+        jewelries, stone_types
+    )
+
+
+
 
     def update_selection_forms(**kwargs):
         if 'style_choices' in kwargs:
@@ -160,8 +166,11 @@ def display_jewelries(request, customer_gender_id, category_id):
                 )
             )
 
-            style_choices, metal_choices, stone_color_choices, price_choices, jewelries_count_by_style = \
-                define_fields_by_stone_type_choice(selection_pattern_stone_types, jewelries, jewelries_count_by_style)
+            style_choices, metal_choices, stone_color_choices, price_choices = \
+                define_fields_by_stone_type_choice(
+                    selection_pattern_stone_types,
+                    jewelries,
+                )
 
             update_selection_forms(
                 price_choices=price_choices,

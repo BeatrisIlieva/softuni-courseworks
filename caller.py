@@ -6,6 +6,8 @@ from django import forms
 
 from django.db.models import Q, Count
 
+from e_commerce_website.jewelry.common_funcs import get_objects_ids
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "e_commerce_website.settings")
 django.setup()
 from django.db import models
@@ -24,7 +26,6 @@ from e_commerce_website.jewelry.models import (
     Style,
     Title, JewelryMetal, JewelryStone
 )
-
 
 categories = Category.objects.all()
 titles = Title.objects.all()
@@ -49,9 +50,9 @@ stone_colors = StoneColor.objects.all()
 # for category in categories:
 #     categories_by_choices[category] = categories_choices[index]
 #     index += 1
-    
+
 # print(categories_by_choices)
-        
+
 # jewelry = JewelryDetails.objects.filter(id=1).get()
 # customer_gender = jewelry.jewelry.customer_gender.id
 # print(customer_gender)
@@ -73,7 +74,6 @@ stone_colors = StoneColor.objects.all()
 # # metal_choice = Metal.TitleChoices.labels['WG']
 # # print(metal_choice)
 # print(metals.values_list('metal__title', flat=True))
-
 
 
 # Fetch all the metals from the database
@@ -118,7 +118,6 @@ stone_colors = StoneColor.objects.all()
 # metal_choices = [(metal.metal.title, metal.metal.get_title_display()) for metal in metals]
 # print(metals)
 # print(metal_choices)
-
 
 
 # jewelries = JewelryDetails.objects.filter(
@@ -172,7 +171,6 @@ stone_colors = StoneColor.objects.all()
 #     V_100000 = '5000, 10000', _('Above$5000')
 
 
-
 # jewelries = JewelryDetails.objects.filter(
 #     Q(price__gte=JewelryDetails.PriceChoices.V_750[0]) &
 #     Q(price__lte=JewelryDetails.PriceChoices.V_750[1]))
@@ -192,7 +190,6 @@ stone_colors = StoneColor.objects.all()
 #     ]
 #
 # print(filtered_price_choices)
-
 
 
 #     # Filter choices based on the maximum price among the three products
@@ -415,10 +412,101 @@ stone_colors = StoneColor.objects.all()
 #
 # print(cur_jewelries)
 
-cur_jewelries = JewelryDetails.objects .\
-        prefetch_related('jewelry_stones__stone_color'). \
-        filter(jewelry_stones__stone_color_id__exact=5). \
-        count()
+# cur_jewelries = JewelryDetails.objects .\
+#         prefetch_related('jewelry_stones__stone_color'). \
+#         filter(jewelry_stones__stone_color_id__exact=5). \
+#         count()
+#
+# print(cur_jewelries)
 
-print(cur_jewelries)
+# cur_jewelries = JewelryDetails.objects .\
+#         prefetch_related('metals__metals__jewelry'). \
+#         filter(jewelry_metals__metal_id__exact=2). \
+#         count()
+#
+# print(cur_jewelries)
 
+# cur_jewelries = JewelryDetails.objects.filter(pk=3).\
+#     prefetch_related('metals__metals__jewelry'). \
+#     prefetch_related('jewelry_stones__stone_type'). \
+#     filter(Q(jewelry_metals__metal_id__exact=3) & Q(jewelry_stones__stone_type__in=[8, 3])). \
+#     count()
+#
+# print(cur_jewelries)
+
+
+# cur_metals = JewelryMetal.objects.filter(
+#     Q(jewelry_id__in=[1, 2, 3] )
+#     & Q(metal_id=3)
+#     & Q(jewelry__stone_types__in=[3, 8])).count()
+#
+# print(cur_metals)
+#
+# jewelries_count_by_metal[id_for_label] = JewelryMetal.objects.filter(
+#     Q(jewelry_id__in=jewelries_ids)
+#     & Q(metal_id=metal_id)
+#     & Q(jewelry__stone_types__in=stone_type_ids)).count(
+
+# JEWELRIES_COUNT_BY_STYLE = {
+#     1: 'Drop',
+#     2: 'Hoop',
+#     3: 'Stud'
+# }
+# current_dict = {}
+# JEWELRIES_COUNT_BY_STYLE[1]['count'] += 1
+# current_dict.update({1:JEWELRIES_COUNT_BY_STYLE[1]['count']})
+# print(JEWELRIES_COUNT_BY_STYLE)
+# print(current_dict)
+
+current_jewelries_count_by_style = {}
+style_ids = [1, 2, 3]
+
+def get_related_styles(category_id):
+    styles = Style.objects. \
+        filter(category=category_id). \
+        select_related('category')
+
+    return styles
+
+
+def get_related_style_choices(styles):
+    style_choices = [
+        (style.title, style.get_title_display()) for style in styles
+    ]
+
+    return style_choices
+
+def define_jewelries_count_before_selected_style(jewelries_by_details):
+    current_jewelries_count_by_style = {}
+    styles = get_related_styles(1)
+    for style in styles:
+        current_jewelries_count_by_style[style.get_title_display()] = jewelries_by_details.\
+            prefetch_related('jewelry__style__category').\
+            filter(jewelry__style=style.id).\
+            count()
+    # print(styles)
+    # style_labels = [s.get_title_display() for s in styles]
+    # print(style_labels)
+
+    # for label in style_labels:
+    #     current_jewelries_count_by_style.update(
+    #         {
+    #             label: jewelries_by_details.
+    #             prefetch_related('jewelry__style__category').
+    #             filter(jewelry__style=key).
+    #             count()
+    #         }
+    #     )
+
+    return current_jewelries_count_by_style
+
+
+
+colors = StoneColor.objects.prefetch_related('jewelrydetails_set__stone_colors__stone_colors').filter(jewelrydetails__in=[1,2,3])
+print([s.title for s in colors])
+
+metals = JewelryMetal.objects.select_related('jewelry'). \
+    filter(jewelry__metals__in=[1,2,3])
+metal_choices = [(metal.metal.title, metal.metal.get_title_display()) for metal in metals]
+
+print(metal_choices)
