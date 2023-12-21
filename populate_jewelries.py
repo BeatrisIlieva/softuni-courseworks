@@ -139,8 +139,8 @@ bulk_create_jewelry(
             title='Sunflower',
             quantity=10,
             price=24000.00,
-            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703181413/earrings/13/sunflower_earrings_ruby_and_diamond_earppopetsf_e-1_d3gez6.webp',
-            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703181411/earrings/13/sunflower_earrings_ruby_and_diamond_earppopetsf_e-2_wqpjyq.webp',
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703183465/earrings/13/sunflower_earrings_sapphire_and_diamond_easppopetsf_e-1_npfqnr.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703183463/earrings/13/sunflower_earrings_sapphire_and_diamond_easppopetsf_e-2_hwz9zt.webp',
             category=categories[1],
         ),
 
@@ -189,7 +189,7 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[3],
-            metal=metals[3],
+            metal=metals[2],
         ),
 
         JewelryMetal(
@@ -250,7 +250,7 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[14],
-            metal=metals[3],
+            metal=metals[2],
         ),
 
     ]
@@ -405,7 +405,7 @@ bulk_create_jewelry_by_stone(
         JewelryStone(
             jewelry=jewelries[12],
             stone_type=stone_types[20],
-            stone_color=stone_colors[8],
+            stone_color=stone_colors[1],
             stone_carat=2.66,
         ),
 

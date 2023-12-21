@@ -54,7 +54,7 @@ class StoneType(models.Model):
     class TitleChoices(models.TextChoices):
         AGATE = "AG", _("Agate")
         AMETHYST = "AM", _("Amethyst")
-        BLACK_ONYX = "BO", _("Black Onyx")
+        BLACK_SPINEL = "BS", _("Black Spinel")
         CHARIOTE = "CH", _("Chariote")
         CRYSOCOLLA = "CR", _("Chrysocolla")
         CITRINE = "CI", _("Citrine")

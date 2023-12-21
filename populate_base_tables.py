@@ -67,7 +67,7 @@ bulk_create_stone_title(
     [
         StoneType(title="AG"),
         StoneType(title="AM"),
-        StoneType(title="BO"),
+        StoneType(title="BS"),
         StoneType(title="CH"),
         StoneType(title="CR"),
         StoneType(title="CI"),
