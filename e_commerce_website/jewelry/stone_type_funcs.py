@@ -8,8 +8,8 @@ def get_related_stone_type_objects(jewelries):
     jewelry_ids = get_objects_ids(jewelries)
 
     stone_types = StoneType.objects. \
-        prefetch_related('jewelrydetails_set__stone_types__stone_types'). \
-        filter(jewelrydetails__in=jewelry_ids)
+        prefetch_related('stone_types'). \
+        filter(jewelry__in=jewelries)
 
     return stone_types
 

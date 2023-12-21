@@ -7,8 +7,8 @@ from e_commerce_website.jewelry.models import StoneColor
 def get_related_stone_color_objects(jewelries):
     jewelry_ids = get_objects_ids(jewelries)
     stone_colors = StoneColor.objects. \
-        prefetch_related('jewelrydetails_set__stone_colors__stone_colors'). \
-        filter(jewelrydetails__in=jewelry_ids)
+        prefetch_related('stone_colors'). \
+        filter(jewelry__in=jewelries)
 
     return stone_colors
 

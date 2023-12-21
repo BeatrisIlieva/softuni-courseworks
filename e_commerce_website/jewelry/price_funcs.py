@@ -1,12 +1,13 @@
 from _decimal import Decimal
+from collections import OrderedDict
 
 from django.db.models import Q
 
-from e_commerce_website.jewelry.models import JewelryDetails
+from e_commerce_website.jewelry.models import Jewelry
 
 
 def show_available_prices(jewelries):
-    all_price_choices = JewelryDetails.PriceChoices.choices
+    all_price_choices = Jewelry.PriceChoices.choices
 
     jewelries_prices = jewelries.values_list('price', flat=True). \
         distinct(). \
@@ -20,7 +21,10 @@ def show_available_prices(jewelries):
                 prices_choices.append((value, display))
                 break
 
-    return prices_choices
+    ordered_price_choices = list(
+        OrderedDict(prices_choices).items())
+
+    return ordered_price_choices
 
 
 def get_query_price(selection_pattern_price):
@@ -32,3 +36,4 @@ def get_query_price(selection_pattern_price):
         query_price |= Q(price__gte=decimal_min_price) & Q(price__lte=decimal_max_price)
 
     return query_price
+

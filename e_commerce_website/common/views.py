@@ -1,13 +1,10 @@
 from django.shortcuts import render
 
-from e_commerce_website.jewelry.models import Category, CustomerGender, Metal, StoneType
+from e_commerce_website.jewelry.models import Category, Metal, StoneType
 
 
 def get_nav_bar_context():
 
-    female_gender = CustomerGender.objects.filter(classification='F').get()
-    male_gender = CustomerGender.objects.filter(classification='M').get()
-    
     categories = Category.objects.all()
     categories_choices = [x[1] for x in Category.TitleChoices.choices]
     
@@ -21,17 +18,17 @@ def get_nav_bar_context():
     
     metals = Metal.TitleChoices.choices
     
-    stones = StoneType.TitleChoices.choices
+    all_stones = StoneType.TitleChoices.choices
     
-    filtered_stones =  filter(lambda stone: stone[1] in ['Ruby', 'Pearl', 'Sapphire', 'Emerald', 'Diamond'], stones)
+    filtered_stones =  filter(lambda stone: stone[1] in ['Ruby', 'Pearl', 'Sapphire', 'Emerald', 'Diamond'], all_stones)
+
+    stones = list(filtered_stones)
     
     
     context = {
-        'female_gender': female_gender,
-        'male_gender': male_gender,
         'categories_by_choices': categories_by_choices,
         'metals': metals,
-        'stones': filtered_stones,
+        'stones': stones,
     }
     
     return context

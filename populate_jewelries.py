@@ -1,95 +1,66 @@
 import os
 import django
 
-
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "e_commerce_website.settings")
 django.setup()
 
-
-from e_commerce_website.jewelry.models import ( 
+from e_commerce_website.jewelry.models import (
     Jewelry,
-    JewelryDetails, 
-    JewelryMetal, 
-    JewelryStone, 
-    Title,
+    JewelryMetal,
+    JewelryStone,
 )
 
 from get_all_objects import (
-    categories, 
-    titles, 
-    styles, 
-    customer_genders, 
-    jewelries, 
-    jewelries_by_details,
-    metals, 
-    gold_carats, 
-    stone_types, 
+    categories,
+    jewelries,
+    metals,
+    gold_carats,
+    stone_types,
     stone_colors
-)
-
-
-def bulk_create_title(*args):
-    Title.objects.bulk_create(*args)
-    
-
-bulk_create_title(
-    [
-        Title(content='Petite DY Elements Drop Earrings'),
-        Title(content='Pavé Crossover Hoop Earrings'),
-    ]
 )
 
 
 def bulk_create_jewelry(*args):
     Jewelry.objects.bulk_create(*args)
-    
-    
+
+
 bulk_create_jewelry(
     [
         Jewelry(
-            category=categories[0],
-            title=titles[0],
-            style=styles[0],
-            customer_gender=customer_genders[0],
+            title='Chandelier',
+            quantity=10,
+            price=120000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703167483/earrings/1/diamond_chandelier_earrings_eadpchsmct_e-1_lsdgdg.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703167483/earrings/1/diamond_chandelier_earrings_eadpchsmct_e-2_udb3ag.webp',
+            category=categories[1],
         ),
+
         Jewelry(
-            category=categories[0],
-            title=titles[1],
-            style=styles[1],
-            customer_gender=customer_genders[0],
+            title='Queen of Diamonds',
+            quantity=10,
+            price=160000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703168853/earrings/2/diamond_chandelier_earrings_eadpclafrcha_e-1_d4kztt.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703168594/earrings/2/diamond_chandelier_earrings_eadpclafrcha_e-2_ltsgnc.webp',
+            category=categories[1],
         ),
-    ]
-)
 
+        Jewelry(
+            title='Garland Heart',
+            quantity=10,
+            price=30000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703175666/earrings/3/garland_by_harry_winston_earrings_diamond_eadphssmoc_581447_e-1_ysmxop.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703175667/earrings/3/garland_by_harry_winston_earrings_diamond_eadphssmoc_581447_e-2_z74pjd.webp',
+            category=categories[1],
+        ),
 
-def bulk_create_jewelry_by_details(*args):
-    JewelryDetails.objects.bulk_create(*args)
-    
-    
-bulk_create_jewelry_by_details(
-    [
-        JewelryDetails(
-            jewelry=jewelries[0],
+        Jewelry(
+            title='Pirouette',
             quantity=10,
-            price=2250.00,
-            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702045326/E17658D88DBODI_x1ybsz.webp',
-            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702045070/E17658D88DBODI-alt1_ymzvlv.webp',
+            price=25000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703176025/earrings/4/pirouette_by_harry_winston_earrings__diamond__eadprfprspir_e-1_zfcw3e.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703175667/earrings/3/garland_by_harry_winston_earrings_diamond_eadphssmoc_581447_e-2_z74pjd.webp',
+            category=categories[1],
         ),
-        
-        JewelryDetails(
-            jewelry=jewelries[0],
-            quantity=10,
-            price=2250.00,
-            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702119059/E17658D88DLADI_a75izb.webp',
-            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702119053/E17658D88DLADI-alt1_muldrn.webp',
-        ),
-        JewelryDetails(
-            jewelry=jewelries[1],
-            quantity=10,
-            price=12500.00,
-            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702638436/earrings_hoop/E17482D8WADI_ezf0ht.webp',
-            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1702638441/earrings_hoop/E17482D8WADI-alt1_orfjz7.webp',
-        )
 
     ]
 )
@@ -98,55 +69,53 @@ bulk_create_jewelry_by_details(
 def bulk_create_jewelry_by_metal(*args):
     JewelryMetal.objects.bulk_create(*args)
 
-    
+
 bulk_create_jewelry_by_metal(
     [
         JewelryMetal(
-            jewelry=jewelries_by_details[0],
-            metal=metals[0],
-            gold_carat=gold_carats[3],
+            jewelry=jewelries[0],
+            metal=metals[3],
         ),
+
         JewelryMetal(
-            jewelry=jewelries_by_details[1],
-            metal=metals[0],
-            gold_carat=gold_carats[3],
+            jewelry=jewelries[1],
+            metal=metals[3],
         ),
+
         JewelryMetal(
-            jewelry=jewelries_by_details[2],
-            metal=metals[2],
-            gold_carat=gold_carats[3],
+            jewelry=jewelries[2],
+            metal=metals[3],
         ),
+
     ]
 )
 
 
 def bulk_create_jewelry_by_stone(*args):
     JewelryStone.objects.bulk_create(*args)
-    
+
 
 bulk_create_jewelry_by_stone(
     [
         JewelryStone(
-            jewelry=jewelries_by_details[0],
-            stone_type=stone_types[2],
-            stone_color=stone_colors[1],
-            stone_carat=0.22,
-        ),  
-        JewelryStone(
-            jewelry=jewelries_by_details[1],
-            stone_type=stone_types[11],
-            stone_color=stone_colors[3],
-            stone_carat=0.22,
-        ),
-        JewelryStone(
-            jewelry=jewelries_by_details[2],
+            jewelry=jewelries[0],
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
-            stone_carat=3.32,
+            stone_carat=16.81,
         ),
 
+        JewelryStone(
+            jewelry=jewelries[1],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=9.21,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[2],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=2.05,
+        ),
     ]
 )
-
-            
-

@@ -4,67 +4,28 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "e_commerce_website.settings")
 django.setup()
 
-
 from e_commerce_website.jewelry.models import (
-    Category, 
-    CustomerGender, 
-    GoldCaratWeight, 
-    Metal, 
-    Size, 
-    StoneColor, 
-    StoneType, 
-    Style
+    Category,
+    GoldCaratWeight,
+    Metal,
+    Size,
+    StoneColor,
+    StoneType,
 )
 
 from get_all_objects import categories
 
-def bulk_create_customer_gender(*args):
-    CustomerGender.objects.bulk_create(*args)
-    
-    
-bulk_create_customer_gender(
-    [
-        CustomerGender(classification='F'),
-        CustomerGender(classification='M'),
-    ]
-)
-
 
 def bulk_create_category(*args):
     Category.objects.bulk_create(*args)
-    
+
 
 bulk_create_category(
     [
+        Category(title='B'),
         Category(title='E'),
         Category(title='N'),
-        Category(title='B'),
         Category(title='R'),
-    ]
-)
-
-
-def bulk_create_style(*args):
-    Style.objects.bulk_create(*args)
-    
-
-bulk_create_style(
-    [
-        Style(category=categories[0], title="DR"),
-        Style(category=categories[0], title="HO"),
-        Style(category=categories[0], title="ST"),
-        Style(category=categories[1], title="CH"),
-        Style(category=categories[1], title="PE"),
-        Style(category=categories[1], title="PN"),
-        Style(category=categories[1], title="YN"),
-        Style(category=categories[2], title="BE"),
-        Style(category=categories[2], title="BA"),
-        Style(category=categories[2], title="CU"),
-        Style(category=categories[3], title='BN'),
-        Style(category=categories[3], title='PT'),
-        Style(category=categories[3], title='PI'),
-        Style(category=categories[3], title='SA'),
-        Style(category=categories[3], title='EN'),
     ]
 )
 
@@ -78,7 +39,7 @@ bulk_create_metal(
         Metal(title='YG'),
         Metal(title="RG"),
         Metal(title="WG"),
-        Metal(title="SS"),
+        Metal(title='PT')
     ]
 )
 
@@ -97,10 +58,11 @@ bulk_create_gold_carat_weight(
     ]
 )
 
+
 def bulk_create_stone_title(*args):
     StoneType.objects.bulk_create(*args)
 
-    
+
 bulk_create_stone_title(
     [
         StoneType(title="AG"),
@@ -138,7 +100,7 @@ bulk_create_stone_title(
 def bulk_create_stone_color(*args):
     StoneColor.objects.bulk_create(*args)
 
-    
+
 bulk_create_stone_color(
     [
         StoneColor(title='WH'),
@@ -157,7 +119,8 @@ bulk_create_stone_color(
 
 def bulk_create_size(*args):
     Size.objects.bulk_create(*args)
-    
+
+
 bulk_create_size(
     [
         Size(category=categories[3], measurement="4.70"),

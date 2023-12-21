@@ -4,110 +4,54 @@ from django.utils.translation import gettext_lazy as _
 from e_commerce_website.jewelry.utils import calculate_max_choices_length
 
 
-class CustomerGender(models.Model):
-    
-    class ClassificationChoices(models.TextChoices):
-        
-        FEMALE = "F", _("Lady's")
-        MALE = "M", _("Gentlemen's")
-        
-    max_choice_length = calculate_max_choices_length(ClassificationChoices)
-        
-    classification = models.CharField(
-        max_length=max_choice_length,
-        choices=ClassificationChoices.choices,
-    )
-    
-
 class Category(models.Model):
-    
     class TitleChoices(models.TextChoices):
-        
+        BRACELET = "B", _("Bracelets")
         EARRING = "E", _("Earrings")
         NECKLACE = "N", _("Necklaces")
-        BRACELET = "B", _("Bracelets")
         RING = "R", _("Rings")
-        
+
     max_choice_length = calculate_max_choices_length(TitleChoices)
-    
+
     title = models.CharField(
         max_length=max_choice_length,
         choices=TitleChoices.choices,
     )
-    
-    
-class Style(models.Model):
-    
-    class TitleChoices(models.TextChoices):
-        
-        DROP = "DR", _("Drop")
-        HOOP = "HO", _("Hoop")
-        STUD = "ST", _("Stud")
-        CHAIN = "CH", _("Chain")
-        PEARL = "PE", _("Pearl")
-        PENDANT = "PN", _("Pendant")
-        YNECKLACE = "YN", _("Y Necklace")
-        BEAD = "BE", _("Bead")
-        BANGLE = "BA", _("Bangle")
-        CUFF = "CU", _("Cuff")
-        BAND = "BN", _('Band')
-        PETITE = "PT", _('Petite')
-        PINKY = "PI", _('Pinky')
-        STATEMENT = "SA", _('Statement')
-        ENGAGEMENT = "EN", _('Engagement')
-        
-    max_choice_length = calculate_max_choices_length(TitleChoices)
-        
-    title = models.CharField(
-        max_length=max_choice_length,
-        choices=TitleChoices.choices,
-    )
-    
-    category = models.ForeignKey(
-        to=Category,
-        on_delete=models.CASCADE,
-        related_name='style_category',
-    )
-    
+
 
 class Metal(models.Model):
-    
     class TitleChoices(models.TextChoices):
-        
         YELLOW_GOLD = "YG", _("Yellow Gold")
         ROSE_GOLD = "RG", _("Rose Gold")
         WHITE_GOLD = "WG", _("White Gold")
-        STERLING_SILVER = "SS", _("Sterling Silver")
-    
+        PLATINUM = "PT", _("Platinum")
+
     max_choice_length = calculate_max_choices_length(TitleChoices)
-    
+
     title = models.CharField(
         max_length=max_choice_length,
         choices=TitleChoices.choices,
     )
-    
-class GoldCaratWeight(models.Model):  
-    
+
+
+class GoldCaratWeight(models.Model):
     class WeightChoices(models.TextChoices):
-        
         V_9 = "9", _("9K")
         V_10 = "10", _("10K")
         V_14 = "14", _("14K")
         V_18 = "18", _("18K")
         V_22 = "22", _("22K")
-        
+
     max_choice_length = calculate_max_choices_length(WeightChoices)
-        
+
     weight = models.CharField(
         max_length=max_choice_length,
         choices=WeightChoices.choices,
     )
-    
-    
+
+
 class StoneType(models.Model):
-    
     class TitleChoices(models.TextChoices):
-        
         AGATE = "AG", _("Agate")
         AMETHYST = "AM", _("Amethyst")
         BLACK_ONYX = "BO", _("Black Onyx")
@@ -136,19 +80,17 @@ class StoneType(models.Model):
         TOURMALINE = "TU", _("Tourmaline")
         TSAVORITE = "TS", _("Tsavorite")
         TURQUOISE = "TR", _("Turquoise")
-    
+
     max_choice_length = calculate_max_choices_length(TitleChoices)
-    
+
     title = models.CharField(
         max_length=max_choice_length,
         choices=TitleChoices.choices,
     )
-    
-    
+
+
 class StoneColor(models.Model):
-    
     class TitleChoices(models.TextChoices):
-        
         WHITE = "WH", _('White')
         BLACK = "BL", _('Black')
         BROWN = "BR", _('Brown')
@@ -159,18 +101,17 @@ class StoneColor(models.Model):
         PURPLE = "PU", _('Purple')
         RED = "RE", _('Red')
         GOLD = "GO", _('Gold')
-    
+
     max_choice_length = calculate_max_choices_length(TitleChoices)
-    
+
     title = models.CharField(
         max_length=max_choice_length,
         choices=TitleChoices.choices,
     )
-    
+
+
 class Size(models.Model):
-    
     class MeasurementChoices(models.TextChoices):
-        
         V_4_70 = "4.70", _('4.70')
         V_4_80 = "4.80", _('4.80')
         V_4_90 = "4.90", _('4.90')
@@ -199,14 +140,14 @@ class Size(models.Model):
         V_81_28 = "81.28", _('81.28')
         V_91_44 = "91.44", _('91.44')
         V_182_88 = "182.88", _('182.88')
-        
+
     max_choice_length = calculate_max_choices_length(MeasurementChoices)
-    
+
     measurement = models.CharField(
         max_length=max_choice_length,
         choices=MeasurementChoices.choices,
     )
-    
+
     category = models.ForeignKey(
         to=Category,
         on_delete=models.CASCADE,
@@ -214,153 +155,131 @@ class Size(models.Model):
     )
 
 
-class Title(models.Model):
-    content = models.CharField()
-    
-    
 class Jewelry(models.Model):
-    
-    customer_gender = models.ForeignKey(
-        to=CustomerGender,
-        on_delete=models.CASCADE,
-        related_name='customer_gender',
-    )
-    
-    category = models.ForeignKey(
-        to=Category,
-        on_delete=models.CASCADE,
-        related_name='jewelry_category',
-    )
-    
-    style = models.ForeignKey(
-        to=Style,
-        on_delete=models.CASCADE,
-        related_name='style',
-    )
-    
-    title = models.ForeignKey(
-        to=Title,
-        on_delete=models.CASCADE,
-        related_name='title',
-    )
-    
-
-class JewelryDetails(models.Model):
     class PriceChoices(models.TextChoices):
-        V_750 = '0, 749.99', _('$0-$749.99')
-        V_1500 = '750, 1499.99', _('$750-$1499.99')
-        V_3000 = '1500, 2999.99', _('$1500-$2999.99')
-        V_5000 = '3000, 4999.99', _('$3000-$4999.99')
-        V_100000 = '5000, 1_000_000', _('Above$5000')
+        # V_750 = '0, 749.99', _('$0-$749.99')
+        # V_1500 = '750, 1499.99', _('$750-$1499.99')
+        # V_3000 = '1500, 2999.99', _('$1500-$2999.99')
+        # V_5000 = '3000, 4999.99', _('$3000-$4999.99')
+        # V_100000 = '5000, 1_000_000', _('Above$5000')
 
-    jewelry = models.ForeignKey(
-        to=Jewelry,
-        on_delete=models.CASCADE,
-        related_name='jewelry',
+        V_750 = '10_000, 25_000', _('10,000.00 - 25,000.00')
+        V_1500 = '25_000, 50_000', _('25,000.00 - 50,000.00')
+        V_3000 = '50_000, 75_000', _('50,000.00 - 75,000.00')
+        V_5000 = '75_000, 100_000', _('75,000.00 - 100,000.00')
+        V_100000 = '100_000, 1_000_000', _('ABOVE 100,000.00')
+
+    title = models.CharField(
+        max_length=40,
     )
-    
-    metals = models.ManyToManyField(
-        to=Metal,
-        through='JewelryMetal', 
-    )
-    
-    gold_carats = models.ManyToManyField(
-        to=GoldCaratWeight,
-        through='JewelryMetal', 
-    )
-    
-    stone_types = models.ManyToManyField(
-        to=StoneType,
-        through='JewelryStone',
-    )
-    
-    stone_colors = models.ManyToManyField(
-        to=StoneColor,
-        through='JewelryStone',
-    )
-    
-    size = models.ManyToManyField(
-        to=Size,
-        through='JewelrySize',
-    )
-    
+
     quantity = models.PositiveIntegerField()
 
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
     )
-    
+
     discounted_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         null=True,
         blank=True,
     )
-    
+
     created_at = models.DateTimeField(
         auto_now_add=True,
         editable=False,
     )
-    
+
     updated_at = models.DateTimeField(
         auto_now=True,
         editable=False,
     )
-    
+
     first_image_url = models.URLField()
-    
+
     second_image_url = models.URLField()
+
+    category = models.ForeignKey(
+        to=Category,
+        on_delete=models.CASCADE,
+        related_name='jewelry_category',
+    )
+
+    metals = models.ManyToManyField(
+        to=Metal,
+        through='JewelryMetal',
+    )
+
+    gold_carats = models.ManyToManyField(
+        to=GoldCaratWeight,
+        through='JewelryMetal',
+    )
+
+    stone_types = models.ManyToManyField(
+        to=StoneType,
+        through='JewelryStone',
+    )
+
+    stone_colors = models.ManyToManyField(
+        to=StoneColor,
+        through='JewelryStone',
+    )
+
+    size = models.ManyToManyField(
+        to=Size,
+        through='JewelrySize',
+    )
 
 
 class JewelryMetal(models.Model):
-    
     class Meta:
         unique_together = ('jewelry', 'metal', 'gold_carat')
-        
+
     jewelry = models.ForeignKey(
-        to=JewelryDetails,
+        to=Jewelry,
         on_delete=models.CASCADE,
         related_name='jewelry_metals',
     )
-    
+
     metal = models.ForeignKey(
         to=Metal,
         on_delete=models.CASCADE,
         related_name='metals',
-    ) 
-    
+    )
+
     gold_carat = models.ForeignKey(
         to=GoldCaratWeight,
         on_delete=models.CASCADE,
         related_name='jewelry_gold_carats',
         null=True,
         blank=True,
-    ) 
-    
+    )
+
+
 class JewelryStone(models.Model):
-    
     class Meta:
         unique_together = ('jewelry', 'stone_type', 'stone_color')
-        
+
     jewelry = models.ForeignKey(
-        to=JewelryDetails,
+        to=Jewelry,
         on_delete=models.CASCADE,
         related_name='jewelry_stones',
     )
-    
+
     stone_type = models.ForeignKey(
         to=StoneType,
         on_delete=models.CASCADE,
         related_name='stone_types',
     )
-    
+
     stone_color = models.ForeignKey(
         to=StoneColor,
         on_delete=models.CASCADE,
         related_name='stone_colors',
     )
-    
+
     stone_carat = models.DecimalField(
         max_digits=5,
         decimal_places=2,
@@ -368,20 +287,19 @@ class JewelryStone(models.Model):
         blank=True,
     )
 
-    
+
 class JewelrySize(models.Model):
     class Meta:
         unique_together = ('jewelry', 'size')
-        
+
     jewelry = models.ForeignKey(
-        to=JewelryDetails,
+        to=Jewelry,
         on_delete=models.CASCADE,
         related_name='jewelry_sizes',
     )
-    
+
     size = models.ForeignKey(
         to=Size,
         on_delete=models.CASCADE,
         related_name='sizes',
-    ) 
-    
+    )

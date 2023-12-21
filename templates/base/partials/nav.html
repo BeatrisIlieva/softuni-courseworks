@@ -1,104 +1,68 @@
 {% load static %}
-<h1> Fine Jewelry </h1>
 <nav>
-  <ul class="menu">
-    <li class="left-menu"><a href="#">Search</a></li>
-    <li>
-      <a>Lady's</a>
-      <ul class="submenu">
+    <ul class="menu">
+        <li class="left-menu"><a href="#">Search</a></li>
         <li>
-            <p>Choose by Category</p>
-            {% for category, title in categories_by_choices.items %}
-            <a href="{% url 'show_jewelries' customer_gender_id=female_gender.id category_id=category.id %}">{{ title }}</a>
-            {% endfor %}
-              <a href="#">All Jewelries</a>
-        </li>
+            <a>HIGH JEWELRY</a>
+            <ul class="submenu">
+                <li>
+                    <p>BY CATEGORY</p>
+                    {% for category, title in categories_by_choices.items %}
+                        <a href="{% url 'show_jewelries' category_id=category.id %}">{{ title }}</a>
+                    {% endfor %}
+                    <a href="#">All Jewelries</a>
+                </li>
+                <li>
+                    <p href="#">BY METAL</p>
+                    {% for metal in metals %}
+                        <a href="#">{{ metal.1 }}</a>
+                    {% endfor %}
+                    <a href="#">Mixed Metals</a>
+                </li>
+                <li>
+                    <p href="#">BY GEMSTONE</p>
+                    {% for stone in stones %}
+                        <a href="#">{{ stone.1 }}</a>
+                    {% endfor %}
+                </li>
+            </ul>
         <li>
-            <p href="#">Choose by Metal</p>
-            {% for metal in metals %}
-            <a href="#">{{ metal.1 }}</a>
-            {% endfor %}
-            <a href="#">Mixed Metals</a>
-        </li>
         <li>
-            <p href="#">Choose by Gemstone</p>
-            {% for stone in stones %}
-            <a href="#">{{ stone.1 }}</a>
-            {% endfor %}
+            <a>FINE JEWELRY</a>
+            <ul class="submenu">
+                <li>
+                    <p>BY CATEGORY</p>
+                    {% for category, title in categories_by_choices.items %}
+                        <a href="{% url 'show_jewelries' category_id=category.id %}">{{ title }}</a>
+                    {% endfor %}
+                    <a href="#">ALL JEWELRIES</a>
+                </li>
+                <li>
+                    <p href="#">BY METAL</p>
+                    {% for metal in metals %}
+                        <a href="#">{{ metal.1 }}</a>
+                    {% endfor %}
+                    <a href="#">MIXED METALS</a>
+                </li>
+                <li>
+                    <p href="#">BY GEMSTONE</p>
+                    {% for stone in stones %}
+                        <a href="#">{{ stone.1 }}</a>
+                    {% endfor %}
+                </li>
+            </ul>
+        <li>
+        <li>
+            <a>ENGAGEMENT AND BRIDAL</a>
+            <ul class="submenu">
+                <a href="#">ENGAGEMENT RINGS</a>
+                <a href="#">WEDDING BANDS</a>
+            </ul>
         </li>
-      </ul>
-    </li>
-    <li>
-        <a href="#">Wedding</a>
-        <ul class="submenu">
-            <li><a href="#">Engagement Rings</a></li>
-            <li><a href="#">Bands for Her</a></li>
-            <li><a href="#">Bands for Him</a></li>
-          </ul>
-    </li>
-    <li>
-        <a href="#">Gentlemen's</a>
-        <ul class="submenu">
-            <li><a href="#">Choose by Category</a></li>
-            <li><a href="#">Choose by Metal</a></li>
-            <li><a href="#">Choose by Stone</a></li>
-          </ul>
         <li class="right-menu"><a href="#">Sign In</a></li>
         <li class="right-menu"><a href="#">My Bag</a></li>
         <li class="right-menu"><a href="#">Like</a></li>
-    </li>
-  </ul>
-</nav> 
 
-{% comment %} {% load static %}
-<h1> Fine Jewelry </h1>
-<nav>
-  <ul class="menu">
-    <li class="left-menu"><a href="#">Search</a></li>
-    <li>
-      <a>Lady's</a>
-      <ul class="submenu">
-        <li>
-            <p>Choose by Category</p>
-            <form action="{% url 'index-page' %}" method="post">  
-              {{form.as_div}}
-              {% csrf_token %}
-              <button>Earrings</button>
-            </form>
-        </li>
-        <li>
-            <p href="#">Choose by Metal</p>
-            {% for metal in metals %}
-            <a href="#">{{ metal.1 }}</a>
-            {% endfor %}
-            <a href="#">Mixed Metals</a>
-        </li>
-        <li>
-            <p href="#">Choose by Gemstone</p>
-            {% for stone in stones %}
-            <a href="#">{{ stone.1 }}</a>
-            {% endfor %}
-        </li>
-      </ul>
-    </li> 
-    <li>
-        <a href="#">Wedding</a>
-        <ul class="submenu">
-            <li><a href="#">Engagement Rings</a></li>
-            <li><a href="#">Bands for Her</a></li>
-            <li><a href="#">Bands for Him</a></li>
-          </ul>
-    </li>
-    <li>
-        <a href="#">Gentlemen's</a>
-        <ul class="submenu">
-            <li><a href="#">Choose by Category</a></li>
-            <li><a href="#">Choose by Metal</a></li>
-            <li><a href="#">Choose by Stone</a></li>
-          </ul>
-        <li class="right-menu"><a href="#">Sign In</a></li>
-        <li class="right-menu"><a href="#">My Bag</a></li>
-        <li class="right-menu"><a href="#">Like</a></li>
-    </li>
-  </ul>
-</nav> {% endcomment %}
+    </ul>
+</nav>
+
