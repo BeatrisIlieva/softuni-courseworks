@@ -80,6 +80,33 @@ bulk_create_jewelry(
             category=categories[1],
         ),
 
+        Jewelry(
+            title='Heart',
+            quantity=10,
+            price=14000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703178867/earrings/7/classics_heart-shaped_diamond_earstuds_esdphs010si_e-1_lumsno.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703178866/earrings/7/classics_heart-shaped_diamond_earstuds_esdphs010si_e-2_w2aaff.webp',
+            category=categories[1],
+        ),
+
+        Jewelry(
+            title='Daytime',
+            quantity=10,
+            price=27000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703179269/earrings/8/classics_earrings_diamond_eadpdrmedw_e-1_vptn8c.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703179268/earrings/8/classics_earrings_diamond_eadpdrmedw_e-2_h1edi3.webp',
+            category=categories[1],
+        ),
+
+        Jewelry(
+            title='Forget-Me-Not',
+            quantity=10,
+            price=48000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703179446/earrings/9/forget_me_not_drop_earrings_diamond_and_pink_sapphire_eapspdrflrfmn_ee-1_kb2xap.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703179447/earrings/9/forget_me_not_drop_earrings_diamond_and_pink_sapphire_eapspdrflrfmn_ee-2_vgnjja.webp',
+            category=categories[1],
+        ),
+
     ]
 )
 
@@ -124,6 +151,21 @@ bulk_create_jewelry_by_metal(
             jewelry=jewelries[5],
             metal=metals[0],
             gold_carat=gold_carats[3]
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[6],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[7],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[8],
+            metal=metals[3],
         ),
 
     ]
@@ -180,9 +222,37 @@ bulk_create_jewelry_by_stone(
 
         JewelryStone(
             jewelry=jewelries[5],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[20],
+            stone_type=stone_types[20],
+            stone_color=stone_colors[8],
             stone_carat=2.03,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[6],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=1.00,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[7],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=6.41,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[8],
+            stone_type=stone_types[21],
+            stone_color=stone_colors[5],
+            stone_carat=3.20,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[8],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=1.98,
         ),
     ]
 
