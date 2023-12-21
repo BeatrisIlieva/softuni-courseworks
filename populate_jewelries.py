@@ -135,6 +135,33 @@ bulk_create_jewelry(
             category=categories[1],
         ),
 
+        Jewelry(
+            title='Sunflower',
+            quantity=10,
+            price=24000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703181413/earrings/13/sunflower_earrings_ruby_and_diamond_earppopetsf_e-1_d3gez6.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703181411/earrings/13/sunflower_earrings_ruby_and_diamond_earppopetsf_e-2_wqpjyq.webp',
+            category=categories[1],
+        ),
+
+        Jewelry(
+            title='Belle',
+            quantity=10,
+            price=42000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703181891/earrings/14/belle_earrings_diamond_esdprd005bel_e-1_kdcplp.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703181893/earrings/14/belle_earrings_diamond_esdprd005bel_e-2_gq685k.webp',
+            category=categories[1],
+        ),
+
+        Jewelry(
+            title='Cushion-Cut',
+            quantity=10,
+            price=44000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703182222/earrings/15/classics_cushion-cut_diamond_earstuds_on_wires_esdpcu010micw_e-1_nalggi.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703182224/earrings/15/classics_cushion-cut_diamond_earstuds_on_wires_esdpcu010micw_e-2_xfamwz.webp',
+            category=categories[1],
+        ),
+
 
     ]
 )
@@ -208,6 +235,21 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[11],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[12],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[13],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[14],
             metal=metals[3],
         ),
 
@@ -358,6 +400,34 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
             stone_carat=2.66,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[12],
+            stone_type=stone_types[20],
+            stone_color=stone_colors[8],
+            stone_carat=2.66,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[12],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=0.90,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[13],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=0.90,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[14],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=1.00,
         ),
     ]
 
