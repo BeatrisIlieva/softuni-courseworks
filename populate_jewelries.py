@@ -107,6 +107,23 @@ bulk_create_jewelry(
             category=categories[1],
         ),
 
+        Jewelry(
+            title='Pink Flower',
+            quantity=10,
+            price=21000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703179871/earrings/10/forget_me_earrings_diamond_and_pink_sapphire_eapsp1mflrfmn_ee-1_zhnvgu.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703179870/earrings/10/forget_me_earrings_diamond_and_pink_sapphire_eapsp1mflrfmn_ee-2_vnawpt.webp',
+            category=categories[1],
+        ),
+
+        Jewelry(
+            title='Berry',
+            quantity=10,
+            price=37000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703180217/earrings/11/berry_cluster_earrings_emerald_and_diamond_eaepclrfber_568120_e-1_xvkff7.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703180215/earrings/11/berry_cluster_earrings_emerald_and_diamond_eaepclrfber_568120_e-2_bcmypf.webp',
+            category=categories[1],
+        ),
     ]
 )
 
@@ -165,6 +182,16 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[8],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[9],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[10],
             metal=metals[3],
         ),
 
@@ -253,6 +280,34 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
             stone_carat=1.98,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[9],
+            stone_type=stone_types[21],
+            stone_color=stone_colors[5],
+            stone_carat=2.20,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[9],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=0.07,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[10],
+            stone_type=stone_types[8],
+            stone_color=stone_colors[4],
+            stone_carat=2.01,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[10],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=3.35,
         ),
     ]
 
