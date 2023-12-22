@@ -242,6 +242,24 @@ bulk_create_jewelry(
             category=categories[0],
         ),
 
+        Jewelry(
+            title='Sunflower',
+            quantity=10,
+            price=39000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703265867/necklaces/1/sunflower_petite_sapphire_and_diamond_pendant_pespnapetsf_e-1h_cjtef5.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703265840/necklaces/1/sunflower_petite_sapphire_and_diamond_pendant_pespnapetsf_e-2_zv74yi.webp',
+            category=categories[2],
+        ),
+
+        Jewelry(
+            title='Forget-Me-Not',
+            quantity=10,
+            price=52000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703269036/necklaces/2/forget_me_not_pendant_diamond_and_pink_sapphire_pepsprfflrfmn_e_1_i09w6i.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703269032/necklaces/2/forget_me_not_pendant_diamond_and_pink_sapphire_pepsprfflrfmn_e_2_b2lu73.webp',
+            category=categories[2],
+        ),
+
     ]
 )
 
@@ -378,6 +396,16 @@ bulk_create_jewelry_by_metal(
         JewelryMetal(
             jewelry=jewelries[23],
             metal=metals[2],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[24],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[25],
+            metal=metals[3],
         ),
 
     ]
@@ -642,6 +670,34 @@ bulk_create_jewelry_by_stone(
             stone_carat=14.62,
         ),
 
+        JewelryStone(
+            jewelry=jewelries[24],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=0.44,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[24],
+            stone_type=stone_types[21],
+            stone_color=stone_colors[3],
+            stone_carat=0.42,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[25],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=0.04,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[25],
+            stone_type=stone_types[21],
+            stone_color=stone_colors[5],
+            stone_carat=0.04,
+        ),
+
     ]
 
 )
@@ -744,6 +800,16 @@ bulk_create_jewelry_by_size(
         ),
 
         JewelrySize(
+            jewelry=jewelries[15],
+            size=sizes[25],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[16],
+            size=sizes[22],
+        ),
+
+        JewelrySize(
             jewelry=jewelries[16],
             size=sizes[23],
         ),
@@ -756,6 +822,11 @@ bulk_create_jewelry_by_size(
         JewelrySize(
             jewelry=jewelries[16],
             size=sizes[25],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[17],
+            size=sizes[22],
         ),
 
         JewelrySize(
@@ -785,12 +856,17 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[18],
+            size=sizes[24],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[18],
             size=sizes[25],
         ),
 
         JewelrySize(
             jewelry=jewelries[19],
-            size=sizes[21],
+            size=sizes[22],
         ),
 
         JewelrySize(
@@ -800,17 +876,27 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[19],
+            size=sizes[24],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[19],
             size=sizes[25],
         ),
 
         JewelrySize(
             jewelry=jewelries[20],
-            size=sizes[21],
+            size=sizes[22],
         ),
 
         JewelrySize(
             jewelry=jewelries[20],
             size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[20],
+            size=sizes[24],
         ),
 
         JewelrySize(
@@ -820,12 +906,17 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[21],
-            size=sizes[21],
+            size=sizes[22],
         ),
 
         JewelrySize(
             jewelry=jewelries[21],
             size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[21],
+            size=sizes[24],
         ),
 
         JewelrySize(
@@ -849,6 +940,11 @@ bulk_create_jewelry_by_size(
         ),
 
         JewelrySize(
+            jewelry=jewelries[22],
+            size=sizes[25],
+        ),
+
+        JewelrySize(
             jewelry=jewelries[23],
             size=sizes[22],
         ),
@@ -860,6 +956,51 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[23],
+            size=sizes[24],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[23],
+            size=sizes[25],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[24],
+            size=sizes[22],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[24],
+            size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[24],
+            size=sizes[24],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[24],
+            size=sizes[25],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[25],
+            size=sizes[22],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[25],
+            size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[25],
+            size=sizes[24],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[25],
             size=sizes[25],
         ),
     ]
