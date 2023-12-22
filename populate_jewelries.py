@@ -269,6 +269,15 @@ bulk_create_jewelry(
             category=categories[2],
         ),
 
+        Jewelry(
+            title='Multi Color Stone',
+            quantity=10,
+            price=86000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703270516/necklaces/4/diamond_loop_pendant_full_motif_multi_color_stone_diamond_pemprpmel4c_e-2_w82uyl.webp    ',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703270512/necklaces/4/diamond_loop_pendant_full_motif_multi_color_stone_diamond_pemprpmel4c_e-3_hlm1rb.webp',
+            category=categories[2],
+        ),
+
     ]
 )
 
@@ -419,6 +428,11 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[26],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[27],
             metal=metals[3],
         ),
 
@@ -724,6 +738,40 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[21],
             stone_color=stone_colors[5],
             stone_carat=8.61,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[27],
+            stone_type=stone_types[21],
+            stone_color=stone_colors[6],
+            stone_carat=1.35,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[27],
+            stone_type=stone_types[2],
+            stone_color=stone_colors[1],
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[27],
+            stone_type=stone_types[21],
+            stone_color=stone_colors[5],
+            stone_carat=1.35,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[27],
+            stone_type=stone_types[21],
+            stone_color=stone_colors[3],
+            stone_carat=1.35,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[27],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=2.66,
         ),
     ]
 
@@ -1048,6 +1096,26 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[26],
+            size=sizes[31],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[27],
+            size=sizes[28],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[27],
+            size=sizes[29],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[27],
+            size=sizes[30],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[27],
             size=sizes[31],
         ),
     ]
