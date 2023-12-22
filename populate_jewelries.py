@@ -287,6 +287,15 @@ bulk_create_jewelry(
             category=categories[2],
         ),
 
+        Jewelry(
+            title='Berry ',
+            quantity=10,
+            price=63000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703271598/necklaces/6/berry_cluster_pendant_emerald_and_diamond_peepclrfber_e-1_lts2xk.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703271594/necklaces/6/berry_cluster_pendant_emerald_and_diamond_peepclrfber_e-2_u34ipb.webp',
+            category=categories[2],
+        ),
+
     ]
 )
 
@@ -448,6 +457,11 @@ bulk_create_jewelry_by_metal(
         JewelryMetal(
             jewelry=jewelries[28],
             metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[29],
+            metal=metals[2],
         ),
 
     ]
@@ -793,6 +807,20 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
             stone_carat=3.90,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[29],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=2.01,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[29],
+            stone_type=stone_types[8],
+            stone_color=stone_colors[4],
+            stone_carat=1.39,
         ),
     ]
 
@@ -1157,6 +1185,26 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[28],
+            size=sizes[31],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[29],
+            size=sizes[28],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[29],
+            size=sizes[29],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[29],
+            size=sizes[30],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[29],
             size=sizes[31],
         ),
     ]
