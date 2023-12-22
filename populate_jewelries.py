@@ -273,8 +273,17 @@ bulk_create_jewelry(
             title='Multi Color Stone',
             quantity=10,
             price=86000.00,
-            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703270516/necklaces/4/diamond_loop_pendant_full_motif_multi_color_stone_diamond_pemprpmel4c_e-2_w82uyl.webp    ',
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703270516/necklaces/4/diamond_loop_pendant_full_motif_multi_color_stone_diamond_pemprpmel4c_e-2_w82uyl.webp',
             second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703270512/necklaces/4/diamond_loop_pendant_full_motif_multi_color_stone_diamond_pemprpmel4c_e-3_hlm1rb.webp',
+            category=categories[2],
+        ),
+
+        Jewelry(
+            title='Heart',
+            quantity=10,
+            price=74000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703271283/necklaces/5/open_cluster_large_heart_diamond_pendant_pedphslgoc_e-1h_eruvjx.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703271288/necklaces/5/open_cluster_large_heart_diamond_pendant_pedphslgoc_e-2h_oorrck.webp',
             category=categories[2],
         ),
 
@@ -433,6 +442,11 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[27],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[28],
             metal=metals[3],
         ),
 
@@ -772,6 +786,13 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
             stone_carat=2.66,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[28],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=3.90,
         ),
     ]
 
@@ -1116,6 +1137,26 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[27],
+            size=sizes[31],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[28],
+            size=sizes[28],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[28],
+            size=sizes[29],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[28],
+            size=sizes[30],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[28],
             size=sizes[31],
         ),
     ]
