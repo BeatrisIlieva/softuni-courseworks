@@ -1,5 +1,6 @@
 import os
 from _decimal import Decimal
+from collections import OrderedDict
 
 import django
 from django import forms
@@ -34,16 +35,44 @@ stone_colors = StoneColor.objects.all()
 
 categories_choices = [x[1] for x in Category.TitleChoices.choices]
 
-categories_by_choices = {}
+# categories_by_choices = {}
+#
+# index = 0
+#
+# for category in categories:
+#     categories_by_choices[category] = categories_choices[index]
+#     index += 1
+#
+# my_dict = {'b': 2, 'a': 1, 'c': 3}
+#
+# sorted_items = sorted(my_dict.items(), key=lambda x: x[1])  # Sort items based on values
+#
+# sorted_dict = {k: v for k, v in sorted_items}  # Reconstruct dictionary from sorted items
+# print(sorted_dict)
 
-index = 0
+jewelry = jewelries.filter(pk=1)
+print(jewelry)
 
-for category in categories:
-    categories_by_choices[category] = categories_choices[index]
-    index += 1
+def get_related_size_objects(jewelry):
+    sizes = Size.objects \
+        .prefetch_related('category__jewelry_category__size') \
+        .filter(sizes__jewelry__in=jewelry)
 
-print(categories_by_choices)
+    return sizes
 
+print(get_related_size_objects(jewelry))
+cur_sizes = get_related_size_objects(jewelry)
+
+
+
+def get_related_size_choices(sizes):
+    size_choices = list(OrderedDict(
+        (size.measurement, size.get_measurement_display()) for size in sizes
+    ).items())
+
+    return size_choices
+
+print(get_related_size_choices(cur_sizes))
 
 
 

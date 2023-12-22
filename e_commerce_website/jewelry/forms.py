@@ -1,5 +1,5 @@
 from django import forms
-from e_commerce_website.jewelry.models import Metal, StoneType, StoneColor, Jewelry
+from e_commerce_website.jewelry.models import Metal, StoneType, StoneColor, Jewelry, Size
 
 
 class JewelryForm(forms.Form):
@@ -31,4 +31,14 @@ class JewelryForm(forms.Form):
         choices=STONE_COLOR_CHOICES,
         required=False,
         widget=forms.CheckboxSelectMultiple,
+    )
+
+
+class JewelryDetailsForm(forms.Form):
+    SIZE_CHOICES = Size.MeasurementChoices.choices
+
+    sizes = forms.MultipleChoiceField(
+        choices=SIZE_CHOICES,
+        required=False,
+        widget=forms.RadioSelect,
     )

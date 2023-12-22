@@ -7,7 +7,7 @@ django.setup()
 from e_commerce_website.jewelry.models import (
     Jewelry,
     JewelryMetal,
-    JewelryStone,
+    JewelryStone, JewelrySize,
 )
 
 from get_all_objects import (
@@ -16,7 +16,8 @@ from get_all_objects import (
     metals,
     gold_carats,
     stone_types,
-    stone_colors
+    stone_colors,
+    sizes,
 )
 
 
@@ -405,7 +406,7 @@ bulk_create_jewelry_by_stone(
         JewelryStone(
             jewelry=jewelries[12],
             stone_type=stone_types[20],
-            stone_color=stone_colors[1],
+            stone_color=stone_colors[3],
             stone_carat=2.66,
         ),
 
@@ -432,3 +433,87 @@ bulk_create_jewelry_by_stone(
     ]
 
 )
+
+def bulk_create_jewelry_by_size(*args):
+    JewelrySize.objects.bulk_create(*args)
+
+
+bulk_create_jewelry_by_size(
+    [
+        JewelrySize(
+            jewelry=jewelries[0],
+            size=sizes[8],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[1],
+            size=sizes[7],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[2],
+            size=sizes[1],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[3],
+            size=sizes[2],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[4],
+            size=sizes[3],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[5],
+            size=sizes[4],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[6],
+            size=sizes[0],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[7],
+            size=sizes[2],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[8],
+            size=sizes[8],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[9],
+            size=sizes[2],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[10],
+            size=sizes[3],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[11],
+            size=sizes[2],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[12],
+            size=sizes[1],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[13],
+            size=sizes[3],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[14],
+            size=sizes[3],
+        ),
+    ]
+)
+

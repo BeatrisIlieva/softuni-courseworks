@@ -34,7 +34,7 @@
             <div>
                 {% for jewelry in jewelries %}
                     <a href="{% url 'show_jewelry_details' category_id=jewelry.category_id jewelry_id=jewelry.id %}">
-                    <img width="300" height="400" src="{{ jewelry.first_image_url }}" alt="image1">
+                    <img width="450" height="450" src="{{ jewelry.first_image_url }}" alt="image1">
                     </a>
                 {% endfor %}
             </div>

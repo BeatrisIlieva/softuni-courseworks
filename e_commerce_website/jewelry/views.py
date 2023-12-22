@@ -4,10 +4,11 @@ from e_commerce_website.common.views import get_nav_bar_context
 from e_commerce_website.jewelry.counter_funcs import define_jewelries_count_before_selected_metal, \
     define_jewelries_count_before_selected_stone_type, define_jewelries_count_before_selected_stone_color, \
     define_jewelries_count_by_price
-from e_commerce_website.jewelry.forms import JewelryForm
+from e_commerce_website.jewelry.forms import JewelryForm, JewelryDetailsForm
 from e_commerce_website.jewelry.metal_funcs import get_related_metal_objects, get_related_metal_choices, get_metal_ids
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.jewelry.price_funcs import show_available_prices, get_query_price
+from e_commerce_website.jewelry.size_funcs import get_related_size_objects, get_related_size_choices
 from e_commerce_website.jewelry.stone_color_funcs import get_related_stone_color_objects, \
     get_related_stone_color_choices, get_stone_color_ids
 from e_commerce_website.jewelry.stone_type_funcs import get_related_stone_type_objects, get_related_stone_type_choices, \
@@ -26,6 +27,9 @@ def update_selection_forms(selection_form, **kwargs):
 
     if 'stone_color_choices' in kwargs:
         selection_form.fields['stone_color_choices'].choices = kwargs['stone_color_choices']
+
+    if 'size_choices' in kwargs:
+        selection_form.fields['size_choices'].choices = kwargs['size_choices']
 
 
 def display_jewelries_after_selection(selection_form, jewelries):
@@ -58,7 +62,7 @@ def display_jewelries_after_selection(selection_form, jewelries):
 
 def display_jewelries(request, category_id):
     jewelries = Jewelry.objects. \
-        filter(category=category_id)
+        filter(category=category_id).distinct('id')
 
     selection_form = JewelryForm(request.GET)
 
@@ -157,8 +161,18 @@ def show_jewelry_details(request, jewelry_id, category_id):
     jewelry = Jewelry.objects. \
         filter(id=jewelry_id).get()
 
+    selection_form = JewelryDetailsForm(request.GET)
+
+    sizes = get_related_size_objects(jewelry)
+
+    size_choices = get_related_size_choices(sizes)
+
+    if selection_form.is_valid():
+        selection_form.fields['sizes'].choices = size_choices
+
     context = {
         'jewelry': jewelry,
+        'form': selection_form,
     }
 
     nav_bar_context = get_nav_bar_context()
