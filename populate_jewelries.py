@@ -182,11 +182,66 @@ bulk_create_jewelry(
         ),
 
         Jewelry(
-            title='Forget-Me-Not ',
+            title='Forget-Me-Not',
             quantity=10,
             price=55000.00,
             first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703259627/bracelets/3/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_1_h0xaug.webp',
             second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703259630/bracelets/3/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_2_qlogdk.webp',
+            category=categories[0],
+        ),
+
+        Jewelry(
+            title='Oval',
+            quantity=10,
+            price=78000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703260442/bracelets/4/oval_diamond_bracelet_brdpsfovov_e-1_jon3ta.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703260439/bracelets/4/oval_diamond_bracelet_brdpsfovov_e-2_lowjbd.webp',
+            category=categories[0],
+        ),
+
+        Jewelry(
+            title='Flower',
+            quantity=10,
+            price=94000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703260723/bracelets/5/diamond_loop_full_motif_diamond_bracelet_brdprp1ml4c_e-1_xioiw0.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703260720/bracelets/5/diamond_loop_full_motif_diamond_bracelet_brdprp1ml4c_e-2_q6cxzy.webp',
+            category=categories[0],
+        ),
+
+        Jewelry(
+            title='Gates',
+            quantity=10,
+            price=103000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703265142/bracelets/9/gates_bracelet_diamond_yellow_gold_brdyrd1mwg_e-1_yxkx8q.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703265151/bracelets/9/winston_gates_bracelet_diamond_yellow_gold_brdyrd1mwg_e-2_lo9uge.webp',
+            category=categories[0],
+        ),
+
+
+        Jewelry(
+            title='Bezel-Set',
+            quantity=10,
+            price=24000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703261003/bracelets/6/classics_bezel-set_diamond_bracelet_brdprfsfbz_e-1_bj23kv.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703261006/bracelets/6/classics_bezel-set_diamond_bracelet_brdprfsfbz_e-2_e9age8.webp',
+            category=categories[0],
+        ),
+
+        Jewelry(
+            title='Dream',
+            quantity=10,
+            price=49000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703261691/bracelets/7/forget-me-not_bracelet_ruby_and_diamond_brrprfflrfmn_e-1_mx30fj.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703261688/bracelets/7/forget-me-not_bracelet_ruby_and_diamond_brrprfflrfmn_e-2_cqsw89.webp',
+            category=categories[0],
+        ),
+
+        Jewelry(
+            title='Unforgettable',
+            quantity=10,
+            price=33000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703262109/bracelets/8/forget_me_not_bracelet_diamond_and_sapphire_brsprfflrfmn_e_1_bc0a5y.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703262106/bracelets/8/forget_me_not_bracelet_diamond_and_sapphire_brsprfflrfmn_e_2_yli2iv.webp',
             category=categories[0],
         ),
 
@@ -294,6 +349,37 @@ bulk_create_jewelry_by_metal(
         JewelryMetal(
             jewelry=jewelries[17],
             metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[18],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[19],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[20],
+            metal=metals[0],
+            gold_carat=gold_carats[4]
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[21],
+            metal=metals[2],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[22],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[23],
+            metal=metals[2],
         ),
 
     ]
@@ -500,6 +586,62 @@ bulk_create_jewelry_by_stone(
             stone_color=stone_colors[5],
             stone_carat=4.36,
         ),
+
+        JewelryStone(
+            jewelry=jewelries[18],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=22.09,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[20],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=0.29,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[19],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=4.41,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[21],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=8.27,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[22],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=4.37,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[22],
+            stone_type=stone_types[20],
+            stone_color=stone_colors[8],
+            stone_carat=4.43,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[23],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=4.37,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[23],
+            stone_type=stone_types[20],
+            stone_color=stone_colors[3],
+            stone_carat=4.43,
+        ),
     ]
 
 )
@@ -629,6 +771,96 @@ bulk_create_jewelry_by_size(
         JewelrySize(
             jewelry=jewelries[17],
             size=sizes[25],
-        )
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[18],
+            size=sizes[22],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[18],
+            size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[18],
+            size=sizes[25],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[19],
+            size=sizes[21],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[19],
+            size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[19],
+            size=sizes[25],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[20],
+            size=sizes[21],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[20],
+            size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[20],
+            size=sizes[25],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[21],
+            size=sizes[21],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[21],
+            size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[21],
+            size=sizes[25],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[22],
+            size=sizes[22],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[22],
+            size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[22],
+            size=sizes[24],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[23],
+            size=sizes[22],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[23],
+            size=sizes[23],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[23],
+            size=sizes[25],
+        ),
     ]
 )
