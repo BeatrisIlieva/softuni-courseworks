@@ -1,13 +1,18 @@
 {% extends 'base/base.html' %}
 {% load custom_filters %}
 {% load static %}
+
+<style>
+    .lists {
+        display: flex;
+    }
+</style>
 {% block page_content %}
     <form action="{% url 'show_jewelries' category_id=category_id %}" method="get">
         {% for field in form %}
             <div>
                 <label for="{{ field.id_for_label }}">
                         <strong>{{ field.label }} </strong>
-                        <div>
                             {% for subfield in field %}
                         <div>
                             {{ subfield }}
@@ -22,7 +27,6 @@
                             {% endif %}
                         </div>
                             {% endfor %}
-                        </div>
                 </label>
                 <button>Apply</button>
                 {% csrf_token %}
@@ -32,7 +36,7 @@
     <div class="separator-line">
         <div class="image-container">
             <div>
-                {% for jewelry in jewelries %}
+                {% for jewelry in jewelries_list %}
                     <a href="{% url 'show_jewelry_details' category_id=jewelry.category_id jewelry_id=jewelry.id %}">
                     <img width="450" height="450" src="{{ jewelry.first_image_url }}" alt="image1">
                     </a>
@@ -40,6 +44,19 @@
             </div>
         </div>
     </div>
+{% if is_paginated %}
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+        {% else %}
+        <a> &lt;</a>
+    {% endif %}
+    {{ page_obj.number }} / {{ paginator.num_pages }}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                {% else %}
+        <a> &gt;</a>
+    {% endif %}
+{% endif %}
 {% endblock %}
 
 
