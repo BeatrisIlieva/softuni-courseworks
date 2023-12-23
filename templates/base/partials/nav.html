@@ -3,60 +3,39 @@
     <ul class="menu">
         <li class="left-menu"><a href="#">Search</a></li>
         <li>
-            <a>HIGH JEWELRY</a>
+            <p>BY CATEGORY</p>
             <ul class="submenu">
                 <li>
-                    <p>BY CATEGORY</p>
                     {% for category, title in categories_by_choices.items %}
                         <a href="{% url 'show_jewelries' category_id=category.id %}">{{ title }}</a>
-                    {% endfor %}
-                    <a href="#">All Jewelries</a>
-                </li>
-                <li>
-                    <p href="#">BY METAL</p>
-                    {% for metal in metals %}
-                        <a href="#">{{ metal.1 }}</a>
-                    {% endfor %}
-                    <a href="#">Mixed Metals</a>
-                </li>
-                <li>
-                    <p href="#">BY GEMSTONE</p>
-                    {% for stone in stones %}
-                        <a href="#">{{ stone.1 }}</a>
                     {% endfor %}
                 </li>
             </ul>
         <li>
         <li>
-            <a>FINE JEWELRY</a>
+            <p href="#">BY METAL</p>
             <ul class="submenu">
                 <li>
-                    <p>BY CATEGORY</p>
-                    {% for category, title in categories_by_choices.items %}
-                        <a href="{% url 'show_jewelries' category_id=category.id %}">{{ title }}</a>
-                    {% endfor %}
-                    <a href="#">ALL JEWELRIES</a>
-                </li>
-                <li>
-                    <p href="#">BY METAL</p>
                     {% for metal in metals %}
                         <a href="#">{{ metal.1 }}</a>
-                    {% endfor %}
-                    <a href="#">MIXED METALS</a>
-                </li>
-                <li>
-                    <p href="#">BY GEMSTONE</p>
-                    {% for stone in stones %}
-                        <a href="#">{{ stone.1 }}</a>
                     {% endfor %}
                 </li>
             </ul>
         <li>
         <li>
-            <a>ENGAGEMENT AND BRIDAL</a>
+            <p href="#">BY GEMSTONE</p>
             <ul class="submenu">
-                <a href="#">ENGAGEMENT RINGS</a>
-                <a href="#">WEDDING BANDS</a>
+                {% for stone in stones %}
+                    <a href="#">{{ stone.1 }}</a>
+                {% endfor %}
+            </ul>
+        </li>
+            <li>
+            <p href="#">BY COLOR</p>
+            <ul class="submenu">
+                {% for color in colors %}
+                    <a href="#">{{ color.1 }}</a>
+                {% endfor %}
             </ul>
         </li>
         <li class="right-menu"><a href="#">Sign In</a></li>

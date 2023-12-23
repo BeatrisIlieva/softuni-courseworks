@@ -52,13 +52,7 @@ class GoldCaratWeight(models.Model):
 
 class StoneType(models.Model):
     class TitleChoices(models.TextChoices):
-        AGATE = "AG", _("Agate")
-        AMETHYST = "AM", _("Amethyst")
         BLACK_SPINEL = "BS", _("Black Spinel")
-        CHARIOTE = "CH", _("Chariote")
-        CRYSOCOLLA = "CR", _("Chrysocolla")
-        CITRINE = "CI", _("Citrine")
-        CRYSTAL = "CY", _("Crystal")
         DIAMOND = "DI", _("Diamond")
         EMERALD = "EM", _("Emerald")
         GARNET = "GA", _("Garnet")
@@ -66,7 +60,6 @@ class StoneType(models.Model):
         LAPIS_LAZULI = "LL", _("Lapis Lazuli")
         MALACHITE = "MA", _("Malachite")
         MORGANITE = "MO", _("Morganite")
-        PEARL = "PE", _("Pearl")
         PERIDOT = "PR", _("Peridot")
         PINOLITH = "PI", _("Pinolith")
         PRASIOLITE = "PS", _("Prasiolite")

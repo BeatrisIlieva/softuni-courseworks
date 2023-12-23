@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     
     'e_commerce_website.jewelry',
     'e_commerce_website.common',
+    'e_commerce_website.shopping_cart',
 ]
 
 MIDDLEWARE = [
