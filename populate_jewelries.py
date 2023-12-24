@@ -377,6 +377,15 @@ bulk_create_jewelry(
             category=categories[3],
         ),
 
+        Jewelry(
+            title='Sunflower',
+            quantity=10,
+            price=57000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703436504/rings/7/sunflower_ring_diamond_frdptw007sf_e-1_poiqqc.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703436502/rings/7/sunflower_ring_diamond_frdptw007sf_e-2_grj12r.webp',
+            category=categories[3],
+        ),
+
     ]
 )
 
@@ -612,6 +621,11 @@ bulk_create_jewelry_by_metal(
         JewelryMetal(
             jewelry=jewelries[38],
             metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[39],
+            metal=metals[2],
         ),
 
     ]
@@ -1097,6 +1111,12 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[21],
             stone_color=stone_colors[3],
             stone_carat=1.19,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[39],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
         ),
     ]
 
@@ -1720,6 +1740,36 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[38],
+            size=sizes[14],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[39],
+            size=sizes[9],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[39],
+            size=sizes[10],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[39],
+            size=sizes[11],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[39],
+            size=sizes[12],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[39],
+            size=sizes[13],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[39],
             size=sizes[14],
         ),
 
