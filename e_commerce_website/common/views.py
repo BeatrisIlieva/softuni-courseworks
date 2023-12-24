@@ -117,4 +117,9 @@ class SearchBarView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context['search'] = self.request.GET.get('search', '')
 
+        navigation_view = NavigationBarView()
+        navigation_bar_context = navigation_view.get_context_data()
+
+        context.update(navigation_bar_context)
+
         return context
