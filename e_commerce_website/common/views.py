@@ -60,5 +60,11 @@ class SearchBarView(ListView):
         queryset = queryset.filter(
             jewelry_metals__metal_id__in=metal_ids
         )
-        print(queryset)
+
         return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['search'] = self.request.GET.get('search', '')
+        return context
+
