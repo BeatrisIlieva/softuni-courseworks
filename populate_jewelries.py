@@ -251,7 +251,6 @@ bulk_create_jewelry(
             category=categories[2],
         ),
 
-
         Jewelry(
             title='Aquamarine',
             quantity=10,
@@ -262,11 +261,11 @@ bulk_create_jewelry(
         ),
 
         Jewelry(
-            title='Forget-Me-Not',
+            title='Lily',
             quantity=10,
-            price=52000.00,
-            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703269036/necklaces/2/forget_me_not_pendant_diamond_and_pink_sapphire_pepsprfflrfmn_e_1_i09w6i.webp',
-            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703269032/necklaces/2/forget_me_not_pendant_diamond_and_pink_sapphire_pepsprfflrfmn_e_2_b2lu73.webp',
+            price=39000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703429368/necklaces/8/lily_cluster_necklace_diamond_yellow_gold_nkdyrd13mlc_e-2_ow1yxh.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703429367/necklaces/8/lily_cluster_necklace_diamond_yellow_gold_nkdyrd13mlc_e-1_e4er5b.webp',
             category=categories[2],
         ),
 
@@ -289,6 +288,15 @@ bulk_create_jewelry(
         ),
 
         Jewelry(
+            title='Berry',
+            quantity=10,
+            price=63000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703271598/necklaces/6/berry_cluster_pendant_emerald_and_diamond_peepclrfber_e-1_lts2xk.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703271594/necklaces/6/berry_cluster_pendant_emerald_and_diamond_peepclrfber_e-2_u34ipb.webp',
+            category=categories[2],
+        ),
+
+        Jewelry(
             title='Heart',
             quantity=10,
             price=74000.00,
@@ -297,14 +305,7 @@ bulk_create_jewelry(
             category=categories[2],
         ),
 
-        Jewelry(
-            title='Berry',
-            quantity=10,
-            price=63000.00,
-            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703271598/necklaces/6/berry_cluster_pendant_emerald_and_diamond_peepclrfber_e-1_lts2xk.webp',
-            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703271594/necklaces/6/berry_cluster_pendant_emerald_and_diamond_peepclrfber_e-2_u34ipb.webp',
-            category=categories[2],
-        ),
+
 
         Jewelry(
             title='Riviere',
@@ -316,13 +317,14 @@ bulk_create_jewelry(
         ),
 
         Jewelry(
-            title='Lily',
+            title='Forget-Me-Not',
             quantity=10,
-            price=39000.00,
-            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703429368/necklaces/8/lily_cluster_necklace_diamond_yellow_gold_nkdyrd13mlc_e-2_ow1yxh.webp',
-            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703429367/necklaces/8/lily_cluster_necklace_diamond_yellow_gold_nkdyrd13mlc_e-1_e4er5b.webp',
+            price=52000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703269036/necklaces/2/forget_me_not_pendant_diamond_and_pink_sapphire_pepsprfflrfmn_e_1_i09w6i.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703269032/necklaces/2/forget_me_not_pendant_diamond_and_pink_sapphire_pepsprfflrfmn_e_2_b2lu73.webp',
             category=categories[2],
         ),
+
     ]
 )
 
@@ -427,7 +429,8 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[17],
-            metal=metals[3],
+            metal=metals[0],
+            gold_carat=gold_carats[3]
         ),
 
         JewelryMetal(
@@ -488,12 +491,12 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[29],
-            metal=metals[3],
+            metal=metals[2],
         ),
 
         JewelryMetal(
-            jewelry=jewelries[20],
-            metal=metals[2],
+            jewelry=jewelries[30],
+            metal=metals[3],
         ),
 
         JewelryMetal(
@@ -503,8 +506,12 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[32],
-            metal=metals[0],
-            gold_carat=gold_carats[3]
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[32],
+            metal=metals[3],
         ),
 
     ]
@@ -603,7 +610,7 @@ bulk_create_jewelry_by_stone(
         JewelryStone(
             jewelry=jewelries[5],
             stone_type=stone_types[21],
-            stone_color=stone_colors[3],
+            stone_color=stone_colors[10],
             stone_carat=1.35,
         ),
 
@@ -710,14 +717,7 @@ bulk_create_jewelry_by_stone(
             jewelry=jewelries[17],
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
-            stone_carat=4.24,
-        ),
-
-        JewelryStone(
-            jewelry=jewelries[17],
-            stone_type=stone_types[21],
-            stone_color=stone_colors[5],
-            stone_carat=4.36,
+            stone_carat=5.33,
         ),
 
         JewelryStone(
@@ -801,7 +801,7 @@ bulk_create_jewelry_by_stone(
             jewelry=jewelries[25],
             stone_type=stone_types[21],
             stone_color=stone_colors[10],
-            stone_carat= 2.80,
+            stone_carat=2.80,
         ),
 
         JewelryStone(
@@ -855,7 +855,7 @@ bulk_create_jewelry_by_stone(
         JewelryStone(
             jewelry=jewelries[28],
             stone_type=stone_types[21],
-            stone_color=stone_colors[3],
+            stone_color=stone_colors[10],
             stone_carat=1.35,
         ),
 
@@ -866,39 +866,48 @@ bulk_create_jewelry_by_stone(
             stone_carat=2.66,
         ),
 
-        JewelryStone(
-            jewelry=jewelries[29],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
-            stone_carat=3.90,
-        ),
+
 
         JewelryStone(
-            jewelry=jewelries[30],
+            jewelry=jewelries[29],
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
             stone_carat=2.01,
         ),
 
         JewelryStone(
-            jewelry=jewelries[31],
+            jewelry=jewelries[29],
             stone_type=stone_types[8],
             stone_color=stone_colors[4],
             stone_carat=1.39,
         ),
 
         JewelryStone(
-            jewelry=jewelries[32],
+            jewelry=jewelries[30],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=3.90,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[31],
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
             stone_carat=23.25,
         ),
 
         JewelryStone(
-            jewelry=jewelries[33],
+            jewelry=jewelries[32],
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
-            stone_carat=5.33,
+            stone_carat=4.24,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[32],
+            stone_type=stone_types[21],
+            stone_color=stone_colors[5],
+            stone_carat=4.36,
         ),
     ]
 
@@ -1282,7 +1291,7 @@ bulk_create_jewelry_by_size(
         ),
 
         JewelrySize(
-            jewelry=jewelries[30],
+            jewelry=jewelries[29],
             size=sizes[31],
         ),
 
@@ -1327,23 +1336,24 @@ bulk_create_jewelry_by_size(
         ),
 
         JewelrySize(
-            jewelry=jewelries[31],
+            jewelry=jewelries[32],
             size=sizes[28],
         ),
 
         JewelrySize(
-            jewelry=jewelries[31],
+            jewelry=jewelries[32],
             size=sizes[29],
         ),
 
         JewelrySize(
-            jewelry=jewelries[31],
+            jewelry=jewelries[32],
             size=sizes[30],
         ),
 
         JewelrySize(
-            jewelry=jewelries[31],
+            jewelry=jewelries[32],
             size=sizes[31],
         ),
+
     ]
 )

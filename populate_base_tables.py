@@ -113,6 +113,7 @@ bulk_create_stone_color(
         StoneColor(title='PU'),
         StoneColor(title='RE'),
         StoneColor(title='GO'),
+        StoneColor(title='AQ'),
     ]
 )
 
