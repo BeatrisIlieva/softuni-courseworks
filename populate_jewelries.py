@@ -395,6 +395,15 @@ bulk_create_jewelry(
             category=categories[3],
         ),
 
+        Jewelry(
+            title='Bridal Couture',
+            quantity=10,
+            price=46000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703436882/rings/9/bridal_couture_by_harry_winston_engagement_ring_emerald_cut_diamond_platinum_rgdpec050ub7_550070_e_1_zgzgx4.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703436854/rings/9/bridal_couture_by_harry_winston_engagement_ring_emerald_cut_diamond_platinum_rgdpec050ub7_550070_e_2_ovqn8e.webp',
+            category=categories[3],
+        ),
+
     ]
 )
 
@@ -642,6 +651,11 @@ bulk_create_jewelry_by_metal(
             jewelry=jewelries[40],
             metal=metals[2],
             gold_carat=gold_carats[3]
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[42],
+            metal=metals[3],
         ),
 
     ]
@@ -1137,6 +1151,12 @@ bulk_create_jewelry_by_stone(
 
         JewelryStone(
             jewelry=jewelries[40],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[41],
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
         ),
@@ -1822,6 +1842,36 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[40],
+            size=sizes[14],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[41],
+            size=sizes[9],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[41],
+            size=sizes[10],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[41],
+            size=sizes[11],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[41],
+            size=sizes[12],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[41],
+            size=sizes[13],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[41],
             size=sizes[14],
         ),
 
