@@ -305,6 +305,14 @@ bulk_create_jewelry(
             category=categories[2],
         ),
 
+        Jewelry(
+            title='Lily',
+            quantity=10,
+            price=39000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703429368/necklaces/8/lily_cluster_necklace_diamond_yellow_gold_nkdyrd13mlc_e-2_ow1yxh.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703429367/necklaces/8/lily_cluster_necklace_diamond_yellow_gold_nkdyrd13mlc_e-1_e4er5b.webp',
+            category=categories[2],
+        ),
     ]
 )
 
@@ -476,6 +484,12 @@ bulk_create_jewelry_by_metal(
         JewelryMetal(
             jewelry=jewelries[30],
             metal=metals[2],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[31],
+            metal=metals[0],
+            gold_carat=gold_carats[3]
         ),
 
     ]
@@ -849,6 +863,13 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
             stone_carat=23.25,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[31],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=5.33,
         ),
     ]
 
@@ -1253,6 +1274,26 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[30],
+            size=sizes[31],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[31],
+            size=sizes[28],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[31],
+            size=sizes[29],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[31],
+            size=sizes[30],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[31],
             size=sizes[31],
         ),
     ]
