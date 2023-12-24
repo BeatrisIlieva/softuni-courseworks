@@ -325,6 +325,15 @@ bulk_create_jewelry(
             category=categories[2],
         ),
 
+        Jewelry(
+            title='Cushion-Cut',
+            quantity=10,
+            price=53000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703433929/rings/1/cushion_cut_engagement_ring_yellow_diamond_rgyedgcu015mic_e-1_ghcqyq.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703433928/rings/1/cushion_cut_engagement_ring_yellow_diamond_rgyedgcu015mic_e-2_lea4hu.webp',
+            category=categories[3],
+        ),
+
     ]
 )
 
@@ -512,6 +521,17 @@ bulk_create_jewelry_by_metal(
         JewelryMetal(
             jewelry=jewelries[32],
             metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[33],
+            metal=metals[3],
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[33],
+            metal=metals[0],
+            gold_carat=gold_carats[4]
         ),
 
     ]
@@ -908,6 +928,20 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[21],
             stone_color=stone_colors[5],
             stone_carat=4.36,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[33],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[1],
+            stone_carat=0.36,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[33],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[6],
+            stone_carat=0.98,
         ),
     ]
 
@@ -1353,6 +1387,36 @@ bulk_create_jewelry_by_size(
         JewelrySize(
             jewelry=jewelries[32],
             size=sizes[31],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[33],
+            size=sizes[9],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[33],
+            size=sizes[10],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[33],
+            size=sizes[11],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[33],
+            size=sizes[12],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[33],
+            size=sizes[13],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[33],
+            size=sizes[14],
         ),
 
     ]
