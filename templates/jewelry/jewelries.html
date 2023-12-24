@@ -2,13 +2,25 @@
 {% load custom_filters %}
 {% load static %}
 
-<style>
-    .lists {
-        display: flex;
-    }
-</style>
 {% block page_content %}
+        <style>
+        .checkbox-list {
+            display: flex;
+            flex-wrap: wrap; /* Allows items to wrap to the next line */
+            gap: 10px; /* Adjust the gap between checkboxes */
+        }
+
+        /* Additional styling as needed */
+        .checkbox-list label {
+            /* Add any label-specific styles */
+        }
+
+        .checkbox-list input[type="checkbox"] {
+            /* Add any checkbox-specific styles */
+        }
+    </style>
     <form action="{% url 'show_jewelries' category_id=category_id %}" method="get">
+    <div class="checkbox-list">
         {% for field in form %}
             <div>
                 <label for="{{ field.id_for_label }}">
@@ -32,31 +44,50 @@
                 {% csrf_token %}
             </div>
         {% endfor %}
+    </div>
     </form>
     <div class="separator-line">
         <div class="image-container">
             <div>
-                {% for jewelry in jewelries_list %}
-                    <a href="{% url 'show_jewelry_details' category_id=jewelry.category_id jewelry_id=jewelry.id %}">
+                {% for jewelry in jewelries %}
+                    <a href="{% url 'show_jewelry_details' category_id=jewelry.category_id jewelry_id=jewelry.id %}?page={{ page_obj.number }}">
                     <img width="450" height="450" src="{{ jewelry.first_image_url }}" alt="image1">
                     </a>
                 {% endfor %}
             </div>
         </div>
     </div>
-{% if is_paginated %}
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
-        {% else %}
-        <a> &lt;</a>
-    {% endif %}
-    {{ page_obj.number }} / {{ paginator.num_pages }}
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
-                {% else %}
-        <a> &gt;</a>
-    {% endif %}
-{% endif %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if jewelries.has_previous %}
+            <a href="?page=1">first</a>
+            <a href="?page={{ jewelries.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ jewelries.number }} of {{ jewelries.paginator.num_pages }}.
+        </span>
+
+        {% if jewelries.has_next %}
+            <a href="?page={{ jewelries.next_page_number }}">next</a>
+            <a href="?page={{ jewelries.paginator.num_pages }}">last</a>
+        {% endif %}
+    </span>
+</div>
+{#{% if is_paginated %}#}
+{#    {% if page_obj.has_previous %}#}
+{#        <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>#}
+{#        {% else %}#}
+{#        <a> &lt;</a>#}
+{#    {% endif %}#}
+{#    {{ page_obj.number }} / {{ paginator.num_pages }}#}
+{#    {% if page_obj.has_next %}#}
+{#        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>#}
+{#                {% else %}#}
+{#        <a> &gt;</a>#}
+{#    {% endif %}#}
+{#{% endif %}#}
 {% endblock %}
 
 

@@ -1,3 +1,5 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView, ListView
@@ -61,26 +63,19 @@ def display_jewelries_after_selection(selection_form, jewelries):
 
     return jewelries_count_by_metal, jewelries_count_by_stone_type, jewelries_count_by_stone_color, jewelries_count_by_price
 
-class DisplayJewelriesView(ListView):
+
+class DisplayJewelriesView(TemplateView):
     template_name = 'jewelry/jewelries.html'
-    paginate_by = 6
-    context_object_name = 'jewelries_list'
-
-    def get_queryset(self):
-        category_id = self.kwargs['category_id']
-        jewelries = Jewelry.objects.filter(category=category_id).distinct('id')
-        return jewelries
-
+    items_per_page = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        category_id = self.kwargs['category_id']
+        category_id = self.kwargs.get('category_id')
+
+        jewelries = Jewelry.objects. \
+            filter(category=category_id).distinct('id')
+
         selection_form = JewelryForm(self.request.GET)
-        queryset = self.get_queryset()
-
-
-
-        jewelries = queryset
 
         jewelries_count_by_price = define_jewelries_count_by_price(jewelries)
 
@@ -156,20 +151,38 @@ class DisplayJewelriesView(ListView):
                 jewelries_count_by_metal, jewelries_count_by_stone_type, jewelries_count_by_stone_color, jewelries_count_by_price = \
                     display_jewelries_after_selection(selection_form, jewelries)
 
-        navigation_view = NavigationBarView()
-        navigation_bar_context = navigation_view.get_context_data()
+            paginator = Paginator(jewelries, self.items_per_page)
+            page = self.request.GET.get('page')
+
+            try:
+                jewelries_paginated = paginator.page(page)
+            except PageNotAnInteger:
+                # If page is not an integer, deliver first page.
+                jewelries_paginated = paginator.page(1)
+            except EmptyPage:
+                # If page is out of range (e.g. 9999), deliver last page of results.
+                jewelries_paginated = paginator.page(paginator.num_pages)
+
+                # Other context data...
 
 
-        context['category_id']=category_id
-        context['form']=selection_form
-        context['jewelries_count_by_stone_type']=jewelries_count_by_stone_type
-        context['jewelries_count_by_metal']=jewelries_count_by_metal
-        context['jewelries_count_by_stone_color']=jewelries_count_by_stone_color
-        context['jewelries_count_by_price']=jewelries_count_by_price
+            navigation_view = NavigationBarView()
+            navigation_bar_context = navigation_view.get_context_data()
 
-        context.update(navigation_bar_context)
 
-        return context
+            context['jewelries'] = jewelries_paginated
+            context['paginator'] = paginator
+            # context['jewelries'] = jewelries
+            context['category_id'] = category_id
+            context['form'] = selection_form
+            context['jewelries_count_by_stone_type'] = jewelries_count_by_stone_type
+            context['jewelries_count_by_metal'] = jewelries_count_by_metal
+            context['jewelries_count_by_stone_color'] = jewelries_count_by_stone_color
+            context['jewelries_count_by_price'] = jewelries_count_by_price
+
+            context.update(navigation_bar_context)
+
+            return context
 
 
 # def display_jewelries(request, category_id):
