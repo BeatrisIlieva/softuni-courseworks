@@ -386,6 +386,15 @@ bulk_create_jewelry(
             category=categories[3],
         ),
 
+        Jewelry(
+            title='Heart',
+            quantity=10,
+            price=29000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703436707/rings/8/classic_winston_engagement_ring_diamond_rgdphs010tb_e-1_ew1irj.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703436707/rings/8/classic_winston_engagement_ring_diamond_rgdphs010tb_e-1_ew1irj.webp',
+            category=categories[3],
+        ),
+
     ]
 )
 
@@ -626,6 +635,13 @@ bulk_create_jewelry_by_metal(
         JewelryMetal(
             jewelry=jewelries[39],
             metal=metals[2],
+            gold_carat=gold_carats[3]
+        ),
+
+        JewelryMetal(
+            jewelry=jewelries[40],
+            metal=metals[2],
+            gold_carat=gold_carats[3]
         ),
 
     ]
@@ -1115,6 +1131,12 @@ bulk_create_jewelry_by_stone(
 
         JewelryStone(
             jewelry=jewelries[39],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[40],
             stone_type=stone_types[7],
             stone_color=stone_colors[0],
         ),
@@ -1770,6 +1792,36 @@ bulk_create_jewelry_by_size(
 
         JewelrySize(
             jewelry=jewelries[39],
+            size=sizes[14],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[40],
+            size=sizes[9],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[40],
+            size=sizes[10],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[40],
+            size=sizes[11],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[40],
+            size=sizes[12],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[40],
+            size=sizes[13],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[40],
             size=sizes[14],
         ),
 
