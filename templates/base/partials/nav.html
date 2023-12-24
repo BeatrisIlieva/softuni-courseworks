@@ -4,7 +4,7 @@
         <li class="left-menu">
             <form action="{% url 'search-bar' %}?page={{ page_obj.number }}">
 
-                <input name="search">
+                <input name="search" value="{{ search }}">
                 <button>Search</button>
 {#                <a href="#">Search</a>#}
             </form>
