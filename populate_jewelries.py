@@ -671,188 +671,188 @@ bulk_create_jewelry_by_stone(
     [
         JewelryStone(
             jewelry=jewelries[0],
-            stone_type=stone_types[21],
-            stone_color=stone_colors[5],
+            stone_type=stone_types[4],
+            stone_color=stone_colors[4],
             stone_carat=3.20,
         ),
 
         JewelryStone(
             jewelry=jewelries[0],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=1.98,
         ),
 
         JewelryStone(
             jewelry=jewelries[1],
-            stone_type=stone_types[20],
-            stone_color=stone_colors[3],
+            stone_type=stone_types[3],
+            stone_color=stone_colors[2],
             stone_carat=2.66,
         ),
 
         JewelryStone(
             jewelry=jewelries[1],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=0.90,
         ),
 
         JewelryStone(
             jewelry=jewelries[2],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[3],
+            stone_color=stone_colors[5],
             stone_carat=2.91,
         ),
 
         JewelryStone(
             jewelry=jewelries[2],
-            stone_type=stone_types[20],
-            stone_color=stone_colors[8],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=2.03,
         ),
 
         JewelryStone(
             jewelry=jewelries[3],
-            stone_type=stone_types[8],
-            stone_color=stone_colors[4],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=2.01,
         ),
 
         JewelryStone(
             jewelry=jewelries[3],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[2],
+            stone_color=stone_colors[3],
             stone_carat=3.35,
         ),
 
         JewelryStone(
             jewelry=jewelries[4],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=0.90,
         ),
 
         JewelryStone(
             jewelry=jewelries[5],
-            stone_type=stone_types[21],
-            stone_color=stone_colors[6],
+            stone_type=stone_types[4],
+            stone_color=stone_colors[0],
             stone_carat=1.35,
         ),
 
         JewelryStone(
             jewelry=jewelries[5],
-            stone_type=stone_types[2],
+            stone_type=stone_types[0],
             stone_color=stone_colors[1],
         ),
 
         JewelryStone(
             jewelry=jewelries[5],
-            stone_type=stone_types[21],
-            stone_color=stone_colors[5],
+            stone_type=stone_types[4],
+            stone_color=stone_colors[7],
             stone_carat=1.35,
         ),
 
         JewelryStone(
             jewelry=jewelries[5],
-            stone_type=stone_types[21],
-            stone_color=stone_colors[10],
+            stone_type=stone_types[4],
+            stone_color=stone_colors[4],
             stone_carat=1.35,
         ),
 
         JewelryStone(
             jewelry=jewelries[5],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=2.66,
         ),
 
         JewelryStone(
             jewelry=jewelries[6],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=1.00,
         ),
 
         JewelryStone(
             jewelry=jewelries[7],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=6.41,
         ),
 
         JewelryStone(
             jewelry=jewelries[8],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=16.81,
         ),
 
         JewelryStone(
             jewelry=jewelries[9],
-            stone_type=stone_types[21],
-            stone_color=stone_colors[5],
+            stone_type=stone_types[4],
+            stone_color=stone_colors[4],
             stone_carat=2.20,
         ),
 
         JewelryStone(
             jewelry=jewelries[9],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=0.07,
         ),
 
         JewelryStone(
             jewelry=jewelries[10],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=4.52,
         ),
 
         JewelryStone(
             jewelry=jewelries[11],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=2.05,
         ),
 
         JewelryStone(
             jewelry=jewelries[12],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=9.21,
         ),
 
         JewelryStone(
             jewelry=jewelries[13],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=4.30,
         ),
 
         JewelryStone(
             jewelry=jewelries[14],
-            stone_type=stone_types[7],
-            stone_color=stone_colors[0],
+            stone_type=stone_types[1],
+            stone_color=stone_colors[6],
             stone_carat=1.00,
         ),
 
         JewelryStone(
             jewelry=jewelries[15],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=4.37,
         ),
 
         JewelryStone(
             jewelry=jewelries[15],
-            stone_type=stone_types[20],
+            stone_type=stone_types[4],
             stone_color=stone_colors[3],
             stone_carat=4.43,
         ),
 
         JewelryStone(
             jewelry=jewelries[16],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=0.31,
 
@@ -860,126 +860,126 @@ bulk_create_jewelry_by_stone(
 
         JewelryStone(
             jewelry=jewelries[17],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=5.33,
         ),
 
         JewelryStone(
             jewelry=jewelries[18],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=22.09,
         ),
 
         JewelryStone(
             jewelry=jewelries[19],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=4.37,
         ),
 
         JewelryStone(
             jewelry=jewelries[19],
-            stone_type=stone_types[20],
-            stone_color=stone_colors[8],
+            stone_type=stone_types[4],
+            stone_color=stone_colors[7],
             stone_carat=4.43,
         ),
 
         JewelryStone(
             jewelry=jewelries[20],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=4.41,
         ),
 
         JewelryStone(
             jewelry=jewelries[21],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=0.29,
         ),
 
         JewelryStone(
             jewelry=jewelries[22],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=8.27,
         ),
 
         JewelryStone(
             jewelry=jewelries[23],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=14.62,
         ),
 
         JewelryStone(
             jewelry=jewelries[24],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=14.62,
         ),
 
         JewelryStone(
             jewelry=jewelries[24],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[6],
             stone_carat=40.11,
         ),
 
         JewelryStone(
             jewelry=jewelries[25],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=8.73,
         ),
 
         JewelryStone(
             jewelry=jewelries[25],
-            stone_type=stone_types[21],
+            stone_type=stone_types[4],
             stone_color=stone_colors[3],
             stone_carat=4.45,
         ),
 
         JewelryStone(
             jewelry=jewelries[25],
-            stone_type=stone_types[21],
-            stone_color=stone_colors[10],
+            stone_type=stone_types[4],
+            stone_color=stone_colors[0],
             stone_carat=2.80,
         ),
 
         JewelryStone(
             jewelry=jewelries[26],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=0.04,
         ),
 
         JewelryStone(
             jewelry=jewelries[26],
-            stone_type=stone_types[21],
+            stone_type=stone_types[4],
             stone_color=stone_colors[5],
             stone_carat=0.04,
         ),
 
         JewelryStone(
             jewelry=jewelries[27],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=8.60,
         ),
 
         JewelryStone(
             jewelry=jewelries[27],
-            stone_type=stone_types[21],
+            stone_type=stone_types[4],
             stone_color=stone_colors[5],
             stone_carat=8.61,
         ),
 
         JewelryStone(
             jewelry=jewelries[28],
-            stone_type=stone_types[21],
+            stone_type=stone_types[4],
             stone_color=stone_colors[6],
             stone_carat=1.35,
         ),
@@ -992,159 +992,159 @@ bulk_create_jewelry_by_stone(
 
         JewelryStone(
             jewelry=jewelries[28],
-            stone_type=stone_types[21],
+            stone_type=stone_types[4],
             stone_color=stone_colors[5],
             stone_carat=1.35,
         ),
 
         JewelryStone(
             jewelry=jewelries[28],
-            stone_type=stone_types[21],
-            stone_color=stone_colors[10],
+            stone_type=stone_types[4],
+            stone_color=stone_colors[0],
             stone_carat=1.35,
         ),
 
         JewelryStone(
             jewelry=jewelries[28],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=2.66,
         ),
 
         JewelryStone(
             jewelry=jewelries[29],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=2.01,
         ),
 
         JewelryStone(
             jewelry=jewelries[29],
-            stone_type=stone_types[8],
+            stone_type=stone_types[3],
             stone_color=stone_colors[4],
             stone_carat=1.39,
         ),
 
         JewelryStone(
             jewelry=jewelries[30],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=3.90,
         ),
 
         JewelryStone(
             jewelry=jewelries[31],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=23.25,
         ),
 
         JewelryStone(
             jewelry=jewelries[32],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=4.24,
         ),
 
         JewelryStone(
             jewelry=jewelries[32],
-            stone_type=stone_types[21],
+            stone_type=stone_types[4],
             stone_color=stone_colors[5],
             stone_carat=4.36,
         ),
 
         JewelryStone(
             jewelry=jewelries[33],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=0.36,
         ),
 
         JewelryStone(
             jewelry=jewelries[33],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[6],
             stone_carat=0.98,
         ),
 
         JewelryStone(
             jewelry=jewelries[34],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=1.19,
         ),
 
         JewelryStone(
             jewelry=jewelries[34],
-            stone_type=stone_types[14],
-            stone_color=stone_colors[10],
+            stone_type=stone_types[3],
+            stone_color=stone_colors[0],
             stone_carat=0.38,
         ),
 
         JewelryStone(
             jewelry=jewelries[34],
-            stone_type=stone_types[14],
+            stone_type=stone_types[3],
             stone_color=stone_colors[3],
             stone_carat=1.08,
         ),
 
         JewelryStone(
             jewelry=jewelries[35],
-            stone_type=stone_types[14],
+            stone_type=stone_types[3],
             stone_color=stone_colors[5],
             stone_carat=2.22,
         ),
 
         JewelryStone(
             jewelry=jewelries[35],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=0.05,
         ),
 
         JewelryStone(
             jewelry=jewelries[36],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=3.29,
         ),
 
         JewelryStone(
             jewelry=jewelries[36],
-            stone_type=stone_types[20],
-            stone_color=stone_colors[8],
+            stone_type=stone_types[4],
+            stone_color=stone_colors[7],
             stone_carat=1.32,
         ),
 
         JewelryStone(
             jewelry=jewelries[37],
-            stone_type=stone_types[7],
+            stone_type=stone_types[2],
             stone_color=stone_colors[4],
             stone_carat=2.32,
         ),
 
         JewelryStone(
             jewelry=jewelries[38],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
             stone_carat=0.41,
         ),
 
         JewelryStone(
             jewelry=jewelries[39],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
         ),
 
         JewelryStone(
             jewelry=jewelries[40],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
         ),
 
         JewelryStone(
             jewelry=jewelries[41],
-            stone_type=stone_types[7],
+            stone_type=stone_types[1],
             stone_color=stone_colors[0],
         ),
     ]

@@ -52,28 +52,11 @@ class GoldCaratWeight(models.Model):
 
 class StoneType(models.Model):
     class TitleChoices(models.TextChoices):
-        BLACK_SPINEL = "BS", _("Black Spinel")
-        DIAMOND = "DI", _("Diamond")
-        EMERALD = "EM", _("Emerald")
-        GARNET = "GA", _("Garnet")
-        INITIAL = "IN", _("Initial")
-        LAPIS_LAZULI = "LL", _("Lapis Lazuli")
-        MALACHITE = "MA", _("Malachite")
-        MORGANITE = "MO", _("Morganite")
-        PERIDOT = "PR", _("Peridot")
-        PINOLITH = "PI", _("Pinolith")
-        PRASIOLITE = "PS", _("Prasiolite")
-        QUARTZ = "QU", _("Quartz")
-        RUBELLITE = "RB", _("Rubellite")
-        RUBY = "RU", _("Ruby")
-        SAPPHIRE = "SA", _("Sapphire")
-        TANZANITE = "TA", _("Tanzanite")
-        TIGER_S = "TI", _("Tiger's")
-        TOPAZ = "TO", _("Topaz")
-        TOURMALINE = "TU", _("Tourmaline")
-        TSAVORITE = "TS", _("Tsavorite")
-        TURQUOISE = "TR", _("Turquoise")
-
+        BLACK_SPINEL = "BS", _("Black Spinel") # 0
+        DIAMOND = "DI", _("Diamond") # 1
+        EMERALD = "EM", _("Emerald") # 2
+        RUBY = "RU", _("Ruby") # 3
+        SAPPHIRE = "SA", _("Sapphire") # 4
 
     max_choice_length = calculate_max_choices_length(TitleChoices)
 
@@ -85,17 +68,14 @@ class StoneType(models.Model):
 
 class StoneColor(models.Model):
     class TitleChoices(models.TextChoices):
-        WHITE = "WH", _('White')
-        BLACK = "BL", _('Black')
-        BROWN = "BR", _('Brown')
-        BLUE = "BU", _('Blue')
-        GREEN = "GR", _('Green')
-        PINK = "PI", _('Pink')
-        YELLOW = "YE", _('Yellow')
-        PURPLE = "PU", _('Purple')
-        RED = "RE", _('Red')
-        GOLD = "GO", _('Gold')
-        AQUAMARINE = "AQ", _("Aquamarine")  # yes
+        AQUAMARINE = "AQ", _("Aquamarine") # 0
+        BLACK = "BL", _('Black') # 1
+        BLUE = "BU", _('Blue') # 2
+        GREEN = "GR", _('Green') # 3
+        PINK = "PI", _('Pink') # 4
+        RED = "RE", _('Red') # 5
+        WHITE = "WH", _('White') # 6
+        YELLOW = "YE", _('Yellow') # 7
 
     max_choice_length = calculate_max_choices_length(TitleChoices)
 

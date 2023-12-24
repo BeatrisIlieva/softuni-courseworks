@@ -65,34 +65,11 @@ def bulk_create_stone_title(*args):
 
 bulk_create_stone_title(
     [
-        StoneType(title="AG"),
-        StoneType(title="AM"),
         StoneType(title="BS"),
-        StoneType(title="CH"),
-        StoneType(title="CR"),
-        StoneType(title="CI"),
-        StoneType(title="CY"),
         StoneType(title="DI"),
         StoneType(title="EM"),
-        StoneType(title="GA"),
-        StoneType(title="IN"),
-        StoneType(title="LL"),
-        StoneType(title="MA"),
-        StoneType(title="MO"),
-        StoneType(title="PE"),
-        StoneType(title="PR"),
-        StoneType(title="PI"),
-        StoneType(title="PS"),
-        StoneType(title="QU"),
-        StoneType(title="RB"),
         StoneType(title="RU"),
         StoneType(title="SA"),
-        StoneType(title="TA"),
-        StoneType(title="TI"),
-        StoneType(title="TO"),
-        StoneType(title="TU"),
-        StoneType(title="TS"),
-        StoneType(title="TR"),
     ]
 )
 
@@ -103,17 +80,14 @@ def bulk_create_stone_color(*args):
 
 bulk_create_stone_color(
     [
-        StoneColor(title='WH'),
+        StoneColor(title='AQ'),
         StoneColor(title='BL'),
-        StoneColor(title='BR'),
         StoneColor(title='BU'),
         StoneColor(title='GR'),
         StoneColor(title='PI'),
-        StoneColor(title='YE'),
-        StoneColor(title='PU'),
         StoneColor(title='RE'),
-        StoneColor(title='GO'),
-        StoneColor(title='AQ'),
+        StoneColor(title='WH'),
+        StoneColor(title='YE'),
     ]
 )
 
