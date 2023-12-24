@@ -1,24 +1,14 @@
 {% extends 'base/base.html' %}
 {% load custom_filters %}
 {% load static %}
-
 {% block page_content %}
-        <style>
-        .checkbox-list {
-            display: flex;
-            flex-wrap: wrap; /* Allows items to wrap to the next line */
-            gap: 10px; /* Adjust the gap between checkboxes */
-        }
-
-        /* Additional styling as needed */
-        .checkbox-list label {
-            /* Add any label-specific styles */
-        }
-
-        .checkbox-list input[type="checkbox"] {
-            /* Add any checkbox-specific styles */
-        }
-    </style>
+    <style>
+    .checkbox-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+</style>
     <form action="{% url 'show_jewelries' category_id=category_id %}" method="get">
     <div class="checkbox-list">
         {% for field in form %}
@@ -75,6 +65,8 @@
         {% endif %}
     </span>
 </div>
+{% endblock %}
+
 {#{% if is_paginated %}#}
 {#    {% if page_obj.has_previous %}#}
 {#        <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>#}
@@ -88,7 +80,6 @@
 {#        <a> &gt;</a>#}
 {#    {% endif %}#}
 {#{% endif %}#}
-{% endblock %}
 
 
 {#<form action="{% url 'show_jewelries' customer_gender_id=1 category_id=1 %}" method="get">#}

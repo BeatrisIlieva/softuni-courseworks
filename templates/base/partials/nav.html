@@ -1,7 +1,15 @@
 {% load static %}
 <nav>
     <ul class="menu">
-        <li class="left-menu"><a href="#">Search</a></li>
+        <li class="left-menu">
+            <form action="{% url 'search-bar' %}?page={{ page_obj.number }}">
+
+                <input name="search">
+                <button>Search</button>
+{#                <a href="#">Search</a>#}
+            </form>
+
+        </li>
         <li>
             <p>BY CATEGORY</p>
             <ul class="submenu">
@@ -41,7 +49,22 @@
         <li class="right-menu"><a href="#">Sign In</a></li>
         <li class="right-menu"><a href="#">My Bag</a></li>
         <li class="right-menu"><a href="#">Like</a></li>
-
     </ul>
 </nav>
+{% for jewelry in object_list %}
+    <img width="450" height="450" src="{{ jewelry.first_image_url }}" alt="image1">
+{% endfor %}
+{% if is_paginated %}
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+        {% else %}
+        <a> &lt;</a>
+    {% endif %}
+    {{ page_obj.number }} / {{ paginator.num_pages }}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                {% else %}
+        <a> &gt;</a>
+    {% endif %}
+{% endif %}
 

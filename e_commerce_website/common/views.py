@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 
-from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor
+from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor, Jewelry
 
 
 class NavigationBarView(TemplateView):
@@ -35,63 +35,30 @@ class NavigationBarView(TemplateView):
 
         return context
 
-# def get_nav_bar_context():
-#     categories = Category.objects.all()
-#     categories_choices = [x[1] for x in Category.TitleChoices.choices]
-#
-#     categories_by_choices = {}
-#
-#     index = 0
-#
-#     for category in categories:
-#         categories_by_choices[category] = categories_choices[index]
-#         index += 1
-#
-#     metals = Metal.TitleChoices.choices
-#
-#     stones = StoneType.TitleChoices.choices
-#
-#     colors = StoneColor.TitleChoices.choices
-#
-#     context = {
-#         'categories_by_choices': categories_by_choices,
-#         'metals': metals,
-#         'stones': stones,
-#         'colors': colors,
-#     }
-#
-#     return context
-#
-#
-# def index_page(request):
-#     context = get_nav_bar_context()
-#
-#     return render(request, 'common/index-page.html', context)
+class SearchBarView(ListView):
+    template_name = 'common/index-page.html'
+    model = Jewelry
+    paginate_by = 6
 
-# from django import forms
-# from django.shortcuts import render
+    def get_queryset(self):
+        queryset = super().get_queryset()
 
-# from e_commerce_website.jewelry.models import Category
+        search = self.request.GET.get('search', '')
+        # print(search)
+        metals = Metal.objects.all()
 
-# class IndexForm(forms.Form):
-#     categories = Category.TitleChoices
+        options = [(metal.title, metal.get_title_display()) for metal in metals if
+                   search in metal.get_title_display().lower() or search in metal.get_title_display()]
 
-#     category = forms.ChoiceField(
-#         choices=categories,
-#         required=False,
-#         widget=forms.CheckboxSelectMultiple(),
-#     )
+        valid_options = [o[0] for o in options]
 
-# def index_page(request):
+        metal_titles = Metal.objects. \
+            filter(title__in=valid_options)
 
-#     if request.method == 'get':
-#         form = IndexForm()
+        metal_ids = [m.id for m in metal_titles]
 
-#     else:
-#         form = IndexForm(request.POST)
-
-#     context = {
-#         'form': form,
-#     }
-
-#     return render(request, 'common/index-page.html', context)
+        queryset = queryset.filter(
+            jewelry_metals__metal_id__in=metal_ids
+        )
+        print(queryset)
+        return queryset

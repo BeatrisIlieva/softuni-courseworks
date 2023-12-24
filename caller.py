@@ -33,48 +33,31 @@ jewelries = Jewelry.objects.all()
 stone_types = StoneType.objects.all()
 stone_colors = StoneColor.objects.all()
 
-categories_choices = [x[1] for x in Category.TitleChoices.choices]
-
-# categories_by_choices = {}
+# metal_choices = list(OrderedDict(
+#     (metal.title, metal.get_title_display())
+#     for metal in metals
+# ).items())
 #
-# index = 0
+# print(metal_choices)
+
 #
-# for category in categories:
-#     categories_by_choices[category] = categories_choices[index]
-#     index += 1
-#
-# my_dict = {'b': 2, 'a': 1, 'c': 3}
-#
-# sorted_items = sorted(my_dict.items(), key=lambda x: x[1])  # Sort items based on values
-#
-# sorted_dict = {k: v for k, v in sorted_items}  # Reconstruct dictionary from sorted items
-# print(sorted_dict)
-
-jewelry = jewelries.filter(pk=1)
-print(jewelry)
-
-def get_related_size_objects(jewelry):
-    sizes = Size.objects \
-        .prefetch_related('category__jewelry_category__size') \
-        .filter(sizes__jewelry__in=jewelry)
-
-    return sizes
-
-print(get_related_size_objects(jewelry))
-cur_sizes = get_related_size_objects(jewelry)
+# found = [word.lower() in choice.lower() for word in search for _, choice in metal_choices]
 
 
+search = 'platinum'
+options = [(metal.title, metal.get_title_display()) for metal in metals if search in metal.get_title_display().lower() or search in metal.get_title_display()]
+valid_options = [o[0] for o in options]
+print(valid_options)
 
-def get_related_size_choices(sizes):
-    size_choices = list(OrderedDict(
-        (size.measurement, size.get_measurement_display()) for size in sizes
-    ).items())
+metal_titles = Metal.objects. \
+    filter(title__in=valid_options)
 
-    return size_choices
+print(metal_titles)
 
-print(get_related_size_choices(cur_sizes))
+metal_ids = [m.id for m in metal_titles]
+print(metal_ids)
 
-
-
-
-
+jewelries = jewelries.filter(
+    jewelry_metals__metal_id__in=metal_ids
+)
+print(jewelries)
