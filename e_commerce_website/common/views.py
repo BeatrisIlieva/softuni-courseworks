@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.views import View
+from django.db.models import Q
 from django.views.generic import TemplateView, ListView
 
 from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor, Jewelry
@@ -44,7 +43,9 @@ class SearchBarView(ListView):
         queryset = super().get_queryset()
 
         search = self.request.GET.get('search', '')
-        # print(search)
+
+        query = Q()
+
         metals = Metal.objects.all()
 
         options = [(metal.title, metal.get_title_display()) for metal in metals if
@@ -57,8 +58,28 @@ class SearchBarView(ListView):
 
         metal_ids = [m.id for m in metal_titles]
 
+        if metal_ids:
+            query &= Q(jewelry_metals__metal_id__in=metal_ids)
+
+
+        stone_types = StoneType.objects.all()
+
+        options = [(stone_type.title, stone_type.get_title_display()) for stone_type in stone_types if
+                   search in stone_type.get_title_display().lower() or search in stone_type.get_title_display()]
+
+        valid_options = [o[0] for o in options]
+
+        stone_type_titles = StoneType.objects. \
+            filter(title__in=valid_options)
+
+        stone_type_ids = [s.id for s in stone_type_titles]
+
+        if stone_type_ids:
+            query &= Q(jewelry_stones__stone_type_id__in=stone_type_ids)
+
+
         queryset = queryset.filter(
-            jewelry_metals__metal_id__in=metal_ids
+            query
         )
 
         return queryset
