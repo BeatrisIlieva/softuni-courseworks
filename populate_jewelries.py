@@ -305,8 +305,6 @@ bulk_create_jewelry(
             category=categories[2],
         ),
 
-
-
         Jewelry(
             title='Riviere',
             quantity=10,
@@ -331,6 +329,15 @@ bulk_create_jewelry(
             price=53000.00,
             first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703433929/rings/1/cushion_cut_engagement_ring_yellow_diamond_rgyedgcu015mic_e-1_ghcqyq.webp',
             second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703433928/rings/1/cushion_cut_engagement_ring_yellow_diamond_rgyedgcu015mic_e-2_lea4hu.webp',
+            category=categories[3],
+        ),
+
+        Jewelry(
+            title='Sparkling Cluster',
+            quantity=10,
+            price=48000.00,
+            first_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703434446/rings/2/sparkling_cluster_sap_aqua_and_diamond_ring_frsaqpclrfspc_e-1h_znic2h.webp',
+            second_image_url='https://res.cloudinary.com/deztgvefu/image/upload/v1703434445/rings/2/sparkling_cluster_sap_aqua_and_diamond_ring_frsaqpclrfspc_e-2h_kmqowy.webp',
             category=categories[3],
         ),
 
@@ -886,8 +893,6 @@ bulk_create_jewelry_by_stone(
             stone_carat=2.66,
         ),
 
-
-
         JewelryStone(
             jewelry=jewelries[29],
             stone_type=stone_types[7],
@@ -942,6 +947,27 @@ bulk_create_jewelry_by_stone(
             stone_type=stone_types[7],
             stone_color=stone_colors[6],
             stone_carat=0.98,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[34],
+            stone_type=stone_types[7],
+            stone_color=stone_colors[0],
+            stone_carat=1.19,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[34],
+            stone_type=stone_types[14],
+            stone_color=stone_colors[10],
+            stone_carat=0.38,
+        ),
+
+        JewelryStone(
+            jewelry=jewelries[34],
+            stone_type=stone_types[14],
+            stone_color=stone_colors[3],
+            stone_carat=1.08,
         ),
     ]
 
@@ -1418,6 +1444,38 @@ bulk_create_jewelry_by_size(
             jewelry=jewelries[33],
             size=sizes[14],
         ),
+
+JewelrySize(
+            jewelry=jewelries[34],
+            size=sizes[9],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[34],
+            size=sizes[10],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[34],
+            size=sizes[11],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[34],
+            size=sizes[12],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[34],
+            size=sizes[13],
+        ),
+
+        JewelrySize(
+            jewelry=jewelries[34],
+            size=sizes[14],
+        ),
+
+
 
     ]
 )
