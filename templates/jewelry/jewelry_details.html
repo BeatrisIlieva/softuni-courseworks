@@ -5,15 +5,15 @@
      <div>
          {{jewelry.title}}
      </div>
-{#    <form>#}
-{#        {% for field in form %}#}
-{#            <div>#}
-{#                <label for="{{ field.id_for_label }}">#}
-{#                        <strong>{{ field.label }} </strong>#}
-{#                        <div>#}
-{#                            {% for subfield in field %}#}
-{#                        <div>#}
-{#                            {{ subfield }}#}
+    <form>
+        {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}">
+                        <strong>{{ field.label }} </strong>
+                        <div>
+                            {% for subfield in field %}
+                        <div>
+                            {{ subfield }}
 {#                            {% if subfield.choice_label in jewelries_count_by_metal.keys%}#}
 {#                            <span>({{ jewelries_count_by_metal|get_value_from_dict:subfield.choice_label }})</span>#}
 {#                            {% elif subfield.choice_label in jewelries_count_by_stone_type.keys%}#}
@@ -23,15 +23,15 @@
 {#                            {% elif subfield.choice_label in jewelries_count_by_price.keys%}#}
 {#                            <span>({{ jewelries_count_by_price|get_value_from_dict:subfield.choice_label }})</span>#}
 {#                            {% endif %}#}
-{#                        </div>#}
-{#                            {% endfor %}#}
-{#                        </div>#}
-{#                </label>#}
-{#                <button>Apply</button>#}
-{#                {% csrf_token %}#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </form>#}
+                        </div>
+                            {% endfor %}
+                        </div>
+                </label>
+                <button>Apply</button>
+                {% csrf_token %}
+            </div>
+        {% endfor %}
+    </form>
 {##}
 {#     <h1>Images</h1>#}
 {##}

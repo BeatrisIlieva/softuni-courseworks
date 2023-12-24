@@ -1,8 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.db.models import Q
-from django.shortcuts import render
-from django.views import View
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, DetailView
 
 from e_commerce_website.common.views import NavigationBarView
 from e_commerce_website.jewelry.counter_funcs import define_jewelries_count_before_selected_metal, \
@@ -157,28 +154,23 @@ class DisplayJewelriesView(TemplateView):
             try:
                 jewelries_paginated = paginator.page(page)
             except PageNotAnInteger:
-                # If page is not an integer, deliver first page.
+
                 jewelries_paginated = paginator.page(1)
             except EmptyPage:
-                # If page is out of range (e.g. 9999), deliver last page of results.
+
                 jewelries_paginated = paginator.page(paginator.num_pages)
-
-                # Other context data...
-
-
-            navigation_view = NavigationBarView()
-            navigation_bar_context = navigation_view.get_context_data()
-
 
             context['jewelries'] = jewelries_paginated
             context['paginator'] = paginator
-            # context['jewelries'] = jewelries
             context['category_id'] = category_id
             context['form'] = selection_form
             context['jewelries_count_by_stone_type'] = jewelries_count_by_stone_type
             context['jewelries_count_by_metal'] = jewelries_count_by_metal
             context['jewelries_count_by_stone_color'] = jewelries_count_by_stone_color
             context['jewelries_count_by_price'] = jewelries_count_by_price
+
+            navigation_view = NavigationBarView()
+            navigation_bar_context = navigation_view.get_context_data()
 
             context.update(navigation_bar_context)
 
@@ -190,4 +182,20 @@ class JewelryDetailsView(DetailView):
     template_name = 'jewelry/jewelry_details.html'
     pk_url_kwarg = 'id'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
+        selection_form = JewelryDetailsForm(self.request.GET)
+        sizes = get_related_size_objects(self.get_object())
+        size_choices = get_related_size_choices(sizes)
+        if selection_form.is_valid():
+            selection_form.fields['sizes'].choices = size_choices
+
+        context['form'] = selection_form
+
+        navigation_view = NavigationBarView()
+        navigation_bar_context = navigation_view.get_context_data()
+
+        context.update(navigation_bar_context)
+
+        return context
