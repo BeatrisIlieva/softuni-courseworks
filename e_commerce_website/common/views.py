@@ -34,6 +34,7 @@ class NavigationBarView(TemplateView):
 
         return context
 
+
 class SearchBarView(ListView):
     template_name = 'common/index-page.html'
     model = Jewelry
@@ -45,6 +46,21 @@ class SearchBarView(ListView):
         search = self.request.GET.get('search', '')
 
         query = Q()
+
+        categories = Category.objects.all()
+
+        options = [(category.title, category.get_title_display()) for category in categories if
+                   search in category.get_title_display().lower() or search in category.get_title_display()]
+
+        valid_options = [o[0] for o in options]
+
+        category_titles = Category.objects. \
+            filter(title__in=valid_options)
+
+        category_ids = [c.id for c in category_titles]
+
+        if category_ids:
+            query |= Q(category_id__in=category_ids)
 
         metals = Metal.objects.all()
 
@@ -59,8 +75,7 @@ class SearchBarView(ListView):
         metal_ids = [m.id for m in metal_titles]
 
         if metal_ids:
-            query &= Q(jewelry_metals__metal_id__in=metal_ids)
-
+            query |= Q(jewelry_metals__metal_id__in=metal_ids)
 
         stone_types = StoneType.objects.all()
 
@@ -75,12 +90,26 @@ class SearchBarView(ListView):
         stone_type_ids = [s.id for s in stone_type_titles]
 
         if stone_type_ids:
-            query &= Q(jewelry_stones__stone_type_id__in=stone_type_ids)
+            query |= Q(jewelry_stones__stone_type_id__in=stone_type_ids)
 
+        stone_colors = StoneColor.objects.all()
+
+        options = [(stone_color.title, stone_color.get_title_display()) for stone_color in stone_colors if
+                   search in stone_color.get_title_display().lower() or search in stone_color.get_title_display()]
+
+        valid_options = [o[0] for o in options]
+
+        stone_color_titles = StoneColor.objects. \
+            filter(title__in=valid_options)
+
+        stone_color_ids = [s.id for s in stone_color_titles]
+
+        if stone_color_ids:
+            query |= Q(jewelry_stones__stone_color_id__in=stone_color_ids)
 
         queryset = queryset.filter(
             query
-        )
+        ).distinct('id')
 
         return queryset
 
@@ -88,4 +117,3 @@ class SearchBarView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context['search'] = self.request.GET.get('search', '')
         return context
-

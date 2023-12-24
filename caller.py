@@ -44,38 +44,52 @@ stone_colors = StoneColor.objects.all()
 # found = [word.lower() in choice.lower() for word in search for _, choice in metal_choices]
 
 
-# search = 'platinum'
-# options = [(metal.title, metal.get_title_display()) for metal in metals if search in metal.get_title_display().lower() or search in metal.get_title_display()]
-# valid_options = [o[0] for o in options]
-# print(valid_options)
-#
-# metal_titles = Metal.objects. \
-#     filter(title__in=valid_options)
-#
-# print(metal_titles)
-#
-# metal_ids = [m.id for m in metal_titles]
-# print(metal_ids)
-#
-# jewelries = jewelries.filter(
-#     jewelry_metals__metal_id__in=metal_ids
-# )
-# print(jewelries)
+search = 'yellow'
+options = [(metal.title, metal.get_title_display()) for metal in metals if search in metal.get_title_display().lower() or search in metal.get_title_display()]
+valid_options = [o[0] for o in options]
+print(valid_options)
 
-
-search = 'black'
-options = [(stone_type.title, stone_type.get_title_display()) for stone_type in stone_types if
-           search == stone_type.get_title_display().lower() or search == stone_type.get_title_display()]
-
-valid_options = [x[0] for x in options]
-
-stone_types = StoneType.objects. \
+metal_titles = Metal.objects. \
     filter(title__in=valid_options)
 
-stone_type_ids = [x.id for x in stone_types]
+print(metal_titles)
 
-if stone_type_ids:
-    jewelries = jewelries.filter(jewelry_stones__stone_type_id__in=stone_type_ids)
+metal_ids = [m.id for m in metal_titles]
+print(metal_ids)
 
+jewelries = jewelries.filter(
+    jewelry_metals__metal_id__in=metal_ids
+)
+search = 'ring'
+
+options = [(category.title, category.get_title_display()) for category in categories if
+           search in category.get_title_display().lower() or search in category.get_title_display()]
+
+print(options)
+
+valid_options = [o[0] for o in options]
+
+category_titles = Category.objects. \
+    filter(title__in=valid_options)
+
+category_ids = [c.id for c in category_titles]
+
+jewelries.filter(category_id__in=category_ids)
 print(jewelries)
+
+# search = 'black'
+# options = [(stone_type.title, stone_type.get_title_display()) for stone_type in stone_types if
+#            search == stone_type.get_title_display().lower() or search == stone_type.get_title_display()]
+#
+# valid_options = [x[0] for x in options]
+#
+# stone_types = StoneType.objects. \
+#     filter(title__in=valid_options)
+#
+# stone_type_ids = [x.id for x in stone_types]
+#
+# if stone_type_ids:
+#     jewelries = jewelries.filter(jewelry_stones__stone_type_id__in=stone_type_ids)
+#
+# print(jewelries)
 
