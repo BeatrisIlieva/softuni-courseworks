@@ -95,7 +95,7 @@ class StoneColor(models.Model):
         PURPLE = "PU", _('Purple')
         RED = "RE", _('Red')
         GOLD = "GO", _('Gold')
-        # AQUAMARINE = "AQ", _("Aquamarine")  # yes
+        AQUAMARINE = "AQ", _("Aquamarine")  # yes
 
     max_choice_length = calculate_max_choices_length(TitleChoices)
 
