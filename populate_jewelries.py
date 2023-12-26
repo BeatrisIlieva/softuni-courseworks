@@ -508,8 +508,7 @@ bulk_create_jewelry_by_metal(
 
         JewelryMetal(
             jewelry=jewelries[17],
-            metal=metals[0],
-            gold_carat=gold_carats[3]
+            metal=metals[3],
         ),
 
         JewelryMetal(
