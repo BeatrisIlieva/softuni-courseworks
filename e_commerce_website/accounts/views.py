@@ -1,14 +1,14 @@
-from django.contrib.auth import login, authenticate, get_user_model
+from django.contrib.auth import login, authenticate, get_user_model, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.forms import modelform_factory
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
 
 from e_commerce_website.accounts.forms import RegisterUserForm
-from e_commerce_website.accounts.models import Account
+
 
 class AccountOptionsView(TemplateView):
     template_name = 'account/account.html'
@@ -31,8 +31,10 @@ class LoginUserView(LoginView):
     extra_context = {'title': 'login', 'link_title': 'register'}
 
 
-class LogoutUserView(LogoutView):
-    pass
+class LogoutUserView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect(reverse_lazy('login_user'))
 
 UserModel = get_user_model()
 

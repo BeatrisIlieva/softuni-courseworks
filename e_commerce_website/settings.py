@@ -66,7 +66,7 @@ WSGI_APPLICATION = 'e_commerce_website.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django_e_commerce_website_db",
+        "NAME": "django_e_commerce_website_database",
         "USER": "postgres",
         "PASSWORD": "S@3ana3a",
         "HOST": "127.0.0.1",
@@ -116,3 +116,5 @@ LOGIN_REDIRECT_URL = reverse_lazy('index-page')
 LOGOUT_REDIRECT_URL = reverse_lazy('login_user')
 # Default URL to redirect to for login
 LOGIN_URL = reverse_lazy('login_user')
+
+AUTH_USER_MODEL = 'accounts.AccountUser'
