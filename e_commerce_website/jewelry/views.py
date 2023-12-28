@@ -180,7 +180,6 @@ class DisplayJewelriesView(TemplateView):
 class JewelryDetailsView(DetailView):
     model = Jewelry
     template_name = 'jewelry/jewelry_details.html'
-    pk_url_kwarg = 'id'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
