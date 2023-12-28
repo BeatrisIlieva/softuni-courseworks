@@ -1,25 +1,43 @@
+from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+from e_commerce_website.accounts.models import AccountProfile
+
+UserModel = get_user_model()
+
 
 class RegisterUserForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = UserModel
+        fields = (UserModel.USERNAME_FIELD,)
+
+
     consent = forms.BooleanField(
         required=True,
     )
 
-    password2 = forms.CharField(
-        label=_("Password confirmation"),
-        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
-        strip=False,
-        help_text=_("Enter the same password as before, for verification."),
-    )
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+        account = AccountProfile(
+            user=user,
+        )
+        if commit:
+            account.save()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['password1'].help_text = 'IIt works'
+        return user
 
-
+    # password2 = forms.CharField(
+    #     label=_("Password confirmation"),
+    #     widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+    #     strip=False,
+    #     help_text=_("Enter the same password as before, for verification."),
+    # )
+    #
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['password1'].help_text = 'IIt works'
 
 # class LoginForm(forms.ModelForm):
 #     class Meta:

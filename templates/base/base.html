@@ -3,17 +3,31 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    {% comment %} <script src="js/hide-content.js"></script> {% endcomment %}
-    {% comment %} <link rel="icon" type="image/x-icon" href="{% static 'images/icon.png' %}"> {% endcomment %}
-    <title>Jewelry</title>
-        <style>
+    <style>
+        /* Remove default margins and paddings from the body */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
         /* Define a CSS style to reduce the image size */
         .logo-image {
             width: 100%; /* Set the desired width */
-            height: 100px; /* Let the height adjust automatically to maintain aspect ratio */
+            height: 200px; /* Set the desired height */
             display: block;
         }
     </style>
+    {% comment %} <script src="js/hide-content.js"></script> {% endcomment %}
+    {% comment %} <link rel="icon" type="image/x-icon" href="{% static 'images/icon.png' %}"> {% endcomment %}
+{#    <title>Jewelry</title>#}
+{#        <style>#}
+{#        /* Define a CSS style to reduce the image size */#}
+{#        .logo-image {#}
+{#            width: 100%; /* Set the desired width */#}
+{#            height: 100px; /* Let the height adjust automatically to maintain aspect ratio */#}
+{#            display: block;#}
+{#        }#}
+{#    </style>#}
 </head>
 <body>
 <header>

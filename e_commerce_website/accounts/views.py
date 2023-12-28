@@ -9,15 +9,10 @@ from django.views.generic import CreateView, UpdateView, DeleteView, TemplateVie
 from e_commerce_website.accounts.forms import RegisterUserForm
 
 
-class AccountOptionsView(TemplateView):
-    template_name = 'account/account.html'
-
-
 class RegisterUserView(CreateView):
-    # template_name = 'account/register.html'
-    template_name = 'account/account.html'
+    template_name = 'account/register.html'
     form_class = RegisterUserForm
-    success_url = reverse_lazy('register_user')
+    success_url = reverse_lazy('index-page')
 
     def form_valid(self, form):
         result = super().form_valid(form)
@@ -28,9 +23,7 @@ class RegisterUserView(CreateView):
 
 
 class LoginUserView(LoginView):
-    # template_name = 'account/login.html'
-    template_name = 'account/account.html'
-    extra_context = {'title': 'login', 'link_title': 'register'}
+    template_name = 'account/login.html'
 
 
 class LogoutUserView(View):

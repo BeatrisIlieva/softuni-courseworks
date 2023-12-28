@@ -6,7 +6,6 @@
 
                 <input name="search" value="{{ search }}">
                 <button>Search</button>
-                {#                <a href="#">Search</a>#}
             </form>
 
         </li>
@@ -46,7 +45,31 @@
                 {% endfor %}
             </ul>
         </li>
-        <li class="right-menu"><a href="{% url 'account_options' %}">Account</a></li>
+        <li class="right-menu">
+            {% if request.user.is_authenticated %}
+                <li>
+                    <a href="">
+                        <i>Profile</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'logout_user' %}">
+                        <i>Sign out</i>
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'login_user' %}">
+                        <i>Sign in</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'register_user' %}">
+                        <i>Sign up</i>
+                    </a>
+                </li>
+            {% endif %}
+        </li>
         <li class="right-menu"><a href="#">My Bag</a></li>
         <li class="right-menu"><a href="#">Like</a></li>
     </ul>
