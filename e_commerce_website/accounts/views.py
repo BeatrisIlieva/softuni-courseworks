@@ -32,7 +32,6 @@ class LogoutUserView(View):
         return redirect(reverse_lazy('login_user'))
 
 
-UserModel = get_user_model()
 
 # class AccountLoginView(TemplateView):
 #     model = Account

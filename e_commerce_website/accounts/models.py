@@ -5,9 +5,6 @@ from django.db import models
 from e_commerce_website.accounts.manager import AccountUserManager
 
 
-# UserModel = get_user_model()
-
-
 class AccountUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
@@ -26,6 +23,18 @@ class AccountUser(AbstractBaseUser, PermissionsMixin):
 
 class AccountProfile(models.Model):
     first_name = models.CharField(
+        max_length=30,
+        null=True,
+        blank=True,
+    )
+
+    last_name = models.CharField(
+        max_length=30,
+        null=True,
+        blank=True,
+    )
+
+    phone_number = models.CharField(
         max_length=30,
         null=True,
         blank=True,

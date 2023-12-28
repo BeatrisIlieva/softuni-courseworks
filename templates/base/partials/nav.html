@@ -1,6 +1,5 @@
 {% load static %}
-
-
+<nav>
 <div class="navbar-top">
     <ul class="menu">
         <li>
@@ -45,38 +44,34 @@
     <ul class="menu">
         <li class="left-menu">
             <form action="{% url 'search-bar' %}?page={{ page_obj.number }}">
-
                 <input name="search" value="{{ search }}">
                 <button>Search</button>
             </form>
-
         </li>
         <li>
             {% if not request.user.is_authenticated %}
-
                 <li class="right-menu">
                     <a href="{% url 'login_user' %}">
-                        <i>Sign in</i>
+                        <i>Sign In</i>
                     </a>
                 </li>
                 <li class="right-menu">
                     <a href="{% url 'register_user' %}">
-                        <i>Sign up</i>
+                        <i>Sign Up</i>
                     </a>
                 </li>
             {% else %}
                 <li class="right-menu">
                     <a href="{% url 'logout_user' %}">
-                        <i>Sign out</i>
+                        <i>Sign Out</i>
                     </a>
                 </li>
                 <li class="right-menu">
                     <a href="">
-                        <i>Profile</i>
+                        <i>{{ request.user.accountprofile.first_name }}</i>
                     </a>
                 </li>
             {% endif %}
-        </li>
         <li class="right-menu"><a href="#">My Bag</a></li>
         <li class="right-menu"><a href="#">Like</a></li>
     </ul>
