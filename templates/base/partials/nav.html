@@ -75,6 +75,11 @@
                             {% endif %}
                         </a>
                     </li>
+                    <li class="right-menu">
+                        <a href="{% url 'update_user' pk=request.user.pk %}">
+                                <i>Update Profile</i>
+                        </a>
+                    </li>
                 {% endif %}
             <li class="right-menu"><a href="#">My Bag</a></li>
             <li class="right-menu"><a href="#">Like</a></li>

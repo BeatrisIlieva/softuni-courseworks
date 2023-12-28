@@ -7,6 +7,7 @@ from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, DetailView
 
 from e_commerce_website.accounts.forms import RegisterUserForm
+from e_commerce_website.accounts.models import AccountProfile
 
 UserModel = get_user_model()
 class RegisterUserView(CreateView):
@@ -38,17 +39,27 @@ class UserDetailsView(DetailView):
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
+    #     context['full_name'] = self.request.user.accountprofile.full_name
     #
-    #     context['is_owner'] = self.request.user == self.object
-    #     context['cats_count'] = self.object.cat_set.count()
-    #
-    #     photos = self.object.photo_set.prefetch_related('photolike_set')
-    #
-    #     context['photos_count'] = photos.count()
-    #     context['likes_count'] = sum(x.photolike_set.count() for x in photos)
+    #     # context['is_owner'] = self.request.user == self.object
+    #     # context['cats_count'] = self.object.cat_set.count()
+    #     #
+    #     # photos = self.object.photo_set.prefetch_related('photolike_set')
+    #     #
+    #     # context['photos_count'] = photos.count()
+    #     # context['likes_count'] = sum(x.photolike_set.count() for x in photos)
     #
     #     return context
 
+class UserUpdateView(UpdateView):
+    template_name = 'account/update.html'
+    model = AccountProfile
+    fields = ('first_name', 'last_name', 'phone_number')
+
+    def get_success_url(self):
+        return reverse_lazy('details_user', kwargs={
+            'pk': self.request.user.pk,
+        })
 
 
 
