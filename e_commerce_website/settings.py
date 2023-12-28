@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'e_commerce_website.common',
     'e_commerce_website.shopping_cart',
     'e_commerce_website.accounts',
+    'e_commerce_website.core',
 ]
 
 MIDDLEWARE = [
