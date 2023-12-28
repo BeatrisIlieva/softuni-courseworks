@@ -1,14 +1,8 @@
 {% load static %}
-<nav>
+
+
+<div class="navbar-top">
     <ul class="menu">
-        <li class="left-menu">
-            <form action="{% url 'search-bar' %}?page={{ page_obj.number }}">
-
-                <input name="search" value="{{ search }}">
-                <button>Search</button>
-            </form>
-
-        </li>
         <li>
             <p>BY CATEGORY</p>
             <ul class="submenu">
@@ -45,27 +39,40 @@
                 {% endfor %}
             </ul>
         </li>
-        <li class="right-menu">
-            {% if request.user.is_authenticated %}
-                <li>
-                    <a href="">
-                        <i>Profile</i>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'logout_user' %}">
-                        <i>Sign out</i>
-                    </a>
-                </li>
-            {% else %}
-                <li>
+    </ul>
+</div>
+<div class="navbar-bottom">
+    <ul class="menu">
+        <li class="left-menu">
+            <form action="{% url 'search-bar' %}?page={{ page_obj.number }}">
+
+                <input name="search" value="{{ search }}">
+                <button>Search</button>
+            </form>
+
+        </li>
+        <li>
+            {% if not request.user.is_authenticated %}
+
+                <li class="right-menu">
                     <a href="{% url 'login_user' %}">
                         <i>Sign in</i>
                     </a>
                 </li>
-                <li>
+                <li class="right-menu">
                     <a href="{% url 'register_user' %}">
                         <i>Sign up</i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="right-menu">
+                    <a href="{% url 'logout_user' %}">
+                        <i>Sign out</i>
+                    </a>
+                </li>
+                <li class="right-menu">
+                    <a href="">
+                        <i>Profile</i>
                     </a>
                 </li>
             {% endif %}
@@ -73,6 +80,7 @@
         <li class="right-menu"><a href="#">My Bag</a></li>
         <li class="right-menu"><a href="#">Like</a></li>
     </ul>
+</div>
 </nav>
 {% for jewelry in object_list %}
     <a href="{% url 'show_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
