@@ -62,6 +62,12 @@ class UserUpdateView(UpdateView):
         })
 
 
+class UserDeleteView(DeleteView):
+    template_name = 'account/delete.html'
+    model = UserModel
+    success_url = reverse_lazy('index-page')
+
+
 
 
 # class AccountLoginView(TemplateView):
