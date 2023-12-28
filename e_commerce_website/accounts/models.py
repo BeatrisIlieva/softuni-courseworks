@@ -4,7 +4,7 @@ from django.core import validators
 from django.db import models
 
 from e_commerce_website.accounts.manager import AccountUserManager
-from e_commerce_website.core.validators import validate_only_letters
+from e_commerce_website.core.validators import validate_only_letters, validate_only_digits
 
 
 class AccountUser(AbstractBaseUser, PermissionsMixin):
@@ -30,6 +30,9 @@ class AccountProfile(models.Model):
     LAST_NAME_MIN_LENGTH = 2
     LAST_NAME_MAX_LENGTH = 30
 
+    PHONE_NUMBER_MIN_LENGTH = 10
+    PHONE_NUMBER_MAX_LENGTH = 30
+
     first_name = models.CharField(
         max_length=FIRST_NAME_MAX_LENGTH,
         validators=(
@@ -51,9 +54,13 @@ class AccountProfile(models.Model):
     )
 
     phone_number = models.CharField(
-        max_length=30,
-        null=True,
-        blank=True,
+        max_length=PHONE_NUMBER_MAX_LENGTH,
+        validators=(
+            validators.MinLengthValidator(
+                PHONE_NUMBER_MIN_LENGTH,
+            ),
+            validate_only_digits,
+        ),
     )
 
     user = models.OneToOneField(
