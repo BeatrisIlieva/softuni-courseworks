@@ -4,11 +4,11 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView
+from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, DetailView
 
 from e_commerce_website.accounts.forms import RegisterUserForm
 
-
+UserModel = get_user_model()
 class RegisterUserView(CreateView):
     template_name = 'account/register.html'
     form_class = RegisterUserForm
@@ -30,6 +30,26 @@ class LogoutUserView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect(reverse_lazy('login_user'))
+
+
+class UserDetailsView(DetailView):
+    template_name = 'account/details.html'
+    model = UserModel
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #
+    #     context['is_owner'] = self.request.user == self.object
+    #     context['cats_count'] = self.object.cat_set.count()
+    #
+    #     photos = self.object.photo_set.prefetch_related('photolike_set')
+    #
+    #     context['photos_count'] = photos.count()
+    #     context['likes_count'] = sum(x.photolike_set.count() for x in photos)
+    #
+    #     return context
+
+
 
 
 

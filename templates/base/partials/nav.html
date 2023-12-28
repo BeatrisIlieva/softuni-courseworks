@@ -1,81 +1,85 @@
 {% load static %}
 <nav>
-<div class="navbar-top">
-    <ul class="menu">
-        <li>
-            <p>BY CATEGORY</p>
-            <ul class="submenu">
-                <li>
-                    {% for category, title in categories_by_choices.items %}
-                        <a href="{% url 'show_jewelries' category_id=category.id %}">{{ title }}</a>
+    <div class="navbar-top">
+        <ul class="menu">
+            <li>
+                <p>BY CATEGORY</p>
+                <ul class="submenu">
+                    <li>
+                        {% for category, title in categories_by_choices.items %}
+                            <a href="{% url 'show_jewelries' category_id=category.id %}">{{ title }}</a>
+                        {% endfor %}
+                    </li>
+                </ul>
+            <li>
+            <li>
+                <p>BY METAL</p>
+                <ul class="submenu">
+                    <li>
+                        {% for metal in metals %}
+                            <a href="#">{{ metal.1 }}</a>
+                        {% endfor %}
+                    </li>
+                </ul>
+            <li>
+            <li>
+                <p>BY GEMSTONE</p>
+                <ul class="submenu">
+                    {% for stone in stones %}
+                        <a href="#">{{ stone.1 }}</a>
                     {% endfor %}
-                </li>
-            </ul>
-        <li>
-        <li>
-            <p>BY METAL</p>
-            <ul class="submenu">
-                <li>
-                    {% for metal in metals %}
-                        <a href="#">{{ metal.1 }}</a>
+                </ul>
+            </li>
+            <li>
+                <p>BY COLOR</p>
+                <ul class="submenu">
+                    {% for color in colors %}
+                        <a href="#">{{ color.1 }}</a>
                     {% endfor %}
-                </li>
-            </ul>
-        <li>
-        <li>
-            <p>BY GEMSTONE</p>
-            <ul class="submenu">
-                {% for stone in stones %}
-                    <a href="#">{{ stone.1 }}</a>
-                {% endfor %}
-            </ul>
-        </li>
-        <li>
-            <p>BY COLOR</p>
-            <ul class="submenu">
-                {% for color in colors %}
-                    <a href="#">{{ color.1 }}</a>
-                {% endfor %}
-            </ul>
-        </li>
-    </ul>
-</div>
-<div class="navbar-bottom">
-    <ul class="menu">
-        <li class="left-menu">
-            <form action="{% url 'search-bar' %}?page={{ page_obj.number }}">
-                <input name="search" value="{{ search }}">
-                <button>Search</button>
-            </form>
-        </li>
-        <li>
-            {% if not request.user.is_authenticated %}
-                <li class="right-menu">
-                    <a href="{% url 'login_user' %}">
-                        <i>Sign In</i>
-                    </a>
-                </li>
-                <li class="right-menu">
-                    <a href="{% url 'register_user' %}">
-                        <i>Sign Up</i>
-                    </a>
-                </li>
-            {% else %}
-                <li class="right-menu">
-                    <a href="{% url 'logout_user' %}">
-                        <i>Sign Out</i>
-                    </a>
-                </li>
-                <li class="right-menu">
-                    <a href="">
-                        <i>{{ request.user.accountprofile.first_name }}</i>
-                    </a>
-                </li>
-            {% endif %}
-        <li class="right-menu"><a href="#">My Bag</a></li>
-        <li class="right-menu"><a href="#">Like</a></li>
-    </ul>
-</div>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-bottom">
+        <ul class="menu">
+            <li class="left-menu">
+                <form action="{% url 'search-bar' %}?page={{ page_obj.number }}">
+                    <input name="search" value="{{ search }}">
+                    <button>Search</button>
+                </form>
+            </li>
+            <li>
+                {% if not request.user.is_authenticated %}
+                    <li class="right-menu">
+                        <a href="{% url 'login_user' %}">
+                            <i>Sign In</i>
+                        </a>
+                    </li>
+                    <li class="right-menu">
+                        <a href="{% url 'register_user' %}">
+                            <i>Sign Up</i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="right-menu">
+                        <a href="{% url 'logout_user' %}">
+                            <i>Sign Out</i>
+                        </a>
+                    </li>
+                    <li class="right-menu">
+                        <a href="{% url 'details_user' pk=request.user.pk %}">
+                            {% if  request.user.accountprofile.first_name %}
+                                <i>{{ request.user.accountprofile.first_name }}</i>
+                            {% else %}
+                                <i>Profile</i>
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endif %}
+            <li class="right-menu"><a href="#">My Bag</a></li>
+            <li class="right-menu"><a href="#">Like</a></li>
+        </ul>
+    </div>
 </nav>
 {% for jewelry in object_list %}
     <a href="{% url 'show_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
