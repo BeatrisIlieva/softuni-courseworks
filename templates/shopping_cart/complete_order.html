@@ -1,6 +1,4 @@
 {% extends 'base/base.html' %}
-{% load card_custom_filters %}
-
 {% load static %}
 {% block page_content %}
     Complete Order
@@ -9,23 +7,8 @@
             <label>{{ field.label }}</label>
             {{ field }}
         {% endfor %}
-        <button class="edit-btn" type="submit">Submit</button>
+        <a href="{% url 'complete_transaction' pk=object.pk %}">
+        <button class="edit-btn" type="submit">CONTINUE</button>
         {% csrf_token %}
     </form>
-<div class="card-details-input">
-    <label for="card-number">Card Number:</label>
-    <div class="card-number-sections">
-        <input class="card-number-section character-limit" type="text"  minlength="{{ required_card_number_field_length }}" maxlength="{{ required_card_number_field_length }}">
-        <input class="card-number-section character-limit" type="text"  minlength="{{ required_card_number_field_length }}" maxlength="{{ required_card_number_field_length }}">
-        <input class="card-number-section character-limit" type="text"  minlength="{{ required_card_number_field_length }}" maxlength="{{ required_card_number_field_length }}">
-        <input class="card-number-section character-limit" type="text"  minlength="{{ required_card_number_field_length }}" maxlength="{{ required_card_number_field_length }}">
-    </div>
-    <div class="expiry-cvv">
-        <label for="expiry-date">Expiry Date:</label>
-        <input class="expiry-date character-limit" type="text" placeholder="MM / YY" minlength="{{ required_expiry_date_length }}" maxlength="{{ required_expiry_date_length }}">
-        <label for="cvv">CVV:</label>
-        <input class="cvv character-limit" type="text" minlength="{{ required_cvv_length }}" maxlength="{{ required_cvv_length }}">
-    </div>
-</div>
-    <button type="submit">Submit</button>
 {% endblock %}

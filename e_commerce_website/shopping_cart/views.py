@@ -121,19 +121,29 @@ class ShoppingCartView(View):
 
         return render(request, self.template_name, context)
 
-class CompleteOrderView(UpdateView):
 
+class CompleteOrderView(UpdateView):
     template_name = 'shopping_cart/complete_order.html'
     model = AccountProfile
     fields = ('first_name', 'last_name', 'phone_number', 'delivery_address')
 
+    def get_success_url(self):
+        return reverse_lazy('complete_transaction', kwargs={'pk': self.request.user.pk})
+
+
+class CompleteTransactionView(TemplateView):
+    template_name = 'shopping_cart/proceed_transaction.html'
+
     def get_context_data(self, **kwargs):
+        user_pk = self.request.user.pk
+
         context = super().get_context_data(**kwargs)
-        context['required_card_number_field_length'] = 4
-        context['required_expiry_date_length'] = 5
-        context['required_cvv_length'] = 3
+        context.update({
+            'user_pk': user_pk,
+            'required_card_number_field_length': 4,
+            'required_expiry_date_length': 5,
+            'required_cvv_length': 3,
+        })
 
         return context
 
-    def get_success_url(self):
-        return reverse_lazy('details_user', kwargs={'pk': self.request.user.pk})
