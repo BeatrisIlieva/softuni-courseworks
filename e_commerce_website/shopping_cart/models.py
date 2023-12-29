@@ -7,6 +7,7 @@ from e_commerce_website.jewelry.models import Jewelry
 class ShoppingCart(models.Model):
     class Meta:
         unique_together = ('user', 'jewelry')
+
     user = models.ForeignKey(
         to=AccountUser,
         on_delete=models.CASCADE

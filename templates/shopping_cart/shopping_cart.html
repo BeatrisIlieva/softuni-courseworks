@@ -1,0 +1,8 @@
+{% extends 'base/base.html' %}
+{% load custom_filters %}
+{% load static %}
+{% block page_content %}
+    {% for jewelry in jewelries %}
+    <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
+    {% endfor %}
+{% endblock %}
