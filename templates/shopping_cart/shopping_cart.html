@@ -8,17 +8,17 @@
         </li>
         <li>
             <a href="{% url 'show_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
-                <button>SEE DETAILS</button>
+                <button>JEWELRY DETAILS</button>
             </a>
         </li>
         <li>
-            {{ jewelry.price }}
+            PRICE: {{ jewelry.price }}
         </li>
         <li>
             <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="jewelry_id" value="{{ jewelry.id }}">
-                <input type="number" name="quantity" value="{{ quantity }}" min="0">
+                <input type="number" name="quantity" value="{{ quantity }}" min="0" max={{ jewelry.quantity }}>
                 <button type="submit" name="update_quantity">UPDATE QUANTITY</button>
             </form>
         </li>

@@ -12,11 +12,20 @@ from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.forms import QuantityUpdateForm
 from e_commerce_website.shopping_cart.models import ShoppingCart
 
+def remove_quantity_from_inventory(jewelry, quantity):
+    jewelry.quantity -= quantity
+    jewelry.save()
+
+def add_quantity_to_inventory(jewelry, quantity):
+    jewelry.quantity += quantity
+    jewelry.save()
 
 @login_required
 def add_to_shopping_cart(request, jewelry_pk):
     customer_shopping_cart_pk = ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_pk)
-    jewelry = Jewelry.objects.filter(pk=jewelry_pk).get()
+    jewelry = Jewelry.objects.get(pk=jewelry_pk)
+    remove_quantity_from_inventory(jewelry, 1)
+
 
     if customer_shopping_cart_pk:
 
@@ -69,11 +78,25 @@ class ShoppingCartView(View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
+
         quantity_update_form = QuantityUpdateForm(request.POST)
 
         if quantity_update_form.is_valid():
+
             jewelry_id = quantity_update_form.cleaned_data['jewelry_id']
+            jewelry = Jewelry.objects.get(pk=jewelry_id)
+            old_quantity = ShoppingCart.objects.get(user_id=request.user.pk, jewelry_id=jewelry_id).quantity
             new_quantity = quantity_update_form.cleaned_data['quantity']
+
+            if old_quantity < new_quantity:
+                quantity = new_quantity - old_quantity
+                jewelry = jewelry
+                remove_quantity_from_inventory(jewelry, quantity)
+
+            else:
+                quantity = old_quantity - new_quantity
+                jewelry = jewelry
+                add_quantity_to_inventory(jewelry, quantity)
 
             ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_id).update(
                 quantity=new_quantity)
