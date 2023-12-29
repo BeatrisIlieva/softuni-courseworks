@@ -15,20 +15,17 @@
 <div class="card-details-input">
     <label for="card-number">Card Number:</label>
     <div class="card-number-sections">
-        <input class="card-number-section character-limit" type="text" data-max="4" data-section="1" minlength="4" maxlength="4">
-        <input class="card-number-section character-limit" type="text" data-max="4" data-section="2" minlength="4" maxlength="4">
-        <input class="card-number-section character-limit" type="text" data-max="4" data-section="3" minlength="4" maxlength="4">
-        <input class="card-number-section character-limit" type="text" data-max="4" data-section="4" minlength="4" maxlength="4">
+        <input class="card-number-section character-limit" type="text"  minlength="{{ required_card_number_field_length }}" maxlength="{{ required_card_number_field_length }}">
+        <input class="card-number-section character-limit" type="text"  minlength="{{ required_card_number_field_length }}" maxlength="{{ required_card_number_field_length }}">
+        <input class="card-number-section character-limit" type="text"  minlength="{{ required_card_number_field_length }}" maxlength="{{ required_card_number_field_length }}">
+        <input class="card-number-section character-limit" type="text"  minlength="{{ required_card_number_field_length }}" maxlength="{{ required_card_number_field_length }}">
     </div>
     <div class="expiry-cvv">
         <label for="expiry-date">Expiry Date:</label>
-        <input class="expiry-date character-limit" type="text" data-max="5" placeholder="MM / YY" minlength="5" maxlength="5">
+        <input class="expiry-date character-limit" type="text" placeholder="MM / YY" minlength="{{ required_expiry_date_length }}" maxlength="{{ required_expiry_date_length }}">
         <label for="cvv">CVV:</label>
-        <input class="cvv character-limit" type="text" data-max="3" minlength="3" maxlength="3">
+        <input class="cvv character-limit" type="text" minlength="{{ required_cvv_length }}" maxlength="{{ required_cvv_length }}">
     </div>
 </div>
-
-
-
     <button type="submit">Submit</button>
 {% endblock %}

@@ -129,6 +129,11 @@ class CompleteOrderView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['required_card_number_field_length'] = 4
+        context['required_expiry_date_length'] = 5
+        context['required_cvv_length'] = 3
+
+        return context
 
     def get_success_url(self):
         return reverse_lazy('details_user', kwargs={'pk': self.request.user.pk})
