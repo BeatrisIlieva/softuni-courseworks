@@ -2,7 +2,20 @@
 {% load custom_filters %}
 {% load static %}
 {% block page_content %}
-    {% for jewelry in jewelries %}
-    <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
+    {% for jewelry, quantity in jewelries_by_quantities.items %}
+        <li>
+            <a href="{% url 'show_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
+                <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
+            </a>
+        </li>
+        <li>
+            {{ jewelry.price }}
+        </li>
+        <li>{{ quantity }}</li>
+
     {% endfor %}
+    <div>
+        Total Price
+        {{ total_price }}
+    </div>
 {% endblock %}

@@ -1,4 +1,7 @@
+from _decimal import Decimal
+
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum, F
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
@@ -19,7 +22,7 @@ def add_to_shopping_cart(request, jewelry_pk):
     else:
         ShoppingCart.objects.create(user=request.user, jewelry=jewelry, quantity=1)
 
-    return redirect('shopping_cart_view')
+    return redirect('view_shopping_cart')
 
 
 class ShoppingCartView(TemplateView):
@@ -31,24 +34,25 @@ class ShoppingCartView(TemplateView):
         if self.request.user.is_authenticated:
             user_pk = self.request.user.pk
 
-            jewelries_pks = ShoppingCart.objects.filter(user_id=user_pk)
+            jewelries_pks = ShoppingCart.objects.filter(user_id=user_pk).values_list('jewelry_id', flat=True)
 
-            jewelries = Jewelry.objects.filter(id__in=jewelries_pks)
+            jewelries_by_quantities = {}
 
-            context['jewelries'] = jewelries
+            for pk in jewelries_pks:
+                jewelry = Jewelry.objects.get(pk=pk)
+                quantity = ShoppingCart.objects.get(jewelry_id=pk).quantity
+                jewelries_by_quantities[jewelry] = quantity
+
+            total_price_as_dict = Jewelry.objects.filter(id__in=jewelries_pks).aggregate(total_price=Sum('price'))
+
+            total_price = Decimal(total_price_as_dict['total_price'])
+            context['jewelries_by_quantities'] = jewelries_by_quantities
+            context['total_price'] = total_price
 
             return context
 
 
-# @login_required
-# def view_shopping_cart(request, pk):
-#     jewelries = ShoppingCart.objects.filter(user_id=pk)
-#
-#     context = {
-#         'jewelries': jewelries,
-#     }
-#
-#     return rende
+
 
 
 

@@ -3,7 +3,9 @@
     margin-bottom: 20px; /* Add some spacing between the line and the content below */
   }
 
-body {
-    background-color: white;
+header {
+    background-color: blue;
+    padding: 0;
+    margin: 0 auto;
     }
 
