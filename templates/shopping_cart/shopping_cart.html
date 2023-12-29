@@ -11,7 +11,14 @@
         <li>
             {{ jewelry.price }}
         </li>
-        <li>{{ quantity }}</li>
+            <li>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="jewelry_id" value="{{ jewelry.id }}">
+                    <input type="number" name="quantity" value="{{ quantity }}">
+                    <button type="submit" name="update_quantity">Update</button>
+                </form>
+            </li>
 
     {% endfor %}
     <div>
