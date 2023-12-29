@@ -63,6 +63,8 @@ class AccountProfile(models.Model):
         ),
     )
 
+    delivery_address = models.CharField()
+
     user = models.OneToOneField(
         to=AccountUser,
         on_delete=models.CASCADE,

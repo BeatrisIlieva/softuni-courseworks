@@ -1,33 +1,39 @@
 from _decimal import Decimal
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, F, DecimalField, ExpressionWrapper
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import TemplateView, UpdateView
 
+from e_commerce_website.accounts.models import AccountProfile
+from e_commerce_website.accounts.views import UserUpdateView
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.forms import QuantityUpdateForm
 from e_commerce_website.shopping_cart.models import ShoppingCart
 
-def remove_quantity_from_inventory(jewelry, quantity):
-    jewelry.quantity -= quantity
-    if jewelry.quantity == 0:
-        jewelry.sold_out = True
-    jewelry.save()
 
-def add_quantity_to_inventory(jewelry, quantity):
-    jewelry.quantity += quantity
-    jewelry.save()
+def remove_quantity_from_inventory(jewelry, quantity):
+    if quantity <= jewelry.quantity:
+        jewelry.quantity -= quantity
+        if jewelry.quantity == 0:
+            jewelry.sold_out = True
+        jewelry.save()
+
+
+def add_quantity_to_inventory(jewelry, quantity, max_quantity):
+    if jewelry.quantity + quantity <= max_quantity:
+        jewelry.quantity += quantity
+        jewelry.sold_out = False
+        jewelry.save()
+
 
 @login_required
 def add_to_shopping_cart(request, jewelry_pk):
     customer_shopping_cart_pk = ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_pk)
     jewelry = Jewelry.objects.get(pk=jewelry_pk)
     remove_quantity_from_inventory(jewelry, 1)
-
 
     if customer_shopping_cart_pk:
 
@@ -44,8 +50,8 @@ def add_to_shopping_cart(request, jewelry_pk):
     return redirect('view_shopping_cart')
 
 
-
 class ShoppingCartView(View):
+    MAX_QUANTITIES = {}
     template_name = 'shopping_cart/shopping_cart.html'
 
     def get_context_data(self):
@@ -61,15 +67,16 @@ class ShoppingCartView(View):
                 quantity = ShoppingCart.objects.get(jewelry_id=pk).quantity
                 min_quantity = 0
                 max_quantity = quantity + jewelry.quantity
-                jewelries_by_quantities[jewelry] = {'quantity': quantity, 'min_quantity': min_quantity, 'max_quantity':max_quantity}
-
+                self.MAX_QUANTITIES[jewelry] = max_quantity
+                jewelries_by_quantities[jewelry] = {'quantity': quantity, 'min_quantity': min_quantity,
+                                                    'max_quantity': max_quantity}
 
             total_price = ShoppingCart.objects.filter(user_id=user_pk).annotate(
                 total=ExpressionWrapper(F('jewelry__price') * F('quantity'), output_field=DecimalField())
             ).aggregate(total_sum=Sum('total')).get('total_sum') or Decimal('0.00')
 
-
             context = {
+                'user_pk': user_pk,
                 'total_price': total_price,
                 'jewelries_by_quantities': jewelries_by_quantities,
                 'quantity_update_form': QuantityUpdateForm()
@@ -101,7 +108,8 @@ class ShoppingCartView(View):
             else:
                 quantity = old_quantity - new_quantity
                 jewelry = jewelry
-                add_quantity_to_inventory(jewelry, quantity)
+                max_quantity = self.MAX_QUANTITIES[jewelry]
+                add_quantity_to_inventory(jewelry, quantity, max_quantity)
 
             ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_id).update(
                 quantity=new_quantity)
@@ -112,3 +120,15 @@ class ShoppingCartView(View):
         context = self.get_context_data()
 
         return render(request, self.template_name, context)
+
+class CompleteOrderView(UpdateView):
+
+    template_name = 'shopping_cart/complete_order.html'
+    model = AccountProfile
+    fields = ('first_name', 'last_name', 'phone_number', 'delivery_address')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('details_user', kwargs={'pk': self.request.user.pk})

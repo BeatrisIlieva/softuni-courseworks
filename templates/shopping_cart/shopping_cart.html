@@ -28,4 +28,9 @@
         Total Price
         {{ total_price }}
     </div>
+    <div>
+        <a href="{% url 'complete_order' pk=user_pk %}">
+    <button>COMPLETE ORDER</button>
+    {% csrf_token %}
+    </div>
 {% endblock %}
