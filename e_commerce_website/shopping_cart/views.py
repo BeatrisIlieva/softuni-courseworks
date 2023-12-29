@@ -1,9 +1,12 @@
 from _decimal import Decimal
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, F, DecimalField, ExpressionWrapper
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import CreateView
 
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.forms import QuantityUpdateForm
@@ -12,18 +15,23 @@ from e_commerce_website.shopping_cart.models import ShoppingCart
 
 @login_required
 def add_to_shopping_cart(request, jewelry_pk):
+    customer_shopping_cart_pk = ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_pk)
     jewelry = Jewelry.objects.filter(pk=jewelry_pk).get()
 
-    cart_item = ShoppingCart.objects.get(jewelry_id=jewelry_pk)
-    quantity_as_int = cart_item.quantity
+    if customer_shopping_cart_pk:
 
-    if quantity_as_int:
-        quantity_as_int += 1
-        ShoppingCart.objects.filter(jewelry_id=jewelry_pk).update(quantity=quantity_as_int)
+        cart_item = ShoppingCart.objects.get(jewelry_id=jewelry_pk)
+        quantity_as_int = cart_item.quantity
+
+        if quantity_as_int:
+            quantity_as_int += 1
+            ShoppingCart.objects.filter(jewelry_id=jewelry_pk).update(quantity=quantity_as_int)
+
     else:
         ShoppingCart.objects.create(user=request.user, jewelry=jewelry, quantity=1)
 
     return redirect('view_shopping_cart')
+
 
 
 class ShoppingCartView(View):
@@ -69,6 +77,9 @@ class ShoppingCartView(View):
 
             ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_id).update(
                 quantity=new_quantity)
+
+            if new_quantity == 0:
+                ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_id).delete()
 
         context = self.get_context_data()
 
