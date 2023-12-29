@@ -2,7 +2,7 @@
 {% load custom_filters %}
 {% load static %}
 {% block page_content %}
-    {% for jewelry, quantity in jewelries_by_quantities.items %}
+    {% for jewelry, details in jewelries_by_quantities.items %}
         <li>
             <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
         </li>
@@ -18,7 +18,7 @@
             <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="jewelry_id" value="{{ jewelry.id }}">
-                <input type="number" name="quantity" value="{{ quantity }}" min="0" max={{ jewelry.quantity }}>
+                <input type="number" name="quantity" value="{{ details.quantity }}" min={{ details.min_quantity }} max={{ details.max_quantity }}>
                 <button type="submit" name="update_quantity">UPDATE QUANTITY</button>
             </form>
         </li>

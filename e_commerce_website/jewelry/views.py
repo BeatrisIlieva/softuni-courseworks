@@ -70,7 +70,8 @@ class DisplayJewelriesView(TemplateView):
         category_id = self.kwargs.get('category_id')
 
         jewelries = Jewelry.objects. \
-            filter(category=category_id).distinct('id')
+            filter(category=category_id, sold_out=False).\
+            distinct('id')
 
         selection_form = JewelryForm(self.request.GET)
 

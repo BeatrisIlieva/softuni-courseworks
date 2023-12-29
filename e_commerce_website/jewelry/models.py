@@ -147,6 +147,12 @@ class Jewelry(models.Model):
         V_5000 = '75_000, 100_000', _('75,000.00 - 100,000.00')
         V_100000 = '100_000, 1_000_000', _('ABOVE 100,000.00')
 
+    sold_out = models.BooleanField(
+        default=False,
+        null=True,
+        blank=True,
+    )
+
     title = models.CharField(
         max_length=40,
     )

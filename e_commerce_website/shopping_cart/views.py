@@ -14,6 +14,8 @@ from e_commerce_website.shopping_cart.models import ShoppingCart
 
 def remove_quantity_from_inventory(jewelry, quantity):
     jewelry.quantity -= quantity
+    if jewelry.quantity == 0:
+        jewelry.sold_out = True
     jewelry.save()
 
 def add_quantity_to_inventory(jewelry, quantity):
@@ -57,12 +59,15 @@ class ShoppingCartView(View):
             for pk in jewelries_pks:
                 jewelry = Jewelry.objects.get(pk=pk)
                 quantity = ShoppingCart.objects.get(jewelry_id=pk).quantity
-                jewelries_by_quantities[jewelry] = quantity
+                min_quantity = 0
+                max_quantity = quantity + jewelry.quantity
+                jewelries_by_quantities[jewelry] = {'quantity': quantity, 'min_quantity': min_quantity, 'max_quantity':max_quantity}
 
 
             total_price = ShoppingCart.objects.filter(user_id=user_pk).annotate(
                 total=ExpressionWrapper(F('jewelry__price') * F('quantity'), output_field=DecimalField())
             ).aggregate(total_sum=Sum('total')).get('total_sum') or Decimal('0.00')
+
 
             context = {
                 'total_price': total_price,
