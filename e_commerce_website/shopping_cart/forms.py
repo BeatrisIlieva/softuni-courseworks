@@ -12,7 +12,7 @@ class QuantityUpdateForm(forms.Form):
 class CardDetailsForm(forms.Form):
     CARD_NUMBER_LENGTH = 16
     CARD_NUMBER_REGEX_PATTERN = r'^\d{16}$'
-    EXPIRATION_DATE_FORMAT = 'YY/MM'
+    EXPIRATION_DATE_FORMAT = 'DD/MM'
     EXPIRATION_DATE_REGEX_PATTERN = r'^\d{2}\/\d{2}$'
     CVV_CODE_LENGTH = 3
     CVV_CODE_REGEX_PATTERN = r'^\d{3}$'

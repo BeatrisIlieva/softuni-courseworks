@@ -1,13 +1,14 @@
 {% extends 'base/base.html' %}
+{% load countries %}
+{% get_countries as countries %}
 {% load static %}
 {% block page_content %}
     Update Profile
-            <form method="post" action="{% url 'update_user' pk=object.pk %}">
-            {% for field in form %}
-                    <label>{{ field.label }}</label>
-                        {{ field }}
-            {% endfor %}
-            <button class="edit-btn" type="submit">Update</button>
+    <form method="post" action="{% url 'update_user' pk=object.pk %}">
+        <form method="post" action="{% url 'update_user' pk=object.pk %}">
         {% csrf_token %}
+        {{ form.as_p }}  {# Render all form fields using {{ form.as_p }} #}
+        <button class="edit-btn" type="submit">Update</button>
         </form>
+    </form>
 {% endblock %}

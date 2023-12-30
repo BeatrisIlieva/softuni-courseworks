@@ -2,16 +2,14 @@
 {% load static %}
 {% block page_content %}
     <form action="" method="post">
-    {% csrf_token %}
-            {% if form.card_number.errors %}
+        {% csrf_token %}
+        {% if form.card_number.errors %}
             <ul>
                 {% for error in form.card_number.errors %}
                     <li>{{ error }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
-
-        <!-- Display errors for expiration date -->
         {% if form.expiration_date.errors %}
             <ul>
                 {% for error in form.expiration_date.errors %}
@@ -19,8 +17,6 @@
                 {% endfor %}
             </ul>
         {% endif %}
-
-        <!-- Display errors for CVV code -->
         {% if form.cvv_code.errors %}
             <ul>
                 {% for error in form.cvv_code.errors %}
@@ -49,41 +45,4 @@
     </form>
 {% endblock %}
 
-
-{#{% extends 'base/base.html' %}#}
-{#{% load static %}#}
-{#{% block page_content %}#}
-{#    <form action="" method="post">#}
-{#    <div class="card-details-input">#}
-{#        <label for="card-number">Card Number:</label>#}
-{#        <div class="card-number-sections">#}
-{#            <input class="card-number-section character-limit" type="text" placeholder="Valid Card Number" name="card_number"#}
-{#                   minlength="{{ 16 }}"#}
-{#                   maxlength="{{ 16 }}">#}
-{#            <input class="card-number-section character-limit" type="text"#}
-{#                   minlength="{{ required_card_number_field_length }}"#}
-{#                   maxlength="{{ required_card_number_field_length }}">#}
-{#            <input class="card-number-section character-limit" type="text"#}
-{#                   minlength="{{ required_card_number_field_length }}"#}
-{#                   maxlength="{{ required_card_number_field_length }}">#}
-{#            <input class="card-number-section character-limit" type="text"#}
-{#                   minlength="{{ required_card_number_field_length }}"#}
-{#                   maxlength="{{ required_card_number_field_length }}">#}
-{#            <input class="card-number-section character-limit" type="text"#}
-{#                   minlength="{{ required_card_number_field_length }}"#}
-{#                   maxlength="{{ required_card_number_field_length }}">#}
-{#        </div>#}
-{#        <div class="expiry-cvv">#}
-{#            <label for="expiry-date">Expiry Date:</label>#}
-{#            <input class="expiry-date character-limit" type="text" placeholder="MM / YY" name="expiration_date"#}
-{#                   minlength="{{ 5 }}" maxlength="{{ 5 }}">#}
-{#            <label for="cvv">CVV:</label>#}
-{#            <input class="cvv character-limit" type="text" name="cvv_code" minlength="{{ 3 }}"#}
-{#                   maxlength="{{ 3 }}">#}
-{#        </div>#}
-{#    </div>#}
-{#    <button type="submit">Submit</button>#}
-{#    {% csrf_token %}#}
-{#    </form>#}
-{#{% endblock %}#}
 

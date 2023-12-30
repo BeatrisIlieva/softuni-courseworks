@@ -9,6 +9,7 @@ from django.views import View
 from django.views.generic import TemplateView, UpdateView, ListView
 from django.views.generic.edit import FormMixin
 
+from e_commerce_website.accounts.forms import AccountProfileForm
 from e_commerce_website.accounts.models import AccountProfile
 from e_commerce_website.accounts.views import UserUpdateView
 from e_commerce_website.jewelry.models import Jewelry
@@ -135,7 +136,7 @@ class ShoppingCartView(View):
 class CompleteOrderView(UpdateView):
     template_name = 'shopping_cart/complete_order.html'
     model = AccountProfile
-    fields = ('first_name', 'last_name', 'phone_number', 'delivery_address')
+    form_class = AccountProfileForm
 
     def get_success_url(self):
         return reverse_lazy('complete_transaction', kwargs={'pk': self.request.user.pk})
@@ -178,5 +179,24 @@ class CompleteTransactionView(TemplateView, FormMixin):
         return self.render_to_response(self.get_context_data())
 
 
-class TransactionStatusView(TemplateView):
-    template_name = 'shopping_cart/transaction_status.html'
+class OrderDetails(TemplateView):
+    template_name = 'shopping_cart/order_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user_pk = self.request.user.pk
+
+        customer_full_name = AccountProfile.objects.get(pk=user_pk).full_name
+
+        jewelries_pks = ShoppingCart.objects.filter(user_id=user_pk).values_list('jewelry_id', flat=True)
+
+        jewelries_objects = Jewelry.objects.filter(pk=jewelries_pks)
+
+        total_price = ShoppingCart.objects.filter(user_id=user_pk).annotate(
+            total=ExpressionWrapper(F('jewelry__price') * F('quantity'), output_field=DecimalField())
+        ).aggregate(total_sum=Sum('total')).get('total_sum') or Decimal('0.00')
+
+        delivery_address = AccountProfile.objects.get(pk=user_pk).delivery_address
+
+        return context

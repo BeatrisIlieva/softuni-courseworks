@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, DetailView
 
-from e_commerce_website.accounts.forms import RegisterUserForm
+from e_commerce_website.accounts.forms import RegisterUserForm, AccountProfileForm
 from e_commerce_website.accounts.models import AccountProfile
 
 UserModel = get_user_model()
@@ -52,15 +52,28 @@ class UserDetailsView(DetailView):
     #     return context
 
 class UserUpdateView(UpdateView):
+    # template_name = 'account/update.html'
+    # model = AccountProfile
+    # form_class = AccountProfileForm
+    #
+    # def get_success_url(self):
+    #     return reverse_lazy('details_user', kwargs={
+    #         'pk': self.request.user.pk,
+    #     })
+
     template_name = 'account/update.html'
     model = AccountProfile
-    fields = ('first_name', 'last_name', 'phone_number', 'delivery_address')
+    form_class = AccountProfileForm
 
     def get_success_url(self):
         return reverse_lazy('details_user', kwargs={
             'pk': self.request.user.pk,
         })
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.get_form()
+        return context
 
 class UserDeleteView(DeleteView):
     template_name = 'account/delete.html'
