@@ -163,20 +163,19 @@ class CompleteTransactionView(TemplateView, FormMixin):
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
+        user_pk = self.request.user.pk
         if form.is_valid():
-            # Process the form data if it's valid
-            # For example, you can access form.cleaned_data to get validated data
-            # Do something with the validated data
-            pass
-        else:
+            return redirect('order_details', pk=user_pk)
 
+        else:
             context = self.get_context_data()
+
             return render(
                 request,
                 self.template_name,
                 context
             )
-        return self.render_to_response(self.get_context_data())
+
 
 
 class OrderDetails(TemplateView):
@@ -191,12 +190,23 @@ class OrderDetails(TemplateView):
 
         jewelries_pks = ShoppingCart.objects.filter(user_id=user_pk).values_list('jewelry_id', flat=True)
 
-        jewelries_objects = Jewelry.objects.filter(pk=jewelries_pks)
+        jewelries_objects = Jewelry.objects.filter(id__in=jewelries_pks)
 
         total_price = ShoppingCart.objects.filter(user_id=user_pk).annotate(
             total=ExpressionWrapper(F('jewelry__price') * F('quantity'), output_field=DecimalField())
         ).aggregate(total_sum=Sum('total')).get('total_sum') or Decimal('0.00')
 
+        country = AccountProfile.objects.get(pk=user_pk).country
+        city = AccountProfile.objects.get(pk=user_pk).city
         delivery_address = AccountProfile.objects.get(pk=user_pk).delivery_address
+        phone_number = AccountProfile.objects.get(pk=user_pk).phone_number
+
+        context['customer_full_name'] = customer_full_name
+        context['jewelries_objects'] = jewelries_objects
+        context['total_price'] = total_price
+        context['country'] = country
+        context['city'] = city
+        context['delivery_address'] = delivery_address
+        context['phone_number'] = phone_number
 
         return context

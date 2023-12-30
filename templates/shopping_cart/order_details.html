@@ -1,5 +1,32 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-
+    <h1>Thank you for your purchase, {{ customer_full_name }}!</h1>
+    <h2> Order Details:</h2>
+    {% for jewelry in jewelries_objects %}
+        <li>
+            <img width="50" height="50" src="{{ jewelry.first_image_url }}" alt="image1">
+        </li>
+        <li>
+            <a href="{% url 'show_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
+                <button>JEWELRY DETAILS</button>
+            </a>
+        </li>
+    {% endfor %}
+    <h3>Total price: {{ total_price }}</h3>
+    <h3>Delivery Address:</h3>
+    <h4>Country: {{ country }}</h4>
+    <h4>City: {{ city }}</h4>
+    <h4>Address: {{ delivery_address }}</h4>
+    <h4>Phone number: {{ phone_number }}</h4>
+    <h2>What's Next?</h2>
+    <h4>Our team is carefully preparing your selected piece(s) for shipment.
+        You will receive an email with shipping details and an estimated delivery date within the next 24-48 hours.</h4>
+    <h2>Track Your Order:</h2>
+    <h4>Once your order is on its way, you can monitor the delivery progress in your profile from here.</h4>
+    <h2>Questions or Assistance?</h2>
+    <h4>Our dedicated support team is here to assist you. Please feel free to reach out with any inquiries.
+    You can find our contact details here.</h4>
+    <h4>Warm Regards,
+        Fine Jewelry Team</h4>
 {% endblock %}
