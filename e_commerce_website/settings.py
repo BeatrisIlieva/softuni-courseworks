@@ -16,8 +16,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,6 +30,7 @@ INSTALLED_APPS = [
     'e_commerce_website.accounts',
     'e_commerce_website.core',
     'django_countries',
+    'e_commerce_website.order',
 ]
 
 MIDDLEWARE = [

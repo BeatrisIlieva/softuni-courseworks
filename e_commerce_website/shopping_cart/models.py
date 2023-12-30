@@ -25,25 +25,4 @@ class ShoppingCart(models.Model):
     )
 
 
-# class Order(models.Model):
-#     user = models.ForeignKey(
-#         to=AccountUser,
-#         on_delete=models.CASCADE
-#     )
-#     jewelries = models.ManyToManyField(
-#         to=Jewelry,
-#         through='OrderJewelry'
-#     )
-#
-#
-# class OrderJewelry(models.Model):
-#     order = models.ForeignKey(
-#         to=Order,
-#         on_delete=models.CASCADE,
-#         primary_key=True
-#     )
-#     product = models.ForeignKey(
-#         to=Jewelry,
-#         on_delete=models.CASCADE
-#     )
-#     quantity = models.PositiveIntegerField()
+

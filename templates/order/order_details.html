@@ -2,11 +2,17 @@
 {% load static %}
 {% block page_content %}
     <h1>Thank you for your purchase, {{ customer_full_name }}!</h1>
+    <h2>Order Confirmation:</h2>
+    <h4>Your order id: #{{ order_id }} has been successfully placed.</h4>
     <h2> Order Details:</h2>
-    {% for jewelry in jewelries_objects %}
+    {% for jewelry, details in jewelries_by_quantities.items %}
         <li>
             <img width="50" height="50" src="{{ jewelry.first_image_url }}" alt="image1">
         </li>
+        {{ details.quantity }}
+        <li>
+                </li>
+        {{ details.jewelry_total_price }}
         <li>
             <a href="{% url 'show_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
                 <button>JEWELRY DETAILS</button>
