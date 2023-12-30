@@ -19,9 +19,13 @@ class ShoppingCart(models.Model):
     )
 
     quantity = models.PositiveIntegerField(
-        null=True,
-        blank=True,
-        default=0,
+        # null=True,
+        # blank=True,
+        # default=0,
+    )
+
+    order_completed = models.BooleanField(
+        default=False,
     )
 
 # class Order(models.Model):

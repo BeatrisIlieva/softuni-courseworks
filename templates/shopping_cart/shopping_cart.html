@@ -12,13 +12,14 @@
             </a>
         </li>
         <li>
-            PRICE: {{ jewelry.price }}
+            PRICE: {{ details.jewelry_total_price }}
         </li>
         <li>
             <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="jewelry_id" value="{{ jewelry.id }}">
-                <input type="number" name="quantity" value="{{ details.quantity }}" min={{ details.min_quantity }} max={{ details.max_quantity }}>
+                <input type="number" name="quantity" value="{{ details.quantity }}"
+                       min={{ details.min_quantity }} max={{ details.max_quantity }}>
                 <button type="submit" name="update_quantity">UPDATE QUANTITY</button>
             </form>
         </li>
@@ -29,8 +30,9 @@
         {{ total_price }}
     </div>
     <div>
-        <a href="{% url 'complete_order' pk=user_pk %}">
-    <button>COMPLETE ORDER</button>
-    {% csrf_token %}
+        <form action="{% url 'complete_order' pk=user_pk %}" method="get">
+            <button>COMPLETE ORDER</button>
+            {% csrf_token %}
+        </form>
     </div>
 {% endblock %}

@@ -1,16 +1,18 @@
 from _decimal import Decimal
+from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum, F, DecimalField, ExpressionWrapper
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import TemplateView, UpdateView, ListView
+from django.views.generic.edit import FormMixin
 
 from e_commerce_website.accounts.models import AccountProfile
 from e_commerce_website.accounts.views import UserUpdateView
 from e_commerce_website.jewelry.models import Jewelry
-from e_commerce_website.shopping_cart.forms import QuantityUpdateForm
+from e_commerce_website.shopping_cart.forms import QuantityUpdateForm, CardDetailsForm
 from e_commerce_website.shopping_cart.models import ShoppingCart
 
 
@@ -44,8 +46,11 @@ def add_to_shopping_cart(request, jewelry_pk):
             quantity_as_int += 1
             ShoppingCart.objects.filter(jewelry_id=jewelry_pk).update(quantity=quantity_as_int)
 
+
     else:
         ShoppingCart.objects.create(user=request.user, jewelry=jewelry, quantity=1)
+
+    messages.success(request, f'{jewelry.title} added to yor cart')
 
     return redirect('view_shopping_cart')
 
@@ -65,11 +70,16 @@ class ShoppingCartView(View):
             for pk in jewelries_pks:
                 jewelry = Jewelry.objects.get(pk=pk)
                 quantity = ShoppingCart.objects.get(jewelry_id=pk).quantity
+                jewelry_total_price = jewelry.price * quantity
                 min_quantity = 0
                 max_quantity = quantity + jewelry.quantity
                 self.MAX_QUANTITIES[jewelry] = max_quantity
-                jewelries_by_quantities[jewelry] = {'quantity': quantity, 'min_quantity': min_quantity,
-                                                    'max_quantity': max_quantity}
+                jewelries_by_quantities[jewelry] = {
+                    'quantity': quantity,
+                    'min_quantity': min_quantity,
+                    'max_quantity': max_quantity,
+                    'jewelry_total_price': jewelry_total_price
+                }
 
             total_price = ShoppingCart.objects.filter(user_id=user_pk).annotate(
                 total=ExpressionWrapper(F('jewelry__price') * F('quantity'), output_field=DecimalField())
@@ -131,19 +141,42 @@ class CompleteOrderView(UpdateView):
         return reverse_lazy('complete_transaction', kwargs={'pk': self.request.user.pk})
 
 
-class CompleteTransactionView(TemplateView):
+class CompleteTransactionView(TemplateView, FormMixin):
     template_name = 'shopping_cart/proceed_transaction.html'
+    form_class = CardDetailsForm
 
     def get_context_data(self, **kwargs):
         user_pk = self.request.user.pk
+        form = self.get_form()
 
         context = super().get_context_data(**kwargs)
         context.update({
             'user_pk': user_pk,
-            'required_card_number_field_length': 4,
+            'form': form,
+            'required_card_number_length': 16,
             'required_expiry_date_length': 5,
             'required_cvv_length': 3,
         })
 
         return context
 
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            # Process the form data if it's valid
+            # For example, you can access form.cleaned_data to get validated data
+            # Do something with the validated data
+            pass
+        else:
+
+            context = self.get_context_data()
+            return render(
+                request,
+                self.template_name,
+                context
+            )
+        return self.render_to_response(self.get_context_data())
+
+
+class TransactionStatusView(TemplateView):
+    template_name = 'shopping_cart/transaction_status.html'

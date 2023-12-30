@@ -7,7 +7,7 @@
             <label>{{ field.label }}</label>
             {{ field }}
         {% endfor %}
-        <a href="{% url 'complete_transaction' pk=object.pk %}">
+        <a href="{% url 'complete_transaction' pk=object.pk %}"></a>
         <button class="edit-btn" type="submit">CONTINUE</button>
         {% csrf_token %}
     </form>

@@ -2,45 +2,53 @@
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
-    width: 480px;
-    overflow: hidden; /* Added to contain child elements */
-    display: flex; /* Use flexbox for layout */
-    flex-wrap: wrap; /* Allow items to wrap if container is too small */
+    width: 450px; /* Adjusted width for the container */
+    display: flex;
+    flex-direction: column;
 }
 
 .card-details-input label {
+    width: 100%;
     display: block;
     margin-bottom: 5px;
 }
 
-.card-details-input > div {
+.card-details-input .expiry-cvv {
+    width: 60%;
+    display: flex;
+    flex-direction: column; /* Change to column layout */
+    align-items: flex-start; /* Align items to the start */
+}
+
+.card-details-input .expiry-cvv label {
+    width: 60%;
+    margin-bottom: 5px;
+}
+
+.card-details-input .expiry-cvv input {
+    width: 60%;
     margin-bottom: 10px;
-    flex: 1; /* Take up equal space within the flex container */
-    margin-right: 10px; /* Add spacing between input boxes */
-    display: flex; /* Nested flex container for the inputs */
-    align-items: center; /* Align inputs vertically within div */
+    /* Other input styles */
 }
 
-.card-details-input > div:last-child {
-    margin-right: 0; /* Remove margin for the last div */
-}
-
-.card-details-input input {
+.card-details-input .card-number-input {
+    width: 70%;
+    margin-bottom: 10px;
+    /* Adjust input styles for the card number */
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 8px;
     min-height: 30px;
-    min-width: 10px;
-    flex: 0 0 120px; /* Adjust the width as needed */
-    box-sizing: border-box; /* Include padding and border in width */
-    outline: none; /* Remove default input outline */
     font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+
 }
 
-.card-details-input input::placeholder {
+.card-details-input .card-number-input::placeholder {
     color: #aaa;
 }
 
-.card-details-input input:focus {
+.card-details-input .card-number-input:focus {
     border-color: dodgerblue;
 }
