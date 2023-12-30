@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <h1>My orders</h1>
+{% for order_id, details in order_details.items %}
+    <h2>Order ID: {{ order_id }}</h2>
+    <p>Status: {{ details.status }}</p>
+
+    <h3>Order Products:</h3>
+    <ul>
+        {% for product in details.order_products %}
+            <li>Jewelry: {{ product.jewelry }}</li>
+            <li>Price: {{ product.price }}</li>
+            <li>Quantity: {{ product.quantity }}</li>
+            <li>Total Price per Jewelry: {{ product.total_price }}</li>
+            <li>Total Order Price: {{ product.total_order_price }}</li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% endfor %}
+{% endblock %}

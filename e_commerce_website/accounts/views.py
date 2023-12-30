@@ -1,15 +1,18 @@
-from django.contrib.auth import login, authenticate, get_user_model, logout
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render, redirect
+from django.contrib.auth import login, get_user_model, logout
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, DetailView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, TemplateView
 
 from e_commerce_website.accounts.forms import RegisterUserForm, AccountProfileForm
 from e_commerce_website.accounts.models import AccountProfile
+from e_commerce_website.jewelry.models import Jewelry
+from e_commerce_website.order.models import Order, OrderProducts
 
 UserModel = get_user_model()
+
+
 class RegisterUserView(CreateView):
     template_name = 'account/register.html'
     form_class = RegisterUserForm
@@ -37,30 +40,8 @@ class UserDetailsView(DetailView):
     template_name = 'account/details.html'
     model = UserModel
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['full_name'] = self.request.user.accountprofile.full_name
-    #
-    #     # context['is_owner'] = self.request.user == self.object
-    #     # context['cats_count'] = self.object.cat_set.count()
-    #     #
-    #     # photos = self.object.photo_set.prefetch_related('photolike_set')
-    #     #
-    #     # context['photos_count'] = photos.count()
-    #     # context['likes_count'] = sum(x.photolike_set.count() for x in photos)
-    #
-    #     return context
 
 class UserUpdateView(UpdateView):
-    # template_name = 'account/update.html'
-    # model = AccountProfile
-    # form_class = AccountProfileForm
-    #
-    # def get_success_url(self):
-    #     return reverse_lazy('details_user', kwargs={
-    #         'pk': self.request.user.pk,
-    #     })
-
     template_name = 'account/update.html'
     model = AccountProfile
     form_class = AccountProfileForm
@@ -75,49 +56,85 @@ class UserUpdateView(UpdateView):
         context['form'] = self.get_form()
         return context
 
+class UserOrdersView(TemplateView):
+    template_name = 'account/orders.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user_pk = self.request.user.pk
+
+        order_details = {}
+
+        orders = Order.objects.filter(user_id=user_pk)
+
+        for order in orders:
+            order_details[order.pk] = {
+                'status': order.get_status_display(),
+                'order_products': []
+            }
+
+            order_products = OrderProducts.objects.filter(order_id=order.pk)
+
+            for order_product in order_products:
+                jewelry = Jewelry.objects.get(pk=order_product.jewelry_id)
+                quantity = order_product.quantity
+                price = jewelry.price
+                total_price_per_jewelry = price * quantity
+                total_order_price = order_product.total_price
+
+                order_details[order.pk]['order_products'].append({
+                    'jewelry': jewelry,
+                    'price': price,
+                    'quantity': quantity,
+                    'total_price': total_price_per_jewelry,
+                    'total_order_price': total_order_price,
+                })
+
+        context['order_details'] = order_details  # Pass order_details to context
+
+        return context
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #
+    #     user_pk = self.request.user.pk
+    #
+    #     order_details = {}
+    #
+    #     orders = Order.objects.filter(user_id=user_pk)
+    #
+    #     for order in orders:
+    #
+    #         order_details[order.pk] = {'status': order.get_status_display()}
+    #
+    #         order_products = OrderProducts.objects.filter(order_id=order.pk)
+    #
+    #         for order_product in order_products:
+    #             jewelry = Jewelry.objects.get(pk=order_product.jewelry_id)
+    #             quantity = order_product.quantity
+    #             price = jewelry.price
+    #             total_price_per_jewelry = price * quantity
+    #             total_order_price = order_product.total_price
+    #             order_details[order.pk].update(
+    #                 {
+    #                     'jewelry': jewelry,
+    #                     'price': price,
+    #                     'quantity': quantity,
+    #                     'total_price': total_price_per_jewelry,
+    #                     'total_order_price': total_order_price,
+    #                 }
+    #             )
+    #
+    #             order_details.update(order_details)
+    #
+    #     context[order_details] = order_details
+    #
+    #     return context
+
+
+
 class UserDeleteView(DeleteView):
     template_name = 'account/delete.html'
     model = UserModel
     success_url = reverse_lazy('index-page')
-
-
-
-
-# class AccountLoginView(TemplateView):
-#     model = Account
-#     template_name =
-#
-# class DisabledFormFieldsMixin:
-#     disabled_fields = ()
-#     def get_form(self, *args, **kwargs):
-#         form = super().get_form(*args, **kwargs)
-#         for field in self.disabled_fields:
-#             form.fields[field].widget.attrs['disable'] = 'disabled'
-#             form.fields[field].widget.attrs['readonly'] = 'readonly'
-#
-# class AccountCreateView(CreateView):
-#     model = Account
-#     template_name =
-#
-#     # fields = ('username', 'password',)
-#     form_class = ProfileForm
-#     success_url = reverse_lazy('index-page')
-#
-# class AccountUpdateView(DisabledFormFieldsMixin, UpdateView):
-#     model = Account
-#     template_name =
-#
-#     disabled_fields = ('username',)
-#
-# class AccountDeleteView(DisabledFormFieldsMixin, DeleteView):
-#     model = Account
-#     template_name =
-#     form_class = modelform_factory(
-#         model=Account,
-#         fields=('username', 'password'),
-#         widgets={}
-#     )
-#
-#     disabled_fields = ('username', 'password')
-#
-#

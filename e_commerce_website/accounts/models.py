@@ -7,10 +7,7 @@ from django_countries.fields import CountryField
 from e_commerce_website.accounts.manager import AccountUserManager
 from e_commerce_website.core.validators import validate_only_letters, validate_only_digits
 
-
 from e_commerce_website.jewelry.models import Jewelry
-
-
 
 
 class AccountUser(AbstractBaseUser, PermissionsMixin):
@@ -84,5 +81,3 @@ class AccountProfile(models.Model):
     @property
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
-
-

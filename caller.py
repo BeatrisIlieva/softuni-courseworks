@@ -27,7 +27,7 @@ from e_commerce_website.jewelry.models import (
     JewelryMetal,
     JewelryStone
 )
-
+from e_commerce_website.order.models import Order, OrderProducts
 categories = Category.objects.all()
 sizes = Size.objects.all()
 metals = Metal.objects.all()
@@ -36,33 +36,71 @@ jewelries = Jewelry.objects.all()
 stone_types = StoneType.objects.all()
 stone_colors = StoneColor.objects.all()
 
-jewelries_pks_by_quantity = (
-    ShoppingCart.objects.filter(jewelry_id__in=[17, 16])
-    .annotate(count=F('quantity'))
-    .values('jewelry_id' ,'quantity')
-)
+user_pk = 1
 
-# jewelries_and_quantities = {}
-# jewelries_pks = [16, 17]
-# for pk in jewelries_pks:
-#     jewelry = Jewelry.objects.get(pk=pk)
-#     quantity = ShoppingCart.objects.get(jewelry_id=pk).quantity
-#     jewelries_and_quantities[jewelry] = quantity
+context = {}
+
+order_details = {}
+
+orders = Order.objects.filter(user_id=user_pk)
+
+# for order in orders:
 #
-# print(jewelries_and_quantities)
+#     order_details[order.pk] = {'status': order.get_status_display()}
+#
+#     order_products = OrderProducts.objects.filter(order_id=order.pk)
+#
+#     for order_product in order_products:
+#         jewelry = Jewelry.objects.get(pk=order_product.jewelry_id)
+#         quantity = order_product.quantity
+#         price = jewelry.price
+#         total_price_per_jewelry = price * quantity
+#         total_order_price = order_product.total_price
+#         order_details[order.pk].update(
+#             {
+#                 'jewelry': jewelry,
+#                 'price': price,
+#                 'quantity': quantity,
+#                 'total_price': total_price_per_jewelry,
+#                 'total_order_price': total_order_price,
+#             }
+#         )
+#
+#
+#
+#         context.update(order_details)
+#
+# print(context)
+#
+# order_details = {}
 
-jewelries_pks = ShoppingCart.objects.filter(user_id=2).values_list('jewelry_id', flat=True)
+orders = Order.objects.filter(user_id=user_pk)
 
-jewelries_by_quantities = {}
+for order in orders:
+    order_details[order.pk] = {
+        'status': order.get_status_display(),
+        'order_products': []
+    }
 
-for pk in jewelries_pks:
-    jewelry = Jewelry.objects.get(pk=pk)
-    quantity = ShoppingCart.objects.get(jewelry_id=pk).quantity
-    jewelries_by_quantities[jewelry] = quantity
+    order_products = OrderProducts.objects.filter(order_id=order.pk)
 
+    for order_product in order_products:
+        jewelry = Jewelry.objects.get(pk=order_product.jewelry_id)
+        quantity = order_product.quantity
+        price = jewelry.price
+        total_price_per_jewelry = price * quantity
+        total_order_price = order_product.total_price
 
-for j, q in jewelries_by_quantities.items():
-    print(j)
-    print(q)
+        order_details[order.pk]['order_products'].append({
+            'jewelry': jewelry,
+            'price': price,
+            'quantity': quantity,
+            'total_price': total_price_per_jewelry,
+            'total_order_price': total_order_price,
+        })
+
+order_details = order_details
+
+print(order_details)
 
 
