@@ -9,10 +9,9 @@ from e_commerce_website.jewelry.funcs import define_jewelries_count_by_selected_
     define_jewelries_count_by_selected_category, get_related_metal_objects, \
     define_jewelries_count_by_selected_metal, get_related_stone_type_objects, \
     define_jewelries_count_by_selected_stone_type, get_related_stone_color_objects, \
-    define_jewelries_count_by_selected_stone_color, get_related_category_choices, get_related_metal_choices, \
-    get_related_stone_type_choices, get_related_stone_color_choices, show_available_prices, update_selection_forms, \
+    define_jewelries_count_by_selected_stone_color, show_available_prices, update_selection_forms, \
     get_query_price, display_jewelries_after_selection, get_category_pks, get_metal_pks, get_stone_type_pks, \
-    get_stone_color_pks, get_related_size_objects, get_related_size_choices
+    get_stone_color_pks, get_related_size_objects, get_related_choices
 
 from e_commerce_website.jewelry.models import Jewelry
 
@@ -86,10 +85,10 @@ class DisplayJewelriesView(NavigationBarMixin, ListView):
         stone_colors = get_related_stone_color_objects(jewelries)
         jewelries_count_by_stone_color = define_jewelries_count_by_selected_stone_color(jewelries, stone_colors)
 
-        category_choices = get_related_category_choices(categories)
-        metal_choices = get_related_metal_choices(metals)
-        stone_type_choices = get_related_stone_type_choices(stone_types)
-        stone_color_choices = get_related_stone_color_choices(stone_colors)
+        category_choices = get_related_choices(categories, field_name='title')
+        metal_choices = get_related_choices(metals, field_name='title')
+        stone_type_choices = get_related_choices(stone_types, field_name='title')
+        stone_color_choices = get_related_choices(stone_colors, field_name='title')
         price_choices = show_available_prices(jewelries)
 
         update_selection_forms(
@@ -200,7 +199,7 @@ class JewelryDetailsView(NavigationBarMixin, DetailView):
 
         selection_form = JewelryDetailsForm(self.request.GET)
         sizes = get_related_size_objects(self.get_object())
-        size_choices = get_related_size_choices(sizes)
+        size_choices = get_related_choices(sizes, field_name='measurement')
         if selection_form.is_valid():
             selection_form.fields['sizes'].choices = size_choices
 

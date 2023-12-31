@@ -27,16 +27,28 @@ from e_commerce_website.jewelry.models import (
     JewelryMetal,
     JewelryStone
 )
-from e_commerce_website.order.models import Order, OrderProducts
+
 categories = Category.objects.all()
 sizes = Size.objects.all()
-metals = Metal.objects.all()
-gold_carats = GoldCaratWeight.objects.all()
-jewelries = Jewelry.objects.all()
-stone_types = StoneType.objects.all()
-stone_colors = StoneColor.objects.all()
 
-curjewelries = Jewelry.objects. \
-    filter(metals__exact=2, sold_out=False). \
-    distinct('pk')
-print(curjewelries)
+def get_related_choices(objects, field_name):
+    choices = list(OrderedDict(
+        (getattr(obj, field_name), getattr(obj, f"get_{field_name}_display")())
+        for obj in objects
+    ).items())
+
+    return choices
+
+
+print(get_related_choices(sizes, 'measurement'))
+
+def get_related_choices(objects, field_name):
+    choices = list(OrderedDict(
+        (getattr(obj, field_name), getattr(obj, f"get_{field_name}_display")())
+        for obj in objects
+    ).items())
+
+    return choices
+
+
+print(get_related_choices(categories, 'title'))
