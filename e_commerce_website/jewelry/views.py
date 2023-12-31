@@ -17,59 +17,6 @@ from e_commerce_website.jewelry.funcs import define_jewelries_count_by_selected_
 from e_commerce_website.jewelry.models import Jewelry
 
 
-# def update_selection_forms(selection_form, **kwargs):
-#     if 'category_choices' in kwargs:
-#         selection_form.fields['category_choices'].choices = kwargs['category_choices']
-#
-#     if 'price_choices' in kwargs:
-#         selection_form.fields['order_by_price'].choices = kwargs['price_choices']
-#
-#     if 'metal_choices' in kwargs:
-#         selection_form.fields['metal_choices'].choices = kwargs['metal_choices']
-#
-#     if 'stone_type_choices' in kwargs:
-#         selection_form.fields['stone_type_choices'].choices = kwargs['stone_type_choices']
-#
-#     if 'stone_color_choices' in kwargs:
-#         selection_form.fields['stone_color_choices'].choices = kwargs['stone_color_choices']
-#
-#     if 'size_choices' in kwargs:
-#         selection_form.fields['size_choices'].choices = kwargs['size_choices']
-#
-#
-# def display_jewelries_after_selection(selection_form, jewelries):
-#     categories = get_related_category_objects(jewelries)
-#     jewelries_count_by_category = define_jewelries_count_by_selected_category(jewelries, categories)
-#
-#     metals = get_related_metal_objects(jewelries)
-#     jewelries_count_by_metal = define_jewelries_count_by_selected_metal(jewelries, metals)
-#
-#     stone_types = get_related_stone_type_objects(jewelries)
-#     jewelries_count_by_stone_type = define_jewelries_count_by_selected_stone_type(jewelries, stone_types)
-#
-#     stone_colors = get_related_stone_color_objects(jewelries)
-#     jewelries_count_by_stone_color = define_jewelries_count_by_selected_stone_color(jewelries, stone_colors)
-#
-#     jewelries_count_by_price = define_jewelries_count_by_selected_price(jewelries)
-#
-#     category_choices = get_related_category_choices(categories)
-#     metal_choices = get_related_metal_choices(metals)
-#     stone_type_choices = get_related_stone_type_choices(stone_types)
-#     stone_color_choices = get_related_stone_color_choices(stone_colors)
-#     price_choices = show_available_prices(jewelries)
-#
-#     update_selection_forms(
-#         selection_form,
-#         category_choices=category_choices,
-#         metal_choices=metal_choices,
-#         stone_type_choices=stone_type_choices,
-#         stone_color_choices=stone_color_choices,
-#         price_choices=price_choices,
-#     )
-#
-#     return jewelries_count_by_category, jewelries_count_by_metal, jewelries_count_by_stone_type, jewelries_count_by_stone_color, jewelries_count_by_price
-
-
 class DisplayJewelriesView(NavigationBarMixin, ListView):
     model = Jewelry
     context_object_name = 'jewelries'
