@@ -65,15 +65,29 @@ def display_jewelries_after_selection(selection_form, jewelries):
 
     jewelries_count_by_price = define_jewelries_count_by_selected_price(jewelries)
 
-    category_choices = get_related_choices(categories, field_name='title')
+    category_choices = get_related_choices(
+        categories,
+        field_name='title'
+    )
 
-    metal_choices = get_related_choices(metals, field_name='title')
+    metal_choices = get_related_choices(
+        metals,
+        field_name='title'
+    )
 
-    stone_type_choices = get_related_choices(stone_types, field_name='title')
+    stone_type_choices = get_related_choices(
+        stone_types,
+        field_name='title'
+    )
 
-    stone_color_choices = get_related_choices(stone_colors, field_name='title')
+    stone_color_choices = get_related_choices(
+        stone_colors,
+        field_name='title'
+    )
 
-    price_choices = show_available_prices(jewelries)
+    price_choices = show_available_prices(
+        jewelries
+    )
 
     update_selection_forms(
         selection_form,
