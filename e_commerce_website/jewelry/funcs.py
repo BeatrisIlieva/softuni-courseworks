@@ -18,32 +18,26 @@ def get_objects_pks(objects):
 
 def update_selection_forms(selection_form, **kwargs):
     if 'category_choices' in kwargs:
-
         selection_form.fields['category_choices']. \
             choices = kwargs['category_choices']
 
     if 'price_choices' in kwargs:
-
         selection_form.fields['price_choices']. \
             choices = kwargs['price_choices']
 
     if 'metal_choices' in kwargs:
-
         selection_form.fields['metal_choices']. \
             choices = kwargs['metal_choices']
 
     if 'stone_type_choices' in kwargs:
-
         selection_form.fields['stone_type_choices']. \
             choices = kwargs['stone_type_choices']
 
     if 'stone_color_choices' in kwargs:
-
         selection_form.fields['stone_color_choices']. \
             choices = kwargs['stone_color_choices']
 
     if 'size_choices' in kwargs:
-
         selection_form.fields['size_choices']. \
             choices = kwargs['size_choices']
 
@@ -115,7 +109,8 @@ def get_related_choices(objects, field_name):
     choices = list(OrderedDict(
         (getattr(obj, field_name), getattr(obj, f"get_{field_name}_display")())
         for obj in objects
-    ).items())
+    ).items()
+                   )
 
     return choices
 
@@ -123,7 +118,7 @@ def get_related_choices(objects, field_name):
 def show_available_prices(jewelries):
     all_price_choices = Jewelry.PriceChoices.choices
 
-    jewelries_prices = jewelries.\
+    jewelries_prices = jewelries. \
         values_list('price', flat=True). \
         distinct(). \
         order_by('price')
@@ -137,7 +132,8 @@ def show_available_prices(jewelries):
                 break
 
     ordered_price_choices = list(
-        OrderedDict(prices_choices).items())
+        OrderedDict(prices_choices).items()
+    )
 
     return ordered_price_choices
 
