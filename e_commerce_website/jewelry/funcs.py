@@ -44,16 +44,24 @@ def update_selection_forms(selection_form, **kwargs):
 
 def display_jewelries_after_selection(selection_form, jewelries):
     categories = get_related_category_objects(jewelries)
-    jewelries_count_by_category = define_jewelries_count_by_selected_category(jewelries, categories)
+
+    jewelries_count_by_category = \
+        define_jewelries_count_by_selected_category(jewelries, categories)
 
     metals = get_related_metal_objects(jewelries)
-    jewelries_count_by_metal = define_jewelries_count_by_selected_metal(jewelries, metals)
+
+    jewelries_count_by_metal = \
+        define_jewelries_count_by_selected_metal(jewelries, metals)
 
     stone_types = get_related_stone_type_objects(jewelries)
-    jewelries_count_by_stone_type = define_jewelries_count_by_selected_stone_type(jewelries, stone_types)
+
+    jewelries_count_by_stone_type = \
+        define_jewelries_count_by_selected_stone_type(jewelries, stone_types)
 
     stone_colors = get_related_stone_color_objects(jewelries)
-    jewelries_count_by_stone_color = define_jewelries_count_by_selected_stone_color(jewelries, stone_colors)
+
+    jewelries_count_by_stone_color = \
+        define_jewelries_count_by_selected_stone_color(jewelries, stone_colors)
 
     jewelries_count_by_price = define_jewelries_count_by_selected_price(jewelries)
 
