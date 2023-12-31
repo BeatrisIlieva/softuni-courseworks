@@ -9,7 +9,7 @@ class JewelryForm(forms.Form):
     STONE_TYPES_CHOICES = StoneType.TitleChoices.choices
     STONE_COLOR_CHOICES = StoneColor.TitleChoices.choices
 
-    order_by_price = forms.MultipleChoiceField(
+    price_choices = forms.MultipleChoiceField(
         choices=PRICE_CHOICES,
         required=False,
         widget=forms.CheckboxSelectMultiple,

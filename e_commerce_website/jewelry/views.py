@@ -103,7 +103,7 @@ class DisplayJewelriesView(NavigationBarMixin, ListView):
 
         if selection_form.is_valid():
 
-            selection_pattern_price = selection_form.cleaned_data['order_by_price']
+            selection_pattern_price = selection_form.cleaned_data['price_choices']
 
             selection_pattern_category = selection_form.cleaned_data['category_choices']
 

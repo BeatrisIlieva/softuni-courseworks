@@ -15,7 +15,7 @@ def update_selection_forms(selection_form, **kwargs):
         selection_form.fields['category_choices'].choices = kwargs['category_choices']
 
     if 'price_choices' in kwargs:
-        selection_form.fields['order_by_price'].choices = kwargs['price_choices']
+        selection_form.fields['price_choices'].choices = kwargs['price_choices']
 
     if 'metal_choices' in kwargs:
         selection_form.fields['metal_choices'].choices = kwargs['metal_choices']
