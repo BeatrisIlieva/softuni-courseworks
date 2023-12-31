@@ -68,14 +68,14 @@ class StoneType(models.Model):
 
 class StoneColor(models.Model):
     class TitleChoices(models.TextChoices):
-        AQUAMARINE = "AQ", _("Aquamarine") # 0
-        BLACK = "BL", _('Black') # 1
-        BLUE = "BU", _('Blue') # 2
-        GREEN = "GR", _('Green') # 3
-        PINK = "PI", _('Pink') # 4
-        RED = "RE", _('Red') # 5
-        WHITE = "WH", _('White') # 6
-        YELLOW = "YE", _('Yellow') # 7
+        AQUAMARINE = "AQ", _("Aquamarine")
+        BLACK = "BL", _('Black')
+        BLUE = "BU", _('Blue')
+        GREEN = "GR", _('Green')
+        PINK = "PI", _('Pink')
+        RED = "RE", _('Red')
+        WHITE = "WH", _('White')
+        YELLOW = "YE", _('Yellow')
 
     max_choice_length = calculate_max_choices_length(TitleChoices)
 
