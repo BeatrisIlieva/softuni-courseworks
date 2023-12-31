@@ -1,2 +1,2 @@
-def get_objects_ids(objects):
-    return [o.id for o in objects]
+# def get_objects_pks(objects):
+#     return [o.pk for o in objects]

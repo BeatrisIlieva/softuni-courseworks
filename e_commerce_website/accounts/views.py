@@ -7,16 +7,25 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView,
 
 from e_commerce_website.accounts.forms import RegisterUserForm, AccountProfileForm
 from e_commerce_website.accounts.models import AccountProfile
+from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.order.models import Order, OrderProducts
 
 UserModel = get_user_model()
 
 
-class RegisterUserView(CreateView):
+class RegisterUserView(NavigationBarMixin, CreateView):
     template_name = 'account/register.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('index-page')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context
 
     def form_valid(self, form):
         result = super().form_valid(form)
@@ -26,8 +35,16 @@ class RegisterUserView(CreateView):
         return result
 
 
-class LoginUserView(LoginView):
+class LoginUserView(NavigationBarMixin, LoginView):
     template_name = 'account/login.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context
 
 
 class LogoutUserView(View):
@@ -36,12 +53,20 @@ class LogoutUserView(View):
         return redirect(reverse_lazy('login_user'))
 
 
-class UserDetailsView(DetailView):
+class UserDetailsView(NavigationBarMixin, DetailView):
     template_name = 'account/details.html'
     model = UserModel
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-class UserUpdateView(UpdateView):
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context
+
+
+class UserUpdateView(NavigationBarMixin, UpdateView):
     template_name = 'account/update.html'
     model = AccountProfile
     form_class = AccountProfileForm
@@ -53,11 +78,13 @@ class UserUpdateView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
         context['form'] = self.get_form()
         return context
 
 
-class UserOrdersView(TemplateView):
+class UserOrdersView(NavigationBarMixin, TemplateView):
     template_name = 'account/orders.html'
 
     def get_context_data(self, **kwargs):
@@ -84,7 +111,6 @@ class UserOrdersView(TemplateView):
                 quantity = order_product.quantity
                 price = jewelry.price
                 total_price_per_jewelry = price * quantity
-                # total_order_price = order_product.total_price
 
                 order_details[order.pk]['order_products'].append({
                     'jewelry': jewelry,
@@ -99,10 +125,21 @@ class UserOrdersView(TemplateView):
 
         context['order_details'] = order_details
 
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
         return context
 
 
-class UserDeleteView(DeleteView):
+class UserDeleteView(NavigationBarMixin, DeleteView):
     template_name = 'account/delete.html'
     model = UserModel
     success_url = reverse_lazy('index-page')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context

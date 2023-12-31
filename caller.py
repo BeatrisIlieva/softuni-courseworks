@@ -38,5 +38,5 @@ stone_colors = StoneColor.objects.all()
 
 curjewelries = Jewelry.objects. \
     filter(metals__exact=2, sold_out=False). \
-    distinct('id')
+    distinct('pk')
 print(curjewelries)

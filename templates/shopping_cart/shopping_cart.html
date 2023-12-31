@@ -7,7 +7,7 @@
             <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
         </li>
         <li>
-            <a href="{% url 'display_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
+            <a href="{% url 'display_jewelry_details' jewelry.pk %}?page={{ page_obj.number }}">
                 <button>JEWELRY DETAILS</button>
             </a>
         </li>
@@ -17,7 +17,7 @@
         <li>
             <form method="post">
                 {% csrf_token %}
-                <input type="hidden" name="jewelry_id" value="{{ jewelry.id }}">
+                <input type="hidden" name="jewelry_id" value="{{ jewelry.pk }}">
                 <input type="number" name="quantity" value="{{ details.quantity }}"
                        min={{ details.min_quantity }} max={{ details.max_quantity }}>
                 <button type="submit" name="update_quantity">UPDATE QUANTITY</button>

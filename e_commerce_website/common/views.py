@@ -1,33 +1,22 @@
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView
 
-from e_commerce_website.common.utils import get_objects_by_choices, get_object_pks
+from e_commerce_website.common.mixins import NavigationBarMixin
+from e_commerce_website.common.utils import get_object_pks
 from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor, Jewelry
 
 
-class NavigationBarView(TemplateView):
+class NavigationBarView(NavigationBarMixin, TemplateView):
     template_name = 'common/index-page.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        categories_by_choices = get_objects_by_choices(Category)
-
-        metals_by_choices = get_objects_by_choices(Metal)
-
-        stone_types_by_choices = get_objects_by_choices(StoneType)
-
-        stone_colors_by_choices = get_objects_by_choices(StoneColor)
-
-        context['categories_by_choices'] = categories_by_choices
-        context['metals_by_choices'] = metals_by_choices
-        context['stone_types_by_choices'] = stone_types_by_choices
-        context['stone_colors_by_choices'] = stone_colors_by_choices
-
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
         return context
 
 
-class SearchBarView(ListView):
+class SearchBarView(NavigationBarMixin, ListView):
     template_name = 'common/search_results.html'
     model = Jewelry
     context_object_name = 'jewelries'
@@ -40,29 +29,29 @@ class SearchBarView(ListView):
 
         query = Q()
 
-        category_ids = get_object_pks(Category, search)
+        category_pks = get_object_pks(Category, search)
 
-        if category_ids:
-            query |= Q(category_id__in=category_ids)
+        if category_pks:
+            query |= Q(category_id__in=category_pks)
 
-        metal_ids = get_object_pks(Metal, search)
+        metal_pks = get_object_pks(Metal, search)
 
-        if metal_ids:
-            query |= Q(jewelry_metals__metal_id__in=metal_ids)
+        if metal_pks:
+            query |= Q(jewelry_metals__metal_id__in=metal_pks)
 
-        stone_type_ids = get_object_pks(StoneType, search)
+        stone_type_pks = get_object_pks(StoneType, search)
 
-        if stone_type_ids:
-            query |= Q(jewelry_stones__stone_type_id__in=stone_type_ids)
+        if stone_type_pks:
+            query |= Q(jewelry_stones__stone_type_id__in=stone_type_pks)
 
-        stone_color_ids = get_object_pks(StoneColor, search)
+        stone_color_pks = get_object_pks(StoneColor, search)
 
-        if stone_color_ids:
-            query |= Q(jewelry_stones__stone_color_id__in=stone_color_ids)
+        if stone_color_pks:
+            query |= Q(jewelry_stones__stone_color_id__in=stone_color_pks)
 
         queryset = queryset.filter(
             query
-        ).distinct('id')
+        ).distinct('pk')
 
         return queryset
 
@@ -70,9 +59,7 @@ class SearchBarView(ListView):
         context = super().get_context_data(*args, **kwargs)
         context['search'] = self.request.GET.get('search', '')
 
-        navigation_view = NavigationBarView()
-        navigation_bar_context = navigation_view.get_context_data()
-
-        context.update(navigation_bar_context)
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
 
         return context

@@ -3,7 +3,7 @@
 {% block page_content %}
     <h1>Thank you for your purchase, {{ customer_full_name }}!</h1>
     <h2>Order Confirmation:</h2>
-    <h4>Your order id: #{{ order_id }} has been successfully placed.</h4>
+    <h4>Your order id: #{{ order_pk }} has been successfully placed.</h4>
     <h2> Order Details:</h2>
     {% for jewelry, details in jewelries_by_quantities.items %}
         <li>
@@ -14,7 +14,7 @@
                 </li>
         {{ details.jewelry_total_price }}
         <li>
-            <a href="{% url 'display_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
+            <a href="{% url 'display_jewelry_details' jewelry.pk %}?page={{ page_obj.number }}">
                 <button>JEWELRY DETAILS</button>
             </a>
         </li>

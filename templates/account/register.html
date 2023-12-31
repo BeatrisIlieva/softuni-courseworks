@@ -1,10 +1,14 @@
-<form
-        action="{% url 'register_user' %}"
-        method="post">
-    {{ form.as_p }}
-
-    <div>
-        <button>Register</button>
-    </div>
-    {% csrf_token %}
-</form>
+{% extends 'base/base.html' %}
+{% load custom_filters %}
+{% load static %}
+{% block page_content %}
+    <form
+            action="{% url 'register_user' %}"
+            method="post">
+        {{ form.as_p }}
+        <div>
+            <button>Register</button>
+        </div>
+        {% csrf_token %}
+    </form>
+{% endblock %}

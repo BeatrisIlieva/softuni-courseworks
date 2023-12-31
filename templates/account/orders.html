@@ -2,8 +2,8 @@
 {% load static %}
 {% block page_content %}
     <h1>My orders</h1>
-    {% for order_id, details in order_details.items %}
-        <h2>Order ID: {{ order_id }}</h2>
+    {% for order_pk, details in order_details.items %}
+        <h2>Order ID: {{ order_pk }}</h2>
         <p>Status: {{ details.status }}</p>
 
         <h3>Order Products:</h3>
@@ -12,7 +12,7 @@
                 <li>
                     <img width="100" height="100" src="{{ product.jewelry.first_image_url }}" alt="image1">
                 </li>
-                <a href="{% url 'display_jewelry_details' product.jewelry.id %}?page={{ page_obj.number }}">
+                <a href="{% url 'display_jewelry_details' product.jewelry.pk %}?page={{ page_obj.number }}">
                     <button>JEWELRY DETAILS</button>
                 </a>
                 {#            <li>Jewelry: {{ product.jewelry }}</li>#}
