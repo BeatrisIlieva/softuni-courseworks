@@ -31,24 +31,23 @@ from e_commerce_website.jewelry.models import (
 categories = Category.objects.all()
 sizes = Size.objects.all()
 
-def get_related_choices(objects, field_name):
-    choices = list(OrderedDict(
-        (getattr(obj, field_name), getattr(obj, f"get_{field_name}_display")())
-        for obj in objects
-    ).items())
+def get_related_objects(main_model, related_model, related_field, related_objects, select_related=False):
+    query = related_model.objects
 
-    return choices
+    if select_related:
+        query = query.select_related(related_field)
+    else:
+        query = query.prefetch_related(related_field)
 
+    related_objects = query.filter(**{f'{related_field}__in': related_objects})
 
-print(get_related_choices(sizes, 'measurement'))
+    return related_objects
 
-def get_related_choices(objects, field_name):
-    choices = list(OrderedDict(
-        (getattr(obj, field_name), getattr(obj, f"get_{field_name}_display")())
-        for obj in objects
-    ).items())
+print(get_related_objects())
 
-    return choices
+def get_related_category_objects(jewelries):
+    categories = Category.objects. \
+        prefetch_related('jewelry_category'). \
+        filter(jewelry_category__in=jewelries)
 
-
-print(get_related_choices(categories, 'title'))
+    return categories

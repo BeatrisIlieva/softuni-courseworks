@@ -63,6 +63,15 @@ def display_jewelries_after_selection(selection_form, jewelries):
     return jewelries_count_by_category, jewelries_count_by_metal, jewelries_count_by_stone_type, jewelries_count_by_stone_color, jewelries_count_by_price
 
 
+def get_related_choices(objects, field_name):
+    choices = list(OrderedDict(
+        (getattr(obj, field_name), getattr(obj, f"get_{field_name}_display")())
+        for obj in objects
+    ).items())
+
+    return choices
+
+
 def show_available_prices(jewelries):
     all_price_choices = Jewelry.PriceChoices.choices
 
@@ -103,24 +112,6 @@ def get_related_category_objects(jewelries):
     return categories
 
 
-def get_related_choices(objects, field_name):
-    choices = list(OrderedDict(
-        (getattr(obj, field_name), getattr(obj, f"get_{field_name}_display")())
-        for obj in objects
-    ).items())
-
-    return choices
-
-
-# def get_related_choices(categories):
-#     category_choices = list(OrderedDict(
-#         (category.title, category.get_title_display())
-#         for category in categories
-#     ).items())
-#
-#     return category_choices
-
-
 def get_category_pks(selection_pattern_categories):
     category_titles = Category.objects. \
         filter(title__in=selection_pattern_categories)
@@ -136,15 +127,6 @@ def get_related_metal_objects(jewelries):
         filter(jewelry__in=jewelries)
 
     return metals
-
-
-# def get_related_choices(metals):
-#     metal_choices = list(OrderedDict(
-#         (metal.title, metal.get_title_display())
-#         for metal in metals
-#     ).items())
-# 
-#     return metal_choices
 
 
 def get_metal_pks(selection_pattern_metals):
@@ -164,14 +146,6 @@ def get_related_stone_type_objects(jewelries):
     return stone_types
 
 
-# def get_related_choices(stone_types):
-#     stone_type_choices = list(OrderedDict(
-#         (stone_type.title, stone_type.get_title_display()) for stone_type in stone_types
-#     ).items())
-# 
-#     return stone_type_choices
-
-
 def get_stone_type_pks(selection_pattern_stone_types):
     stone_type_titles = StoneType.objects. \
         filter(title__in=selection_pattern_stone_types)
@@ -189,14 +163,6 @@ def get_related_stone_color_objects(jewelries):
     return stone_colors
 
 
-# def get_related_choices(stone_colors):
-#     stone_color_choices = list(OrderedDict(
-#         (color.title, color.get_title_display()) for color in stone_colors
-#     ).items())
-# 
-#     return stone_color_choices
-
-
 def get_stone_color_pks(selection_pattern_stone_colors):
     stone_color_titles = StoneColor.objects. \
         filter(title__in=selection_pattern_stone_colors)
@@ -212,14 +178,6 @@ def get_related_size_objects(jewelry):
         .filter(sizes__jewelry__exact=jewelry)
 
     return sizes
-
-
-# def get_related_choices(sizes):
-#     size_choices = list(OrderedDict(
-#         (size.measurement, size.get_measurement_display()) for size in sizes
-#     ).items())
-#
-#     return size_choices
 
 
 def define_jewelries_count_by_selected_category(jewelries, categories):
