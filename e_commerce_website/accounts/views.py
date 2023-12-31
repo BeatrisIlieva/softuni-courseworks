@@ -70,9 +70,11 @@ class UserOrdersView(TemplateView):
         orders = Order.objects.filter(user_id=user_pk)
 
         for order in orders:
+            total_order_price = 0
             order_details[order.pk] = {
                 'status': order.get_status_display(),
-                'order_products': []
+                'order_products': [],
+                'total_order_price': 0
             }
 
             order_products = OrderProducts.objects.filter(order_id=order.pk)
@@ -82,15 +84,18 @@ class UserOrdersView(TemplateView):
                 quantity = order_product.quantity
                 price = jewelry.price
                 total_price_per_jewelry = price * quantity
-                total_order_price = order_product.total_price
+                # total_order_price = order_product.total_price
 
                 order_details[order.pk]['order_products'].append({
                     'jewelry': jewelry,
                     'price': price,
                     'quantity': quantity,
                     'total_price': total_price_per_jewelry,
-                    'total_order_price': total_order_price,
+
                 })
+                total_order_price += total_price_per_jewelry
+
+            order_details[order.pk]['total_order_price'] = total_order_price
 
         context['order_details'] = order_details
 

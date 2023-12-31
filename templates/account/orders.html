@@ -19,9 +19,10 @@
                 <li>Price: {{ product.price }}</li>
                 <li>Quantity: {{ product.quantity }}</li>
                 <li>Total Price per Jewelry: {{ product.total_price }}</li>
-                <li>Total Order Price: {{ product.total_order_price }}</li>
+
                 <hr>
             {% endfor %}
+        <li>Total Order Price: {{ details.total_order_price }}</li>
         </ul>
     {% endfor %}
 {% endblock %}

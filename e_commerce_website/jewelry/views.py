@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.views.generic import TemplateView, DetailView
+from django.db.models import Q
+from django.views.generic import TemplateView, DetailView, ListView
 
 from e_commerce_website.common.views import NavigationBarView
 from e_commerce_website.jewelry.category_funcs import get_related_category_objects, get_related_category_choices, \
@@ -71,52 +72,58 @@ def display_jewelries_after_selection(selection_form, jewelries):
     return jewelries_count_by_category, jewelries_count_by_metal, jewelries_count_by_stone_type, jewelries_count_by_stone_color, jewelries_count_by_price
 
 
-class DisplayJewelriesView(TemplateView):
-    template_name = None
-    items_per_page = 6
+class DisplayJewelriesView(ListView):
+    model = Jewelry
+    context_object_name = 'jewelries'
+    paginate_by = 6
+    choice_id = None
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_queryset(self):
+        jewelries = super().get_queryset()
 
-        jewelries = None
-        choice_id = None
+        query = Q()
 
-        if 'category_id' in kwargs:
+        if 'category_id' in self.kwargs:
             category_id = self.kwargs.get('category_id')
-            choice_id = category_id
-            self.template_name = 'jewelry/display_jewelries_by_category.html'
+            self.choice_id = category_id
+            query |= Q(category=category_id, sold_out=False)
 
-            jewelries = Jewelry.objects. \
-                filter(category=category_id, sold_out=False).\
-                distinct('id')
-
-        if 'metal_id' in kwargs:
+        elif 'metal_id' in self.kwargs:
             metal_id = self.kwargs.get('metal_id')
-            print(metal_id)
-            choice_id = metal_id
-            self.template_name = 'jewelry/display_jewelries_by_metal.html'
+            self.choice_id = metal_id
+            query |= Q(metals__exact=metal_id, sold_out=False)
 
-            jewelries = Jewelry.objects. \
-                filter(metals__exact=metal_id, sold_out=False).\
-                distinct('id')
-
-        if 'stone_type_id' in kwargs:
+        elif 'stone_type_id' in self.kwargs:
             stone_type_id = self.kwargs.get('stone_type_id')
-            choice_id = stone_type_id
-            self.template_name = 'jewelry/display_jewelries_by_stone_type.html'
+            self.choice_id = stone_type_id
+            query |= Q(stone_types__exact=stone_type_id, sold_out=False)
 
-            jewelries = Jewelry.objects. \
-                filter(stone_types__exact=stone_type_id, sold_out=False). \
-                distinct('id')
-
-        if 'stone_color_id' in kwargs:
+        elif 'stone_color_id' in self.kwargs:
             stone_color_id = self.kwargs.get('stone_color_id')
-            choice_id = stone_color_id
-            self.template_name = 'jewelry/display_jewelries_by_stone_color.html'
+            self.choice_id = stone_color_id
+            query |= Q(stone_colors__exact=stone_color_id, sold_out=False)
 
-            jewelries = Jewelry.objects. \
-                filter(stone_colors__exact=stone_color_id, sold_out=False). \
-                distinct('id')
+        jewelries = jewelries.filter(
+            query
+        ).distinct('id')
+
+        return jewelries
+
+    def get_template_names(self):
+        if 'category_id' in self.kwargs:
+            return ['jewelry/display_jewelries_by_category.html']
+        elif 'metal_id' in self.kwargs:
+            return ['jewelry/display_jewelries_by_metal.html']
+        elif 'stone_type_id' in self.kwargs:
+            return ['jewelry/display_jewelries_by_stone_type.html']
+        elif 'stone_color_id' in self.kwargs:
+            return 'jewelry/display_jewelries_by_stone_color.html'
+        else:
+            return super().get_template_names()
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        jewelries = self.get_queryset()
 
         selection_form = JewelryForm(self.request.GET)
 
@@ -211,7 +218,7 @@ class DisplayJewelriesView(TemplateView):
                 jewelries_count_by_category, jewelries_count_by_metal, jewelries_count_by_stone_type, jewelries_count_by_stone_color, jewelries_count_by_price = \
                     display_jewelries_after_selection(selection_form, jewelries)
 
-            paginator = Paginator(jewelries, self.items_per_page)
+            paginator = Paginator(jewelries, self.paginate_by)
             page = self.request.GET.get('page')
 
             try:
@@ -225,7 +232,7 @@ class DisplayJewelriesView(TemplateView):
 
             context['jewelries'] = jewelries_paginated
             context['paginator'] = paginator
-            context['choice_id'] = choice_id
+            context['choice_id'] = self.choice_id
             context['form'] = selection_form
             context['jewelries_count_by_category'] = jewelries_count_by_category
             context['jewelries_count_by_stone_type'] = jewelries_count_by_stone_type
