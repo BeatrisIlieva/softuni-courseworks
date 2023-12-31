@@ -12,7 +12,7 @@ urlpatterns = (
             path('', UserDetailsView.as_view(), name='details_user'),
             path('update/', UserUpdateView.as_view(), name='update_user'),
             path('delete/', UserDeleteView.as_view(), name='delete_user'),
-            path('my_orders/', UserOrdersView.as_view(), name='my_orders')
+            path('my-orders/', UserOrdersView.as_view(), name='my_orders')
         ]
     ))
 )
