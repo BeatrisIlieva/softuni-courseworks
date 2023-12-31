@@ -84,7 +84,11 @@ def display_jewelries_after_selection(selection_form, jewelries):
         price_choices=price_choices,
     )
 
-    return jewelries_count_by_category, jewelries_count_by_metal, jewelries_count_by_stone_type, jewelries_count_by_stone_color, jewelries_count_by_price
+    return jewelries_count_by_category, \
+        jewelries_count_by_metal, \
+        jewelries_count_by_stone_type, \
+        jewelries_count_by_stone_color, \
+        jewelries_count_by_price
 
 
 def get_related_choices(objects, field_name):
