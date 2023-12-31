@@ -18,26 +18,32 @@ def get_objects_pks(objects):
 
 def update_selection_forms(selection_form, **kwargs):
     if 'category_choices' in kwargs:
+
         selection_form.fields['category_choices']. \
             choices = kwargs['category_choices']
 
     if 'price_choices' in kwargs:
+
         selection_form.fields['price_choices']. \
             choices = kwargs['price_choices']
 
     if 'metal_choices' in kwargs:
+
         selection_form.fields['metal_choices']. \
             choices = kwargs['metal_choices']
 
     if 'stone_type_choices' in kwargs:
+
         selection_form.fields['stone_type_choices']. \
             choices = kwargs['stone_type_choices']
 
     if 'stone_color_choices' in kwargs:
+
         selection_form.fields['stone_color_choices']. \
             choices = kwargs['stone_color_choices']
 
     if 'size_choices' in kwargs:
+
         selection_form.fields['size_choices']. \
             choices = kwargs['size_choices']
 
@@ -292,6 +298,7 @@ def define_jewelries_count_by_selected_price(jewelries):
 
         if display not in jewelries_count_by_price.keys():
             jewelries_count_by_price[display] = count
+
         else:
             jewelries_count_by_price[display] += count
 
