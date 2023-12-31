@@ -31,23 +31,3 @@ from e_commerce_website.jewelry.models import (
 categories = Category.objects.all()
 sizes = Size.objects.all()
 
-def get_related_objects(main_model, related_model, related_field, related_objects, select_related=False):
-    query = related_model.objects
-
-    if select_related:
-        query = query.select_related(related_field)
-    else:
-        query = query.prefetch_related(related_field)
-
-    related_objects = query.filter(**{f'{related_field}__in': related_objects})
-
-    return related_objects
-
-print(get_related_objects())
-
-def get_related_category_objects(jewelries):
-    categories = Category.objects. \
-        prefetch_related('jewelry_category'). \
-        filter(jewelry_category__in=jewelries)
-
-    return categories
