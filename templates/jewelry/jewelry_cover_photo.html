@@ -1,0 +1,11 @@
+<div class="separator-line">
+    <div class="image-container">
+        <div>
+            {% for jewelry in jewelries %}
+                <a href="{% url 'show_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
+                    <img width="450" height="450" src="{{ jewelry.first_image_url }}" alt="image1">
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

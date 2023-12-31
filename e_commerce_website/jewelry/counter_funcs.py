@@ -4,6 +4,18 @@ from django.db.models import Q
 
 from e_commerce_website.jewelry.models import Jewelry
 
+
+def define_jewelries_count_before_selected_category(jewelries, categories):
+    jewelries_count_by_category = {}
+    for category in categories:
+        jewelries_count_by_category[category.get_title_display()] = jewelries. \
+            select_related('category'). \
+            filter(category_id=category.id). \
+            count()
+
+    return jewelries_count_by_category
+
+
 def define_jewelries_count_before_selected_metal(jewelries, metals):
     jewelries_count_by_metal = {}
     for metal in metals:

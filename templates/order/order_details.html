@@ -7,7 +7,7 @@
     <h2> Order Details:</h2>
     {% for jewelry, details in jewelries_by_quantities.items %}
         <li>
-            <img width="50" height="50" src="{{ jewelry.first_image_url }}" alt="image1">
+            <img width="100" height="100" src="{{ jewelry.first_image_url }}" alt="image1">
         </li>
         {{ details.quantity }}
         <li>

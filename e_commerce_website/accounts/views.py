@@ -56,6 +56,7 @@ class UserUpdateView(UpdateView):
         context['form'] = self.get_form()
         return context
 
+
 class UserOrdersView(TemplateView):
     template_name = 'account/orders.html'
 
@@ -91,47 +92,9 @@ class UserOrdersView(TemplateView):
                     'total_order_price': total_order_price,
                 })
 
-        context['order_details'] = order_details  # Pass order_details to context
+        context['order_details'] = order_details
 
         return context
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #
-    #     user_pk = self.request.user.pk
-    #
-    #     order_details = {}
-    #
-    #     orders = Order.objects.filter(user_id=user_pk)
-    #
-    #     for order in orders:
-    #
-    #         order_details[order.pk] = {'status': order.get_status_display()}
-    #
-    #         order_products = OrderProducts.objects.filter(order_id=order.pk)
-    #
-    #         for order_product in order_products:
-    #             jewelry = Jewelry.objects.get(pk=order_product.jewelry_id)
-    #             quantity = order_product.quantity
-    #             price = jewelry.price
-    #             total_price_per_jewelry = price * quantity
-    #             total_order_price = order_product.total_price
-    #             order_details[order.pk].update(
-    #                 {
-    #                     'jewelry': jewelry,
-    #                     'price': price,
-    #                     'quantity': quantity,
-    #                     'total_price': total_price_per_jewelry,
-    #                     'total_order_price': total_order_price,
-    #                 }
-    #             )
-    #
-    #             order_details.update(order_details)
-    #
-    #     context[order_details] = order_details
-    #
-    #     return context
-
 
 
 class UserDeleteView(DeleteView):

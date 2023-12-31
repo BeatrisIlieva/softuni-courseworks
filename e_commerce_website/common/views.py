@@ -21,14 +21,25 @@ class NavigationBarView(TemplateView):
             categories_by_choices[category] = categories_choices[index]
             index += 1
 
-        metals = Metal.TitleChoices.choices
+        # metals = Metal.TitleChoices.choices
+
+        metals = Metal.objects.all()
+        metals_choices = [x[1] for x in Metal.TitleChoices.choices]
+
+        metals_by_choices = {}
+
+        index = 0
+
+        for metal in metals:
+            metals_by_choices[metal] = metals_choices[index]
+            index += 1
 
         stones = StoneType.TitleChoices.choices
 
         colors = StoneColor.TitleChoices.choices
 
         context['categories_by_choices'] = categories_by_choices
-        context['metals'] = metals
+        context['metals_by_choices'] = metals_by_choices
         context['stones'] = stones
         context['colors'] = colors
 

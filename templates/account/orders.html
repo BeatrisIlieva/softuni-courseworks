@@ -2,20 +2,26 @@
 {% load static %}
 {% block page_content %}
     <h1>My orders</h1>
-{% for order_id, details in order_details.items %}
-    <h2>Order ID: {{ order_id }}</h2>
-    <p>Status: {{ details.status }}</p>
+    {% for order_id, details in order_details.items %}
+        <h2>Order ID: {{ order_id }}</h2>
+        <p>Status: {{ details.status }}</p>
 
-    <h3>Order Products:</h3>
-    <ul>
-        {% for product in details.order_products %}
-            <li>Jewelry: {{ product.jewelry }}</li>
-            <li>Price: {{ product.price }}</li>
-            <li>Quantity: {{ product.quantity }}</li>
-            <li>Total Price per Jewelry: {{ product.total_price }}</li>
-            <li>Total Order Price: {{ product.total_order_price }}</li>
-            <hr>
-        {% endfor %}
-    </ul>
-{% endfor %}
+        <h3>Order Products:</h3>
+        <ul>
+            {% for product in details.order_products %}
+                <li>
+                    <img width="100" height="100" src="{{ product.jewelry.first_image_url }}" alt="image1">
+                </li>
+                <a href="{% url 'show_jewelry_details' product.jewelry.id %}?page={{ page_obj.number }}">
+                    <button>JEWELRY DETAILS</button>
+                </a>
+                {#            <li>Jewelry: {{ product.jewelry }}</li>#}
+                <li>Price: {{ product.price }}</li>
+                <li>Quantity: {{ product.quantity }}</li>
+                <li>Total Price per Jewelry: {{ product.total_price }}</li>
+                <li>Total Order Price: {{ product.total_order_price }}</li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% endfor %}
 {% endblock %}

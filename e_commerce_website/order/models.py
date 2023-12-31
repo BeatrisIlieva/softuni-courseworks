@@ -12,16 +12,16 @@ class Order(models.Model):
         CO = "CO", _("Completed")
         CA = "CA", _("Cancelled")
 
-    user = models.ForeignKey(
-        to=AccountUser,
-        on_delete=models.CASCADE
-    )
-
     max_choice_length = calculate_max_choices_length(StatusChoices)
 
     status = models.CharField(
         max_length=max_choice_length,
         choices=StatusChoices.choices,
+    )
+
+    user = models.ForeignKey(
+        to=AccountUser,
+        on_delete=models.CASCADE
     )
 
 
@@ -43,19 +43,3 @@ class OrderProducts(models.Model):
         max_digits=10,
         decimal_places=2,
     )
-
-
-# class AccountOrders(models.Model):
-#     order_id = models.ForeignKey(
-#         to=Order,
-#         on_delete=models.CASCADE,
-#     )
-#
-#     jewelries = models.ForeignKey(
-#         to=Jewelry,
-#         on_delete=models.CASCADE,
-#     )
-#
-#     quantity = models.IntegerField()
-
-

@@ -53,11 +53,7 @@ class CompleteTransactionView(TemplateView, FormMixin):
         else:
             context = self.get_context_data()
 
-            return render(
-                request,
-                self.template_name,
-                context
-            )
+            return render(request, self.template_name, context)
 
 
 class OrderDetails(TemplateView):
@@ -68,7 +64,9 @@ class OrderDetails(TemplateView):
 
         user_pk = self.request.user.pk
 
-        jewelries_pks = ShoppingCart.objects.filter(user_id=user_pk).values_list('jewelry_id', flat=True)
+        jewelries_pks = ShoppingCart.objects.\
+            filter(user_id=user_pk).\
+            values_list('jewelry_id', flat=True)
 
         jewelries_by_quantities = {}
 
@@ -82,10 +80,6 @@ class OrderDetails(TemplateView):
             }
 
         customer_full_name = AccountProfile.objects.get(pk=user_pk).full_name
-
-        jewelries_pks = ShoppingCart.objects.filter(user_id=user_pk).values_list('jewelry_id', flat=True)
-
-        jewelries_objects = Jewelry.objects.filter(id__in=jewelries_pks)
 
         total_price = ShoppingCart.objects.filter(user_id=user_pk).annotate(
             total=ExpressionWrapper(F('jewelry__price') * F('quantity'), output_field=DecimalField())

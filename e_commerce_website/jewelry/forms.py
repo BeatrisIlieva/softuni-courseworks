@@ -1,9 +1,10 @@
 from django import forms
-from e_commerce_website.jewelry.models import Metal, StoneType, StoneColor, Jewelry, Size
+from e_commerce_website.jewelry.models import Metal, StoneType, StoneColor, Jewelry, Size, Category
 
 
 class JewelryForm(forms.Form):
     PRICE_CHOICES = Jewelry.PriceChoices.choices
+    CATEGORY_CHOICES = Category.TitleChoices.choices
     METAL_CHOICES = Metal.TitleChoices.choices
     STONE_TYPES_CHOICES = StoneType.TitleChoices.choices
     STONE_COLOR_CHOICES = StoneColor.TitleChoices.choices
@@ -13,6 +14,12 @@ class JewelryForm(forms.Form):
         required=False,
         widget=forms.CheckboxSelectMultiple,
 
+    )
+
+    category_choices = forms.MultipleChoiceField(
+        choices=CATEGORY_CHOICES,
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
     )
 
     metal_choices = forms.MultipleChoiceField(
