@@ -52,11 +52,11 @@ class GoldCaratWeight(models.Model):
 
 class StoneType(models.Model):
     class TitleChoices(models.TextChoices):
-        BLACK_SPINEL = "BS", _("Black Spinel") # 0
-        DIAMOND = "DI", _("Diamond") # 1
-        EMERALD = "EM", _("Emerald") # 2
-        RUBY = "RU", _("Ruby") # 3
-        SAPPHIRE = "SA", _("Sapphire") # 4
+        BLACK_SPINEL = "BS", _("Black Spinel")
+        DIAMOND = "DI", _("Diamond")
+        EMERALD = "EM", _("Emerald")
+        RUBY = "RU", _("Ruby")
+        SAPPHIRE = "SA", _("Sapphire")
 
     max_choice_length = calculate_max_choices_length(TitleChoices)
 
