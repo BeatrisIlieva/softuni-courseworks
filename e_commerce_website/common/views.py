@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView
 
+from e_commerce_website.common.utils import get_objects_by_choices
 from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor, Jewelry
 
 
@@ -10,38 +11,18 @@ class NavigationBarView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        categories = Category.objects.all()
-        categories_choices = [x[1] for x in Category.TitleChoices.choices]
+        categories_by_choices = get_objects_by_choices(Category)
 
-        categories_by_choices = {}
+        metals_by_choices = get_objects_by_choices(Metal)
 
-        index = 0
+        stone_types_by_choices = get_objects_by_choices(StoneType)
 
-        for category in categories:
-            categories_by_choices[category] = categories_choices[index]
-            index += 1
-
-        # metals = Metal.TitleChoices.choices
-
-        metals = Metal.objects.all()
-        metals_choices = [x[1] for x in Metal.TitleChoices.choices]
-
-        metals_by_choices = {}
-
-        index = 0
-
-        for metal in metals:
-            metals_by_choices[metal] = metals_choices[index]
-            index += 1
-
-        stones = StoneType.TitleChoices.choices
-
-        colors = StoneColor.TitleChoices.choices
+        stone_colors_by_choices = get_objects_by_choices(StoneColor)
 
         context['categories_by_choices'] = categories_by_choices
         context['metals_by_choices'] = metals_by_choices
-        context['stones'] = stones
-        context['colors'] = colors
+        context['stone_types_by_choices'] = stone_types_by_choices
+        context['stone_colors_by_choices'] = stone_colors_by_choices
 
         return context
 

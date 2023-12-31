@@ -36,11 +36,7 @@ jewelries = Jewelry.objects.all()
 stone_types = StoneType.objects.all()
 stone_colors = StoneColor.objects.all()
 
-jewelries_count_by_category = {}
-for category in categories:
-    jewelries_count_by_category[category.get_title_display()] = jewelries. \
-        select_related('category'). \
-        filter(category_id=category.id). \
-        count()
-
-print(jewelries_count_by_category)
+curjewelries = Jewelry.objects. \
+    filter(metals__exact=2, sold_out=False). \
+    distinct('id')
+print(curjewelries)

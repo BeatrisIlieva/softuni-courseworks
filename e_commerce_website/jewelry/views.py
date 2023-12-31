@@ -90,29 +90,32 @@ class DisplayJewelriesView(TemplateView):
                 filter(category=category_id, sold_out=False).\
                 distinct('id')
 
-        elif 'metal_id' in kwargs:
+        if 'metal_id' in kwargs:
             metal_id = self.kwargs.get('metal_id')
+            print(metal_id)
             choice_id = metal_id
             self.template_name = 'jewelry/display_jewelries_by_metal.html'
 
             jewelries = Jewelry.objects. \
-                filter(metals__metals=metal_id, sold_out=False).\
+                filter(metals__exact=metal_id, sold_out=False).\
                 distinct('id')
 
-        elif 'stone_type_id' in kwargs:
+        if 'stone_type_id' in kwargs:
             stone_type_id = self.kwargs.get('stone_type_id')
             choice_id = stone_type_id
+            self.template_name = 'jewelry/display_jewelries_by_stone_type.html'
 
             jewelries = Jewelry.objects. \
-                filter(stone_types__stone_types=stone_type_id, sold_out=False). \
+                filter(stone_types__exact=stone_type_id, sold_out=False). \
                 distinct('id')
 
-        elif 'stone_color_id' in kwargs:
+        if 'stone_color_id' in kwargs:
             stone_color_id = self.kwargs.get('stone_color_id')
             choice_id = stone_color_id
+            self.template_name = 'jewelry/display_jewelries_by_stone_color.html'
 
             jewelries = Jewelry.objects. \
-                filter(stone_colors__stone_colors=stone_color_id, sold_out=False). \
+                filter(stone_colors__exact=stone_color_id, sold_out=False). \
                 distinct('id')
 
         selection_form = JewelryForm(self.request.GET)

@@ -25,16 +25,16 @@
             <li>
                 <p>BY GEMSTONE</p>
                 <ul class="submenu">
-                    {% for stone in stones %}
-                        <a href="#">{{ stone.1 }}</a>
+                    {% for stone_type, title in stone_types_by_choices.items %}
+                        <a href="{% url 'display_jewelries_by_stone_type' stone_type_id=stone_type.id %}">{{ title }}</a>
                     {% endfor %}
                 </ul>
             </li>
             <li>
                 <p>BY COLOR</p>
                 <ul class="submenu">
-                    {% for color in colors %}
-                        <a href="#">{{ color.1 }}</a>
+                    {% for stone_color, title in stone_colors_by_choices.items %}
+                        <a href="{%  url 'display_jewelries_by_stone_color' stone_color_id=stone_color.id %}">{{ title }}</a>
                     {% endfor %}
                 </ul>
             </li>

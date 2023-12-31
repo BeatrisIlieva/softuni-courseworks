@@ -2,6 +2,21 @@ from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
 
 
+def get_objects_by_choices(model_name):
+    objects = model_name.objects.all()
+
+    object_choices = [x[1] for x in model_name.TitleChoices.choices]
+
+    object_by_choices = {}
+
+    index = 0
+
+    for obj in objects:
+        object_by_choices[obj] = object_choices[index]
+        index += 1
+
+    return object_by_choices
+
 @deconstructible #in order to be used for models as well not only forms
 class ValueInRangeValidator:
     def __init__(self, min_value, max_value):
