@@ -275,9 +275,21 @@ def define_jewelries_count_by_selected_price(jewelries):
     all_price_choices = Jewelry.PriceChoices.choices
 
     for value, display in all_price_choices:
-        min_price, max_price = float(value.split(',')[0]), float(value.split(',')[1])
-        decimal_min_price, decimal_max_price = (Decimal(min_price), Decimal(max_price))
-        count = jewelries.filter(Q(price__gte=decimal_min_price) & Q(price__lte=decimal_max_price)).count()
+        min_price, max_price = float(
+            value.split(',')[0]), \
+            float(value.split(',')[1]
+                  )
+
+        decimal_min_price, decimal_max_price = (
+            Decimal(min_price),
+            Decimal(max_price)
+        )
+
+        count = jewelries.filter(
+            Q(price__gte=decimal_min_price) &
+            Q(price__lte=decimal_max_price)
+        ).count()
+
         if display not in jewelries_count_by_price.keys():
             jewelries_count_by_price[display] = count
         else:
