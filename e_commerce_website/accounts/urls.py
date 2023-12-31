@@ -48,5 +48,6 @@ urlpatterns = (
                     name='my_orders'
                 ),
             ]
-        ))
+        )
+    )
 )
