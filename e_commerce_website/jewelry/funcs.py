@@ -117,7 +117,8 @@ def get_related_choices(objects, field_name):
 def show_available_prices(jewelries):
     all_price_choices = Jewelry.PriceChoices.choices
 
-    jewelries_prices = jewelries.values_list('price', flat=True). \
+    jewelries_prices = jewelries.\
+        values_list('price', flat=True). \
         distinct(). \
         order_by('price')
 
@@ -140,8 +141,11 @@ def get_query_price(selection_pattern_price):
 
     for price in selection_pattern_price:
         min_price, max_price = map(float, price.split(','))
-        decimal_min_price, decimal_max_price = (Decimal(min_price), Decimal(max_price))
-        query_price |= Q(price__gte=decimal_min_price) & Q(price__lte=decimal_max_price)
+        decimal_min_price, decimal_max_price = (
+            Decimal(min_price), Decimal(max_price)
+        )
+        query_price |= Q(price__gte=decimal_min_price) & \
+                       Q(price__lte=decimal_max_price)
 
     return query_price
 
