@@ -17,7 +17,24 @@ def get_objects_by_choices(model_name):
 
     return object_by_choices
 
-@deconstructible #in order to be used for models as well not only forms
+
+def get_object_pks(model_name, search):
+    objects = model_name.objects.all()
+
+    options = [(obj.title, obj.get_title_display()) for obj in objects if
+               search in obj.get_title_display().lower() or search in obj.get_title_display()]
+
+    valid_options = [o[0] for o in options]
+
+    obj_titles = model_name.objects. \
+        filter(title__in=valid_options)
+
+    obj_ids = [o.pk for o in obj_titles]
+
+    return obj_ids
+
+
+@deconstructible  # in order to be used for models as well not only forms
 class ValueInRangeValidator:
     def __init__(self, min_value, max_value):
         self.min_value = min_value
@@ -30,9 +47,9 @@ class ValueInRangeValidator:
                 code='invalid',
             )
 
-    def __eq__(self, other): #in order to be used for models as well not only forms
+    def __eq__(self, other):  # in order to be used for models as well not only forms
         return (
-            isinstance(other, self.__class__)
-            and self.min_value == len(other.min_value)
-            and self.max_value == len(other.max_value)
+                isinstance(other, self.__class__)
+                and self.min_value == len(other.min_value)
+                and self.max_value == len(other.max_value)
         )

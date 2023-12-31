@@ -7,7 +7,7 @@
             <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
         </li>
         <li>
-            <a href="{% url 'show_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
+            <a href="{% url 'display_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
                 <button>JEWELRY DETAILS</button>
             </a>
         </li>

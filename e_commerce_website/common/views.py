@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.views.generic import TemplateView, ListView
 
-from e_commerce_website.common.utils import get_objects_by_choices
+from e_commerce_website.common.utils import get_objects_by_choices, get_object_pks
 from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor, Jewelry
 
 
@@ -28,7 +28,7 @@ class NavigationBarView(TemplateView):
 
 
 class SearchBarView(ListView):
-    template_name = 'common/index-page.html'
+    template_name = 'common/search_results.html'
     model = Jewelry
     paginate_by = 6
 
@@ -39,62 +39,22 @@ class SearchBarView(ListView):
 
         query = Q()
 
-        categories = Category.objects.all()
-
-        options = [(category.title, category.get_title_display()) for category in categories if
-                   search in category.get_title_display().lower() or search in category.get_title_display()]
-
-        valid_options = [o[0] for o in options]
-
-        category_titles = Category.objects. \
-            filter(title__in=valid_options)
-
-        category_ids = [c.id for c in category_titles]
+        category_ids = get_object_pks(Category, search)
 
         if category_ids:
             query |= Q(category_id__in=category_ids)
 
-        metals = Metal.objects.all()
-
-        options = [(metal.title, metal.get_title_display()) for metal in metals if
-                   search in metal.get_title_display().lower() or search in metal.get_title_display()]
-
-        valid_options = [o[0] for o in options]
-
-        metal_titles = Metal.objects. \
-            filter(title__in=valid_options)
-
-        metal_ids = [m.id for m in metal_titles]
+        metal_ids = get_object_pks(Metal, search)
 
         if metal_ids:
             query |= Q(jewelry_metals__metal_id__in=metal_ids)
 
-        stone_types = StoneType.objects.all()
-
-        options = [(stone_type.title, stone_type.get_title_display()) for stone_type in stone_types if
-                   search in stone_type.get_title_display().lower() or search in stone_type.get_title_display()]
-
-        valid_options = [o[0] for o in options]
-
-        stone_type_titles = StoneType.objects. \
-            filter(title__in=valid_options)
-
-        stone_type_ids = [s.id for s in stone_type_titles]
+        stone_type_ids = get_object_pks(StoneType, search)
 
         if stone_type_ids:
             query |= Q(jewelry_stones__stone_type_id__in=stone_type_ids)
 
-        stone_colors = StoneColor.objects.all()
-
-        options = [(stone_color.title, stone_color.get_title_display()) for stone_color in stone_colors if
-                   search in stone_color.get_title_display().lower() or search in stone_color.get_title_display()]
-
-        valid_options = [o[0] for o in options]
-
-        stone_color_titles = StoneColor.objects. \
-            filter(title__in=valid_options)
-
-        stone_color_ids = [s.id for s in stone_color_titles]
+        stone_color_ids = get_object_pks(StoneColor, search)
 
         if stone_color_ids:
             query |= Q(jewelry_stones__stone_color_id__in=stone_color_ids)

@@ -75,33 +75,12 @@
                             {% endif %}
                         </a>
                     </li>
-{#                    <li class="right-menu">#}
-{#                        <a href="{% url 'update_user' pk=request.user.pk %}">#}
-{#                                <i>Update Profile</i>#}
-{#                        </a>#}
-{#                    </li>#}
                 {% endif %}
             <li class="right-menu"><a href="{% url 'view_shopping_cart' %}">My Bag</a></li>
             <li class="right-menu"><a href="#">Like</a></li>
         </ul>
     </div>
 </nav>
-{% for jewelry in object_list %}
-    <a href="{% url 'show_jewelry_details' jewelry.id %}?page={{ page_obj.number }}">
-    <img width="450" height="450" src="{{ jewelry.first_image_url }}" alt="image1">
-{% endfor %}
-{% if is_paginated %}
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}">&lt;</a>
-    {% else %}
-        <a> &lt;</a>
-    {% endif %}
-    {{ page_obj.number }} / {{ paginator.num_pages }}
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}&search={{ search }}">&gt;</a>
-    {% else %}
-        <a> &gt;</a>
-    {% endif %}
-{% endif %}
+
 
 
