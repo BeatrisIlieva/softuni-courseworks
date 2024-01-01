@@ -43,7 +43,7 @@
     <div class="navbar-bottom">
         <ul class="menu">
             <li class="left-menu">
-                <form action="{% url 'search-bar' %}?page={{ page_obj.number }}">
+                <form action="{% url 'search_bar' %}?page={{ page_obj.number }}">
                     <input name="search" value="{{ search }}">
                     <button>Search</button>
                 </form>
@@ -69,7 +69,7 @@
                     <li class="right-menu">
                         <a href="{% url 'details_user' pk=request.user.pk %}">
                             {% if  request.user.accountprofile.first_name %}
-                                <i>{{ request.user.accountprofile.first_name }}</i>
+                                <i>{{ request.user.accountprofile.full_name }}</i>
                             {% else %}
                                 <i>Profile</i>
                             {% endif %}

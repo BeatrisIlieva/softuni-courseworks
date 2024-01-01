@@ -1,5 +1,6 @@
 from django.contrib.auth import login, get_user_model, logout
 from django.contrib.auth.views import LoginView
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -13,19 +14,17 @@ from e_commerce_website.order.models import Order, OrderProducts
 
 UserModel = get_user_model()
 
+class OnlyAnonymousMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponse(self.get_success_url())
+        return super().dispatch(request, *args, **kwargs)
 
 class RegisterUserView(NavigationBarMixin, CreateView):
     template_name = 'account/register.html'
     form_class = RegisterUserForm
-    success_url = reverse_lazy('index-page')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        nav_bar_context = self.get_nav_bar_context()
-        context.update(nav_bar_context)
-
-        return context
+    success_url = reverse_lazy('index_page')
 
     def form_valid(self, form):
         result = super().form_valid(form)
@@ -33,6 +32,21 @@ class RegisterUserView(NavigationBarMixin, CreateView):
         login(self.request, self.object)
 
         return result
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['next'] = self.request.GET.get('next', '')
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context
+
+    def get_success_url(self):
+        next_url = self.request.POST.get('next', '')  # Check the 'next' parameter in POST
+        return next_url if next_url else self.success_url
+
 
 
 class LoginUserView(NavigationBarMixin, LoginView):
@@ -134,7 +148,7 @@ class UserOrdersView(NavigationBarMixin, TemplateView):
 class UserDeleteView(NavigationBarMixin, DeleteView):
     template_name = 'account/delete.html'
     model = UserModel
-    success_url = reverse_lazy('index-page')
+    success_url = reverse_lazy('index_page')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

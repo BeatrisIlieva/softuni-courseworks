@@ -33,4 +33,4 @@ class AccountProfileForm(forms.ModelForm):
 
     class Meta:
         model = AccountProfile
-        fields = ('first_name', 'last_name', 'phone_number', 'country', 'city', 'delivery_address')
+        exclude = ('user',)

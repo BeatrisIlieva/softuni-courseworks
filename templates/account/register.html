@@ -6,6 +6,8 @@
             action="{% url 'register_user' %}"
             method="post">
         {{ form.as_p }}
+
+        <input type="hidden" value="{{ next }}" name="next"/>
         <div>
             <button>Register</button>
         </div>

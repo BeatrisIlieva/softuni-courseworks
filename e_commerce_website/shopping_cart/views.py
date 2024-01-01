@@ -2,6 +2,7 @@ from _decimal import Decimal
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import ExpressionWrapper, F, Sum, DecimalField
 from django.shortcuts import redirect, render
 from django.views import View
@@ -28,13 +29,13 @@ def add_quantity_to_inventory(jewelry, quantity, max_quantity):
 
 @login_required
 def add_to_shopping_cart(request, jewelry_pk):
-    customer_shopping_cart_pk = ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_pk)
+    customer_shopping_cart = ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_pk)
     jewelry = Jewelry.objects.get(pk=jewelry_pk)
     remove_quantity_from_inventory(jewelry, 1)
 
-    if customer_shopping_cart_pk:
+    if customer_shopping_cart:
 
-        cart_item = ShoppingCart.objects.get(jewelry_id=jewelry_pk)
+        cart_item = customer_shopping_cart.get(jewelry_id=jewelry_pk)
         quantity_as_int = cart_item.quantity
 
         if quantity_as_int:
@@ -50,7 +51,7 @@ def add_to_shopping_cart(request, jewelry_pk):
     return redirect('view_shopping_cart')
 
 
-class ShoppingCartView(View):
+class ShoppingCartView(LoginRequiredMixin, View):
     MAX_QUANTITIES = {}
     template_name = 'shopping_cart/shopping_cart.html'
 
@@ -64,7 +65,7 @@ class ShoppingCartView(View):
 
             for pk in jewelries_pks:
                 jewelry = Jewelry.objects.get(pk=pk)
-                quantity = ShoppingCart.objects.get(jewelry_id=pk).quantity
+                quantity = ShoppingCart.objects.get(user_id=user_pk, jewelry_id=pk).quantity
                 jewelry_total_price = jewelry.price * quantity
                 min_quantity = 0
                 max_quantity = quantity + jewelry.quantity
