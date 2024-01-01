@@ -21,34 +21,35 @@ class DisplayJewelriesView(NavigationBarMixin, ListView):
     context_object_name = 'jewelries'
     paginate_by = 6
     choice_pk = None
+    query = Q()
 
     def get_queryset(self):
         jewelries = super().get_queryset()
 
-        query = Q()
+        # query = Q()
 
         if 'category_pk' in self.kwargs:
             category_pk = self.kwargs.get('category_pk')
             self.choice_pk = category_pk
-            query |= Q(category=category_pk, sold_out=False)
+            self.query |= Q(category=category_pk, sold_out=False)
 
         elif 'metal_pk' in self.kwargs:
             metal_pk = self.kwargs.get('metal_pk')
             self.choice_pk = metal_pk
-            query |= Q(metals__exact=metal_pk, sold_out=False)
+            self.query |= Q(metals__exact=metal_pk, sold_out=False)
 
         elif 'stone_type_pk' in self.kwargs:
             stone_type_pk = self.kwargs.get('stone_type_pk')
             self.choice_pk = stone_type_pk
-            query |= Q(stone_types__exact=stone_type_pk, sold_out=False)
+            self.query |= Q(stone_types__exact=stone_type_pk, sold_out=False)
 
         elif 'stone_color_pk' in self.kwargs:
             stone_color_pk = self.kwargs.get('stone_color_pk')
             self.choice_pk = stone_color_pk
-            query |= Q(stone_colors__exact=stone_color_pk, sold_out=False)
+            self.query |= Q(stone_colors__exact=stone_color_pk, sold_out=False)
 
         jewelries = jewelries.filter(
-            query
+            self.query
         ).distinct('pk')
 
         return jewelries

@@ -30,4 +30,21 @@ from e_commerce_website.jewelry.models import (
 
 categories = Category.objects.all()
 sizes = Size.objects.all()
+names = Category.TitleChoices.names
+values = Category.TitleChoices.values
 
+
+cur = Category.TitleChoices.choices
+
+# class Demo(models.Model):
+#     class TitleChoices(models.TextChoices):
+#         BRACELET = "B", _("Bracelets")
+#         EARRING = "E", _("Earrings")
+#         NECKLACE = "N", _("Necklaces")
+#         RING = "R", _("Rings")
+#
+#         @classmethod
+#         def choices(cls):
+#             return cls.choices()
+
+print(Category.TitleChoices.choices)

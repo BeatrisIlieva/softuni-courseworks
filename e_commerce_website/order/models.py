@@ -2,20 +2,20 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from e_commerce_website.accounts.models import AccountUser
+from e_commerce_website.core.mixins import ChoicesMaxLengthMixin
+
 from e_commerce_website.jewelry.models import Jewelry
-from e_commerce_website.jewelry.utils import calculate_max_choices_length
 
 
 class Order(models.Model):
-    class StatusChoices(models.TextChoices):
+    class StatusChoices(ChoicesMaxLengthMixin, models.TextChoices):
         P = "P", _("Pending")
         CO = "CO", _("Completed")
         CA = "CA", _("Cancelled")
 
-    max_choice_length = calculate_max_choices_length(StatusChoices)
 
     status = models.CharField(
-        max_length=max_choice_length,
+        max_length=StatusChoices.max_length(),
         choices=StatusChoices.choices,
     )
 

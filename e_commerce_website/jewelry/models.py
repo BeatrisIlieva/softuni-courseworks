@@ -1,92 +1,82 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from e_commerce_website.jewelry.utils import calculate_max_choices_length
+from e_commerce_website.core.mixins import ChoicesMaxLengthMixin
 
 
 class Category(models.Model):
-    class TitleChoices(models.TextChoices):
+    class TitleChoices(ChoicesMaxLengthMixin, models.TextChoices):
         BRACELET = "B", _("Bracelets")
         EARRING = "E", _("Earrings")
         NECKLACE = "N", _("Necklaces")
         RING = "R", _("Rings")
 
-    max_choice_length = calculate_max_choices_length(TitleChoices)
-
     title = models.CharField(
-        max_length=max_choice_length,
+        max_length=TitleChoices.max_length(),
         choices=TitleChoices.choices,
     )
 
 
 class Metal(models.Model):
-    class TitleChoices(models.TextChoices):
+    class TitleChoices(ChoicesMaxLengthMixin, models.TextChoices):
         YELLOW_GOLD = "YG", _("Yellow Gold")
         ROSE_GOLD = "RG", _("Rose Gold")
         WHITE_GOLD = "WG", _("White Gold")
         PLATINUM = "PT", _("Platinum")
 
-    max_choice_length = calculate_max_choices_length(TitleChoices)
-
     title = models.CharField(
-        max_length=max_choice_length,
+        max_length=TitleChoices.max_length(),
         choices=TitleChoices.choices,
     )
 
 
 class GoldCaratWeight(models.Model):
-    class WeightChoices(models.TextChoices):
+    class WeightChoices(ChoicesMaxLengthMixin, models.TextChoices):
         V_9 = "9", _("9K")
         V_10 = "10", _("10K")
         V_14 = "14", _("14K")
         V_18 = "18", _("18K")
         V_22 = "22", _("22K")
 
-    max_choice_length = calculate_max_choices_length(WeightChoices)
-
     weight = models.CharField(
-        max_length=max_choice_length,
+        max_length=WeightChoices.max_length(),
         choices=WeightChoices.choices,
     )
 
 
 class StoneType(models.Model):
-    class TitleChoices(models.TextChoices):
-        BLACK_SPINEL = "BS", _("Black Spinel")
-        DIAMOND = "DI", _("Diamond")
-        EMERALD = "EM", _("Emerald")
-        RUBY = "RU", _("Ruby")
-        SAPPHIRE = "SA", _("Sapphire")
-
-    max_choice_length = calculate_max_choices_length(TitleChoices)
+    class TitleChoices(ChoicesMaxLengthMixin, models.TextChoices):
+        BLACK_SPINEL = "BS", _("Black Spinel")  # 0
+        DIAMOND = "DI", _("Diamond")  # 1
+        EMERALD = "EM", _("Emerald")  # 2
+        RUBY = "RU", _("Ruby")  # 3
+        SAPPHIRE = "SA", _("Sapphire")  # 4
 
     title = models.CharField(
-        max_length=max_choice_length,
+        max_length=TitleChoices.max_length(),
         choices=TitleChoices.choices,
     )
 
 
 class StoneColor(models.Model):
-    class TitleChoices(models.TextChoices):
-        AQUAMARINE = "AQ", _("Aquamarine")
-        BLACK = "BL", _('Black')
-        BLUE = "BU", _('Blue')
-        GREEN = "GR", _('Green')
-        PINK = "PI", _('Pink')
-        RED = "RE", _('Red')
-        WHITE = "WH", _('White')
-        YELLOW = "YE", _('Yellow')
-
-    max_choice_length = calculate_max_choices_length(TitleChoices)
+    class TitleChoices(ChoicesMaxLengthMixin, models.TextChoices):
+        AQUAMARINE = "AQ", _("Aquamarine")  # 0
+        BLACK = "BL", _('Black')  # 1
+        BLUE = "BU", _('Blue')  # 2
+        GREEN = "GR", _('Green')  # 3
+        PINK = "PI", _('Pink')  # 4
+        RED = "RE", _('Red')  # 5
+        WHITE = "WH", _('White')  # 6
+        YELLOW = "YE", _('Yellow')  # 7
 
     title = models.CharField(
-        max_length=max_choice_length,
+        max_length=TitleChoices.max_length(),
         choices=TitleChoices.choices,
     )
 
 
 class Size(models.Model):
-    class MeasurementChoices(models.TextChoices):
+    class MeasurementChoices(ChoicesMaxLengthMixin, models.TextChoices):
         V_1 = "1.00", _('1.00 cm')
         V_2 = "2.00", _('2.00 cm')
         V_3 = "3.00", _('3.00 cm')
@@ -125,10 +115,8 @@ class Size(models.Model):
         V_91_44 = "91.44", _('91.44 cm')
         V_182_88 = "182.88", _('182.88 cm')
 
-    max_choice_length = calculate_max_choices_length(MeasurementChoices)
-
     measurement = models.CharField(
-        max_length=max_choice_length,
+        max_length=MeasurementChoices.max_length(),
         choices=MeasurementChoices.choices,
     )
 
@@ -140,7 +128,7 @@ class Size(models.Model):
 
 
 class Jewelry(models.Model):
-    class PriceChoices(models.TextChoices):
+    class PriceChoices(ChoicesMaxLengthMixin, models.TextChoices):
         V_750 = '10_000, 25_000', _('10,000.00 - 25,000.00')
         V_1500 = '25_000, 50_000', _('25,000.00 - 50,000.00')
         V_3000 = '50_000, 75_000', _('50,000.00 - 75,000.00')
@@ -160,6 +148,7 @@ class Jewelry(models.Model):
     quantity = models.PositiveIntegerField()
 
     price = models.DecimalField(
+        max_length=PriceChoices.max_length(),
         max_digits=10,
         decimal_places=2,
     )
