@@ -9,7 +9,7 @@
             gap: 10px;
         }
     </style>
-    <form action="{% url 'display_jewelries_by_category' choice_pk %}" method="get">
+    <form action="{% url 'display_jewelries_by_category' category_pk %}" method="get">
         <div class="checkbox-list">
             {% for field in form %}
                 {% if field.name != 'category_choices' %}
@@ -39,5 +39,6 @@
         </div>
     </form>
     {% include 'common/jewelry_cover_photo.html' %}
-    {% include 'common/pagination.html' %}
+        {% include 'common/pagination.html' %}
 {% endblock %}
+
