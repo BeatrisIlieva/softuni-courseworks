@@ -7,9 +7,6 @@ from e_commerce_website.jewelry.funcs import define_jewelries_count_by_selected_
     get_category_pks, get_metal_pks, get_stone_type_pks, get_stone_color_pks
 
 
-
-
-
 class DefineRelatedObjectsMixin:
     @staticmethod
     def define_related_category_objects(jewelries):
@@ -136,8 +133,6 @@ class UpdateQueryMixin:
             )
             )
 
-            # self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-            #     display_jewelries_after_selection(self.selection_form, jewelries)
 
         elif 'selection_pattern_category' in kwargs:
             selection_pattern_category = kwargs['selection_pattern_category']
@@ -145,14 +140,7 @@ class UpdateQueryMixin:
                 selection_pattern_category
             )
             )
-            #
-            #     self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-            #         display_jewelries_after_selection(self.selection_form, jewelries)
 
-
-
-            # self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-            #     display_jewelries_after_selection(self.selection_form, jewelries)
 
         elif 'selection_pattern_stone_types' in kwargs:
             selection_pattern_stone_types = kwargs['selection_pattern_stone_types']
@@ -161,8 +149,6 @@ class UpdateQueryMixin:
             )
             )
 
-    # self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-    #     display_jewelries_after_selection(self.selection_form, jewelries)
 
         elif 'selection_pattern_stone_colors' in kwargs:
             selection_pattern_stone_colors = kwargs['selection_pattern_stone_colors']
@@ -171,26 +157,3 @@ class UpdateQueryMixin:
                     selection_pattern_stone_colors
                 )
             )
-
-
-# class BaseJewelryMixin(DefineRelatedObjectsMixin, DefineCountsMixin, DefineChoicesMixin, UpdateSelectionFormMixin, UpdateQueryMixin):
-#
-#     @classmethod
-#     def get_results(cls, jewelries):
-#         self = cls
-#         metals = self.define_related_metal_objects(jewelries)
-#         stone_types = self.define_related_stone_type_objects(jewelries)
-#
-#         self.jewelries_count_by_price = self.define_jewelries_count_by_price(jewelries)
-#         self.jewelries_count_by_metal = self.define_jewelries_count_by_metal(jewelries, metals)
-#         self.jewelries_count_by_stone_type = self.define_jewelries_count_by_stone_type(jewelries, stone_types)
-#
-#         price_choices = self.define_price_choices(jewelries)
-#         metal_choices = self.define_metal_choices(metals)
-#         stone_type_choices = self.define_stone_type_choices(stone_types)
-#
-#         self.selection_form = self.update_selection_form(self.selection_form, price_choices=price_choices,
-#                                                          metal_choices=metal_choices,
-#                                                          stone_type_choices=stone_type_choices)
-#
-#         return metals, stone_types,
