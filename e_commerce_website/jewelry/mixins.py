@@ -7,6 +7,9 @@ from e_commerce_website.jewelry.funcs import define_jewelries_count_by_selected_
     get_category_pks, get_metal_pks, get_stone_type_pks, get_stone_color_pks
 
 
+
+
+
 class DefineRelatedObjectsMixin:
     @staticmethod
     def define_related_category_objects(jewelries):
@@ -168,99 +171,26 @@ class UpdateQueryMixin:
                     selection_pattern_stone_colors
                 )
             )
-#
-#     self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-#         display_jewelries_after_selection(self.selection_form, jewelries)
 
 
-# def get_selection_form(self, request, form, jewelries):
-#     self.selection_form = form(request.GET)
+# class BaseJewelryMixin(DefineRelatedObjectsMixin, DefineCountsMixin, DefineChoicesMixin, UpdateSelectionFormMixin, UpdateQueryMixin):
 #
-#     self.jewelries_count_by_price = define_jewelries_count_by_selected_price(jewelries)
+#     @classmethod
+#     def get_results(cls, jewelries):
+#         self = cls
+#         metals = self.define_related_metal_objects(jewelries)
+#         stone_types = self.define_related_stone_type_objects(jewelries)
 #
-#     categories = get_related_category_objects(jewelries)
-#     self.jewelries_count_by_category = define_jewelries_count_by_selected_category(jewelries, categories)
+#         self.jewelries_count_by_price = self.define_jewelries_count_by_price(jewelries)
+#         self.jewelries_count_by_metal = self.define_jewelries_count_by_metal(jewelries, metals)
+#         self.jewelries_count_by_stone_type = self.define_jewelries_count_by_stone_type(jewelries, stone_types)
 #
-#     metals = get_related_metal_objects(jewelries)
-#     self.jewelries_count_by_metal = define_jewelries_count_by_selected_metal(jewelries, metals)
+#         price_choices = self.define_price_choices(jewelries)
+#         metal_choices = self.define_metal_choices(metals)
+#         stone_type_choices = self.define_stone_type_choices(stone_types)
 #
-#     stone_types = get_related_stone_type_objects(jewelries)
-#     self.jewelries_count_by_stone_type = define_jewelries_count_by_selected_stone_type(jewelries, stone_types)
+#         self.selection_form = self.update_selection_form(self.selection_form, price_choices=price_choices,
+#                                                          metal_choices=metal_choices,
+#                                                          stone_type_choices=stone_type_choices)
 #
-#     stone_colors = get_related_stone_color_objects(jewelries)
-#     self.jewelries_count_by_stone_color = define_jewelries_count_by_selected_stone_color(jewelries, stone_colors)
-#
-#     category_choices = get_related_choices(categories, field_name='title')
-#     metal_choices = get_related_choices(metals, field_name='title')
-#     stone_type_choices = get_related_choices(stone_types, field_name='title')
-#     stone_color_choices = get_related_choices(stone_colors, field_name='title')
-#     price_choices = show_available_prices(jewelries)
-#
-#     update_selection_forms(
-#         self.selection_form,
-#         category_choices=category_choices,
-#         metal_choices=metal_choices,
-#         stone_type_choices=stone_type_choices,
-#         stone_color_choices=stone_color_choices,
-#         price_choices=price_choices,
-#     )
-#
-#     if self.selection_form.is_valid():
-#
-#         selection_pattern_price = self.selection_form.cleaned_data['price_choices']
-#
-#         selection_pattern_category = self.selection_form.cleaned_data['category_choices']
-#
-#         selection_pattern_metals = self.selection_form.cleaned_data['metal_choices']
-#
-#         selection_pattern_stone_types = self.selection_form.cleaned_data['stone_type_choices']
-#
-#         selection_pattern_stone_colors = self.selection_form.cleaned_data['stone_color_choices']
-#
-#         if selection_pattern_price:
-#             self.query &= Q(get_query_price(
-#                 selection_pattern_price
-#             )
-#             )
-#
-#             self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-#                 display_jewelries_after_selection(self.selection_form, jewelries)
-#
-#         if selection_pattern_category:
-#             self.query &= Q(category_id__in=get_category_pks(
-#                 selection_pattern_category
-#             )
-#             )
-#
-#             self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-#                 display_jewelries_after_selection(self.selection_form, jewelries)
-#
-#         if selection_pattern_metals:
-#             self.query &= Q(jewelry_metals__metal_id__in=get_metal_pks(
-#                 selection_pattern_metals
-#             )
-#             )
-#
-#             self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-#                 display_jewelries_after_selection(self.selection_form, jewelries)
-#
-#         if selection_pattern_stone_types:
-#             self.query &= Q(jewelry_stones__stone_type_id__in=get_stone_type_pks(
-#                 selection_pattern_stone_types
-#             )
-#             )
-#
-#             self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-#                 display_jewelries_after_selection(self.selection_form, jewelries)
-#
-#         if selection_pattern_stone_colors:
-#             self.query &= Q(
-#                 jewelry_stones__stone_color_id__in=get_stone_color_pks(
-#                     selection_pattern_stone_colors
-#                 )
-#             )
-#
-#             self.jewelries_count_by_category, self.jewelries_count_by_metal, self.jewelries_count_by_stone_type, self.jewelries_count_by_stone_color, self.jewelries_count_by_price = \
-#                 display_jewelries_after_selection(self.selection_form, jewelries)
-#
-#         return self.selection_form
+#         return metals, stone_types,

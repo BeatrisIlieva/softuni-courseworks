@@ -227,18 +227,14 @@ class DisplayJewelryMixin(DefineRelatedObjectsMixin, UpdateQueryMixin, UpdateSel
 class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_category.html'
 
-    def get_queryset(self):
-        self.selection_form = JewelryCategoryForm(self.request.GET)
-        category_pk = self.kwargs['category_pk']
-        self.query &= Q(category=category_pk, sold_out=False)
-        jewelries = super().get_queryset().filter(self.query).distinct('pk')
-
+    def update_related_objects(self, jewelries):
         metals = self.define_related_metal_objects(jewelries)
         stone_types = self.define_related_stone_type_objects(jewelries)
 
         self.jewelries_count_by_price = self.define_jewelries_count_by_price(jewelries)
         self.jewelries_count_by_metal = self.define_jewelries_count_by_metal(jewelries, metals)
-        self.jewelries_count_by_stone_type = self.define_jewelries_count_by_stone_type(jewelries, stone_types)
+        self.jewelries_count_by_stone_type = self.define_jewelries_count_by_stone_type(jewelries,
+                                                                                       stone_types)
 
         price_choices = self.define_price_choices(jewelries)
         metal_choices = self.define_metal_choices(metals)
@@ -247,6 +243,29 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         self.selection_form = self.update_selection_form(self.selection_form, price_choices=price_choices,
                                                          metal_choices=metal_choices,
                                                          stone_type_choices=stone_type_choices)
+
+    def get_queryset(self):
+        self.selection_form = JewelryCategoryForm(self.request.GET)
+        category_pk = self.kwargs['category_pk']
+        self.query &= Q(category=category_pk, sold_out=False)
+        jewelries = super().get_queryset().filter(self.query).distinct('pk')
+
+        self.update_related_objects(jewelries)
+
+        # metals = self.define_related_metal_objects(jewelries)
+        # stone_types = self.define_related_stone_type_objects(jewelries)
+        #
+        # self.jewelries_count_by_price = self.define_jewelries_count_by_price(jewelries)
+        # self.jewelries_count_by_metal = self.define_jewelries_count_by_metal(jewelries, metals)
+        # self.jewelries_count_by_stone_type = self.define_jewelries_count_by_stone_type(jewelries, stone_types)
+        #
+        # price_choices = self.define_price_choices(jewelries)
+        # metal_choices = self.define_metal_choices(metals)
+        # stone_type_choices = self.define_stone_type_choices(stone_types)
+        #
+        # self.selection_form = self.update_selection_form(self.selection_form, price_choices=price_choices,
+        #                                                  metal_choices=metal_choices,
+        #                                                  stone_type_choices=stone_type_choices)
 
         if self.selection_form.is_valid():
 
@@ -273,21 +292,23 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 
             jewelries = jewelries.filter(self.query).distinct('pk')
 
-            metals = self.define_related_metal_objects(jewelries)
-            stone_types = self.define_related_stone_type_objects(jewelries)
+            self.update_related_objects(jewelries)
 
-            self.jewelries_count_by_price = self.define_jewelries_count_by_price(jewelries)
-            self.jewelries_count_by_metal = self.define_jewelries_count_by_metal(jewelries, metals)
-            self.jewelries_count_by_stone_type = self.define_jewelries_count_by_stone_type(jewelries,
-                                                                                           stone_types)
-
-            price_choices = self.define_price_choices(jewelries)
-            metal_choices = self.define_metal_choices(metals)
-            stone_type_choices = self.define_stone_type_choices(stone_types)
-
-            self.selection_form = self.update_selection_form(self.selection_form, price_choices=price_choices,
-                                                             metal_choices=metal_choices,
-                                                             stone_type_choices=stone_type_choices)
+            # metals = self.define_related_metal_objects(jewelries)
+            # stone_types = self.define_related_stone_type_objects(jewelries)
+            #
+            # self.jewelries_count_by_price = self.define_jewelries_count_by_price(jewelries)
+            # self.jewelries_count_by_metal = self.define_jewelries_count_by_metal(jewelries, metals)
+            # self.jewelries_count_by_stone_type = self.define_jewelries_count_by_stone_type(jewelries,
+            #                                                                                stone_types)
+            #
+            # price_choices = self.define_price_choices(jewelries)
+            # metal_choices = self.define_metal_choices(metals)
+            # stone_type_choices = self.define_stone_type_choices(stone_types)
+            #
+            # self.selection_form = self.update_selection_form(self.selection_form, price_choices=price_choices,
+            #                                                  metal_choices=metal_choices,
+            #                                                  stone_type_choices=stone_type_choices)
 
         return jewelries
 
