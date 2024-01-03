@@ -108,13 +108,22 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         self.jewelries_count_by_stone_type = \
             self.define_jewelries_count_by_stone_type(jewelries, stone_types)
 
-        price_choices = self.define_price_choices(jewelries)
-        metal_choices = self.define_metal_choices(metals)
-        stone_type_choices = self.define_stone_type_choices(stone_types)
+        price_choices = \
+            self.define_price_choices(jewelries)
 
-        self.selection_form = self.update_selection_form(self.selection_form, price_choices=price_choices,
-                                                         metal_choices=metal_choices,
-                                                         stone_type_choices=stone_type_choices)
+        metal_choices = \
+            self.define_metal_choices(metals)
+
+        stone_type_choices = \
+            self.define_stone_type_choices(stone_types)
+
+        self.selection_form = \
+            self.update_selection_form(
+                self.selection_form,
+                price_choices=price_choices,
+                metal_choices=metal_choices,
+                stone_type_choices=stone_type_choices
+            )
 
 
 class DisplayJewelriesView(NavigationBarMixin, ListView):
