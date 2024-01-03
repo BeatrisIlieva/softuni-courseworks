@@ -21,8 +21,8 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 
     def get_queryset(self):
         self.selection_form = JewelryCategoryForm(self.request.GET)
-        category_pk = self.kwargs['category_pk']
-        self.query &= Q(category=category_pk, sold_out=False)
+        choice_pk = self.kwargs['choice_pk']
+        self.query &= Q(category=choice_pk, sold_out=False)
         jewelries = super().get_queryset().filter(self.query).distinct('pk')
 
         self.update_related_objects(jewelries)
@@ -60,7 +60,7 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
-        context['category_pk'] = self.kwargs['category_pk']
+        context['choice_pk'] = self.kwargs['choice_pk']
         context['form'] = self.selection_form
         context['jewelries_count_by_stone_type'] = self.jewelries_count_by_stone_type
         context['jewelries_count_by_metal'] = self.jewelries_count_by_metal

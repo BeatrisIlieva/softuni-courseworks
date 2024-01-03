@@ -215,6 +215,7 @@ class DisplayJewelryMixin(
     context_object_name = 'jewelries'
     paginate_by = 6
     query = Q()
+    choice_pk = None
     selection_form = None
     jewelries_count_by_price = {}
     jewelries_count_by_metal = {}
