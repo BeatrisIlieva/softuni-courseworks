@@ -1,7 +1,7 @@
 from _decimal import Decimal
 from collections import OrderedDict
 
-from django.db.models import Q
+from django.db.models import Q, Count
 
 from e_commerce_website.jewelry.models import \
     Jewelry, \
@@ -9,12 +9,11 @@ from e_commerce_website.jewelry.models import \
     Metal, \
     StoneType, \
     StoneColor, \
-    Size
+    Size, JewelryStone
 
 
 def get_objects_pks(objects):
     return [o.pk for o in objects]
-
 
 def update_selection_forms(selection_form, **kwargs):
     if 'category_choices' in kwargs:
@@ -299,3 +298,6 @@ def define_jewelries_count_by_selected_stone_color(jewelries, stone_colors):
             count()
 
     return jewelries_count_by_stone_color
+
+
+

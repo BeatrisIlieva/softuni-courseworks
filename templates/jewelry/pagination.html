@@ -1,13 +1,11 @@
-{% if jewelries.has_previous %}
-    <a href="?{% if choice_pk %}{{ choice_pk }}&{% endif %}page={{ jewelries.previous_page_number }}">&lt;</a>
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
 {% else %}
     <a>&lt;</a>
 {% endif %}
-
-{{ jewelries.number }} / {{ paginator.num_pages }}
-
-{% if jewelries.has_next %}
-    <a href="?{% if choice_pk %}{{ choice_pk }}&{% endif %}page={{ jewelries.next_page_number }}">&gt;</a>
+{{ page_obj.number }} / {{ paginator.num_pages }}
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
 {% else %}
     <a>&gt;</a>
 {% endif %}

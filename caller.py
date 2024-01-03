@@ -14,7 +14,7 @@ django.setup()
 from django.db import models
 
 from e_commerce_website.shopping_cart.models import ShoppingCart
-
+from e_commerce_website.jewelry.funcs import get_objects_pks
 from django.utils.translation import gettext_lazy as _
 from e_commerce_website.jewelry.models import (
     Category,
@@ -32,19 +32,33 @@ categories = Category.objects.all()
 sizes = Size.objects.all()
 names = Category.TitleChoices.names
 values = Category.TitleChoices.values
+jewelries = Jewelry.objects.filter(pk=6)
+jewelries_pks = get_objects_pks(jewelries)
+stone_types_pks = StoneType.objects. \
+    prefetch_related('stone_types'). \
+    filter(jewelry__in=jewelries).values_list('id', flat=True)
 
+stone_colors_pks = StoneColor.objects. \
+    prefetch_related('stone_colors'). \
+    filter(jewelry__in=jewelries).values_list('id', flat=True)
 
-cur = Category.TitleChoices.choices
+stone_types_pks = JewelryStone.objects.\
+    filter(
+    Q(jewelry_id__in=jewelries_pks) &
+    Q(stone_color_id__in=stone_colors_pks) &
+    Q(stone_type_id__in=stone_types_pks)).\
+    values_list('stone_type_id', flat=True)
 
-# class Demo(models.Model):
-#     class TitleChoices(models.TextChoices):
-#         BRACELET = "B", _("Bracelets")
-#         EARRING = "E", _("Earrings")
-#         NECKLACE = "N", _("Necklaces")
-#         RING = "R", _("Rings")
-#
-#         @classmethod
-#         def choices(cls):
-#             return cls.choices()
+stone_colors_pks = JewelryStone.objects.\
+    filter(
+    Q(jewelry_id__in=jewelries_pks) &
+    Q(stone_color_id__in=stone_colors_pks) &
+    Q(stone_type_id__in=stone_types_pks)).\
+    values_list('stone_color_id', flat=True)
 
-print(Category.TitleChoices.choices)
+stone_types = StoneType.objects.filter(id__in=stone_types_pks)
+
+stone_colors = StoneColor.objects.filter(id__in=stone_colors_pks)
+
+print(stone_types)
+print(stone_colors)
