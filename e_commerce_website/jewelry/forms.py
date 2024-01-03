@@ -119,5 +119,8 @@ class JewelryMetalForm(StoneTypeForm, CategoryForm, PriceForm):
     pass
 
 
-class JewelryStoneTypeForm(CategoryForm, PriceForm):
+class JewelryStoneTypeForm(StoneColorForm, CategoryForm, PriceForm):
+    pass
+
+class JewelryStoneColorForm(StoneTypeForm, CategoryForm, PriceForm):
     pass

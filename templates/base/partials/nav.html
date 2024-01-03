@@ -26,7 +26,7 @@
                 <p>BY GEMSTONE</p>
                 <ul class="submenu">
                     {% for stone_type, title in stone_types_by_choices.items %}
-                        <a href="{% url 'display_jewelries_by_stone_type' stone_type_pk=stone_type.pk %}">{{ title }}</a>
+                        <a href="{% url 'display_jewelries_by_stone_type' choice_pk=stone_type.pk %}">{{ title }}</a>
                     {% endfor %}
                 </ul>
             </li>
@@ -34,7 +34,7 @@
                 <p>BY COLOR</p>
                 <ul class="submenu">
                     {% for stone_color, title in stone_colors_by_choices.items %}
-                        <a href="{% url 'display_jewelries_by_stone_color' stone_color_pk=stone_color.pk %}">{{ title }}</a>
+                        <a href="{% url 'display_jewelries_by_stone_color' choice_pk=stone_color.pk %}">{{ title }}</a>
                     {% endfor %}
                 </ul>
             </li>
