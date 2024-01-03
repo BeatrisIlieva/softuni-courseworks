@@ -48,27 +48,37 @@ class DefineRelatedObjectsMixin:
 class DefineCountsMixin:
     @staticmethod
     def define_jewelries_count_by_price(jewelries):
-        jewelries_count_by_price = define_jewelries_count_by_selected_price(jewelries)
+        jewelries_count_by_price = \
+            define_jewelries_count_by_selected_price(jewelries)
+
         return jewelries_count_by_price
 
     @staticmethod
     def define_jewelries_count_by_category(jewelries, categories):
-        jewelries_count_by_category = define_jewelries_count_by_selected_category(jewelries, categories)
+        jewelries_count_by_category = \
+            define_jewelries_count_by_selected_category(jewelries, categories)
+
         return jewelries_count_by_category
 
     @staticmethod
     def define_jewelries_count_by_metal(jewelries, metals):
-        jewelries_count_by_metal = define_jewelries_count_by_selected_metal(jewelries, metals)
+        jewelries_count_by_metal = \
+            define_jewelries_count_by_selected_metal(jewelries, metals)
+
         return jewelries_count_by_metal
 
     @staticmethod
     def define_jewelries_count_by_stone_type(jewelries, stone_types):
-        jewelries_count_by_stone_type = define_jewelries_count_by_selected_stone_type(jewelries, stone_types)
+        jewelries_count_by_stone_type = \
+            define_jewelries_count_by_selected_stone_type(jewelries, stone_types)
+
         return jewelries_count_by_stone_type
 
     @staticmethod
     def define_jewelries_count_by_stone_color(jewelries, stone_colors):
-        jewelries_count_by_stone_color = define_jewelries_count_by_selected_stone_color(jewelries, stone_colors)
+        jewelries_count_by_stone_color = \
+            define_jewelries_count_by_selected_stone_color(jewelries, stone_colors)
+
         return jewelries_count_by_stone_color
 
 
