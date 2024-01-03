@@ -156,37 +156,38 @@ class UpdateQueryMixin:
         if 'selection_pattern_metals' in kwargs:
             selection_pattern_metals = kwargs['selection_pattern_metals']
 
-            return Q(jewelry_metals__metal_id__in=get_metal_pks(
-                selection_pattern_metals
+            return Q(
+                jewelry_metals__metal_id__in=get_metal_pks(
+                    selection_pattern_metals
                 )
             )
 
         elif 'selection_pattern_price' in kwargs:
             selection_pattern_price = kwargs['selection_pattern_price']
 
-            return Q(get_query_price(
-                selection_pattern_price
+            return Q(
+                get_query_price(
+                    selection_pattern_price
                 )
             )
-
 
         elif 'selection_pattern_category' in kwargs:
             selection_pattern_category = kwargs['selection_pattern_category']
 
-            return Q(category_id__in=get_category_pks(
-                selection_pattern_category
+            return Q(
+                category_id__in=get_category_pks(
+                    selection_pattern_category
                 )
             )
-
 
         elif 'selection_pattern_stone_types' in kwargs:
             selection_pattern_stone_types = kwargs['selection_pattern_stone_types']
 
-            return Q(jewelry_stones__stone_type_id__in=get_stone_type_pks(
-                selection_pattern_stone_types
+            return Q(
+                jewelry_stones__stone_type_id__in=get_stone_type_pks(
+                    selection_pattern_stone_types
                 )
             )
-
 
         elif 'selection_pattern_stone_colors' in kwargs:
             selection_pattern_stone_colors = kwargs['selection_pattern_stone_colors']
