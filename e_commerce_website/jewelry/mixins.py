@@ -87,26 +87,35 @@ class DefineChoicesMixin:
     @staticmethod
     def define_price_choices(jewelries):
         price_choices = show_available_prices(jewelries)
+
         return price_choices
 
     @staticmethod
     def define_category_choices(categories):
-        category_choices = get_related_choices(categories, field_name='title')
+        category_choices = \
+            get_related_choices(categories, field_name='title')
+
         return category_choices
 
     @staticmethod
     def define_metal_choices(metals):
-        metal_choices = get_related_choices(metals, field_name='title')
+        metal_choices = \
+            get_related_choices(metals, field_name='title')
+
         return metal_choices
 
     @staticmethod
     def define_stone_type_choices(stone_types):
-        stone_type_choices = get_related_choices(stone_types, field_name='title')
+        stone_type_choices = \
+            get_related_choices(stone_types, field_name='title')
+
         return stone_type_choices
 
     @staticmethod
     def define_stone_color_choices(stone_colors):
-        stone_color_choices = get_related_choices(stone_colors, field_name='title')
+        stone_color_choices = \
+            get_related_choices(stone_colors, field_name='title')
+
         return stone_color_choices
 
 
