@@ -1,7 +1,9 @@
 from django.db.models import Q
 from django.views.generic import ListView
 
+from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.common.mixins import NavigationBarMixin
+
 from e_commerce_website.jewelry.funcs import \
     define_jewelries_count_by_selected_price, \
     get_related_category_objects, \
@@ -19,7 +21,6 @@ from e_commerce_website.jewelry.funcs import \
     get_metal_pks, \
     get_stone_type_pks, \
     get_stone_color_pks
-from e_commerce_website.jewelry.models import Jewelry
 
 
 class DefineRelatedObjectsMixin:
@@ -219,6 +220,6 @@ class DisplayJewelryMixin(
     selection_form = None
     jewelries_count_by_price = {}
     jewelries_count_by_metal = {}
-    jewelries_count_by_category= {}
+    jewelries_count_by_category = {}
     jewelries_count_by_stone_type = {}
     jewelries_count_by_stone_color = {}
