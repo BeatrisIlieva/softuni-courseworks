@@ -114,3 +114,6 @@ class StoneColorForm(forms.Form):
 class JewelryCategoryForm(StoneTypeForm, MetalForm, PriceForm):
     pass
 
+class JewelryMetalForm(StoneTypeForm, CategoryForm, PriceForm):
+    pass
+
