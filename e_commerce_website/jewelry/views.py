@@ -30,9 +30,9 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
             sold_out=False
         )
 
-        jewelries = super().\
-            get_queryset().\
-            filter(self.query).\
+        jewelries = super(). \
+            get_queryset(). \
+            filter(self.query). \
             distinct('pk')
 
         self.update_related_objects(jewelries)
@@ -63,8 +63,8 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
                     selection_pattern_stone_types=selection_pattern_stone_types
                 )
 
-            jewelries = jewelries.\
-                filter(self.query).\
+            jewelries = jewelries. \
+                filter(self.query). \
                 distinct('pk')
 
             self.update_related_objects(jewelries)
@@ -95,13 +95,18 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         return context
 
     def update_related_objects(self, jewelries):
-        metals = self.define_related_metal_objects(jewelries)
-        stone_types = self.define_related_stone_type_objects(jewelries)
+        metals = \
+            self.define_related_metal_objects(jewelries)
 
-        self.jewelries_count_by_price = self.define_jewelries_count_by_price(jewelries)
-        self.jewelries_count_by_metal = self.define_jewelries_count_by_metal(jewelries, metals)
-        self.jewelries_count_by_stone_type = self.define_jewelries_count_by_stone_type(jewelries,
-                                                                                       stone_types)
+        stone_types = \
+            self.define_related_stone_type_objects(jewelries)
+
+        self.jewelries_count_by_price = \
+            self.define_jewelries_count_by_price(jewelries)
+        self.jewelries_count_by_metal = \
+            self.define_jewelries_count_by_metal(jewelries, metals)
+        self.jewelries_count_by_stone_type = \
+            self.define_jewelries_count_by_stone_type(jewelries, stone_types)
 
         price_choices = self.define_price_choices(jewelries)
         metal_choices = self.define_metal_choices(metals)
