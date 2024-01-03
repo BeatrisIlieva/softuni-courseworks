@@ -1,17 +1,11 @@
 from django.db.models import Q
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView
 
 from e_commerce_website.common.mixins import NavigationBarMixin
 
-from e_commerce_website.jewelry.forms import JewelryForm, JewelryDetailsForm, JewelryCategoryForm, JewelryMetalForm, \
+from e_commerce_website.jewelry.forms import JewelryDetailsForm, JewelryCategoryForm, JewelryMetalForm, \
     JewelryStoneTypeForm, JewelryStoneColorForm
-from e_commerce_website.jewelry.funcs import define_jewelries_count_by_selected_price, get_related_category_objects, \
-    define_jewelries_count_by_selected_category, get_related_metal_objects, \
-    define_jewelries_count_by_selected_metal, get_related_stone_type_objects, \
-    define_jewelries_count_by_selected_stone_type, \
-    define_jewelries_count_by_selected_stone_color, show_available_prices, update_selection_forms, \
-    get_query_price, display_jewelries_after_selection, get_category_pks, get_metal_pks, get_stone_type_pks, \
-    get_stone_color_pks, get_related_size_objects, get_related_choices, get_related_stone_color_objects
+from e_commerce_website.jewelry.funcs import get_related_size_objects, get_related_choices
 from e_commerce_website.jewelry.mixins import DisplayJewelryMixin
 
 from e_commerce_website.jewelry.models import Jewelry
