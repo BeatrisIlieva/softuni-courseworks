@@ -77,11 +77,20 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
-        context['choice_pk'] = self.kwargs['choice_pk']
-        context['form'] = self.selection_form
-        context['jewelries_count_by_stone_type'] = self.jewelries_count_by_stone_type
-        context['jewelries_count_by_metal'] = self.jewelries_count_by_metal
-        context['jewelries_count_by_price'] = self.jewelries_count_by_price
+        context['choice_pk'] = \
+            self.kwargs['choice_pk']
+
+        context['form'] = \
+            self.selection_form
+
+        context['jewelries_count_by_stone_type'] = \
+            self.jewelries_count_by_stone_type
+
+        context['jewelries_count_by_metal'] = \
+            self.jewelries_count_by_metal
+
+        context['jewelries_count_by_price'] = \
+            self.jewelries_count_by_price
 
         return context
 
