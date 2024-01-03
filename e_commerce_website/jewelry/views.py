@@ -20,35 +20,52 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_category.html'
 
     def get_queryset(self):
-        self.selection_form = JewelryCategoryForm(self.request.GET)
+        self.selection_form = \
+            JewelryCategoryForm(self.request.GET)
+
         choice_pk = self.kwargs['choice_pk']
-        self.query &= Q(category=choice_pk, sold_out=False)
-        jewelries = super().get_queryset().filter(self.query).distinct('pk')
+
+        self.query &= Q(
+            category=choice_pk,
+            sold_out=False
+        )
+
+        jewelries = super().\
+            get_queryset().\
+            filter(self.query).\
+            distinct('pk')
 
         self.update_related_objects(jewelries)
 
         if self.selection_form.is_valid():
 
-            selection_pattern_price = self.selection_form.cleaned_data['price_choices']
+            selection_pattern_price = \
+                self.selection_form.cleaned_data['price_choices']
 
             if selection_pattern_price:
                 self.query &= self.update_query_mixin(
                     selection_pattern_price=selection_pattern_price,
                 )
 
-            selection_pattern_metals = self.selection_form.cleaned_data['metal_choices']
+            selection_pattern_metals = \
+                self.selection_form.cleaned_data['metal_choices']
 
             if selection_pattern_metals:
-                self.query &= self.update_query_mixin(selection_pattern_metals=selection_pattern_metals,
-                                                      )
+                self.query &= self.update_query_mixin(
+                    selection_pattern_metals=selection_pattern_metals
+                )
 
-            selection_pattern_stone_types = self.selection_form.cleaned_data['stone_type_choices']
+            selection_pattern_stone_types = \
+                self.selection_form.cleaned_data['stone_type_choices']
 
             if selection_pattern_stone_types:
                 self.query &= self.update_query_mixin(
-                    selection_pattern_stone_types=selection_pattern_stone_types)
+                    selection_pattern_stone_types=selection_pattern_stone_types
+                )
 
-            jewelries = jewelries.filter(self.query).distinct('pk')
+            jewelries = jewelries.\
+                filter(self.query).\
+                distinct('pk')
 
             self.update_related_objects(jewelries)
 
