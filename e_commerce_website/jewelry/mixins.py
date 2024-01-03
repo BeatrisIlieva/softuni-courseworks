@@ -23,21 +23,25 @@ class DefineRelatedObjectsMixin:
     @staticmethod
     def define_related_category_objects(jewelries):
         categories = get_related_category_objects(jewelries)
+
         return categories
 
     @staticmethod
     def define_related_metal_objects(jewelries):
         metals = get_related_metal_objects(jewelries)
+
         return metals
 
     @staticmethod
     def define_related_stone_type_objects(jewelries):
         stone_types = get_related_stone_type_objects(jewelries)
+
         return stone_types
 
     @staticmethod
     def define_related_stone_color_objects(jewelries):
         stone_colors = get_related_stone_color_objects(jewelries)
+
         return stone_colors
 
 
