@@ -111,11 +111,11 @@ class StoneColorForm(forms.Form):
     )
 
 
-class JewelryCategoryForm(StoneTypeForm, MetalForm, PriceForm):
+class JewelryCategoryForm(StoneColorForm, StoneTypeForm, MetalForm, PriceForm):
     pass
 
 
-class JewelryMetalForm(StoneTypeForm, CategoryForm, PriceForm):
+class JewelryMetalForm(StoneColorForm, StoneTypeForm, CategoryForm, PriceForm):
     pass
 
 

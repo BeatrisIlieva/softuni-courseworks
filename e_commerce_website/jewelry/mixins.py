@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.views.generic import ListView
 
-from e_commerce_website.jewelry.models import Jewelry
+from e_commerce_website.jewelry.models import Jewelry, JewelryStone
 from e_commerce_website.common.mixins import NavigationBarMixin
 
 from e_commerce_website.jewelry.funcs import \
@@ -37,14 +37,14 @@ class DefineRelatedObjectsMixin:
         return metals
 
     @staticmethod
-    def define_related_stone_type_objects(jewelries):
-        stone_types = get_related_stone_type_objects(jewelries)
+    def define_related_stone_type_objects(jewelries, stone_color_pk):
+        stone_types = get_related_stone_type_objects(jewelries, stone_color_pk)
 
         return stone_types
 
     @staticmethod
-    def define_related_stone_color_objects(jewelries):
-        stone_colors = get_related_stone_color_objects(jewelries)
+    def define_related_stone_color_objects(jewelries, stone_type_pk):
+        stone_colors = get_related_stone_color_objects(jewelries, stone_type_pk)
 
         return stone_colors
 
@@ -142,6 +142,9 @@ class UpdateSelectionFormMixin:
             selection_form.fields['stone_type_choices']. \
                 choices = kwargs['stone_type_choices']
 
+
+
+
         if 'stone_color_choices' in kwargs:
             selection_form.fields['stone_color_choices']. \
                 choices = kwargs['stone_color_choices']
@@ -203,6 +206,8 @@ class UpdateQueryMixin:
             )
 
 
+
+
 class DisplayJewelryMixin(
     DefineRelatedObjectsMixin,
     UpdateQueryMixin,
@@ -217,9 +222,9 @@ class DisplayJewelryMixin(
     paginate_by = 6
     query = Q()
     choice_pk = None
-    selection_form = None
     jewelries_count_by_price = {}
     jewelries_count_by_metal = {}
     jewelries_count_by_category = {}
     jewelries_count_by_stone_type = {}
     jewelries_count_by_stone_color = {}
+

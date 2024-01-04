@@ -9,16 +9,11 @@ from e_commerce_website.jewelry.models import \
     Metal, \
     StoneType, \
     StoneColor, \
-    Size
+    Size, JewelryStone
 
 
 def get_objects_pks(objects):
     return [o.pk for o in objects]
-
-
-
-
-
 
 
 def get_related_choices(objects, field_name):
@@ -102,7 +97,17 @@ def get_metal_pks(selection_pattern_metals):
     return metal_pks
 
 
-def get_related_stone_type_objects(jewelries):
+def get_related_stone_type_objects(jewelries, stone_color_pk):
+    if stone_color_pk is not None:
+        stone_types_pks = JewelryStone.objects. \
+            filter(jewelry__in=jewelries, stone_color__in=stone_color_pk). \
+            values_list('stone_type_id', flat=True)
+
+        stone_types = StoneType.objects. \
+            filter(id__in=[stone_types_pks])
+
+        return stone_types
+
     stone_types = StoneType.objects. \
         prefetch_related('stone_types'). \
         filter(jewelry__in=jewelries)
@@ -119,7 +124,17 @@ def get_stone_type_pks(selection_pattern_stone_types):
     return stone_type_pks
 
 
-def get_related_stone_color_objects(jewelries):
+def get_related_stone_color_objects(jewelries, stone_type_pk):
+    if stone_type_pk is not None:
+        stone_colors_pks = JewelryStone.objects. \
+            filter(jewelry__in=jewelries, stone_type__in=stone_type_pk). \
+            values_list('stone_color_id', flat=True)
+
+        stone_colors = StoneColor.objects. \
+            filter(id__in=[stone_colors_pks])
+
+        return stone_colors
+
     stone_colors = StoneColor.objects. \
         prefetch_related('stone_colors'). \
         filter(jewelry__in=jewelries)
@@ -131,7 +146,10 @@ def get_stone_color_pks(selection_pattern_stone_colors):
     stone_color_titles = StoneColor.objects. \
         filter(title__in=selection_pattern_stone_colors)
 
+
     stone_color_pks = get_objects_pks(stone_color_titles)
+
+
 
     return stone_color_pks
 
@@ -215,6 +233,3 @@ def define_jewelries_count_by_selected_stone_color(jewelries, stone_colors):
             count()
 
     return jewelries_count_by_stone_color
-
-
-

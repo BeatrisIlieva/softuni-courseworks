@@ -32,33 +32,53 @@ categories = Category.objects.all()
 sizes = Size.objects.all()
 names = Category.TitleChoices.names
 values = Category.TitleChoices.values
-jewelries = Jewelry.objects.filter(pk=6)
-jewelries_pks = get_objects_pks(jewelries)
-stone_types_pks = StoneType.objects. \
-    prefetch_related('stone_types'). \
-    filter(jewelry__in=jewelries).values_list('id', flat=True)
 
-stone_colors_pks = StoneColor.objects. \
-    prefetch_related('stone_colors'). \
-    filter(jewelry__in=jewelries).values_list('id', flat=True)
+# jewelries_pks = get_objects_pks(jewelries)
+# stone_types_pks = StoneType.objects. \
+#     prefetch_related('stone_types'). \
+#     filter(jewelry__in=jewelries).values_list('id', flat=True)
+#
+# stone_colors_pks = StoneColor.objects. \
+#     prefetch_related('stone_colors'). \
+#     filter(jewelry__in=jewelries).values_list('id', flat=True)
+#
+# stone_types_pks = JewelryStone.objects.\
+#     filter(
+#     Q(jewelry_id__in=jewelries_pks) &
+#     Q(stone_color_id__in=stone_colors_pks) &
+#     Q(stone_type_id__in=stone_types_pks)).\
+#     values_list('stone_type_id', flat=True)
+#
+# stone_colors_pks = JewelryStone.objects.\
+#     filter(
+#     Q(jewelry_id__in=jewelries_pks) &
+#     Q(stone_color_id__in=stone_colors_pks) &
+#     Q(stone_type_id__in=stone_types_pks)).\
+#     values_list('stone_color_id', flat=True)
+#
+# stone_types = StoneType.objects.filter(id__in=stone_types_pks)
+#
+# stone_colors = StoneColor.objects.filter(id__in=stone_colors_pks)
 
-stone_types_pks = JewelryStone.objects.\
-    filter(
-    Q(jewelry_id__in=jewelries_pks) &
-    Q(stone_color_id__in=stone_colors_pks) &
-    Q(stone_type_id__in=stone_types_pks)).\
-    values_list('stone_type_id', flat=True)
+jewelries = Jewelry.objects.filter(pk=6, stone_colors=1)
+# stone_color = StoneColor.objects.\
+#     prefetch_related('jewelry_set__stone_types').\
+#     filter(jewelry__stone_types=1, jewelry__exact=6).values('stone_color_i')
 
-stone_colors_pks = JewelryStone.objects.\
-    filter(
-    Q(jewelry_id__in=jewelries_pks) &
-    Q(stone_color_id__in=stone_colors_pks) &
-    Q(stone_type_id__in=stone_types_pks)).\
+stone_colors_cur = JewelryStone.objects.\
+    filter(jewelry__in=[6], stone_type__exact=1).values_list('stone_color_id', flat=True)
+
+stone_colors_pks = JewelryStone.objects. \
+    filter(jewelry__in=[6], stone_type__exact=1). \
     values_list('stone_color_id', flat=True)
 
-stone_types = StoneType.objects.filter(id__in=stone_types_pks)
+stone_colors = StoneColor.objects. \
+    filter(id__in=[stone_colors_pks])
 
-stone_colors = StoneColor.objects.filter(id__in=stone_colors_pks)
+print(stone_colors)
 
-print(stone_types)
+stone_colors = StoneColor.objects. \
+    prefetch_related('stone_colors'). \
+    filter(jewelry__in=[6])
+
 print(stone_colors)
