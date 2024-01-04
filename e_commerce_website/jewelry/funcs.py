@@ -98,15 +98,36 @@ def get_metal_pks(selection_pattern_metals):
 
 
 def get_related_stone_type_objects(jewelries, stone_color_pk):
+
     if stone_color_pk is not None:
+
         stone_types_pks = JewelryStone.objects. \
             filter(jewelry__in=jewelries, stone_color__in=stone_color_pk). \
             values_list('stone_type_id', flat=True)
 
-        stone_types = StoneType.objects. \
-            filter(id__in=[stone_types_pks])
+        #
+        # stone_types = StoneType.objects. \
+        #     filter(id__in=stone_types_pks)
 
-        return stone_types
+        return stone_types_pks
+
+        #     stone_types_pks = JewelryStone.objects. \
+        #         filter(jewelry__in=jewelries, stone_color__exact=stone_color_pk).values_list('stone_type_id', flat=True)[0]
+        #     print(stone_types_pks)
+        #
+        #     stone_types = StoneType.objects. \
+        #         filter(id=stone_types_pks)
+        #
+        #     return stone_types
+        # else:
+        #     stone_types_pks = JewelryStone.objects. \
+        #         filter(jewelry__in=jewelries, stone_color__in=stone_color_pk). \
+        #         values_list('stone_type_id', flat=True)
+        #
+        #     stone_types = StoneType.objects. \
+        #         filter(id__in=[stone_types_pks])
+        #
+        #     return stone_types
 
     stone_types = StoneType.objects. \
         prefetch_related('stone_types'). \
@@ -125,15 +146,22 @@ def get_stone_type_pks(selection_pattern_stone_types):
 
 
 def get_related_stone_color_objects(jewelries, stone_type_pk):
+
     if stone_type_pk is not None:
+        # stone_colors_pks = JewelryStone.objects. \
+        #     filter(jewelry__in=jewelries, stone_type__in=stone_type_pk). \
+        #     values_list('stone_color_id', flat=True)
+        #
+        # stone_colors = StoneColor.objects. \
+        #     filter(id__in=[stone_colors_pks])
         stone_colors_pks = JewelryStone.objects. \
-            filter(jewelry__in=jewelries, stone_type__in=stone_type_pk). \
-            values_list('stone_color_id', flat=True)
+            filter(jewelry__in=jewelries, stone_type__in=stone_type_pk).values_list('stone_color_id', flat=True)
+        print(stone_colors_pks)
 
-        stone_colors = StoneColor.objects. \
-            filter(id__in=[stone_colors_pks])
+        # stone_colors = StoneColor.objects. \
+        #     filter(id__in=stone_colors_pks)
 
-        return stone_colors
+        return stone_colors_pks
 
     stone_colors = StoneColor.objects. \
         prefetch_related('stone_colors'). \
@@ -146,10 +174,7 @@ def get_stone_color_pks(selection_pattern_stone_colors):
     stone_color_titles = StoneColor.objects. \
         filter(title__in=selection_pattern_stone_colors)
 
-
     stone_color_pks = get_objects_pks(stone_color_titles)
-
-
 
     return stone_color_pks
 
@@ -215,21 +240,52 @@ def define_jewelries_count_by_selected_metal(jewelries, metals):
 
 def define_jewelries_count_by_selected_stone_type(jewelries, stone_types):
     jewelries_count_by_stone_type = {}
-    for stone_type in stone_types:
-        jewelries_count_by_stone_type[stone_type.get_title_display()] = jewelries. \
-            prefetch_related('jewelry_stones__stone_type'). \
-            filter(jewelry_stones__stone_type_id__exact=stone_type.pk). \
+
+    if isinstance(stone_types, int):
+
+        count = JewelryStone.objects. \
+            filter(jewelry__in=jewelries, stone_type__exact=stone_types). \
             count()
+
+        stone_type = StoneType.objects. \
+            get(id=stone_types)
+
+        jewelries_count_by_stone_type[stone_type.get_title_display()] = count
+
+    else:
+
+        for stone_type in stone_types:
+            jewelries_count_by_stone_type[stone_type.get_title_display()] = jewelries. \
+                prefetch_related('jewelry_stones__stone_type'). \
+                filter(jewelry_stones__stone_type_id__exact=stone_type.pk). \
+                count()
 
     return jewelries_count_by_stone_type
 
 
 def define_jewelries_count_by_selected_stone_color(jewelries, stone_colors):
     jewelries_count_by_stone_color = {}
-    for color in stone_colors:
-        jewelries_count_by_stone_color[color.get_title_display()] = jewelries. \
-            prefetch_related('jewelry_stones__stone_color'). \
-            filter(jewelry_stones__stone_color_id__exact=color.pk). \
+    print(stone_colors)
+
+    if isinstance(stone_colors, int):
+        print('TRUE')
+        print(stone_colors)
+
+        count = JewelryStone.objects. \
+            filter(jewelry__in=jewelries, stone_color__exact=stone_colors). \
             count()
+
+        stone_color = StoneColor.objects. \
+            get(id=stone_colors)
+
+        jewelries_count_by_stone_color[stone_color.get_title_display()] = count
+
+    else:
+
+        for color in stone_colors:
+            jewelries_count_by_stone_color[color.get_title_display()] = jewelries. \
+                prefetch_related('jewelry_stones__stone_color'). \
+                filter(jewelry_stones__stone_color_id__exact=color.pk). \
+                count()
 
     return jewelries_count_by_stone_color

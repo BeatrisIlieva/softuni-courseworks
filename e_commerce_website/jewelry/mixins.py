@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.views.generic import ListView
 
-from e_commerce_website.jewelry.models import Jewelry, JewelryStone
+from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.common.mixins import NavigationBarMixin
 
 from e_commerce_website.jewelry.funcs import \
@@ -218,7 +218,6 @@ class DisplayJewelryMixin(
     ListView
 ):
     model = Jewelry
-    context_object_name = 'jewelries'
     paginate_by = 6
     query = Q()
     choice_pk = None

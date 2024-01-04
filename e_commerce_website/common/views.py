@@ -19,7 +19,7 @@ class NavigationBarView(NavigationBarMixin, TemplateView):
 class SearchBarView(NavigationBarMixin, ListView):
     template_name = 'common/search_results.html'
     model = Jewelry
-    context_object_name = 'jewelries'
+    # context_object_name = 'jewelries'
     paginate_by = 6
 
     def get_queryset(self):

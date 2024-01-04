@@ -1,7 +1,7 @@
 <div class="separator-line">
     <div class="image-container">
         <div>
-            {% for jewelry in jewelries %}
+            {% for jewelry in object_list %}
                 <a href="{% url 'display_jewelry_details' jewelry.pk %}?page={{ page_obj.number }}">
                     <img width="450" height="450" src="{{ jewelry.first_image_url }}" alt="image1">
                 </a>
