@@ -21,5 +21,9 @@ urlpatterns = (
         like_jewelry,
         name='like_jewelry'
     ),
-    path('likes/<int:pk>', DisplayedLikedJewelries.as_view(), name='display_liked_jewelries'),
+    path(
+        'likes/<int:pk>',
+        DisplayedLikedJewelries.as_view(),
+        name='display_liked_jewelries'
+    ),
 )
