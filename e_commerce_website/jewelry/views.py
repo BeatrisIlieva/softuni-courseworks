@@ -1,5 +1,6 @@
 from urllib.parse import urlencode
 
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.views.generic import DetailView
 
@@ -89,6 +90,9 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
                 distinct('pk')
 
             self.update_related_objects(queryset, stone_type_pk, stone_color_pk)
+
+        for jewelry in queryset:
+            jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
 
         return queryset
 
@@ -246,6 +250,9 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
 
             self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
 
+        for jewelry in jewelries:
+            jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
+
         return jewelries
 
     def get_context_data(self, *args, **kwargs):
@@ -396,6 +403,9 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
                 distinct('pk')
 
             self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
+
+        for jewelry in jewelries:
+            jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
 
         return jewelries
 
@@ -555,6 +565,10 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
 
             self.update_related_objects(jewelries, stone_color_pk, stone_type_pk)
 
+        for jewelry in jewelries:
+            jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
+
+
         return jewelries
 
     def get_context_data(self, *args, **kwargs):
@@ -664,3 +678,5 @@ class JewelryDetailsView(NavigationBarMixin, DetailView):
         context.update(nav_bar_context)
 
         return context
+
+

@@ -79,7 +79,7 @@
             {% if request.user.pk %}
                 <li class="right-menu"><a href="{% url 'view_shopping_cart' pk=request.user.pk %}">My Bag</a></li>
             {% endif %}
-            <li class="right-menu"><a href="#">Like</a></li>
+            <li class="right-menu"><a href="{% url 'display_liked_jewelries' pk=request.user.pk %}">Like</a></li>
         </ul>
     </div>
 </nav>

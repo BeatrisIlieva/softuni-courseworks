@@ -1,6 +1,5 @@
 from django.contrib.auth import login, get_user_model, logout
 from django.contrib.auth.views import LoginView
-from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
@@ -152,3 +151,6 @@ class UserDeleteView(NavigationBarMixin, DeleteView):
         context.update(nav_bar_context)
 
         return context
+
+
+

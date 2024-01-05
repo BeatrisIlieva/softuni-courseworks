@@ -206,6 +206,8 @@ class Jewelry(models.Model):
     )
 
 
+
+
 class JewelryMetal(models.Model):
     class Meta:
         unique_together = ('jewelry', 'metal', 'gold_carat')
@@ -276,3 +278,6 @@ class JewelrySize(models.Model):
         on_delete=models.CASCADE,
         related_name='sizes',
     )
+
+
+

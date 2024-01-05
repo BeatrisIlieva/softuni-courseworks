@@ -222,6 +222,7 @@ class DisplayJewelryMixin(
     jewelries_count_by_stone_type = {}
     jewelries_count_by_stone_color = {}
 
+
 # class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 #     template_name = 'jewelry/display_jewelries_by_category.html'
 #
