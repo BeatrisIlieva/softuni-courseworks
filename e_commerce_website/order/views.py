@@ -8,6 +8,7 @@ from django.views.generic.edit import FormMixin
 
 from e_commerce_website.accounts.forms import AccountProfileForm
 from e_commerce_website.accounts.models import AccountProfile
+from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.order.forms import CardDetailsForm
 from e_commerce_website.order.utils import add_order, add_order_details, clean_shopping_cart
@@ -15,16 +16,24 @@ from e_commerce_website.order.utils import add_order, add_order_details, clean_s
 from e_commerce_website.shopping_cart.models import ShoppingCart
 
 
-class CompleteOrderView(UpdateView):
+class CompleteOrderView(NavigationBarMixin, UpdateView):
     template_name = 'order/complete_order.html'
     model = AccountProfile
     form_class = AccountProfileForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context
 
     def get_success_url(self):
         return reverse_lazy('complete_transaction', kwargs={'pk': self.request.user.pk})
 
 
-class CompleteTransactionView(TemplateView, FormMixin):
+class CompleteTransactionView(NavigationBarMixin, TemplateView, FormMixin):
     template_name = 'order/proceed_transaction.html'
     form_class = CardDetailsForm
 
@@ -41,6 +50,9 @@ class CompleteTransactionView(TemplateView, FormMixin):
             'required_cvv_length': 3,
         })
 
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
         return context
 
     def post(self, request, *args, **kwargs):
@@ -56,7 +68,7 @@ class CompleteTransactionView(TemplateView, FormMixin):
             return render(request, self.template_name, context)
 
 
-class OrderDetails(TemplateView):
+class OrderDetails(NavigationBarMixin, TemplateView):
     template_name = 'order/order_details.html'
 
     def get_context_data(self, **kwargs):
@@ -106,5 +118,8 @@ class OrderDetails(TemplateView):
         context['delivery_address'] = delivery_address
         context['phone_number'] = phone_number
         context['order_id'] = order_id
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
 
         return context

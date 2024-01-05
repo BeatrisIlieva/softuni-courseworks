@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import CreateView
 
+from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.forms import ShoppingCartForm, QuantityUpdateForm
 from e_commerce_website.shopping_cart.models import ShoppingCart
@@ -27,7 +28,7 @@ def add_quantity_to_inventory(jewelry, quantity, max_quantity):
         jewelry.save()
 
 
-class AddToShoppingCartView(CreateView):
+class AddToShoppingCartView(NavigationBarMixin, CreateView):
     form_class = ShoppingCartForm
     model = ShoppingCart
     template_name = 'jewelry/jewelry_details.html'
@@ -36,6 +37,9 @@ class AddToShoppingCartView(CreateView):
         context = super().get_context_data(**kwargs)
         jewelry_pk = self.kwargs['jewelry_pk']
         context['jewelry'] = get_object_or_404(Jewelry, pk=jewelry_pk)
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
         return context
 
     def form_valid(self, form, *args, **kwargs):
@@ -72,7 +76,7 @@ class AddToShoppingCartView(CreateView):
         })
 
 
-class ShoppingCartView(LoginRequiredMixin, View):
+class ShoppingCartView(NavigationBarMixin,LoginRequiredMixin, View):
     MAX_QUANTITIES = {}
     template_name = 'shopping_cart/shopping_cart.html'
 
@@ -108,6 +112,9 @@ class ShoppingCartView(LoginRequiredMixin, View):
                 'jewelries_by_quantities': jewelries_by_quantities,
                 'quantity_update_form': QuantityUpdateForm()
             }
+
+            nav_bar_context = self.get_nav_bar_context()
+            context.update(nav_bar_context)
 
             return context
 
