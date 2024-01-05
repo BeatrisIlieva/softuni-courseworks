@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django_countries import countries
 
-from e_commerce_website.accounts.models import AccountProfile
+from e_commerce_website.profiles.models import AccountProfile
 
 UserModel = get_user_model()
 

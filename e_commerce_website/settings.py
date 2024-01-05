@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'e_commerce_website.core',
     'django_countries',
     'e_commerce_website.order',
+    'e_commerce_website.profiles',
 ]
 
 MIDDLEWARE = [
