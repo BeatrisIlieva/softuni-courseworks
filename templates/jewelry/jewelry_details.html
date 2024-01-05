@@ -6,6 +6,7 @@
         {{ jewelry.title }}
     </div>
     <form method="post" action="{% url 'add_to_shopping_cart' jewelry_pk=jewelry.pk %}">
+    {{ form.as_p }}
     <button>Add to cart</button>
     {% csrf_token %}
 </form>
@@ -17,24 +18,24 @@
 {#            {% csrf_token %}#}
 {#        </form>#}
 {#    </div>#}
-    <form>
-        {% for field in form %}
-            <div>
-                <label for="{{ field.id_for_label }}">
-                    <strong>{{ field.label }} </strong>
-                    <div>
-                        {% for subfield in field %}
-                            <div>
-                                {{ subfield }}
-                            </div>
-                        {% endfor %}
-                    </div>
-                </label>
-                <button>Apply</button>
-                {% csrf_token %}
-            </div>
-        {% endfor %}
-    </form>
+{#    <form>#}
+{#        {% for field in form %}#}
+{#            <div>#}
+{#                <label for="{{ field.id_for_label }}">#}
+{#                    <strong>{{ field.label }} </strong>#}
+{#                    <div>#}
+{#                        {% for subfield in field %}#}
+{#                            <div>#}
+{#                                {{ subfield }}#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                </label>#}
+{#                <button>Apply</button>#}
+{#                {% csrf_token %}#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </form>#}
     {##}
     {#     <h1>Images</h1>#}
     {##}

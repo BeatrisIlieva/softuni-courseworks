@@ -72,7 +72,7 @@ class OrderDetails(TemplateView):
 
         for pk in jewelries_pks:
             jewelry = Jewelry.objects.get(pk=pk)
-            quantity = ShoppingCart.objects.get(jewelry_id=pk).quantity
+            quantity = ShoppingCart.objects.get(jewelry_id=pk, user_id=user_pk).quantity
             jewelry_total_price = jewelry.price * quantity
             jewelries_by_quantities[jewelry] = {
                 'quantity': quantity,

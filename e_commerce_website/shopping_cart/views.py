@@ -1,14 +1,14 @@
 from _decimal import Decimal
 
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import ExpressionWrapper, F, Sum, DecimalField
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse
 from django.views import View
+from django.views.generic import CreateView
 
 from e_commerce_website.jewelry.models import Jewelry
-from e_commerce_website.shopping_cart.forms import QuantityUpdateForm
+from e_commerce_website.shopping_cart.forms import ShoppingCartForm, QuantityUpdateForm
 from e_commerce_website.shopping_cart.models import ShoppingCart
 
 
@@ -27,28 +27,49 @@ def add_quantity_to_inventory(jewelry, quantity, max_quantity):
         jewelry.save()
 
 
-@login_required
-def add_to_shopping_cart(request, jewelry_pk):
-    customer_shopping_cart = ShoppingCart.objects.filter(user_id=request.user.pk, jewelry_id=jewelry_pk)
-    jewelry = Jewelry.objects.get(pk=jewelry_pk)
-    remove_quantity_from_inventory(jewelry, 1)
+class AddToShoppingCartView(CreateView):
+    form_class = ShoppingCartForm
+    model = ShoppingCart
+    template_name = 'jewelry/jewelry_details.html'
 
-    if customer_shopping_cart:
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        jewelry_pk = self.kwargs['jewelry_pk']
+        context['jewelry'] = get_object_or_404(Jewelry, pk=jewelry_pk)
+        return context
 
-        cart_item = customer_shopping_cart.get(jewelry_id=jewelry_pk)
-        quantity_as_int = cart_item.quantity
+    def form_valid(self, form, *args, **kwargs):
+        user = self.request.user
+        jewelry_pk = self.get_context_data()['jewelry'].pk
 
-        if quantity_as_int:
-            quantity_as_int += 1
-            ShoppingCart.objects.filter(jewelry_id=jewelry_pk).update(quantity=quantity_as_int)
+        customer_shopping_cart = ShoppingCart.objects.filter(user_id=user, jewelry_id=jewelry_pk)
 
+        if customer_shopping_cart:
+            cart_item = customer_shopping_cart.get(jewelry_id=jewelry_pk)
+            quantity_as_int = cart_item.quantity
 
-    else:
-        ShoppingCart.objects.create(user=request.user, jewelry=jewelry, quantity=1)
+            if quantity_as_int:
+                quantity_as_int += 1
+                ShoppingCart.objects.filter(jewelry_id=jewelry_pk).update(quantity=quantity_as_int)
 
-    messages.success(request, f'{jewelry.title} added to yor cart')
+            return redirect('view_shopping_cart', user.pk)
 
-    return redirect('view_shopping_cart')
+        cart = form.save(commit=False)
+        cart.user = self.request.user
+        quantity = 1
+
+        jewelry_pk = self.get_context_data()['jewelry'].pk
+        jewelry = get_object_or_404(Jewelry, pk=jewelry_pk)
+
+        cart.jewelry = jewelry
+        cart.quantity = quantity
+        cart.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('view_shopping_cart', kwargs={
+            'pk': self.request.user.pk
+        })
 
 
 class ShoppingCartView(LoginRequiredMixin, View):
@@ -126,6 +147,3 @@ class ShoppingCartView(LoginRequiredMixin, View):
         context = self.get_context_data()
 
         return render(request, self.template_name, context)
-
-
-

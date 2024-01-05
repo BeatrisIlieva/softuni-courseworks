@@ -14,11 +14,6 @@ from e_commerce_website.order.models import Order, OrderProducts
 
 UserModel = get_user_model()
 
-class OnlyAnonymousMixin:
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return HttpResponse(self.get_success_url())
-        return super().dispatch(request, *args, **kwargs)
 
 class RegisterUserView(NavigationBarMixin, CreateView):
     template_name = 'account/register.html'
@@ -44,7 +39,7 @@ class RegisterUserView(NavigationBarMixin, CreateView):
         return context
 
     def get_success_url(self):
-        next_url = self.request.POST.get('next', '')  # Check the 'next' parameter in POST
+        next_url = self.request.POST.get('next', '')
         return next_url if next_url else self.success_url
 
 

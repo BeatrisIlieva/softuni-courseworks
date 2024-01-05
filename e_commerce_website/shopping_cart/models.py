@@ -18,7 +18,11 @@ class ShoppingCart(models.Model):
         on_delete=models.CASCADE
     )
 
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField(
+        default=1,
+        null=True,
+        blank=True,
+    )
 
     order_completed = models.BooleanField(
         default=False,
