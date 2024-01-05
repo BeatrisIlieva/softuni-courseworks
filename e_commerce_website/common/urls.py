@@ -16,6 +16,10 @@ urlpatterns = (
         SearchBarView.as_view(),
         name='search_bar'
     ),
-    path('like/<int:jewelry_pk>', like_jewelry, name='like_jewelry'),
+    path(
+        'like/<int:jewelry_pk>',
+        like_jewelry,
+        name='like_jewelry'
+    ),
     path('likes/<int:pk>', DisplayedLikedJewelries.as_view(), name='display_liked_jewelries'),
 )
