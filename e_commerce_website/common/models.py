@@ -4,6 +4,8 @@ from django.db import models
 from e_commerce_website.jewelry.models import Jewelry
 
 UserModel = get_user_model()
+
+
 class JewelryLike(models.Model):
     class Meta:
         unique_together = ('jewelry', 'user')
@@ -19,5 +21,3 @@ class JewelryLike(models.Model):
         to=UserModel,
         on_delete=models.CASCADE,
     )
-
-

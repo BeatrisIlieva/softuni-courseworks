@@ -5,9 +5,6 @@ from e_commerce_website.jewelry.models import Category, \
     StoneColor
 
 
-
-
-
 class NavigationBarMixin:
     @staticmethod
     def get_nav_bar_context():

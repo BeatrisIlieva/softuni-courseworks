@@ -5,7 +5,9 @@ from django.utils.deconstruct import deconstructible
 def get_objects_by_choices(model_name):
     objects = model_name.objects.all()
 
-    object_choices = [x[1] for x in model_name.TitleChoices.choices]
+    object_choices = [
+        x[1] for x in model_name.TitleChoices.choices
+    ]
 
     object_by_choices = {}
 
@@ -21,8 +23,12 @@ def get_objects_by_choices(model_name):
 def get_object_pks(model_name, search):
     objects = model_name.objects.all()
 
-    options = [(obj.title, obj.get_title_display()) for obj in objects if
-               search in obj.get_title_display().lower() or search in obj.get_title_display()]
+    options = [
+        (obj.title, obj.get_title_display())
+        for obj in objects if
+        search in obj.get_title_display().lower()
+        or search in obj.get_title_display()
+    ]
 
     valid_options = [o[0] for o in options]
 
