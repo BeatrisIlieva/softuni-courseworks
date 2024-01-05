@@ -1,5 +1,8 @@
 from e_commerce_website.common.utils import get_objects_by_choices
-from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor
+from e_commerce_website.jewelry.models import Category, \
+    Metal, \
+    StoneType, \
+    StoneColor
 
 
 
