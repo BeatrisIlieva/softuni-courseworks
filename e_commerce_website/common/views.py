@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import redirect
-from django.views import View
 from django.views.generic import TemplateView, ListView
 
 from e_commerce_website.common.mixins import NavigationBarMixin
@@ -74,8 +73,6 @@ class SearchBarView(NavigationBarMixin, ListView):
 
 @login_required
 def like_jewelry(request, jewelry_pk):
-    # jewelry = Jewelry.objects.get(pk=jewelry_pk)
-
     kwargs = {
         'jewelry_id': jewelry_pk,
         'user_id': request.user.pk,
@@ -95,7 +92,7 @@ def like_jewelry(request, jewelry_pk):
     return redirect('display_liked_jewelries', pk=request.user.pk)
 
 
-class DisplayedLikedJewelries(LoginRequiredMixin, ListView):
+class DisplayedLikedJewelries(LoginRequiredMixin, NavigationBarMixin, ListView):
     model = Jewelry
     template_name = 'common/liked_jewelries.html'
     paginate_by = 6
@@ -112,10 +109,10 @@ class DisplayedLikedJewelries(LoginRequiredMixin, ListView):
 
         return queryset
 
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super().get_context_data(*args, **kwargs)
-    #
-    #     return context
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
 
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
 
-
+        return context
