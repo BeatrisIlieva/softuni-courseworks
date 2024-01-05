@@ -142,9 +142,6 @@ class UpdateSelectionFormMixin:
             selection_form.fields['stone_type_choices']. \
                 choices = kwargs['stone_type_choices']
 
-
-
-
         if 'stone_color_choices' in kwargs:
             selection_form.fields['stone_color_choices']. \
                 choices = kwargs['stone_color_choices']
@@ -206,8 +203,6 @@ class UpdateQueryMixin:
             )
 
 
-
-
 class DisplayJewelryMixin(
     DefineRelatedObjectsMixin,
     UpdateQueryMixin,
@@ -227,3 +222,95 @@ class DisplayJewelryMixin(
     jewelries_count_by_stone_type = {}
     jewelries_count_by_stone_color = {}
 
+# class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
+#     template_name = 'jewelry/display_jewelries_by_category.html'
+#
+#     def get_parent_queryset(self):
+#         selected_stone_type_pk = None
+#         selected_stone_color_pk = None
+#
+#         queryset = super().get_queryset()
+#
+#         self.update_related_objects(queryset, selected_stone_type_pk, selected_stone_color_pk)
+#
+#         self.selection_form = JewelryCategoryForm(self.request.GET)
+#
+#         if self.selection_form.is_valid():
+#
+#             selection_pattern_price = self.set_selection_pattern_price(self.selection_form)
+#
+#             if selection_pattern_price:
+#                 query_price = self.add_price_filtration(self, selection_pattern_price)
+#
+#                 self.query &= query_price
+#
+#             selection_pattern_metal = self.set_selection_pattern_metal(self.selection_form)
+#
+#             if selection_pattern_metal:
+#                 query_metal = self.add_metal_filtration(selection_pattern_metal)
+#
+#                 self.query &= query_metal
+#
+#             selection_pattern_stone_type = self.set_selection_pattern_stone_type(self.selection_form)
+#
+#             if selection_pattern_stone_type:
+#                 query_stone_type = self.add_stone_type_filtration(selection_pattern_stone_type)
+#
+#                 self.query &= query_stone_type
+#
+#                 selected_stone_type_pk = self.get_selected_stone_type_pk(selection_pattern_stone_type)
+#                 selected_stone_color_pk = self.get_related_stone_color_pk(queryset, selected_stone_type_pk)
+#
+#             selection_pattern_stone_color = self.set_selection_pattern_stone_color(self.selection_form)
+#
+#             if selection_pattern_stone_color:
+#                 query_stone_color = self.add_stone_color_filtration(selection_pattern_stone_color)
+#
+#                 self.query &= query_stone_color
+#
+#                 selected_stone_color_pk = self.get_selected_stone_color_pk(selection_pattern_stone_color)
+#                 selected_stone_type_pk = self.get_related_stone_type_pks(queryset, selected_stone_color_pk)
+#
+#             queryset = queryset. \
+#                 filter(self.query). \
+#                 distinct('pk')
+#
+#         price_choices = self.get_price_choices(queryset)
+#         metals, metal_choices = self.get_metal_choices(queryset)
+#         stone_types, stone_type_choices = self.get_stone_type_choices(queryset, selected_stone_type_pk, selected_stone_color_pk)
+#         stone_colors, stone_color_choices = self.get_stone_color_choices(queryset, selected_stone_type_pk, selected_stone_color_pk)
+#         self.jewelries_count_by_price = self.get_jewelries_count_by_price(self, queryset)
+#         self.jewelries_count_by_metal = self.get_jewelries_count_by_metals(self, queryset, metals)
+#         self.jewelries_count_by_stone_color = self.get_jewelries_count_by_stone_type(self, queryset, stone_types)
+#         self.jewelries_count_by_stone_color = self.define_jewelries_count_by_stone_color(queryset, stone_colors)
+#
+#         self.selection_form = \
+#             self.update_selection_form(
+#                 self.selection_form,
+#                 price_choices=price_choices,
+#                 metal_choices=metal_choices,
+#                 stone_type_choices=stone_type_choices,
+#                 stone_color_choices=stone_color_choices,
+#             )
+#
+#         return queryset
+#
+#     def get_parent_context_data(self):
+#         context = super().get_context_data()
+#
+#         context['choice_pk'] = \
+#             self.kwargs['choice_pk']
+#
+#         context['jewelries_count_by_stone_type'] = \
+#             self.jewelries_count_by_stone_type
+#
+#         context['jewelries_count_by_stone_color'] = \
+#             self.jewelries_count_by_stone_color
+#
+#         context['jewelries_count_by_metal'] = \
+#             self.jewelries_count_by_metal
+#
+#         context['jewelries_count_by_price'] = \
+#             self.jewelries_count_by_price
+#
+#         return context

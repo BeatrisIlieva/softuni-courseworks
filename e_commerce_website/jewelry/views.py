@@ -3,6 +3,7 @@ from urllib.parse import urlencode
 from django.db.models import Q
 from django.views.generic import DetailView
 
+from e_commerce_website.jewelry.mixins import DisplayJewelryMixin
 from e_commerce_website.jewelry.models import Jewelry, StoneType, StoneColor
 
 from e_commerce_website.common.mixins import \
@@ -19,13 +20,9 @@ from e_commerce_website.jewelry.funcs import \
     get_related_size_objects, \
     get_related_choices, get_stone_type_pks, get_stone_color_pks
 
-from e_commerce_website.jewelry.mixins import \
-    DisplayJewelryMixin
-
 
 class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_category.html'
-    selection_form = None
 
     def get_queryset(self):
         self.selection_form = \
@@ -91,7 +88,7 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
                 filter(self.query). \
                 distinct('pk')
 
-            self.update_related_objects(queryset,  stone_type_pk, stone_color_pk)
+            self.update_related_objects(queryset, stone_type_pk, stone_color_pk)
 
         return queryset
 
@@ -101,25 +98,17 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
-        # form_data = self.request.GET.copy() if self.request.GET else {}
-        # context['form'] = self.selection_form
-        # context['form_data'] = form_data.urlencode()
-
         context['form'] = self.selection_form
 
-        # Combine form data and page number for pagination links
         form_data = self.request.GET.copy() if self.request.GET else {}
-        form_data.pop('page', None)  # Remove 'page' parameter to avoid duplication
-        page_number = self.request.GET.get('page', 1)  # Get current page number
+        form_data.pop('page', None)
+        page_number = self.request.GET.get('page', 1)
         form_data_encoded = urlencode(form_data) + '&' if form_data else ''
         context['form_data_encoded'] = form_data_encoded
         context['page_number'] = page_number
 
         context['choice_pk'] = \
             self.kwargs['choice_pk']
-
-        # context['form'] = \
-        #     self.selection_form
 
         context['jewelries_count_by_stone_type'] = \
             self.jewelries_count_by_stone_type
@@ -186,8 +175,6 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
             )
 
 
-
-
 class DisplayJewelriesByMetalView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_metal.html'
 
@@ -211,7 +198,7 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
                 filter(self.query). \
                 distinct('pk')
 
-        self.update_related_objects(jewelries, None, None)
+        self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
 
         if self.selection_form.is_valid():
 
@@ -267,11 +254,17 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
+        context['form'] = self.selection_form
+
+        form_data = self.request.GET.copy() if self.request.GET else {}
+        form_data.pop('page', None)
+        page_number = self.request.GET.get('page', 1)
+        form_data_encoded = urlencode(form_data) + '&' if form_data else ''
+        context['form_data_encoded'] = form_data_encoded
+        context['page_number'] = page_number
+
         context['choice_pk'] = \
             self.kwargs['choice_pk']
-
-        context['form'] = \
-            self.selection_form
 
         context['jewelries_count_by_stone_type'] = \
             self.jewelries_count_by_stone_type
@@ -303,8 +296,14 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
         self.jewelries_count_by_category = \
             self.define_jewelries_count_by_category(jewelries, categories)
 
+        if stone_type_pk is not None:
+            stone_types = StoneType.objects.filter(id__in=stone_type_pk)
+
         self.jewelries_count_by_stone_type = \
             self.define_jewelries_count_by_stone_type(jewelries, stone_types)
+
+        if stone_color_pk is not None:
+            stone_colors = StoneColor.objects.filter(id__in=stone_color_pk)
 
         self.jewelries_count_by_stone_color = \
             self.define_jewelries_count_by_stone_color(jewelries, stone_colors)
@@ -339,7 +338,7 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
             JewelryStoneTypeForm(self.request.GET)
 
         choice_pk = self.kwargs['choice_pk']
-        stone_type_pk = choice_pk
+        stone_type_pk = [choice_pk]
 
         self.query &= Q(
             stone_types__exact=choice_pk,
@@ -352,7 +351,9 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
                 filter(self.query). \
                 distinct('pk')
 
-        self.update_related_objects(jewelries, stone_type_pk)
+        stone_color_pk = self.define_related_stone_color_objects(jewelries, stone_type_pk)
+
+        self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
 
         if self.selection_form.is_valid():
 
@@ -372,6 +373,14 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
                     selection_pattern_category=selection_pattern_category
                 )
 
+            selection_pattern_metals = \
+                self.selection_form.cleaned_data['metal_choices']
+
+            if selection_pattern_metals:
+                self.query &= self.update_query_mixin(
+                    selection_pattern_metals=selection_pattern_metals
+                )
+
             selection_pattern_stone_colors = \
                 self.selection_form.cleaned_data['stone_color_choices']
 
@@ -379,12 +388,14 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
                 self.query &= self.update_query_mixin(
                     selection_pattern_stone_colors=selection_pattern_stone_colors
                 )
+                stone_color_pk = get_stone_color_pks(selection_pattern_stone_colors)
+                stone_type_pk = self.define_related_stone_type_objects(jewelries, stone_color_pk)
 
             jewelries = jewelries. \
                 filter(self.query). \
                 distinct('pk')
 
-            self.update_related_objects(jewelries, stone_type_pk)
+            self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
 
         return jewelries
 
@@ -394,11 +405,17 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
+        context['form'] = self.selection_form
+
+        form_data = self.request.GET.copy() if self.request.GET else {}
+        form_data.pop('page', None)
+        page_number = self.request.GET.get('page', 1)
+        form_data_encoded = urlencode(form_data) + '&' if form_data else ''
+        context['form_data_encoded'] = form_data_encoded
+        context['page_number'] = page_number
+
         context['choice_pk'] = \
             self.kwargs['choice_pk']
-
-        context['form'] = \
-            self.selection_form
 
         context['jewelries_count_by_stone_color'] = \
             self.jewelries_count_by_stone_color
@@ -406,14 +423,23 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
         context['jewelries_count_by_category'] = \
             self.jewelries_count_by_category
 
+        context['jewelries_count_by_metal'] = \
+            self.jewelries_count_by_metal
+
         context['jewelries_count_by_price'] = \
             self.jewelries_count_by_price
 
         return context
 
-    def update_related_objects(self, jewelries, stone_type_pk):
+    def update_related_objects(self, jewelries, stone_type_pk, stone_color_pk):
         categories = \
             self.define_related_category_objects(jewelries)
+
+        metals = \
+            self.define_related_metal_objects(jewelries)
+
+        stone_types = \
+            self.define_related_stone_type_objects(jewelries, stone_color_pk)
 
         stone_colors = \
             self.define_related_stone_color_objects(jewelries, stone_type_pk)
@@ -424,14 +450,29 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
         self.jewelries_count_by_category = \
             self.define_jewelries_count_by_category(jewelries, categories)
 
+        self.jewelries_count_by_metal = \
+            self.define_jewelries_count_by_metal(jewelries, metals)
+
+        if stone_type_pk is not None:
+            stone_types = StoneType.objects.filter(id__in=stone_type_pk)
+
+        self.jewelries_count_by_stone_type = \
+            self.define_jewelries_count_by_stone_type(jewelries, stone_types)
+
+        if stone_color_pk is not None:
+            stone_colors = StoneColor.objects.filter(id__in=stone_color_pk)
+
         self.jewelries_count_by_stone_color = \
-            self.define_jewelries_count_by_stone_type(jewelries, stone_colors)
+            self.define_jewelries_count_by_stone_color(jewelries, stone_colors)
 
         price_choices = \
             self.define_price_choices(jewelries)
 
         category_choices = \
             self.define_category_choices(categories)
+
+        metal_choices = \
+            self.define_metal_choices(metals)
 
         stone_color_choices = \
             self.define_stone_color_choices(stone_colors)
@@ -441,7 +482,8 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
                 self.selection_form,
                 price_choices=price_choices,
                 category_choices=category_choices,
-                stone_color_choices=stone_color_choices
+                metal_choices=metal_choices,
+                stone_color_choices=stone_color_choices,
             )
 
 
@@ -466,7 +508,9 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
                 filter(self.query). \
                 distinct('pk')
 
-        self.update_related_objects(jewelries, stone_color_pk)
+        stone_type_pk = self.define_related_stone_type_objects(jewelries, stone_color_pk)
+
+        self.update_related_objects(jewelries, stone_color_pk, stone_type_pk)
 
         if self.selection_form.is_valid():
 
@@ -486,6 +530,14 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
                     selection_pattern_category=selection_pattern_category
                 )
 
+            selection_pattern_metals = \
+                self.selection_form.cleaned_data['metal_choices']
+
+            if selection_pattern_metals:
+                self.query &= self.update_query_mixin(
+                    selection_pattern_metals=selection_pattern_metals
+                )
+
             selection_pattern_stone_types = \
                 self.selection_form.cleaned_data['stone_type_choices']
 
@@ -494,11 +546,14 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
                     selection_pattern_stone_types=selection_pattern_stone_types
                 )
 
+                stone_type_pk = get_stone_type_pks(selection_pattern_stone_types)
+                stone_color_pk = self.define_related_stone_color_objects(jewelries, stone_type_pk)
+
             jewelries = jewelries. \
                 filter(self.query). \
                 distinct('pk')
 
-            self.update_related_objects(jewelries, stone_color_pk)
+            self.update_related_objects(jewelries, stone_color_pk, stone_type_pk)
 
         return jewelries
 
@@ -508,11 +563,17 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
+        context['form'] = self.selection_form
+
+        form_data = self.request.GET.copy() if self.request.GET else {}
+        form_data.pop('page', None)
+        page_number = self.request.GET.get('page', 1)
+        form_data_encoded = urlencode(form_data) + '&' if form_data else ''
+        context['form_data_encoded'] = form_data_encoded
+        context['page_number'] = page_number
+
         context['choice_pk'] = \
             self.kwargs['choice_pk']
-
-        context['form'] = \
-            self.selection_form
 
         context['jewelries_count_by_stone_type'] = \
             self.jewelries_count_by_stone_type
@@ -520,17 +581,26 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
         context['jewelries_count_by_category'] = \
             self.jewelries_count_by_category
 
+        context['jewelries_count_by_metal'] = \
+            self.jewelries_count_by_metal
+
         context['jewelries_count_by_price'] = \
             self.jewelries_count_by_price
 
         return context
 
-    def update_related_objects(self, jewelries, stone_color_pk):
+    def update_related_objects(self, jewelries, stone_color_pk, stone_type_pk):
         categories = \
             self.define_related_category_objects(jewelries)
 
+        metals = \
+            self.define_related_metal_objects(jewelries)
+
         stone_types = \
             self.define_related_stone_type_objects(jewelries, stone_color_pk)
+
+        stone_colors = \
+            self.define_related_stone_color_objects(jewelries, stone_type_pk)
 
         self.jewelries_count_by_price = \
             self.define_jewelries_count_by_price(jewelries)
@@ -538,14 +608,29 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
         self.jewelries_count_by_category = \
             self.define_jewelries_count_by_category(jewelries, categories)
 
+        self.jewelries_count_by_metal = \
+            self.define_jewelries_count_by_metal(jewelries, metals)
+
+        if stone_type_pk is not None:
+            stone_types = StoneType.objects.filter(id__in=stone_type_pk)
+
         self.jewelries_count_by_stone_type = \
             self.define_jewelries_count_by_stone_type(jewelries, stone_types)
+
+        if stone_color_pk is not None:
+            stone_colors = StoneColor.objects.filter(id__in=stone_color_pk)
+
+        self.jewelries_count_by_stone_color = \
+            self.define_jewelries_count_by_stone_color(jewelries, stone_colors)
 
         price_choices = \
             self.define_price_choices(jewelries)
 
         category_choices = \
             self.define_category_choices(categories)
+
+        metal_choices = \
+            self.define_metal_choices(metals)
 
         stone_type_choices = \
             self.define_stone_type_choices(stone_types)
@@ -555,7 +640,8 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
                 self.selection_form,
                 price_choices=price_choices,
                 category_choices=category_choices,
-                stone_type_choices=stone_type_choices
+                metal_choices=metal_choices,
+                stone_type_choices=stone_type_choices,
             )
 
 
