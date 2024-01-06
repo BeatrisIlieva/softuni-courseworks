@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'e_commerce_website.common.middlewares.show_last_viewed_jewelries_middleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -78,11 +79,23 @@ DATABASES = {
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'application_cache',
+        'BACKEND':
+            'django.core.cache.backends.redis.RedisCache',
+        'LOCATION':
+            'redis://127.0.0.1:6379',
     },
-    # 'redis':
 }
+
+# CACHES = {
+#     'default': {
+#         'BACKEND':
+#             'django.core.cache.backends.dummy.DummyCache'
+#             if DEBUG
+#             else 'django.core.cache.backends.redis.RedisCache',
+#         'LOCATION':
+#             'redis://127.0.0.1:6379',
+#     },
+# }
 
 
 # Password validation

@@ -4,12 +4,18 @@
     <h1>Title</h1>
     <div>
         {{ jewelry.title }}
+    <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
     </div>
     <form method="post" action="{% url 'add_to_shopping_cart' jewelry_pk=jewelry.pk %}">
     {{ form.as_p }}
     <button>Add to cart</button>
     {% csrf_token %}
 </form>
+    {% for jewelry in last_viewed_jewelries %}
+    <a href="{% url 'display_jewelry_details' jewelry.pk %}">
+                    <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
+                </a>
+    {% endfor %}
 {#    <div>#}
 {#        <form id="addToCartForm" action="{% url 'add_to_shopping_cart' jewelry_pk=jewelry.pk user_pk=request.user.pk %}"#}
 {#              method="post">#}

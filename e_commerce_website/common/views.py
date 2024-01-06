@@ -2,17 +2,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import redirect
-from django.core.cache import cache
+
 from django.views.generic import TemplateView, ListView
 
 from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.common.models import JewelryLike
 from e_commerce_website.common.utils import get_object_pks
-from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor, Jewelry
+from e_commerce_website.jewelry.models import (
+    Category, Metal, StoneType, StoneColor, Jewelry
+)
 
-
-# @cache.cache_page(timeout=5 * 60)
-# @method_decorator
 
 class NavigationBarView(NavigationBarMixin, TemplateView):
     template_name = 'common/index_page.html'
@@ -20,12 +19,13 @@ class NavigationBarView(NavigationBarMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         nav_bar_context = self.get_nav_bar_context()
+
+        # if not cache.get('nav_bar_context'):
+        #     cache.set('nav_bar_context', nav_bar_context, 30)
+
+        # nav_bar_context = cache.get('nav_bar_context')
+
         context.update(nav_bar_context)
-
-        if not cache.get('nav_bar_context'):
-            cache.set('nav_bar_context', nav_bar_context, 30)
-
-        nav_bar_context = cache.get('nav_bar_context')
 
         return context
 
@@ -125,4 +125,23 @@ class DisplayedLikedJewelries(LoginRequiredMixin, NavigationBarMixin, ListView):
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
+        last_viewed = self.request.session.get('last_viewed_jewelries', [])
+
+        # # request.session._auth_user_id
+        #
+        # last_viewed.append(kwargs['jewelry_pk'])
+
+        # self.request.session['last_viewed_jewelries'] = last_viewed
+        context.update(last_viewed)
+
         return context
+
+
+def show_last_viewed(request, pk):
+    last_viewed = request.session.get('last_viewed_jewelries', [])
+
+    # request.session._auth_user_id
+
+    last_viewed.append(pk)
+
+    request.session['last_viewed_jewelries'] = last_viewed

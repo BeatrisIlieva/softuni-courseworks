@@ -2,6 +2,7 @@ from urllib.parse import urlencode
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 
 from e_commerce_website.jewelry.mixins import DisplayJewelryMixin
@@ -568,7 +569,6 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
         for jewelry in jewelries:
             jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
 
-
         return jewelries
 
     def get_context_data(self, *args, **kwargs):
@@ -669,14 +669,44 @@ class JewelryDetailsView(NavigationBarMixin, DetailView):
         selection_form = JewelryDetailsForm(self.request.GET)
         sizes = get_related_size_objects(self.get_object())
         size_choices = get_related_choices(sizes, field_name='measurement')
+
         if selection_form.is_valid():
             selection_form.fields['sizes'].choices = size_choices
 
         context['form'] = selection_form
 
+        last_viewed_jewelries = self.request.session.get('last_viewed_jewelries', [])
+        last_viewed_jewelries = Jewelry.objects.filter(id__in=last_viewed_jewelries)
+        context['last_viewed_jewelries'] = last_viewed_jewelries
+
+
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
         return context
+
+def view_jewelry(request, pk):
+    jewelry = Jewelry.objects.get(pk=pk)
+    last_viewed_jewelries = request.session.get('last_viewed_jewelries', [])
+    last_viewed_jewelries.insert(0, jewelry.pk)
+
+    request.session['last_viewed_jewelries'] = last_viewed_jewelries
+
+    if len(last_viewed_jewelries) > 3:
+        request.session['last_viewed_jewelries'] = last_viewed_jewelries[:3]
+
+
+    return redirect('display_jewelry_details', pk=pk)
+
+    # jewelry_pk = pk
+    #
+    # last_viewed_jewelries.append(jewelry_pk)
+    #
+    # request.session['last_viewed_jewelries'] = last_viewed_jewelries[len(last_viewed_jewelries) - 3:]
+    #
+    # # context['last_viewed_jewelries_obj'] = last_viewed_jewelries_obj
+    # context[last_viewed_jewelries_obj] = last_viewed_jewelries
+
+
 
 
