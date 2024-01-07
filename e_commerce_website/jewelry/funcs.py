@@ -156,7 +156,7 @@ def get_related_stone_color_objects(jewelries, stone_type_pk):
         #     filter(id__in=[stone_colors_pks])
         stone_colors_pks = JewelryStone.objects. \
             filter(jewelry__in=jewelries, stone_type__in=stone_type_pk).values_list('stone_color_id', flat=True)
-        print(stone_colors_pks)
+
 
         # stone_colors = StoneColor.objects. \
         #     filter(id__in=stone_colors_pks)
@@ -265,11 +265,10 @@ def define_jewelries_count_by_selected_stone_type(jewelries, stone_types):
 
 def define_jewelries_count_by_selected_stone_color(jewelries, stone_colors):
     jewelries_count_by_stone_color = {}
-    print(stone_colors)
+
 
     if isinstance(stone_colors, int):
-        print('TRUE')
-        print(stone_colors)
+
 
         count = JewelryStone.objects. \
             filter(jewelry__in=jewelries, stone_color__exact=stone_colors). \

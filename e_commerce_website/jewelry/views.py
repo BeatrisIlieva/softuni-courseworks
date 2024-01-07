@@ -688,13 +688,19 @@ class JewelryDetailsView(NavigationBarMixin, DetailView):
 def view_jewelry(request, pk):
     jewelry = Jewelry.objects.get(pk=pk)
     last_viewed_jewelries = request.session.get('last_viewed_jewelries', [])
-    last_viewed_jewelries.insert(0, jewelry.pk)
 
-    request.session['last_viewed_jewelries'] = last_viewed_jewelries
+    if jewelry.pk in last_viewed_jewelries:
+        last_viewed_jewelries.remove(jewelry.pk)
 
-    if len(last_viewed_jewelries) > 3:
-        request.session['last_viewed_jewelries'] = last_viewed_jewelries[:3]
+    last_viewed_jewelries.append(jewelry.pk)
 
+    start_index = max(
+        0,
+        len(last_viewed_jewelries) - 3,
+    )
+
+    # request.session.set_expiry(5 * 60) changes the expiry date; it can be set to a date as well
+    request.session['last_viewed_jewelries'] = last_viewed_jewelries[start_index:]
 
     return redirect('display_jewelry_details', pk=pk)
 

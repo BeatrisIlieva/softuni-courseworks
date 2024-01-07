@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'e_commerce_website.middlewares.middlewares.measure_execution_time',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'e_commerce_website.common.middlewares.show_last_viewed_jewelries_middleware',
