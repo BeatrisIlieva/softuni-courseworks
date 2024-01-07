@@ -12,8 +12,6 @@ from e_commerce_website.order.models import Order, OrderProducts
 from e_commerce_website.profiles.models import AccountProfile
 
 UserModel = get_user_model()
-
-
 class LoginUserView(NavigationBarMixin, LoginView):
     template_name = 'account/login.html'
 
@@ -122,3 +120,7 @@ class UserDeleteView(NavigationBarMixin, DeleteView):
         context.update(nav_bar_context)
 
         return context
+
+
+
+

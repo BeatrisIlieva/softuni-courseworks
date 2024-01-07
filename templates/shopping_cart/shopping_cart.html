@@ -15,7 +15,7 @@
             PRICE: {{ details.jewelry_total_price }}
         </li>
         <li>
-            <form method="post">
+            <form action="{% url 'update_shopping_cart' jewelry.pk %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="jewelry_id" value="{{ jewelry.pk }}">
                 <input type="number" name="quantity" value="{{ details.quantity }}"
@@ -30,9 +30,14 @@
         {{ total_price }}
     </div>
     <div>
-        <form action="{% url 'complete_order' pk=user_pk %}" method="get">
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'complete_order' request.user.pk %}" method="get">
+                <button>COMPLETE ORDER</button>
+                {% csrf_token %}
+            </form>
+        {% else %}
+            <a href="{% url 'login_user' %}"></a>
             <button>COMPLETE ORDER</button>
-            {% csrf_token %}
-        </form>
+        {% endif %}
     </div>
 {% endblock %}

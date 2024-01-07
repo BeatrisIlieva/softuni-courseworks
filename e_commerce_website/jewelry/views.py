@@ -92,8 +92,8 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 
             self.update_related_objects(queryset, stone_type_pk, stone_color_pk)
 
-        for jewelry in queryset:
-            jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
+        # for jewelry in queryset:
+        #     jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
 
         return queryset
 
@@ -405,8 +405,8 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
 
             self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
 
-        for jewelry in jewelries:
-            jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
+        # for jewelry in jewelries:
+        #     jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
 
         return jewelries
 
@@ -566,8 +566,8 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
 
             self.update_related_objects(jewelries, stone_color_pk, stone_type_pk)
 
-        for jewelry in jewelries:
-            jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
+        # for jewelry in jewelries:
+        #     jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
 
         return jewelries
 
@@ -704,14 +704,6 @@ def view_jewelry(request, pk):
 
     return redirect('display_jewelry_details', pk=pk)
 
-    # jewelry_pk = pk
-    #
-    # last_viewed_jewelries.append(jewelry_pk)
-    #
-    # request.session['last_viewed_jewelries'] = last_viewed_jewelries[len(last_viewed_jewelries) - 3:]
-    #
-    # # context['last_viewed_jewelries_obj'] = last_viewed_jewelries_obj
-    # context[last_viewed_jewelries_obj] = last_viewed_jewelries
 
 
 

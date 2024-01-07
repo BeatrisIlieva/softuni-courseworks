@@ -6,12 +6,7 @@ from e_commerce_website.jewelry.models import Jewelry
 
 class ShoppingCart(models.Model):
     class Meta:
-        unique_together = ('user', 'jewelry')
-
-    user = models.ForeignKey(
-        to=AccountUser,
-        on_delete=models.CASCADE
-    )
+        unique_together = ('session_key', 'jewelry')
 
     jewelry = models.ForeignKey(
         to=Jewelry,
@@ -26,6 +21,14 @@ class ShoppingCart(models.Model):
 
     order_completed = models.BooleanField(
         default=False,
+    )
+
+    session_key = models.CharField(
+        max_length=100,
+    )
+
+    created_at = models.DateTimeField(
+        auto_now=True,
     )
 
 

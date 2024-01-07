@@ -6,11 +6,14 @@
         {{ jewelry.title }}
     <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
     </div>
-    <form method="post" action="{% url 'add_to_shopping_cart' jewelry_pk=jewelry.pk %}">
-    {{ form.as_p }}
+    <a href="{% url 'add_to_shopping_cart' jewelry.pk %}">
     <button>Add to cart</button>
-    {% csrf_token %}
-</form>
+    </a>
+{#    <form method="post" action="{% url 'add_to_shopping_cart' jewelry_pk=jewelry.pk %}">#}
+{#    {{ form.as_p }}#}
+{#    <button>Add to cart</button>#}
+{#    {% csrf_token %}#}
+{#</form>#}
     {% for jewelry in last_viewed_jewelries %}
     <a href="{% url 'display_jewelry_details' jewelry.pk %}">
                     <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">

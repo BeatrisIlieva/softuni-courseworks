@@ -22,7 +22,7 @@ urlpatterns = (
         name='like_jewelry'
     ),
     path(
-        'likes/<int:pk>',
+        'likes/',
         DisplayedLikedJewelries.as_view(),
         name='display_liked_jewelries'
     ),

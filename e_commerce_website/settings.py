@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 from django.urls import reverse_lazy
@@ -35,7 +36,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'e_commerce_website.middlewares.middlewares.measure_execution_time',
+    'e_commerce_website.middlewares.middlewares.measure_execution_time_middleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     # 'e_commerce_website.common.middlewares.show_last_viewed_jewelries_middleware',
@@ -145,3 +146,15 @@ LOGIN_URL = reverse_lazy('login_user')
 AUTH_USER_MODEL = 'accounts.AccountUser'
 
 COUNTRIES_COMMON_NAMES = False
+
+# settings.py
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Replace with your broker URL
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Replace with your result backend URL
+
+CELERY_BEAT_SCHEDULE = {
+    'cleanup-expired-carts': {
+        'task': 'e_commerce_website.shopping_cart.tasks.cleanup_expired_carts',
+        'schedule': timedelta(minutes=5),  # Run every hour (adjust as needed)
+    },
+}
+

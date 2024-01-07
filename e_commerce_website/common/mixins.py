@@ -15,7 +15,7 @@ class CachedViewMixin:
         view = super().as_view(**initkwargs)
         return cache_page(30)(view)
 
-class NavigationBarMixin(CachedViewMixin, View):
+class NavigationBarMixin(View):
     @staticmethod
     def get_nav_bar_context():
         context = {}
@@ -40,10 +40,10 @@ class NavigationBarMixin(CachedViewMixin, View):
         # context['stone_types_by_choices'] = '3'
         # context['stone_colors_by_choices'] = '4'
 
-        # if not cache.get('context'):
-        #     cache.set('context', context, 30)
-        #
-        # context = cache.get('context')
+        if not cache.get('context'):
+            cache.set('context', context, 30)
+
+        context = cache.get('context')
 
         return context
 

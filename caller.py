@@ -102,3 +102,14 @@ stone_types_pks = JewelryStone.objects. \
 
 print(stone_types_pks)
 
+expired_carts = ShoppingCart.objects.filter(
+        order_completed=True,
+    )
+
+for cart in expired_carts:
+    jewelry = cart.jewelry_id
+    print(jewelry)
+    quantity = cart.quantity
+    print(quantity)
+
+
