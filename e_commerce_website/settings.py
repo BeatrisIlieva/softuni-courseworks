@@ -28,8 +28,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 'celery',
-
     'e_commerce_website.jewelry',
     'e_commerce_website.common',
     'e_commerce_website.shopping_cart',
