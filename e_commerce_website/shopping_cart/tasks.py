@@ -10,7 +10,7 @@ from e_commerce_website.shopping_cart.models import ShoppingCart
 
 @shared_task
 def cleanup_expired_carts():
-    # expiration_time = timezone.now() - timedelta(minutes=1)
+
 
     expired_carts = ShoppingCart.objects.filter(
         # created_at__lt=expiration_time,
