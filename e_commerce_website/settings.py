@@ -17,6 +17,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_AGE = 1 * 60
+SESSION_SAVE_EVERY_REQUEST = True
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

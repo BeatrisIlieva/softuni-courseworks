@@ -26,3 +26,4 @@ def cleanup_expired_carts():
         # jewelry.save()
         print(cart)
         cart.delete()
+

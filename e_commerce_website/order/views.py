@@ -112,7 +112,7 @@ class OrderDetails(LoginRequiredMixin,NavigationBarMixin, TemplateView):
         self.request.session['cart'] = {}
 
 
-        ShoppingCart.objects.filter(session_key=self.request.session.session_key).update(order_completed=True)
+        ShoppingCart.objects.filter(session_key=self.request.session.session_key).delete()
 
         context['user_pk'] = user_pk
         context['customer_full_name'] = customer_full_name
@@ -128,3 +128,4 @@ class OrderDetails(LoginRequiredMixin,NavigationBarMixin, TemplateView):
         context.update(nav_bar_context)
 
         return context
+

@@ -36,8 +36,7 @@
                 {% csrf_token %}
             </form>
         {% else %}
-            <a href="{% url 'login_user' %}"></a>
-            <button>COMPLETE ORDER</button>
+            <a href="{% url 'login_user' %}">Login to Complete Order</a>
         {% endif %}
     </div>
 {% endblock %}
