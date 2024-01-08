@@ -22,8 +22,5 @@ def cleanup_expired_carts():
         quantity = cart.quantity
         Jewelry.objects.filter(pk=jewelry_pk).update(quantity=F('quantity') + quantity)
 
-
-        # jewelry.save()
-        print(cart)
         cart.delete()
 
