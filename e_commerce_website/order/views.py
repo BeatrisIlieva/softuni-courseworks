@@ -2,7 +2,7 @@ from _decimal import Decimal
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import ExpressionWrapper, F, Sum, DecimalField
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, TemplateView
 from django.views.generic.edit import FormMixin
