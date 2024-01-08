@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 'celery',
+
     'e_commerce_website.jewelry',
     'e_commerce_website.common',
     'e_commerce_website.shopping_cart',
@@ -33,6 +35,9 @@ INSTALLED_APPS = [
     'django_countries',
     'e_commerce_website.order',
     'e_commerce_website.profiles',
+    'django_celery_beat',
+
+
 ]
 
 MIDDLEWARE = [
@@ -147,14 +152,17 @@ AUTH_USER_MODEL = 'accounts.AccountUser'
 
 COUNTRIES_COMMON_NAMES = False
 
-# settings.py
-CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Replace with your broker URL
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Replace with your result backend URL
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
 
-CELERY_BEAT_SCHEDULE = {
-    'cleanup-expired-carts': {
-        'task': 'e_commerce_website.shopping_cart.tasks.cleanup_expired_carts',
-        'schedule': timedelta(minutes=5),  # Run every hour (adjust as needed)
-    },
-}
+
+
+
+
+
+
 
