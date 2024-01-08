@@ -1,8 +1,8 @@
-from datetime import timedelta
+
 
 from celery import shared_task
 from django.db.models import F
-from django.utils import timezone
+
 
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.models import ShoppingCart
