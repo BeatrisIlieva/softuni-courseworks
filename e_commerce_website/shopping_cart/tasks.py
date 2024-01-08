@@ -13,7 +13,7 @@ def cleanup_expired_carts():
 
 
     expired_carts = ShoppingCart.objects.filter(
-        # created_at__lt=expiration_time,
+
         order_completed=False,
     )
 
