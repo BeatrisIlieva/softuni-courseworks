@@ -145,7 +145,6 @@ class Jewelry(models.Model):
         max_length=40,
     )
 
-    quantity = models.PositiveIntegerField()
 
     price = models.DecimalField(
         max_length=PriceChoices.max_length(),
@@ -278,6 +277,8 @@ class JewelrySize(models.Model):
         on_delete=models.CASCADE,
         related_name='sizes',
     )
+
+
 
 
 

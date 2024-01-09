@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="postgres@localhost" uuid="1047b4fc-1ac9-4641-be51-8d8cab58f7c1">
+    <data-source source="LOCAL" name="postgres@localhost" uuid="e1a08d66-d61a-4589-9fa9-6387f8226359">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="Django default" uuid="b3841610-d223-48cc-a9b1-1d888c78c2d7">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>$PROJECT_DIR$/e_commerce_website/settings.py</remarks>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/django_e_commerce_website_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

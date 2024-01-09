@@ -8,6 +8,7 @@ from django.views import View
 from django.views.generic import CreateView, ListView, FormView, TemplateView, DetailView, RedirectView
 
 from e_commerce_website.common.mixins import NavigationBarMixin
+from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.forms import QuantityUpdateForm
 
@@ -15,16 +16,25 @@ from e_commerce_website.shopping_cart.models import ShoppingCart
 
 
 def remove_quantity_from_inventory(jewelry, quantity):
-    if quantity <= jewelry.quantity:
-        jewelry.quantity -= quantity
-        if jewelry.quantity == 0:
+    inventory = Inventory.objects.get(jewelry=jewelry)
+
+    if quantity <= inventory.quantity:
+        new_quantity = inventory.quantity - quantity
+        inventory.quantity = new_quantity
+        inventory.save()
+
+        if inventory.quantity == 0:
             jewelry.sold_out = True
-        jewelry.save()
+            jewelry.save()
 
 
 def add_quantity_to_inventory(jewelry, quantity, max_quantity):
-    if jewelry.quantity + quantity <= max_quantity:
-        jewelry.quantity += quantity
+    inventory = Inventory.objects.get(jewelry=jewelry)
+
+    if inventory.quantity + quantity <= max_quantity:
+        new_quantity = min(inventory.quantity + quantity, max_quantity)
+        inventory.quantity = new_quantity
+        inventory.save()
         jewelry.sold_out = False
         jewelry.save()
 
@@ -72,21 +82,7 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
         old_quantity = cart[str(jewelry_pk)]
         new_quantity = form.cleaned_data['quantity']
 
-        if new_quantity == 0:
-
-            if str(jewelry_pk) in cart.keys():
-                del cart[str(jewelry_pk)]
-            else:
-                del cart[jewelry_pk]
-
-            self.request.session['cart'] = cart
-
-            if new_quantity == 0:
-                ShoppingCart.objects.filter(session_key=self.request.session.session_key,jewelry_id=jewelry_pk).delete()
-
-            return redirect('view_shopping_cart')
-
-        elif old_quantity < new_quantity:
+        if old_quantity < new_quantity:
             quantity = new_quantity - old_quantity
             jewelry = jewelry
             remove_quantity_from_inventory(jewelry, quantity)
@@ -96,6 +92,21 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
             jewelry = jewelry
             max_quantity = self.MAX_QUANTITIES[jewelry]
             add_quantity_to_inventory(jewelry, quantity, max_quantity)
+
+            if new_quantity == 0:
+
+                if str(jewelry_pk) in cart.keys():
+                    del cart[str(jewelry_pk)]
+                else:
+                    del cart[jewelry_pk]
+
+                self.request.session['cart'] = cart
+
+                if new_quantity == 0:
+                    ShoppingCart.objects.filter(session_key=self.request.session.session_key,
+                                                jewelry_id=jewelry_pk).delete()
+
+                return redirect('view_shopping_cart')
 
         cart[jewelry_pk]=new_quantity
 
@@ -128,9 +139,12 @@ class ShoppingCartView(MaxQuantityMixin, NavigationBarMixin, TemplateView):
             jewelry_total_price = jewelry.price * Decimal(quantity)
             total_price += jewelry_total_price
 
+            inventory = Inventory.objects.get(jewelry=jewelry)
+
+
             min_quantity = 0
 
-            max_quantity = quantity + jewelry.quantity
+            max_quantity = quantity + inventory.quantity
 
             self.MAX_QUANTITIES[jewelry] = max_quantity
 

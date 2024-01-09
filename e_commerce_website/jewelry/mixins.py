@@ -214,13 +214,17 @@ class DisplayJewelryMixin(
 ):
     model = Jewelry
     paginate_by = 6
-    query = Q()
-    choice_pk = None
-    jewelries_count_by_price = {}
-    jewelries_count_by_metal = {}
-    jewelries_count_by_category = {}
-    jewelries_count_by_stone_type = {}
-    jewelries_count_by_stone_color = {}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.query = Q()
+        self.choice_pk = None
+        self.jewelries_count_by_price = {}
+        self.jewelries_count_by_metal = {}
+        self.jewelries_count_by_category = {}
+        self.jewelries_count_by_stone_type = {}
+        self.jewelries_count_by_stone_color = {}
 
 
 # class DisplayJewelriesByCategoryView(DisplayJewelryMixin):

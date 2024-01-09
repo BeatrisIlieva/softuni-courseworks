@@ -1,6 +1,7 @@
 from celery import shared_task
 from django.db.models import F
 
+from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.models import ShoppingCart
 
@@ -15,6 +16,6 @@ def cleanup_expired_carts():
     for cart in expired_carts:
         jewelry_pk = cart.jewelry_id
         quantity = cart.quantity
-        Jewelry.objects.filter(pk=jewelry_pk).update(quantity=F('quantity') + quantity)
+        Inventory.objects.filter(jewelry_id=jewelry_pk).update(quantity=F('quantity') + quantity)
 
         cart.delete()

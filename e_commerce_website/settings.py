@@ -17,7 +17,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-SESSION_COOKIE_AGE = 1 * 60
+SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
 
 INSTALLED_APPS = [
@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     'django_countries',
     'e_commerce_website.order',
     'e_commerce_website.profiles',
+    'e_commerce_website.inventory',
     'django_celery_beat',
-
 
 ]
 
@@ -159,11 +159,3 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
-
-
-
-
-
-
-
-
