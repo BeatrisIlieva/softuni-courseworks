@@ -1,42 +1,17 @@
 from _decimal import Decimal
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import ExpressionWrapper, F, Sum, DecimalField
-from django.shortcuts import redirect, render, get_object_or_404
-from django.urls import reverse, reverse_lazy
-from django.views import View
-from django.views.generic import CreateView, ListView, FormView, TemplateView, DetailView, RedirectView
+from django.shortcuts import redirect
+from django.urls import reverse
+
+from django.views.generic import FormView, TemplateView, RedirectView
 
 from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.inventory.models import Inventory
+from e_commerce_website.inventory.views import remove_quantity_from_inventory, add_quantity_to_inventory
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.forms import QuantityUpdateForm
 
 from e_commerce_website.shopping_cart.models import ShoppingCart
-
-
-def remove_quantity_from_inventory(jewelry, quantity):
-    inventory = Inventory.objects.get(jewelry=jewelry)
-
-    if quantity <= inventory.quantity:
-        new_quantity = inventory.quantity - quantity
-        inventory.quantity = new_quantity
-        inventory.save()
-
-        if inventory.quantity == 0:
-            jewelry.sold_out = True
-            jewelry.save()
-
-
-def add_quantity_to_inventory(jewelry, quantity, max_quantity):
-    inventory = Inventory.objects.get(jewelry=jewelry)
-
-    if inventory.quantity + quantity <= max_quantity:
-        new_quantity = min(inventory.quantity + quantity, max_quantity)
-        inventory.quantity = new_quantity
-        inventory.save()
-        jewelry.sold_out = False
-        jewelry.save()
 
 
 class AddToShoppingCartView(RedirectView):
@@ -66,10 +41,9 @@ class AddToShoppingCartView(RedirectView):
         return reverse('view_shopping_cart')
 
 
-
-
 class MaxQuantityMixin:
     MAX_QUANTITIES = {}
+
 
 class UpdateShoppingCartView(MaxQuantityMixin, FormView):
     form_class = QuantityUpdateForm
@@ -108,7 +82,7 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
 
                 return redirect('view_shopping_cart')
 
-        cart[jewelry_pk]=new_quantity
+        cart[jewelry_pk] = new_quantity
 
         self.request.session['cart'] = cart
 
@@ -116,8 +90,6 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
             quantity=new_quantity)
 
         return redirect('view_shopping_cart')
-
-
 
 
 class ShoppingCartView(MaxQuantityMixin, NavigationBarMixin, TemplateView):
@@ -141,7 +113,6 @@ class ShoppingCartView(MaxQuantityMixin, NavigationBarMixin, TemplateView):
 
             inventory = Inventory.objects.get(jewelry=jewelry)
 
-
             min_quantity = 0
 
             max_quantity = quantity + inventory.quantity
@@ -162,15 +133,10 @@ class ShoppingCartView(MaxQuantityMixin, NavigationBarMixin, TemplateView):
 
         context.update(additional_context)
 
-
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
         return context
-
-
-
-
 
 # class AddToShoppingCartView(NavigationBarMixin, CreateView):
 #     form_class = ShoppingCartForm
