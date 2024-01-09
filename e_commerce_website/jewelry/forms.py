@@ -1,5 +1,7 @@
 from django import forms
-from e_commerce_website.jewelry.models import Metal, StoneType, StoneColor, Jewelry, Size, Category
+
+from e_commerce_website.inventory.models import Inventory
+from e_commerce_website.jewelry.models import Metal, StoneType, StoneColor,  Size, Category
 
 
 # class JewelryForm(forms.Form):
@@ -57,7 +59,7 @@ class JewelryDetailsForm(forms.Form):
 
 
 class PriceForm(forms.Form):
-    PRICE_CHOICES = Jewelry.PriceChoices.choices
+    PRICE_CHOICES = Inventory.PriceChoices.choices
 
     price_choices = forms.MultipleChoiceField(
         choices=PRICE_CHOICES,

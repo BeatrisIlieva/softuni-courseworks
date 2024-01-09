@@ -107,8 +107,9 @@ class ShoppingCartView(MaxQuantityMixin, NavigationBarMixin, TemplateView):
             quantity = int(quantity)
 
             jewelry = Jewelry.objects.get(pk=jewelry_pk)
+            price = Inventory.objects.get(jewelry_id=jewelry_pk).price
 
-            jewelry_total_price = jewelry.price * Decimal(quantity)
+            jewelry_total_price = price * Decimal(quantity)
             total_price += jewelry_total_price
 
             inventory = Inventory.objects.get(jewelry=jewelry)

@@ -10,6 +10,7 @@ from django.views.generic.edit import FormMixin
 from e_commerce_website.accounts.forms import AccountProfileForm
 
 from e_commerce_website.common.mixins import NavigationBarMixin
+from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.order.forms import CardDetailsForm
 from e_commerce_website.order.utils import add_order, add_order_details
@@ -85,20 +86,25 @@ class OrderDetails(LoginRequiredMixin,NavigationBarMixin, TemplateView):
 
         jewelries_by_quantities = {}
 
+        total_price = 0
+
         for pk in jewelries_pks:
             jewelry = Jewelry.objects.get(pk=pk)
+            price = Inventory.objects.get(jewelry_id=pk).price
             quantity = ShoppingCart.objects.get(session_key=self.request.session.session_key, jewelry_id=pk).quantity
-            jewelry_total_price = jewelry.price * quantity
+            jewelry_total_price = price * quantity
             jewelries_by_quantities[jewelry] = {
                 'quantity': quantity,
                 'jewelry_total_price': jewelry_total_price
             }
 
+            total_price += jewelry_total_price
+
         customer_full_name = AccountProfile.objects.get(pk=user_pk).full_name
 
-        total_price = ShoppingCart.objects.filter(session_key=self.request.session.session_key).annotate(
-            total=ExpressionWrapper(F('jewelry__price') * F('quantity'), output_field=DecimalField())
-        ).aggregate(total_sum=Sum('total')).get('total_sum') or Decimal('0.00')
+        # total_price = ShoppingCart.objects.filter(session_key=self.request.session.session_key).annotate(
+        #     total=ExpressionWrapper(F('jewelry__price') * F('quantity'), output_field=DecimalField())
+        # ).aggregate(total_sum=Sum('total')).get('total_sum') or Decimal('0.00')
 
         country = AccountProfile.objects.get(pk=user_pk).country
         city = AccountProfile.objects.get(pk=user_pk).city

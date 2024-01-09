@@ -128,46 +128,25 @@ class Size(models.Model):
 
 
 class Jewelry(models.Model):
-    class PriceChoices(ChoicesMaxLengthMixin, models.TextChoices):
-        V_750 = '10_000, 25_000', _('10,000.00 - 25,000.00')
-        V_1500 = '25_000, 50_000', _('25,000.00 - 50,000.00')
-        V_3000 = '50_000, 75_000', _('50,000.00 - 75,000.00')
-        V_5000 = '75_000, 100_000', _('75,000.00 - 100,000.00')
-        V_100000 = '100_000, 1_000_000', _('ABOVE 100,000.00')
+    # class PriceChoices(ChoicesMaxLengthMixin, models.TextChoices):
+    #     V_750 = '10_000, 25_000', _('10,000.00 - 25,000.00')
+    #     V_1500 = '25_000, 50_000', _('25,000.00 - 50,000.00')
+    #     V_3000 = '50_000, 75_000', _('50,000.00 - 75,000.00')
+    #     V_5000 = '75_000, 100_000', _('75,000.00 - 100,000.00')
+    #     V_100000 = '100_000, 1_000_000', _('ABOVE 100,000.00')
 
-    sold_out = models.BooleanField(
-        default=False,
-        null=True,
-        blank=True,
-    )
+    # sold_out = models.BooleanField(
+    #     default=False,
+    #     null=True,
+    #     blank=True,
+    # )
 
     title = models.CharField(
         max_length=40,
     )
 
 
-    price = models.DecimalField(
-        max_length=PriceChoices.max_length(),
-        max_digits=10,
-        decimal_places=2,
-    )
 
-    discounted_price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        null=True,
-        blank=True,
-    )
-
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        editable=False,
-    )
-
-    updated_at = models.DateTimeField(
-        auto_now=True,
-        editable=False,
-    )
 
     first_image_url = models.URLField()
 

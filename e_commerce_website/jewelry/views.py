@@ -30,6 +30,7 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         self.selection_form = \
             JewelryCategoryForm(self.request.GET)
 
+
         choice_pk = self.kwargs['choice_pk']
 
         stone_color_pk = None
@@ -37,8 +38,10 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 
         self.query &= Q(
             category=choice_pk,
-            sold_out=False
+            inventory__quantity__gt=0
+
         )
+
 
         queryset = super().get_queryset(). \
             filter(self.query). \
@@ -194,7 +197,7 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
 
         self.query &= Q(
             metals__exact=choice_pk,
-            sold_out=False
+            inventory__quantity__gt=0
         )
 
         jewelries = \
@@ -350,7 +353,7 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
 
         self.query &= Q(
             stone_types__exact=choice_pk,
-            sold_out=False
+            inventory__quantity__gt=0
         )
 
         jewelries = \
@@ -510,7 +513,7 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
 
         self.query &= Q(
             stone_colors__exact=choice_pk,
-            sold_out=False
+            inventory__quantity__gt=0
         )
 
         jewelries = \
