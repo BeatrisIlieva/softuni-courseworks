@@ -20,7 +20,10 @@ class FirstNameTests(TestCase):
 
         }
 
-        self.invalid_account_profile_data = {**self.valid_account_profile_data, 'first_name': '3eatris'}
+        self.invalid_account_profile_data = {
+            **self.valid_account_profile_data,
+            'first_name': '3eatris'
+        }
 
 
     def test_create__when_first_name_contains_only_letters__expect_to_be_created(self):
