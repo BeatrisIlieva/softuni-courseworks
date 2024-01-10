@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from e_commerce_website.accounts.models import AccountUser
@@ -18,10 +19,15 @@ class FirstNameTests(TestCase):
             'user': self.user
 
         }
+
+        self.invalid_account_profile_data = {**self.valid_account_profile_data}
+        self.invalid_account_profile_data['first_name'] = '#eatris'
+
     def test_create__when_first_name_contains_only_letters__expect_to_be_created(self):
         account_profile = AccountProfile.objects.create(**self.valid_account_profile_data)
         self.assertIsNotNone(account_profile.pk)
 
     def test_create__when_first_name_does_not_contain_only_letters__expect_to_raise(self):
-        pass
+        with self.assertRaises(ValidationError) as ve:
+            account_profile = AccountProfile.objects.create(**self.invalid_account_profile_data)
 
