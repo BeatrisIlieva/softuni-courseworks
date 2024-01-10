@@ -1,7 +1,7 @@
 from urllib.parse import urlencode
 
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.views.generic import DetailView
 
 from e_commerce_website.jewelry.mixins import DisplayJewelryMixin
@@ -22,13 +22,20 @@ from e_commerce_website.jewelry.funcs import \
     get_related_choices, get_stone_type_pks, get_stone_color_pks
 
 
+# DetailView, SingleObjecMixin
 class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_category.html'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.jewelries_count_by_metal = {}
+        self.jewelries_count_by_stone_type = {}
+        self.jewelries_count_by_stone_color = {}
 
     def get_queryset(self):
         self.selection_form = \
             JewelryCategoryForm(self.request.GET)
-
 
         choice_pk = self.kwargs['choice_pk']
 
@@ -40,7 +47,6 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
             inventory__quantity__gt=0
 
         )
-
 
         queryset = super().get_queryset(). \
             filter(self.query). \
@@ -185,6 +191,14 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 class DisplayJewelriesByMetalView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_metal.html'
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # self.jewelries_count_by_metal = {}
+        self.jewelries_count_by_category = {}
+        self.jewelries_count_by_stone_type = {}
+        self.jewelries_count_by_stone_color = {}
+
     def get_queryset(self):
         self.selection_form = \
             JewelryMetalForm(self.request.GET)
@@ -253,8 +267,8 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
 
             self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
 
-        for jewelry in jewelries:
-            jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
+        # for jewelry in jewelries:
+        #     jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
 
         return jewelries
 
@@ -342,6 +356,14 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
 
 class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_stone_type.html'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.jewelries_count_by_metal = {}
+        self.jewelries_count_by_category = {}
+        self.jewelries_count_by_stone_type = {}
+        self.jewelries_count_by_stone_color = {}
 
     def get_queryset(self):
         self.selection_form = \
@@ -502,6 +524,14 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
 
 class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_stone_color.html'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.jewelries_count_by_metal = {}
+        self.jewelries_count_by_category = {}
+        self.jewelries_count_by_stone_type = {}
+        self.jewelries_count_by_stone_color = {}
 
     def get_queryset(self):
         self.selection_form = \
@@ -681,11 +711,11 @@ class JewelryDetailsView(NavigationBarMixin, DetailView):
         last_viewed_jewelries = Jewelry.objects.filter(id__in=last_viewed_jewelries)
         context['last_viewed_jewelries'] = last_viewed_jewelries
 
-
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
         return context
+
 
 def view_jewelry(request, pk):
     jewelry = Jewelry.objects.get(pk=pk)
@@ -705,8 +735,3 @@ def view_jewelry(request, pk):
     request.session['last_viewed_jewelries'] = last_viewed_jewelries[start_index:]
 
     return redirect('display_jewelry_details', pk=pk)
-
-
-
-
-

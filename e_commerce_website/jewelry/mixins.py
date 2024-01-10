@@ -1,20 +1,14 @@
+from _decimal import Decimal
+
 from django.db.models import Q
 from django.views.generic import ListView
 
-from e_commerce_website.jewelry.models import Jewelry
+from e_commerce_website.inventory.models import Inventory
+from e_commerce_website.jewelry.models import Jewelry, Category, Metal, JewelryStone, StoneType, StoneColor
 from e_commerce_website.common.mixins import NavigationBarMixin
+from collections import OrderedDict
 
 from e_commerce_website.jewelry.funcs import \
-    define_jewelries_count_by_selected_price, \
-    get_related_category_objects, \
-    define_jewelries_count_by_selected_category, \
-    get_related_metal_objects, \
-    define_jewelries_count_by_selected_metal, \
-    get_related_stone_type_objects, \
-    define_jewelries_count_by_selected_stone_type, \
-    get_related_stone_color_objects, \
-    define_jewelries_count_by_selected_stone_color, \
-    show_available_prices, \
     get_related_choices, \
     get_query_price, \
     get_category_pks, \
@@ -26,25 +20,46 @@ from e_commerce_website.jewelry.funcs import \
 class DefineRelatedObjectsMixin:
     @staticmethod
     def define_related_category_objects(jewelries):
-        categories = get_related_category_objects(jewelries)
+        categories = Category.objects. \
+            prefetch_related('jewelry_category'). \
+            filter(jewelry_category__in=jewelries)
 
         return categories
 
     @staticmethod
     def define_related_metal_objects(jewelries):
-        metals = get_related_metal_objects(jewelries)
+        metals = Metal.objects. \
+            prefetch_related('metals'). \
+            filter(jewelry__in=jewelries)
 
         return metals
 
     @staticmethod
     def define_related_stone_type_objects(jewelries, stone_color_pk):
-        stone_types = get_related_stone_type_objects(jewelries, stone_color_pk)
+        if stone_color_pk is not None:
+            stone_types_pks = JewelryStone.objects. \
+                filter(jewelry__in=jewelries, stone_color__in=stone_color_pk). \
+                values_list('stone_type_id', flat=True)
+
+            return stone_types_pks
+
+        stone_types = StoneType.objects. \
+            prefetch_related('stone_types'). \
+            filter(jewelry__in=jewelries)
 
         return stone_types
 
     @staticmethod
     def define_related_stone_color_objects(jewelries, stone_type_pk):
-        stone_colors = get_related_stone_color_objects(jewelries, stone_type_pk)
+        if stone_type_pk is not None:
+            stone_colors_pks = JewelryStone.objects. \
+                filter(jewelry__in=jewelries, stone_type__in=stone_type_pk).values_list('stone_color_id', flat=True)
+
+            return stone_colors_pks
+
+        stone_colors = StoneColor.objects. \
+            prefetch_related('stone_colors'). \
+            filter(jewelry__in=jewelries)
 
         return stone_colors
 
@@ -52,36 +67,102 @@ class DefineRelatedObjectsMixin:
 class DefineCountsMixin:
     @staticmethod
     def define_jewelries_count_by_price(jewelries):
-        jewelries_count_by_price = \
-            define_jewelries_count_by_selected_price(jewelries)
+        jewelries_count_by_price = {}
+        all_price_choices = Inventory.PriceChoices.choices
+
+        for value, display in all_price_choices:
+            min_price, max_price = float(
+                value.split(',')[0]), \
+                float(value.split(',')[1]
+                      )
+
+            decimal_min_price, decimal_max_price = (
+                Decimal(min_price),
+                Decimal(max_price)
+            )
+
+            count = jewelries.filter(
+                Q(inventory__price__gte=decimal_min_price) &
+                Q(inventory__price__lte=decimal_max_price)
+            ).count()
+
+            if display not in jewelries_count_by_price.keys():
+                jewelries_count_by_price[display] = count
+
+            else:
+                jewelries_count_by_price[display] += count
 
         return jewelries_count_by_price
 
     @staticmethod
     def define_jewelries_count_by_category(jewelries, categories):
-        jewelries_count_by_category = \
-            define_jewelries_count_by_selected_category(jewelries, categories)
+        jewelries_count_by_category = {}
+        for category in categories:
+            jewelries_count_by_category[category.get_title_display()] = jewelries. \
+                select_related('category'). \
+                filter(category_id=category.pk). \
+                count()
 
         return jewelries_count_by_category
 
     @staticmethod
     def define_jewelries_count_by_metal(jewelries, metals):
-        jewelries_count_by_metal = \
-            define_jewelries_count_by_selected_metal(jewelries, metals)
+        jewelries_count_by_metal = {}
+        for metal in metals:
+            jewelries_count_by_metal[metal.get_title_display()] = jewelries. \
+                prefetch_related('jewelry_metals__metal'). \
+                filter(jewelry_metals__metal_id=metal.pk). \
+                count()
 
         return jewelries_count_by_metal
 
     @staticmethod
     def define_jewelries_count_by_stone_type(jewelries, stone_types):
-        jewelries_count_by_stone_type = \
-            define_jewelries_count_by_selected_stone_type(jewelries, stone_types)
+        jewelries_count_by_stone_type = {}
+
+        if isinstance(stone_types, int):
+
+            count = JewelryStone.objects. \
+                filter(jewelry__in=jewelries, stone_type__exact=stone_types). \
+                count()
+
+            stone_type = StoneType.objects. \
+                get(id=stone_types)
+
+            jewelries_count_by_stone_type[stone_type.get_title_display()] = count
+
+        else:
+
+            for stone_type in stone_types:
+                jewelries_count_by_stone_type[stone_type.get_title_display()] = jewelries. \
+                    prefetch_related('jewelry_stones__stone_type'). \
+                    filter(jewelry_stones__stone_type_id__exact=stone_type.pk). \
+                    count()
 
         return jewelries_count_by_stone_type
 
     @staticmethod
     def define_jewelries_count_by_stone_color(jewelries, stone_colors):
-        jewelries_count_by_stone_color = \
-            define_jewelries_count_by_selected_stone_color(jewelries, stone_colors)
+        jewelries_count_by_stone_color = {}
+
+        if isinstance(stone_colors, int):
+
+            count = JewelryStone.objects. \
+                filter(jewelry__in=jewelries, stone_color__exact=stone_colors). \
+                count()
+
+            stone_color = StoneColor.objects. \
+                get(id=stone_colors)
+
+            jewelries_count_by_stone_color[stone_color.get_title_display()] = count
+
+        else:
+
+            for color in stone_colors:
+                jewelries_count_by_stone_color[color.get_title_display()] = jewelries. \
+                    prefetch_related('jewelry_stones__stone_color'). \
+                    filter(jewelry_stones__stone_color_id__exact=color.pk). \
+                    count()
 
         return jewelries_count_by_stone_color
 
@@ -90,9 +171,23 @@ class DefineChoicesMixin:
 
     @staticmethod
     def define_price_choices(jewelries):
-        price_choices = show_available_prices(jewelries)
+        all_price_choices = Inventory.PriceChoices.choices
+        prices = Inventory.objects.filter(jewelry__in=jewelries).values_list('price', flat=True). \
+            order_by('price')
 
-        return price_choices
+        prices_choices = []
+
+        for price in prices:
+            for value, display in all_price_choices:
+                if price <= float(value.split(',')[1]):
+                    prices_choices.append((value, display))
+                    break
+
+        ordered_price_choices = list(
+            OrderedDict(prices_choices).items()
+        )
+
+        return ordered_price_choices
 
     @staticmethod
     def define_category_choices(categories):
@@ -221,10 +316,6 @@ class DisplayJewelryMixin(
         self.query = Q()
         self.choice_pk = None
         self.jewelries_count_by_price = {}
-        self.jewelries_count_by_metal = {}
-        self.jewelries_count_by_category = {}
-        self.jewelries_count_by_stone_type = {}
-        self.jewelries_count_by_stone_color = {}
 
 
 # class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
