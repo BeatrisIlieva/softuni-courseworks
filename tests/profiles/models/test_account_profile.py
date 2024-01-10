@@ -20,15 +20,23 @@ class FirstNameTests(TestCase):
 
         }
 
-        self.invalid_account_profile_data = {**self.valid_account_profile_data, 'first_name': '3eatris'}
+        self.invalid_account_profile_data = {
+            **self.valid_account_profile_data, 'first_name': '3eatris'
+        }
 
     def test_create__when_first_name_contains_only_letters__expect_to_be_created(self):
-        account_profile = AccountProfile.objects.create(**self.valid_account_profile_data)
+        account_profile = AccountProfile.objects.create(
+            **self.valid_account_profile_data
+        )
+
         self.assertIsNotNone(account_profile.pk)
 
     def test_create__when_first_name_does_not_contain_only_letters__expect_to_raise(self):
         with self.assertRaises(ValidationError) as ve:
-            AccountProfile.objects.create(**self.invalid_account_profile_data).full_clean()
+            AccountProfile.objects.create(
+                **self.invalid_account_profile_data
+            ).full_clean()
 
-        self.assertEqual(AccountProfile.ONLY_LETTERS_EXCEPTION_MESSAGE, str(ve.exception))
-
+        self.assertEqual(
+            AccountProfile.ONLY_LETTERS_EXCEPTION_MESSAGE, str(ve.exception)
+        )
