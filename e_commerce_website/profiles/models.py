@@ -8,6 +8,9 @@ from e_commerce_website.profiles.validators import OnlyLettersValidator, \
 
 
 class AccountProfile(models.Model):
+    ONLY_LETTERS_EXCEPTION_MESSAGE = 'Ensure this value contains only letters.'
+    ONLY_DIGITS_EXCEPTION_MESSAGE = 'Ensure this value contains only digits.'
+
     FIRST_NAME_MIN_LENGTH = 2
     FIRST_NAME_MAX_LENGTH = 30
 
@@ -23,7 +26,7 @@ class AccountProfile(models.Model):
             validators.MinLengthValidator(
                 FIRST_NAME_MIN_LENGTH,
             ),
-            OnlyLettersValidator(),
+            OnlyLettersValidator(error_message=ONLY_LETTERS_EXCEPTION_MESSAGE),
         ),
     )
 
@@ -33,7 +36,7 @@ class AccountProfile(models.Model):
             validators.MinLengthValidator(
                 LAST_NAME_MIN_LENGTH,
             ),
-            OnlyLettersValidator(),
+            OnlyLettersValidator(error_message=ONLY_LETTERS_EXCEPTION_MESSAGE),
         ),
     )
 
@@ -43,7 +46,7 @@ class AccountProfile(models.Model):
             validators.MinLengthValidator(
                 PHONE_NUMBER_MIN_LENGTH,
             ),
-            OnlyDigitsValidator()
+            OnlyDigitsValidator(error_message=ONLY_DIGITS_EXCEPTION_MESSAGE)
         ),
     )
 

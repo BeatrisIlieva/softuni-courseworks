@@ -29,5 +29,6 @@ class FirstNameTests(TestCase):
 
     def test_create__when_first_name_does_not_contain_only_letters__expect_to_raise(self):
         with self.assertRaises(ValidationError) as ve:
-            account_profile = AccountProfile.objects.create(**self.invalid_account_profile_data)
+            AccountProfile.objects.create(**self.invalid_account_profile_data)
+            self.assertEqual()
 

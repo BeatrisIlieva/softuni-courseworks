@@ -4,28 +4,27 @@ from django.utils.deconstruct import deconstructible
 
 @deconstructible
 class OnlyLettersValidator:
-    ONLY_LETTERS_EXCEPTION_MESSAGE = 'Ensure this value contains only letters.'
+    def __init__(self, error_message):
+        self.error_message = error_message
 
     def __call__(self, value):
         for ch in value:
             if not ch.isalpha():
                 raise ValidationError(
-                    message=self.ONLY_LETTERS_EXCEPTION_MESSAGE,
+                    message=self.error_message,
                     code='invalid',
                 )
 
 
 @deconstructible
 class OnlyDigitsValidator:
-    ONLY_DIGITS_EXCEPTION_MESSAGE = 'Ensure this value contains only digits.'
+    def __init__(self, error_message):
+        self.error_message = error_message
 
     def __call__(self, value):
         for d in value:
             if not d.isdigit():
                 raise ValidationError(
-                    message=self.ONLY_DIGITS_EXCEPTION_MESSAGE,
+                    message=self.error_message,
                     code='invalid',
                 )
-
-
-
