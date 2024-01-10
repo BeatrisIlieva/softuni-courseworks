@@ -3,7 +3,8 @@ from django.core import validators
 from django_countries.fields import CountryField
 
 from e_commerce_website.accounts.models import AccountUser
-from e_commerce_website.profiles.validators import validate_only_letters, validate_only_digits, OnlyLettersValidator
+from e_commerce_website.profiles.validators import OnlyLettersValidator, \
+    OnlyDigitsValidator
 
 
 class AccountProfile(models.Model):
@@ -23,7 +24,6 @@ class AccountProfile(models.Model):
                 FIRST_NAME_MIN_LENGTH,
             ),
             OnlyLettersValidator(),
-            # validate_only_letters,
         ),
     )
 
@@ -34,7 +34,6 @@ class AccountProfile(models.Model):
                 LAST_NAME_MIN_LENGTH,
             ),
             OnlyLettersValidator(),
-            # validate_only_letters,
         ),
     )
 
@@ -44,7 +43,7 @@ class AccountProfile(models.Model):
             validators.MinLengthValidator(
                 PHONE_NUMBER_MIN_LENGTH,
             ),
-            validate_only_digits,
+            OnlyDigitsValidator()
         ),
     )
 
