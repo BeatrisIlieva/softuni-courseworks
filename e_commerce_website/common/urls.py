@@ -1,14 +1,13 @@
 from django.urls import path
 
-from e_commerce_website.common.views import NavigationBarView, \
+from e_commerce_website.common.views import IndexView, \
     SearchBarView, \
     DisplayedLikedJewelries, \
-    like_jewelry
-
+    AddToLikedJewelriesView
 urlpatterns = (
     path(
         '',
-        NavigationBarView.as_view(),
+        IndexView.as_view(),
         name='index_page'
     ),
     path(
@@ -18,7 +17,7 @@ urlpatterns = (
     ),
     path(
         'like/<int:jewelry_pk>',
-        like_jewelry,
+        AddToLikedJewelriesView.as_view(),
         name='like_jewelry'
     ),
     path(

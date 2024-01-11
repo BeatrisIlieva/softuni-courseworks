@@ -21,3 +21,4 @@ class JewelryLike(models.Model):
         to=UserModel,
         on_delete=models.CASCADE,
     )
+
