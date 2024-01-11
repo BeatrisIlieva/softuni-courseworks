@@ -11,6 +11,7 @@ from e_commerce_website.inventory.views import remove_quantity_from_inventory, a
 from e_commerce_website.jewelry.mixins import LastViewedJewelriesMixin
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.forms import QuantityUpdateForm
+from e_commerce_website.shopping_cart.mixins import MaxQuantityMixin
 
 from e_commerce_website.shopping_cart.models import ShoppingCart
 
@@ -54,10 +55,6 @@ class AddToShoppingCartView(RedirectView):
         return reverse('display_jewelry_details', kwargs={
             'pk': pk
         })
-
-
-class MaxQuantityMixin:
-    MAX_QUANTITIES = {}
 
 
 class UpdateShoppingCartView(MaxQuantityMixin, FormView):

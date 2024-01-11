@@ -9,6 +9,7 @@ from django.views.generic import TemplateView, ListView, RedirectView
 from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.common.models import JewelryLike
 from e_commerce_website.common.utils import get_object_pks
+from e_commerce_website.jewelry.mixins import JewelryIsLikedByUserMixin
 from e_commerce_website.jewelry.models import (
     Category, Metal, StoneType, StoneColor, Jewelry
 )
@@ -31,7 +32,7 @@ class IndexView(NavigationBarMixin, TemplateView):
         return context
 
 
-class SearchBarView(NavigationBarMixin, ListView):
+class SearchBarView(JewelryIsLikedByUserMixin, NavigationBarMixin, ListView):
     template_name = 'common/search_results.html'
     model = Jewelry
     paginate_by = 6
@@ -67,8 +68,8 @@ class SearchBarView(NavigationBarMixin, ListView):
             query
         ).distinct('pk')
 
-        for jewelry in queryset:
-            jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
+
+        self.set_liked_jewelries(self.request, queryset)
 
         return queryset
 

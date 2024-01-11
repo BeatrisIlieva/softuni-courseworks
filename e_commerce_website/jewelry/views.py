@@ -32,10 +32,10 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         self.jewelries_count_by_metal = {}
         self.jewelries_count_by_stone_type = {}
         self.jewelries_count_by_stone_color = {}
+        self.selection_form = JewelryCategoryForm
 
     def get_queryset(self):
-        self.selection_form = \
-            JewelryCategoryForm(self.request.GET)
+        self.selection_form = self.selection_form(self.request.GET)
 
         choice_pk = self.kwargs['choice_pk']
 
@@ -208,10 +208,11 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
         self.jewelries_count_by_category = {}
         self.jewelries_count_by_stone_type = {}
         self.jewelries_count_by_stone_color = {}
+        self.selection_form = JewelryMetalForm(self.request.GET)
 
     def get_queryset(self):
-        self.selection_form = \
-            JewelryMetalForm(self.request.GET)
+        # self.selection_form = \
+        #     JewelryMetalForm(self.request.GET)
 
         choice_pk = self.kwargs['choice_pk']
 
