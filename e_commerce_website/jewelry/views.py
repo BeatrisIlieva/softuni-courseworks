@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.shortcuts import redirect
 from django.views.generic import DetailView
 
-from e_commerce_website.jewelry.mixins import DisplayJewelryMixin
+from e_commerce_website.jewelry.mixins import DisplayJewelryMixin, LastViewedJewelriesMixin
 from e_commerce_website.jewelry.models import Jewelry, StoneType, StoneColor
 
 from e_commerce_website.common.mixins import \
@@ -699,7 +699,9 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
             )
 
 
-class JewelryDetailsView(NavigationBarMixin, DetailView):
+
+
+class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin, DetailView):
     model = Jewelry
     template_name = 'jewelry/jewelry_details.html'
 
@@ -715,9 +717,12 @@ class JewelryDetailsView(NavigationBarMixin, DetailView):
 
         context['form'] = selection_form
 
-        last_viewed_jewelries = self.request.session.get('last_viewed_jewelries', [])
-        last_viewed_jewelries = Jewelry.objects.filter(id__in=last_viewed_jewelries)
-        context['last_viewed_jewelries'] = last_viewed_jewelries
+        # last_viewed_jewelries = self.request.session.get('last_viewed_jewelries', [])
+        # last_viewed_jewelries = Jewelry.objects.filter(id__in=last_viewed_jewelries)
+        # context['last_viewed_jewelries'] = last_viewed_jewelries
+
+        last_viewed_jewelries = self.get_last_viewed_jewelries(self.request.session)
+        context.update(last_viewed_jewelries)
 
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)

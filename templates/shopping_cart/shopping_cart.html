@@ -39,4 +39,9 @@
             <a href="{% url 'login_user' %}">Login to Complete Order</a>
         {% endif %}
     </div>
+    {% for jewelry in last_viewed_jewelries %}
+        <a href="{% url 'display_jewelry_details' jewelry.pk %}">
+            <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
+        </a>
+    {% endfor %}
 {% endblock %}

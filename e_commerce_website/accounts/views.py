@@ -39,6 +39,7 @@ class RegisterUserView(NavigationBarMixin, CreateView):
         next_url = self.request.POST.get('next', '')
         return next_url if next_url else self.success_url
 
+
 class LoginUserView(NavigationBarMixin, LoginView):
     template_name = 'account/login.html'
 
