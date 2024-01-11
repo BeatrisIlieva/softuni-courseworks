@@ -1,9 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth import logout
-from django.contrib.auth.views import LoginView
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views import View
 from django.views.generic import UpdateView, DeleteView, DetailView, TemplateView
 from e_commerce_website.accounts.forms import AccountProfileForm
 from e_commerce_website.common.mixins import NavigationBarMixin
@@ -12,22 +8,6 @@ from e_commerce_website.order.models import Order, OrderProducts
 from e_commerce_website.profiles.models import AccountProfile
 
 UserModel = get_user_model()
-class LoginUserView(NavigationBarMixin, LoginView):
-    template_name = 'account/login.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        nav_bar_context = self.get_nav_bar_context()
-        context.update(nav_bar_context)
-
-        return context
-
-
-class LogoutUserView(View):
-    def get(self, request, *args, **kwargs):
-        logout(request)
-        return redirect(reverse_lazy('login_user'))
 
 
 class UserDetailsView(NavigationBarMixin, DetailView):

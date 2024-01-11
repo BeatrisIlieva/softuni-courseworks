@@ -1,6 +1,9 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
 
 from django.urls import reverse_lazy
+from django.views import View
 
 from django.views.generic import CreateView
 
@@ -35,3 +38,20 @@ class RegisterUserView(NavigationBarMixin, CreateView):
     def get_success_url(self):
         next_url = self.request.POST.get('next', '')
         return next_url if next_url else self.success_url
+
+class LoginUserView(NavigationBarMixin, LoginView):
+    template_name = 'account/login.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context
+
+
+class LogoutUserView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return redirect(reverse_lazy('login_user'))

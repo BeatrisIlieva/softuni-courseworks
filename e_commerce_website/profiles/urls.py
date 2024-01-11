@@ -1,19 +1,9 @@
 from django.urls import path, include
 
-from e_commerce_website.profiles.views import LoginUserView, LogoutUserView, UserDetailsView, UserUpdateView, \
+from e_commerce_website.profiles.views import UserDetailsView, UserUpdateView, \
     UserDeleteView, UserOrdersView
 
 urlpatterns = (
-    path(
-        'login/',
-        LoginUserView.as_view(),
-        name='login_user'
-    ),
-    path(
-        'logout/',
-        LogoutUserView.as_view(),
-        name='logout_user'
-    ),
     path(
         'profile/<int:pk>/', include(
             [
@@ -39,5 +29,5 @@ urlpatterns = (
                 ),
             ]
         )
-    )
+    ),
 )
