@@ -100,16 +100,18 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 
             self.update_related_objects(queryset, stone_type_pk, stone_color_pk)
 
-        if self.request.user.pk:
+        self.set_liked_jewelries(self.request, queryset)
 
-            for jewelry in queryset:
-                jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
-
-        else:
-            liked_jewelries = self.request.session.get('liked_jewelries', [])
-
-            for jewelry in queryset:
-                jewelry.liked_by_user = jewelry.pk in liked_jewelries
+        # if self.request.user.pk:
+        #
+        #     for jewelry in queryset:
+        #         jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
+        #
+        # else:
+        #     liked_jewelries = self.request.session.get('liked_jewelries', [])
+        #
+        #     for jewelry in queryset:
+        #         jewelry.liked_by_user = jewelry.pk in liked_jewelries
 
         return queryset
 

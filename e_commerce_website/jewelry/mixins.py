@@ -298,7 +298,34 @@ class UpdateQueryMixin:
             )
 
 
+class LastViewedJewelriesMixin:
+    @staticmethod
+    def get_last_viewed_jewelries(request_and_session):
+        last_viewed_jewelries = request_and_session.get('last_viewed_jewelries', [])
+        last_viewed_jewelries = Jewelry.objects.filter(id__in=last_viewed_jewelries)
+
+        context = {'last_viewed_jewelries': last_viewed_jewelries}
+        return context
+
+
+class JewelryIsLikedByUserMixin:
+    @staticmethod
+    def set_liked_jewelries(request, queryset):
+
+        if request.user.pk:
+
+            for jewelry in queryset:
+                jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=request.user).exists()
+
+        else:
+            liked_jewelries = request.session.get('liked_jewelries', [])
+
+            for jewelry in queryset:
+                jewelry.liked_by_user = jewelry.pk in liked_jewelries
+
+
 class DisplayJewelryMixin(
+    JewelryIsLikedByUserMixin,
     DefineRelatedObjectsMixin,
     UpdateQueryMixin,
     UpdateSelectionFormMixin,
@@ -318,11 +345,3 @@ class DisplayJewelryMixin(
         self.jewelries_count_by_price = {}
 
 
-class LastViewedJewelriesMixin:
-    @staticmethod
-    def get_last_viewed_jewelries(request_and_session):
-        last_viewed_jewelries = request_and_session.get('last_viewed_jewelries', [])
-        last_viewed_jewelries = Jewelry.objects.filter(id__in=last_viewed_jewelries)
-
-        context = {'last_viewed_jewelries': last_viewed_jewelries}
-        return context

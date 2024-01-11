@@ -4,86 +4,14 @@
     <h1>Title</h1>
     <div>
         {{ jewelry.title }}
-    <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
+        <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
     </div>
     <a href="{% url 'add_to_shopping_cart' jewelry.pk %}">
-    <button>Add to cart</button>
+        <button>Add to cart</button>
     </a>
     {% for jewelry in last_viewed_jewelries %}
-    <a href="{% url 'display_jewelry_details' jewelry.pk %}">
-                    <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
-                </a>
+        <a href="{% url 'display_jewelry_details' jewelry.pk %}">
+            <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
+        </a>
     {% endfor %}
-{#    <div>#}
-{#        <form id="addToCartForm" action="{% url 'add_to_shopping_cart' jewelry_pk=jewelry.pk user_pk=request.user.pk %}"#}
-{#              method="post">#}
-{#            <input type="number" id="quantityField" name="quantity" value="1" min="1">#}
-{#            <button type="submit">Add to Cart</button>#}
-{#            {% csrf_token %}#}
-{#        </form>#}
-{#    </div>#}
-{#    <form>#}
-{#        {% for field in form %}#}
-{#            <div>#}
-{#                <label for="{{ field.id_for_label }}">#}
-{#                    <strong>{{ field.label }} </strong>#}
-{#                    <div>#}
-{#                        {% for subfield in field %}#}
-{#                            <div>#}
-{#                                {{ subfield }}#}
-{#                            </div>#}
-{#                        {% endfor %}#}
-{#                    </div>#}
-{#                </label>#}
-{#                <button>Apply</button>#}
-{#                {% csrf_token %}#}
-{#            </div>#}
-{#        {% endfor %}#}
-{#    </form>#}
-    {##}
-    {#     <h1>Images</h1>#}
-    {##}
-    {#    <ul >#}
-    {#         <img width="400" height="600" src="{{ jewelry.first_image_url }}" alt="img8">#}
-    {#    </ul>#}
-    {##}
-    {#     <ul >#}
-    {#         <img  width="400" height="600"  src="{{ jewelry.second_image_url }}" alt="img8">#}
-    {#     </ul> #}
-
-    {#     <h1>Metals</h1>#}
-    {#     <div>#}
-    {#         {% for metal in jewelry.metals.all %}#}
-    {#             <li>{{ metal.name }}</li>#}
-    {#             {% for gold_carat in jewelry.gold_carats.all %}#}
-    {#                 <li>{{ gold_carat.weight }}K</li>#}
-    {#             {%endfor%}#}
-    {#         {% endfor %}#}
-    {#     </div>#}
-    {##}
-    {#     <h1>Stones</h1>#}
-    {#     <div>#}
-    {#         {% for stone_type in jewelry.stone_types.all %}#}
-    {#             <li>{{ stone_type.name }} </li>#}
-    {#             {% for stone_color in jewelry.stone_colors.all %}#}
-    {#                 <li>{{ stone_color.name }} </li>#}
-    {#             {% endfor %}#}
-    {#         {% endfor %}#}
-    {#     </div>#}
-    {##}
-    {#     <h1>Style</h1>#}
-    {#     <ul>#}
-    {#         {{jewelry.jewelry.style.name}}#}
-    {#     </ul>#}
-    {##}
-    {#     <h1>Quantity</h1>#}
-    {#     <div>#}
-    {#         {{ jewelry.quantity }}#}
-    {#     </div>#}
-    {##}
-    {#     <h1>Price</h1>#}
-    {#     <div>#}
-    {#         {{ jewelry.price }}#}
-    {#     </div>#}
-
 {% endblock %} 
