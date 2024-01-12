@@ -204,13 +204,13 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
         self.selection_form = \
             JewelryMetalForm(self.request.GET)
 
-        choice_pk = self.kwargs['choice_pk']
+        metal_pk = self.kwargs['pk']
 
         stone_type_pk = None
         stone_color_pk = None
 
         self.query &= Q(
-            metals__exact=choice_pk,
+            metals__exact=metal_pk,
             inventory__quantity__gt=0
         )
 
@@ -274,10 +274,7 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
         return jewelries
 
     def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-
-        nav_bar_context = self.get_nav_bar_context()
-        context.update(nav_bar_context)
+        context = super().get_context_data()
 
         context['form'] = self.selection_form
 
@@ -288,8 +285,8 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
         context['form_data_encoded'] = form_data_encoded
         context['page_number'] = page_number
 
-        context['choice_pk'] = \
-            self.kwargs['choice_pk']
+        context['metal_pk'] = \
+            self.kwargs['pk']
 
         context['jewelries_count_by_stone_type'] = \
             self.jewelries_count_by_stone_type
