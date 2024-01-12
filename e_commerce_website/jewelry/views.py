@@ -20,8 +20,6 @@ from e_commerce_website.jewelry.funcs import \
     get_related_choices, get_stone_type_pks, get_stone_color_pks
 
 
-
-
 class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_category.html'
 
@@ -572,9 +570,7 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
 
-
         context['form'] = self.selection_form
-
 
         context['selected_pk'] = \
             self.kwargs['selected_pk']
@@ -649,8 +645,6 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
             )
 
 
-
-
 class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin, DetailView):
     model = Jewelry
     template_name = 'jewelry/jewelry_details.html'
@@ -666,10 +660,6 @@ class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin, DetailVie
             selection_form.fields['sizes'].choices = size_choices
 
         context['form'] = selection_form
-
-        # last_viewed_jewelries = self.request.session.get('last_viewed_jewelries', [])
-        # last_viewed_jewelries = Jewelry.objects.filter(id__in=last_viewed_jewelries)
-        # context['last_viewed_jewelries'] = last_viewed_jewelries
 
         last_viewed_jewelries = self.get_last_viewed_jewelries(self.request.session)
         context.update(last_viewed_jewelries)
@@ -694,7 +684,6 @@ def view_jewelry(request, pk):
         len(last_viewed_jewelries) - 3,
     )
 
-    # request.session.set_expiry(5 * 60) changes the expiry date; it can be set to a date as well
     request.session['last_viewed_jewelries'] = last_viewed_jewelries[start_index:]
 
     return redirect('display_jewelry_details', pk=pk)
