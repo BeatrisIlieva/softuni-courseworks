@@ -108,13 +108,6 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 
         context['form'] = self.selection_form
 
-        # form_data = self.request.GET.copy() if self.request.GET else {}
-        # form_data.pop('page', None)
-        # page_number = self.request.GET.get('page', 1)
-        # form_data_encoded = urlencode(form_data) + '&' if form_data else ''
-        # context['form_data_encoded'] = form_data_encoded
-        # context['page_number'] = page_number
-
         context['selected_pk'] = \
             self.kwargs['selected_pk']
 
