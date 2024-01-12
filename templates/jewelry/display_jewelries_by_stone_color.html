@@ -12,7 +12,6 @@
     <form action="{% url 'display_jewelries_by_stone_color' selected_pk %}" method="get">
         <div class="checkbox-list">
             {% for field in form %}
-                {#                {% if field.name != 'stone_color_choices' and field.name != 'stone_type_choices' %}#}
                 <div>
                     <label for="{{ field.id_for_label }}">
                         <strong>{{ field.label }} </strong>
@@ -34,7 +33,6 @@
                     <button>Apply</button>
                     {% csrf_token %}
                 </div>
-                {#                {% endif %}#}
             {% endfor %}
         </div>
     </form>
