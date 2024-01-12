@@ -10,7 +10,7 @@
         }
     </style>
 {#    <form action="{% url 'display_jewelries_by_category' choice_pk %}?page={{ page_obj.number }}" >#}
-    <form action="{% url 'display_jewelries_by_category' category_pk %}?page={{ page_obj.number }}" >
+    <form action="{% url 'display_jewelries_by_category' selected_pk %}?page={{ page_obj.number }}" >
         <div class="checkbox-list">
             {% for field in form %}
                     <div>

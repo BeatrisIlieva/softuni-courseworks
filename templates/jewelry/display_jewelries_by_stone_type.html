@@ -9,7 +9,7 @@
             gap: 10px;
         }
     </style>
-    <form action="{% url 'display_jewelries_by_stone_type' choice_pk %}" method="get">
+    <form action="{% url 'display_jewelries_by_stone_type' selected_pk %}" method="get">
         <div class="checkbox-list">
             {% for field in form %}
 {#                {% if field.name != 'stone_color_choices' and field.name != 'stone_type_choices'%}#}
