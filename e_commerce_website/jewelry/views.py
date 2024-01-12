@@ -22,7 +22,8 @@ from e_commerce_website.jewelry.funcs import \
     get_related_choices, get_stone_type_pks, get_stone_color_pks
 
 
-# DetailView, SingleObjecMixin
+
+
 class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
     template_name = 'jewelry/display_jewelries_by_category.html'
 
@@ -37,22 +38,22 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
     def get_queryset(self):
         self.selection_form = self.selection_form(self.request.GET)
 
-        choice_pk = self.kwargs['choice_pk']
+        category_pk = self.kwargs['pk']
 
         stone_color_pk = None
         stone_type_pk = None
 
         self.query &= Q(
-            category=choice_pk,
+            category=category_pk,
             inventory__quantity__gt=0
 
         )
 
-        queryset = super().get_queryset(). \
+        jewelries = super().get_queryset(). \
             filter(self.query). \
             distinct('pk')
 
-        self.update_related_objects(queryset, stone_type_pk, stone_color_pk)
+        self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
 
         if self.selection_form.is_valid():
 
@@ -81,7 +82,7 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
                 )
 
                 stone_type_pk = get_stone_type_pks(selection_pattern_stone_types)
-                stone_color_pk = self.define_related_stone_color_objects(queryset, stone_type_pk)
+                stone_color_pk = self.define_related_stone_color_objects(jewelries, stone_type_pk)
 
             selection_pattern_stone_colors = \
                 self.selection_form.cleaned_data['stone_color_choices']
@@ -92,34 +93,23 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
                 )
 
                 stone_color_pk = get_stone_color_pks(selection_pattern_stone_colors)
-                stone_type_pk = self.define_related_stone_type_objects(queryset, stone_color_pk)
+                stone_type_pk = self.define_related_stone_type_objects(jewelries, stone_color_pk)
 
-            queryset = queryset. \
+            jewelries = jewelries. \
                 filter(self.query). \
                 distinct('pk')
 
-            self.update_related_objects(queryset, stone_type_pk, stone_color_pk)
+            self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
 
-        self.set_liked_jewelries(self.request, queryset)
+        self.set_liked_jewelries(self.request, jewelries)
 
-        # if self.request.user.pk:
-        #
-        #     for jewelry in queryset:
-        #         jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
-        #
-        # else:
-        #     liked_jewelries = self.request.session.get('liked_jewelries', [])
-        #
-        #     for jewelry in queryset:
-        #         jewelry.liked_by_user = jewelry.pk in liked_jewelries
-
-        return queryset
+        return jewelries
 
     def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
+        context = super().get_context_data()
 
-        nav_bar_context = self.get_nav_bar_context()
-        context.update(nav_bar_context)
+        # nav_bar_context = self.get_nav_bar_context()
+        # context.update(nav_bar_context)
 
         context['form'] = self.selection_form
 
@@ -130,8 +120,8 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         context['form_data_encoded'] = form_data_encoded
         context['page_number'] = page_number
 
-        context['choice_pk'] = \
-            self.kwargs['choice_pk']
+        context['category_pk'] = \
+            self.kwargs['pk']
 
         context['jewelries_count_by_stone_type'] = \
             self.jewelries_count_by_stone_type
@@ -147,37 +137,37 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 
         return context
 
-    def update_related_objects(self, queryset, stone_type_pk, stone_color_pk):
+    def update_related_objects(self, jewelries, stone_type_pk, stone_color_pk):
 
         metals = \
-            self.define_related_metal_objects(queryset)
+            self.define_related_metal_objects(jewelries)
 
         stone_types = \
-            self.define_related_stone_type_objects(queryset, stone_color_pk)
+            self.define_related_stone_type_objects(jewelries, stone_color_pk)
 
         stone_colors = \
-            self.define_related_stone_color_objects(queryset, stone_type_pk)
+            self.define_related_stone_color_objects(jewelries, stone_type_pk)
 
         self.jewelries_count_by_price = \
-            self.define_jewelries_count_by_price(queryset)
+            self.define_jewelries_count_by_price(jewelries)
 
         self.jewelries_count_by_metal = \
-            self.define_jewelries_count_by_metal(queryset, metals)
+            self.define_jewelries_count_by_metal(jewelries, metals)
 
         if stone_type_pk is not None:
             stone_types = StoneType.objects.filter(id__in=stone_type_pk)
 
         self.jewelries_count_by_stone_type = \
-            self.define_jewelries_count_by_stone_type(queryset, stone_types)
+            self.define_jewelries_count_by_stone_type(jewelries, stone_types)
 
         if stone_color_pk is not None:
             stone_colors = StoneColor.objects.filter(id__in=stone_color_pk)
 
         self.jewelries_count_by_stone_color = \
-            self.define_jewelries_count_by_stone_color(queryset, stone_colors)
+            self.define_jewelries_count_by_stone_color(jewelries, stone_colors)
 
         price_choices = \
-            self.define_price_choices(queryset)
+            self.define_price_choices(jewelries)
 
         metal_choices = \
             self.define_metal_choices(metals)
@@ -208,11 +198,11 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
         self.jewelries_count_by_category = {}
         self.jewelries_count_by_stone_type = {}
         self.jewelries_count_by_stone_color = {}
-        self.selection_form = JewelryMetalForm(self.request.GET)
+        self.selection_form = JewelryMetalForm
 
     def get_queryset(self):
-        # self.selection_form = \
-        #     JewelryMetalForm(self.request.GET)
+        self.selection_form = \
+            JewelryMetalForm(self.request.GET)
 
         choice_pk = self.kwargs['choice_pk']
 

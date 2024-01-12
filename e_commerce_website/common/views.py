@@ -148,6 +148,7 @@ class AddToLikedJewelriesView(RedirectView):
 class DisplayedLikedJewelries(NavigationBarMixin, ListView):
     model = Jewelry
     template_name = 'common/liked_jewelries.html'
+    context_object_name = 'jewelries'
     paginate_by = 6
 
     def get_queryset(self):
@@ -198,3 +199,4 @@ def show_last_viewed(request, pk):
     last_viewed.append(pk)
 
     request.session['last_viewed_jewelries'] = last_viewed
+

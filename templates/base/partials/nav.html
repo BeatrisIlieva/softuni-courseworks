@@ -7,7 +7,7 @@
                 <ul class="submenu">
                     <li>
                         {% for category, title in categories_by_choices.items %}
-                            <a href="{% url 'display_jewelries_by_category' choice_pk=category.pk %}">{{ title }}</a>
+                            <a href="{% url 'display_jewelries_by_category' category.pk %}">{{ title }}</a>
                         {% endfor %}
                     </li>
                 </ul>

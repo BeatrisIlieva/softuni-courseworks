@@ -1,7 +1,9 @@
 from _decimal import Decimal
 
 from django.db.models import Q
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
+
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.jewelry.models import Jewelry, Category, Metal, JewelryStone, StoneType, StoneColor
@@ -341,7 +343,49 @@ class DisplayJewelryMixin(
         super().__init__(*args, **kwargs)
 
         self.query = Q()
-        self.choice_pk = None
         self.jewelries_count_by_price = {}
+
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+
+        return context
+
+
+
+
+
+class SomeView(
+    TemplateView,
+    JewelryIsLikedByUserMixin,
+    DefineRelatedObjectsMixin,
+    UpdateQueryMixin,
+    UpdateSelectionFormMixin,
+    DefineChoicesMixin,
+    DefineCountsMixin,
+    NavigationBarMixin,
+):
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.jewelries_count_by_price = {}
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+
+        return context
+
 
 
