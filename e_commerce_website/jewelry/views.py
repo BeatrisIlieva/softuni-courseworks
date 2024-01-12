@@ -108,9 +108,6 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
 
-        # nav_bar_context = self.get_nav_bar_context()
-        # context.update(nav_bar_context)
-
         context['form'] = self.selection_form
 
         form_data = self.request.GET.copy() if self.request.GET else {}
