@@ -191,7 +191,6 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # self.jewelries_count_by_metal = {}
         self.jewelries_count_by_category = {}
         self.jewelries_count_by_stone_type = {}
         self.jewelries_count_by_stone_color = {}
