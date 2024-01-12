@@ -198,7 +198,7 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
 
     def get_queryset(self):
         self.selection_form = \
-            JewelryMetalForm(self.request.GET)
+            self.selection_form(self.request.GET)
 
         selected_pk = self.kwargs['selected_pk']
 
