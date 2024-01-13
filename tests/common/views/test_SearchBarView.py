@@ -9,11 +9,26 @@ from django.urls import reverse
 
 class SearchBarViewTest(TestCase):
     def setUp(self):
-        self.category = Category.objects.create(title=Category.TitleChoices.NECKLACE)
-        self.metal = Metal.objects.create(title=Metal.TitleChoices.PLATINUM)
-        self.stone_type = StoneType.objects.create(title=StoneType.TitleChoices.DIAMOND)
-        self.stone_color = StoneColor.objects.create(title=StoneColor.TitleChoices.YELLOW)
-        self.size = Size.objects.create(measurement=Size.MeasurementChoices.V_19_10, category=self.category)
+        self.category = Category.objects.create(
+            title=Category.TitleChoices.NECKLACE
+        )
+
+        self.metal = Metal.objects.create(
+            title=Metal.TitleChoices.PLATINUM
+        )
+
+        self.stone_type = StoneType.objects.create(
+            title=StoneType.TitleChoices.DIAMOND
+        )
+
+        self.stone_color = StoneColor.objects.create(
+            title=StoneColor.TitleChoices.YELLOW
+        )
+
+        self.size = Size.objects.create(
+            measurement=Size.MeasurementChoices.V_19_10,
+            category=self.category
+        )
 
         self.jewelry = Jewelry.objects.create(
             title='Test Jewelry',
@@ -38,4 +53,3 @@ class SearchBarViewTest(TestCase):
         self.assertEqual(response.context['search'], search_query)
 
         self.assertIn(self.jewelry, response.context['object_list'])
-
