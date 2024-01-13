@@ -958,7 +958,7 @@ bulk_create_jewelry_by_stone(
         JewelryStone(
             jewelry=jewelries[28],
             stone_type=stone_types[4],
-            stone_color=stone_colors[6],
+            stone_color=stone_colors[7],
             stone_carat=1.35,
         ),
 

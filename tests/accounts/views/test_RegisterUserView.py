@@ -1,49 +1,28 @@
-from django.test import TestCase
+from e_commerce_website.profiles.models import AccountProfile
+from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
-from e_commerce_website.accounts.models import AccountUser
-from e_commerce_website.profiles.models import AccountProfile
 
-
-class RegisterUserViewTestCase(TestCase):
+class RegisterUserViewTest(TestCase):
     def setUp(self):
-        self.user_data = {
-            'email': 'beatrisilieve@icloud.com',
-            # 'password': 'testpassword123',
+        self.client = Client()
+
+    def test_user_registration_and_profile_creation(self):
+        user_data = {
+            'email': 'test@example.com',
+            'password1': 'securepassword123',
+            'password2': 'securepassword123',
+            'consent': True
         }
 
-    def test_register_user_view__expect_to_be_registered(self):
-        response = self.client.post(
-            reverse('register_user'),
-            data={
-                'email': 'beatrisilieve@icloud.com'
-            }
-        )
+        response = self.client.post(reverse('register_user'), data=user_data)
 
-        user = AccountUser.objects.get(
-            email= 'beatrisilieve@icloud.com'
-        )
-        profile = AccountProfile.objects.get(pk=user.pk)
+        self.assertRedirects(response, reverse('index_page'))
 
-        self.assertIsNotNone(user)
-        self.assertIsNotNone(profile)
+        self.assertTrue(get_user_model().objects.filter(email=user_data['email']).exists())
+        self.assertTrue(response.wsgi_request.user.is_authenticated)
 
+        user = get_user_model().objects.get(email=user_data['email'])
+        self.assertTrue(AccountProfile.objects.filter(user=user).exists())
 
-
-
-
-    # def test_register_user_view(self):
-    #     AccountUser.objects.create(
-    #         email='beatrisilieve@icloud.com'
-    #     )
-    #
-    #     response = self.client.get(
-    #         reverse('index_page'),
-    #     )
-    #
-    #     self.assertEqual(response.status_code, 200)
-    #
-    #     self.assertTrue(get_user_model().objects.
-    #                     filter(email='beatrisilieve@icloud.com').exists()
-    #                     )
