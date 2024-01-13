@@ -16,9 +16,13 @@ class RegisterUserViewTest(TestCase):
             'consent': True
         }
 
-        response = self.client.post(reverse('register_user'), data=user_data)
+        response = self.client.post(
+            reverse('register_user'), data=user_data
+        )
 
-        self.assertRedirects(response, reverse('index_page'))
+        self.assertRedirects(
+            response, reverse('index_page')
+        )
 
         self.assertTrue(get_user_model().objects.filter(email=user_data['email']).exists())
         self.assertTrue(response.wsgi_request.user.is_authenticated)
