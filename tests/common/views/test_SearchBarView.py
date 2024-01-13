@@ -1,5 +1,7 @@
-from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor, Jewelry, Size, JewelryMetal, \
-    JewelryStone, JewelrySize
+from e_commerce_website.jewelry.models import (
+    Category, Metal, StoneType, StoneColor, Jewelry,
+    Size, JewelryMetal, JewelryStone, JewelrySize
+)
 
 from django.test import TestCase
 from django.urls import reverse
