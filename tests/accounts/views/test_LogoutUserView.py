@@ -10,7 +10,7 @@ class LogoutUserViewTests(TestCase):
         self.client = Client()
 
         self.user_data = {
-            'email': 'test@example.com',
+            'email': 'beatris@icloud.com',
             'password': 'securepassword123'
         }
 

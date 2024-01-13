@@ -10,7 +10,7 @@ class RegisterUserViewTest(TestCase):
 
     def test_user_registration_and_profile_creation(self):
         user_data = {
-            'email': 'test@example.com',
+            'email': 'beatris@icloud.com',
             'password1': 'securepassword123',
             'password2': 'securepassword123',
             'consent': True
