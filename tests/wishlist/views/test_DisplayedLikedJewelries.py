@@ -2,7 +2,6 @@ from django.test import Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.test import TestCase as TestCase
-from e_commerce_website.wishlist.models import JewelryLike
 from e_commerce_website.jewelry.models import (
     Category, Metal, StoneType, StoneColor, Jewelry,
     Size, JewelryMetal, JewelryStone, JewelrySize
@@ -71,6 +70,7 @@ class DisplayLikedJewelriesViewTests(TestCase):
 
         self.user = get_user_model(). \
             objects.get(email=user_data['email'])
+
         self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
 
         response = self.client.get(reverse('display_liked_jewelries'))

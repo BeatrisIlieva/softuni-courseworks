@@ -1,6 +1,5 @@
-from django.views.generic import RedirectView, ListView
+from django.views.generic import ListView
 from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.views import View
 
 from django.urls import reverse
