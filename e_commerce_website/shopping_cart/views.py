@@ -52,9 +52,11 @@ class AddToShoppingCartView(RedirectView):
                 session_key=self.request.session.session_key,
             )
 
-        return reverse('display_jewelry_details', kwargs={
-            'pk': pk
-        })
+        return reverse('view_shopping_cart')
+
+        # return reverse('display_jewelry_details', kwargs={
+        #     'pk': pk
+        # })
 
 
 class UpdateShoppingCartView(MaxQuantityMixin, FormView):
