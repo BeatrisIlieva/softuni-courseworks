@@ -56,7 +56,9 @@ class SearchBarViewTest(TestCase):
     def test_search_results(self):
         search_query = self.stone_color.get_title_display()
 
-        response = self.client.get(reverse('search_bar'), {'search': search_query})
+        response = self.client.get(
+            reverse('search_bar'), {'search': search_query}
+        )
 
         self.assertEqual(response.status_code, 200)
 
