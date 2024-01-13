@@ -75,12 +75,8 @@ class LikeJewelryViewTests(TestCase):
 
 
     def test_add_to_liked_jewelries_authenticated_user(self):
-
-
-        # Get the initial count of JewelryLike objects
         initial_likes_count = JewelryLike.objects.count()
 
-        # Make a GET request to the AddToLikedJewelriesView
         response = self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
 
         # Check that the response status code is 302 (redirect)
