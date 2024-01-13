@@ -48,7 +48,7 @@ class DisplayLikedJewelriesViewTests(TestCase):
         Inventory.objects.create(jewelry=self.not_enough_quantity_jewelry, quantity=0, price=5)
 
 
-    def test_filtration__expect__necklace_category(self):
+    def test_display_jewelries_by_category_view(self):
         response = self.client.get(reverse('display_jewelries_by_category', args=[str(self.category.pk)]))
 
         self.assertEqual(response.status_code, 200)

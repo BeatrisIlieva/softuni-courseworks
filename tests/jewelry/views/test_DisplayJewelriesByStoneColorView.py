@@ -9,12 +9,20 @@ JewelryStone,
 )
 
 
-class DisplayJewelriesByStoneTypeViewTests(TestCase):
+class DisplayJewelriesByStoneColorView(TestCase):
     def setUp(self):
         self.client = Client()
 
         self.category = Category.objects.create(
             title=Category.TitleChoices.NECKLACE
+        )
+
+        self.stone_color = StoneColor.objects.create(
+            title=StoneColor.TitleChoices.YELLOW
+        )
+
+        self.another_stone_color = StoneColor.objects.create(
+            title=StoneColor.TitleChoices.YELLOW
         )
 
         self.stone_type = StoneType.objects.create(
@@ -23,10 +31,6 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
 
         self.another_stone_type = StoneType.objects.create(
             title=StoneType.TitleChoices.SAPPHIRE
-        )
-
-        self.stone_color = StoneColor.objects.create(
-            title=StoneColor.TitleChoices.YELLOW
         )
 
         self.jewelry = Jewelry.objects.create(
@@ -59,7 +63,7 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
         JewelryStone.objects.create(
             jewelry=self.another_jewelry,
             stone_type=self.another_stone_type,
-            stone_color=self.stone_color
+            stone_color=self.another_stone_color
         )
 
         JewelryStone.objects.create(
@@ -74,11 +78,11 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
 
 
     def test_display_jewelries_by_stone_type_view(self):
-        response = self.client.get(reverse('display_jewelries_by_stone_type', args=[str(self.stone_type.pk)]))
+        response = self.client.get(reverse('display_jewelries_by_stone_color', args=[str(self.stone_type.pk)]))
 
         self.assertEqual(response.status_code, 200)
 
-        self.assertTemplateUsed(response, 'jewelry/display_jewelries_by_stone_type.html')
+        self.assertTemplateUsed(response, 'jewelry/display_jewelries_by_stone_color.html')
 
         self.assertIn(self.jewelry, response.context['object_list'])
 
