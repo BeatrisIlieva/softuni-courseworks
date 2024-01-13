@@ -3,12 +3,13 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import View
 
-
 from django.urls import reverse
 
 from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.wishlist.models import JewelryLike
+
+
 class LikeJewelryView(View):
     def get(self, request, *args, **kwargs):
         jewelry_pk = kwargs.get('jewelry_pk')
@@ -40,7 +41,6 @@ class LikeJewelryView(View):
         request.session['liked_jewelries'] = liked_jewelries
 
         return HttpResponseRedirect(reverse('display_liked_jewelries'))
-
 
 
 # class LikeJewelryView(RedirectView):
@@ -90,7 +90,8 @@ class DisplayedLikedJewelries(NavigationBarMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        if self.request.user.pk:
+
+        if self.request.user.is_authenticated:
 
             likes_pks = JewelryLike.objects.filter(user_id=self.request.user.pk).values_list('jewelry_id', flat=True)
 
@@ -99,7 +100,6 @@ class DisplayedLikedJewelries(NavigationBarMixin, ListView):
             for jewelry in queryset:
                 jewelry.liked_by_user = jewelry.jewelrylike_set.filter(user=self.request.user).exists()
         else:
-            print(self.request.session['liked_jewelries'])
             liked_jewelries = self.request.session.get('liked_jewelries', [])
             likes_pks = liked_jewelries
 
@@ -116,14 +116,4 @@ class DisplayedLikedJewelries(NavigationBarMixin, ListView):
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 
-        # last_viewed = self.request.session.get('last_viewed_jewelries', [])
-
-        # # request.session._auth_user_id
-        #
-        # last_viewed.append(kwargs['jewelry_pk'])
-
-        # self.request.session['last_viewed_jewelries'] = last_viewed
-        # context.update(last_viewed)
-
         return context
-

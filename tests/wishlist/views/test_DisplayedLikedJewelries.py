@@ -9,7 +9,7 @@ from e_commerce_website.jewelry.models import (
 )
 
 
-class LikeJewelryViewTests(TestCase):
+class DisplayLikedJewelriesViewTests(TestCase):
     def setUp(self):
         self.client = Client()
 
@@ -71,30 +71,17 @@ class LikeJewelryViewTests(TestCase):
 
         self.user = get_user_model(). \
             objects.get(email=user_data['email'])
+        self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
 
-        initial_likes_count = JewelryLike.objects.count()
-
-        response = self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
-
-        self.assertEqual(response.status_code, 302)
-
-        self.assertEqual(JewelryLike.objects.count(), initial_likes_count + 1)
-
-        new_like = JewelryLike.objects.last()
-        self.assertEqual(new_like.jewelry, self.jewelry)
-        self.assertEqual(new_like.user, self.user)
-
-        self.assertRedirects(response, reverse('display_liked_jewelries'))
+        response = self.client.get(reverse('display_liked_jewelries'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'wishlist/liked_jewelries.html')
+        self.assertIn(self.jewelry, response.context['object_list'])
 
     def test_add_to_liked_jewelries_unauthenticated_user(self):
-        initial_liked_jewelries_count = len(self.client.session.get('liked_jewelries', []))
+        self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
 
-        response = self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
-
-        self.assertEqual(response.status_code, 302)
-
-        liked_jewelries_in_session = self.client.session.get('liked_jewelries', [])
-
-        self.assertEqual(len(liked_jewelries_in_session), initial_liked_jewelries_count + 1)
-
-        self.assertRedirects(response, reverse('display_liked_jewelries'))
+        response = self.client.get(reverse('display_liked_jewelries'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'wishlist/liked_jewelries.html')
+        self.assertIn(self.jewelry, response.context['object_list'])
