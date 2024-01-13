@@ -7,7 +7,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 
-class SearchBarViewTest(TestCase):
+class SearchBarViewTests(TestCase):
     def setUp(self):
         self.category = Category.objects.create(
             title=Category.TitleChoices.NECKLACE

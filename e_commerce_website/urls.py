@@ -10,4 +10,6 @@ urlpatterns = (
     path('', include('e_commerce_website.order.urls')),
     path('', include('e_commerce_website.profiles.urls')),
     path('', include('e_commerce_website.inventory.urls')),
+    path('', include('e_commerce_website.wishlist.urls')),
+
 )

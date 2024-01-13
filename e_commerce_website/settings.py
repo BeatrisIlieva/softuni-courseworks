@@ -22,17 +22,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_celery_beat',
+    'django_countries',
     'e_commerce_website.jewelry',
     'e_commerce_website.common',
     'e_commerce_website.shopping_cart',
     'e_commerce_website.accounts',
     'e_commerce_website.core',
-    'django_countries',
     'e_commerce_website.order',
     'e_commerce_website.profiles',
     'e_commerce_website.inventory',
-    'django_celery_beat',
-
+    'e_commerce_website.wishlist',
 ]
 
 MIDDLEWARE = [
