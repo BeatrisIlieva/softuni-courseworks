@@ -39,7 +39,6 @@ class LikeJewelryView(View):
 
         request.session['liked_jewelries'] = liked_jewelries
 
-        # Explicitly create an HttpResponseRedirect
         return HttpResponseRedirect(reverse('display_liked_jewelries'))
 
 
