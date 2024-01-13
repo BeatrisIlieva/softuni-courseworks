@@ -94,10 +94,8 @@ class LikeJewelryViewTests(TestCase):
 
         response = self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
 
-        # Check that the response status code is 302 (redirect)
         self.assertEqual(response.status_code, 302)
 
-        # Check that the liked_jewelries in the session is updated correctly
         liked_jewelries_in_session = self.client.session.get('liked_jewelries', [])
 
         self.assertEqual(len(liked_jewelries_in_session), initial_liked_jewelries_count + 1)
