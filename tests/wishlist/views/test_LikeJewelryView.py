@@ -79,13 +79,10 @@ class LikeJewelryViewTests(TestCase):
 
         response = self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
 
-        # Check that the response status code is 302 (redirect)
         self.assertEqual(response.status_code, 302)
 
-        # Check that a new JewelryLike object is created for the user
         self.assertEqual(JewelryLike.objects.count(), initial_likes_count + 1)
 
-        # Check that the created JewelryLike object has the correct jewelry and user
         new_like = JewelryLike.objects.last()
         self.assertEqual(new_like.jewelry, self.jewelry)
         self.assertEqual(new_like.user, self.user)
