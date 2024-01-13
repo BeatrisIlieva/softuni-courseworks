@@ -24,7 +24,10 @@ class RegisterUserViewTest(TestCase):
             response, reverse('index_page')
         )
 
-        self.assertTrue(get_user_model().objects.filter(email=user_data['email']).exists())
+        self.assertTrue(
+            get_user_model().objects.
+            filter(email=user_data['email']).exists()
+        )
         self.assertTrue(response.wsgi_request.user.is_authenticated)
 
         user = get_user_model().objects.get(email=user_data['email'])
