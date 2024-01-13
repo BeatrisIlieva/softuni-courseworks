@@ -98,3 +98,43 @@ class LikeJewelryViewTests(TestCase):
         self.assertEqual(len(liked_jewelries_in_session), initial_liked_jewelries_count + 1)
 
         self.assertRedirects(response, reverse('display_liked_jewelries'))
+
+    def test_remove_liked_jewelries_authenticated_user(self):
+        user_data = {
+            'email': 'beatris@icloud.com',
+            'password1': 'securepassword123',
+            'password2': 'securepassword123',
+            'consent': True
+        }
+
+        self.client.post(
+            reverse('register_user'), data=user_data
+        )
+
+        self.user = get_user_model(). \
+            objects.get(email=user_data['email'])
+
+        initial_likes_count = JewelryLike.objects.count()
+
+        self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
+
+        self.assertEqual(JewelryLike.objects.count(), initial_likes_count + 1)
+
+        self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
+
+        self.assertEqual(JewelryLike.objects.count(), initial_likes_count)
+
+    def test_remove_liked_jewelries_unauthenticated_user(self):
+        initial_liked_jewelries_count = len(self.client.session.get('liked_jewelries', []))
+
+        self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
+
+        liked_jewelries_in_session = self.client.session.get('liked_jewelries', [])
+
+        self.assertEqual(len(liked_jewelries_in_session), initial_liked_jewelries_count + 1)
+
+        self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
+
+        liked_jewelries_in_session = self.client.session.get('liked_jewelries', [])
+
+        self.assertEqual(len(liked_jewelries_in_session), initial_liked_jewelries_count)
