@@ -1,0 +1,39 @@
+from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor, Jewelry, Size, JewelryMetal, \
+    JewelryStone, JewelrySize
+
+from django.test import TestCase
+from django.urls import reverse
+
+
+class SearchBarViewTest(TestCase):
+    def setUp(self):
+        self.category = Category.objects.create(title=Category.TitleChoices.NECKLACE)
+        self.metal = Metal.objects.create(title=Metal.TitleChoices.PLATINUM)
+        self.stone_type = StoneType.objects.create(title=StoneType.TitleChoices.DIAMOND)
+        self.stone_color = StoneColor.objects.create(title=StoneColor.TitleChoices.YELLOW)
+        self.size = Size.objects.create(measurement=Size.MeasurementChoices.V_19_10, category=self.category)
+
+        self.jewelry = Jewelry.objects.create(
+            title='Test Jewelry',
+            first_image_url='https://example.com/image1.jpg',
+            second_image_url='https://example.com/image2.jpg',
+            category=self.category
+        )
+
+        JewelryMetal.objects.create(jewelry=self.jewelry, metal=self.metal)
+        JewelryStone.objects.create(jewelry=self.jewelry, stone_type=self.stone_type, stone_color=self.stone_color)
+        JewelrySize.objects.create(jewelry=self.jewelry, size=self.size)
+
+    def test_search_results(self):
+        search_query = self.stone_color.get_title_display()
+
+        response = self.client.get(reverse('search_bar'), {'search': search_query})
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertTemplateUsed(response, 'common/search_results.html')
+
+        self.assertEqual(response.context['search'], search_query)
+
+        self.assertIn(self.jewelry, response.context['object_list'])
+

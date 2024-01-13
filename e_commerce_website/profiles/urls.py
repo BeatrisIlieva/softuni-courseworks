@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 from e_commerce_website.profiles.views import UserDetailsView, UserUpdateView, \
-    UserDeleteView, UserOrdersView
+    UserDeleteView
 
 urlpatterns = (
     path(
@@ -21,11 +21,6 @@ urlpatterns = (
                     'delete/',
                     UserDeleteView.as_view(),
                     name='delete_user'
-                ),
-                path(
-                    'my-orders/',
-                    UserOrdersView.as_view(),
-                    name='my_orders'
                 ),
             ]
         )

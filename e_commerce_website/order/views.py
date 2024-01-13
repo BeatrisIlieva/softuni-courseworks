@@ -13,6 +13,7 @@ from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.order.forms import CardDetailsForm
+from e_commerce_website.order.models import Order, OrderProducts
 from e_commerce_website.order.utils import add_order, add_order_details
 from e_commerce_website.profiles.models import AccountProfile
 
@@ -129,6 +130,56 @@ class OrderDetails(LoginRequiredMixin,NavigationBarMixin, TemplateView):
         context['delivery_address'] = delivery_address
         context['phone_number'] = phone_number
         context['order_pk'] = order_pk
+
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context
+
+
+class UserOrdersView(NavigationBarMixin, TemplateView):
+    template_name = 'order/orders.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user_pk = self.request.user.pk
+
+        order_details = {}
+
+        orders = Order.objects.filter(user_id=user_pk)
+
+        for order in orders:
+            total_order_price = 0
+
+            order_details[order.pk] = {
+                'status': order.get_status_display(),
+                'order_products': [],
+                'total_order_price': total_order_price
+            }
+
+            order_products = OrderProducts.objects. \
+                filter(order_id=order.pk)
+
+            for order_product in order_products:
+                jewelry = Jewelry.objects.get(pk=order_product.jewelry_id)
+                quantity = order_product.quantity
+                price = jewelry.price
+                total_price_per_jewelry = price * quantity
+
+                order_details[order.pk]['order_products'].append({
+                    'jewelry': jewelry,
+                    'price': price,
+                    'quantity': quantity,
+                    'total_price': total_price_per_jewelry,
+
+                })
+
+                total_order_price += total_price_per_jewelry
+
+            order_details[order.pk]['total_order_price'] = total_order_price
+
+        context['order_details'] = order_details
 
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)

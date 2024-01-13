@@ -7,7 +7,9 @@ from e_commerce_website.profiles.models import AccountProfile
 
 class FirstNameTests(TestCase):
     def setUp(self):
-        self.user = AccountUser.objects.create(email='beatris@icloud.com')
+        self.user = AccountUser.objects.create(
+            email='beatris@icloud.com'
+        )
 
         self.valid_account_profile_data = {
             'first_name': 'Beatris',

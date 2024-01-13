@@ -9,7 +9,6 @@ class IndexViewTests(TestCase):
         )
 
         context = response.context
-        print(context)
 
         self.assertEqual(200, response.status_code)
         self.assertTemplateUsed(response, 'common/index_page.html')

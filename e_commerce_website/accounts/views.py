@@ -13,7 +13,7 @@ from e_commerce_website.common.mixins import NavigationBarMixin
 
 
 class RegisterUserView(NavigationBarMixin, CreateView):
-    template_name = 'account/register.html'
+    template_name = 'accounts/register.html'
     form_class = RegisterUserForm
 
     success_url = reverse_lazy('index_page')
@@ -41,7 +41,7 @@ class RegisterUserView(NavigationBarMixin, CreateView):
 
 
 class LoginUserView(NavigationBarMixin, LoginView):
-    template_name = 'account/login.html'
+    template_name = 'accounts/login.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,3 +57,5 @@ class LogoutUserView(View):
     def get(request, *args, **kwargs):
         logout(request)
         return redirect(reverse_lazy('login_user'))
+
+
