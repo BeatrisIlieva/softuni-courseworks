@@ -43,22 +43,22 @@ class SearchBarView(JewelryIsLikedByUserMixin, NavigationBarMixin, ListView):
         category_pks = get_object_pks(Category, search)
 
         if category_pks:
-            query |= Q(category_id__in=category_pks)
+            query |= Q(Q(category_id__in=category_pks) & Q(inventory__quantity__gt=0))
 
         metal_pks = get_object_pks(Metal, search)
 
         if metal_pks:
-            query |= Q(jewelry_metals__metal_id__in=metal_pks)
+            query |= Q(Q(jewelry_metals__metal_id__in=metal_pks) & Q(inventory__quantity__gt=0))
 
         stone_type_pks = get_object_pks(StoneType, search)
 
         if stone_type_pks:
-            query |= Q(jewelry_stones__stone_type_id__in=stone_type_pks)
+            query |= Q(Q(jewelry_stones__stone_type_id__in=stone_type_pks)  & Q(inventory__quantity__gt=0))
 
         stone_color_pks = get_object_pks(StoneColor, search)
 
         if stone_color_pks:
-            query |= Q(jewelry_stones__stone_color_id__in=stone_color_pks)
+            query |= Q(Q(jewelry_stones__stone_color_id__in=stone_color_pks)  & Q(inventory__quantity__gt=0))
 
         queryset = queryset.filter(
             query

@@ -56,6 +56,7 @@ class DisplayLikedJewelriesViewTests(TestCase):
             size=self.size
         )
 
+
     def test_add_to_liked_jewelries_authenticated_user(self):
         user_data = {
             'email': 'beatris@icloud.com',
