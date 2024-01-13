@@ -10,6 +10,7 @@ from e_commerce_website.jewelry.models import (
     Size, JewelryMetal, JewelryStone, JewelrySize
 )
 
+
 class DisplayLikedJewelriesViewTests(TestCase):
     def setUp(self):
         self.client = Client()
@@ -77,24 +78,18 @@ class DisplayLikedJewelriesViewTests(TestCase):
     def test_remove_quantity_from_inventory(self):
         initial_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
 
-        # Call the function to remove 5 units from the inventory
         remove_quantity_from_inventory(self.jewelry, 5)
 
-        # Retrieve the updated quantity from the database
         updated_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
 
-        # Check that the quantity has been correctly updated
         self.assertEqual(updated_quantity, initial_quantity - 5)
 
     def test_remove_quantity_from_inventory_insufficient_quantity(self):
-        # Attempt to remove more units than available in the inventory
+
         initial_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
 
-        # Call the function to remove 15 units from the inventory, which is more than the available quantity
         remove_quantity_from_inventory(self.jewelry, 15)
 
-        # Retrieve the updated quantity from the database
         updated_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
 
-        # Check that the quantity remains unchanged (no negative quantities allowed)
         self.assertEqual(updated_quantity, initial_quantity)
