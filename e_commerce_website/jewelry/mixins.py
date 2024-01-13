@@ -300,8 +300,8 @@ class UpdateQueryMixin:
 
 class LastViewedJewelriesMixin:
     @staticmethod
-    def get_last_viewed_jewelries(request_and_session):
-        last_viewed_jewelries = request_and_session.get('last_viewed_jewelries', [])
+    def get_last_viewed_jewelries(request):
+        last_viewed_jewelries = request.session.get('last_viewed_jewelries', [])
         last_viewed_jewelries = Jewelry.objects.filter(id__in=last_viewed_jewelries)
 
         context = {'last_viewed_jewelries': last_viewed_jewelries}
