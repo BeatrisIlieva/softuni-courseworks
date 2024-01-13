@@ -53,6 +53,7 @@ class LoginUserView(NavigationBarMixin, LoginView):
 
 
 class LogoutUserView(View):
-    def get(self, request, *args, **kwargs):
+    @staticmethod
+    def get(request, *args, **kwargs):
         logout(request)
         return redirect(reverse_lazy('login_user'))
