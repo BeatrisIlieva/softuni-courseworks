@@ -40,22 +40,18 @@ class ViewJewelryTest(TestCase):
         )
 
     def test_view_jewelry_function__insert__four_objects__expect_three(self):
-        # Access the view_jewelry function
+
         self.client.get(reverse('view_jewelry', kwargs={'pk': self.first_jewelry.pk}))
         self.client.get(reverse('view_jewelry', kwargs={'pk': self.second_jewelry.pk}))
         self.client.get(reverse('view_jewelry', kwargs={'pk': self.third_jewelry.pk}))
         self.client.get(reverse('view_jewelry', kwargs={'pk': self.fourth_jewelry.pk}))
 
-        # Check if the session has been updated correctly
         updated_last_viewed_jewelries = self.client.session.get('last_viewed_jewelries', [])
 
-        # Check if the jewelry instance has been added to the session
         self.assertIn(self.second_jewelry.pk, updated_last_viewed_jewelries)
         self.assertIn(self.third_jewelry.pk, updated_last_viewed_jewelries)
         self.assertIn(self.fourth_jewelry.pk, updated_last_viewed_jewelries)
 
-        # Check if the length of the last_viewed_jewelries list is capped at 3
         self.assertLessEqual(len(updated_last_viewed_jewelries), 3)
 
-        # Check if the jewelry instance is in the correct position in the last_viewed_jewelries list
         self.assertEqual(updated_last_viewed_jewelries[-1], self.fourth_jewelry.pk)
