@@ -28,7 +28,10 @@ class RegisterUserViewTest(TestCase):
             get_user_model().objects.
             filter(email=user_data['email']).exists()
         )
-        self.assertTrue(response.wsgi_request.user.is_authenticated)
+
+        self.assertTrue(
+            response.wsgi_request.user.is_authenticated
+        )
 
         user = get_user_model().objects.get(email=user_data['email'])
         self.assertTrue(AccountProfile.objects.filter(user=user).exists())
