@@ -37,9 +37,21 @@ class SearchBarViewTest(TestCase):
             category=self.category
         )
 
-        JewelryMetal.objects.create(jewelry=self.jewelry, metal=self.metal)
-        JewelryStone.objects.create(jewelry=self.jewelry, stone_type=self.stone_type, stone_color=self.stone_color)
-        JewelrySize.objects.create(jewelry=self.jewelry, size=self.size)
+        JewelryMetal.objects.create(
+            jewelry=self.jewelry,
+            metal=self.metal
+        )
+
+        JewelryStone.objects.create(
+            jewelry=self.jewelry,
+            stone_type=self.stone_type,
+            stone_color=self.stone_color
+        )
+
+        JewelrySize.objects.create(
+            jewelry=self.jewelry,
+            size=self.size
+        )
 
     def test_search_results(self):
         search_query = self.stone_color.get_title_display()
