@@ -56,17 +56,16 @@ class AddToShoppingCartViewTests(TestCase):
                     kwargs={'pk': self.jewelry.pk})
         )
 
-        new_inventory_quantity = Inventory.objects.\
+        new_inventory_quantity = Inventory.objects. \
             get(jewelry=self.jewelry).quantity
 
-        new_shopping_cart_quantity = ShoppingCart.objects.\
+        new_shopping_cart_quantity = ShoppingCart.objects. \
             get(jewelry=self.jewelry).quantity
 
         self.assertEqual(
             response.status_code,
             302
         )
-
 
         self.assertEqual(
             ShoppingCart.objects.count(),
@@ -123,9 +122,11 @@ class AddToShoppingCartViewTests(TestCase):
             initial_shopping_cart_obj_count + 1
         )
 
-        new_shopping_cart_obj = ShoppingCart.objects.last()
+        new_shopping_cart_obj = \
+            ShoppingCart.objects.last()
 
-        new_shopping_cart_obj_count = ShoppingCart.objects.count()
+        new_shopping_cart_obj_count = \
+            ShoppingCart.objects.count()
 
         self.assertEqual(
             new_shopping_cart_obj.jewelry,
@@ -142,18 +143,31 @@ class AddToShoppingCartViewTests(TestCase):
             reverse('view_shopping_cart')
         )
 
-        self.client.get(reverse('add_to_shopping_cart', kwargs={'pk': self.jewelry.pk}))
+        self.client.get(reverse(
+            'add_to_shopping_cart',
+            kwargs={'pk': self.jewelry.pk})
+        )
 
-        updated_shopping_cart_obj_count = ShoppingCart.objects.count()
+        updated_shopping_cart_obj_count = \
+            ShoppingCart.objects.count()
 
-        updated_inventory_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
+        updated_inventory_quantity = \
+            Inventory.objects.get(jewelry=self.jewelry).quantity
 
-        updated_shopping_cart_quantity = ShoppingCart.objects.get(jewelry=self.jewelry).quantity
+        updated_shopping_cart_quantity = \
+            ShoppingCart.objects.get(jewelry=self.jewelry).quantity
 
-        self.assertEqual(updated_inventory_quantity,
-                         new_inventory_quantity - self.added_quantity_to_shopping_cart_if_exists)
+        self.assertEqual(
+            updated_inventory_quantity,
+            new_inventory_quantity - self.added_quantity_to_shopping_cart_if_exists
+        )
 
-        self.assertEqual(updated_shopping_cart_quantity,
-                         initial_shopping_cart_quantity + self.added_quantity_to_shopping_cart_if_exists)
+        self.assertEqual(
+            updated_shopping_cart_quantity,
+            initial_shopping_cart_quantity + self.added_quantity_to_shopping_cart_if_exists
+        )
 
-        self.assertEqual(new_shopping_cart_obj_count, updated_shopping_cart_obj_count)
+        self.assertEqual(
+            new_shopping_cart_obj_count,
+            updated_shopping_cart_obj_count
+        )
