@@ -57,7 +57,7 @@ class LikeJewelryViewTests(TestCase):
             size=self.size
         )
 
-    def test_add_to_liked_jewelries_authenticated_user(self):
+    def test_add_to_liked_jewelries__authenticated_user__expect__to_be_stored_in_session(self):
         user_data = {
             'email': 'beatris@icloud.com',
             'password1': 'securepassword123',
@@ -109,15 +109,26 @@ class LikeJewelryViewTests(TestCase):
         )
 
     def test_add_to_liked_jewelries_unauthenticated_user(self):
-        initial_liked_jewelries_count = len(self.client.session.get('liked_jewelries', []))
+        initial_liked_jewelries_count = \
+            len(self.client.session.get('liked_jewelries', []))
 
-        response = self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
+        response = self.client.get(reverse(
+            'like_jewelry',
+            kwargs={'jewelry_pk': self.jewelry.pk})
+        )
 
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.status_code,
+            302
+        )
 
-        liked_jewelries_in_session = self.client.session.get('liked_jewelries', [])
+        liked_jewelries_in_session = \
+            self.client.session.get('liked_jewelries', [])
 
-        self.assertEqual(len(liked_jewelries_in_session), initial_liked_jewelries_count + 1)
+        self.assertEqual(
+            len(liked_jewelries_in_session),
+            initial_liked_jewelries_count + 1
+        )
 
         self.assertRedirects(response, reverse('display_liked_jewelries'))
 
