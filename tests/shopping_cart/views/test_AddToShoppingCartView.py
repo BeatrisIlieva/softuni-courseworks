@@ -96,30 +96,51 @@ class AddToShoppingCartViewTests(TestCase):
         )
 
     def test_add_to_shopping_cart__for_a_second_time__expect_a_quntity_of_two(self):
-        initial_inventory_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
+        initial_inventory_quantity = \
+            Inventory.objects.get(jewelry=self.jewelry).quantity
 
-        initial_shopping_cart_obj_count = ShoppingCart.objects.count()
+        initial_shopping_cart_obj_count = \
+            ShoppingCart.objects.count()
 
-        response = self.client.get(reverse('add_to_shopping_cart', kwargs={'pk': self.jewelry.pk}))
+        response = self.client.get(reverse(
+            'add_to_shopping_cart',
+            kwargs={'pk': self.jewelry.pk})
+        )
 
-        new_inventory_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
+        new_inventory_quantity = \
+            Inventory.objects.get(jewelry=self.jewelry).quantity
 
-        initial_shopping_cart_quantity = ShoppingCart.objects.get(jewelry=self.jewelry).quantity
+        initial_shopping_cart_quantity = \
+            ShoppingCart.objects.get(jewelry=self.jewelry).quantity
 
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.status_code,
+            302
+        )
 
-        self.assertEqual(ShoppingCart.objects.count(),
-                         initial_shopping_cart_obj_count + 1)
+        self.assertEqual(
+            ShoppingCart.objects.count(),
+            initial_shopping_cart_obj_count + 1
+        )
 
         new_shopping_cart_obj = ShoppingCart.objects.last()
 
         new_shopping_cart_obj_count = ShoppingCart.objects.count()
 
-        self.assertEqual(new_shopping_cart_obj.jewelry, self.jewelry)
+        self.assertEqual(
+            new_shopping_cart_obj.jewelry,
+            self.jewelry
+        )
 
-        self.assertEqual(new_inventory_quantity, initial_inventory_quantity - self.added_quantity_to_shopping_cart)
+        self.assertEqual(
+            new_inventory_quantity,
+            initial_inventory_quantity - self.added_quantity_to_shopping_cart
+        )
 
-        self.assertRedirects(response, reverse('view_shopping_cart'))
+        self.assertRedirects(
+            response,
+            reverse('view_shopping_cart')
+        )
 
         self.client.get(reverse('add_to_shopping_cart', kwargs={'pk': self.jewelry.pk}))
 
