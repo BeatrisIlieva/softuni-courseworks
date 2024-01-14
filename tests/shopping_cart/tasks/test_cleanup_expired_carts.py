@@ -48,7 +48,7 @@ class CleanupExpiredCartsTest(TestCase):
 
         self.expired_cart_pk = self.expired_cart.pk
 
-    def test_cleanup_expired_carts_task(self):
+    def test_cleanup_cart__when_expired__expect_quantity_back_to_inventory(self):
         initial_quantity = self.inventory.quantity
 
         cleanup_expired_carts()
