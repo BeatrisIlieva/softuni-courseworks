@@ -28,16 +28,16 @@ class LikeJewelryView(View):
             else:
                 JewelryLike.objects.create(**kwargs)
 
-            return HttpResponseRedirect(reverse('display_liked_jewelries'))
-
-        liked_jewelries = request.session.get('liked_jewelries', [])
-
-        if jewelry_pk in liked_jewelries:
-            liked_jewelries.remove(jewelry_pk)
         else:
-            liked_jewelries.append(jewelry_pk)
 
-        request.session['liked_jewelries'] = liked_jewelries
+            liked_jewelries = request.session.get('liked_jewelries', [])
+
+            if jewelry_pk in liked_jewelries:
+                liked_jewelries.remove(jewelry_pk)
+            else:
+                liked_jewelries.append(jewelry_pk)
+
+            request.session['liked_jewelries'] = liked_jewelries
 
         return HttpResponseRedirect(reverse('display_liked_jewelries'))
 

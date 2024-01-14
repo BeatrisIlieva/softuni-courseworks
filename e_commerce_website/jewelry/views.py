@@ -660,7 +660,9 @@ class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin, DetailVie
 
         context['form'] = selection_form
 
-        last_viewed_jewelries = self.get_last_viewed_jewelries(self.request)
+
+        request_session = self.request.session
+        last_viewed_jewelries = self.get_last_viewed_jewelries(request_session)
         context.update(last_viewed_jewelries)
 
         nav_bar_context = self.get_nav_bar_context()

@@ -1,28 +1,46 @@
 {% load pagination %}
-{% if is_paginated %}
-    <div class="pagination">
-        <span class="step-links">
+<div class="pagination">
+    <span class="step-links">
+        {% if is_paginated %}
             {% if page_obj.has_previous %}
                 <a href="?{% param_replace page=page_obj.previous_page_number %}">&lt;</a>
             {% else %}
                 <span class="disabled">&lt;</span>
             {% endif %}
 
-            <span class="current">
-                {{ page_obj.number }} / {{ paginator.num_pages }}
-            </span>
+            <span class="current">{{ page_obj.number }} / {{ paginator.num_pages }}</span>
 
             {% if page_obj.has_next %}
                 <a href="?{% param_replace page=page_obj.next_page_number %}">&gt;</a>
             {% else %}
                 <span class="disabled">&gt;</span>
             {% endif %}
-        </span>
-    </div>
-{% endif %}
+        {% else %}
+            < 1 / 1 >
+        {% endif %}
+    </span>
+</div>
 
 
-
+{#{% if is_paginated %}#}
+{#    <div class="pagination">#}
+{#        <span class="step-links">#}
+{#            {% if page_obj.has_previous %}#}
+{#                <a href="?{% param_replace page=page_obj.previous_page_number %}">&lt;</a>#}
+{#            {% else %}#}
+{#                <span class="disabled">&lt;</span>#}
+{#            {% endif %}#}
+{#            <span class="current">#}
+{#                {{ page_obj.number }} / {{ paginator.num_pages }}#}
+{#            </span>#}
+{#            {% if page_obj.has_next %}#}
+{#                <a href="?{% param_replace page=page_obj.next_page_number %}">&gt;</a>#}
+{#            {% else %}#}
+{#                <span class="disabled">&gt;</span>#}
+{#            {% endif %}#}
+{#        </span>#}
+{#    </div>#}
+{#{% endif %}#}
 
 
 {#{% load pagination %}#}
