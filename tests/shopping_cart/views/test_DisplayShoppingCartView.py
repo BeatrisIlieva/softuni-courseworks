@@ -9,7 +9,6 @@ from e_commerce_website.shopping_cart.views import AddToShoppingCartView, Displa
 from e_commerce_website.jewelry.models import Category, Jewelry
 
 
-
 class DisplayShoppingCartViewTests(TestCase):
     def setUp(self):
         self.client = Client()
@@ -38,11 +37,11 @@ class DisplayShoppingCartViewTests(TestCase):
         )
 
         self.added_quantity_to_shopping_cart = \
-            AddToShoppingCartView.\
+            AddToShoppingCartView. \
                 QUANTITY_TO_DECREASE_UPON_ADDING_TO_SHOPPING_CART
 
         self.added_quantity_to_shopping_cart_if_exists = \
-            AddToShoppingCartView.\
+            AddToShoppingCartView. \
                 QUANTITY_TO_INCREASE_IF_EXISTING_SHOPPING_CART
 
     def test_add_to_shopping_cart(self):
@@ -102,7 +101,7 @@ class DisplayShoppingCartViewTests(TestCase):
         already_added_quantity = 1
 
         expected_max_quantity = \
-            Inventory.objects.get(jewelry=self.jewelry).\
+            Inventory.objects.get(jewelry=self.jewelry). \
                 quantity + already_added_quantity
 
         response = self.client.get(
@@ -118,15 +117,33 @@ class DisplayShoppingCartViewTests(TestCase):
         current_quantity = \
             ShoppingCart.objects.get(jewelry=self.jewelry).quantity
 
-        expected_jewelry_total_price = current_quantity * jewelry_price
+        expected_jewelry_total_price = \
+            current_quantity * jewelry_price
 
-        jewelry_data = response.context['jewelries_by_quantities'][self.jewelry]
+        jewelry_data = \
+            response.context['jewelries_by_quantities'][self.jewelry]
 
-        self.assertEqual(jewelry_data['quantity'], current_quantity)
-        self.assertEqual(jewelry_data['min_quantity'], expected_min_quantity)
-        self.assertEqual(jewelry_data['max_quantity'], expected_max_quantity)
-        self.assertEqual(jewelry_data['jewelry_total_price'], expected_jewelry_total_price)
+        self.assertEqual(
+            jewelry_data['quantity'],
+            current_quantity
+        )
 
-        self.assertEqual(response.context['total_price'], expected_total_price)
+        self.assertEqual(
+            jewelry_data['min_quantity'],
+            expected_min_quantity
+        )
 
+        self.assertEqual(
+            jewelry_data['max_quantity'],
+            expected_max_quantity
+        )
 
+        self.assertEqual(
+            jewelry_data['jewelry_total_price'],
+            expected_jewelry_total_price
+        )
+
+        self.assertEqual(
+            response.context['total_price'],
+            expected_total_price
+        )
