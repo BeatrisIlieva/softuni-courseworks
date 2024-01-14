@@ -173,7 +173,17 @@ class UpdateShoppingCartViewTests(TestCase):
             data={'jewelry_id': self.jewelry.pk, 'quantity': new_quantity}
         )
 
-        self.assertEqual(ShoppingCart.objects.count(), 0)
+        self.assertEqual(
+            ShoppingCart.objects.count(),
+            0
+        )
 
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('view_shopping_cart'))
+        self.assertEqual(
+            response.status_code,
+            302
+        )
+
+        self.assertRedirects(
+            response,
+            reverse('view_shopping_cart')
+        )
