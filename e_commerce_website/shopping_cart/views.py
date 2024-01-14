@@ -71,6 +71,8 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
     form_class = QuantityUpdateForm
     template_name = 'shopping_cart/shopping_cart.html'
 
+    ZERO_QUANTITY = 0
+
     def form_valid(self, form):
         jewelry_pk = form.cleaned_data['jewelry_id']
         jewelry = Jewelry.objects.get(pk=jewelry_pk)
@@ -89,7 +91,7 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
             max_quantity = self.MAX_QUANTITIES[jewelry]
             add_quantity_to_inventory(jewelry, quantity, max_quantity)
 
-            if new_quantity == 0:
+            if new_quantity == self.ZERO_QUANTITY:
 
                 if str(jewelry_pk) in cart.keys():
                     del cart[str(jewelry_pk)]
@@ -98,7 +100,7 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
 
                 self.request.session['cart'] = cart
 
-                if new_quantity == 0:
+                if new_quantity == self.ZERO_QUANTITY:
                     ShoppingCart.objects.filter(session_key=self.request.session.session_key,
                                                 jewelry_id=jewelry_pk).delete()
 

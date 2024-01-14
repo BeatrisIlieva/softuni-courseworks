@@ -6,7 +6,7 @@ from django.test import TestCase as TestCase
 
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.shopping_cart.models import ShoppingCart
-from e_commerce_website.shopping_cart.views import AddToShoppingCartView
+from e_commerce_website.shopping_cart.views import AddToShoppingCartView, UpdateShoppingCartView
 from e_commerce_website.wishlist.models import JewelryLike
 from e_commerce_website.jewelry.models import (
     Category, Metal, StoneType, StoneColor, Jewelry,
@@ -14,7 +14,7 @@ from e_commerce_website.jewelry.models import (
 )
 
 
-class AddToShoppingCartViewTests(TestCase):
+class UpdateShoppingCartViewTests(TestCase):
     def setUp(self):
         self.client = Client()
 
@@ -42,7 +42,9 @@ class AddToShoppingCartViewTests(TestCase):
         self.added_quantity_to_shopping_cart_if_exists = \
             AddToShoppingCartView.QUANTITY_TO_INCREASE_IF_EXISTING_SHOPPING_CART
 
-    def test_add_to_shopping_cart(self):
+        self.zero_quantity = UpdateShoppingCartView.ZERO_QUANTITY
+
+    def test_update_shopping_cart_add_quantity(self):
         initial_inventory_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
 
         initial_shopping_cart_obj_count = ShoppingCart.objects.count()
@@ -67,6 +69,20 @@ class AddToShoppingCartViewTests(TestCase):
         self.assertEqual(new_shopping_cart_quantity,  self.added_quantity_to_shopping_cart)
 
         self.assertRedirects(response, reverse('view_shopping_cart'))
+
+        new_quantity = 2
+
+        response = self.client.post(
+            reverse('update_shopping_cart', kwargs={'pk': self.jewelry.pk}),
+            data={'jewelry_id': self.jewelry.pk, 'quantity': new_quantity}
+        )
+
+        updated_shopping_cart = ShoppingCart.objects.get(jewelry=self.jewelry)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('view_shopping_cart'))
+
+        self.assertEqual(updated_shopping_cart.quantity, new_quantity)
 
     def test_add_to_shopping_cart_for_a_second_time(self):
 
