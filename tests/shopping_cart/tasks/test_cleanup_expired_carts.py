@@ -10,15 +10,16 @@ from e_commerce_website.jewelry.models import Category, Jewelry
 
 class CleanupExpiredCartsTest(TestCase):
     def setUp(self):
-
         self.client = Client()
 
         session = self.client.session
         session.save()
 
-        self.client.cookies[settings.SESSION_COOKIE_NAME] = session.session_key
+        self.client.cookies[settings.SESSION_COOKIE_NAME] = \
+            session.session_key
 
-        self.session_cookie_age = settings.SESSION_COOKIE_AGE
+        self.session_cookie_age = \
+            settings.SESSION_COOKIE_AGE
 
         self.category = Category.objects.create(
             title=Category.TitleChoices.NECKLACE
@@ -31,11 +32,19 @@ class CleanupExpiredCartsTest(TestCase):
             category=self.category
         )
 
-        self.inventory = Inventory.objects.create(jewelry=self.jewelry, quantity=10, price=5)
+        self.inventory = Inventory.objects.create(
+            jewelry=self.jewelry,
+            quantity=10,
+            price=5
+        )
 
-        self.client.get(reverse('add_to_shopping_cart', kwargs={'pk': self.jewelry.pk}))
+        self.client.get(
+            reverse('add_to_shopping_cart',
+                    kwargs={'pk': self.jewelry.pk})
+        )
 
-        self.expired_cart = ShoppingCart.objects.get(jewelry=self.jewelry)
+        self.expired_cart = ShoppingCart.objects. \
+            get(jewelry=self.jewelry)
 
         self.expired_cart_pk = self.expired_cart.pk
 
@@ -44,7 +53,15 @@ class CleanupExpiredCartsTest(TestCase):
 
         cleanup_expired_carts()
 
-        self.assertFalse(ShoppingCart.objects.filter(pk=self.expired_cart_pk).exists())
+        self.assertFalse(
+            ShoppingCart.objects.
+            filter(pk=self.expired_cart_pk).exists()
+        )
 
-        updated_inventory = Inventory.objects.get(jewelry_id=self.jewelry).quantity
-        self.assertEqual(initial_quantity, updated_inventory)
+        updated_inventory = Inventory.objects. \
+            get(jewelry_id=self.jewelry).quantity
+
+        self.assertEqual(
+            initial_quantity,
+            updated_inventory
+        )
