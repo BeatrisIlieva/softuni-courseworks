@@ -44,7 +44,7 @@ class DisplayShoppingCartViewTests(TestCase):
             AddToShoppingCartView. \
                 QUANTITY_TO_INCREASE_IF_EXISTING_SHOPPING_CART
 
-    def test_add_to_shopping_cart(self):
+    def test_display_shopping_cart__expect__all_added_obj_to_be_displayed(self):
         initial_inventory_quantity = \
             Inventory.objects.get(jewelry=self.jewelry).quantity
 
