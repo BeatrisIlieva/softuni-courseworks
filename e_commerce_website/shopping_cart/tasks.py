@@ -2,7 +2,6 @@ from celery import shared_task
 from django.db.models import F
 
 from e_commerce_website.inventory.models import Inventory
-from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.models import ShoppingCart
 
 
