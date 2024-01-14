@@ -116,8 +116,11 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
         return redirect('view_shopping_cart')
 
 
-class ShoppingCartView(LastViewedJewelriesMixin, MaxQuantityMixin, NavigationBarMixin, TemplateView):
+class DisplayShoppingCartView(LastViewedJewelriesMixin, MaxQuantityMixin, NavigationBarMixin, TemplateView):
     template_name = 'shopping_cart/shopping_cart.html'
+
+    MIN_QUANTITY = 0
+    INITIAL_TOTAL_PRICE = 0
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -125,7 +128,7 @@ class ShoppingCartView(LastViewedJewelriesMixin, MaxQuantityMixin, NavigationBar
         cart = self.request.session.get('cart', {})
 
         jewelries_by_quantities = {}
-        total_price = 0
+        total_price = self.INITIAL_TOTAL_PRICE
 
         for jewelry_pk, quantity in cart.items():
             quantity = int(quantity)
@@ -138,7 +141,7 @@ class ShoppingCartView(LastViewedJewelriesMixin, MaxQuantityMixin, NavigationBar
 
             inventory = Inventory.objects.get(jewelry=jewelry)
 
-            min_quantity = 0
+            min_quantity = self.MIN_QUANTITY
 
             max_quantity = quantity + inventory.quantity
 
