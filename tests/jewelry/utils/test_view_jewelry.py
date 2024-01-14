@@ -60,12 +60,29 @@ class ViewJewelryTest(TestCase):
             kwargs={'pk': self.fourth_jewelry.pk})
         )
 
-        updated_last_viewed_jewelries = self.client.session.get('last_viewed_jewelries', [])
+        updated_last_viewed_jewelries = \
+            self.client.session.get('last_viewed_jewelries', [])
 
-        self.assertIn(self.second_jewelry.pk, updated_last_viewed_jewelries)
-        self.assertIn(self.third_jewelry.pk, updated_last_viewed_jewelries)
-        self.assertIn(self.fourth_jewelry.pk, updated_last_viewed_jewelries)
+        self.assertIn(
+            self.second_jewelry.pk,
+            updated_last_viewed_jewelries
+        )
 
-        self.assertLessEqual(len(updated_last_viewed_jewelries), 3)
+        self.assertIn(
+            self.third_jewelry.pk,
+            updated_last_viewed_jewelries
+        )
 
-        self.assertEqual(updated_last_viewed_jewelries[-1], self.fourth_jewelry.pk)
+        self.assertIn(
+            self.fourth_jewelry.pk,
+            updated_last_viewed_jewelries
+        )
+
+        self.assertLessEqual(
+            len(updated_last_viewed_jewelries), 3
+        )
+
+        self.assertEqual(
+            updated_last_viewed_jewelries[-1],
+            self.fourth_jewelry.pk
+        )
