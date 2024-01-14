@@ -24,7 +24,7 @@ class NavigationBarMixinTestCase(TestCase):
             title=StoneColor.TitleChoices.AQUAMARINE
         )
 
-    def test_get_nav_bar_context(self):
+    def test_get_nav_bar_context__expect__single_obj_each(self):
         mixin_instance = NavigationBarMixin()
 
         context = mixin_instance.get_nav_bar_context()
