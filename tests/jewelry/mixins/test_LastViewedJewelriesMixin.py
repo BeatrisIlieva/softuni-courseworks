@@ -22,7 +22,7 @@ class LastViewedJewelriesMixinTests(TestCase):
             category=self.category
         )
 
-    def test_last_viewed_jewelries_authenticated_user(self):
+    def test_last_viewed_jewelries__expect_max_length_of_three(self):
         user_data = {
             'email': 'beatris@icloud.com',
             'password1': 'securepassword123',

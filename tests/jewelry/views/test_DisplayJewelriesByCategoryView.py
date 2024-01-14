@@ -57,7 +57,7 @@ class DisplayLikedJewelriesViewTests(TestCase):
             price=5
         )
 
-    def test_display_jewelries_by_category_view(self):
+    def test_display_jewelries_by_category_view__expect_one_obj(self):
         response = self.client.get(reverse(
             'display_jewelries_by_category',
             args=[str(self.category.pk)])
