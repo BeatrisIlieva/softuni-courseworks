@@ -1,17 +1,11 @@
 from django.conf import settings
 from django.test import Client
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 from django.test import TestCase as TestCase
-
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.shopping_cart.models import ShoppingCart
 from e_commerce_website.shopping_cart.views import AddToShoppingCartView, UpdateShoppingCartView
-from e_commerce_website.wishlist.models import JewelryLike
-from e_commerce_website.jewelry.models import (
-    Category, Metal, StoneType, StoneColor, Jewelry,
-    Size, JewelryMetal, JewelryStone, JewelrySize
-)
+from e_commerce_website.jewelry.models import Category, Jewelry
 
 
 class UpdateShoppingCartViewTests(TestCase):
@@ -21,7 +15,8 @@ class UpdateShoppingCartViewTests(TestCase):
         session = self.client.session
         session.save()
 
-        self.client.cookies[settings.SESSION_COOKIE_NAME] = session.session_key
+        self.client.cookies[settings.SESSION_COOKIE_NAME] = \
+            session.session_key
 
         self.category = Category.objects.create(
             title=Category.TitleChoices.NECKLACE
@@ -34,15 +29,22 @@ class UpdateShoppingCartViewTests(TestCase):
             category=self.category
         )
 
-        Inventory.objects.create(jewelry=self.jewelry, quantity=10, price=5)
+        Inventory.objects.create(
+            jewelry=self.jewelry,
+            quantity=10,
+            price=5
+        )
 
         self.added_quantity_to_shopping_cart = \
-            AddToShoppingCartView.QUANTITY_TO_DECREASE_UPON_ADDING_TO_SHOPPING_CART
+            AddToShoppingCartView. \
+                QUANTITY_TO_DECREASE_UPON_ADDING_TO_SHOPPING_CART
 
         self.added_quantity_to_shopping_cart_if_exists = \
-            AddToShoppingCartView.QUANTITY_TO_INCREASE_IF_EXISTING_SHOPPING_CART
+            AddToShoppingCartView. \
+                QUANTITY_TO_INCREASE_IF_EXISTING_SHOPPING_CART
 
-        self.zero_quantity = UpdateShoppingCartView.ZERO_QUANTITY
+        self.zero_quantity = \
+            UpdateShoppingCartView.ZERO_QUANTITY
 
     def test_update_shopping_cart_add_quantity(self):
         initial_inventory_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
@@ -66,7 +68,7 @@ class UpdateShoppingCartViewTests(TestCase):
 
         self.assertEqual(new_inventory_quantity, initial_inventory_quantity - self.added_quantity_to_shopping_cart)
 
-        self.assertEqual(new_shopping_cart_quantity,  self.added_quantity_to_shopping_cart)
+        self.assertEqual(new_shopping_cart_quantity, self.added_quantity_to_shopping_cart)
 
         self.assertRedirects(response, reverse('view_shopping_cart'))
 
