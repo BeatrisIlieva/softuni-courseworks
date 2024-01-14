@@ -156,21 +156,40 @@ class UpdateShoppingCartViewTests(TestCase):
             initial_shopping_cart_obj_count + 1
         )
 
-        new_shopping_cart_obj = ShoppingCart.objects.last()
+        new_shopping_cart_obj = \
+            ShoppingCart.objects.last()
 
-        self.assertEqual(new_shopping_cart_obj.jewelry, self.jewelry)
+        self.assertEqual(
+            new_shopping_cart_obj.jewelry,
+            self.jewelry
+        )
 
-        self.assertEqual(new_inventory_quantity, initial_inventory_quantity - self.added_quantity_to_shopping_cart)
+        self.assertEqual(
+            new_inventory_quantity,
+            initial_inventory_quantity - self.added_quantity_to_shopping_cart
+        )
 
-        self.assertEqual(new_shopping_cart_quantity, self.added_quantity_to_shopping_cart)
+        self.assertEqual(
+            new_shopping_cart_quantity,
+            self.added_quantity_to_shopping_cart
+        )
 
-        self.assertRedirects(response, reverse('view_shopping_cart'))
+        self.assertRedirects(
+            response,
+            reverse('view_shopping_cart')
+        )
 
         new_quantity = self.zero_quantity
 
         response = self.client.post(
-            reverse('update_shopping_cart', kwargs={'pk': self.jewelry.pk}),
-            data={'jewelry_id': self.jewelry.pk, 'quantity': new_quantity}
+            reverse(
+                'update_shopping_cart',
+                kwargs={'pk': self.jewelry.pk}
+            ),
+            data={
+                'jewelry_id': self.jewelry.pk,
+                'quantity': new_quantity
+            }
         )
 
         self.assertEqual(
