@@ -2,11 +2,10 @@ from django.test import Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.test import TestCase as TestCase
-from e_commerce_website.wishlist.models import JewelryLike
 from e_commerce_website.jewelry.models import (
-    Category, Metal, StoneType, StoneColor, Jewelry,
-    Size, JewelryMetal, JewelryStone, JewelrySize
+    Category, Jewelry,
 )
+
 
 class LastViewedJewelriesMixinTests(TestCase):
     def setUp(self):
@@ -32,25 +31,37 @@ class LastViewedJewelriesMixinTests(TestCase):
         }
 
         self.client.post(
-            reverse('register_user'), data=user_data
+            reverse('register_user'),
+            data=user_data
         )
 
         self.user = get_user_model(). \
             objects.get(email=user_data['email'])
 
-        initial_last_viewed_jewelries_count = len(self.client.session.get('last_viewed_jewelries', []))
+        initial_last_viewed_jewelries_count = \
+            len(self.client.session.get('last_viewed_jewelries', []))
 
-        response = self.client.get(reverse('view_jewelry', kwargs={'pk': self.jewelry.pk}))
+        response = self.client.get(reverse(
+            'view_jewelry', kwargs={'pk': self.jewelry.pk})
+        )
 
         self.assertEqual(response.status_code, 302)
 
-        last_viewed_jewelries_count = self.client.session.get('last_viewed_jewelries', [])
+        last_viewed_jewelries_count = self.client.session. \
+            get('last_viewed_jewelries', [])
 
-        self.assertEqual(len(last_viewed_jewelries_count), initial_last_viewed_jewelries_count + 1)
+        self.assertEqual(len(
+            last_viewed_jewelries_count),
+            initial_last_viewed_jewelries_count + 1
+        )
 
-        self.assertIn(self.jewelry.pk, self.client.session.get('last_viewed_jewelries', []))
+        self.assertIn(
+            self.jewelry.pk,
+            self.client.session.get('last_viewed_jewelries', [])
+        )
 
-        self.assertRedirects(response, reverse('display_jewelry_details', args=[str(self.jewelry.pk)]))
-
-    def test_last_viewed_jewelries_unauthenticated_user(self):
-        pass
+        self.assertRedirects(
+            response, reverse(
+                'display_jewelry_details',
+                args=[str(self.jewelry.pk)])
+        )
