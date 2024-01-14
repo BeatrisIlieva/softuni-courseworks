@@ -96,16 +96,27 @@ class DisplayShoppingCartViewTests(TestCase):
             reverse('view_shopping_cart')
         )
 
-        expected_min_quantity = DisplayShoppingCartView.MIN_QUANTITY
+        expected_min_quantity = \
+            DisplayShoppingCartView.MIN_QUANTITY
+
         already_added_quantity = 1
-        expected_max_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity + already_added_quantity
 
-        response = self.client.get(reverse('view_shopping_cart'))
+        expected_max_quantity = \
+            Inventory.objects.get(jewelry=self.jewelry).\
+                quantity + already_added_quantity
 
-        jewelry_price = Inventory.objects.get(jewelry=self.jewelry).price
-        expected_total_price = Inventory.objects.get(jewelry=self.jewelry).price
+        response = self.client.get(
+            reverse('view_shopping_cart')
+        )
 
-        current_quantity = ShoppingCart.objects.get(jewelry=self.jewelry).quantity
+        jewelry_price = \
+            Inventory.objects.get(jewelry=self.jewelry).price
+
+        expected_total_price = \
+            Inventory.objects.get(jewelry=self.jewelry).price
+
+        current_quantity = \
+            ShoppingCart.objects.get(jewelry=self.jewelry).quantity
 
         expected_jewelry_total_price = current_quantity * jewelry_price
 
