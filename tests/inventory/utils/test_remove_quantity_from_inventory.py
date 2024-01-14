@@ -75,7 +75,7 @@ class DisplayLikedJewelriesViewTests(TestCase):
 
         Inventory.objects.create(jewelry=self.jewelry, quantity=10, price=5)
 
-    def test_remove_quantity_from_inventory(self):
+    def test_remove_quantity_from_inventory__when_enough_quantity__expect_success(self):
         initial_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
 
         remove_quantity_from_inventory(self.jewelry, 5)
@@ -84,7 +84,7 @@ class DisplayLikedJewelriesViewTests(TestCase):
 
         self.assertEqual(updated_quantity, initial_quantity - 5)
 
-    def test_remove_quantity_from_inventory_insufficient_quantity(self):
+    def test_remove_quantity_from_inventory__when_insufficient_quantity__expect_no_change(self):
 
         initial_quantity = Inventory.objects.get(jewelry=self.jewelry).quantity
 
