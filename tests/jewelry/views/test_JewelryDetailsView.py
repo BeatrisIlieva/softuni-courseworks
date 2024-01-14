@@ -18,15 +18,32 @@ class JewelryDetailsViewTest(TestCase):
             category=self.category
         )
 
-    def test_jewelry_details_view(self):
-        response = self.client.get(reverse('display_jewelry_details', kwargs={'pk': self.jewelry.pk}))
+    def test_jewelry_details_view__expect__single_obj(self):
+        response = self.client.get(
+            reverse('display_jewelry_details',
+                    kwargs={'pk': self.jewelry.pk})
+        )
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.status_code, 200
+        )
 
-        self.assertTemplateUsed(response, 'jewelry/jewelry_details.html')
+        self.assertTemplateUsed(
+            response,
+            'jewelry/jewelry_details.html'
+        )
 
-        self.assertEqual(response.context['object'], self.jewelry)
+        self.assertEqual(
+            response.context['object'],
+            self.jewelry
+        )
 
-        self.assertIn('form', response.context)
+        self.assertIn(
+            'form',
+            response.context
+        )
 
-        self.assertIn('last_viewed_jewelries', response.context)
+        self.assertIn(
+            'last_viewed_jewelries',
+            response.context
+        )

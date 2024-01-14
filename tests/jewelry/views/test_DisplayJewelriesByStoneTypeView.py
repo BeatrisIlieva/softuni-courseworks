@@ -85,7 +85,7 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
             price=5
         )
 
-    def test_display_jewelries_by_stone_type_view(self):
+    def test_display_jewelries_by_stone_type_view__expect_one_obj(self):
         response = self.client.get(
             reverse('display_jewelries_by_stone_type',
                     args=[str(self.stone_type.pk)])
