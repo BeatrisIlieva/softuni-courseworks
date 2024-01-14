@@ -26,9 +26,10 @@ class SearchBarViewTests(TestCase):
             title=StoneColor.TitleChoices.YELLOW
         )
 
-        self.not_enough_quantity_stone_color = StoneColor.objects.create(
-            title=StoneColor.TitleChoices.YELLOW
-        )
+        self.not_enough_quantity_stone_color = \
+            StoneColor.objects.create(
+                title=StoneColor.TitleChoices.YELLOW
+            )
 
         self.size = Size.objects.create(
             measurement=Size.MeasurementChoices.V_19_10,
@@ -71,22 +72,47 @@ class SearchBarViewTests(TestCase):
             size=self.size
         )
 
-        Inventory.objects.create(jewelry=self.jewelry, quantity=10, price=5)
-        Inventory.objects.create(jewelry=self.not_enough_quantity_jewelry, quantity=0, price=5)
+        Inventory.objects.create(
+            jewelry=self.jewelry,
+            quantity=10,
+            price=5
+        )
+
+        Inventory.objects.create(
+            jewelry=self.not_enough_quantity_jewelry,
+            quantity=0,
+            price=5
+        )
 
     def test_search_results(self):
         search_query = self.stone_color.get_title_display()
 
         response = self.client.get(
-            reverse('search_bar'), {'search': search_query}
+            reverse('search_bar'),
+            {'search': search_query}
         )
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.status_code,
+            200
+        )
 
-        self.assertTemplateUsed(response, 'common/search_results.html')
+        self.assertTemplateUsed(
+            response,
+            'common/search_results.html'
+        )
 
-        self.assertEqual(response.context['search'], search_query)
+        self.assertEqual(
+            response.context['search'],
+            search_query
+        )
 
-        self.assertIn(self.jewelry, response.context['object_list'])
+        self.assertIn(
+            self.jewelry,
+            response.context['object_list']
+        )
 
-        self.assertNotIn(self.not_enough_quantity_jewelry, response.context['object_list'])
+        self.assertNotIn(
+            self.not_enough_quantity_jewelry,
+            response.context['object_list']
+        )

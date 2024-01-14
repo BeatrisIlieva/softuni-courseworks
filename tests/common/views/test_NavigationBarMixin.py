@@ -1,7 +1,9 @@
 from django.test import TestCase
 
 from e_commerce_website.common.mixins import NavigationBarMixin
-from e_commerce_website.jewelry.models import Category, Metal, StoneType, StoneColor
+from e_commerce_website.jewelry.models import (
+    Category, Metal, StoneType, StoneColor
+)
 
 
 class NavigationBarMixinTestCase(TestCase):
