@@ -57,7 +57,7 @@ class DisplayLikedJewelriesViewTests(TestCase):
         )
 
 
-    def test_add_to_liked_jewelries_authenticated_user(self):
+    def test_add_to_liked_jewelries__authenticated_user__expect_to_be_stored_in_session(self):
         user_data = {
             'email': 'beatris@icloud.com',
             'password1': 'securepassword123',
@@ -72,12 +72,29 @@ class DisplayLikedJewelriesViewTests(TestCase):
         self.user = get_user_model(). \
             objects.get(email=user_data['email'])
 
-        self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
+        self.client.get(reverse(
+            'like_jewelry',
+            kwargs={'jewelry_pk': self.jewelry.pk})
+        )
 
-        response = self.client.get(reverse('display_liked_jewelries'))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'wishlist/liked_jewelries.html')
-        self.assertIn(self.jewelry, response.context['object_list'])
+        response = self.client.get(
+            reverse('display_liked_jewelries')
+        )
+
+        self.assertEqual(
+            response.status_code,
+            200
+        )
+
+        self.assertTemplateUsed(
+            response,
+            'wishlist/liked_jewelries.html'
+        )
+
+        self.assertIn(
+            self.jewelry,
+            response.context['object_list']
+        )
 
     def test_add_to_liked_jewelries_unauthenticated_user(self):
         self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
