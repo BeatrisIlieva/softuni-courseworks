@@ -1,6 +1,5 @@
 from datetime import timedelta
 from pathlib import Path
-
 from django.urls import reverse_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,9 +9,6 @@ SECRET_KEY = 'django-insecure-@tpe6(=9#u#$&&vw%#0(^4)p*=d-ib4vvpfm*!4u+8(gv4n-&*
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-SESSION_COOKIE_AGE = 3600
-SESSION_SAVE_EVERY_REQUEST = True
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,14 +20,15 @@ INSTALLED_APPS = [
 
     'django_celery_beat',
     'django_countries',
-    'e_commerce_website.jewelry',
-    'e_commerce_website.common',
-    'e_commerce_website.shopping_cart',
+
     'e_commerce_website.accounts',
+    'e_commerce_website.common',
     'e_commerce_website.core',
+    'e_commerce_website.inventory',
+    'e_commerce_website.jewelry',
     'e_commerce_website.order',
     'e_commerce_website.profiles',
-    'e_commerce_website.inventory',
+    'e_commerce_website.shopping_cart',
     'e_commerce_website.wishlist',
 ]
 
@@ -79,6 +76,9 @@ DATABASES = {
     }
 }
 
+SESSION_COOKIE_AGE = 3600
+SESSION_SAVE_EVERY_REQUEST = True
+
 CACHES = {
     'default': {
         'BACKEND':
@@ -87,18 +87,6 @@ CACHES = {
             'redis://127.0.0.1:6379',
     },
 }
-
-# CACHES = {
-#     'default': {
-#         'BACKEND':
-#             'django.core.cache.backends.dummy.DummyCache'
-#             if DEBUG
-#             else 'django.core.cache.backends.redis.RedisCache',
-#         'LOCATION':
-#             'redis://127.0.0.1:6379',
-#     },
-# }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -114,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 LANGUAGE_CODE = 'en-us'
 
@@ -132,15 +119,11 @@ STATICFILES_DIRS = (
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Default URL to redirect to after successful login
 LOGIN_REDIRECT_URL = reverse_lazy('index_page')
 LOGOUT_REDIRECT_URL = reverse_lazy('login_user')
-# Default URL to redirect to for login
 LOGIN_URL = reverse_lazy('login_user')
 
 AUTH_USER_MODEL = 'accounts.AccountUser'
-
-COUNTRIES_COMMON_NAMES = False
 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
@@ -149,4 +132,4 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 
-
+COUNTRIES_COMMON_NAMES = False

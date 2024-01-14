@@ -12,7 +12,6 @@ Django==4.2
 django-celery-beat==2.5.0
 django-countries==7.5.1
 django-timezone-field==6.1.0
-freezegun==1.4.0
 kombu==5.3.4
 prompt-toolkit==3.0.43
 psycopg2-binary==2.9.9
