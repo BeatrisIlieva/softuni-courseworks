@@ -84,7 +84,7 @@ class SearchBarViewTests(TestCase):
             price=5
         )
 
-    def test_search_results(self):
+    def test_search_results__when_search_pattern__expect_one_obj_in_object_list(self):
         search_query = self.stone_color.get_title_display()
 
         response = self.client.get(
