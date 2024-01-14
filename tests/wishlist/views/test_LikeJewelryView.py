@@ -57,7 +57,7 @@ class LikeJewelryViewTests(TestCase):
             size=self.size
         )
 
-    def test_add_to_liked_jewelries__authenticated_user__expect__to_be_stored_in_session(self):
+    def test_add_to_liked_jewelries__authenticated_user__expect__to_be_stored_in_database(self):
         user_data = {
             'email': 'beatris@icloud.com',
             'password1': 'securepassword123',
@@ -108,7 +108,7 @@ class LikeJewelryViewTests(TestCase):
             reverse('display_liked_jewelries')
         )
 
-    def test_add_to_liked_jewelries_unauthenticated_user(self):
+    def test_add_to_liked_jewelries__unauthenticated_user__expect_to_be_stored_in_session(self):
         initial_liked_jewelries_count = \
             len(self.client.session.get('liked_jewelries', []))
 
@@ -135,7 +135,7 @@ class LikeJewelryViewTests(TestCase):
             reverse('display_liked_jewelries')
         )
 
-    def test_remove_liked_jewelries_authenticated_user(self):
+    def test_remove_liked_jewelries__authenticated_user__expect_to_be_removed_from_database(self):
         user_data = {
             'email': 'beatris@icloud.com',
             'password1': 'securepassword123',
