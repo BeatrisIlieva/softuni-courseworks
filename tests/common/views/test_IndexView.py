@@ -8,12 +8,26 @@ class IndexViewTests(TestCase):
             reverse('index_page'),
         )
 
-        context = response.context
+        self.assertEqual(
+            200, response.status_code
+        )
 
-        self.assertEqual(200, response.status_code)
-        self.assertTemplateUsed(response, 'common/index_page.html')
+        self.assertTemplateUsed(
+            response, 'common/index_page.html'
+        )
 
-        self.assertIn('categories_by_choices', response.context)
-        self.assertIn('metals_by_choices', response.context)
-        self.assertIn('stone_types_by_choices', response.context)
-        self.assertIn('stone_colors_by_choices', response.context)
+        self.assertIn(
+            'categories_by_choices', response.context
+        )
+
+        self.assertIn(
+            'metals_by_choices', response.context
+        )
+
+        self.assertIn(
+            'stone_types_by_choices', response.context
+        )
+
+        self.assertIn(
+            'stone_colors_by_choices', response.context
+        )

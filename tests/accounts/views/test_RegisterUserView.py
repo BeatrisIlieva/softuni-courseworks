@@ -37,5 +37,6 @@ class RegisterUserViewTest(TestCase):
             objects.get(email=user_data['email'])
 
         self.assertTrue(
-            AccountProfile.objects.filter(user=user).exists()
+            AccountProfile.objects.
+            filter(user=user).exists()
         )
