@@ -174,17 +174,32 @@ class LikeJewelryViewTests(TestCase):
             initial_likes_count
         )
 
-    def test_remove_liked_jewelries_unauthenticated_user(self):
-        initial_liked_jewelries_count = len(self.client.session.get('liked_jewelries', []))
+    def test_remove_liked_jewelries__unauthenticated_user__expect_to_be_removed_from_session(self):
+        initial_liked_jewelries_count = \
+            len(self.client.session.get('liked_jewelries', []))
 
-        self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
+        self.client.get(reverse(
+            'like_jewelry',
+            kwargs={'jewelry_pk': self.jewelry.pk})
+        )
 
-        liked_jewelries_in_session = self.client.session.get('liked_jewelries', [])
+        liked_jewelries_in_session = \
+            self.client.session.get('liked_jewelries', [])
 
-        self.assertEqual(len(liked_jewelries_in_session), initial_liked_jewelries_count + 1)
+        self.assertEqual(
+            len(liked_jewelries_in_session),
+            initial_liked_jewelries_count + 1
+        )
 
-        self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
+        self.client.get(reverse(
+            'like_jewelry',
+            kwargs={'jewelry_pk': self.jewelry.pk})
+        )
 
-        liked_jewelries_in_session = self.client.session.get('liked_jewelries', [])
+        liked_jewelries_in_session = \
+            self.client.session.get('liked_jewelries', [])
 
-        self.assertEqual(len(liked_jewelries_in_session), initial_liked_jewelries_count)
+        self.assertEqual(
+            len(liked_jewelries_in_session),
+            initial_liked_jewelries_count
+        )
