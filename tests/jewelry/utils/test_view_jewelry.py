@@ -40,10 +40,25 @@ class ViewJewelryTest(TestCase):
         )
 
     def test_view_jewelry_function__insert__four_objects__expect_three(self):
-        self.client.get(reverse('view_jewelry', kwargs={'pk': self.first_jewelry.pk}))
-        self.client.get(reverse('view_jewelry', kwargs={'pk': self.second_jewelry.pk}))
-        self.client.get(reverse('view_jewelry', kwargs={'pk': self.third_jewelry.pk}))
-        self.client.get(reverse('view_jewelry', kwargs={'pk': self.fourth_jewelry.pk}))
+        self.client.get(reverse(
+            'view_jewelry',
+            kwargs={'pk': self.first_jewelry.pk})
+        )
+
+        self.client.get(reverse(
+            'view_jewelry',
+            kwargs={'pk': self.second_jewelry.pk})
+        )
+
+        self.client.get(reverse(
+            'view_jewelry',
+            kwargs={'pk': self.third_jewelry.pk})
+        )
+
+        self.client.get(reverse(
+            'view_jewelry',
+            kwargs={'pk': self.fourth_jewelry.pk})
+        )
 
         updated_last_viewed_jewelries = self.client.session.get('last_viewed_jewelries', [])
 
