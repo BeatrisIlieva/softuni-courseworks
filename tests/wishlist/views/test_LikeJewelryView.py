@@ -66,25 +66,47 @@ class LikeJewelryViewTests(TestCase):
         }
 
         self.client.post(
-            reverse('register_user'), data=user_data
+            reverse('register_user'),
+            data=user_data
         )
 
         self.user = get_user_model(). \
             objects.get(email=user_data['email'])
 
-        initial_likes_count = JewelryLike.objects.count()
+        initial_likes_count = \
+            JewelryLike.objects.count()
 
-        response = self.client.get(reverse('like_jewelry', kwargs={'jewelry_pk': self.jewelry.pk}))
+        response = self.client.get(reverse(
+            'like_jewelry',
+            kwargs={'jewelry_pk': self.jewelry.pk})
+        )
 
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.status_code,
+            302
+        )
 
-        self.assertEqual(JewelryLike.objects.count(), initial_likes_count + 1)
+        self.assertEqual(
+            JewelryLike.objects.count(),
+            initial_likes_count + 1
+        )
 
         new_like = JewelryLike.objects.last()
-        self.assertEqual(new_like.jewelry, self.jewelry)
-        self.assertEqual(new_like.user, self.user)
 
-        self.assertRedirects(response, reverse('display_liked_jewelries'))
+        self.assertEqual(
+            new_like.jewelry,
+            self.jewelry
+        )
+
+        self.assertEqual(
+            new_like.user,
+            self.user
+        )
+
+        self.assertRedirects(
+            response,
+            reverse('display_liked_jewelries')
+        )
 
     def test_add_to_liked_jewelries_unauthenticated_user(self):
         initial_liked_jewelries_count = len(self.client.session.get('liked_jewelries', []))
