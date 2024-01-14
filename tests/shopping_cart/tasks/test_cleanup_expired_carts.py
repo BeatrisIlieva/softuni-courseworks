@@ -1,21 +1,11 @@
-import datetime
-
-from celery import app
 from django.test import TestCase
-from django.utils import timezone
-from freezegun import freeze_time
 from e_commerce_website.shopping_cart.tasks import cleanup_expired_carts
 from e_commerce_website.shopping_cart.models import ShoppingCart
 from e_commerce_website.inventory.models import Inventory
 from django.conf import settings
 from django.test import Client
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-from e_commerce_website.shopping_cart.views import AddToShoppingCartView
-from e_commerce_website.jewelry.models import (
-    Category, Metal, StoneType, StoneColor, Jewelry,
-    Size, JewelryMetal, JewelryStone, JewelrySize
-)
+from e_commerce_website.jewelry.models import Category, Jewelry
 
 
 class CleanupExpiredCartsTest(TestCase):
