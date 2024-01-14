@@ -7,7 +7,8 @@ from e_commerce_website.profiles.models import AccountProfile
 
 class LastNameTests(TestCase):
     def setUp(self):
-        self.user = AccountUser.objects.create(email='beatrisilieve@icloud.com')
+        self.user = AccountUser.objects.\
+            create(email='beatris@icloud.com')
 
         self.valid_account_profile_data = {
             'first_name': 'Beatris',
@@ -26,9 +27,8 @@ class LastNameTests(TestCase):
         }
 
     def test_create__when_last_name_contains_only_letters__expect_to_be_created(self):
-        account_profile = AccountProfile.objects.create(
-            **self.valid_account_profile_data
-        )
+        account_profile = AccountProfile.objects.\
+            create(**self.valid_account_profile_data)
 
         self.assertIsNotNone(account_profile.pk)
 
