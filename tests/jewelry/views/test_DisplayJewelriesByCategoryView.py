@@ -58,14 +58,29 @@ class DisplayLikedJewelriesViewTests(TestCase):
         )
 
     def test_display_jewelries_by_category_view(self):
-        response = self.client.get(reverse('display_jewelries_by_category', args=[str(self.category.pk)]))
+        response = self.client.get(reverse(
+            'display_jewelries_by_category',
+            args=[str(self.category.pk)])
+        )
 
         self.assertEqual(response.status_code, 200)
 
-        self.assertTemplateUsed(response, 'jewelry/display_jewelries_by_category.html')
+        self.assertTemplateUsed(
+            response,
+            'jewelry/display_jewelries_by_category.html'
+        )
 
-        self.assertIn(self.jewelry, response.context['object_list'])
+        self.assertIn(
+            self.jewelry,
+            response.context['object_list']
+        )
 
-        self.assertNotIn(self.another_jewelry, response.context['object_list'])
+        self.assertNotIn(
+            self.another_jewelry,
+            response.context['object_list']
+        )
 
-        self.assertNotIn(self.not_enough_quantity_jewelry, response.context['object_list'])
+        self.assertNotIn(
+            self.not_enough_quantity_jewelry,
+            response.context['object_list']
+        )
