@@ -73,15 +73,28 @@ class DisplayShoppingCartViewTests(TestCase):
             initial_shopping_cart_obj_count + 1
         )
 
-        new_shopping_cart_obj = ShoppingCart.objects.last()
+        new_shopping_cart_obj = \
+            ShoppingCart.objects.last()
 
-        self.assertEqual(new_shopping_cart_obj.jewelry, self.jewelry)
+        self.assertEqual(
+            new_shopping_cart_obj.jewelry,
+            self.jewelry
+        )
 
-        self.assertEqual(new_inventory_quantity, initial_inventory_quantity - self.added_quantity_to_shopping_cart)
+        self.assertEqual(
+            new_inventory_quantity,
+            initial_inventory_quantity - self.added_quantity_to_shopping_cart
+        )
 
-        self.assertEqual(new_shopping_cart_quantity,  self.added_quantity_to_shopping_cart)
+        self.assertEqual(
+            new_shopping_cart_quantity,
+            self.added_quantity_to_shopping_cart
+        )
 
-        self.assertRedirects(response, reverse('view_shopping_cart'))
+        self.assertRedirects(
+            response,
+            reverse('view_shopping_cart')
+        )
 
         expected_min_quantity = DisplayShoppingCartView.MIN_QUANTITY
         already_added_quantity = 1
