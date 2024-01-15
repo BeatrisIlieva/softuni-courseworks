@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.test import Client
@@ -91,6 +92,8 @@ class AddToShoppingCartViewTests(TestCase):
         self.current_date = datetime.now()
         self.current_month = self.current_date.month
         self.current_year = self.current_date.year
+        self.one_year_behind_date = self.current_date - relativedelta(years=1)
+        self.one_year_behind = self.one_year_behind_date.year
 
         self.valid_card_data = {
             'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
@@ -98,15 +101,21 @@ class AddToShoppingCartViewTests(TestCase):
             'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
         }
 
-        self.invalid_card_number = {
+        self.invalid_card_number_data = {
             'card_number': int('1' * (CardDetailsForm.CARD_NUMBER_LENGTH - 1)),
             'expiration_date': f'{self.current_month:02d}/{self.current_year % 100:02d}',
             'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
         }
 
-        self.invalid_expiry_date_format = {
+        self.invalid_expiry_date_format_data = {
             'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
             'expiration_date': f'{self.current_month:02d}.{self.current_year % 100:02d}',
+            'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
+        }
+        
+        self.invalid_expiry_date_data = {
+            'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
+            'expiration_date': f'{self.current_month:02d}/{self.one_year_behind % 100:02d}',
             'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
         }
 
@@ -126,12 +135,17 @@ class AddToShoppingCartViewTests(TestCase):
 
         self.assertTemplateUsed(response, 'order/proceed_transaction.html')
 
-    def test_proceed_transaction__when_invalid_card_number__expect__raises(self):
-        form = CardDetailsForm(data=self.invalid_card_number)
+    def test_proceed_transaction__when_invalid_card_number_data__expect__raises(self):
+        form = CardDetailsForm(data=self.invalid_card_number_data)
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['card_number'][0], CardDetailsForm.CARD_NUMBER_ERROR_MESSAGE)
 
-    def test_proceed_transaction__when_invalid_expiry_date_format__expect__raises(self):
-        form = CardDetailsForm(data=self.invalid_expiry_date_format)
+    def test_proceed_transaction__when_invalid_expiry_date_format_data__expect__raises(self):
+        form = CardDetailsForm(data=self.invalid_expiry_date_format_data)
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['expiration_date'][0], CardDetailsForm.EXPIRATION_DATE_FORMAT_ERROR_MESSAGE)
+        
+    def test_proceed_transaction__when_car_has_expired__expect__raises(self):
+        form = CardDetailsForm(data=self.invalid_expiry_date_data)
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors['expiration_date'][0], CardDetailsForm.CARD_HAS_EXPIRED_ERROR_MESSAGE)

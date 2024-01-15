@@ -10,7 +10,6 @@ class CardDetailsForm(forms.Form):
     CARD_NUMBER_ERROR_MESSAGE = f'The card number should be exactly {CARD_NUMBER_LENGTH} digits long.'
 
     EXPIRATION_DATE_FORMAT = 'DD/MM'
-    EXPIRATION_DATE_REGEX_PATTERN = r'^\d{2}\/\d{2}$'
     EXPIRATION_DATE_FORMAT_ERROR_MESSAGE = f'The expiration date should be in the format {EXPIRATION_DATE_FORMAT}.'
     CARD_HAS_EXPIRED_ERROR_MESSAGE = f'This card has expired.'
 
