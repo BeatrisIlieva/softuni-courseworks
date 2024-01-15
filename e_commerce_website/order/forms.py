@@ -2,8 +2,7 @@ from django import forms
 
 from django.core.validators import RegexValidator
 
-from e_commerce_website.order.validators import CardHasExpiredValidator
-
+from e_commerce_website.order.validators import ExpirationDateValidator
 
 class CardDetailsForm(forms.Form):
     CARD_NUMBER_LENGTH = 16
@@ -33,7 +32,7 @@ class CardDetailsForm(forms.Form):
 
     expiration_date = forms.CharField(
         validators=[
-            CardHasExpiredValidator(
+            ExpirationDateValidator(
                 error_message=[CARD_HAS_EXPIRED_ERROR_MESSAGE, EXPIRATION_DATE_FORMAT_ERROR_MESSAGE],
             ),
         ]

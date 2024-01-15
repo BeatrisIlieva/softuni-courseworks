@@ -4,7 +4,7 @@ from django.utils.deconstruct import deconstructible
 
 
 @deconstructible
-class CardHasExpiredValidator:
+class ExpirationDateValidator:
     EXPIRATION_DATE_FORMAT = '%m/%y'
 
     def __init__(self, error_message):

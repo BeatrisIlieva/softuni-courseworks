@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.test import TestCase as TestCase
 
-from e_commerce_website.accounts.forms import AccountProfileForm
+from e_commerce_website.profiles.models import AccountProfile
 from e_commerce_website.accounts.models import AccountUser
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.order.forms import CardDetailsForm
@@ -122,21 +122,6 @@ class AddToShoppingCartViewTests(TestCase):
         self.assertTemplateUsed(response, 'order/proceed_transaction.html')
 
     def test_proceed_transaction__when_invalid_card_number__expect__raises(self):
-        with self.assertRaises(ValidationError) as ve:
-            response = self.client.post(
-                reverse(
-                    'complete_transaction', kwargs={'pk': self.user.pk}
-                ),
-                data={
-                    **self.invalid_card_number
-                }
-            )
-
-
-            error_messages = ve.exception.message_dict
-            actual_error_message = error_messages.get('first_name')[0]
-
-            self.assertEqual(
-                AccountProfile.ONLY_LETTERS_EXCEPTION_MESSAGE,
-                actual_error_message
-            )
+        form = CardDetailsForm(data=self.invalid_card_number)
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors['card_number'][0], CardDetailsForm.CARD_NUMBER_ERROR_MESSAGE)

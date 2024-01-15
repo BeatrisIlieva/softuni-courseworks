@@ -117,3 +117,5 @@ for cart in expired_carts:
 
 result = int('1' * CardDetailsForm.CARD_NUMBER_LENGTH)
 print(result)
+
+print(int('1' * (CardDetailsForm.CARD_NUMBER_LENGTH - 1)))
