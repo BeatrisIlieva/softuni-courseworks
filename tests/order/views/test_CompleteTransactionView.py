@@ -104,6 +104,11 @@ class AddToShoppingCartViewTests(TestCase):
             'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
         }
 
+        self.invalid_expiry_date_format = {
+            'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
+            'expiration_date': f'{self.current_month:02d}.{self.current_year % 100:02d}',
+            'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
+        }
 
     def test_proceed_transaction__when_valid_card_details__expect__success(self):
 
@@ -125,3 +130,8 @@ class AddToShoppingCartViewTests(TestCase):
         form = CardDetailsForm(data=self.invalid_card_number)
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['card_number'][0], CardDetailsForm.CARD_NUMBER_ERROR_MESSAGE)
+
+    def test_proceed_transaction__when_invalid_expiry_date_format__expect__raises(self):
+        form = CardDetailsForm(data=self.invalid_expiry_date_format)
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors['expiration_date'][0], CardDetailsForm.EXPIRATION_DATE_FORMAT_ERROR_MESSAGE)
