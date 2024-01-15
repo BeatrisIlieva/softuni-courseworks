@@ -110,15 +110,29 @@ class AddToShoppingCartViewTests(TestCase):
         }
 
         self.invalid_expiry_date_format_data = {
-            'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
-            'expiration_date': f'{self.current_month:02d}.{self.current_year % 100:02d}',
-            'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
+            'card_number': int(
+                '1' * CardDetailsForm.CARD_NUMBER_LENGTH
+            ),
+
+            'expiration_date':
+                f'{self.current_month:02d}.{self.current_year % 100:02d}',
+
+            'cvv_code': int(
+                '1' * CardDetailsForm.CVV_CODE_LENGTH
+            )
         }
 
         self.invalid_expiry_date_data = {
-            'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
-            'expiration_date': f'{self.current_month:02d}/{self.one_year_behind % 100:02d}',
-            'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
+            'card_number': int(
+                '1' * CardDetailsForm.CARD_NUMBER_LENGTH
+            ),
+
+            'expiration_date':
+                f'{self.current_month:02d}/{self.one_year_behind % 100:02d}',
+
+            'cvv_code': int(
+                '1' * CardDetailsForm.CVV_CODE_LENGTH
+            )
         }
 
         self.invalid_cvv_code_data = {
