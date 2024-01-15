@@ -3,17 +3,8 @@ from django.test import Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.test import TestCase as TestCase
-
-from e_commerce_website.accounts.forms import AccountProfileForm
-from e_commerce_website.accounts.models import AccountUser
 from e_commerce_website.inventory.models import Inventory
-from e_commerce_website.shopping_cart.models import ShoppingCart
-from e_commerce_website.shopping_cart.views import AddToShoppingCartView
-from e_commerce_website.wishlist.models import JewelryLike
-from e_commerce_website.jewelry.models import (
-    Category, Metal, StoneType, StoneColor, Jewelry,
-    Size, JewelryMetal, JewelryStone, JewelrySize
-)
+from e_commerce_website.jewelry.models import Category, Jewelry
 
 UserModel = get_user_model()
 
