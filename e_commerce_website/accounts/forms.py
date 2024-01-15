@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django_countries import countries
 
 from e_commerce_website.profiles.models import AccountProfile
 
@@ -28,9 +27,4 @@ class RegisterUserForm(UserCreationForm):
         return user
 
 
-class AccountProfileForm(forms.ModelForm):
-    country = forms.ChoiceField(choices=countries)
 
-    class Meta:
-        model = AccountProfile
-        exclude = ('user',)

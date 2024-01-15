@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView, DetailView
-from e_commerce_website.accounts.forms import AccountProfileForm
+from e_commerce_website.profiles.forms import AccountProfileForm
 from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.profiles.models import AccountProfile
 

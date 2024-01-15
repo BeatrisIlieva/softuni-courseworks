@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic import UpdateView, TemplateView
 from django.views.generic.edit import FormMixin
 
-from e_commerce_website.accounts.forms import AccountProfileForm
+from e_commerce_website.profiles.forms import AccountProfileForm
 
 from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.inventory.models import Inventory

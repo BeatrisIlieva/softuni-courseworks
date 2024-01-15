@@ -36,7 +36,9 @@
                 {% csrf_token %}
             </form>
         {% else %}
-            <a href="{% url 'login_user' %}">Login to Complete Order</a>
+
+            <a href="{% url 'login_user' %}?next={{ request.path }}">Login to Complete Order</a>
+
         {% endif %}
     </div>
     {% for jewelry in last_viewed_jewelries %}

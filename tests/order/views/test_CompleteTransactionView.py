@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.test import Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -90,24 +91,52 @@ class AddToShoppingCartViewTests(TestCase):
         self.current_date = datetime.now()
         self.current_month = self.current_date.month
         self.current_year = self.current_date.year
-        self.formatted_expiration_date = f'{self.current_month:02d}/{self.current_year % 100:02d}'
 
-    def test_proceed_transaction__when_valid_card_details__expect__success(self):
-        card_data = {
+        self.valid_card_data = {
             'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
-            'expiration_date': self.formatted_expiration_date,
+            'expiration_date': f'{self.current_month:02d}/{self.current_year % 100:02d}',
             'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
         }
+
+        self.invalid_card_number = {
+            'card_number': int('1' * (CardDetailsForm.CARD_NUMBER_LENGTH - 1)),
+            'expiration_date': f'{self.current_month:02d}/{self.current_year % 100:02d}',
+            'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
+        }
+
+
+    def test_proceed_transaction__when_valid_card_details__expect__success(self):
+
 
         response = self.client.post(
             reverse(
                 'complete_transaction', kwargs={'pk': self.user.pk}
             ),
             data={
-                **card_data
+                **self.valid_card_data
             }
         )
 
         self.assertEqual(response.status_code, 200)
 
         self.assertTemplateUsed(response, 'order/proceed_transaction.html')
+
+    def test_proceed_transaction__when_invalid_card_number__expect__raises(self):
+        with self.assertRaises(ValidationError) as ve:
+            response = self.client.post(
+                reverse(
+                    'complete_transaction', kwargs={'pk': self.user.pk}
+                ),
+                data={
+                    **self.invalid_card_number
+                }
+            )
+
+
+            error_messages = ve.exception.message_dict
+            actual_error_message = error_messages.get('first_name')[0]
+
+            self.assertEqual(
+                AccountProfile.ONLY_LETTERS_EXCEPTION_MESSAGE,
+                actual_error_message
+            )

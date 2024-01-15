@@ -1,15 +1,29 @@
 from datetime import datetime
-
 from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
-
-EXPIRATION_DATE_FORMAT = '%m/%y'
+from django.utils.deconstruct import deconstructible
 
 
-def check_expiry_date(value):
-    try:
-        expiration_date = datetime.strptime(value, EXPIRATION_DATE_FORMAT)
-        if expiration_date < datetime.now():
-            raise ValidationError(_('This card has expired.'), code='card_expired')
-    except ValueError:
-        raise ValidationError(_('Invalid date format. Please use MM/YY format.'), code='invalid_date_format')
+@deconstructible
+class CardHasExpiredValidator:
+    EXPIRATION_DATE_FORMAT = '%m/%y'
+
+    def __init__(self, error_message):
+        self.error_message = error_message
+
+    def __call__(self, value):
+        try:
+            expiration_date = datetime.strptime(
+                value, self.EXPIRATION_DATE_FORMAT
+            )
+
+            if expiration_date < datetime.now():
+                raise ValidationError(
+                    message=self.error_message[0],
+                    code='invalid',
+                )
+
+        except ValueError:
+            raise ValidationError(
+                self.error_message[1],
+                code='invalid_date_format'
+            )
