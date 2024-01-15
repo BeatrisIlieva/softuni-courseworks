@@ -92,7 +92,6 @@ class AddToShoppingCartViewTests(TestCase):
         self.one_year_behind = \
             self.one_year_behind_date.year
 
-
         self.valid_card_data = {
             'card_number': int(
                 '1' * CardDetailsForm.CARD_NUMBER_LENGTH
@@ -140,4 +139,7 @@ class AddToShoppingCartViewTests(TestCase):
             response.context
         )
 
-        self.assertIn('order_pk', response.context)
+        self.assertIn(
+            'order_pk',
+            response.context
+        )
