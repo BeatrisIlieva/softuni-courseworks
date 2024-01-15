@@ -71,8 +71,6 @@ class DisplayLikedJewelriesViewTests(TestCase):
             title=StoneColor.TitleChoices.YELLOW
         )
 
-        self.expected_stone_color_count = 1
-
         JewelryMetal.objects.create(
             jewelry=self.jewelry,
             metal=self.metal
