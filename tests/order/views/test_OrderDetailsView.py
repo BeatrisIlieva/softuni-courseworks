@@ -109,8 +109,10 @@ class AddToShoppingCartViewTests(TestCase):
 
         self.client.post(
             reverse(
-                'complete_transaction', kwargs={'pk': self.user.pk}
+                'complete_transaction',
+                kwargs={'pk': self.user.pk}
             ),
+
             data={
                 **self.valid_card_data
             }
@@ -119,7 +121,8 @@ class AddToShoppingCartViewTests(TestCase):
     def test_order_details_view__expect_displaying_current_order(self):
         response = self.client.get(
             reverse(
-                'order_details', kwargs={'pk': self.user.pk}
+                'order_details',
+                kwargs={'pk': self.user.pk}
             ),
         )
         self.assertEqual(response.status_code, 200)
