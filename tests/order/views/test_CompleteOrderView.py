@@ -6,8 +6,6 @@ from django.test import TestCase as TestCase
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.jewelry.models import Category, Jewelry
 
-UserModel = get_user_model()
-
 
 class AddToShoppingCartViewTests(TestCase):
     def setUp(self):

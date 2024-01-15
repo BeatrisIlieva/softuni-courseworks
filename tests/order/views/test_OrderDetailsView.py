@@ -97,7 +97,7 @@ class AddToShoppingCartViewTests(TestCase):
             }
         )
 
-    def test_order_details_view(self):
+    def test_order_details_view__expect_displaying_current_order(self):
         response = self.client.get(
             reverse(
                 'order_details', kwargs={'pk': self.user.pk}
