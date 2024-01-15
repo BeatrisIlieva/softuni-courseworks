@@ -1,26 +1,13 @@
 from datetime import datetime
-
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
-from django.core.exceptions import ValidationError
 from django.test import Client
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.test import TestCase as TestCase
-
-from e_commerce_website.profiles.models import AccountProfile
-from e_commerce_website.accounts.models import AccountUser
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.order.forms import CardDetailsForm
-from e_commerce_website.shopping_cart.models import ShoppingCart
-from e_commerce_website.shopping_cart.views import AddToShoppingCartView
-from e_commerce_website.wishlist.models import JewelryLike
-from e_commerce_website.jewelry.models import (
-    Category, Metal, StoneType, StoneColor, Jewelry,
-    Size, JewelryMetal, JewelryStone, JewelrySize
-)
-
-UserModel = get_user_model()
+from e_commerce_website.jewelry.models import Category, Jewelry
 
 
 class AddToShoppingCartViewTests(TestCase):
@@ -112,7 +99,7 @@ class AddToShoppingCartViewTests(TestCase):
             'expiration_date': f'{self.current_month:02d}.{self.current_year % 100:02d}',
             'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
         }
-        
+
         self.invalid_expiry_date_data = {
             'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
             'expiration_date': f'{self.current_month:02d}/{self.one_year_behind % 100:02d}',
@@ -126,8 +113,6 @@ class AddToShoppingCartViewTests(TestCase):
         }
 
     def test_proceed_transaction__when_valid_card_details__expect__success(self):
-
-
         response = self.client.post(
             reverse(
                 'complete_transaction', kwargs={'pk': self.user.pk}
@@ -150,12 +135,11 @@ class AddToShoppingCartViewTests(TestCase):
         form = CardDetailsForm(data=self.invalid_expiry_date_format_data)
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['expiration_date'][0], CardDetailsForm.EXPIRATION_DATE_FORMAT_ERROR_MESSAGE)
-        
+
     def test_proceed_transaction__when_card_has_expired__expect__raises(self):
         form = CardDetailsForm(data=self.invalid_expiry_date_data)
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['expiration_date'][0], CardDetailsForm.CARD_HAS_EXPIRED_ERROR_MESSAGE)
-
 
     def test_proceed_transaction__when__invalid_cvv_code__expect__raises(self):
         form = CardDetailsForm(data=self.invalid_cvv_code_data)

@@ -73,7 +73,7 @@ class CompleteTransactionView(LoginRequiredMixin,NavigationBarMixin, TemplateVie
 
 
 
-class OrderDetails(LoginRequiredMixin,NavigationBarMixin, TemplateView):
+class OrderDetailsView(LoginRequiredMixin,NavigationBarMixin, TemplateView):
     template_name = 'order/order_details.html'
 
     def get_context_data(self, **kwargs):
