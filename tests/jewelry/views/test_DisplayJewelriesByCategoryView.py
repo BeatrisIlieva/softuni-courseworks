@@ -67,9 +67,6 @@ class DisplayLikedJewelriesViewTests(TestCase):
         )
 
 
-
-
-
         self.stone_color = StoneColor.objects.create(
             title=StoneColor.TitleChoices.YELLOW
         )
