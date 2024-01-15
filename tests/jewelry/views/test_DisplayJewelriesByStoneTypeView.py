@@ -78,8 +78,6 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
 
         self.expected_stone_color_count = 1
 
-
-
         JewelryStone.objects.create(
             jewelry=self.jewelry,
             stone_type=self.stone_type,
@@ -185,7 +183,6 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
             self.expected_metal_count
         )
 
-
     def test_display_jewelries_by_stone_type_view__expect_stone_color_count_to_be_equal_to_one(self):
         response = self.client.get(
             reverse('display_jewelries_by_stone_type',
@@ -204,4 +201,3 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
             actual_stone_color_count,
             self.expected_stone_color_count
         )
-

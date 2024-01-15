@@ -4,7 +4,8 @@ from django.test import TestCase as TestCase
 
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.jewelry.models import (
-    Category, StoneType, StoneColor, Jewelry, JewelryStone, Metal, JewelryMetal,
+    Category, StoneType, StoneColor, Jewelry,
+    JewelryStone, Metal, JewelryMetal,
 )
 
 
@@ -16,7 +17,9 @@ class DisplayJewelriesByStoneColorView(TestCase):
             title=Category.TitleChoices.NECKLACE
         )
 
-        self.expected_category_title = self.category.get_title_display()
+        self.expected_category_title = \
+            self.category.get_title_display()
+
         self.expected_category_count = 1
 
         self.jewelry = Jewelry.objects.create(
@@ -44,7 +47,8 @@ class DisplayJewelriesByStoneColorView(TestCase):
             title=Metal.TitleChoices.PLATINUM
         )
 
-        self.expected_metal_title = self.metal.get_title_display()
+        self.expected_metal_title = \
+            self.metal.get_title_display()
 
         JewelryMetal.objects.create(
             jewelry=self.jewelry,
@@ -61,7 +65,8 @@ class DisplayJewelriesByStoneColorView(TestCase):
             title=StoneType.TitleChoices.SAPPHIRE
         )
 
-        self.expected_stone_type_title = self.stone_type.get_title_display()
+        self.expected_stone_type_title = \
+            self.stone_type.get_title_display()
 
         self.expected_stone_type_count = 1
 
@@ -149,11 +154,18 @@ class DisplayJewelriesByStoneColorView(TestCase):
             args=[str(self.stone_color.pk)])
         )
 
-        self.assertIn('jewelries_count_by_category', response.context)
+        self.assertIn(
+            'jewelries_count_by_category',
+            response.context
+        )
 
-        actual_category_count = response.context['jewelries_count_by_category'][self.expected_category_title]
+        actual_category_count = \
+            response.context['jewelries_count_by_category'][self.expected_category_title]
 
-        self.assertEqual(actual_category_count, self.expected_category_count)
+        self.assertEqual(
+            actual_category_count,
+            self.expected_category_count
+        )
 
     def test_display_jewelries_by_stone_color_view__expect_metal_count_to_be_equal_to_one(self):
         response = self.client.get(reverse(
@@ -161,9 +173,13 @@ class DisplayJewelriesByStoneColorView(TestCase):
             args=[str(self.stone_color.pk)])
         )
 
-        self.assertIn('jewelries_count_by_metal', response.context)
+        self.assertIn(
+            'jewelries_count_by_metal',
+            response.context
+        )
 
-        actual_metal_count = response.context['jewelries_count_by_metal'][self.expected_metal_title]
+        actual_metal_count = \
+            response.context['jewelries_count_by_metal'][self.expected_metal_title]
 
         self.assertEqual(actual_metal_count, self.expected_metal_count)
 
