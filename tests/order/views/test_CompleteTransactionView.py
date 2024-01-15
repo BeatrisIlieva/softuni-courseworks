@@ -151,14 +151,27 @@ class AddToShoppingCartViewTests(TestCase):
             }
         )
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.status_code,
+            200
+        )
 
-        self.assertTemplateUsed(response, 'order/proceed_transaction.html')
+        self.assertTemplateUsed(
+            response,
+            'order/proceed_transaction.html'
+        )
 
     def test_proceed_transaction__when_invalid_card_number_data__expect__raises(self):
-        form = CardDetailsForm(data=self.invalid_card_number_data)
+        form = CardDetailsForm(
+            data=self.invalid_card_number_data
+        )
+
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['card_number'][0], CardDetailsForm.CARD_NUMBER_ERROR_MESSAGE)
+
+        self.assertEqual(
+            form.errors['card_number'][0],
+            CardDetailsForm.CARD_NUMBER_ERROR_MESSAGE
+        )
 
     def test_proceed_transaction__when_invalid_expiry_date_format_data__expect__raises(self):
         form = CardDetailsForm(data=self.invalid_expiry_date_format_data)
