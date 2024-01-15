@@ -121,9 +121,15 @@ class AddToShoppingCartViewTests(TestCase):
                 'order_details', kwargs={'pk': self.user.pk}
             ),
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.status_code, 200
+        )
 
-        self.assertIn('jewelries_by_quantities', response.context)
+        self.assertIn(
+            'jewelries_by_quantities',
+            response.context
+        )
+
         self.assertIn('user_pk', response.context)
         self.assertIn('order_pk', response.context)
 
