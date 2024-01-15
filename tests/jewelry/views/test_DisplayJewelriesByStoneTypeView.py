@@ -1,10 +1,10 @@
 from django.test import Client
 from django.urls import reverse
 from django.test import TestCase as TestCase
-
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.jewelry.models import (
-    Category, StoneType, StoneColor, Jewelry, JewelryStone, Metal, JewelryMetal,
+    Category, StoneType, StoneColor, Jewelry,
+    JewelryStone, Metal, JewelryMetal,
 )
 
 
@@ -16,7 +16,9 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
             title=Category.TitleChoices.NECKLACE
         )
 
-        self.expected_category_title = self.category.get_title_display()
+        self.expected_category_title = \
+            self.category.get_title_display()
+
         self.expected_category_count = 1
 
         self.jewelry = Jewelry.objects.create(
@@ -44,7 +46,8 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
             title=Metal.TitleChoices.PLATINUM
         )
 
-        self.expected_metal_title = self.metal.get_title_display()
+        self.expected_metal_title = \
+            self.metal.get_title_display()
 
         JewelryMetal.objects.create(
             jewelry=self.jewelry,
@@ -61,7 +64,8 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
             title=StoneType.TitleChoices.SAPPHIRE
         )
 
-        self.expected_stone_type_title = self.stone_type.get_title_display()
+        self.expected_stone_type_title = \
+            self.stone_type.get_title_display()
 
         self.expected_stone_type_count = 1
 
@@ -69,7 +73,9 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
             title=StoneColor.TitleChoices.YELLOW
         )
 
-        self.expected_stone_color_title = self.stone_color.get_title_display()
+        self.expected_stone_color_title = \
+            self.stone_color.get_title_display()
+
         self.expected_stone_color_count = 1
 
 
