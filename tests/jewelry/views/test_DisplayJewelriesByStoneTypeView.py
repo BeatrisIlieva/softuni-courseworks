@@ -180,7 +180,10 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
         actual_metal_count = \
             response.context['jewelries_count_by_metal'][self.expected_metal_title]
 
-        self.assertEqual(actual_metal_count, self.expected_metal_count)
+        self.assertEqual(
+            actual_metal_count,
+            self.expected_metal_count
+        )
 
 
     def test_display_jewelries_by_stone_type_view__expect_stone_color_count_to_be_equal_to_one(self):
@@ -189,9 +192,16 @@ class DisplayJewelriesByStoneTypeViewTests(TestCase):
                     args=[str(self.stone_type.pk)])
         )
 
-        self.assertIn('jewelries_count_by_stone_color', response.context)
+        self.assertIn(
+            'jewelries_count_by_stone_color',
+            response.context
+        )
 
-        actual_stone_color_count = response.context['jewelries_count_by_stone_color'][self.expected_stone_color_title]
+        actual_stone_color_count = \
+            response.context['jewelries_count_by_stone_color'][self.expected_stone_color_title]
 
-        self.assertEqual(actual_stone_color_count, self.expected_stone_color_count)
+        self.assertEqual(
+            actual_stone_color_count,
+            self.expected_stone_color_count
+        )
 
