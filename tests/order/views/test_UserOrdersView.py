@@ -97,7 +97,7 @@ class AddToShoppingCartViewTests(TestCase):
             }
         )
 
-    def test_order_details_view(self):
+    def test_orders_view(self):
         response = self.client.get(
             reverse(
                 'order_details', kwargs={'pk': self.user.pk}
@@ -107,4 +107,10 @@ class AddToShoppingCartViewTests(TestCase):
 
         self.assertIn('jewelries_by_quantities', response.context)
         self.assertIn('user_pk', response.context)
+        self.assertIn('order_pk', response.context)
+
+        self.assertIn('country', response.context)
+        self.assertIn('city', response.context)
+        self.assertIn('delivery_address', response.context)
+        self.assertIn('phone_number', response.context)
         self.assertIn('order_pk', response.context)
