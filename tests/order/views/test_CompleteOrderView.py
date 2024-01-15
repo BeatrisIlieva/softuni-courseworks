@@ -14,7 +14,8 @@ class AddToShoppingCartViewTests(TestCase):
         session = self.client.session
         session.save()
 
-        self.client.cookies[settings.SESSION_COOKIE_NAME] = session.session_key
+        self.client.cookies[settings.SESSION_COOKIE_NAME] = \
+            session.session_key
 
         self.category = Category.objects.create(
             title=Category.TitleChoices.NECKLACE
@@ -74,6 +75,9 @@ class AddToShoppingCartViewTests(TestCase):
             }
         )
 
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.status_code,
+            302
+        )
 
         self.assertRedirects(response, reverse('complete_transaction', kwargs={'pk': user.pk}))
