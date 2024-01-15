@@ -136,9 +136,16 @@ class AddToShoppingCartViewTests(TestCase):
         }
 
         self.invalid_cvv_code_data = {
-            'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
-            'expiration_date': f'{self.current_month:02d}/{self.current_year % 100:02d}',
-            'cvv_code': int('1' * (CardDetailsForm.CVV_CODE_LENGTH - 1))
+            'card_number': int(
+                '1' * CardDetailsForm.CARD_NUMBER_LENGTH
+            ),
+
+            'expiration_date':
+                f'{self.current_month:02d}/{self.current_year % 100:02d}',
+
+            'cvv_code': int(
+                '1' * (CardDetailsForm.CVV_CODE_LENGTH - 1)
+            )
         }
 
     def test_proceed_transaction__when_valid_card_details__expect__success(self):
