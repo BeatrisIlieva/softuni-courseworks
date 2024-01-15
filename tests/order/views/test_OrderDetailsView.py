@@ -135,5 +135,9 @@ class AddToShoppingCartViewTests(TestCase):
             response.context
         )
 
-        self.assertIn('user_pk', response.context)
+        self.assertIn(
+            'user_pk',
+            response.context
+        )
+
         self.assertIn('order_pk', response.context)
