@@ -124,7 +124,10 @@ class DisplayJewelriesByMetalViewTests(TestCase):
             args=[str(self.metal.pk)])
         )
 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.status_code,
+            200
+        )
 
         self.assertTemplateUsed(
             response,
@@ -152,11 +155,18 @@ class DisplayJewelriesByMetalViewTests(TestCase):
             args=[str(self.metal.pk)])
         )
 
-        self.assertIn('jewelries_count_by_category', response.context)
+        self.assertIn(
+            'jewelries_count_by_category',
+            response.context
+        )
 
-        actual_category_count = response.context['jewelries_count_by_category'][self.expected_category_title]
+        actual_category_count = \
+            response.context['jewelries_count_by_category'][self.expected_category_title]
 
-        self.assertEqual(actual_category_count, self.expected_category_count)
+        self.assertEqual(
+            actual_category_count,
+            self.expected_category_count
+        )
 
     def test_display_jewelries_by_metal_view__expect_stone_type_count_to_be_equal_to_one(self):
         response = self.client.get(reverse(
@@ -166,7 +176,8 @@ class DisplayJewelriesByMetalViewTests(TestCase):
 
         self.assertIn('jewelries_count_by_stone_type', response.context)
 
-        actual_stone_type_count = response.context['jewelries_count_by_stone_type'][self.expected_stone_type_title]
+        actual_stone_type_count = \
+            response.context['jewelries_count_by_stone_type'][self.expected_stone_type_title]
 
         self.assertEqual(actual_stone_type_count, self.expected_stone_type_count)
 
