@@ -200,6 +200,13 @@ class AddToShoppingCartViewTests(TestCase):
         )
 
     def test_proceed_transaction__when__invalid_cvv_code__expect__raises(self):
-        form = CardDetailsForm(data=self.invalid_cvv_code_data)
+        form = CardDetailsForm(
+            data=self.invalid_cvv_code_data
+        )
+
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['cvv_code'][0], CardDetailsForm.CVV_CODE_ERROR_MESSAGE)
+
+        self.assertEqual(
+            form.errors['cvv_code'][0],
+            CardDetailsForm.CVV_CODE_ERROR_MESSAGE
+        )
