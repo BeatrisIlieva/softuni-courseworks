@@ -174,14 +174,30 @@ class AddToShoppingCartViewTests(TestCase):
         )
 
     def test_proceed_transaction__when_invalid_expiry_date_format_data__expect__raises(self):
-        form = CardDetailsForm(data=self.invalid_expiry_date_format_data)
-        self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['expiration_date'][0], CardDetailsForm.EXPIRATION_DATE_FORMAT_ERROR_MESSAGE)
+        form = CardDetailsForm(
+            data=self.invalid_expiry_date_format_data
+        )
+
+        self.assertFalse(
+            form.is_valid()
+        )
+
+        self.assertEqual(
+            form.errors['expiration_date'][0],
+            CardDetailsForm.EXPIRATION_DATE_FORMAT_ERROR_MESSAGE
+        )
 
     def test_proceed_transaction__when_card_has_expired__expect__raises(self):
-        form = CardDetailsForm(data=self.invalid_expiry_date_data)
+        form = CardDetailsForm(
+            data=self.invalid_expiry_date_data
+        )
+
         self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors['expiration_date'][0], CardDetailsForm.CARD_HAS_EXPIRED_ERROR_MESSAGE)
+
+        self.assertEqual(
+            form.errors['expiration_date'][0],
+            CardDetailsForm.CARD_HAS_EXPIRED_ERROR_MESSAGE
+        )
 
     def test_proceed_transaction__when__invalid_cvv_code__expect__raises(self):
         form = CardDetailsForm(data=self.invalid_cvv_code_data)
