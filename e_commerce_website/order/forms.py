@@ -2,7 +2,7 @@ from django import forms
 
 from django.core.validators import RegexValidator
 
-from e_commerce_website.shopping_cart.validators import check_card_has_expired
+from e_commerce_website.order.validators import check_expiry_date
 
 
 class CardDetailsForm(forms.Form):
@@ -30,7 +30,7 @@ class CardDetailsForm(forms.Form):
                 message=f'The expiration date should be in the format {EXPIRATION_DATE_FORMAT}.',
                 code='invalid',
             ),
-            check_card_has_expired,
+            check_expiry_date,
 
         ]
     )

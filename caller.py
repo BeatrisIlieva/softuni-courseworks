@@ -13,6 +13,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "e_commerce_website.settings")
 django.setup()
 from django.db import models
 
+from e_commerce_website.order.forms import CardDetailsForm
+
 from e_commerce_website.shopping_cart.models import ShoppingCart
 from e_commerce_website.jewelry.funcs import get_objects_pks
 from django.utils.translation import gettext_lazy as _
@@ -113,3 +115,5 @@ for cart in expired_carts:
     print(quantity)
 
 
+result = int('1' * CardDetailsForm.CARD_NUMBER_LENGTH)
+print(result)
