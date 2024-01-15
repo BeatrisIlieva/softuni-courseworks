@@ -181,7 +181,10 @@ class DisplayJewelriesByStoneColorView(TestCase):
         actual_metal_count = \
             response.context['jewelries_count_by_metal'][self.expected_metal_title]
 
-        self.assertEqual(actual_metal_count, self.expected_metal_count)
+        self.assertEqual(
+            actual_metal_count,
+            self.expected_metal_count
+        )
 
     def test_display_jewelries_by_stone_color_view__expect_stone_type_count_to_be_equal_to_one(self):
         response = self.client.get(reverse(
@@ -189,9 +192,15 @@ class DisplayJewelriesByStoneColorView(TestCase):
             args=[str(self.stone_color.pk)])
         )
 
-        self.assertIn('jewelries_count_by_stone_type', response.context)
+        self.assertIn(
+            'jewelries_count_by_stone_type',
+            response.context
+        )
 
-        actual_stone_type_count = response.context['jewelries_count_by_stone_type'][self.expected_stone_type_title]
+        actual_stone_type_count = \
+            response.context['jewelries_count_by_stone_type'][self.expected_stone_type_title]
 
-        self.assertEqual(actual_stone_type_count, self.expected_stone_type_count)
-
+        self.assertEqual(
+            actual_stone_type_count,
+            self.expected_stone_type_count
+        )
