@@ -80,4 +80,7 @@ class AddToShoppingCartViewTests(TestCase):
             302
         )
 
-        self.assertRedirects(response, reverse('complete_transaction', kwargs={'pk': user.pk}))
+        self.assertRedirects(response, reverse(
+            'complete_transaction',
+            kwargs={'pk': user.pk})
+                             )
