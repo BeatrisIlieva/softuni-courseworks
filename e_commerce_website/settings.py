@@ -36,13 +36,11 @@ MIDDLEWARE = [
     'e_commerce_website.middlewares.middlewares.measure_execution_time_middleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'e_commerce_website.common.middlewares.show_last_viewed_jewelries_middleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'e_commerce_website.urls'
