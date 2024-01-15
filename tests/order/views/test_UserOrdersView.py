@@ -17,7 +17,8 @@ class AddToShoppingCartViewTests(TestCase):
         session = self.client.session
         session.save()
 
-        self.client.cookies[settings.SESSION_COOKIE_NAME] = session.session_key
+        self.client.cookies[settings.SESSION_COOKIE_NAME] = \
+            session.session_key
 
         self.category = Category.objects.create(
             title=Category.TitleChoices.NECKLACE
@@ -71,6 +72,7 @@ class AddToShoppingCartViewTests(TestCase):
             reverse(
                 'complete_order', kwargs={'pk': self.user.pk}
             ),
+
             data={
                 **profile_data
             }
