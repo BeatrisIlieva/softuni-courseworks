@@ -119,6 +119,12 @@ class AddToShoppingCartViewTests(TestCase):
             'cvv_code': int('1' * CardDetailsForm.CVV_CODE_LENGTH)
         }
 
+        self.invalid_cvv_code_data = {
+            'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
+            'expiration_date': f'{self.current_month:02d}/{self.current_year % 100:02d}',
+            'cvv_code': int('1' * (CardDetailsForm.CVV_CODE_LENGTH - 1))
+        }
+
     def test_proceed_transaction__when_valid_card_details__expect__success(self):
 
 
@@ -145,7 +151,13 @@ class AddToShoppingCartViewTests(TestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['expiration_date'][0], CardDetailsForm.EXPIRATION_DATE_FORMAT_ERROR_MESSAGE)
         
-    def test_proceed_transaction__when_car_has_expired__expect__raises(self):
+    def test_proceed_transaction__when_card_has_expired__expect__raises(self):
         form = CardDetailsForm(data=self.invalid_expiry_date_data)
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['expiration_date'][0], CardDetailsForm.CARD_HAS_EXPIRED_ERROR_MESSAGE)
+
+
+    def test_proceed_transaction__when__invalid_cvv_code__expect__raises(self):
+        form = CardDetailsForm(data=self.invalid_cvv_code_data)
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors['cvv_code'][0], CardDetailsForm.CVV_CODE_ERROR_MESSAGE)
