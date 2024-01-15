@@ -130,10 +130,21 @@ class AddToShoppingCartViewTests(TestCase):
             response.context
         )
 
-        self.assertIn('user_pk', response.context)
-        self.assertIn('order_pk', response.context)
+        self.assertIn(
+            'user_pk',
+            response.context
+        )
 
-        self.assertIn('country', response.context)
+        self.assertIn(
+            'order_pk',
+            response.context
+        )
+
+        self.assertIn(
+            'country',
+            response.context
+        )
+
         self.assertIn('city', response.context)
         self.assertIn('delivery_address', response.context)
         self.assertIn('phone_number', response.context)
