@@ -17,7 +17,8 @@ class AddToShoppingCartViewTests(TestCase):
         session = self.client.session
         session.save()
 
-        self.client.cookies[settings.SESSION_COOKIE_NAME] = session.session_key
+        self.client.cookies[settings.SESSION_COOKIE_NAME] = \
+            session.session_key
 
         self.category = Category.objects.create(
             title=Category.TitleChoices.NECKLACE
@@ -76,11 +77,21 @@ class AddToShoppingCartViewTests(TestCase):
             }
         )
 
-        self.current_date = datetime.now()
-        self.current_month = self.current_date.month
-        self.current_year = self.current_date.year
-        self.one_year_behind_date = self.current_date - relativedelta(years=1)
-        self.one_year_behind = self.one_year_behind_date.year
+        self.current_date = \
+            datetime.now()
+
+        self.current_month = \
+            self.current_date.month
+
+        self.current_year = \
+            self.current_date.year
+
+        self.one_year_behind_date = \
+            self.current_date - relativedelta(years=1)
+
+        self.one_year_behind = \
+            self.one_year_behind_date.year
+
 
         self.valid_card_data = {
             'card_number': int('1' * CardDetailsForm.CARD_NUMBER_LENGTH),
