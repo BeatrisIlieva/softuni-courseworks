@@ -19,38 +19,6 @@ class DisplayJewelriesByStoneColorView(TestCase):
         self.expected_category_title = self.category.get_title_display()
         self.expected_category_count = 1
 
-        self.metal = Metal.objects.create(
-            title=Metal.TitleChoices.PLATINUM
-        )
-
-        self.expected_metal_title = self.metal.get_title_display()
-
-
-
-        self.stone_color = StoneColor.objects.create(
-            title=StoneColor.TitleChoices.YELLOW
-        )
-
-        self.another_stone_color = StoneColor.objects.create(
-            title=StoneColor.TitleChoices.YELLOW
-        )
-
-
-        self.expected_stone_color_count = 1
-        self.expected_stone_color_title = self.stone_color.get_title_display()
-
-        self.stone_type = StoneType.objects.create(
-            title=StoneType.TitleChoices.DIAMOND
-        )
-
-        self.another_stone_type = StoneType.objects.create(
-            title=StoneType.TitleChoices.SAPPHIRE
-        )
-
-        self.expected_stone_type_count = 1
-        self.expected_stone_type_title = self.stone_type.get_title_display()
-
-
         self.jewelry = Jewelry.objects.create(
             title='Test Jewelry',
             first_image_url='https://example.com/image1.jpg',
@@ -72,6 +40,42 @@ class DisplayJewelriesByStoneColorView(TestCase):
             category=self.category
         )
 
+        self.metal = Metal.objects.create(
+            title=Metal.TitleChoices.PLATINUM
+        )
+
+        self.expected_metal_title = self.metal.get_title_display()
+
+        JewelryMetal.objects.create(
+            jewelry=self.jewelry,
+            metal=self.metal
+        )
+
+        self.expected_metal_count = 1
+
+        self.stone_type = StoneType.objects.create(
+            title=StoneType.TitleChoices.DIAMOND
+        )
+
+        self.another_stone_type = StoneType.objects.create(
+            title=StoneType.TitleChoices.SAPPHIRE
+        )
+
+        self.expected_stone_type_title = self.stone_type.get_title_display()
+
+        self.expected_stone_type_count = 1
+
+        self.stone_color = StoneColor.objects.create(
+            title=StoneColor.TitleChoices.YELLOW
+        )
+
+        self.another_stone_color = StoneColor.objects.create(
+            title=StoneColor.TitleChoices.YELLOW
+        )
+
+        self.expected_stone_color_title = self.stone_color.get_title_display()
+        self.expected_stone_color_count = 1
+
         JewelryStone.objects.create(
             jewelry=self.jewelry,
             stone_type=self.stone_type,
@@ -89,13 +93,6 @@ class DisplayJewelriesByStoneColorView(TestCase):
             stone_type=self.another_stone_type,
             stone_color=self.stone_color
         )
-
-        JewelryMetal.objects.create(
-            jewelry=self.jewelry,
-            metal=self.metal
-        )
-
-        self.expected_metal_count = 1
 
         Inventory.objects.create(
             jewelry=self.jewelry,
@@ -170,7 +167,6 @@ class DisplayJewelriesByStoneColorView(TestCase):
 
         self.assertEqual(actual_stone_type_count, self.expected_stone_type_count)
 
-
     # def test_display_jewelries_by_stone_color_view__expect_stone_color_count_to_be_equal_to_one(self):
     #     response = self.client.get(reverse(
     #         'display_jewelries_by_stone_color',
@@ -182,7 +178,3 @@ class DisplayJewelriesByStoneColorView(TestCase):
     #     actual_stone_color_count = response.context['jewelries_count_by_stone_color'][self.expected_stone_color_title]
     #
     #     self.assertEqual(actual_stone_color_count, self.expected_stone_color_count)
-
-
-
-
