@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from e_commerce_website.profiles.models import AccountProfile
+
+
+@admin.register(AccountProfile)
+class AccountProfile(admin.ModelAdmin):
+    readonly_fields = ('user',)

@@ -18,8 +18,8 @@ class JewelrySizeInline(admin.TabularInline):
 
 @admin.register(Jewelry)
 class JewelryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'display_metals', 'display_stone_types', 'display_stone_colors')
-    list_filter = ('category', 'metals__title', 'stone_types__title', 'stone_colors__title')
+    list_display = ('title', 'category', 'display_metals', 'display_stone_types', 'display_stone_colors',)
+    list_filter = ('category', 'metals__title', 'stone_types__title', 'stone_colors__title',)
     search_fields = ('title',)
 
     inlines = [
