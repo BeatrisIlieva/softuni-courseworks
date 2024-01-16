@@ -38,13 +38,15 @@ class UserModelAdmin(admin.ModelAdmin):
                 ),
             },
         ),
+
         (
             "Important dates",
             {
                 "fields": ("last_login",)
-             }
+            }
         ),
     )
+
     add_fieldsets = (
         (
             None,
@@ -52,5 +54,6 @@ class UserModelAdmin(admin.ModelAdmin):
                 "classes": ("wide",),
                 "fields": ("email", "password1", "password2"),
             },
-        ),
+        )
+
     )
