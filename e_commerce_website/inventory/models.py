@@ -6,6 +6,8 @@ from e_commerce_website.jewelry.models import Jewelry
 
 
 class Inventory(models.Model):
+    class Meta:
+        verbose_name_plural = 'Inventories'
     class PriceChoices(ChoicesMaxLengthMixin, models.TextChoices):
         V_750 = '10_000, 25_000', _('10,000.00 - 25,000.00')
         V_1500 = '25_000, 50_000', _('25,000.00 - 50,000.00')
