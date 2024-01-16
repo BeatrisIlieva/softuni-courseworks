@@ -12,7 +12,7 @@ from e_commerce_website.jewelry.models import (
 
 
 class IndexView(NavigationBarMixin, TemplateView):
-    template_name = 'common/index_page.html'
+    template_name = 'common/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

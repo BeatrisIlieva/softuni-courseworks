@@ -1,11 +1,28 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    <h1>Title</h1>
     <div>
-        {{ jewelry.title }}
         <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
     </div>
+    <ul>
+        <li>{{ jewelry.title }}</li>
+    </ul>
+    <ol>
+        {% for metal, carat in metal_info_dict.items %}
+            {% if carat %}
+                <li>{{ carat }} {{ metal }} </li>
+            {% else %}
+                <li>{{ metal }}</li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+    <ol>
+        {% for stone_type, stone_color in stone_info_dict.items %}
+            <li>{{ stone_type }} {{ stone_color }}</li>
+            <br>
+        {% endfor %}
+    </ol>
+
     <a href="{% url 'add_to_shopping_cart' jewelry.pk %}">
         <button>Add to cart</button>
     </a>

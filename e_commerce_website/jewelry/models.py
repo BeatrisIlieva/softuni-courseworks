@@ -49,7 +49,7 @@ class GoldCaratWeight(models.Model):
 
 class StoneType(models.Model):
     class TitleChoices(ChoicesMaxLengthMixin, models.TextChoices):
-        BLACK_SPINEL = "BS", _("Black Spinel")  # 0
+        BLACK_SPINEL = "BS", _("Spinel")  # 0
         DIAMOND = "DI", _("Diamond")  # 1
         EMERALD = "EM", _("Emerald")  # 2
         RUBY = "RU", _("Ruby")  # 3
@@ -131,6 +131,9 @@ class Size(models.Model):
 
 
 class Jewelry(models.Model):
+    class Meta:
+        verbose_name_plural = 'Jewelries'
+
     title = models.CharField(
         max_length=40,
     )
@@ -169,6 +172,7 @@ class Jewelry(models.Model):
         to=Size,
         through='JewelrySize',
     )
+
 
     def __str__(self):
         return f'Jewelry ID: {self.pk}'

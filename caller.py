@@ -35,87 +35,35 @@ sizes = Size.objects.all()
 names = Category.TitleChoices.names
 values = Category.TitleChoices.values
 
-# jewelries_pks = get_objects_pks(jewelries)
-# stone_types_pks = StoneType.objects. \
-#     prefetch_related('stone_types'). \
-#     filter(jewelry__in=jewelries).values_list('id', flat=True)
-#
-# stone_colors_pks = StoneColor.objects. \
-#     prefetch_related('stone_colors'). \
-#     filter(jewelry__in=jewelries).values_list('id', flat=True)
-#
-# stone_types_pks = JewelryStone.objects.\
-#     filter(
-#     Q(jewelry_id__in=jewelries_pks) &
-#     Q(stone_color_id__in=stone_colors_pks) &
-#     Q(stone_type_id__in=stone_types_pks)).\
-#     values_list('stone_type_id', flat=True)
-#
-# stone_colors_pks = JewelryStone.objects.\
-#     filter(
-#     Q(jewelry_id__in=jewelries_pks) &
-#     Q(stone_color_id__in=stone_colors_pks) &
-#     Q(stone_type_id__in=stone_types_pks)).\
-#     values_list('stone_color_id', flat=True)
-#
-# stone_types = StoneType.objects.filter(id__in=stone_types_pks)
-#
-# stone_colors = StoneColor.objects.filter(id__in=stone_colors_pks)
-
-jewelries = Jewelry.objects.filter(pk=6, stone_colors=1)
-# stone_color = StoneColor.objects.\
-#     prefetch_related('jewelry_set__stone_types').\
-#     filter(jewelry__stone_types=1, jewelry__exact=6).values('stone_color_i')
-
-# stone_colors_cur = JewelryStone.objects.\
-#     filter(jewelry__in=[6, 7, 8], stone_type__exact=1).values_list('stone_color_id', flat=True)
-#
-# stone_colors_pks = JewelryStone.objects. \
-#     filter(jewelry__in=[6], stone_type__exact=5). \
-#     values_list('stone_color_id', flat=True).count()
-#
-# stone_colors = StoneColor.objects. \
-#     filter(id__in=[stone_colors_pks])
-#
-# count = JewelryStone.objects. \
-#     filter(jewelry__in=[6, 7], stone_color__exact=7). \
-#     count()
-#
-# stone_type = StoneType.objects. \
-#     get(id=7)
-# jewelries_count_by_stone_type= {}
-#
-# jewelries_count_by_stone_type[stone_type.get_title_display()] = count
-# print(jewelries_count_by_stone_type)
-
-# count = JewelryStone.objects. \
-#     filter(jewelry__in=[1, 2, 3, 4, 5], stone_color__exact=7). \
-#     count()
-#
-# stone_color = StoneColor.objects. \
-#     get(id=7)
-# jewelries_count_by_stone_color= {}
-# jewelries_count_by_stone_color[stone_color.get_title_display()] = count
-# print(jewelries_count_by_stone_color)
-
-stone_types_pks = JewelryStone.objects. \
-    filter(jewelry__in=jewelries, stone_color__in=[2, 6, 5]). \
-    values_list('stone_type_id', flat=True)
-
-print(stone_types_pks)
-
-expired_carts = ShoppingCart.objects.filter(
-        order_completed=True,
-    )
-
-for cart in expired_carts:
-    jewelry = cart.jewelry_id
-    print(jewelry)
-    quantity = cart.quantity
-    print(quantity)
 
 
-result = int('1' * CardDetailsForm.CARD_NUMBER_LENGTH)
-print(result)
 
-print(int('1' * (CardDetailsForm.CARD_NUMBER_LENGTH - 1)))
+# a = [c.get_title_display() for c in jewelries[0].stone_colors.all()]
+
+jewelries = Jewelry.objects.all()
+
+jewelry = jewelries[2]
+
+jewelry_stones = jewelry.jewelry_stones.all()
+
+stone_info_dict = {}
+
+for jewelry_stone in jewelry_stones:
+    stone_color = jewelry_stone.stone_color.get_title_display()
+    stone_type = jewelry_stone.stone_type.get_title_display()
+
+
+    stone_info_dict[stone_color] =stone_type
+
+metal_info_dict = {}
+jewelry_metals = jewelry.jewelry_metals.all()
+for jewelry_metal in jewelry_metals:
+    metal = jewelry_metal.metal.get_title_display()
+    if jewelry_metal.gold_carat:
+        gold_carat = jewelry_metal.gold_carat.get_weight_display()
+    else:
+        continue
+
+    metal_info_dict[metal] = gold_carat
+print(metal_info_dict)
+

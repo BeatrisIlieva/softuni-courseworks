@@ -13,7 +13,7 @@ class IndexViewTests(TestCase):
         )
 
         self.assertTemplateUsed(
-            response, 'common/index_page.html'
+            response, 'common/index.html'
         )
 
         self.assertIn(
