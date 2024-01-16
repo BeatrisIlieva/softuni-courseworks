@@ -34,7 +34,7 @@ class Inventory(admin.ModelAdmin):
             'Quantity',
             {
                 'fields':
-                    ('quantity', )
+                    ('quantity',)
             }
         ),
 
