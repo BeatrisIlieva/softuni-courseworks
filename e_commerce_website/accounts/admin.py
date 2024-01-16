@@ -12,12 +12,19 @@ class UserModelAdmin(admin.ModelAdmin):
         return False
 
     ordering = ('email',)
-    list_display = ['email', 'last_login', ]
+    list_display = ('email', 'last_login',)
+    search_fields = ('email',)
     list_filter = ()
-    add_form =AccountProfileForm
+
+    add_form = AccountProfileForm
 
     fieldsets = (
-        (None, {"fields": ("email", "password")}),
+        (
+            None, {
+                "fields":
+                    ("email", "password")
+            }
+        ),
         (
             ("Permissions"),
             {
