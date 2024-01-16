@@ -1,5 +1,4 @@
 from django.db import models
-
 from e_commerce_website.accounts.models import AccountUser
 from e_commerce_website.jewelry.models import Jewelry
 
@@ -30,6 +29,3 @@ class ShoppingCart(models.Model):
     created_at = models.DateTimeField(
         auto_now=True,
     )
-
-
-
