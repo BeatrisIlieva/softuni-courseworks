@@ -67,4 +67,4 @@ class AccountProfile(models.Model):
         return f'{self.first_name} {self.last_name}'
 
     def __str__(self):
-        return f'User ID: {self.pk}'
+        return f'{self.first_name} {self.last_name}'

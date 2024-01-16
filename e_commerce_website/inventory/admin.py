@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from e_commerce_website.inventory.models import Inventory
+from e_commerce_website.profiles.models import AccountProfile
+
+
+@admin.register(Inventory)
+class Inventory(admin.ModelAdmin):
+    pass
