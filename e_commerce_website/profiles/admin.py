@@ -34,7 +34,14 @@ class AccountProfile(admin.ModelAdmin):
         'delivery_address'
     )
 
-    sortable_by = ('user', 'first_name', 'last_name', 'country', 'city', 'delivery_address')
+    sortable_by = (
+        'user',
+        'first_name',
+        'last_name',
+        'country',
+        'city',
+        'delivery_address'
+    )
 
     fieldsets = (
         (
