@@ -8,8 +8,11 @@ from e_commerce_website.profiles.validators import (
 
 
 class AccountProfile(models.Model):
-    ONLY_LETTERS_EXCEPTION_MESSAGE = 'Ensure this value contains only letters.'
-    ONLY_DIGITS_EXCEPTION_MESSAGE = 'Ensure this value contains only digits.'
+    ONLY_LETTERS_EXCEPTION_MESSAGE = \
+        'Ensure this value contains only letters.'
+
+    ONLY_DIGITS_EXCEPTION_MESSAGE = \
+        'Ensure this value contains only digits.'
 
     FIRST_NAME_MIN_LENGTH = 2
     FIRST_NAME_MAX_LENGTH = 30
