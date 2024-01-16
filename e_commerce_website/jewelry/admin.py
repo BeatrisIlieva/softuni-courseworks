@@ -9,6 +9,11 @@ class JewelryAdmin(admin.ModelAdmin):
     ordering = ('id',)
     list_filter = ('category',)
     search_fields = ('title',)
+    sortable_by = ('category',)
+
+    # def jewelry_id(self, obj):
+    #     return obj.id
+
     fieldsets = (
         (
             'Title',

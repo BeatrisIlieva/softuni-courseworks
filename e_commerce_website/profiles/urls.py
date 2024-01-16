@@ -22,6 +22,7 @@ urlpatterns = (
                     UserDeleteView.as_view(),
                     name='delete_user'
                 ),
+
             ]
         )
     ),

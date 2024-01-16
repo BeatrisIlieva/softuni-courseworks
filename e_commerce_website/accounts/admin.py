@@ -6,4 +6,5 @@ UserModel = get_user_model()
 
 @admin.register(UserModel)
 class UserModelAdmin(admin.ModelAdmin):
-    pass
+    def has_delete_permission(self, request, obj=None):
+        return False

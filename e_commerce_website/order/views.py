@@ -164,7 +164,7 @@ class UserOrdersView(NavigationBarMixin, TemplateView):
             for order_product in order_products:
                 jewelry = Jewelry.objects.get(pk=order_product.jewelry_id)
                 quantity = order_product.quantity
-                price = jewelry.price
+                price = Inventory.objects.get(jewelry=jewelry).price
                 total_price_per_jewelry = price * quantity
 
                 order_details[order.pk]['order_products'].append({
