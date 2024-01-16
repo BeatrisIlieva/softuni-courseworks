@@ -1,10 +1,10 @@
 from django.db import models
 from django.core import validators
 from django_countries.fields import CountryField
-
 from e_commerce_website.accounts.models import AccountUser
-from e_commerce_website.profiles.validators import OnlyLettersValidator, \
-    OnlyDigitsValidator
+from e_commerce_website.profiles.validators import (
+    OnlyLettersValidator, OnlyDigitsValidator
+)
 
 
 class AccountProfile(models.Model):

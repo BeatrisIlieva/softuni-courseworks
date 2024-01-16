@@ -188,11 +188,8 @@ class Jewelry(models.Model):
         through='JewelrySize',
     )
 
-
     def __str__(self):
         return f'Jewelry ID: {self.pk}'
-
-
 
 
 class JewelryMetal(models.Model):
@@ -265,6 +262,3 @@ class JewelrySize(models.Model):
         on_delete=models.CASCADE,
         related_name='sizes',
     )
-
-
-
