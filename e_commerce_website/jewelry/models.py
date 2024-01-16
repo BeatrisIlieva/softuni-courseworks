@@ -141,6 +141,9 @@ class Size(models.Model):
         related_name='size_category',
     )
 
+    def __str__(self):
+        return self.get_measurement_display()
+
 
 class Jewelry(models.Model):
     class Meta:
