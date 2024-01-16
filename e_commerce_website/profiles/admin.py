@@ -20,9 +20,19 @@ class AccountProfile(admin.ModelAdmin):
         'country',
     )
 
-    list_filter = ('country', 'city', 'delivery_address')
+    list_filter = (
+        'country',
+        'city',
+        'delivery_address'
+    )
 
-    search_fields = ('first_name', 'last_name', 'country', 'city', 'delivery_address')
+    search_fields = (
+        'first_name',
+        'last_name',
+        'country',
+        'city',
+        'delivery_address'
+    )
 
     sortable_by = ('user', 'first_name', 'last_name', 'country', 'city', 'delivery_address')
 
