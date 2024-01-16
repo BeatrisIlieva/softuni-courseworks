@@ -7,9 +7,18 @@ from e_commerce_website.profiles.models import AccountProfile
 class AccountProfile(admin.ModelAdmin):
     readonly_fields = ('user',)
 
-    list_display = ('user', 'first_name', 'last_name',)
+    list_display = (
+        'user',
+        'first_name',
+        'last_name',
+    )
 
-    ordering = ('user', 'first_name', 'last_name', 'country',)
+    ordering = (
+        'user',
+        'first_name',
+        'last_name',
+        'country',
+    )
 
     list_filter = ('country', 'city', 'delivery_address')
 
