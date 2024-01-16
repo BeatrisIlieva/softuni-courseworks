@@ -86,6 +86,9 @@ class StoneColor(models.Model):
         choices=TitleChoices.choices,
     )
 
+    def __str__(self):
+        return self.get_title_display()
+
 
 class Size(models.Model):
     class MeasurementChoices(ChoicesMaxLengthMixin, models.TextChoices):
