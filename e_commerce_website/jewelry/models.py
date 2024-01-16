@@ -32,6 +32,9 @@ class Metal(models.Model):
         choices=TitleChoices.choices,
     )
 
+    def __str__(self):
+        return self.get_title_display()
+
 
 class GoldCaratWeight(models.Model):
     class WeightChoices(ChoicesMaxLengthMixin, models.TextChoices):

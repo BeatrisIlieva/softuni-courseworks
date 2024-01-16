@@ -16,7 +16,7 @@ class JewelrySizeInline(admin.TabularInline):
     model = JewelrySize
     extra = 1
 
-
+@admin.register(Jewelry)
 class JewelryAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'display_metals', 'display_stone_types', 'display_stone_colors')
     list_filter = ('category', 'metals__title', 'stone_types__title', 'stone_colors__title')
@@ -41,7 +41,7 @@ class JewelryAdmin(admin.ModelAdmin):
     display_stone_colors.short_description = _("Stone Colors")
 
 
-admin.site.register(Jewelry, JewelryAdmin)
+#
 
 
 
