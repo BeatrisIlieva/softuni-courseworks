@@ -5,8 +5,32 @@ from e_commerce_website.jewelry.models import Jewelry, Category
 
 @admin.register(Jewelry)
 class JewelryAdmin(admin.ModelAdmin):
-    pass
-
+    list_display = ('id', 'category', )
+    ordering = ('id',)
+    list_filter = ('category',)
+    search_fields = ('title',)
+    fieldsets = (
+        (
+            'Title',
+            {
+                'fields': ('title',)
+            }
+        ),
+        (
+            'Image urls',
+            {
+                'fields':
+                    ('first_image_url', 'second_image_url',)
+            }
+        ),
+        (
+            'Category',
+            {
+                'fields':
+                    ('category',)
+            }
+        )
+    )
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     pass
