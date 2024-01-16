@@ -20,16 +20,17 @@ class UserModelAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (
-            None, {
+            None,
+            {
                 "fields":
                     ("email", "password")
             }
         ),
+
         (
-            ("Permissions"),
+            "Permissions",
             {
                 "fields": (
-
                     "is_staff",
                     "is_superuser",
                     "groups",
@@ -37,7 +38,12 @@ class UserModelAdmin(admin.ModelAdmin):
                 ),
             },
         ),
-        (("Important dates"), {"fields": ("last_login",)}),
+        (
+            "Important dates",
+            {
+                "fields": ("last_login",)
+             }
+        ),
     )
     add_fieldsets = (
         (
