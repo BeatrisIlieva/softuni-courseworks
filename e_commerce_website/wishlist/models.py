@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-
 from e_commerce_website.jewelry.models import Jewelry
 
 UserModel = get_user_model()
