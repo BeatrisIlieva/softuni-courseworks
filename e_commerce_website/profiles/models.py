@@ -53,11 +53,15 @@ class AccountProfile(models.Model):
 
     phone_number = models.CharField(
         max_length=PHONE_NUMBER_MAX_LENGTH,
+
         validators=(
             validators.MinLengthValidator(
                 PHONE_NUMBER_MIN_LENGTH,
             ),
-            OnlyDigitsValidator(error_message=ONLY_DIGITS_EXCEPTION_MESSAGE)
+
+            OnlyDigitsValidator(
+                error_message=ONLY_DIGITS_EXCEPTION_MESSAGE
+            )
         ),
     )
 
