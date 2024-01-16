@@ -18,23 +18,30 @@ class Inventory(admin.ModelAdmin):
 
     fieldsets = (
         (
-            'Title',
+            'Jewelry',
             {
-                'fields': ('title',)
+                'fields': ('jewelry',)
             }
         ),
         (
-            'Image urls',
+            'Quantity',
             {
                 'fields':
-                    ('first_image_url', 'second_image_url',)
+                    ('quantity', )
             }
         ),
         (
-            'Category',
+            'Price',
             {
                 'fields':
-                    ('category',)
+                    ('price', 'discounted_price')
+            }
+        ),
+        (
+            'Important dates',
+            {
+                'fields':
+                    ('created_at', 'updated_at')
             }
         )
     )
