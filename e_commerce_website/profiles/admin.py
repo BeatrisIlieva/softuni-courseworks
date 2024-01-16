@@ -50,13 +50,15 @@ class AccountProfile(admin.ModelAdmin):
                 'fields': ('first_name', 'last_name')
             }
         ),
+
         (
             'Contact Details',
             {
                 'fields':
-                    ('phone_number', )
+                    ('phone_number',)
             }
         ),
+
         (
             'Delivery Address',
             {
