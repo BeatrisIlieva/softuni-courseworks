@@ -39,11 +39,15 @@ class AccountProfile(models.Model):
 
     last_name = models.CharField(
         max_length=LAST_NAME_MAX_LENGTH,
+
         validators=(
             validators.MinLengthValidator(
                 LAST_NAME_MIN_LENGTH,
             ),
-            OnlyLettersValidator(error_message=ONLY_LETTERS_EXCEPTION_MESSAGE),
+
+            OnlyLettersValidator(
+                error_message=ONLY_LETTERS_EXCEPTION_MESSAGE
+            ),
         ),
     )
 
