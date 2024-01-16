@@ -49,6 +49,9 @@ class GoldCaratWeight(models.Model):
         choices=WeightChoices.choices,
     )
 
+    def __str__(self):
+        return self.get_weight_display()
+
 
 class StoneType(models.Model):
     class TitleChoices(ChoicesMaxLengthMixin, models.TextChoices):
