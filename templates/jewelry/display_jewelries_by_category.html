@@ -9,7 +9,7 @@
             gap: 10px;
         }
     </style>
-    <form action="{% url 'display_jewelries_by_category' selected_pk %}?page={{ page_obj.number }}">
+    <form action="{% url 'display_jewelries_by_category' selected_pk %}?page={{ page_obj.number }}" method="GET">
         <div class="checkbox-list">
             {% for field in form %}
                 <div>

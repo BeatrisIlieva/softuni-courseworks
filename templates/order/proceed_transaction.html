@@ -2,6 +2,15 @@
 {% load static %}
 {% block page_content %}
     <form method="post">
+        <fieldset>
+            <legend>Card Details</legend>
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+            {% csrf_token %}
+        </fieldset>
+    </form>
+{% endblock %}
+
 {#        {% csrf_token %}#}
 {#        {% if form.card_number.errors %}#}
 {#            <ul>#}
@@ -24,7 +33,6 @@
 {#                {% endfor %}#}
 {#            </ul>#}
 {#        {% endif %}#}
-    {{ form.as_p }}
 {#        <div class="card-details-input">#}
 {#            <label for="card-number">Card Number:</label>#}
 {#            <input class="card-number-input character-limit" type="text"#}
@@ -41,9 +49,4 @@
 {#                       maxlength="{{ required_cvv_length }}">#}
 {#            </div>#}
 {#        </div>#}
-        <button type="submit">Submit</button>
-        {% csrf_token %}
-    </form>
-{% endblock %}
-
 

@@ -13,6 +13,18 @@ header {
     margin: 0 auto;
 }
 
+nav {
+    color: white;
+}
+
+footer {
+    text-align: center;
+}
+
+.footer-content {
+    display: inline-block;
+}
+
 /*body {*/
 /*    background-color: #050A30;*/
 /*    }*/

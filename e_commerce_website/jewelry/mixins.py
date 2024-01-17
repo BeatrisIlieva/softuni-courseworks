@@ -355,6 +355,39 @@ class DisplayJewelryMixin(
         return context
 
 
+class JewelryStonesMixin:
+    @staticmethod
+    def get_jewelry_stones(jewelry):
+        jewelry_stones = jewelry.jewelry_stones.all()
+
+        stone_info_dict = {}
+
+        for jewelry_stone in jewelry_stones:
+            stone_color = jewelry_stone.stone_color.get_title_display()
+            stone_type = jewelry_stone.stone_type.get_title_display()
+
+            stone_info_dict[stone_color] = stone_type
+
+        return stone_info_dict
+
+
+class JewelryMetalsMixin:
+    @staticmethod
+    def get_jewelry_metals(jewelry):
+        jewelry_metals = jewelry.jewelry_metals.all()
+
+        metal_info_dict = {}
+
+        for jewelry_metal in jewelry_metals:
+            metal = jewelry_metal.metal.get_title_display()
+            if jewelry_metal.gold_carat:
+                gold_carat = jewelry_metal.gold_carat.get_weight_display()
+                metal_info_dict[metal] = gold_carat
+            else:
+                metal_info_dict[metal] = None
+
+        return metal_info_dict
+
 # class PaginatorMixin:
 #     def get_pagination(self, request):
 #         form_data = request.GET.copy() if request.GET else {}

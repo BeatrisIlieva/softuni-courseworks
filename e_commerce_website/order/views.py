@@ -49,9 +49,6 @@ class CompleteTransactionView(LoginRequiredMixin,NavigationBarMixin, TemplateVie
         context.update({
             'user_pk': user_pk,
             'form': form,
-            'required_card_number_length': 16,
-            'required_expiry_date_length': 5,
-            'required_cvv_length': 3,
         })
 
         nav_bar_context = self.get_nav_bar_context()

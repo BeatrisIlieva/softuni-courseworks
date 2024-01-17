@@ -2,48 +2,122 @@
 {% load dict %}
 {% load static %}
 {% block page_content %}
-    {% for jewelry, details in jewelries_by_quantities.items %}
-        <li>
-            <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
-        </li>
-        <li>
-            <a href="{% url 'display_jewelry_details' jewelry.pk %}?page={{ page_obj.number }}">
-                <button>JEWELRY DETAILS</button>
-            </a>
-        </li>
-        <li>
-            PRICE: {{ details.jewelry_total_price }}
-        </li>
-        <li>
-            <form action="{% url 'update_shopping_cart' jewelry.pk %}" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="jewelry_id" value="{{ jewelry.pk }}">
-                <input type="number" name="quantity" value="{{ details.quantity }}"
-                       min={{ details.min_quantity }} max={{ details.max_quantity }}>
-                <button type="submit" name="update_quantity">UPDATE QUANTITY</button>
-            </form>
-        </li>
+    <table border="1">
+        <thead>
+        <tr>
+            <th colspan="4">Shopping Bag</th>
+        </tr>
+        </thead>
+        {% for jewelry, details in jewelries_by_quantities.items %}
 
-    {% endfor %}
-    <div>
-        Total Price
-        {{ total_price }}
-    </div>
-    <div>
-        {% if request.user.is_authenticated %}
-            <form action="{% url 'complete_order' request.user.pk %}" method="get">
-                <button>COMPLETE ORDER</button>
-                {% csrf_token %}
-            </form>
-        {% else %}
+            <thead>
+            <tr>
+                <th colspan="2">Jewelry</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <a href="{% url 'display_jewelry_details' jewelry.pk %}">
+                        <img width="250" height="250" src="{{ jewelry.first_image_url }}" alt="image1">
+                    </a>
+                </td>
+                <td>
+                    details
+                </td>
+                <td>
+                    <form action="{% url 'update_shopping_cart' jewelry.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="jewelry_id" value="{{ jewelry.pk }}">
+                        <input type="number" name="quantity" value="{{ details.quantity }}"
+                               min={{ details.min_quantity }} max={{ details.max_quantity }}>
+                        <br>
+                        <button type="submit" name="update_quantity">UPDATE</button>
+                    </form>
+                </td>
+                <td>
+                    {{ details.jewelry_total_price }}
+                </td>
+            </tr>
+            </tbody>
 
-            <a href="{% url 'login_user' %}?next={{ request.path }}">Login to Complete Order</a>
-
-        {% endif %}
-    </div>
+        {% endfor %}
+        <tfoot>
+        <tr>
+            <td colspan="2">Total:</td>
+            <td colspan="2">{{ total_price }}</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                {% if request.user.is_authenticated %}
+                    <form action="{% url 'complete_order' request.user.pk %}" method="get">
+                        <button>CHECKOUT</button>
+                        {% csrf_token %}
+                    </form>
+                {% else %}
+                    <a href="{% url 'login_user' %}?next={{ request.path }}">Login to Complete Order</a>
+                {% endif %}
+            </td>
+        </tr>
+        </tfoot>
+    </table>
     {% for jewelry in last_viewed_jewelries %}
         <a href="{% url 'display_jewelry_details' jewelry.pk %}">
             <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
         </a>
     {% endfor %}
 {% endblock %}
+
+
+
+{#{% extends 'base/base.html' %}#}
+{#{% load dict %}#}
+{#{% load static %}#}
+{#{% block page_content %}#}
+{#    {% for jewelry, details in jewelries_by_quantities.items %}#}
+{#        <li>#}
+{#            <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">#}
+{#        </li>#}
+{#        <li>#}
+{#            <a href="{% url 'display_jewelry_details' jewelry.pk %}?page={{ page_obj.number }}">#}
+{#                <button>JEWELRY DETAILS</button>#}
+{#            </a>#}
+{#        </li>#}
+{#        <li>#}
+{#            PRICE: {{ details.jewelry_total_price }}#}
+{#        </li>#}
+{#        <li>#}
+{#            <form action="{% url 'update_shopping_cart' jewelry.pk %}" method="post">#}
+{#                {% csrf_token %}#}
+{#                <input type="hidden" name="jewelry_id" value="{{ jewelry.pk }}">#}
+{#                <input type="number" name="quantity" value="{{ details.quantity }}"#}
+{#                       min={{ details.min_quantity }} max={{ details.max_quantity }}>#}
+{#                <button type="submit" name="update_quantity">UPDATE QUANTITY</button>#}
+{#            </form>#}
+{#        </li>#}
+{##}
+{#    {% endfor %}#}
+{#    <div>#}
+{#        Total Price#}
+{#        {{ total_price }}#}
+{#    </div>#}
+{#    <div>#}
+{#        {% if request.user.is_authenticated %}#}
+{#            <form action="{% url 'complete_order' request.user.pk %}" method="get">#}
+{#                <button>COMPLETE ORDER</button>#}
+{#                {% csrf_token %}#}
+{#            </form>#}
+{#        {% else %}#}
+{##}
+{#            <a href="{% url 'login_user' %}?next={{ request.path }}">Login to Complete Order</a>#}
+{##}
+{#        {% endif %}#}
+{#    </div>#}
+{#    {% for jewelry in last_viewed_jewelries %}#}
+{#        <a href="{% url 'display_jewelry_details' jewelry.pk %}">#}
+{#            <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">#}
+{#        </a>#}
+{#    {% endfor %}#}
+{#{% endblock %}#}

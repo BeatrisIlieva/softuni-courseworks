@@ -1,7 +1,8 @@
 from django.db.models import Q
 from django.views.generic import DetailView
 
-from e_commerce_website.jewelry.mixins import DisplayJewelryMixin, LastViewedJewelriesMixin
+from e_commerce_website.jewelry.mixins import DisplayJewelryMixin, LastViewedJewelriesMixin, JewelryStonesMixin, \
+    JewelryMetalsMixin
 from e_commerce_website.jewelry.models import Jewelry, StoneType, StoneColor, JewelryStone
 
 from e_commerce_website.common.mixins import \
@@ -646,7 +647,7 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
             )
 
 
-class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin, DetailView):
+class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin,JewelryStonesMixin, JewelryMetalsMixin, DetailView):
     model = Jewelry
     template_name = 'jewelry/jewelry_details.html'
 
@@ -662,29 +663,9 @@ class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin, DetailVie
 
         context['form'] = selection_form
 
-        jewelry_stones = self.object.jewelry_stones.all()
+        context['stone_info_dict'] = self.get_jewelry_stones(self.object)
 
-        stone_info_dict = {}
-
-        for jewelry_stone in jewelry_stones:
-            stone_color = jewelry_stone.stone_color.get_title_display()
-            stone_type = jewelry_stone.stone_type.get_title_display()
-
-            stone_info_dict[stone_color] = stone_type
-
-        context['stone_info_dict'] = stone_info_dict
-
-        metal_info_dict = {}
-        jewelry_metals = self.object.jewelry_metals.all()
-        for jewelry_metal in jewelry_metals:
-            metal = jewelry_metal.metal.get_title_display()
-            if jewelry_metal.gold_carat:
-                gold_carat = jewelry_metal.gold_carat.get_weight_display()
-                metal_info_dict[metal] = gold_carat
-            else:
-                metal_info_dict[metal] = None
-
-        context['metal_info_dict'] = metal_info_dict
+        context['metal_info_dict'] = self.get_jewelry_metals(self.object)
 
         request_session = self.request.session
         last_viewed_jewelries = self.get_last_viewed_jewelries(request_session)
