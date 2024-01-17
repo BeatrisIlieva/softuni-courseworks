@@ -23,7 +23,9 @@
         {% endfor %}
     </ol>
 
-    <a href="{% url 'add_to_shopping_cart' jewelry.pk %}">
+    <a href="{% url 'add_to_shopping_cart' jewelry.pk %}"
+    target="_blank">
+
         <button>Add to cart</button>
     </a>
     {% for jewelry in last_viewed_jewelries %}

@@ -1,8 +1,18 @@
 h1 {
-    text-align:center;
+    text-align: center;
     font-family: "Times New Roman";
     font-weight: 300;
     font-size: 42px;
     color: white;
-    background-color:  #050A30;
+    background-color: #050A30;
 }
+
+header {
+    background-color: #050A30;
+    padding: 0;
+    margin: 0 auto;
+}
+
+/*body {*/
+/*    background-color: #050A30;*/
+/*    }*/

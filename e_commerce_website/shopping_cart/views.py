@@ -57,7 +57,7 @@ class AddToShoppingCartView(RedirectView):
                 quantity=quantity,
                 session_key=self.request.session.session_key,
             )
-
+        # return redirect(request.META.get('HTTP_REFERER', 'fallback_url'))
         return HttpResponseRedirect(reverse('view_shopping_cart'))
 
         # return reverse('view_shopping_cart')

@@ -10,14 +10,19 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-<header>
-    <h1>Fine Jewelries</h1>
-    {% include 'base/partials/nav.html' %}
-</header>
+    <header>
+        <h1>Fine Jewelries</h1>
+        {% include 'base/partials/nav.html' %}
+    </header>
 <main>
     {% block page_content %}
     {% endblock %}
 </main>
+    <footer>
+        <p>
+            © 2024 Fine Jewelries | Beatris Ilieve | beatrisilieve@icloud.com
+        </p>
+    </footer>
 </body>
 </html>
 

@@ -2,13 +2,19 @@
 {% load static %}
 {% block page_content %}
     {{ user.accountprofile.full_name }}
-    <a href="{% url 'update_user' pk=object.pk %}">
-        <i>Update Profile</i>
-    </a>
-    <a href="{% url 'my_orders' pk=object.pk %}">
-        <i>My Orders</i>
-    </a>
-    <a href="{% url 'delete_user' pk=object.pk %}">
-        <i>Delete Profile</i>
-    </a>
+    <section>
+        <a href="{% url 'update_user' pk=object.pk %}">
+            <i>Update Profile</i>
+        </a>
+    </section>
+    <section>
+        <a href="{% url 'my_orders' pk=object.pk %}">
+            <i>My Orders</i>
+        </a>
+    </section>
+    <section>
+        <a href="{% url 'delete_user' pk=object.pk %}">
+            <i>Delete Profile</i>
+        </a>
+    </section>
 {% endblock %}

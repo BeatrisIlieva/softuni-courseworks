@@ -1,6 +1,6 @@
 {% load static %}
 <nav>
-    <div class="navbar-top">
+    <div class="navbar-top" role="navigation">
         <ul class="menu">
             <li>
                 <p>BY CATEGORY</p>
@@ -40,7 +40,7 @@
             </li>
         </ul>
     </div>
-    <div class="navbar-bottom">
+    <div class="navbar-bottom" role="navigation">
         <ul class="menu">
             <li class="left-menu">
                 <form action="{% url 'search_bar' %}?page={{ page_obj.number }}">

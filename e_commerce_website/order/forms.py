@@ -15,11 +15,18 @@ class CardDetailsForm(forms.Form):
 
     CVV_CODE_LENGTH = 3
     CVV_CODE_REGEX_PATTERN = r'^\d{3}$'
-    CVV_CODE_ERROR_MESSAGE = f'The card number should be exactly {CVV_CODE_LENGTH} digits long.'
+    CVV_CODE_ERROR_MESSAGE = f'The CVV code should be exactly {CVV_CODE_LENGTH} digits long.'
 
 
 
     card_number = forms.CharField(
+        max_length=str(CARD_NUMBER_LENGTH),
+        label='Card Number:',
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Enter Valid Card Number',
+            }
+        ),
         validators=[
             RegexValidator(
                 regex=CARD_NUMBER_REGEX_PATTERN,
@@ -30,6 +37,13 @@ class CardDetailsForm(forms.Form):
     )
 
     expiration_date = forms.CharField(
+        max_length=str(len(EXPIRATION_DATE_FORMAT)),
+        label='Expiration Date:',
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'MM/YY',
+            }
+        ),
         validators=[
             ExpirationDateValidator(
                 error_message=[CARD_HAS_EXPIRED_ERROR_MESSAGE, EXPIRATION_DATE_FORMAT_ERROR_MESSAGE],
@@ -38,6 +52,13 @@ class CardDetailsForm(forms.Form):
     )
 
     cvv_code = forms.CharField(
+        max_length=str(CVV_CODE_LENGTH),
+        label='CVV:',
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Enter CVV Code',
+            }
+        ),
         validators=[
             RegexValidator(
                 regex=CVV_CODE_REGEX_PATTERN,
