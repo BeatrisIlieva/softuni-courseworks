@@ -5,11 +5,14 @@
     <h2>Order Confirmation:</h2>
     <h4>Your order id: #{{ order_pk }} has been successfully placed.</h4>
     <h2> Order Details:</h2>
-    {% for jewelry, details in jewelries_by_quantities.items %}
+    {% for jewelry, details in jewelries_by_quantity_and_size.items %}
         <li>
             <img width="100" height="100" src="{{ jewelry.first_image_url }}" alt="image1">
         </li>
         {{ details.quantity }}
+        <li>
+                </li>
+        {{ details.size }}
         <li>
                 </li>
         {{ details.jewelry_total_price }}

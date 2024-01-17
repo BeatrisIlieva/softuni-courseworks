@@ -82,7 +82,7 @@ class OrderDetailsView(LoginRequiredMixin,NavigationBarMixin, TemplateView):
             filter(session_key=self.request.session.session_key).\
             values_list('jewelry_id', flat=True)
 
-        jewelries_by_quantities = {}
+        jewelries_by_quantity_and_size = {}
 
         total_price = 0
 
@@ -90,9 +90,11 @@ class OrderDetailsView(LoginRequiredMixin,NavigationBarMixin, TemplateView):
             jewelry = Jewelry.objects.get(pk=pk)
             price = Inventory.objects.get(jewelry_id=pk).price
             quantity = ShoppingCart.objects.get(session_key=self.request.session.session_key, jewelry_id=pk).quantity
+            size = ShoppingCart.objects.get(session_key=self.request.session.session_key, jewelry_id=pk).size
             jewelry_total_price = price * quantity
-            jewelries_by_quantities[jewelry] = {
+            jewelries_by_quantity_and_size[jewelry] = {
                 'quantity': quantity,
+                'size': size,
                 'jewelry_total_price': jewelry_total_price
             }
 
@@ -111,7 +113,7 @@ class OrderDetailsView(LoginRequiredMixin,NavigationBarMixin, TemplateView):
 
         add_order(user_pk)
 
-        order_pk = add_order_details(user_pk, jewelries_by_quantities)
+        order_pk = add_order_details(user_pk, jewelries_by_quantity_and_size)
 
         self.request.session['cart'] = {}
 
@@ -120,7 +122,7 @@ class OrderDetailsView(LoginRequiredMixin,NavigationBarMixin, TemplateView):
 
         context['user_pk'] = user_pk
         context['customer_full_name'] = customer_full_name
-        context['jewelries_by_quantities'] = jewelries_by_quantities
+        context['jewelries_by_quantity_and_size'] = jewelries_by_quantity_and_size
         context['total_price'] = total_price
         context['country'] = country
         context['city'] = city

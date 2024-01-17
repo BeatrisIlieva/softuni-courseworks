@@ -1,6 +1,6 @@
 from django.urls import path
 
-from e_commerce_website.jewelry.utils import view_jewelry
+from e_commerce_website.jewelry.utils import view_jewelry, select_size
 from e_commerce_website.jewelry.views import JewelryDetailsView, DisplayJewelriesByCategoryView, \
     DisplayJewelriesByMetalView, DisplayJewelriesByStoneTypeView, DisplayJewelriesByStoneColorView
 
@@ -13,4 +13,5 @@ urlpatterns = (
          name="display_jewelries_by_stone_color"),
     path("jewelry/<int:pk>/", JewelryDetailsView.as_view(), name='display_jewelry_details'),
     path('jewelry-details/<int:pk>', view_jewelry, name='view_jewelry'),
+    path('jewelry-size/<int:pk>', select_size, name='select_size'),
 )

@@ -22,12 +22,16 @@
             <br>
         {% endfor %}
     </ol>
+    <form method="POST">
+        {{ form }}
+        <button type="submit">Add to cart</button>
+        {% csrf_token %}
+    </form>
 
-    <a href="{% url 'add_to_shopping_cart' jewelry.pk %}"
-    target="_blank">
+{#    <a href="{% url 'add_to_shopping_cart' jewelry.pk %}"#}
+{#       target="_blank">#}
 
-        <button>Add to cart</button>
-    </a>
+{#    </a>#}
     {% for jewelry in last_viewed_jewelries %}
         <a href="{% url 'display_jewelry_details' jewelry.pk %}">
             <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">

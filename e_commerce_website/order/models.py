@@ -37,6 +37,9 @@ class OrderProducts(models.Model):
         to=Jewelry,
         on_delete=models.CASCADE
     )
+    size = models.CharField(
+        max_length=10,
+    )
     quantity = models.PositiveIntegerField()
 
     total_price = models.DecimalField(

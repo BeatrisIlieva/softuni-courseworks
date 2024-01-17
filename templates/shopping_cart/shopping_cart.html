@@ -5,14 +5,17 @@
     <table border="1">
         <thead>
         <tr>
-            <th colspan="4">Shopping Bag</th>
+            <th colspan="6">Shopping Bag</th>
         </tr>
         </thead>
-        {% for jewelry, details in jewelries_by_quantities.items %}
+        {% for jewelry, details in jewelries_by_quantity_and_size.items %}
 
             <thead>
             <tr>
-                <th colspan="2">Jewelry</th>
+                <th>Jewelry</th>
+                <th>Stones</th>
+                <th>Metals</th>
+                <th>Size</th>
                 <th>Quantity</th>
                 <th>Total</th>
             </tr>
@@ -25,8 +28,27 @@
                     </a>
                 </td>
                 <td>
-                    details
+                    <ol>
+                        {% for metal, carat in details.metal_info_dict.items %}
+                            {% if carat %}
+                                <li>{{ carat }} {{ metal }} </li>
+                            {% else %}
+                                <li>{{ metal }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
                 </td>
+                <td>
+                    <ol>
+                        {% for stone_type, stone_color in details.stone_info_dict.items %}
+                            <li>{{ stone_type }} {{ stone_color }}</li>
+                            <br>
+                        {% endfor %}
+                    </ol>
+                </td>
+            <td>
+                {{ details.size }}
+            </td>
                 <td>
                     <form action="{% url 'update_shopping_cart' jewelry.pk %}" method="post">
                         {% csrf_token %}
@@ -46,11 +68,11 @@
         {% endfor %}
         <tfoot>
         <tr>
-            <td colspan="2">Total:</td>
+            <td colspan="4">Total:</td>
             <td colspan="2">{{ total_price }}</td>
         </tr>
         <tr>
-            <td colspan="4">
+            <td colspan="6">
                 {% if request.user.is_authenticated %}
                     <form action="{% url 'complete_order' request.user.pk %}" method="get">
                         <button>CHECKOUT</button>

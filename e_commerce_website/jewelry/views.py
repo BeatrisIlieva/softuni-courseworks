@@ -1,5 +1,8 @@
 from django.db.models import Q
-from django.views.generic import DetailView
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
+from django.views.generic import DetailView, TemplateView
+from django.views.generic.edit import FormMixin
 
 from e_commerce_website.jewelry.mixins import DisplayJewelryMixin, LastViewedJewelriesMixin, JewelryStonesMixin, \
     JewelryMetalsMixin
@@ -9,11 +12,10 @@ from e_commerce_website.common.mixins import \
     NavigationBarMixin
 
 from e_commerce_website.jewelry.forms import \
-    JewelryDetailsForm, \
     JewelryCategoryForm, \
     JewelryMetalForm, \
     JewelryStoneTypeForm, \
-    JewelryStoneColorForm
+    JewelryStoneColorForm, SizeForm
 
 from e_commerce_website.jewelry.funcs import \
     get_related_size_objects, \
@@ -647,25 +649,30 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
             )
 
 
-class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin,JewelryStonesMixin, JewelryMetalsMixin, DetailView):
-    model = Jewelry
+class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin,JewelryStonesMixin, JewelryMetalsMixin, TemplateView, FormMixin):
+    # model = Jewelry
     template_name = 'jewelry/jewelry_details.html'
+    form_class = SizeForm
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        jewelry = Jewelry.objects.get(pk=pk)
 
-        selection_form = JewelryDetailsForm(self.request.GET)
-        sizes = get_related_size_objects(self.get_object())
+        selection_form = self.get_form()
+        sizes = get_related_size_objects(jewelry)
         size_choices = get_related_choices(sizes, field_name='measurement')
 
-        if selection_form.is_valid():
-            selection_form.fields['sizes'].choices = size_choices
+        selection_form.fields['sizes'].choices = size_choices
 
         context['form'] = selection_form
 
-        context['stone_info_dict'] = self.get_jewelry_stones(self.object)
+        context['stone_info_dict'] = self.get_jewelry_stones(jewelry)
 
-        context['metal_info_dict'] = self.get_jewelry_metals(self.object)
+
+        context['metal_info_dict'] = self.get_jewelry_metals(jewelry)
+        context['jewelry'] = jewelry
 
         request_session = self.request.session
         last_viewed_jewelries = self.get_last_viewed_jewelries(request_session)
@@ -675,5 +682,30 @@ class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin,JewelrySto
         context.update(nav_bar_context)
 
         return context
+
+    def post(self, request, *args, **kwargs):
+        print('here')
+        selection_form = self.get_form()
+        if selection_form.is_valid():
+
+            selected_size = selection_form.cleaned_data['sizes']
+
+            jewelry_by_size = request.session.get('jewelry_by_size', {})
+
+            jewelry_pk = str(self.kwargs['pk'])
+
+            jewelry_by_size[jewelry_pk] = selected_size
+
+            request.session['jewelry_by_size'] = jewelry_by_size
+
+            return redirect('add_to_shopping_cart', pk=self.kwargs['pk'])
+
+        else:
+
+            context = self.get_context_data()
+            # context['form'] = form
+
+            return self.render_to_response(context)
+
 
 

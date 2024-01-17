@@ -9,7 +9,7 @@ from django.views.generic import FormView, TemplateView, RedirectView
 from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.inventory.models import Inventory
 from e_commerce_website.inventory.utils import remove_quantity_from_inventory, add_quantity_to_inventory
-from e_commerce_website.jewelry.mixins import LastViewedJewelriesMixin
+from e_commerce_website.jewelry.mixins import LastViewedJewelriesMixin, JewelryStonesMixin, JewelryMetalsMixin
 from e_commerce_website.jewelry.models import Jewelry
 from e_commerce_website.shopping_cart.forms import QuantityUpdateForm
 from e_commerce_website.shopping_cart.mixins import MaxQuantityMixin
@@ -19,6 +19,7 @@ from e_commerce_website.shopping_cart.models import ShoppingCart
 
 class AddToShoppingCartView(RedirectView):
     QUANTITY_TO_DECREASE_UPON_ADDING_TO_SHOPPING_CART = 1
+    QUANTITY_TO_INCREASE_UPON_ADDING_TO_NEW_CART = 1
     QUANTITY_TO_INCREASE_IF_EXISTING_SHOPPING_CART = 1
 
     # def get_redirect_url(self, *args, **kwargs):
@@ -26,14 +27,19 @@ class AddToShoppingCartView(RedirectView):
         quantity = self.QUANTITY_TO_DECREASE_UPON_ADDING_TO_SHOPPING_CART
         pk = self.kwargs.get('pk')
 
+
+
         jewelry = Jewelry.objects.get(pk=pk)
         jewelry_pk = str(jewelry.pk)
         cart = self.request.session.get('cart', {})
 
+        jewelry_by_size = request.session.get('jewelry_by_size', {})
+        size = jewelry_by_size[jewelry_pk]
+
         if jewelry_pk in cart:
-            cart[jewelry_pk] += quantity
+            cart[jewelry_pk]['quantity'] += quantity
         else:
-            cart[jewelry_pk] = quantity
+            cart[jewelry_pk] = {'quantity': self.QUANTITY_TO_INCREASE_UPON_ADDING_TO_NEW_CART, 'size': size}
 
         request.session['cart'] = cart
 
@@ -56,6 +62,7 @@ class AddToShoppingCartView(RedirectView):
                 jewelry=jewelry,
                 quantity=quantity,
                 session_key=self.request.session.session_key,
+                size=size,
             )
         # return redirect(request.META.get('HTTP_REFERER', 'fallback_url'))
         return HttpResponseRedirect(reverse('view_shopping_cart'))
@@ -77,7 +84,7 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
         jewelry_pk = form.cleaned_data['jewelry_id']
         jewelry = Jewelry.objects.get(pk=jewelry_pk)
         cart = self.request.session.get('cart', {})
-        old_quantity = cart[str(jewelry_pk)]
+        old_quantity = cart[str(jewelry_pk)]['quantity']
         new_quantity = form.cleaned_data['quantity']
 
         if old_quantity < new_quantity:
@@ -106,7 +113,7 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
 
                 return redirect('view_shopping_cart')
 
-        cart[jewelry_pk] = new_quantity
+        cart[jewelry_pk]['quantity'] = new_quantity
 
         self.request.session['cart'] = cart
 
@@ -116,7 +123,7 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
         return redirect('view_shopping_cart')
 
 
-class DisplayShoppingCartView(LastViewedJewelriesMixin, MaxQuantityMixin, NavigationBarMixin, TemplateView):
+class DisplayShoppingCartView(LastViewedJewelriesMixin, JewelryStonesMixin, JewelryMetalsMixin, MaxQuantityMixin, NavigationBarMixin, TemplateView):
     template_name = 'shopping_cart/shopping_cart.html'
 
     MIN_QUANTITY = 0
@@ -127,11 +134,12 @@ class DisplayShoppingCartView(LastViewedJewelriesMixin, MaxQuantityMixin, Naviga
 
         cart = self.request.session.get('cart', {})
 
-        jewelries_by_quantities = {}
+        jewelries_by_quantity_and_size = {}
         total_price = self.INITIAL_TOTAL_PRICE
 
-        for jewelry_pk, quantity in cart.items():
-            quantity = int(quantity)
+        for jewelry_pk, quantity_size in cart.items():
+            size = quantity_size['size']
+            quantity = int(quantity_size['quantity'])
 
             jewelry = Jewelry.objects.get(pk=jewelry_pk)
             price = Inventory.objects.get(jewelry_id=jewelry_pk).price
@@ -147,16 +155,19 @@ class DisplayShoppingCartView(LastViewedJewelriesMixin, MaxQuantityMixin, Naviga
 
             self.MAX_QUANTITIES[jewelry] = max_quantity
 
-            jewelries_by_quantities[jewelry] = {
+            jewelries_by_quantity_and_size[jewelry] = {
+                'size':size,
                 'quantity': quantity,
                 'min_quantity': min_quantity,
                 'max_quantity': max_quantity,
-                'jewelry_total_price': jewelry_total_price
+                'jewelry_total_price': jewelry_total_price,
+                'stone_info_dict': self.get_jewelry_stones(jewelry),
+                'metal_info_dict': self.get_jewelry_metals(jewelry)
             }
 
         additional_context = {
             'total_price': total_price,
-            'jewelries_by_quantities': jewelries_by_quantities,
+            'jewelries_by_quantity_and_size': jewelries_by_quantity_and_size,
         }
 
         context.update(additional_context)

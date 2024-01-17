@@ -48,12 +48,12 @@ from e_commerce_website.jewelry.models import Metal, StoneType, StoneColor,  Siz
 #     )
 
 
-class JewelryDetailsForm(forms.Form):
+class SizeForm(forms.Form):
     SIZE_CHOICES = Size.MeasurementChoices.choices
 
-    sizes = forms.MultipleChoiceField(
+    sizes = forms.ChoiceField(
         choices=SIZE_CHOICES,
-        required=False,
+        required=True,
         widget=forms.RadioSelect,
     )
 

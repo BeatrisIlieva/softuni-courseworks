@@ -18,6 +18,10 @@ class ShoppingCart(models.Model):
         blank=True,
     )
 
+    size = models.CharField(
+        max_length=10,
+    )
+
     order_completed = models.BooleanField(
         default=False,
     )
