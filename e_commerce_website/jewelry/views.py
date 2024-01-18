@@ -49,7 +49,11 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
             filter(self.query). \
             distinct('pk')
 
-        self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
+        self.update_related_objects(
+            jewelries,
+            stone_type_pk,
+            stone_color_pk
+        )
 
         if self.selection_form.is_valid():
 
@@ -77,8 +81,14 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
                     selection_pattern_stone_types=selection_pattern_stone_types
                 )
 
-                stone_type_pk = get_stone_type_pks(selection_pattern_stone_types)
-                stone_color_pk = self.define_related_stone_color_objects(jewelries, stone_type_pk)
+                stone_type_pk = get_stone_type_pks(
+                    selection_pattern_stone_types
+                )
+
+                stone_color_pk = self.define_related_stone_color_objects(
+                    jewelries,
+                    stone_type_pk
+                )
 
             selection_pattern_stone_colors = \
                 self.selection_form.cleaned_data['stone_color_choices']
