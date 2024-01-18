@@ -415,9 +415,14 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
                 filter(self.query). \
                 distinct('pk')
 
-        stone_color_pk = self.define_related_stone_color_objects(jewelries, stone_type_pk)
+        stone_color_pk = \
+            self.define_related_stone_color_objects(jewelries, stone_type_pk)
 
-        self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
+        self.update_related_objects(
+            jewelries,
+            stone_type_pk,
+            stone_color_pk
+        )
 
         if self.selection_form.is_valid():
 
@@ -452,14 +457,24 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
                 self.query &= self.update_query_mixin(
                     selection_pattern_stone_colors=selection_pattern_stone_colors
                 )
-                stone_color_pk = get_stone_color_pks(selection_pattern_stone_colors)
-                stone_type_pk = self.define_related_stone_type_objects(jewelries, stone_color_pk)
+                stone_color_pk = get_stone_color_pks(
+                    selection_pattern_stone_colors
+                )
+
+                stone_type_pk = self.define_related_stone_type_objects(
+                    jewelries,
+                    stone_color_pk
+                )
 
             jewelries = jewelries. \
                 filter(self.query). \
                 distinct('pk')
 
-            self.update_related_objects(jewelries, stone_type_pk, stone_color_pk)
+            self.update_related_objects(
+                jewelries,
+                stone_type_pk,
+                stone_color_pk
+            )
 
         self.set_liked_jewelries(self.request, jewelries)
 
