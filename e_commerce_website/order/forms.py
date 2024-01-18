@@ -2,6 +2,7 @@ from django import forms
 from django.core.validators import RegexValidator
 from e_commerce_website.order.validators import ExpirationDateValidator
 
+
 class CardDetailsForm(forms.Form):
     CARD_NUMBER_LENGTH = 16
     CARD_NUMBER_REGEX_PATTERN = r'^\d{16}$'
@@ -19,16 +20,17 @@ class CardDetailsForm(forms.Form):
     CVV_CODE_ERROR_MESSAGE = \
         f'The CVV code should be exactly {CVV_CODE_LENGTH} digits long.'
 
-
-
     card_number = forms.CharField(
         max_length=str(CARD_NUMBER_LENGTH),
+
         label='Card Number:',
+
         widget=forms.TextInput(
             attrs={
                 'placeholder': 'Enter Valid Card Number',
             }
         ),
+
         validators=[
             RegexValidator(
                 regex=CARD_NUMBER_REGEX_PATTERN,
@@ -40,12 +42,15 @@ class CardDetailsForm(forms.Form):
 
     expiration_date = forms.CharField(
         max_length=str(len(EXPIRATION_DATE_FORMAT)),
+
         label='Expiration Date:',
+
         widget=forms.TextInput(
             attrs={
                 'placeholder': 'MM/YY',
             }
         ),
+
         validators=[
             ExpirationDateValidator(
                 error_message=[
@@ -64,6 +69,7 @@ class CardDetailsForm(forms.Form):
                 'placeholder': 'Enter CVV Code',
             }
         ),
+
         validators=[
             RegexValidator(
                 regex=CVV_CODE_REGEX_PATTERN,
