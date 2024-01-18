@@ -143,7 +143,12 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 
         return context
 
-    def update_related_objects(self, jewelries, stone_type_pk, stone_color_pk):
+    def update_related_objects(
+            self,
+            jewelries,
+            stone_type_pk,
+            stone_color_pk
+    ):
 
         metals = \
             self.define_related_metal_objects(jewelries)
