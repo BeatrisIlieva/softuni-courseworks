@@ -55,12 +55,18 @@ class SearchBarView(
         stone_type_pks = get_object_pks(StoneType, search)
 
         if stone_type_pks:
-            query |= Q(Q(jewelry_stones__stone_type_id__in=stone_type_pks)  & Q(inventory__quantity__gt=0))
+            query |= Q(
+                Q(jewelry_stones__stone_type_id__in=stone_type_pks) &
+                Q(inventory__quantity__gt=0)
+            )
 
         stone_color_pks = get_object_pks(StoneColor, search)
 
         if stone_color_pks:
-            query |= Q(Q(jewelry_stones__stone_color_id__in=stone_color_pks)  & Q(inventory__quantity__gt=0))
+            query |= Q(
+                Q(jewelry_stones__stone_color_id__in=stone_color_pks) &
+                Q(inventory__quantity__gt=0)
+            )
 
         queryset = queryset.filter(
             query
