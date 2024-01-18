@@ -1,9 +1,6 @@
 from django.db.models import Q
-
 from django.views.generic import TemplateView, ListView
-
 from e_commerce_website.common.mixins import NavigationBarMixin
-
 from e_commerce_website.common.utils import get_object_pks
 from e_commerce_website.jewelry.mixins import JewelryIsLikedByUserMixin
 from e_commerce_website.jewelry.models import (
@@ -18,17 +15,16 @@ class IndexView(NavigationBarMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         nav_bar_context = self.get_nav_bar_context()
 
-        # if not cache.get('nav_bar_context'):
-        #     cache.set('nav_bar_context', nav_bar_context, 30)
-
-        # nav_bar_context = cache.get('nav_bar_context')
-
         context.update(nav_bar_context)
 
         return context
 
 
-class SearchBarView(JewelryIsLikedByUserMixin, NavigationBarMixin, ListView):
+class SearchBarView(
+    JewelryIsLikedByUserMixin,
+    NavigationBarMixin,
+    ListView
+):
     template_name = 'common/search_results.html'
     model = Jewelry
     paginate_by = 6
@@ -43,12 +39,18 @@ class SearchBarView(JewelryIsLikedByUserMixin, NavigationBarMixin, ListView):
         category_pks = get_object_pks(Category, search)
 
         if category_pks:
-            query |= Q(Q(category_id__in=category_pks) & Q(inventory__quantity__gt=0))
+            query |= Q(
+                Q(category_id__in=category_pks) &
+                Q(inventory__quantity__gt=0)
+            )
 
         metal_pks = get_object_pks(Metal, search)
 
         if metal_pks:
-            query |= Q(Q(jewelry_metals__metal_id__in=metal_pks) & Q(inventory__quantity__gt=0))
+            query |= Q(
+                Q(jewelry_metals__metal_id__in=metal_pks) &
+                Q(inventory__quantity__gt=0)
+            )
 
         stone_type_pks = get_object_pks(StoneType, search)
 
