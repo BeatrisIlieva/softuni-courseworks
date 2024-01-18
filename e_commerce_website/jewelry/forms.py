@@ -70,7 +70,10 @@ class StoneColorForm(forms.Form):
     )
 
 
-class JewelryCategoryForm(StoneColorForm, StoneTypeForm, MetalForm, PriceForm):
+class JewelryCategoryForm(
+    StoneColorForm, StoneTypeForm,
+    MetalForm, PriceForm
+):
     pass
 
 
