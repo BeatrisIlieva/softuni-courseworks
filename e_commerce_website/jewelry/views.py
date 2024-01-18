@@ -6,16 +6,14 @@ from e_commerce_website.jewelry.mixins import (
     DisplayJewelryMixin, LastViewedJewelriesMixin,
     JewelryStonesMixin, JewelryMetalsMixin
 )
-from e_commerce_website.jewelry.models import Jewelry, StoneType, StoneColor, JewelryStone
-
-from e_commerce_website.common.mixins import \
-    NavigationBarMixin
-
-from e_commerce_website.jewelry.forms import \
-    JewelryCategoryForm, \
-    JewelryMetalForm, \
-    JewelryStoneTypeForm, \
-    JewelryStoneColorForm, SizeForm
+from e_commerce_website.jewelry.models import (
+    Jewelry, StoneType, StoneColor
+)
+from e_commerce_website.common.mixins import NavigationBarMixin
+from e_commerce_website.jewelry.forms import (
+    JewelryCategoryForm, JewelryMetalForm,
+    JewelryStoneTypeForm, JewelryStoneColorForm, SizeForm
+)
 
 from e_commerce_website.jewelry.funcs import \
     get_related_size_objects, \
