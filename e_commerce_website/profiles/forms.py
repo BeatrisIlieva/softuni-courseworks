@@ -1,6 +1,5 @@
 from django import forms
 from django_countries import countries
-
 from e_commerce_website.profiles.models import AccountProfile
 
 
@@ -23,11 +22,13 @@ class AccountProfileForm(forms.ModelForm):
                     'placeholder': 'Enter your first name'
                 }
             ),
-            'last_name':forms.TextInput(
+
+            'last_name': forms.TextInput(
                 attrs={
                     'placeholder': 'Enter your surname'
                 }
             ),
+
             'phone_number': forms.TextInput(
                 attrs={
                     'placeholder': 'Enter your phone number'
@@ -39,6 +40,7 @@ class AccountProfileForm(forms.ModelForm):
                     'placeholder': 'Enter your city'
                 }
             ),
+
             'delivery_address': forms.TextInput(
                 attrs={
                     'placeholder': 'Enter your address'
