@@ -14,10 +14,10 @@ from e_commerce_website.jewelry.forms import (
     JewelryCategoryForm, JewelryMetalForm,
     JewelryStoneTypeForm, JewelryStoneColorForm, SizeForm
 )
-
-from e_commerce_website.jewelry.funcs import \
-    get_related_size_objects, \
-    get_related_choices, get_stone_type_pks, get_stone_color_pks
+from e_commerce_website.jewelry.funcs import (
+    get_related_size_objects, get_related_choices,
+    get_stone_type_pks, get_stone_color_pks
+)
 
 
 class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
@@ -120,8 +120,6 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
 
         context['jewelries_count_by_price'] = \
             self.jewelries_count_by_price
-
-
 
         return context
 
@@ -647,11 +645,11 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
             )
 
 
-class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin,JewelryStonesMixin, JewelryMetalsMixin, TemplateView, FormMixin):
+class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin, JewelryStonesMixin, JewelryMetalsMixin,
+                         TemplateView, FormMixin):
     # model = Jewelry
     template_name = 'jewelry/jewelry_details.html'
     form_class = SizeForm
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -667,7 +665,6 @@ class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin,JewelrySto
         context['form'] = selection_form
 
         context['stone_info_dict'] = self.get_jewelry_stones(jewelry)
-
 
         context['metal_info_dict'] = self.get_jewelry_metals(jewelry)
         context['jewelry'] = jewelry
@@ -704,6 +701,3 @@ class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin,JewelrySto
             # context['form'] = form
 
             return self.render_to_response(context)
-
-
-
