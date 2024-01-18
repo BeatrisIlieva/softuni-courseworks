@@ -77,13 +77,22 @@ class JewelryCategoryForm(
     pass
 
 
-class JewelryMetalForm(StoneColorForm, StoneTypeForm, CategoryForm, PriceForm):
+class JewelryMetalForm(
+    StoneColorForm, StoneTypeForm,
+    CategoryForm, PriceForm
+):
     pass
 
 
-class JewelryStoneTypeForm(StoneColorForm, MetalForm, CategoryForm, PriceForm):
+class JewelryStoneTypeForm(
+    StoneColorForm, MetalForm,
+    CategoryForm, PriceForm
+):
     pass
 
 
-class JewelryStoneColorForm(StoneTypeForm, MetalForm, CategoryForm, PriceForm):
+class JewelryStoneColorForm(
+    StoneTypeForm, MetalForm,
+    CategoryForm, PriceForm
+):
     pass
