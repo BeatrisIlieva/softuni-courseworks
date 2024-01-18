@@ -172,7 +172,8 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
             self.define_jewelries_count_by_stone_type(jewelries, stone_types)
 
         if stone_color_pk is not None:
-            stone_colors = StoneColor.objects.filter(id__in=stone_color_pk)
+            stone_colors = StoneColor.objects.\
+                filter(id__in=stone_color_pk)
 
         self.jewelries_count_by_stone_color = \
             self.define_jewelries_count_by_stone_color(jewelries, stone_colors)
@@ -324,12 +325,20 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
 
         return context
 
-    def update_related_objects(self, jewelries, stone_type_pk, stone_color_pk):
+    def update_related_objects(
+            self,
+            jewelries,
+            stone_type_pk,
+            stone_color_pk
+    ):
         categories = \
             self.define_related_category_objects(jewelries)
 
         stone_types = \
-            self.define_related_stone_type_objects(jewelries, stone_color_pk)
+            self.define_related_stone_type_objects(
+                jewelries,
+                stone_color_pk
+            )
 
         stone_colors = \
             self.define_related_stone_color_objects(jewelries, stone_type_pk)
@@ -341,13 +350,15 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
             self.define_jewelries_count_by_category(jewelries, categories)
 
         if stone_type_pk is not None:
-            stone_types = StoneType.objects.filter(id__in=stone_type_pk)
+            stone_types = StoneType.objects.\
+                filter(id__in=stone_type_pk)
 
         self.jewelries_count_by_stone_type = \
             self.define_jewelries_count_by_stone_type(jewelries, stone_types)
 
         if stone_color_pk is not None:
-            stone_colors = StoneColor.objects.filter(id__in=stone_color_pk)
+            stone_colors = StoneColor.objects.\
+                filter(id__in=stone_color_pk)
 
         self.jewelries_count_by_stone_color = \
             self.define_jewelries_count_by_stone_color(jewelries, stone_colors)
