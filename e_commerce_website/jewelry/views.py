@@ -1,11 +1,11 @@
 from django.db.models import Q
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import TemplateView
 from django.views.generic.edit import FormMixin
-
-from e_commerce_website.jewelry.mixins import DisplayJewelryMixin, LastViewedJewelriesMixin, JewelryStonesMixin, \
-    JewelryMetalsMixin
+from e_commerce_website.jewelry.mixins import (
+    DisplayJewelryMixin, LastViewedJewelriesMixin,
+    JewelryStonesMixin, JewelryMetalsMixin
+)
 from e_commerce_website.jewelry.models import Jewelry, StoneType, StoneColor, JewelryStone
 
 from e_commerce_website.common.mixins import \
