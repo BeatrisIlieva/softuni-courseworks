@@ -23,8 +23,9 @@
             <tbody>
             <tr>
                 <td>
-                    <a href="{% url 'display_jewelry_details' jewelry.pk %}">
-                        <img width="250" height="250" src="{{ jewelry.first_image_url }}" alt="image1">
+                    <a href="{% url 'display_jewelry_details' jewelry.pk %}" target="_blank">
+                        <img width="250" height="250" src="{{ jewelry.first_image_url }}" alt="image1" title="{{ jewelry.title }}">
+
                     </a>
                 </td>
                 <td>

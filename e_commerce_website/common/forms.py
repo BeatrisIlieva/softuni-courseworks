@@ -1,5 +1,4 @@
 from django import forms
-
 from e_commerce_website.jewelry.models import Category
 
 

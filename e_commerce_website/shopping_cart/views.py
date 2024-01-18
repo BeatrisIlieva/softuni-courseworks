@@ -113,7 +113,7 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
 
                 return redirect('view_shopping_cart')
 
-        cart[jewelry_pk]['quantity'] = new_quantity
+        cart[str(jewelry_pk)]['quantity'] = new_quantity
 
         self.request.session['cart'] = cart
 
