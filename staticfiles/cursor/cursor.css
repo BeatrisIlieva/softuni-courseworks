@@ -1,0 +1,54 @@
+html {
+    cursor: url("cursor.png"), auto;
+
+}
+
+button {
+    cursor: url("cursor.png"), auto;
+}
+
+
+a {
+    cursor: url("cursor.png"), auto;
+}
+
+label {
+    cursor: url("cursor.png"), auto;
+}
+
+
+input {
+    cursor: url("cursor.png"), auto;
+}
+
+/*input[type="checkbox"]{*/
+/*    cursor: url("cursor.png"), cell;*/
+/*}*/
+
+
+
+
+
+/*input[type="search"],*/
+/*input[type="text"],*/
+/*input[type="password"],*/
+/*input[type="checkbox"],*/
+/*input[type="radio"],*/
+/*input[type="submit"],*/
+/*input[type="reset"],*/
+/*input[type="button"],*/
+/*input[type="file"],*/
+/*input[type="hidden"],*/
+/*input[type="date"],*/
+/*input[type="time"],*/
+/*input[type="number"],*/
+/*input[type="range"],*/
+/*input[type="color"],*/
+/*input[type="email"],*/
+/*input[type="tel"],*/
+/*input[type="url"]{*/
+/*    cursor: url("cursor.png"), auto;*/
+/*}*/
+
+
+

@@ -587,9 +587,14 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
                 filter(self.query). \
                 distinct('pk')
 
-        stone_type_pk = self.define_related_stone_type_objects(jewelries, stone_color_pk)
+        stone_type_pk = \
+            self.define_related_stone_type_objects(jewelries, stone_color_pk)
 
-        self.update_related_objects(jewelries, stone_color_pk, stone_type_pk)
+        self.update_related_objects(
+            jewelries,
+            stone_color_pk,
+            stone_type_pk
+        )
 
         if self.selection_form.is_valid():
 

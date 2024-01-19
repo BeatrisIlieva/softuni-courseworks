@@ -3,11 +3,11 @@
   margin-bottom: 20px; /* Add some spacing between the line and the content below */
 }
 
-body {
-    font-family: calibri, arial;
-    font-size: 18px;
-    /*margin-top: 60px;*/
-}
+/*body {*/
+/*    font-family: calibri, arial;*/
+/*    font-size: 18px;*/
+/*    !*margin-top: 60px;*!*/
+/*}*/
 
 ul {
   text-align: center;
@@ -98,6 +98,7 @@ ul {
   z-index: 1;
   right: -90px;
   top: 0px;
+  
 }
 
 .dropdown-content p {
@@ -106,6 +107,7 @@ ul {
   text-decoration: none;
   display: block;
   font-size: 16px;
+
 }
 
 .dropdown:hover .dropdown-content {
