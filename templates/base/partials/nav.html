@@ -55,27 +55,27 @@
                             <i class="fa-regular fa-user"></i>
                         </a>
                     </li>
-                    <li class="right-menu">
-                        <a href="{% url 'register_user' %}">
-                            <i class="fa-regular fa-user"></i>
-                        </a>
-                    </li>
+{#                    <li class="right-menu">#}
+{#                        <a href="{% url 'register_user' %}">#}
+{#                            <i class="fa-regular fa-user"></i>#}
+{#                        </a>#}
+{#                    </li>#}
                 {% else %}
                     <li class="right-menu">
                         <a href="{% url 'logout_user' %}">
-                            <i class="fa-regular fa-user"></i>
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         </a>
                     </li>
                     <li class="right-menu">
                         <a href="{% url 'details_user' pk=request.user.pk %}">
-                            {% if  request.user.accountprofile.first_name %}
-                                <i>{{ request.user.accountprofile.full_name }}</i>
-                            {% else %}
+{#                            {% if  request.user.accountprofile.first_name %}#}
+{#                                <i>{{ request.user.accountprofile.full_name }}</i>#}
+{#                            {% else %}#}
                                 <i class="fa-regular fa-user"></i>
                             {% endif %}
                         </a>
                     </li>
-                {% endif %}
+{#                {% endif %}#}
             <li class="right-menu"><a href="{% url 'view_shopping_cart' %}">
                 <i class="fa-solid fa-basket-shopping"></i>
             </a>
