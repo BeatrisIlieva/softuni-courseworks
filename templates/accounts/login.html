@@ -3,6 +3,8 @@
 {% load forms %}
 {% load static %}
 {% block page_content %}
+    <h2>Registered Customers</h2>
+    <h4>Please sign In to access your account</h4>
     <form
             action="{% url 'login_user' %}"
             method="post">
@@ -14,5 +16,13 @@
         </div>
         {% csrf_token %}
     </form>
-    <p>Don't have an account yet? <a href="{% url 'register_user' %}?next={{ next }}">Sign Up</a></p>
+    <h2>New Customers</h2>
+    <h3>Register with FINE JEWELRIES for the following benefits:</h3>
+    <ul>
+    <li>Faster checkout</li>
+    <li>Access your order status</li>
+    <li>View online order history</li>
+    <li>Add items to your wish list and share</li>
+    </ul>
+    <a href="{% url 'register_user' %}?next={{ next }}">Register</a>
 {% endblock %}

@@ -2,6 +2,10 @@
     background-color: #e8ccd7 ;
 }
 
+.nth-row tr:nth-child(5) {
+    background-color: #BEE5B0;
+}
+
 .shopping_cart ul {
     list-style-type: none;
 }

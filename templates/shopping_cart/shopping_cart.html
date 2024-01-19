@@ -59,7 +59,9 @@
                         <input type="number" name="quantity" value="{{ details.quantity }}"
                                min={{ details.min_quantity }} max={{ details.max_quantity }}>
                         <br>
-                        <button type="submit" name="update_quantity">UPDATE</button>
+                        <button type="submit" name="update_quantity" class="button hover filled_blue">
+                            <i class="fa-solid fa-pencil"></i> UPDATE
+                        </button>
                     </form>
                 </td>
                 <td>
@@ -78,11 +80,14 @@
             <td colspan="6">
                 {% if request.user.is_authenticated %}
                     <form action="{% url 'complete_order' request.user.pk %}" method="get">
-                        <button>CHECKOUT</button>
+                        <button class="button hover filled_green">
+                            <i class="fa-regular fa-credit-card"></i> CHECKOUT </button>
+
                         {% csrf_token %}
                     </form>
                 {% else %}
-                    <a href="{% url 'login_user' %}?next={{ request.path }}">Login to Complete Order</a>
+                    <a href="{% url 'login_user' %}?next={{ request.path }}" class="button hover filled_green">
+                    <i class="fa-regular fa-credit-card"></i> CHECKOUT</a>
                 {% endif %}
             </td>
         </tr>
