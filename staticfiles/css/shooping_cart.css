@@ -1,0 +1,7 @@
+.nth-row tr:nth-child(1){
+    background-color: #e8ccd7 ;
+}
+
+.shopping_cart ul {
+    list-style-type: none;
+}

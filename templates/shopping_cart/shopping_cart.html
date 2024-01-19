@@ -2,14 +2,16 @@
 {% load dict %}
 {% load static %}
 {% block page_content %}
-    <table border="1">
-        <thead>
+    {% if not jewelries_by_quantity_and_size %}
+    Your Shopping Bag is Empty
+    {% else %}
+    <table class="shopping_cart" border="1">
+        <thead class="nth-row">
         <tr>
             <th colspan="6">Shopping Bag</th>
         </tr>
         </thead>
         {% for jewelry, details in jewelries_by_quantity_and_size.items %}
-
             <thead>
             <tr>
                 <th>Jewelry</th>
@@ -29,7 +31,7 @@
                     </a>
                 </td>
                 <td>
-                    <ol>
+                    <ul>
                         {% for metal, carat in details.metal_info_dict.items %}
                             {% if carat %}
                                 <li>{{ carat }} {{ metal }} </li>
@@ -37,15 +39,15 @@
                                 <li>{{ metal }}</li>
                             {% endif %}
                         {% endfor %}
-                    </ol>
+                    </ul>
                 </td>
                 <td>
-                    <ol>
+                    <ul>
                         {% for stone_type, stone_color in details.stone_info_dict.items %}
                             <li>{{ stone_type }} {{ stone_color }}</li>
                             <br>
                         {% endfor %}
-                    </ol>
+                    </ul>
                 </td>
             <td>
                 {{ details.size }}
@@ -91,6 +93,7 @@
             <img width="150" height="150" src="{{ jewelry.first_image_url }}" alt="image1">
         </a>
     {% endfor %}
+    {% endif %}
 {% endblock %}
 
 

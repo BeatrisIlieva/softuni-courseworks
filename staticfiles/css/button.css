@@ -1,15 +1,29 @@
-.update_button {
+.button{
     color: black;
-    background-color: #F6B3BF;
+    padding: 6px 16px;
+    border: 1px solid black;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 24px;
+    margin-bottom: 12px;
+    font-weight: 400;
+    font-family: FranklinGothic;
 }
 
-.my_orders_button {
-    color: black;
+.button.filled_pink{
+    background-color: #BEE5B0;
+}
+
+
+.button.filled_blue {
     background-color: #89cff0;
 }
 
-.delete_button {
-    color: black;
-    background-color: #DC143C;
+.button.filled_red {
+    background-color: #FF6961;
+}
+
+.button:hover {
+    background-color: #ffa6c9;
 }
 

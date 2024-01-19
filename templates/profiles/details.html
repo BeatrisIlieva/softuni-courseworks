@@ -1,22 +1,24 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-    {{ user.accountprofile.full_name }}
+
     <section>
-        <a href="{% url 'update_user' pk=object.pk %}" class="update_button hover filled">
+        <a href="{% url 'update_user' pk=object.pk %}" class="button hover filled_pink">
             Update Profile
             <i class="fa-solid fa-pencil"></i>
 
         </a>
     </section>
+    <br>
     <section>
-        <a href="{% url 'my_orders' pk=object.pk %}" class="my_orders_button hover filled">
-            My Orders
+        <a href="{% url 'my_orders' pk=object.pk %}" class="button hover filled_blue">
+            Order History
             <i class="fa-solid fa-clock-rotate-left"></i>
         </a>
     </section>
+    <br>
     <section>
-        <a href="{% url 'delete_user' pk=object.pk %}" class="delete_button hover filled">
+        <a href="{% url 'delete_user' pk=object.pk %}" class="button hover filled_red">
             Delete Profile
             <i class="fa-solid fa-user-slash"></i>
         </a>
