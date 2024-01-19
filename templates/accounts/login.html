@@ -12,7 +12,9 @@
                 {{ form.password|placeholder:"Enter password"}}
         <input type="hidden" value="{{ next }}" name="next"/>
         <div>
-            <button>Login</button>
+            <button class="button hover filled_blue">
+               <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
+            </button>
         </div>
         {% csrf_token %}
     </form>
@@ -24,5 +26,7 @@
     <li>View online order history</li>
     <li>Add items to your wish list and share</li>
     </ul>
-    <a href="{% url 'register_user' %}?next={{ next }}">Register</a>
+    <a href="{% url 'register_user' %}?next={{ next }}" class="button hover filled_green">
+       <i class="fa-solid fa-user-plus"></i> Register
+    </a>
 {% endblock %}
