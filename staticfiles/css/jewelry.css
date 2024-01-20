@@ -1,7 +1,25 @@
-.separator-line {
-    border-top: 1px solid #ccc; /* Adjust the color and size as needed */
-    margin-bottom: 20px; /* Add some spacing between the line and the content below */
-  }
+/*.separator-line {*/
+/*    border-top: 1px solid #ccc; !* Adjust the color and size as needed *!*/
+/*    margin-bottom: 20px; !* Add some spacing between the line and the content below *!*/
+/*  }*/
+
+.separator-line-jewelry {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: normal;
+}
+
+.jewelry-item {
+    width: calc(33.33% - 10px); /* Adjust margin as needed */
+    margin-bottom: 10px; /* Adjust margin as needed */
+    position: relative;
+}
+
+.like-button {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
 
 
 

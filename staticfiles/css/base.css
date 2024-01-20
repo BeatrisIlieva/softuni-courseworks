@@ -20,21 +20,48 @@ footer {
     text-align: center;
 }
 
-.footer-content {
-    display: inline-block;
+/*.footer-content {*/
+/*    display: inline-block;*/
+/*}*/
+
+/*body {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+
+/*header {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+
+/*nav {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+
+hr.ordinary {
+    border-color: #ffa6c9;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+hr.hr--logo {
+  border-color: #ffa6c9;
+  margin: 50px 0;
+}
+hr.hr--logo:after {
+  content: url('https://res.cloudinary.com/deztgvefu/image/upload/v1705756684/template_images/logo-heart_2_uzc7f8.webp');
+  /* Controls the position of the logo */
+  left: 50%;
+  position: absolute;
+  transform: translateY(-50%) translateX(-50%);
+  /* Controls the whitespace around the symbol */
+  padding: 20px;
+  background: transparent;
+        height: auto;
+    width: 100px;
 }
 
-header {
-  margin: 0;
-  padding: 0;
-}
 
-nav {
-  margin: 0;
-  padding: 0;
-}
+
+
+
+

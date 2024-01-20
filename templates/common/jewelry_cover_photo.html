@@ -1,4 +1,5 @@
-<div class="separator-line">
+<hr class="ordinary">
+<div class="separator-line-jewelry">
   {% for jewelry in object_list %}
     <span class="jewelry-item">
       <a href="{% url 'view_jewelry' jewelry.pk %}?page={{ page_obj.number }}" title="{{ jewelry.title }}">
@@ -46,25 +47,6 @@
   {% endfor %}
 </div>
 
-<style>
-  .separator-line {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .jewelry-item {
-    width: calc(33.33% - 10px); /* Adjust margin as needed */
-    margin-bottom: 10px; /* Adjust margin as needed */
-    position: relative;
-  }
-
-  .like-button {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-  }
-</style>
 
 
 {#<div class="separator-line">#}

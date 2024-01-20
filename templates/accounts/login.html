@@ -3,8 +3,23 @@
 {% load forms %}
 {% load static %}
 {% block page_content %}
+    <table>
+    <thead>
+    <tr>
+        <th>Registered Customers</th>
+        <th>New Customers</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+
+        </td>
+    </tr>
+    </tbody>
+    </table>
     <h2>Registered Customers</h2>
-    <h4>Please sign In to access your account</h4>
+    <h4>Please Sign In to access your account</h4>
     <form
             action="{% url 'login_user' %}"
             method="post">
@@ -19,7 +34,7 @@
         {% csrf_token %}
     </form>
     <h2>New Customers</h2>
-    <h3>Register with FINE JEWELRIES for the following benefits:</h3>
+    <h3>Register with <i>FINE JEWELRIES</i> for the following benefits:</h3>
     <ul>
     <li>Faster checkout</li>
     <li>Access your order status</li>

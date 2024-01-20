@@ -41,6 +41,12 @@ nav ul li .submenu a {
   font-size: 16px;
 }
 
+/*nav ul li .submenu a {*/
+/*  color: black;*/
+/*  margin-top: 20px;*/
+/*  font-size: 16px;*/
+/*}*/
+
 nav ul li .submenu a:hover {
   font-weight: bold;
 }

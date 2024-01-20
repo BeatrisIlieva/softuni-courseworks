@@ -2,10 +2,45 @@
     background-color: #e8ccd7 ;
 }
 
-.nth-row tr:nth-child(5) {
-    background-color: #BEE5B0;
+.shopping_cart {
+    width: 100%;
+    border: 1px solid #e8ccd7;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+}
+
+.shopping_cart td {
+    border: 1px solid #e8ccd7;
+}
+
+.shopping_cart thead, tbody{
+    text-align: center;
+}
+
+.shopping_cart tfoot{
+    text-align: center;
 }
 
 .shopping_cart ul {
     list-style-type: none;
 }
+
+#footer-left {
+    text-align: left;
+}
+
+#stones-content {
+    text-align: left;
+    line-height: 1.5;
+    letter-spacing: 1.2px;
+}
+
+#metals-content {
+    text-align: left;
+    line-height: 1.5;
+    letter-spacing: 1.2px;
+}
+
+
+
+
