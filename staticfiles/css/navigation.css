@@ -13,14 +13,14 @@ nav ul li:hover .submenu {
   height: 400px;
 }
 
-nav ul li:hover a {
-  color: white;
-}
+/*nav ul li:hover a {*/
+/*  color: white;*/
+/*}*/
 
-nav ul li:hover a::before {
-  visibility: visible;
-  transform: scale(1, 1);
-}
+/*nav ul li:hover a::before {*/
+/*  visibility: visible;*/
+/*  transform: scale(1, 1);*/
+/*}*/
 
 nav ul li .submenu {
   overflow: hidden;
@@ -45,11 +45,11 @@ nav ul li .submenu a:hover {
   font-weight: bold;
 }
 
-nav ul li .submenu p {
-  color: #999;
-  margin-top: 20px;
-  font-size: 16px;
-}
+/*nav ul li .submenu p {*/
+/*  color: #999;*/
+/*  margin-top: 20px;*/
+/*  font-size: 16px;*/
+/*}*/
 
 nav ul li a {
   color: white;
@@ -73,6 +73,7 @@ nav ul li a::before {
 
 nav ul li a:hover {
   text-decoration: underline;
+  text-decoration-color: #ffa6c9;
 }
 
 
@@ -102,6 +103,13 @@ nav ul li a:hover {
   padding-right: 30px;
   color: white;
 }
+
+.menu > li:hover {
+  text-decoration: underline;
+  text-decoration-color: #ffa6c9;
+}
+
+
 
 
 

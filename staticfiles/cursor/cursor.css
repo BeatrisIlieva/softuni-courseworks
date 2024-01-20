@@ -1,5 +1,4 @@
 html {
-    user-focus-pointer: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/heart_cursor_ek3t3r.png"), auto !important;
     cursor: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/heart_cursor_ek3t3r.png"), auto !important;
 
 }
@@ -41,7 +40,16 @@ select{
     cursor: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/heart_cursor_ek3t3r.png"), auto !important;
 }
 
+.input:focus {
+    background-color: blue;
+    user-focus-pointer: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/heart_cursor_ek3t3r.png"), auto !important;
+    cursor: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/arrow_cursor_bpzatp.png"), auto !important;
+}
 
+.input:active {
+    user-focus-pointer: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/heart_cursor_ek3t3r.png"), auto !important;
+    cursor: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/arrow_cursor_bpzatp.png"), auto !important;
+}
 
 
 
@@ -52,6 +60,8 @@ select{
 input[type="search"],
 input[type="text"],
 input[type="password"],
+input:focus[type="password"],
+input:active[type="password"],
 input[type="checkbox"],
 input[type="radio"],
 input[type="submit"],

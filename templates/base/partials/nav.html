@@ -3,7 +3,7 @@
     <div class="navbar-top">
         <ul class="menu">
             <li>
-                <p>BY CATEGORY</p>
+                <h2>BY CATEGORY</h2>
                 <ul class="submenu">
                     <li>
                         {% for category, title in categories_by_choices.items %}
@@ -13,7 +13,7 @@
                 </ul>
             <li>
             <li>
-                <p>BY METAL</p>
+                <h2>BY METAL</h2>
                 <ul class="submenu">
                     <li>
                         {% for metal, title in metals_by_choices.items %}
@@ -23,7 +23,7 @@
                 </ul>
             <li>
             <li>
-                <p>BY GEMSTONE</p>
+                <h2>BY GEMSTONE</h2>
                 <ul class="submenu">
                     {% for stone_type, title in stone_types_by_choices.items %}
                         <a href="{% url 'display_jewelries_by_stone_type' selected_pk=stone_type.pk %}">{{ title }}</a>
@@ -31,7 +31,7 @@
                 </ul>
             </li>
             <li>
-                <p>BY COLOR</p>
+                <h2>BY COLOR</h2>
                 <ul class="submenu">
                     {% for stone_color, title in stone_colors_by_choices.items %}
                         <a href="{% url 'display_jewelries_by_stone_color' selected_pk=stone_color.pk %}">{{ title }}</a>
