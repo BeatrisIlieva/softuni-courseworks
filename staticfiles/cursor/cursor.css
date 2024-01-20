@@ -36,40 +36,36 @@ input[type="checkbox"]{
     cursor: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/arrow_cursor_bpzatp.png"), auto !important;
 }
 
+input[type="radio"]{
+    cursor: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/arrow_cursor_bpzatp.png"), auto !important;
+}
+
 select{
     cursor: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/heart_cursor_ek3t3r.png"), auto !important;
 }
 
-
-
-
-
-
-
-
-
-/*input[type="search"],*/
-/*input[type="text"],*/
-/*input[type="password"],*/
-/*input:focus[type="password"],*/
-/*input:active[type="password"],*/
-/*input[type="checkbox"],*/
-/*input[type="radio"],*/
-/*input[type="submit"],*/
-/*input[type="reset"],*/
-/*input[type="button"],*/
-/*input[type="file"],*/
-/*input[type="hidden"],*/
-/*input[type="date"],*/
-/*input[type="time"],*/
-/*input[type="number"],*/
-/*input[type="range"],*/
-/*input[type="color"],*/
-/*input[type="email"],*/
-/*input[type="tel"],*/
-/*input[type="url"]{*/
-/*    cursor: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/arrow_cursor_bpzatp.png"), auto !important;*/
-/*}*/
+input[type="search"],
+input[type="text"],
+input[type="password"],
+input:focus[type="password"],
+input:active[type="password"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="file"],
+input[type="hidden"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+input[type="range"],
+input[type="color"],
+input[type="email"],
+input[type="tel"],
+input[type="url"]{
+    cursor: url("https://res.cloudinary.com/deztgvefu/image/upload/v1705669090/cursor/arrow_cursor_bpzatp.png"), auto !important;
+}
 
 
 

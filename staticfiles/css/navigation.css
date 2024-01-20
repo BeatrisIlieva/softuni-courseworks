@@ -96,7 +96,6 @@ nav ul li a:hover {
 .right-menu {
   float: right;
   margin-left: -50px;
-  color: white;
 }
 
 .submenu > li {
@@ -111,8 +110,9 @@ nav ul li a:hover {
 }
 
 .menu > li:hover {
-  text-decoration: underline;
-  text-decoration-color: #ffa6c9;
+  color: #ffa6c9;
+  /*text-decoration: underline;*/
+  /*text-decoration-color: #ffa6c9;*/
 }
 
 

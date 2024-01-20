@@ -2,12 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{#    <style>#}
-{#                body, html {#}
-{#            margin: 0;#}
-{#            padding: 0;#}
-{#        }#}
-{#    </style>#}
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -20,11 +14,12 @@
 </head>
 <body>
     <header>
+        <br>
         <h1>FINE JEWELRIES</h1>
         <hr class="hr--logo">
-        {% include 'base/partials/nav_initial.html' %}
+        {% include 'base/partials/nav.html' %}
     </header>
-<main>
+<main style="margin-top: 20px">
     {% block page_content %}
     {% endblock %}
 </main>

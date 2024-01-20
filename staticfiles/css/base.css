@@ -9,7 +9,10 @@
 /*}*/
 
 header {
-    background-color: #050A30;
+    background-color: #040720 ;
+    margin-top: -24px;
+    margin-bottom: -16px;
+    padding-bottom: 2px;
 }
 
 nav {
@@ -48,7 +51,7 @@ hr.hr--logo {
   margin: 50px 0;
 }
 hr.hr--logo:after {
-  content: url('https://res.cloudinary.com/deztgvefu/image/upload/v1705756684/template_images/logo-heart_2_uzc7f8.webp');
+  content: url('https://res.cloudinary.com/deztgvefu/image/upload/v1705781052/template_images/giphy_s_bpsdcn.webp');
   /* Controls the position of the logo */
   left: 50%;
   position: absolute;
@@ -56,9 +59,14 @@ hr.hr--logo:after {
   /* Controls the whitespace around the symbol */
   padding: 20px;
   background: transparent;
-        height: auto;
-    width: 100px;
+        height: 68px;
+    width: 68px;
 }
+
+h2 {
+    font-size: 18px;
+}
+
 
 
 
