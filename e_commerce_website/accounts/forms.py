@@ -31,6 +31,10 @@ class RegisterUserForm(UserCreationForm):
         self.fields['password1'].label = False
         self.fields['password2'].label = False
 
+        self.fields['email'].help_text = None
+        self.fields['password1'].help_text = None
+        self.fields['password2'].help_text = None
+
         self.fields['email'].widget.attrs['placeholder'] = 'Enter your email'
         self.fields['password1'].widget.attrs['placeholder'] = 'Enter your password'
         self.fields['password2'].widget.attrs['placeholder'] = 'Confirm your password'
