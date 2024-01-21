@@ -2,10 +2,17 @@
 {% load dict %}
 {% load static %}
 {% block page_content %}
+    <h2>New Customer</h2>
     <form
             action="{% url 'register_user' %}"
             method="post">
-        {{ form.as_p }}
+        <p>{{ form.email }}</p>
+        <p>{{ form.password1 }}</p>
+        <p>{{ form.password2 }}</p>
+        <h3> Password Requirements: </h3>
+        {{ form.password1.help_text }}
+{#        {{ form.password2.help_text }}#}
+
 
         <input type="hidden" value="{{ next }}" name="next"/>
         <div>
