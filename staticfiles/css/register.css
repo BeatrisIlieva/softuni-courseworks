@@ -1,0 +1,13 @@
+.register-container {
+    text-align: center;
+}
+
+.register-button {
+    display: block;
+    width: 70%;
+    align-self: center;
+}
+
+/*.register-container ul {*/
+/*    text-align: left;*/
+/*}*/

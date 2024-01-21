@@ -4,13 +4,11 @@
 {% load static %}
 {% block page_content %}
     <section class="half-container">
-        <div >
+        <div class="left-section">
             <h2>Registered Customers</h2>
             <h4>Please Sign In to access your account</h4>
             <form action="{% url 'login_user' %}" method="post">
                 {{ form.as_p }}
-{#                {{ form.username|placeholder:'Enter email' }}#}
-{#                {{ form.password|placeholder:"Enter password" }}#}
                 <input type="hidden" value="{{ next }}" name="next"/>
                 <button class="button hover filled_blue">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
@@ -18,7 +16,8 @@
                 {% csrf_token %}
             </form>
         </div>
-        <div class="vl">
+        <div class="vl"></div>
+        <div class="right-section">
             <h2>New Customers</h2>
             <h4>Register with <i>FINE JEWELRIES</i> for the following benefits:</h4>
             <ul>
@@ -35,3 +34,40 @@
         </div>
     </section>
 {% endblock %}
+
+
+{#{% extends 'base/base.html' %}#}
+{#{% load dict %}#}
+{#{% load forms %}#}
+{#{% load static %}#}
+{#{% block page_content %}#}
+{#    <section class="half-container">#}
+{#        <div >#}
+{#            <h2>Registered Customers</h2>#}
+{#            <h4>Please Sign In to access your account</h4>#}
+{#            <form action="{% url 'login_user' %}" method="post">#}
+{#                {{ form.as_p }}#}
+{#                <input type="hidden" value="{{ next }}" name="next"/>#}
+{#                <button class="button hover filled_blue">#}
+{#                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Login#}
+{#                </button>#}
+{#                {% csrf_token %}#}
+{#            </form>#}
+{#        </div>#}
+{#        <div>#}
+{#            <h2>New Customers</h2>#}
+{#            <h4>Register with <i>FINE JEWELRIES</i> for the following benefits:</h4>#}
+{#            <ul>#}
+{#                <li>Faster checkout</li>#}
+{#                <li>Access your order status</li>#}
+{#                <li>View order history</li>#}
+{#                <li>Enjoy the convenience of saving your wishlist permanently</li>#}
+{#            </ul>#}
+{#            <div>#}
+{#                <a href="{% url 'register_user' %}?next={{ next }}" class="button hover filled_green">#}
+{#                    <i class="fa-solid fa-user-plus"></i> Register#}
+{#                </a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+{#{% endblock %}#}

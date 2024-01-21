@@ -7,7 +7,9 @@
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     text-decoration: none;
     font-size: 18px;
-    border-radius: 24px;
+    border-radius: 16px;
+    border-top-right-radius: 26px;
+    border-top-left-radius: 26px;
     margin-bottom: 12px;
     margin-top: 12px;
     font-weight: 400;
@@ -17,12 +19,12 @@
 .button.filled_green {
     color: black;
     background-color: #BEE5B0;
-    transition: background-color 300ms linear, color 300ms;
 }
 
 .button.filled_green:hover {
     color: white;
     background-color: #72896a;
+    transition: background-color 300ms linear, color 300ms;
 }
 
 

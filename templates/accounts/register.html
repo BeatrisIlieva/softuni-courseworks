@@ -2,22 +2,21 @@
 {% load dict %}
 {% load static %}
 {% block page_content %}
-    <h2>New Customer</h2>
-    <form
-            action="{% url 'register_user' %}"
-            method="post">
-        <p>{{ form.email }}</p>
-        <p>{{ form.password1 }}</p>
-        <p>{{ form.password2 }}</p>
-        <h3> Password Requirements: </h3>
-        {{ form.password1.help_text }}
-{#        {{ form.password2.help_text }}#}
-
-
-        <input type="hidden" value="{{ next }}" name="next"/>
-        <div>
-            <button>Register</button>
-        </div>
-        {% csrf_token %}
-    </form>
+    <div class="register-container">
+        <h2>New Customer</h2>
+        <form
+                action="{% url 'register_user' %}"
+                method="post">
+            <p>{{ form.email }}</p>
+            <p>{{ form.password1 }}</p>
+            <p>{{ form.password2 }}</p>
+            <h3> Password Requirements: </h3>
+            {{ form.password1.help_text }}
+            <input type="hidden" value="{{ next }}" name="next"/>
+            <div>
+                <button class="register-button button filled_green">Register</button>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
 {% endblock %}
