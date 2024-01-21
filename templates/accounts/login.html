@@ -3,45 +3,35 @@
 {% load forms %}
 {% load static %}
 {% block page_content %}
-    <table>
-    <thead>
-    <tr>
-        <th>Registered Customers</th>
-        <th>New Customers</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>
-
-        </td>
-    </tr>
-    </tbody>
-    </table>
-    <h2>Registered Customers</h2>
-    <h4>Please Sign In to access your account</h4>
-    <form
-            action="{% url 'login_user' %}"
-            method="post">
-                {{ form.username|placeholder:'Enter email'}}
-                {{ form.password|placeholder:"Enter password"}}
-        <input type="hidden" value="{{ next }}" name="next"/>
-        <div>
-            <button class="button hover filled_blue">
-               <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
-            </button>
+    <section class="half-container">
+        <div >
+            <h2>Registered Customers</h2>
+            <h4>Please Sign In to access your account</h4>
+            <form action="{% url 'login_user' %}" method="post">
+                {{ form.as_p }}
+{#                {{ form.username|placeholder:'Enter email' }}#}
+{#                {{ form.password|placeholder:"Enter password" }}#}
+                <input type="hidden" value="{{ next }}" name="next"/>
+                <button class="button hover filled_blue">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
+                </button>
+                {% csrf_token %}
+            </form>
         </div>
-        {% csrf_token %}
-    </form>
-    <h2>New Customers</h2>
-    <h3>Register with <i>FINE JEWELRIES</i> for the following benefits:</h3>
-    <ul>
-    <li>Faster checkout</li>
-    <li>Access your order status</li>
-    <li>View order history</li>
-    <li>Enjoy the convenience of saving your wishlist permanently</li>
-    </ul>
-    <a href="{% url 'register_user' %}?next={{ next }}" class="button hover filled_green">
-       <i class="fa-solid fa-user-plus"></i> Register
-    </a>
+        <div class="vl">
+            <h2>New Customers</h2>
+            <h4>Register with <i>FINE JEWELRIES</i> for the following benefits:</h4>
+            <ul>
+                <li>Faster checkout</li>
+                <li>Access your order status</li>
+                <li>View order history</li>
+                <li>Enjoy the convenience of saving your wishlist permanently</li>
+            </ul>
+            <div>
+                <a href="{% url 'register_user' %}?next={{ next }}" class="button hover filled_green">
+                    <i class="fa-solid fa-user-plus"></i> Register
+                </a>
+            </div>
+        </div>
+    </section>
 {% endblock %}
