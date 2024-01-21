@@ -1,5 +1,8 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    AuthenticationForm
+)
 
 UserModel = get_user_model()
 
@@ -16,9 +19,14 @@ class RegisterUserForm(UserCreationForm):
         self.fields['password1'].label = False
         self.fields['password2'].label = False
 
-        self.fields['email'].widget.attrs['placeholder'] = 'Enter your email'
-        self.fields['password1'].widget.attrs['placeholder'] = 'Enter your password'
-        self.fields['password2'].widget.attrs['placeholder'] = 'Confirm your password'
+        self.fields['email'].widget.attrs['placeholder'] = \
+            'Enter your email'
+
+        self.fields['password1'].widget.attrs['placeholder'] = \
+            'Enter your password'
+
+        self.fields['password2'].widget.attrs['placeholder'] = \
+            'Confirm your password'
 
 
 class LoginUserForm(AuthenticationForm):
@@ -28,5 +36,8 @@ class LoginUserForm(AuthenticationForm):
         self.fields['username'].label = False
         self.fields['password'].label = False
 
-        self.fields['username'].widget.attrs['placeholder'] = 'Enter your email'
-        self.fields['password'].widget.attrs['placeholder'] = 'Enter your password'
+        self.fields['username'].widget.attrs['placeholder'] = \
+            'Enter your email'
+
+        self.fields['password'].widget.attrs['placeholder'] = \
+            'Enter your password'
