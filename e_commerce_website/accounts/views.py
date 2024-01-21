@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView
-from e_commerce_website.accounts.forms import RegisterUserForm
+from e_commerce_website.accounts.forms import RegisterUserForm, LoginUserForm
 from e_commerce_website.common.mixins import NavigationBarMixin
 
 
@@ -37,6 +37,7 @@ class RegisterUserView(NavigationBarMixin, CreateView):
 
 class LoginUserView(NavigationBarMixin, LoginView):
     template_name = 'accounts/login.html'
+    form_class = LoginUserForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

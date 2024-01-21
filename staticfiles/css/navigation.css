@@ -118,8 +118,9 @@ nav ul li a:hover {
 .search {
   border-radius: 14px;
   border-color: white;
-  border-style: dotted;
+  border-style: solid;
 }
+
 
 
 
