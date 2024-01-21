@@ -19,7 +19,12 @@
         <form method="post" action="{% url 'update_user' pk=object.pk %}">
             <form method="post" action="{% url 'update_user' pk=object.pk %}">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {% for field in form %}
+                        <strong>{{ field.label }}</strong>
+                    <br>
+                    {{ field }}
+                    <br>
+                {% endfor %}
                 <button class="edit-btn button hover filled_green " type="submit"><i class="fa-solid fa-pencil"></i>
                     Update Profile
                 </button>
