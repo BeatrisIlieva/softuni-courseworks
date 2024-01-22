@@ -1,0 +1,8 @@
+
+
+        /* Define a CSS style to reduce the image size */
+.logo-image {
+    width: 100%; /* Set the desired width */
+    height: 100%; /* Set the desired height */
+    object-fit: cover;
+}

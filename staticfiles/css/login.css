@@ -1,51 +1,62 @@
-/*.half-container {*/
-/*    box-sizing: border-box;*/
-/*    list-style: none;*/
-/*    !*border: 2px solid pink;*!*/
-/*    !*text-align: center;*!*/
-/*    !*position: relative; !* Add this line *!*!*/
-/*}*/
+
 * {
     box-sizing: border-box;
 }
 
-.half-container > div {
-    /*margin: auto;*/
-    height: 350px;
-    box-sizing: border-box;
-    list-style: none;
-    border: 2px solid pink;
-    display: inline-grid;
-    /*height: auto;*/
-    width: auto;
+
+.login-or-register {
+    display: grid;
+    padding: 20px;
+    /*grid-template-columns: 30% 60%;*/
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(1, 100%);
+    grid-template-areas:
+        ". login login login . register register register register .";
+    gap: 16px;
 }
 
-.half-container > div {
+.register {
+        border: dotted;
+    border-radius: 6px;
+    border-color: #ffa6c9;
+    padding: 2px 30px 30px 30px;
+    grid-area: register;
+}
+
+.log-in {
+    border: dotted;
+    border-radius: 6px;
+    border-color: #ffa6c9;
+    padding: 2px 30px 30px 30px;
+    grid-area: login;
+}
+
+.login-or-register  {
     font-size: 16px;
 }
 
-.left-section {
-    width: 40px;
-    margin: 10px;
-    padding: 20px;
-}
+/*.login-or-register.left-section {*/
+/*    width: 40px;*/
+/*    margin: 10px;*/
+/*    padding: 20px;*/
+/*}*/
 
-.right-section {
-    width: 60px;
-    margin: 10px;
-    padding: 20px;
-}
+/*.login-or-register.right-section {*/
+/*    width: 60px;*/
+/*    margin: 10px;*/
+/*    padding: 20px;*/
+/*}*/
 
-.vl {
-    border-left: 1px solid #ffa6c9;
-    height: 500px;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    margin-left: -1px;
-    content: ''; /* Add this line */
-}
+/*.vl {*/
+/*    border-left: 1px solid #ffa6c9;*/
+/*    height: 500px;*/
+/*    position: absolute;*/
+/*    left: 50%;*/
+/*    top: 0;*/
+/*    bottom: 0;*/
+/*    margin-left: -1px;*/
+/*    content: ''; !* Add this line *!*/
+/*}*/
 
 
 /*.half-container {*/

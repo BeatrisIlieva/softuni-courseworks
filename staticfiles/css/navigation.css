@@ -1,3 +1,8 @@
+header {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
 nav ul {
   text-align: center;
   z-index: 10;

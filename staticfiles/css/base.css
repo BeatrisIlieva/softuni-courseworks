@@ -8,11 +8,28 @@
 /*    background-color: #050A30;*/
 /*}*/
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 header {
     background-color: #040720 ;
     margin-top: -24px;
     margin-bottom: -16px;
-    padding-bottom: 2px;
+    padding-bottom: 1px;
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+        font-weight: 400;
+    font-size: 32px;
+}
+
+header h2 {
+        font-weight: 300;
+    font-size: 20px;
 }
 
 nav {
@@ -48,7 +65,7 @@ hr.ordinary {
 
 hr.hr--logo {
   border-color: #ffa6c9;
-  margin: 24px 0;
+  margin: 30px 0;
 }
 hr.hr--logo:after {
   content: url('https://res.cloudinary.com/deztgvefu/image/upload/v1705781052/template_images/giphy_s_bpsdcn.webp');

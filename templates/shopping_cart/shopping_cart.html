@@ -31,8 +31,8 @@
                                  title="{{ jewelry.title }}">
                         </a>
                     </td>
-                    <td id="metals-content">
-                        <ul>
+                    <td id="metals-content" >
+                        <ul role="list">
                             {% for metal, carat in details.metal_info_dict.items %}
                                 {% if carat %}
                                     <li>{{ carat }} {{ metal }} </li>
@@ -42,8 +42,8 @@
                             {% endfor %}
                         </ul>
                     </td>
-                    <td id="stones-content">
-                        <ul>
+                    <td id="stones-content" >
+                        <ul role="list">
                             {% for stone_type, stone_color in details.stone_info_dict.items %}
                                 <li>{{ stone_type }} {{ stone_color }}</li>
                             {% endfor %}

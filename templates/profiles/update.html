@@ -10,11 +10,6 @@
     </section>
     <br>
     <section>
-        <a href="{% url 'delete_user' pk=object.pk %}" class="button hover filled_red">
-            <i class="fa-solid fa-user-slash"></i> Delete Profile
-        </a>
-    </section>
-    <section>
         <h3>Personal Information</h3>
         <form method="post" action="{% url 'update_user' pk=object.pk %}">
             <form method="post" action="{% url 'update_user' pk=object.pk %}">
@@ -30,5 +25,10 @@
                 </button>
             </form>
         </form>
+    </section>
+        <section>
+        <a href="{% url 'delete_user' pk=object.pk %}" class="button hover filled_red">
+            <i class="fa-solid fa-user-slash"></i> Delete Profile
+        </a>
     </section>
 {% endblock %}

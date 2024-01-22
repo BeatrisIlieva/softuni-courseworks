@@ -3,8 +3,8 @@
 {% load forms %}
 {% load static %}
 {% block page_content %}
-    <section class="half-container">
-        <div class="left-section">
+    <section class="login-or-register">
+        <div class="log-in">
             <h2>Registered Customers</h2>
             <h4>Please Sign In to access your account</h4>
             <form action="{% url 'login_user' %}" method="post">
@@ -16,8 +16,8 @@
                 {% csrf_token %}
             </form>
         </div>
-{#        <div class="vl"></div>#}
-        <div class="right-section">
+        {#        <div class="vl"></div>#}
+        <div class="register">
             <h2>New Customers</h2>
             <h4>Register with <i>FINE JEWELRIES</i> for the following benefits:</h4>
             <ul>
@@ -26,11 +26,9 @@
                 <li>View order history</li>
                 <li>Enjoy the convenience of saving your wishlist permanently</li>
             </ul>
-            <div>
-                <a href="{% url 'register_user' %}?next={{ next }}" class="button hover filled_green">
-                    <i class="fa-solid fa-user-plus"></i> Register
-                </a>
-            </div>
+            <a href="{% url 'register_user' %}?next={{ next }}" class="button hover filled_green">
+                <i class="fa-solid fa-user-plus"></i> Register
+            </a>
         </div>
     </section>
 {% endblock %}
