@@ -1,9 +1,12 @@
+
+{#width="450" height="450" #}
 <hr class="ordinary">
 <div class="separator-line-jewelry">
   {% for jewelry in object_list %}
-    <span class="jewelry-item">
+    <section class="jewelry-item">
+    <div >
       <a href="{% url 'view_jewelry' jewelry.pk %}?page={{ page_obj.number }}" title="{{ jewelry.title }}">
-        <img width="450" height="450" src="{{ jewelry.first_image_url }}" alt="{{ jewelry.title }} image">
+        <img src="{{ jewelry.first_image_url }}" alt="{{ jewelry.title }} image">
       </a>
       <a href="{% url 'like_jewelry' jewelry_pk=jewelry.pk %}" class="like-button">
         {% if jewelry.liked_by_user %}
@@ -43,7 +46,8 @@
           </svg>
         {% endif %}
       </a>
-    </span>
+    </div>
+    </section>
   {% endfor %}
 </div>
 

@@ -10,8 +10,10 @@
 }
 
 .jewelry-item {
-    width: calc(33.33% - 10px); /* Adjust margin as needed */
-    margin-bottom: 10px; /* Adjust margin as needed */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 33.33%;
     position: relative;
 }
 
