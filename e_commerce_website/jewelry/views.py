@@ -739,8 +739,12 @@ class JewelryDetailsView(
         jewelry = Jewelry.objects.get(pk=pk)
 
         selection_form = self.get_form()
+
         sizes = get_related_size_objects(jewelry)
-        size_choices = get_related_choices(sizes, field_name='measurement')
+        size_choices = get_related_choices(
+            sizes,
+            field_name='measurement'
+        )
 
         selection_form.fields['sizes'].choices = size_choices
 
