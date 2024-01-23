@@ -18,9 +18,13 @@ urlpatterns = (
         CompleteTransactionView.as_view(),
         name='complete_transaction'
     ),
-    path('order-details/<int:pk>/', OrderDetailsView.as_view(), name='order_details'),
-    path('my-orders/<int:pk>',
-        UserOrdersView.as_view(),
-        name='my_orders'
+    path(
+        'order-details/<int:pk>/',
+        OrderDetailsView.as_view(),
+        name='order_details'
     ),
+    path('my-orders/<int:pk>',
+         UserOrdersView.as_view(),
+         name='my_orders'
+         ),
 )
