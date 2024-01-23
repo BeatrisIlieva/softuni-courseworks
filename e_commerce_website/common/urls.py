@@ -1,6 +1,9 @@
 from django.urls import path
 
-from e_commerce_website.common.views import IndexView, SearchBarView
+from e_commerce_website.common.views import (
+    IndexView,
+    SearchBarView
+)
 
 urlpatterns = (
     path(
