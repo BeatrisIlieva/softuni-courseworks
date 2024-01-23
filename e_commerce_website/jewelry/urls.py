@@ -24,9 +24,15 @@ urlpatterns = (
         DisplayJewelriesByStoneTypeView.as_view(),
         name="display_jewelries_by_stone_type"
     ),
-    path("gemstones-colors/<int:selected_pk>/", DisplayJewelriesByStoneColorView.as_view(),
-         name="display_jewelries_by_stone_color"),
-    path("jewelry/<int:pk>/", JewelryDetailsView.as_view(), name='display_jewelry_details'),
+    path(
+        "gemstones-colors/<int:selected_pk>/",
+        DisplayJewelriesByStoneColorView.as_view(),
+        name="display_jewelries_by_stone_color"),
+    path(
+        "jewelry/<int:pk>/",
+        JewelryDetailsView.as_view(),
+        name='display_jewelry_details'
+    ),
     path('jewelry-details/<int:pk>', view_jewelry, name='view_jewelry'),
     path('jewelry-size/<int:pk>', select_size, name='select_size'),
 )
