@@ -33,6 +33,14 @@ urlpatterns = (
         JewelryDetailsView.as_view(),
         name='display_jewelry_details'
     ),
-    path('jewelry-details/<int:pk>', view_jewelry, name='view_jewelry'),
-    path('jewelry-size/<int:pk>', select_size, name='select_size'),
+    path(
+        'jewelry-details/<int:pk>',
+        view_jewelry,
+        name='view_jewelry'
+    ),
+    path(
+        'jewelry-size/<int:pk>',
+        select_size,
+        name='select_size'
+    ),
 )
