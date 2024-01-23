@@ -1,7 +1,9 @@
 from django.urls import path, include
 
-from e_commerce_website.profiles.views import UserDetailsView, UserUpdateView, \
-    UserDeleteView
+from e_commerce_website.profiles.views import (
+    UserDetailsView,
+    UserUpdateView,
+    UserDeleteView)
 
 urlpatterns = (
     path(
