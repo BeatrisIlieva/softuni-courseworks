@@ -1,11 +1,17 @@
 from django.urls import path
 
 from e_commerce_website.jewelry.utils import view_jewelry, select_size
-from e_commerce_website.jewelry.views import JewelryDetailsView, DisplayJewelriesByCategoryView, \
-    DisplayJewelriesByMetalView, DisplayJewelriesByStoneTypeView, DisplayJewelriesByStoneColorView
+from e_commerce_website.jewelry.views import (
+    JewelryDetailsView,
+    DisplayJewelriesByCategoryView,
+    DisplayJewelriesByMetalView,
+    DisplayJewelriesByStoneTypeView,
+    DisplayJewelriesByStoneColorView
+)
 
 urlpatterns = (
-    path("categories/<int:selected_pk>/", DisplayJewelriesByCategoryView.as_view(), name="display_jewelries_by_category"),
+    path("categories/<int:selected_pk>/", DisplayJewelriesByCategoryView.as_view(),
+         name="display_jewelries_by_category"),
     path("metals/<int:selected_pk>/", DisplayJewelriesByMetalView.as_view(), name="display_jewelries_by_metal"),
     path("gemstones-types/<int:selected_pk>/", DisplayJewelriesByStoneTypeView.as_view(),
          name="display_jewelries_by_stone_type"),
