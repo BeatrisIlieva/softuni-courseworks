@@ -1,6 +1,9 @@
 from django.urls import path
 
-from e_commerce_website.wishlist.views import LikeJewelryView, DisplayedLikedJewelries
+from e_commerce_website.wishlist.views import (
+    LikeJewelryView,
+    DisplayedLikedJewelries
+)
 
 urlpatterns = (
     path(
@@ -8,7 +11,6 @@ urlpatterns = (
         LikeJewelryView.as_view(),
         name='like_jewelry'
     ),
-
     path(
         'likes/',
         DisplayedLikedJewelries.as_view(),
