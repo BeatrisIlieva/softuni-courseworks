@@ -753,10 +753,13 @@ class JewelryDetailsView(
         context['stone_info_dict'] = self.get_jewelry_stones(jewelry)
 
         context['metal_info_dict'] = self.get_jewelry_metals(jewelry)
+
         context['jewelry'] = jewelry
 
         request_session = self.request.session
+
         last_viewed_jewelries = self.get_last_viewed_jewelries(request_session)
+
         context.update(last_viewed_jewelries)
 
         nav_bar_context = self.get_nav_bar_context()
@@ -765,8 +768,8 @@ class JewelryDetailsView(
         return context
 
     def post(self, request, *args, **kwargs):
-        print('here')
         selection_form = self.get_form()
+
         if selection_form.is_valid():
 
             selected_size = selection_form.cleaned_data['sizes']
@@ -782,8 +785,6 @@ class JewelryDetailsView(
             return redirect('add_to_shopping_cart', pk=self.kwargs['pk'])
 
         else:
-
             context = self.get_context_data()
-            # context['form'] = form
 
             return self.render_to_response(context)
