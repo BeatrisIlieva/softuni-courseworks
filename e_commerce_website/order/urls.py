@@ -1,6 +1,11 @@
 from django.urls import path
 
-from e_commerce_website.order.views import CompleteOrderView, CompleteTransactionView, OrderDetailsView, UserOrdersView
+from e_commerce_website.order.views import (
+    CompleteOrderView,
+    CompleteTransactionView,
+    OrderDetailsView,
+    UserOrdersView
+)
 
 urlpatterns = (
     path('complete-order/<int:pk>/', CompleteOrderView.as_view(), name='complete_order'),
