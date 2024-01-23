@@ -1,6 +1,10 @@
 from django.urls import path
 
-from e_commerce_website.accounts.views import RegisterUserView, LoginUserView, LogoutUserView
+from e_commerce_website.accounts.views import (
+    RegisterUserView,
+    LoginUserView,
+    LogoutUserView
+)
 
 urlpatterns = (
     path(
