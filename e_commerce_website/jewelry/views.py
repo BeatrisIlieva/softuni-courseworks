@@ -721,9 +721,15 @@ class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
             )
 
 
-class JewelryDetailsView(LastViewedJewelriesMixin, NavigationBarMixin, JewelryStonesMixin, JewelryMetalsMixin,
-                         TemplateView, FormMixin):
-    # model = Jewelry
+class JewelryDetailsView(
+    LastViewedJewelriesMixin,
+    NavigationBarMixin,
+    JewelryStonesMixin,
+    JewelryMetalsMixin,
+    TemplateView,
+    FormMixin
+):
+
     template_name = 'jewelry/jewelry_details.html'
     form_class = SizeForm
 
