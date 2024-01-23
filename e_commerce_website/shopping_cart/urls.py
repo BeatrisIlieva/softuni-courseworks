@@ -17,6 +17,10 @@ urlpatterns = (
         UpdateShoppingCartView.as_view(),
         name='update_shopping_cart'
     ),
-    path('view_shopping_cart/', DisplayShoppingCartView.as_view(), name='view_shopping_cart'),
+    path(
+        'view_shopping_cart/',
+        DisplayShoppingCartView.as_view(),
+        name='view_shopping_cart'
+    ),
 
 )
