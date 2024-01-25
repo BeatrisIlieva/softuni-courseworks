@@ -1,0 +1,98 @@
+{% load static %}
+<nav class="navigation">
+    <div class="navbar-top">
+        <ul class="menu">
+            <li>
+                <h2>BY CATEGORY</h2>
+                <ul class="submenu">
+                    <li>
+                        {% for category, title in categories_by_choices.items %}
+                            <h3>
+                            <a href="{% url 'display_jewelries_by_category' selected_pk=category.pk %}">{{ title }}</a>
+                            </h3>
+                        {% endfor %}
+                    </li>
+                </ul>
+            <li>
+            <li>
+                <h2>BY METAL</h2>
+                <ul class="submenu">
+                    <li>
+                        {% for metal, title in metals_by_choices.items %}
+                            <h3>
+                            <a href="{% url 'display_jewelries_by_metal' selected_pk=metal.pk %}">{{ title }}</a>
+                            </h3>
+                        {% endfor %}
+                    </li>
+                </ul>
+            <li>
+            <li>
+                <h2>BY GEMSTONE</h2>
+                <ul class="submenu">
+                    <li>
+                        {% for stone_type, title in stone_types_by_choices.items %}
+                            <h3>
+                            <a href="{% url 'display_jewelries_by_stone_type' selected_pk=stone_type.pk %}">{{ title }}</a>
+                            </h3>
+                        {% endfor %}
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h2>BY COLOR</h2>
+                <ul class="submenu">
+                    <li>
+                        {% for stone_color, title in stone_colors_by_choices.items %}
+                            <h3>
+                            <a href="{% url 'display_jewelries_by_stone_color' selected_pk=stone_color.pk %}">{{ title }}</a>
+                            </h3>
+                        {% endfor %}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="navbar-bottom">
+        <ul class="menu">
+            <li class="left-menu">
+                <form action="{% url 'search_bar' %}?page={{ page_obj.number }}">
+                    <input class="search" name="search" value="{{ search }}">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </form>
+            </li>
+            <li>
+                {% if not request.user.is_authenticated %}
+                    <li class="right-menu">
+                        <a href="{% url 'login_user' %}">
+                            <i class="fa-regular fa-user"></i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="right-menu">
+                        <a href="{% url 'logout_user' %}">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </a>
+                    </li>
+                    <li class="right-menu">
+                    <a href="{% url 'update_user' pk=request.user.pk %}">
+                    <i class="fa-regular fa-user"></i>
+                {% endif %}
+                </a>
+                </li>
+            <li class="right-menu"><a href="{% url 'view_shopping_cart' %}">
+                <div class="icon-container">
+                <i  class="fa-solid fa-basket-shopping"></i>
+                </div>
+            </a>
+            </li>
+            <li class="right-menu">
+                <a href="{% url 'display_liked_jewelries' %}">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+

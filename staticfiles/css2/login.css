@@ -4,12 +4,40 @@
 }
 
 .login-or-register {
+    border: 1px solid coral;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    /*gap: 30px;*/
+    /*flex-wrap: wrap;*/
+    /*justify-content: space-evenly;*/
+    /*align-items: center;*/
+
+    gap: 30px;
 }
+
+.login {
+    background-color: #ffa6c9;
+    flex: 0 1 auto;
+    align-self: stretch;
+    /*flex-grow: 1;*/
+}
+
+.register {
+    background-color: pink;
+        flex: 0 1 auto;
+        align-self: stretch;
+    /*flex-grow: 1;*/
+}
+
+/*.register {*/
+/*    flex-shrink: 2;*/
+/*}*/
+
+/*.login {*/
+/*    order:1;*/
+/*}*/
+
+/*.register {*/
+/*    order: 2;*/
+/*}*/
 
 /*.login-or-register {*/
 /*    display: grid;*/

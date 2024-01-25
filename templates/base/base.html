@@ -14,20 +14,99 @@
     <link rel="stylesheet" type="text/css" href="{% static 'icons/icons.css' %}">
 </head>
 <body>
-    <header>
-        <h1>FINE JEWELRIES</h1>
-        <hr class="hr--logo">
-        {% include 'base/partials/nav.html' %}
-    </header>
+<header class="header">
+    <img class="logo-image" src="https://res.cloudinary.com/deztgvefu/image/upload/v1705781052/template_images/giphy_s_bpsdcn.webp" alt="Logo">
+{#    <h1 class="logo-text">FINE JEWELRIES</h1>#}
+    <span class="logo-title">FINE JEWELRIES</span>
+    <nav class="navigation">
+        <ul class="dropdown" role="list" tabindex="0">
+{#        <span>BY CATEGORY<i class="fa-solid fa-sort-down"></i></span>#}
+            <li class="nav-item">
+                BY CATEGORY<i class="fa-solid fa-sort-down"></i>
+            </li>
+            <li class="dropdown-content">
+                {% for category, title in categories_by_choices.items %}
+                    <a href="{% url 'display_jewelries_by_category' selected_pk=category.pk %}">{{ title }}</a>
+                {% endfor %}
+            </li>
+        </ul>
+        <ul class="dropdown" role="list" tabindex="0">
+{#        <span>BY METAL<i class="fa-solid fa-sort-down"></i></span>#}
+            <li class="nav-item">
+                BY METAL<i class="fa-solid fa-sort-down"></i>
+            </li>
+            <li class="dropdown-content">
+                {% for metal, title in metals_by_choices.items %}
+                    <a href="{% url 'display_jewelries_by_metal' selected_pk=metal.pk %}">{{ title }}</a>
+                {% endfor %}
+            </li>
+        </ul>
+        <ul class="dropdown" role="list" tabindex="0">
+{#        <span>BY GEMSTONE<i class="fa-solid fa-sort-down"></i></span>#}
+            <li class="nav-item">
+                BY GEMSTONE<i class="fa-solid fa-sort-down"></i>
+            </li>
+            <li class="dropdown-content">
+                {% for stone_type, title in stone_types_by_choices.items %}
+                    <a href="{% url 'display_jewelries_by_stone_type' selected_pk=stone_type.pk %}">{{ title }}</a>
+                {% endfor %}
+            </li>
+        </ul>
+        <ul class="dropdown" role="list" tabindex="0">
+{#        <span>BY COLOR<i class="fa-solid fa-sort-down"></i></span>#}
+            <li class="nav-item">
+                BY COLOR<i class="fa-solid fa-sort-down"></i>
+            </li>
+            <li class="dropdown-content">
+                {% for stone_color, title in stone_colors_by_choices.items %}
+                    <a href="{% url 'display_jewelries_by_stone_color' selected_pk=stone_color.pk %}">{{ title }}</a>
+                {% endfor %}
+            </li>
+        </ul>
+    </nav>
+    <div class="search-item">
+        <form action="{% url 'search_bar' %}?page={{ page_obj.number }}">
+            <input type="checkbox" id="search-toggle" class="search-toggle">
+            <input class="search" name="search" value="{{ search }}">
+            <label for="search-toggle" class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </label>
+        </form>
+    </div>
+    <div class="profile-item">
+        {% if not request.user.is_authenticated %}
+            <a href="{% url 'login_user' %}">
+                <i class="fa-regular fa-user"></i>
+            </a>
+        {% else %}
+            <a href="{% url 'logout_user' %}">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+            <a href="{% url 'update_user' pk=request.user.pk %}">
+                <i class="fa-regular fa-user"></i>
+            </a>
+        {% endif %}
+    </div>
+    <div class="shopping-cart-item">
+        <a href="{% url 'view_shopping_cart' %}">
+            <i class="fa-solid fa-basket-shopping"></i>
+        </a>
+    </div>
+    <div class="wish-list-item">
+        <a href="{% url 'display_liked_jewelries' %}">
+            <i class="fa-regular fa-heart"></i>
+        </a>
+    </div>
+</header>
 <main>
     {% block page_content %}
     {% endblock %}
 </main>
-    <footer>
-        <div class="footer-content">
-            © 2024 Fine Jewelries | Beatris Ilieve | beatrisilieve@icloud.com
-        </div>
-    </footer>
+<footer>
+    <div class="footer-content">
+        © 2024 Fine Jewelries | Beatris Ilieve | beatrisilieve@icloud.com
+    </div>
+</footer>
 </body>
 </html>
 

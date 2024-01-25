@@ -4,7 +4,7 @@
 {% load static %}
 {% block page_content %}
     <section class="login-or-register">
-        <div>
+        <div class="login">
             <h2>Registered Customers</h2>
             <h4>Please Sign In to access your account</h4>
             <form action="{% url 'login_user' %}" method="post">
@@ -16,7 +16,7 @@
                 {% csrf_token %}
             </form>
         </div>
-        <div>
+        <div class="register">
             <h2>New Customers</h2>
             <h4>Register with <i>FINE JEWELRIES</i> for the following benefits:</h4>
             <ul>
