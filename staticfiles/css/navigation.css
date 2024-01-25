@@ -10,13 +10,12 @@
 }
 
 
-
 .navigation {
     margin-right: auto;
 }
 
-.header .logo {
-    margin-right: 5px;
+.header .logo-image {
+    /*margin-right: 5px;*/
     display: flex;
 }
 

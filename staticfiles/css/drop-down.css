@@ -12,7 +12,6 @@
   z-index: 1;
 }
 
-/* Style for the dropdown menu items */
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
@@ -20,7 +19,6 @@
   display: block;
 }
 
-/* Show the dropdown menu when the button is hovered */
 .dropdown:focus-within .dropdown-content {
   display: block;
 }
