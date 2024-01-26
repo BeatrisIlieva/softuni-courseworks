@@ -6,10 +6,10 @@ from e_commerce_website.core.mixins import ChoicesMaxLengthMixin
 
 class Category(models.Model):
     class TitleChoices(ChoicesMaxLengthMixin, models.TextChoices):
-        BRACELET = "B", _("Bracelets")
-        EARRING = "E", _("Earrings")
-        NECKLACE = "N", _("Necklaces")
-        RING = "R", _("Rings")
+        BRACELET = "B", _("Bracelet")
+        EARRING = "E", _("Earring")
+        NECKLACE = "N", _("Necklace")
+        RING = "R", _("Ring")
 
     title = models.CharField(
         max_length=TitleChoices.max_length(),

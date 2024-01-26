@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import FormMixin
 from e_commerce_website.jewelry.mixins import (
     DisplayJewelryMixin, LastViewedJewelriesMixin,
-    JewelryStonesMixin, JewelryMetalsMixin
+    JewelryStonesMixin, JewelryMetalsMixin, JewelriesStonesMixin, JewelriesMetalsMixin
 )
 from e_commerce_website.jewelry.models import (
     Jewelry, StoneType, StoneColor
@@ -20,7 +20,7 @@ from e_commerce_website.jewelry.funcs import (
 )
 
 
-class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
+class DisplayJewelriesByCategoryView(DisplayJewelryMixin, JewelriesStonesMixin, JewelriesMetalsMixin):
     template_name = 'jewelry/display_jewelries_by_category.html'
 
     def __init__(self, *args, **kwargs):
@@ -29,6 +29,9 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         self.jewelries_count_by_metal = {}
         self.jewelries_count_by_stone_type = {}
         self.jewelries_count_by_stone_color = {}
+        self.jewelries_by_metals = {}
+        self.jewelries_by_stones = {}
+        self.jewelries_by_price = {}
         self.selection_form = JewelryCategoryForm
 
     def get_queryset(self):
@@ -141,6 +144,12 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
         context['jewelries_count_by_price'] = \
             self.jewelries_count_by_price
 
+        context['jewelries_by_metals'] = \
+            self.jewelries_by_metals
+
+        context['jewelries_by_stones'] = \
+            self.jewelries_by_stones
+
         return context
 
     def update_related_objects(
@@ -198,6 +207,9 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin):
                 stone_type_choices=stone_type_choices,
                 stone_color_choices=stone_color_choices,
             )
+
+        self.jewelries_by_metals = self.get_jewelries_metals(jewelries)
+        self.jewelries_by_stones = self.get_jewelries_stones(jewelries)
 
 
 class DisplayJewelriesByMetalView(DisplayJewelryMixin):

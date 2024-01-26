@@ -7,11 +7,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fine Jewelries</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'fonts/fonts.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'cursor/cursor.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'icons/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'cursor/cursor.css' %}">
+    <link rel="stylesheet" href="{% static 'icons/icons.css' %}">
 </head>
 <body>
 <header class="header">
@@ -64,7 +64,7 @@
             </li>
         </ul>
     </nav>
-    <div class="search-item">
+    <div class="icon-item">
         <form action="{% url 'search_bar' %}?page={{ page_obj.number }}">
             <input type="checkbox" id="search-toggle" class="search-toggle">
             <input class="search" name="search" value="{{ search }}">
@@ -73,7 +73,7 @@
             </label>
         </form>
     </div>
-    <div class="profile-item">
+    <div class="icon-item">
         {% if not request.user.is_authenticated %}
             <a href="{% url 'login_user' %}">
                 <i class="fa-regular fa-user"></i>
@@ -87,12 +87,12 @@
             </a>
         {% endif %}
     </div>
-    <div class="shopping-cart-item">
+    <div class="icon-item">
         <a href="{% url 'view_shopping_cart' %}">
             <i class="fa-solid fa-basket-shopping"></i>
         </a>
     </div>
-    <div class="wish-list-item">
+    <div class="icon-item">
         <a href="{% url 'display_liked_jewelries' %}">
             <i class="fa-regular fa-heart"></i>
         </a>

@@ -4,9 +4,8 @@
 <div class="separator-line-jewelry">
   {% for jewelry in object_list %}
     <section class="jewelry-item">
-    <div >
       <a href="{% url 'view_jewelry' jewelry.pk %}?page={{ page_obj.number }}" title="{{ jewelry.title }}">
-        <img src="{{ jewelry.first_image_url }}" alt="{{ jewelry.title }} image">
+        <img class="img-cover" src="{{ jewelry.first_image_url }}" alt="{{ jewelry.title }} image">
       </a>
       <a href="{% url 'like_jewelry' jewelry_pk=jewelry.pk %}" class="like-button">
         {% if jewelry.liked_by_user %}
@@ -46,7 +45,6 @@
           </svg>
         {% endif %}
       </a>
-    </div>
     </section>
   {% endfor %}
 </div>

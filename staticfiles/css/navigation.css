@@ -41,25 +41,13 @@
     display: inline-block;
 }
 
-.search-item {
-    display: inline-block;
-}
-
-.profile-item {
-    display: inline-block;
-}
-
-.shopping-cart-item {
-    display: inline-block;
-}
-
-.wish-list-item {
+.icon-item {
     display: inline-block;
 }
 
 .header i {
     color: white;
-    margin-left: 14px;
+    margin-left: 18px;
 }
 
 .header i:hover, li:hover {

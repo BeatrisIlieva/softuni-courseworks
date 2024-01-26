@@ -323,7 +323,41 @@ class JewelryIsLikedByUserMixin:
             for jewelry in queryset:
                 jewelry.liked_by_user = jewelry.pk in liked_jewelries
 
+class JewelriesStonesMixin:
+    @staticmethod
+    def get_jewelries_stones(jewelries):
+        stones_info_dict = {}
 
+        for jewelry in jewelries:
+            jewelry_stones = jewelry.jewelry_stones.all()
+
+            for jewelry_stone in jewelry_stones:
+                stone_color = jewelry_stone.stone_color.get_title_display()
+                stone_type = jewelry_stone.stone_type.get_title_display()
+
+                stones_info_dict[jewelry.pk] = {stone_color: stone_type}
+
+        return stones_info_dict
+
+
+class JewelriesMetalsMixin:
+    @staticmethod
+    def get_jewelries_metals(jewelries):
+        metals_info_dict = {}
+        for jewelry in jewelries:
+            jewelry_metals = jewelry.jewelry_metals.all()
+
+            for jewelry_metal in jewelry_metals:
+                metal = jewelry_metal.metal.get_title_display()
+
+                if jewelry_metal.gold_carat:
+                    gold_carat = jewelry_metal.gold_carat.get_weight_display()
+                    metals_info_dict[jewelry.pk] = {metal: gold_carat}
+
+                else:
+                    metals_info_dict[jewelry.pk] = {metal: None}
+
+        return metals_info_dict
 
 
 

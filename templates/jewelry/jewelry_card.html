@@ -1,0 +1,52 @@
+{% for jewelry in object_list %}
+    <article class="card">
+        <div class="thumbnail">
+            <a
+                    href="{% url 'view_jewelry' jewelry.pk %}?page={{ page_obj.number }}"
+                    title="{{ jewelry.title }}">
+                <img
+                        class="thumbnail__img"
+                        src="{{ jewelry.first_image_url }}"
+                        alt="{{ jewelry.title }} image"
+                />
+            </a>
+        </div>
+        <div class="content">
+            <h2 class="content__title">
+                {{ jewelry.title }}
+            </h2>
+            <p class="content__category">
+                {{ jewelry.category.get_title_display }}
+            </p>
+            <ul class="content__characteristics" role="list">
+                {% for metal_info in jewelry.jewelry_metals.all %}
+                    <li class="characteristic">
+                        <i class="metal__icon fa-solid fa-coins"></i>
+                        {% if metal_info.gold_carat %}
+                            <span>{{ metal_info.gold_carat.get_weight_display }} {{ metal_info.metal.get_title_display }}</span>
+                        {% else %}
+                            <span>{{ metal_info.metal.get_title_display }}</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+{#            </ul>#}
+{#            <ul class="content__stones" role="list">#}
+                {% for stone_info in jewelry.jewelry_stones.all %}
+                    <li class="characteristic">
+                        <i class="stone__icon fa-solid fa-gem"></i>
+                        {% if stone_info.stone_carat %}
+                            <span>{{ stone_info.stone_color.get_title_display }} {{ stone_info.stone_carat }}ct. {{ stone_info.stone_type.get_title_display }}</span>
+                        {% else %}
+                            <span>{{ stone_info.stone_color.get_title_display }} {{ stone_info.stone_type.get_title_display }}</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% with inventory=jewelry.inventory_set.first %}
+                <p class="content__price">
+                    <i class="price__icon fa-solid fa-sack-dollar"></i> {{ inventory.price|floatformat:0 }}
+                </p>
+            {% endwith %}
+        </div>
+    </article>
+{% endfor %}
