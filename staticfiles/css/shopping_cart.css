@@ -1,8 +1,8 @@
 .grid-container-shopping-cart-top {
     display: grid;
     text-align: center;
-      justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
     gap: 8px;
     border-bottom-color: #ffa6c9;
     border-bottom-style: dotted;
@@ -37,13 +37,13 @@
 }
 
 .grid-container-shopping-cart-bottom {
-        display: grid;
-        text-align: center;
-      justify-content: center;
-  align-items: center;
-        margin-bottom: 12px;
-        border-bottom-color: #ffa6c9;
-        border-bottom-left-radius: 22px;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom-color: #ffa6c9;
+    border-bottom-left-radius: 22px;
     border-bottom-right-radius: 22px;
     border-bottom-style: dotted;
     gap: 8px;
@@ -63,27 +63,20 @@
 }
 
 
-
 .grid-container-shopping-cart {
     display: grid;
-        text-align: center;
-      justify-content: center;
-  align-items: center;
-        margin-bottom: 12px;
-        border-bottom-color: #ffa6c9;
-        border-bottom-left-radius: 22px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom-color: #ffa6c9;
+    border-bottom-left-radius: 22px;
     border-bottom-right-radius: 22px;
     border-bottom-style: dotted;
     gap: 8px;
     grid-template-columns: repeat(4, 1fr);
-    /*grid-template-rows: repeat(auto-fill, auto);*/
     grid-template-areas:
-        /*"header header header header header"*/
-        /*"item-label item-label item-label quantity-label price-label"*/
         "item materials-and-size quantity price";
-
-        /*". . . total-price-label total-price-sum"*/
-        /*". . . checkout checkout";*/
 }
 
 .grid-container-item {
