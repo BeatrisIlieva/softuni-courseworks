@@ -34,7 +34,7 @@
                         <li class="characteristic">
                             <i class="stone__icon fa-solid fa-gem"></i>
                             {% if stone_info.stone_carat %}
-                                <span>{{ stone_info.stone_color.get_title_display }} {{ stone_info.stone_carat }}ct. {{ stone_info.stone_type.get_title_display }}</span>
+                                <span>{{ stone_info.stone_color.get_title_display }} {{ stone_info.stone_type.get_title_display }} {{ stone_info.stone_carat }}ct.</span>
                             {% else %}
                                 <span>{{ stone_info.stone_color.get_title_display }} {{ stone_info.stone_type.get_title_display }}</span>
                             {% endif %}

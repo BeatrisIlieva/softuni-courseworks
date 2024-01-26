@@ -1,0 +1,91 @@
+.grid-container-shopping-cart {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+        "header header header header header header header"
+        "title-label title-label metals-label stones-label size-label quantity-label price-label"
+        "image image metals stones size quantity price"
+        "image image metals stones size quantity price"
+        "image image metals stones size quantity price"
+        "image image metals stones size quantity price"
+        "total-price-label total-price-label total-price-label total-price-label total-price-label total-price-sum total-price-sum"
+        "checkout checkout checkout checkout checkout checkout checkout";
+}
+
+.grid-container-shopping-cart div {
+    border-top: none;
+    border-bottom: 1px solid #ffa6c9;
+    /*border-style: dotted;*/
+    /*border-color: #ffa6c9;*/
+}
+
+.grid-container-shopping-cart div img {
+    max-width: 75%;
+    height: auto;
+}
+
+.shopping-cart-header {
+    grid-area: header;
+}
+
+.shopping-cart-image {
+    grid-area: image;
+}
+
+.shopping-cart-metals {
+    grid-area: metals;
+}
+
+.shopping-cart-stones {
+    grid-area: stones;
+}
+
+.shopping-cart-size {
+    grid-area: size;
+}
+
+.shopping-cart-quantity {
+    grid-area: quantity;
+}
+
+.shopping-cart-price {
+    grid-area: price;
+}
+
+.shopping-cart-total-price-label {
+    grid-area: total-price-label;
+}
+
+.shopping-cart-total-price-sum {
+    grid-area: total-price-sum;
+}
+
+.shopping-cart-checkout {
+    grid-area: checkout;
+}
+
+.shopping-cart-title-label {
+    grid-area: title-label;
+}
+
+.shopping-cart-metals-label {
+    grid-area: metals-label;
+}
+
+.shopping-cart-stones-label {
+    grid-area: stones-label;
+}
+
+.shopping-cart-size-label {
+    grid-area: size-label;
+}
+
+.shopping-cart-quantity-label {
+    grid-area: quantity-label;
+}
+
+.shopping-cart-total-label {
+    grid-area: price-label;
+}
