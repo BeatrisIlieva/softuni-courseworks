@@ -1,85 +1,27 @@
-.grid-container-shopping-cart {
+.grid-container-shopping-cart-top {
     display: grid;
+    text-align: center;
+      justify-content: center;
+  align-items: center;
     gap: 8px;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    border-bottom-color: #ffa6c9;
+    border-bottom-style: dotted;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+
+    margin-bottom: 22px;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
-        "header header header header header header header"
-        "title-label title-label metals-label stones-label size-label quantity-label price-label"
-        "image image metals stones size quantity price"
-        "image image metals stones size quantity price"
-        "image image metals stones size quantity price"
-        "image image metals stones size quantity price"
-        "total-price-label total-price-label total-price-label total-price-label total-price-label total-price-sum total-price-sum"
-        "checkout checkout checkout checkout checkout checkout checkout";
-}
-
-.grid-container-shopping-cart div {
-    border-top: none;
-    border-bottom: 1px solid #ffa6c9;
-    /*border-style: dotted;*/
-    /*border-color: #ffa6c9;*/
-}
-
-.grid-container-shopping-cart div img {
-    max-width: 75%;
-    height: auto;
+        "header header header header"
+        "item-label materials-and-size-label quantity-label price-label"
 }
 
 .shopping-cart-header {
     grid-area: header;
 }
 
-.shopping-cart-image {
-    grid-area: image;
-}
-
-.shopping-cart-metals {
-    grid-area: metals;
-}
-
-.shopping-cart-stones {
-    grid-area: stones;
-}
-
-.shopping-cart-size {
-    grid-area: size;
-}
-
-.shopping-cart-quantity {
-    grid-area: quantity;
-}
-
-.shopping-cart-price {
-    grid-area: price;
-}
-
-.shopping-cart-total-price-label {
-    grid-area: total-price-label;
-}
-
-.shopping-cart-total-price-sum {
-    grid-area: total-price-sum;
-}
-
-.shopping-cart-checkout {
-    grid-area: checkout;
-}
-
-.shopping-cart-title-label {
-    grid-area: title-label;
-}
-
-.shopping-cart-metals-label {
-    grid-area: metals-label;
-}
-
-.shopping-cart-stones-label {
-    grid-area: stones-label;
-}
-
-.shopping-cart-size-label {
-    grid-area: size-label;
+.shopping-cart-item-label {
+    grid-area: item-label;
 }
 
 .shopping-cart-quantity-label {
@@ -89,3 +31,78 @@
 .shopping-cart-total-label {
     grid-area: price-label;
 }
+
+.shopping-cart-total-price-label {
+    grid-area: total-price-label;
+}
+
+.grid-container-shopping-cart-bottom {
+        display: grid;
+        text-align: center;
+      justify-content: center;
+  align-items: center;
+        margin-bottom: 12px;
+        border-bottom-color: #ffa6c9;
+        border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+    border-bottom-style: dotted;
+    gap: 8px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        ". .  total-price-label total-price-sum"
+        ". .  checkout checkout";
+}
+
+
+.shopping-cart-total-price-sum {
+    grid-area: total-price-sum;
+}
+
+.shopping-cart-checkout {
+    grid-area: checkout;
+}
+
+
+
+.grid-container-shopping-cart {
+    display: grid;
+        text-align: center;
+      justify-content: center;
+  align-items: center;
+        margin-bottom: 12px;
+        border-bottom-color: #ffa6c9;
+        border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+    border-bottom-style: dotted;
+    gap: 8px;
+    grid-template-columns: repeat(4, 1fr);
+    /*grid-template-rows: repeat(auto-fill, auto);*/
+    grid-template-areas:
+        /*"header header header header header"*/
+        /*"item-label item-label item-label quantity-label price-label"*/
+        "item materials-and-size quantity price";
+
+        /*". . . total-price-label total-price-sum"*/
+        /*". . . checkout checkout";*/
+}
+
+.grid-container-item {
+    display: grid;
+}
+
+.grid-container-item.shopping-cart-quantity {
+    grid-area: quantity;
+}
+
+.grid-container-item.shopping-cart-price {
+    grid-area: price;
+}
+
+.grid-container-item.shopping-cart-item {
+    grid-area: item;
+}
+
+.grid-container-item.shopping-cart-materials-and-size {
+    grid-area: materials-and-size;
+}
+
