@@ -1,4 +1,12 @@
 body {
     margin: 0;
     background-color: white;
+    font-size: 0px;
+}
+
+footer {
+    font-size: 16px;
+    text-align: center;
+    background-color: #040720;
+    color: white;
 }
