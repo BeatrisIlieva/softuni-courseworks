@@ -2,9 +2,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px 32px;
+    margin: 12px 36px;
 }
 
 .card {
+
     /*max-width: calc(100% / 3);*/
     border-radius: 12px;
     overflow: hidden;
@@ -21,6 +23,7 @@
     aspect-ratio: 1 / 1;
     border-radius: 12px;
     background-color: #fff6fa;
+            position: relative;
 }
 
 .thumbnail__img {
@@ -79,4 +82,10 @@ ul.content__characteristics {
 .characteristic:not(:last-child){
     margin-right: 4px;
     margin-bottom: 4px;
+}
+
+.like-button {
+    position: absolute;
+    right: 20px;
+    top: 10px;
 }

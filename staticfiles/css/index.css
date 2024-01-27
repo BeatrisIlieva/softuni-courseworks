@@ -1,0 +1,14 @@
+.hero {
+    height: 100vh;
+    position: relative;
+}
+
+.hero .hero__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.hero .hero__title {
+    position: absolute;
+}

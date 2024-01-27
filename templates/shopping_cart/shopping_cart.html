@@ -101,7 +101,7 @@
             <div class="shopping-cart-checkout">
                 {% if request.user.is_authenticated %}
                     <form action="{% url 'complete_order' request.user.pk %}" method="get">
-                        <button class="button hover filled_green">
+                        <button style="background-color: green" class="button hover filled_green">
                             <i class="fa-regular fa-credit-card"></i> CHECKOUT
                         </button>
                         {% csrf_token %}

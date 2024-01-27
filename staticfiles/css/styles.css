@@ -1,7 +1,9 @@
 @import "./reset.css";
 @import "./navigation.css";
+@import "./index.css";
 @import "./drop-down.css";
 @import "./choices_checkboxes.css";
 @import "./jewelry_card.css";
 @import "./base.css";
 @import "./shopping_cart.css";
+@import "./button.css";
