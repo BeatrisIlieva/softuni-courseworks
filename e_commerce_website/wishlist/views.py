@@ -112,6 +112,10 @@ class DisplayedLikedJewelries(NavigationBarMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
+        count_liked_jewelries = len(self.get_queryset())
+
+        context['count_liked_jewelries'] = count_liked_jewelries
+
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
 

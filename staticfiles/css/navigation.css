@@ -55,6 +55,18 @@
     color: #ffa6c9;
 }
 
+.likes-count-nav {
+    font-size: 16px;
+    font-family: Arial;
+    font-weight: 200;
+}
+
+.cart-count-nav {
+    font-size: 16px;
+    font-family: Arial;
+    font-weight: 200;
+}
+
 /*nav ul {*/
 /*  !*text-align: center;*!*/
 /*  z-index: 10;*/

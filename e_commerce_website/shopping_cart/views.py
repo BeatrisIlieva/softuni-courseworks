@@ -27,8 +27,6 @@ class AddToShoppingCartView(RedirectView):
         quantity = self.QUANTITY_TO_DECREASE_UPON_ADDING_TO_SHOPPING_CART
         pk = self.kwargs.get('pk')
 
-
-
         jewelry = Jewelry.objects.get(pk=pk)
         jewelry_pk = str(jewelry.pk)
         cart = self.request.session.get('cart', {})

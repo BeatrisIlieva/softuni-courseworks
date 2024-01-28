@@ -16,8 +16,8 @@ from e_commerce_website.jewelry.models import Category, \
 #         return cache_page(30)(view)
 
 class NavigationBarMixin(View):
-    @staticmethod
-    def get_nav_bar_context():
+
+    def get_nav_bar_context(self):
         context = {}
 
         categories_by_choices = get_objects_by_choices(Category)
@@ -33,6 +33,17 @@ class NavigationBarMixin(View):
         context['metals_by_choices'] = metals_by_choices
         context['stone_types_by_choices'] = stone_types_by_choices
         context['stone_colors_by_choices'] = stone_colors_by_choices
+
+        liked_jewelries = self.request.session.get('liked_jewelries', [])
+
+        likes_count = len(liked_jewelries)
+
+        cart = self.request.session.get('cart', {})
+
+        cart_count = len(cart)
+
+        context['likes_count'] = likes_count
+        context['cart_count'] = cart_count
 
 
         # if not cache.get('context'):
