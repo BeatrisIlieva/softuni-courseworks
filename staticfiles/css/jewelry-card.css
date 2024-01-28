@@ -10,14 +10,14 @@
     border-radius: 12px;
     overflow: hidden;
     border-style: dotted;
-    border-color: #fff6fa;
+    border-color: #fff8fa;
     font-size: 0;
 }
 
 .jewelry-card-thumbnail {
     aspect-ratio: 1 / 1;
     border-radius: 12px;
-    background-color: #fff6fa;
+    background-color: #fff8fa;
     position: relative;
 }
 
@@ -40,13 +40,13 @@
     transition: bottom 300ms linear;
 
 background: rgb(4,7,32);
-background: linear-gradient(0deg, rgba(4,7,32,0.9262298669467787) 0%, rgba(171,124,148,0.5032606792717087) 30%, rgba(255,183,206,0.06068364845938379) 63%);
+background: linear-gradient(0deg, rgba(4,7,32,0.9262298669467787) 0%, rgba(255,183,206,0.7413559173669468) 30%, rgba(255,248,250,0) 63%);
 }
 
 .jewelry-card .jewelry-card-meta{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    color: white;
+    color: #040720;
     margin-bottom: 12px;
 }
 

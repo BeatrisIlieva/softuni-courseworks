@@ -13,7 +13,7 @@
                 </a>
                 <a href="{% url 'like_jewelry' jewelry_pk=jewelry.pk %}" class="like-button">
                     {% if jewelry.liked_by_user %}
-                        <svg style="color: #FFA7A6"
+                        <svg style="color: #ffb7ce"
                              xmlns="http://www.w3.org/2000/svg"
                              width="24"
                              height="24"
@@ -22,13 +22,13 @@
                              viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
                                   d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                                  fill="#FFA7A6">
+                                  fill="#ffb7ce">
                             </path>
                         </svg>
                     {% else %}
                         <svg aria-label="Like"
                              color="#262626"
-                             fill="#FFA7A6"
+                             fill="#ffb7ce"
                              height="24"
                              role="img"
                              viewBox="0 0 48 48"

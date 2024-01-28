@@ -1,9 +1,11 @@
 .grid-container-shopping-cart-top {
     display: grid;
+    font-size: 18px;
     text-align: center;
     justify-content: center;
     align-items: center;
     gap: 8px;
+    margin: 32px;
     border-bottom-color: #ffa6c9;
     border-bottom-style: dotted;
     border-bottom-left-radius: 22px;
@@ -39,9 +41,10 @@
 .grid-container-shopping-cart-bottom {
     display: grid;
     text-align: center;
+        font-size: 18px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 22px;
+    margin: 32px;
     border-bottom-color: #ffa6c9;
     border-bottom-left-radius: 22px;
     border-bottom-right-radius: 22px;
@@ -72,15 +75,16 @@
 .grid-container-shopping-cart {
     display: grid;
     text-align: center;
+        font-size: 18px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 12px;
     border-bottom-color: #ffa6c9;
     border-bottom-left-radius: 22px;
     border-bottom-right-radius: 22px;
     border-bottom-style: dotted;
     gap: 8px;
-    padding-bottom: 18px;
+    margin: 32px;
+    padding-bottom: 32px;
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
         "item materials-and-size quantity price";
