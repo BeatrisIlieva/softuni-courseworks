@@ -36,7 +36,7 @@ class RegisterUserView(NavigationBarMixin, CreateView):
 
 
 class LoginUserView(NavigationBarMixin, LoginView):
-    template_name = 'accounts/login.html'
+    template_name = 'accounts/login-or-register.html'
     form_class = LoginUserForm
 
     def get_context_data(self, **kwargs):

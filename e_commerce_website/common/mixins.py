@@ -8,6 +8,8 @@ from e_commerce_website.jewelry.models import Category, \
     Metal, \
     StoneType, \
     StoneColor
+from e_commerce_website.wishlist.models import JewelryLike
+
 
 # class CachedViewMixin:
 #     @classmethod
@@ -34,9 +36,10 @@ class NavigationBarMixin(View):
         context['stone_types_by_choices'] = stone_types_by_choices
         context['stone_colors_by_choices'] = stone_colors_by_choices
 
-        liked_jewelries = self.request.session.get('liked_jewelries', [])
-
-        likes_count = len(liked_jewelries)
+        if self.request.user.pk:
+            likes_count = JewelryLike.objects.filter(user_id=self.request.user.pk).count()
+        else:
+            likes_count = len(self.request.session.get('liked_jewelries', []))
 
         cart = self.request.session.get('cart', {})
 

@@ -10,3 +10,7 @@ footer {
     background-color: #040720;
     color: white;
 }
+
+input {
+    font-size: 16px;
+}

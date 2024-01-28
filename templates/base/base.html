@@ -16,7 +16,7 @@
 <body>
 <header class="header">
     <img class="logo-image"
-         src="https://res.cloudinary.com/deztgvefu/image/upload/v1705781052/template_images/giphy_s_bpsdcn.webp"
+         src="https://res.cloudinary.com/deztgvefu/image/upload/v1706426486/template_images/cute-little-pink-cat-watercolor-png_2_kxmwtq.webp"
          alt="Logo">
     {#    <h1 class="logo-text">FINE JEWELRIES</h1>#}
     <span class="logo-title">FINE JEWELRIES</span>
@@ -92,7 +92,9 @@
             <i class="fa-solid fa-basket-shopping"><span class="cart-count-nav">({{ cart_count }})</span></i>
         </a>
         {% else %}
-        <i class="fa-solid fa-basket-shopping"></i>
+                <a href="{% url 'view_shopping_cart' %}">
+            <i class="fa-solid fa-basket-shopping"></i>
+        </a>
         {% endif %}
     </div>
     <div class="icon-item">

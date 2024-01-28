@@ -1,0 +1,61 @@
+.jewelry-cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 32px;
+    padding: 12px 36px;
+    text-align: center;
+}
+
+.jewelry-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border-style: dotted;
+    border-color: #fff6fa;
+    font-size: 0;
+}
+
+.jewelry-card-thumbnail {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    background-color: #fff6fa;
+    position: relative;
+}
+
+.jewelry-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jewelry-card .jewelry-card-content {
+    position: absolute;
+    /*bottom: -100%;*/
+    /*bottom: -441px;*/
+    left: 0;
+    width: 100%;
+    font-size: 18px;
+    color: #040720;
+    padding: 12px;
+    transition: bottom 300ms linear;
+
+background: rgb(4,7,32);
+background: linear-gradient(0deg, rgba(4,7,32,0.9262298669467787) 0%, rgba(171,124,148,0.5032606792717087) 30%, rgba(255,183,206,0.06068364845938379) 63%);
+}
+
+.jewelry-card .jewelry-card-meta{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color: white;
+    margin-bottom: 12px;
+}
+
+.jewelry-card .jewelry-card-description {
+    height: 431px;
+    overflow: hidden;
+    /*margin-top: 10px;*/
+}
+
+.jewelry-card:hover .jewelry-card-content{
+        bottom: 0px;
+}
+

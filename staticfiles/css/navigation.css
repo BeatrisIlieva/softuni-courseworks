@@ -18,13 +18,19 @@
 .header .logo-image {
     /*margin-right: 5px;*/
     display: flex;
+    width: 100px;
+    height: 100px;
 }
 
 .header .logo-title {
     margin-right: auto;
+    border-bottom-color: #ffa6c9;
+    border-bottom-right-radius: 10px;
+    border-bottom-style: ridge;
 }
 
-.navigation .dropdown{
+
+.navigation .dropdown {
     display: inline-block;
     margin-left: 22px;
 }

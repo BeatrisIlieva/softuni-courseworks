@@ -77,14 +77,14 @@ DATABASES = {
 SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
 
-CACHES = {
-    'default': {
-        'BACKEND':
-            'django.core.cache.backends.redis.RedisCache',
-        'LOCATION':
-            'redis://127.0.0.1:6379',
-    },
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND':
+#             'django.core.cache.backends.redis.RedisCache',
+#         'LOCATION':
+#             'redis://127.0.0.1:6379',
+#     },
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
