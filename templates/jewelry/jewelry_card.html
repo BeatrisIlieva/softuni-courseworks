@@ -49,7 +49,7 @@
                         </svg>
                     {% endif %}
                 </a>
-                <div class="jewelry-card-content">
+                <div class="jewelry-card-content" onclick="window.location='{% url 'view_jewelry' jewelry.pk %}?page={{ page_obj.number }}'">
                     <p class="jewelry-card-description">
                     <ul class="jewelry-card-meta" role="list">
                         <li class="jewelry-card-meta-item">
