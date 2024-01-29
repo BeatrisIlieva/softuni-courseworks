@@ -62,8 +62,11 @@
 }
 
 .complete-order-container .delivery-action .delivery-button {
+    display: flex;
     padding: 12px;
     width: 100%;
     flex: 1 1 30%;
+    align-items: center;
+    justify-content: center;
 
 }
