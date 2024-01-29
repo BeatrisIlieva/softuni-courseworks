@@ -17,6 +17,9 @@ class AccountProfile(models.Model):
     ONLY_DIGITS_PHONE_NUMBER_EXCEPTION_MESSAGE = \
         'Ensure your Phone Number contains only digits.'
 
+    ONLY_LETTERS_CITY_EXCEPTION_MESSAGE = \
+        'Ensure your Your City contains only letters.'
+
     FIRST_NAME_MIN_LENGTH = 2
     FIRST_NAME_MAX_LENGTH = 30
 
@@ -25,6 +28,12 @@ class AccountProfile(models.Model):
 
     PHONE_NUMBER_MIN_LENGTH = 10
     PHONE_NUMBER_MAX_LENGTH = 30
+
+    CITY_MIN_LENGTH = 2
+    CITY_MAX_LENGTH = 30
+
+    ADDRESS_MIN_LENGTH = 2
+    ADDRESS_MAX_LENGTH = 30
 
     first_name = models.CharField(
         max_length=FIRST_NAME_MAX_LENGTH,
@@ -77,7 +86,21 @@ class AccountProfile(models.Model):
 
     country = CountryField()
 
-    city = models.CharField()
+    city = models.CharField(
+        max_length=CITY_MAX_LENGTH,
+        error_messages={'max_length': f'Ensure your City does not exceed {CITY_MAX_LENGTH} characters.'},
+
+        validators=(
+            validators.MinLengthValidator(
+                CITY_MIN_LENGTH,
+                message=f'Ensure your City consist of at least {CITY_MIN_LENGTH} characters.'
+            ),
+
+            OnlyLettersValidator(
+                error_message=ONLY_LETTERS_CITY_EXCEPTION_MESSAGE
+            )
+        ),
+    )
 
     delivery_address = models.CharField()
 
