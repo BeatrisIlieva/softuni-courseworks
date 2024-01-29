@@ -71,8 +71,6 @@
 
 .complete-order-container .delivery-action .delivery-button{
     padding: 12px;
-    /*display: inline-block;*/
-    /*width: 100%;*/
         width: 100%;
     /*height: 100%;*/
         flex: 1 1 30%;
