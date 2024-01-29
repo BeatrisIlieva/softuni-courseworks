@@ -28,15 +28,18 @@
                         <span class="card-element-field">
                             {{ form.cvv_code }}
                         </span>
-                        {#            {{ form.as_p }}#}
                         <span class="card-element-field">
                             <button class="button hover filled_pink" type="submit"><i class="fa-regular fa-credit-card"></i> Make Payment</button>
                         </span>
                         {% csrf_token %}
                     </fieldset>
                 </section>
-
             </div>
         </form>
+                    <div class="error-container">
+                {% for field, error in form.errors.items %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
+            </div>
     </article>
 {% endblock %}
