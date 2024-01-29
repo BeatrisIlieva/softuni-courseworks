@@ -1,7 +1,6 @@
 .complete-order-container {
     font-size: 18px;
     color: black;
-    /*max-width: 100vw;*/
     display: flex;
 }
 
@@ -12,7 +11,6 @@
 }
 
 .personal-element-label {
-    /*border: 1px solid black;*/
     padding: 12px;
     display: inline-block;
     width: 100%;
@@ -25,7 +23,6 @@
 }
 
 .delivery-element-label {
-    /*border: 1px solid black;*/
     padding: 12px;
     display: inline-block;
     width: 100%;
@@ -37,17 +34,17 @@
     width: 100%;
 }
 
-.complete-order-container .personal-information{
+.complete-order-container .personal-information {
     flex-wrap: wrap;
     width: 30%;
 }
 
-#information-title{
+#information-title {
     font-size: 22px;
     font-weight: 800;
 }
 
-.complete-order-container .delivery-information{
+.complete-order-container .delivery-information {
     flex-wrap: wrap;
     width: 30%;
 }
@@ -57,16 +54,16 @@
     width: 40%;
 }
 
-.complete-order-container .delivery-action .delivery-image{
+.complete-order-container .delivery-action .delivery-image {
     padding: 12px;
     width: 100%;
     flex: 1 1 70%;
 
 }
 
-.complete-order-container .delivery-action .delivery-button{
+.complete-order-container .delivery-action .delivery-button {
     padding: 12px;
-        width: 100%;
-        flex: 1 1 30%;
+    width: 100%;
+    flex: 1 1 30%;
 
 }
