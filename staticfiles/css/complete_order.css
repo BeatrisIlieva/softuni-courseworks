@@ -35,11 +35,8 @@
     color: black;
     display: flex;
     margin: 12px 32px;
-    /*height: 40vh;*/
         position: absolute;
     justify-content: space-evenly;
-    /*flex-direction: column;*/
-    /*right: -20%;*/
     top: 0;
     width: 100%;
 }
