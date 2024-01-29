@@ -8,11 +8,14 @@ from e_commerce_website.profiles.validators import (
 
 
 class AccountProfile(models.Model):
-    ONLY_LETTERS_EXCEPTION_MESSAGE = \
-        'Ensure this value contains only letters.'
+    ONLY_LETTERS_FIRST_NAME_EXCEPTION_MESSAGE = \
+        'Ensure your First Name contains only letters.'
 
-    ONLY_DIGITS_EXCEPTION_MESSAGE = \
-        'Ensure this value contains only digits.'
+    ONLY_LETTERS_LAST_NAME_EXCEPTION_MESSAGE = \
+        'Ensure your Last Name contains only letters.'
+
+    ONLY_DIGITS_PHONE_NUMBER_EXCEPTION_MESSAGE = \
+        'Ensure your Phone Number contains only digits.'
 
     FIRST_NAME_MIN_LENGTH = 2
     FIRST_NAME_MAX_LENGTH = 30
@@ -26,41 +29,48 @@ class AccountProfile(models.Model):
     first_name = models.CharField(
         max_length=FIRST_NAME_MAX_LENGTH,
 
+        error_messages={'max_length': f'Ensure your First Name does not exceed {FIRST_NAME_MAX_LENGTH} characters.'},
+
         validators=(
             validators.MinLengthValidator(
                 FIRST_NAME_MIN_LENGTH,
+                message=f'Ensure your First Name consists of at least {FIRST_NAME_MIN_LENGTH} characters.'
             ),
 
             OnlyLettersValidator(
-                error_message=ONLY_LETTERS_EXCEPTION_MESSAGE
+                error_message=ONLY_LETTERS_FIRST_NAME_EXCEPTION_MESSAGE
             ),
         ),
     )
 
     last_name = models.CharField(
         max_length=LAST_NAME_MAX_LENGTH,
+        error_messages={'max_length': f'Ensure your Last Name does not exceed {LAST_NAME_MAX_LENGTH} characters.'},
 
         validators=(
             validators.MinLengthValidator(
                 LAST_NAME_MIN_LENGTH,
+                message=f'Ensure your Last Name consists of at least {LAST_NAME_MIN_LENGTH} characters.'
             ),
 
             OnlyLettersValidator(
-                error_message=ONLY_LETTERS_EXCEPTION_MESSAGE
+                error_message=ONLY_LETTERS_LAST_NAME_EXCEPTION_MESSAGE
             ),
         ),
     )
 
     phone_number = models.CharField(
         max_length=PHONE_NUMBER_MAX_LENGTH,
+        error_messages={'max_length': f'Ensure your Phone Number does not exceed {PHONE_NUMBER_MAX_LENGTH} digits.'},
 
         validators=(
             validators.MinLengthValidator(
                 PHONE_NUMBER_MIN_LENGTH,
+                message=f'Ensure your Phone Number consist of at least {PHONE_NUMBER_MIN_LENGTH} digits.'
             ),
 
             OnlyDigitsValidator(
-                error_message=ONLY_DIGITS_EXCEPTION_MESSAGE
+                error_message=ONLY_DIGITS_PHONE_NUMBER_EXCEPTION_MESSAGE
             )
         ),
     )

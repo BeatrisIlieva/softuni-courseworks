@@ -97,6 +97,23 @@
     width: 100%;
 }
 
+/* Existing CSS remains unchanged */
+
+.error-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure error messages are displayed above the black layer */
+}
+
+.error {
+    background-color: #FA2A55; /* Example background color for error messages */
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
 
 
 
