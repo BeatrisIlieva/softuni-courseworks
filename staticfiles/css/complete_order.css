@@ -24,17 +24,13 @@
     object-fit: cover;
 }
 
-.complete-order-container .continue-button {
-    flex-wrap: wrap;
-    padding: 6px;
-    width: 40vh;
-}
 
 .complete-order-container {
     font-size: 18px;
-    color: black;
+    color: white;
     display: flex;
-    margin: 12px 32px;
+    margin-top: 44px;;
+    margin-bottom: 12px;;
     position: absolute;
     justify-content: space-evenly;
     top: 0;
@@ -73,7 +69,7 @@
 .complete-order-container .personal-information {
     flex-wrap: wrap;
     padding: 6px;
-    width: 40vh;
+    width: 36vh;
 }
 
 #information-title {
@@ -84,13 +80,21 @@
 .complete-order-container .delivery-information {
     flex-wrap: wrap;
     padding: 6px;
-    width: 80vh;
+    width: 64vh;
 }
 
 
-.complete-order-container .delivery-action {
-    flex-direction: column;
-    width: 30%;
+.continue-button{
+    display: flex;
+    padding: 6px;
+    margin-top: 10px;
+
+}
+
+.button-label{
+    padding: 12px;
+    display: inline-block;
+    width: 100%;
 }
 
 
