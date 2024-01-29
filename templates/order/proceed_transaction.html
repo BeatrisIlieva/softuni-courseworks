@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
+<section class="card-details">
     <form method="post">
         <fieldset>
             <legend>Card Details</legend>
@@ -9,6 +10,7 @@
             {% csrf_token %}
         </fieldset>
     </form>
+</section>
 {% endblock %}
 
 {#        {% csrf_token %}#}

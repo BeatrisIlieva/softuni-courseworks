@@ -3,71 +3,73 @@
 {% load countries %}
 {% get_countries as countries %}
 {% block page_content %}
-    <form method="post">
-        <div class="complete-order-container">
-            <section class="personal-information">
-                <span class="personal-element-label" id="information-title">
-                    Personal Information
-                </span>
-                <span class="personal-element-label">
+    <article class="details-card">
+        <img class="img-bg-details"
+             src="https://res.cloudinary.com/deztgvefu/image/upload/v1706522736/template_images/pink-delivery-car-deliver-express-with-cardboard-boxes-cartoon-shipping-transportation-concept-pink-background-3d-rendering_56104-1526_ttrakq.jpg"
+             alt="image">
+        <form method="post">
+            <div class="complete-order-container">
+                <fieldset>
+                    <legend id="information-title">Personal Information</legend>
+                    <section class="personal-information">
+                    <span class="personal-element-label">
                     {{ form.first_name.label }}
                 </span>
-                <span class="personal-element-field">
+                        <span class="personal-element-field">
                     {{ form.first_name }}
                 </span>
-                <span class="personal-element-label">
+                        <span class="personal-element-label">
                     {{ form.last_name.label }}
                 </span>
-                <span class="personal-element-field">
+                        <span class="personal-element-field">
                     {{ form.last_name }}
                 </span>
-                <span class="personal-element-label">
+                        <span class="personal-element-label">
                     {{ form.phone_number.label }}
                 </span>
-                <span class="personal-element-field">
+                        <span class="personal-element-field">
                     {{ form.phone_number }}
                 </span>
-            </section>
-            <section class="delivery-information">
-                <span class="personal-element-label" id="information-title">
-                    Delivery Information
-                </span>
+                    </section>
+                </fieldset>
+                <fieldset>
+                    <legend id="information-title">Delivery Information</legend>
+                    <section class="delivery-information">
                 <span class="delivery-element-label">
                     {{ form.country.label }}
                 </span>
-                <span class="delivery-element-field">
+                        <span class="delivery-element-field">
                     {{ form.country }}
                 </span>
-                <span class="delivery-element-label">
+                        <span class="delivery-element-label">
                     {{ form.city.label }}
                 </span>
-                <span class="delivery-element-field">
+                        <span class="delivery-element-field">
                     {{ form.city }}
                 </span>
-                <span class="delivery-element-label">
+                        <span class="delivery-element-label">
                     {{ form.delivery_address.label }}
                 </span>
-                <span class="delivery-element-field">
+                        <span class="delivery-element-field">
                     {{ form.delivery_address }}
                 </span>
-            </section>
-            <section class="delivery-action">
-                <span class="delivery-image">
-                    <img src="https://res.cloudinary.com/deztgvefu/image/upload/v1706522736/template_images/pink-delivery-car-deliver-express-with-cardboard-boxes-cartoon-shipping-transportation-concept-pink-background-3d-rendering_56104-1526_ttrakq.jpg"
-                         alt="image">
+                    </section>
+                </fieldset>
+                <span class="continue-button">
+            <a href="{% url 'complete_transaction' pk=object.pk %}"></a>
+            <button class="button hover filled_pink" type="submit">CONTINUE</button>
                 </span>
-                <span class="delivery-button">
-                    <a href="{% url 'complete_transaction' pk=object.pk %}"></a>
-                    <button class="button hover filled_pink" type="submit">CONTINUE</button>
-                </span>
-            </section>
-        </div>
-        {% csrf_token %}
-    </form>
+            </div>
+            {% csrf_token %}
+        </form>
+    </article>
 {% endblock %}
 
 
-
+{#                <span class="delivery-image">#}
+{#                    <img src="https://res.cloudinary.com/deztgvefu/image/upload/v1706522736/template_images/pink-delivery-car-deliver-express-with-cardboard-boxes-cartoon-shipping-transportation-concept-pink-background-3d-rendering_56104-1526_ttrakq.jpg"#}
+{#                         alt="image">#}
+{#                </span>#}
 
 
 {#    <section class="personal-information">#}
