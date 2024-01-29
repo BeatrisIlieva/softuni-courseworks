@@ -1,16 +1,24 @@
+from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import (
     UserCreationForm,
     AuthenticationForm
 )
 
+from e_commerce_website.profiles.models import AccountProfile
+
 UserModel = get_user_model()
 
 
 class RegisterUserForm(UserCreationForm):
+    consent = forms.BooleanField(
+        required=True,
+        label='I agree to the terms and conditions',
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+    )
     class Meta(UserCreationForm.Meta):
         model = UserModel
-        fields = ['email', 'password1', 'password2']
+        fields = ['email', 'password1', 'password2', 'consent']
 
     def __init__(self, *args, **kwargs):
         super(RegisterUserForm, self).__init__(*args, **kwargs)
@@ -27,6 +35,18 @@ class RegisterUserForm(UserCreationForm):
 
         self.fields['password2'].widget.attrs['placeholder'] = \
             'Confirm your password'
+
+        self.fields['consent'].widget.attrs['class'] = 'form-check-input'
+
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+        account = AccountProfile(
+            user=user,
+        )
+        if commit:
+            account.save()
+
+        return user
 
 
 class LoginUserForm(AuthenticationForm):

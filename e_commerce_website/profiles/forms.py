@@ -11,39 +11,41 @@ class AccountProfileForm(forms.ModelForm):
         exclude = ('user',)
 
         labels = {
-            'first_name': 'Your first name',
-            'last_name': 'Your surname',
-            'phone_number': 'Your phone number'
+            'first_name': 'Your First Name',
+            'last_name': 'Your Surname',
+            'phone_number': 'Your Phone Number',
+            'city': 'City',
+            'delivery_address': 'Address'
         }
 
         widgets = {
             'first_name': forms.TextInput(
                 attrs={
-                    'placeholder': 'Enter your first name'
+                    'placeholder': 'Enter Your First Name'
                 }
             ),
 
             'last_name': forms.TextInput(
                 attrs={
-                    'placeholder': 'Enter your surname'
+                    'placeholder': 'Enter Your Surname'
                 }
             ),
 
             'phone_number': forms.TextInput(
                 attrs={
-                    'placeholder': 'Enter your phone number'
+                    'placeholder': 'Enter Your Phone Number'
                 }
             ),
 
             'city': forms.TextInput(
                 attrs={
-                    'placeholder': 'Enter your city'
+                    'placeholder': 'Enter Your City'
                 }
             ),
 
             'delivery_address': forms.TextInput(
                 attrs={
-                    'placeholder': 'Enter your address'
+                    'placeholder': 'Enter Your Address'
                 }
             ),
         }

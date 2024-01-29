@@ -20,8 +20,8 @@ background: linear-gradient(0deg, rgba(255,183,206,0.6797312675070029) 0%, rgba(
 .header .logo-image {
     /*margin-right: 5px;*/
     display: flex;
-    width: 100px;
-    height: 100px;
+    width: 160px;
+    height: 160px;
 }
 
 .header .logo-title {
