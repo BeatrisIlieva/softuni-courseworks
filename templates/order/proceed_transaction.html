@@ -1,14 +1,42 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
-<section class="card-details">
-    <form method="post">
-        <fieldset>
-            <legend>Card Details</legend>
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-            {% csrf_token %}
-        </fieldset>
-    </form>
-</section>
+    <article class="card-details-card">
+        <img class="img-bg-card-details"
+             src="https://res.cloudinary.com/deztgvefu/image/upload/v1706546636/template_images/MobileWallet_CB2_mobile_shxokh.jpg"
+             alt="">
+        <form method="post">
+            <div class="card-details-container">
+                <section class="card-details">
+                    <fieldset>
+                        <legend id="information-title">Card Details</legend>
+                        <span class="card-element-label">
+                            {{ form.card_number.label }}
+                        </span>
+                        <span class="card-element-field">
+                            {{ form.card_number }}
+                        </span>
+                        <span class="card-element-label">
+                            {{ form.expiration_date.label }}
+                        </span>
+                        <span class="card-element-field">
+                            {{ form.expiration_date }}
+                        </span>
+                        <span class="card-element-label">
+                            {{ form.cvv_code.label }}
+                        </span>
+                        <span class="card-element-field">
+                            {{ form.cvv_code }}
+                        </span>
+                        {#            {{ form.as_p }}#}
+                        <span class="card-element-field">
+                            <button type="submit">Submit</button>
+                        </span>
+                        {% csrf_token %}
+                    </fieldset>
+                </section>
+
+            </div>
+        </form>
+    </article>
 {% endblock %}
