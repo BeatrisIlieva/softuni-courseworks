@@ -102,7 +102,17 @@ class AccountProfile(models.Model):
         ),
     )
 
-    delivery_address = models.CharField()
+    delivery_address = models.CharField(
+        max_length=ADDRESS_MAX_LENGTH,
+        error_messages={'max_length': f'Ensure your Address does not exceed {ADDRESS_MAX_LENGTH} characters.'},
+
+        validators=(
+            validators.MinLengthValidator(
+                ADDRESS_MIN_LENGTH,
+                message=f'Ensure your Address consist of at least {ADDRESS_MIN_LENGTH} characters.'
+            ),
+        ),
+    )
 
     user = models.OneToOneField(
         to=AccountUser,
