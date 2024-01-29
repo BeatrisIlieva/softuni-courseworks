@@ -53,16 +53,12 @@
 }
 
 .complete-order-container .delivery-action {
-        /*flex-wrap: wrap;*/
     flex-direction: column;
     width: 40%;
-    /*flex-direction: column;*/
 }
 
 .complete-order-container .delivery-action .delivery-image{
     padding: 12px;
-    /*display: inline-block;*/
-    /*width: 100%;*/
     width: 100%;
     flex: 1 1 70%;
 
