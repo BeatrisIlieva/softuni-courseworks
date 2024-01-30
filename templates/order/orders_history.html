@@ -1,6 +1,16 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block page_content %}
+    {% if not order_details %}
+        <article class="wish-list-card">
+        <img class="img-bg" src="https://res.cloudinary.com/deztgvefu/image/upload/v1706465957/template_images/229937_m9taue.png" alt="image">
+    <div class="shopping-cart-content-top">
+        <h2 class="wish-list-tag">
+            Start your shopping journey!
+            <br>Make your first order today and discover amazing jewelries.
+        </h2>
+    </div>
+    {% else %}
     <section class="orders-history-title">
         <h2>My orders</h2>
     </section>
@@ -25,6 +35,7 @@
             </div>
         </section>
     {% endfor %}
+    {% endif %}
 {% endblock %}
 
 
