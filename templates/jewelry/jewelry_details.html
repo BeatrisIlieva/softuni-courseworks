@@ -5,11 +5,15 @@
         <p class="section-subtitle">{{ jewelry.category.get_title_display }}</p>
         <h2 class="section-title">{{ jewelry.title }}</h2>
         <div class="row">
-            <div class="row-image-first">
-                <img src="{{ jewelry.first_image_url }}" alt="image1">
+            <div class="row-image-first ">
+                <div class="thumbnail">
+                    <img class="thumbnail__img zoom-image" src="{{ jewelry.first_image_url }}" alt="image1">
+                </div>
             </div>
-            <div class="row-image-second">
-                <img src="{{ jewelry.second_image_url }}" alt="image2">
+            <div class="row-image-first">
+                <div class="thumbnail">
+                    <img class="thumbnail__img zoom-image" src="{{ jewelry.second_image_url }}" alt="image1">
+                </div>
             </div>
             <div class="row-text">
                 <h3 class="materials">Materials:</h3>

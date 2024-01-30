@@ -25,10 +25,22 @@
 
 .jewelry-details .row .row-image-first {
     width: 33%;
+    overflow: hidden;
+    position: relative;
 }
 
 .jewelry-details .row .row-image-second {
     width: 33%;
+    overflow: hidden;
+    position: relative;
+}
+
+.zoom-image {
+    transition: transform 0.3s ease;
+}
+
+.thumbnail:hover .zoom-image {
+    transform: scale(2.8);
 }
 
 .jewelry-details .row .materials {
