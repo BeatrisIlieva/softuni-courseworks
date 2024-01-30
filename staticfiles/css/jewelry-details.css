@@ -4,17 +4,17 @@
     padding: 32px 64px;
 }
 
-.jewelry-details .section-subtitle {
-    text-align: center;
-    font-size: 14px;
-    margin-bottom: 8px;
-}
+/*.jewelry-details .section-subtitle {*/
+/*    text-align: center;*/
+/*    font-size: 14px;*/
+/*    margin-bottom: 8px;*/
+/*}*/
 
-.jewelry-details .section-title {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 32px;
-}
+/*.jewelry-details .section-title {*/
+/*    text-align: center;*/
+/*    font-size: 24px;*/
+/*    margin-bottom: 32px;*/
+/*}*/
 
 .jewelry-details .row {
     display: flex;
@@ -45,7 +45,8 @@
 
 .jewelry-details .row .materials {
     font-size: 24px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .jewelry-details .row .materials-details {
