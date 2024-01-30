@@ -1,0 +1,23 @@
+/*.update-profile {*/
+/*    font-size: 18px;*/
+/*    color: black;*/
+/*}*/
+
+.update-profile-section {
+    font-size: 18px;
+    color: black;
+}
+
+.center-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*#delete-button {*/
+/*    text-decoration: none;*/
+/*    color: #040720;*/
+/*    text-align: center;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/

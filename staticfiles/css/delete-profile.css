@@ -1,0 +1,25 @@
+#go-back {
+    text-decoration: none;
+    color: black;
+}
+
+.wish-list-card .delete-profile-top {
+    font-size: 28px;
+    position: absolute;
+    flex-direction: column;
+    top: 0;
+    width: 100%;
+    padding: 12px 32px;
+    text-align: center;
+
+}
+
+.wish-list-card .delete-profile-top div {
+    display: inline-block;
+}
+
+.delete-button {
+    width: 20vh;
+    display: flex;
+    flex-wrap: wrap;
+}

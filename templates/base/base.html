@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/fonts.css' %}">
-{#    <link rel="stylesheet" href="{% static 'cursor/cursor.css' %}">#}
+    {#    <link rel="stylesheet" href="{% static 'cursor/cursor.css' %}">#}
     <link rel="stylesheet" href="{% static 'icons/icons.css' %}">
 </head>
 <body>
@@ -75,42 +75,55 @@
             </label>
         </form>
     </div>
-    <div class="icon-item">
-        {% if likes_count > 0 %}
-        <a href="{% url 'display_liked_jewelries' %}">
-            <i class="fa-regular fa-heart"><span class="likes-count-nav">({{ likes_count }})</span></i>
-        </a>
-        {% else %}
-                <a href="{% url 'display_liked_jewelries' %}">
-            <i class="fa-regular fa-heart"></i>
-        </a>
-        {% endif %}
-    </div>
-    <div class="icon-item">
-        {% if cart_count > 0 %}
-        <a href="{% url 'view_shopping_cart' %}">
-            <i class="fa-solid fa-basket-shopping"><span class="cart-count-nav">({{ cart_count }})</span></i>
-        </a>
-        {% else %}
-                <a href="{% url 'view_shopping_cart' %}">
-            <i class="fa-solid fa-basket-shopping"></i>
-        </a>
-        {% endif %}
-    </div>
-    <div class="icon-item">
-        {% if not request.user.is_authenticated %}
+    {% if likes_count > 0 %}
+        <div class="icon-item">
+            <a href="{% url 'display_liked_jewelries' %}">
+                <i class="fa-regular fa-heart"><span class="likes-count-nav">({{ likes_count }})</span></i>
+            </a>
+        </div>
+    {% else %}
+        <div class="icon-item">
+            <a href="{% url 'display_liked_jewelries' %}">
+                <i class="fa-regular fa-heart"></i>
+            </a>
+        </div>
+    {% endif %}
+    {% if cart_count > 0 %}
+        <div class="icon-item">
+            <a href="{% url 'view_shopping_cart' %}">
+                <i class="fa-solid fa-basket-shopping"><span class="cart-count-nav">({{ cart_count }})</span></i>
+            </a>
+        </div>
+    {% else %}
+        <div class="icon-item">
+            <a href="{% url 'view_shopping_cart' %}">
+                <i class="fa-solid fa-basket-shopping"></i>
+            </a>
+        </div>
+    {% endif %}
+    {% if not request.user.is_authenticated %}
+        <div class="icon-item">
             <a href="{% url 'login_user' %}">
                 <i class="fa-regular fa-user"></i>
             </a>
-        {% else %}
-            <a href="{% url 'logout_user' %}">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </div>
+    {% else %}
+        <div class="icon-item">
+            <a href="{% url 'my_orders' pk=request.user.pk %}">
+                <i class="fa-solid fa-clock-rotate-left"></i>
             </a>
+        </div>
+        <div class="icon-item">
             <a href="{% url 'update_user' pk=request.user.pk %}">
                 <i class="fa-regular fa-user"></i>
             </a>
-        {% endif %}
-    </div>
+        </div>
+        <div class="icon-item">
+            <a href="{% url 'logout_user' %}">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+        </div>
+    {% endif %}
 </header>
 <main>
     {% block page_content %}

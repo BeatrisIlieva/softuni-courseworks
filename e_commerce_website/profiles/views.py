@@ -8,26 +8,26 @@ from e_commerce_website.profiles.models import AccountProfile
 UserModel = get_user_model()
 
 
-class UserDetailsView(NavigationBarMixin, DetailView):
-    template_name = 'profiles/details.html'
-    model = UserModel
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        nav_bar_context = self.get_nav_bar_context()
-        context.update(nav_bar_context)
-
-        return context
+# class UserDetailsView(NavigationBarMixin, DetailView):
+#     template_name = 'profiles/update-profile.html'
+#     model = UserModel
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#
+#         nav_bar_context = self.get_nav_bar_context()
+#         context.update(nav_bar_context)
+#
+#         return context
 
 
 class UserUpdateView(NavigationBarMixin, UpdateView):
-    template_name = 'profiles/update.html'
+    template_name = 'profiles/update-profile.html'
     model = AccountProfile
     form_class = AccountProfileForm
 
     def get_success_url(self):
-        return reverse_lazy('details_user', kwargs={
+        return reverse_lazy('update_user', kwargs={
             'pk': self.request.user.pk,
         })
 
@@ -39,15 +39,15 @@ class UserUpdateView(NavigationBarMixin, UpdateView):
         return context
 
 
-class UserDeleteView(NavigationBarMixin, DeleteView):
+class UserDeleteView(DeleteView):
     template_name = 'profiles/delete.html'
     model = UserModel
     success_url = reverse_lazy('index_page')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        nav_bar_context = self.get_nav_bar_context()
-        context.update(nav_bar_context)
-
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #
+    #     nav_bar_context = self.get_nav_bar_context()
+    #     context.update(nav_bar_context)
+    #
+    #     return context
