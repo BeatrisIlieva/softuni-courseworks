@@ -1,23 +1,70 @@
 {% extends 'base/base.html' %}
-{% load dict %}
+{% load countries %}
+{% get_countries as countries %}
 {% load static %}
 {% block page_content %}
-    <div class="register-container">
-        <h2>New Customer</h2>
-        <form
-                action="{% url 'register_user' %}"
-                method="post">
-            <p>{{ form.email }}</p>
-            <p>{{ form.password1 }}</p>
-            <p>{{ form.password2 }}</p>
-            <p>{{ form.consent }} I agree to the terms and conditions</p>
-            <h3> Password Requirements: </h3>
-            {{ form.password1.help_text }}
-            <input type="hidden" value="{{ next }}" name="next"/>
-            <div>
-                <button class="register-button button filled_green">Register</button>
+    <article class="details-card">
+        <div class="complete-order-container">
+            <fieldset id="fieldset-width">
+                <legend id="information-title">New Customer</legend>
+                <form method="post" action="{% url 'register_user' %}">
+                    <span class="personal-element-field">
+                    {{ form.email }}
+                </span>
+                    <span class="personal-element-field">
+                    {{ form.password1 }}
+                </span>
+                    <span class="personal-element-field">
+                    {{ form.password2 }}
+                </span>
+                    <span class="personal-element-field">
+                    {{ form.consent }} I agree to the terms and conditions
+                </span>
+                    <input type="hidden" value="{{ next }}" name="next"/>
+                    <button class="register-button button filled_green">Register</button>
+                    {% csrf_token %}
+                </form>
+            </fieldset>
+            <fieldset id="fieldset-width">
+                <legend id="information-title">Password Requirements:</legend>
+                <form action="">
+                    <section class="delivery-information">
+                        {{ form.password1.help_text }}
+                    </section>
+                </form>
+            </fieldset>
+            <div class="error-container">
+                {% for field, error in form.errors.items %}
+                    <div class="error">{{ error }}</div>
+                {% endfor %}
             </div>
-            {% csrf_token %}
-        </form>
-    </div>
+        </div>
+    </article>
 {% endblock %}
+
+
+
+
+{#{% extends 'base/base.html' %}#}
+{#{% load dict %}#}
+{#{% load static %}#}
+{#{% block page_content %}#}
+{#    <div class="register-container">#}
+{#        <h2>New Customer</h2>#}
+{#        <form#}
+{#                action="{% url 'register_user' %}"#}
+{#                method="post">#}
+{#            <p>{{ form.email }}</p>#}
+{#            <p>{{ form.password1 }}</p>#}
+{#            <p>{{ form.password2 }}</p>#}
+{#            <p>{{ form.consent }} I agree to the terms and conditions</p>#}
+{#            <h3> Password Requirements: </h3>#}
+{#            {{ form.password1.help_text }}#}
+{#            <input type="hidden" value="{{ next }}" name="next"/>#}
+{#            <div>#}
+{#                <button class="register-button button filled_green">Register</button>#}
+{#            </div>#}
+{#            {% csrf_token %}#}
+{#        </form>#}
+{#    </div>#}
+{#{% endblock %}#}
