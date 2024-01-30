@@ -10,8 +10,9 @@
 @import "./button.css";
 @import "./wishlist.css";
 @import "./login-or-register.css";
-@import "./orsers-history.css";
+@import "./orders-history.css";
 @import "./register.css";
 @import "./complete_order.css";
 @import "./card_details.css";
 @import "./jewelry-details.css";
+@import "./order-details.css";
