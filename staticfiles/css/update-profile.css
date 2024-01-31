@@ -1,23 +1,50 @@
-/*.update-profile {*/
-/*    font-size: 18px;*/
-/*    color: black;*/
-/*}*/
-
-.update-profile-section {
-    font-size: 18px;
+.fieldset-container-update {
     color: black;
-}
-
-.center-text {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    /*display: grid;*/
+    /*grid-template-columns: 0.8fr 1.2fr;*/
+    margin: 8px 16px;
+    /*gap: 12px;*/
 }
 
-/*#delete-button {*/
-/*    text-decoration: none;*/
-/*    color: #040720;*/
-/*    text-align: center;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
+.fieldset-container-update .larger-fieldset, .fieldset-container-update .smaller-fieldset {
+    margin: 8px 16px;
+    padding: 8px 16px;
+}
+
+.fieldset-title {
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+.fieldset-sub-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.fieldset-element {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+ul .fieldset-element-styled {
+    font-size: 18px;
+    list-style-type: circle;
+}
+
+.fieldset-button {
+    margin-top: 12px;
+}
+
+.fieldset-button a {
+    margin-top: 12px;
+}
+
+.update-profile-button {
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    justify-content: space-evenly;
+}

@@ -3,86 +3,83 @@
 {% get_countries as countries %}
 {% load static %}
 {% block page_content %}
-    <article class="details-card">
-        <form method="post" action="{% url 'update_user' pk=object.pk %}">>
-            <div class="complete-order-container">
-                <fieldset>
-                    <legend id="information-title">Personal Information</legend>
-                    <section class="personal-information">
-                    <span class="personal-element-label">
-                    {{ form.first_name.label }}
-                </span>
-                        <span class="personal-element-field">
-                    {{ form.first_name }}
-                </span>
-                        <span class="personal-element-label">
-                    {{ form.last_name.label }}
-                </span>
-                        <span class="personal-element-field">
-                    {{ form.last_name }}
-                </span>
-                        <span class="personal-element-label">
-                    {{ form.phone_number.label }}
-                </span>
-                        <span class="personal-element-field">
-                    {{ form.phone_number }}
-                </span>
-                    </section>
-                </fieldset>
-                <fieldset>
-                    <legend id="information-title">Delivery Information</legend>
-                    <section class="delivery-information">
-                <span class="delivery-element-label">
-                    {{ form.country.label }}
-                </span>
-                        <span class="delivery-element-field">
-                    {{ form.country }}
-                </span>
-                        <span class="delivery-element-label">
-                    {{ form.city.label }}
-                </span>
-                        <span class="delivery-element-field">
-                    {{ form.city }}
-                </span>
-                        <span class="delivery-element-label">
-                    {{ form.delivery_address.label }}
-                </span>
-                        <span class="delivery-element-field">
-                    {{ form.delivery_address }}
-                </span>
-                    </section>
-                </fieldset>
-                <div class="continue-button">
-                    <button class="edit-btn button hover filled_green " type="submit"><i class="fa-solid fa-pencil"></i>
-                        Update Profile
-                    </button>
-                    {% csrf_token %}
-                </div>
-                <div class="continue-button center-text">
-                    <a class="button hover filled_red continue-button" href="{% url 'delete_user' pk=object.pk %}">
-                        <i class="fa-solid fa-user-slash"></i> Delete Profile
-                    </a>
-                </div>
+    <form method="post" action="{% url 'update_user' pk=object.pk %}">>
+        <div class="fieldset-container-update">
+            <fieldset class="smaller-fieldset">
+                <legend class="fieldset-title">Personal Information</legend>
+                <ul role="list">
+                    <li class="fieldset-element">
+                        {{ form.first_name.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.first_name }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.last_name.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.last_name }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.phone_number.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.phone_number }}
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset class="larger-fieldset">
+                <legend class="fieldset-title">Delivery Information</legend>
+                <ul role="list">
+                    <li class="fieldset-element">
+                        {{ form.country.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.country }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.city.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.city }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.delivery_address.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.delivery_address }}
+                    </li>
+                </ul>
+            </fieldset>
+            <button class="edit-btn button hover filled_green " type="submit"><i class="fa-solid fa-pencil"></i>
+                Update Profile
+            </button>
+            {% csrf_token %}
+            <div class="fieldset-button">
+                <a class="button hover filled_red continue-button" href="{% url 'delete_user' pk=object.pk %}">
+                    <i class="fa-solid fa-user-slash"></i> Delete Profile
+                </a>
             </div>
-        </form>
-        <div class="error-container">
-            {% for field, error in form.errors.items %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
         </div>
-    </article>
+
+    </form>
+    <div class="error-container">
+        {% for field, error in form.errors.items %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+    </div>
 {% endblock %}
 
-                    {#                                    <a href="{% url 'delete_user' pk=request.user.pk %}" class="button hover filled_red"#}
-                    {#                   onclick="return confirm('Are you sure you want to delete your profile?');">#}
-                    {#                    <i class="fa-solid fa-user-slash"></i> Delete Profile#}
-                    {#                </a>#}
-                    {#                    <form method="post" action="{% url 'delete_user' pk=request.user.pk %}">#}
-                    {#                        <button class="button hover filled_red">#}
-                    {#                            <i class="fa-solid fa-user-slash"></i>Delete Profile#}
-                    {#                        </button>#}
-                    {#                        {% csrf_token %}#}
-                    {#                    </form>#}
+{#                                    <a href="{% url 'delete_user' pk=request.user.pk %}" class="button hover filled_red"#}
+{#                   onclick="return confirm('Are you sure you want to delete your profile?');">#}
+{#                    <i class="fa-solid fa-user-slash"></i> Delete Profile#}
+{#                </a>#}
+{#                    <form method="post" action="{% url 'delete_user' pk=request.user.pk %}">#}
+{#                        <button class="button hover filled_red">#}
+{#                            <i class="fa-solid fa-user-slash"></i>Delete Profile#}
+{#                        </button>#}
+{#                        {% csrf_token %}#}
+{#                    </form>#}
 
 
 {#{% extends 'base/base.html' %}#}
