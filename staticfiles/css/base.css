@@ -2,13 +2,23 @@ body {
     margin: 0;
     background-color: white;
     font-size: 0px;
+    /*display: flex;*/
+    /*min-height: 100vh;*/
 }
 
-footer {
-    font-size: 16px;
-    text-align: center;
-    background-color: #040720;
+.footer-content {
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    z-index: 1;
+    background: rgb(255,183,206);
+    background: linear-gradient(0deg, rgba(255,183,206,0.6797312675070029) 0%, rgba(4,7,32,0.9626444327731093) 8%, rgba(4,7,32,1) 93%);
     color: white;
+    padding: 12px 32px;
+    display: block;
+    align-items: center;
+    font-size: 18px;
+    text-align: center;
 }
 
 input {
