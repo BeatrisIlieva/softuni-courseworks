@@ -2,17 +2,34 @@
     display: flex;
     align-items: center;
     padding: 12px 32px;
+    margin: 12px 32px;
     font-size: 18px;
     color: var(--dark-blue);
+    border-bottom-right-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-style: dotted;
+        border-bottom-width: 2px;
+    border-bottom-color: var(--dark-pink);
+
+
 }
 
 .checkbox-list {
     margin: auto;
+
 }
 
 .dropdown-checkboxes {
     display: inline-block;
     margin-right: 22px;
+    border-right-style: dotted;
+    border-right-color: var(--dark-pink);
+    border-right-width: 2px;
+}
+
+
+.space {
+    margin-right: 10px;
 }
 
 .dropdown-checkboxes-content {

@@ -8,7 +8,7 @@
                 {% for field in form %}
                     <div class="dropdown-checkboxes" role="list" tabindex="0">
                         <label for="{{ field.id_for_label }}">
-                            <strong>{{ field.label }}</strong> <i class="fa-solid fa-sort-down"></i>
+                            <strong class="label-title">{{ field.label }}</strong> <i class="space fa-solid fa-sort-down"></i>
                             <div class="dropdown-checkboxes-content">
                                 {% for subfield in field %}
                                     <div class="dropdown-subfield">
