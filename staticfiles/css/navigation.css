@@ -6,7 +6,7 @@
     background: linear-gradient(0deg, rgba(255, 183, 206, 0.6797312675070029) 0%,
     rgba(4, 7, 32, 0.9626444327731093) 8%,
     rgba(4, 7, 32, 1) 93%);
-    color: white;
+    color: var(--white);
     padding: 12px 32px;
     display: flex;
     align-items: center;
@@ -25,7 +25,7 @@
 
 .header .logo-title {
     margin-right: auto;
-    border-bottom-color: #ffa6c9;
+    border-bottom-color: var(--dark-pink);
     border-bottom-right-radius: 10px;
     border-bottom-style: ridge;
 }
@@ -63,7 +63,7 @@
 }
 
 .header i:hover, li:hover {
-    color: #ffa6c9;
+    color: var(--dark-pink);
 }
 
 .likes-count-nav {
