@@ -14,37 +14,9 @@
     padding: 8px 16px;
 }
 
-.fieldset-title {
-    font-size: 22px;
-    margin-bottom: 2px;
-}
 
-.fieldset-sub-title {
-    font-size: 20px;
-    margin-bottom: 12px;
-}
-
-.fieldset-element {
-    font-size: 18px;
-    margin-bottom: 12px;
-}
-
-ul .fieldset-element-styled {
-    font-size: 18px;
-    list-style-type: circle;
-}
-
-.fieldset-button {
-    margin-top: 12px;
-}
-
-.fieldset-button a {
-    margin-top: 12px;
-}
-
-.update-profile-button {
-    display: flex;
-    align-items: center;
-    /*justify-content: center;*/
-    justify-content: space-evenly;
-}
+/*.update-profile-button {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-evenly;*/
+/*}*/
