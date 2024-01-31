@@ -11,7 +11,7 @@
                     <strong>{{ field.label }}</strong> <i class="fa-solid fa-sort-down"></i>
                     <div class="dropdown-checkboxes-content">
                         {% for subfield in field %}
-                            <div>
+                            <div class="dropdown-subfield">
                                 {{ subfield }}
                                 {% if subfield.choice_label in jewelries_count_by_metal.keys %}
                                     <span>({{ jewelries_count_by_metal|get_value_from_dict:subfield.choice_label }})</span>
@@ -25,7 +25,7 @@
                             </div>
                         {% endfor %}
                         <br>
-                        <button>Apply</button>
+                        <button class="drop-down-button button filled_pink">Apply</button>
                         {% csrf_token %}
                     </div>
                 </label>
