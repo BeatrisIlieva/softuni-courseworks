@@ -11,6 +11,7 @@
             <h2 class="wish-list-tag">
                 Your Shopping Bag Is Empty
             </h2>
+        {% include 'jewelry/last-seen-jewelries.html' %}
         </div>
     {% else %}
         <section class="grid-container-shopping-cart-top">
@@ -119,7 +120,7 @@
                 {% endif %}
             </div>
         </section>
+        {% include 'jewelry/last-seen-jewelries.html' %}
     {% endif %}
-{% include 'jewelry/last-seen-jewelries.html' %}
 </article>
 {% endblock %}

@@ -6,12 +6,16 @@
 }
 
 .last-seen-jewelries-images {
+    position: relative;
     display: flex;
     justify-content: center;
     gap: 12px;
+    z-index: 2;
 }
 
 .last-seen-jewelries-images img {
+    position: relative;
     width: 180px;
     height: 180px;
+    z-index: 2;
 }
