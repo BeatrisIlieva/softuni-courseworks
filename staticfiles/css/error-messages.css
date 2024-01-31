@@ -8,7 +8,43 @@
 
 .error {
     background-color: var(--red-pink);
+    font-size: 18px;
     color: white;
     padding: 10px;
     margin-bottom: 10px;
 }
+
+.close-error {
+    display: none;
+}
+
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+}
+
+.error-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.error {
+    background-color: var(--red-pink);
+    font-size: 18px;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.close-error:checked + .error-container {
+    display: none;
+}
+
+

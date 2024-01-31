@@ -1,5 +1,9 @@
 <div class="error-container">
+    <input type="checkbox" id="closeError" class="close-error">
+    <label for="closeError" class="close-button">×</label>
     {% for field, error in form.errors.items %}
         <div class="error">{{ error }}</div>
     {% endfor %}
 </div>
+
+
