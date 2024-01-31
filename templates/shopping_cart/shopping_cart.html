@@ -4,12 +4,14 @@
 {% block page_content %}
     {% if not jewelries_by_quantity_and_size %}
         <article class="wish-list-card">
-        <img class="img-bg" src="https://res.cloudinary.com/deztgvefu/image/upload/v1706465957/template_images/229937_m9taue.png" alt="image">
-    <div class="shopping-cart-content-top">
-        <h2 class="wish-list-tag">
-            Your Shopping Bag Is Empty
-        </h2>
-    </div>
+        <img class="img-bg"
+             src="https://res.cloudinary.com/deztgvefu/image/upload/v1706465957/template_images/229937_m9taue.png"
+             alt="image">
+        <div class="shopping-cart-content-top">
+            <h2 class="wish-list-tag">
+                Your Shopping Bag Is Empty
+            </h2>
+        </div>
     {% else %}
         <section class="grid-container-shopping-cart-top">
             <div class="shopping-cart-header">
@@ -118,4 +120,6 @@
             </div>
         </section>
     {% endif %}
+{% include 'jewelry/last-seen-jewelries.html' %}
+</article>
 {% endblock %}
