@@ -28,16 +28,12 @@
 .fieldset-container {
     color: black;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /*justify-content: space-between;*/
+    grid-template-columns: 1.2fr 1.8fr;
     margin: 14px 28px;
-    /*padding: 14px 28px;*/
     gap: 12px;
-    /*justify-content: center;*/
-
 }
 
-.fieldset-container fieldset {
+.fieldset-container .login-fieldset, .register-fieldset {
     margin: 8px 16px;
     padding: 8px 16px;
 }

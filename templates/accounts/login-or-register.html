@@ -4,7 +4,7 @@
 {% load static %}
 {% block page_content %}
     <div class="fieldset-container">
-        <fieldset>
+        <fieldset class="login-fieldset">
             <legend class="fieldset-title">Registered Customers</legend>
             <h4 class="fieldset-sub-title">Please Sign In to access your account</h4>
             <form method="post" action="{% url 'login_user' %}">
@@ -23,7 +23,7 @@
                 {% csrf_token %}
             </form>
         </fieldset>
-        <fieldset>
+        <fieldset class="register-fieldset">
             <legend class="fieldset-title">New Customers</legend>
             <h4 class="fieldset-sub-title">Register with <i>FINE JEWELRIES</i> for the following benefits:</h4>
             <ul>
