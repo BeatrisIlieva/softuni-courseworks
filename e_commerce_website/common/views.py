@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.views.generic import TemplateView, ListView
 from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.common.utils import get_object_pks
-from e_commerce_website.jewelry.mixins import JewelryIsLikedByUserMixin
+from e_commerce_website.jewelry.mixins import JewelryIsLikedByUserMixin, LastViewedJewelriesMixin
 from e_commerce_website.jewelry.models import (
     Category, Metal, StoneType, StoneColor, Jewelry
 )
@@ -21,6 +21,7 @@ class IndexView(NavigationBarMixin, TemplateView):
 
 
 class SearchBarView(
+    LastViewedJewelriesMixin,
     JewelryIsLikedByUserMixin,
     NavigationBarMixin,
     ListView
@@ -79,6 +80,10 @@ class SearchBarView(
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         context['search'] = self.request.GET.get('search', '')
+
+        request_session = self.request.session
+        last_viewed_jewelries = self.get_last_viewed_jewelries(request_session)
+        context.update(last_viewed_jewelries)
 
         nav_bar_context = self.get_nav_bar_context()
         context.update(nav_bar_context)
