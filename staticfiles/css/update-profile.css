@@ -3,20 +3,10 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    /*display: grid;*/
-    /*grid-template-columns: 0.8fr 1.2fr;*/
     margin: 8px 16px;
-    /*gap: 12px;*/
 }
 
 .fieldset-container-update .larger-fieldset, .fieldset-container-update .smaller-fieldset {
     margin: 8px 16px;
     padding: 8px 16px;
 }
-
-
-/*.update-profile-button {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: space-evenly;*/
-/*}*/
