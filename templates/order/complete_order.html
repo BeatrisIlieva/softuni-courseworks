@@ -9,51 +9,51 @@
              alt="image">
         <form method="post">
             <div class="complete-order-container">
-                <fieldset>
-                    <legend id="information-title">Personal Information</legend>
-                    <section class="personal-information">
-                    <span class="personal-element-label">
-                    {{ form.first_name.label }}
-                </span>
-                        <span class="personal-element-field">
-                    {{ form.first_name }}
-                </span>
-                        <span class="personal-element-label">
-                    {{ form.last_name.label }}
-                </span>
-                        <span class="personal-element-field">
-                    {{ form.last_name }}
-                </span>
-                        <span class="personal-element-label">
-                    {{ form.phone_number.label }}
-                </span>
-                        <span class="personal-element-field">
-                    {{ form.phone_number }}
-                </span>
-                    </section>
+                <fieldset class="fieldset-content">
+                    <legend class="fieldset-title">Personal Information</legend>
+                    <ul role="list">
+                        <li class="fieldset-element">
+                            {{ form.first_name.label }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.first_name }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.last_name.label }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.last_name }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.phone_number.label }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.phone_number }}
+                        </li>
+                    </ul>
                 </fieldset>
-                <fieldset>
-                    <legend id="information-title">Delivery Information</legend>
-                    <section class="delivery-information">
-                <span class="delivery-element-label">
-                    {{ form.country.label }}
-                </span>
-                        <span class="delivery-element-field">
-                    {{ form.country }}
-                </span>
-                        <span class="delivery-element-label">
-                    {{ form.city.label }}
-                </span>
-                        <span class="delivery-element-field">
-                    {{ form.city }}
-                </span>
-                        <span class="delivery-element-label">
-                    {{ form.delivery_address.label }}
-                </span>
-                        <span class="delivery-element-field">
-                    {{ form.delivery_address }}
-                </span>
-                    </section>
+                <fieldset class="fieldset-content">
+                    <legend class="fieldset-title">Delivery Information</legend>
+                    <ul role="list">
+                        <li class="fieldset-element">
+                            {{ form.country.label }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.country }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.city.label }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.city }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.delivery_address.label }}
+                        </li>
+                        <li class="fieldset-element">
+                            {{ form.delivery_address }}
+                        </li>
+                    </ul>
                 </fieldset>
                 <div class="continue-button">
                     <a href="{% url 'complete_transaction' pk=object.pk %}"></a>
@@ -64,11 +64,11 @@
             </div>
             {% csrf_token %}
         </form>
-                <div class="error-container">
+        <div class="error-container">
 
-                {% for field, error in form.errors.items %}
-                    <div class="error">{{ error }}</div>
-                {% endfor %}
-            </div>
+            {% for field, error in form.errors.items %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
     </article>
 {% endblock %}

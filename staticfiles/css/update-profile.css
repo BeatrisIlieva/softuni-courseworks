@@ -6,7 +6,12 @@
     margin: 8px 16px;
 }
 
-.fieldset-container-update .larger-fieldset, .fieldset-container-update .smaller-fieldset {
-    margin: 8px 16px;
-    padding: 8px 16px;
+/*.fieldset-container-update .larger-fieldset, .fieldset-container-update .smaller-fieldset {*/
+/*    margin: 8px 16px;*/
+/*    padding: 8px 16px;*/
+/*}*/
+
+.fieldset-content {
+    margin: 16px  32px;
+    padding: 16px 32px;
 }

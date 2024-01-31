@@ -54,6 +54,12 @@
     display: inline-block;
 }
 
+.icon-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
 .header i {
     color: white;
     margin-left: 18px;
