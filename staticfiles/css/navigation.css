@@ -41,6 +41,10 @@
 
 .search {
     display: none;
+    position: absolute;
+    top: 30px;
+    right: 100px;
+    z-index: 1;
 }
 
 .search-toggle:checked + .search {
