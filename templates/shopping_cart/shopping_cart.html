@@ -8,10 +8,12 @@
              src="https://res.cloudinary.com/deztgvefu/image/upload/v1706465957/template_images/229937_m9taue.png"
              alt="image">
         <div class="shopping-cart-content-top">
-            <h2 class="wish-list-tag">
+            <h2 class="wish-list-tag" id="empty-shopping-cart">
                 Your Shopping Bag Is Empty
             </h2>
-        {% include 'jewelry/last-seen-jewelries.html' %}
+            <div id="bigger-size">
+                        {% include 'jewelry/last-seen-jewelries.html' %}
+            </div>
         </div>
     {% else %}
         <section class="grid-container-shopping-cart-top">

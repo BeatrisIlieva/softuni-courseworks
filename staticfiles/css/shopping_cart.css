@@ -171,13 +171,18 @@
 
 .wish-list-card .shopping-cart-content-top {
     position: absolute;
-    /*flex-direction: column;*/
     left: 0;
     top: 0;
     width: 100%;
     padding: 12px 32px;
     text-align: center;
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
+}
 
+#empty-shopping-cart {
+    padding: 32px;
+    font-size: 32px;
+}
+
+#bigger-size{
+    padding: 32px;
 }
