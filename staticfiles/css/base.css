@@ -8,16 +8,10 @@ body {
 }
 
 .footer-content {
-    /*position: fixed;*/
-    /*width: 100vw;*/
-    /*bottom: 0;*/
-    /*z-index: 1;*/
     background: rgb(255, 183, 206);
     background: linear-gradient(0deg, rgba(255, 183, 206, 0.6797312675070029) 0%,
     rgba(4, 7, 32, 0.9626444327731093) 8%, rgba(4, 7, 32, 1) 93%);
     color: white;
-    /*padding: 12px 32px;*/
-    /*display: block;*/
     align-items: center;
     font-size: 18px;
     text-align: center;
@@ -26,4 +20,13 @@ body {
 input {
     font-size: 16px;
 }
+
+#pagination {
+    display: flex;
+    font-size: 18px;
+    color: var(--dark-blue);
+    margin: 10px auto;
+    justify-content: space-around;
+}
+
 
