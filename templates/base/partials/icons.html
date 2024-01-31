@@ -1,60 +1,60 @@
-    <div class="icon-container">
-        <div class="icon-item">
-            <form action="{% url 'search_bar' %}?page={{ page_obj.number }}">
-                <input type="checkbox" id="search-toggle" class="search-toggle">
-                <input class="search" name="search" value="{{ search }}">
-                <label for="search-toggle" class="search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </label>
-            </form>
-        </div>
-        {% if likes_count > 0 %}
-            <div class="icon-item">
-                <a href="{% url 'display_liked_jewelries' %}">
-                    <i class="fa-regular fa-heart"><span class="likes-count-nav">({{ likes_count }})</span></i>
-                </a>
-            </div>
-        {% else %}
-            <div class="icon-item">
-                <a href="{% url 'display_liked_jewelries' %}">
-                    <i class="fa-regular fa-heart"></i>
-                </a>
-            </div>
-        {% endif %}
-        {% if cart_count > 0 %}
-            <div class="icon-item">
-                <a href="{% url 'view_shopping_cart' %}">
-                    <i class="fa-solid fa-basket-shopping"><span class="cart-count-nav">({{ cart_count }})</span></i>
-                </a>
-            </div>
-        {% else %}
-            <div class="icon-item">
-                <a href="{% url 'view_shopping_cart' %}">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                </a>
-            </div>
-        {% endif %}
-        {% if not request.user.is_authenticated %}
-            <div class="icon-item">
-                <a href="{% url 'login_user' %}">
-                    <i class="fa-regular fa-user"></i>
-                </a>
-            </div>
-        {% else %}
-            <div class="icon-item">
-                <a href="{% url 'my_orders' pk=request.user.pk %}">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                </a>
-            </div>
-            <div class="icon-item">
-                <a href="{% url 'update_user' pk=request.user.pk %}">
-                    <i class="fa-regular fa-user"></i>
-                </a>
-            </div>
-            <div class="icon-item">
-                <a href="{% url 'logout_user' %}">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                </a>
-            </div>
-        {% endif %}
+<div class="icon-container">
+    <div class="icon-item">
+        <form action="{% url 'search_bar' %}?page={{ page_obj.number }}">
+            <input type="checkbox" id="search-toggle" class="search-toggle">
+            <input class="search" name="search" value="{{ search }}">
+            <label for="search-toggle" class="search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </label>
+        </form>
     </div>
+    {% if likes_count > 0 %}
+        <div class="icon-item">
+            <a href="{% url 'display_liked_jewelries' %}">
+                <i class="fa-regular fa-heart"><span class="likes-count-nav">({{ likes_count }})</span></i>
+            </a>
+        </div>
+    {% else %}
+        <div class="icon-item">
+            <a href="{% url 'display_liked_jewelries' %}">
+                <i class="fa-regular fa-heart"></i>
+            </a>
+        </div>
+    {% endif %}
+    {% if cart_count > 0 %}
+        <div class="icon-item">
+            <a href="{% url 'view_shopping_cart' %}">
+                <i class="fa-solid fa-basket-shopping"><span class="cart-count-nav">({{ cart_count }})</span></i>
+            </a>
+        </div>
+    {% else %}
+        <div class="icon-item">
+            <a href="{% url 'view_shopping_cart' %}">
+                <i class="fa-solid fa-basket-shopping"></i>
+            </a>
+        </div>
+    {% endif %}
+    {% if not request.user.is_authenticated %}
+        <div class="icon-item">
+            <a href="{% url 'login_user' %}">
+                <i class="fa-regular fa-user"></i>
+            </a>
+        </div>
+    {% else %}
+        <div class="icon-item">
+            <a href="{% url 'my_orders' pk=request.user.pk %}">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </a>
+        </div>
+        <div class="icon-item">
+            <a href="{% url 'update_user' pk=request.user.pk %}">
+                <i class="fa-regular fa-user"></i>
+            </a>
+        </div>
+        <div class="icon-item">
+            <a href="{% url 'logout_user' %}">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </a>
+        </div>
+    {% endif %}
+</div>
