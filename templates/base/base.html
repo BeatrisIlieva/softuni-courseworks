@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{% static 'css/colors.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/fonts.css' %}">
-    {#    <link rel="stylesheet" href="{% static 'cursor/cursor.css' %}">#}
     <link rel="stylesheet" href="{% static 'icons/icons.css' %}">
 </head>
 <body>
@@ -19,11 +18,9 @@
     <img class="logo-image"
          src="https://res.cloudinary.com/deztgvefu/image/upload/v1706426486/template_images/cute-little-pink-cat-watercolor-png_2_kxmwtq.webp"
          alt="Logo">
-    {#    <h1 class="logo-text">FINE JEWELRIES</h1>#}
     <span class="logo-title">FINE JEWELRIES</span>
     <nav class="navigation">
         <ul class="dropdown" role="list" tabindex="0">
-            {#        <span>BY CATEGORY<i class="fa-solid fa-sort-down"></i></span>#}
             <li class="nav-item">
                 BY CATEGORY<i class="fa-solid fa-sort-down"></i>
             </li>
@@ -69,63 +66,63 @@
     </nav>
     <div class="icon-container">
         <div class="icon-item">
-        <form action="{% url 'search_bar' %}?page={{ page_obj.number }}">
-            <input type="checkbox" id="search-toggle" class="search-toggle">
-            <input class="search" name="search" value="{{ search }}">
-            <label for="search-toggle" class="search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </label>
-        </form>
-    </div>
-    {% if likes_count > 0 %}
-        <div class="icon-item">
-            <a href="{% url 'display_liked_jewelries' %}">
-                <i class="fa-regular fa-heart"><span class="likes-count-nav">({{ likes_count }})</span></i>
-            </a>
+            <form action="{% url 'search_bar' %}?page={{ page_obj.number }}">
+                <input type="checkbox" id="search-toggle" class="search-toggle">
+                <input class="search" name="search" value="{{ search }}">
+                <label for="search-toggle" class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </label>
+            </form>
         </div>
-    {% else %}
-        <div class="icon-item">
-            <a href="{% url 'display_liked_jewelries' %}">
-                <i class="fa-regular fa-heart"></i>
-            </a>
-        </div>
-    {% endif %}
-    {% if cart_count > 0 %}
-        <div class="icon-item">
-            <a href="{% url 'view_shopping_cart' %}">
-                <i class="fa-solid fa-basket-shopping"><span class="cart-count-nav">({{ cart_count }})</span></i>
-            </a>
-        </div>
-    {% else %}
-        <div class="icon-item">
-            <a href="{% url 'view_shopping_cart' %}">
-                <i class="fa-solid fa-basket-shopping"></i>
-            </a>
-        </div>
-    {% endif %}
-    {% if not request.user.is_authenticated %}
-        <div class="icon-item">
-            <a href="{% url 'login_user' %}">
-                <i class="fa-regular fa-user"></i>
-            </a>
-        </div>
-    {% else %}
-        <div class="icon-item">
-            <a href="{% url 'my_orders' pk=request.user.pk %}">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-            </a>
-        </div>
-        <div class="icon-item">
-            <a href="{% url 'update_user' pk=request.user.pk %}">
-                <i class="fa-regular fa-user"></i>
-            </a>
-        </div>
-        <div class="icon-item">
-            <a href="{% url 'logout_user' %}">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            </a>
-        </div>
-    {% endif %}
+        {% if likes_count > 0 %}
+            <div class="icon-item">
+                <a href="{% url 'display_liked_jewelries' %}">
+                    <i class="fa-regular fa-heart"><span class="likes-count-nav">({{ likes_count }})</span></i>
+                </a>
+            </div>
+        {% else %}
+            <div class="icon-item">
+                <a href="{% url 'display_liked_jewelries' %}">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+            </div>
+        {% endif %}
+        {% if cart_count > 0 %}
+            <div class="icon-item">
+                <a href="{% url 'view_shopping_cart' %}">
+                    <i class="fa-solid fa-basket-shopping"><span class="cart-count-nav">({{ cart_count }})</span></i>
+                </a>
+            </div>
+        {% else %}
+            <div class="icon-item">
+                <a href="{% url 'view_shopping_cart' %}">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                </a>
+            </div>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
+            <div class="icon-item">
+                <a href="{% url 'login_user' %}">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+            </div>
+        {% else %}
+            <div class="icon-item">
+                <a href="{% url 'my_orders' pk=request.user.pk %}">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </a>
+            </div>
+            <div class="icon-item">
+                <a href="{% url 'update_user' pk=request.user.pk %}">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+            </div>
+            <div class="icon-item">
+                <a href="{% url 'logout_user' %}">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </a>
+            </div>
+        {% endif %}
     </div>
 </header>
 <main>
