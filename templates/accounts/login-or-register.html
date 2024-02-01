@@ -33,10 +33,13 @@
                 <li class="fieldset-element-styled">Enjoy the convenience of saving your wishlist permanently</li>
             </ul>
             <div class="fieldset-button">
-                <a href="{% url 'register_user' %}?next={{ next }}" class="button hover filled_green">
-                    <i class="fa-solid fa-user-plus"></i> Register
+                <a href="{% url 'register_user' %}?next={{ next }}" >
+                    <button class="button hover filled_green">
+                        <i class="fa-solid fa-user-plus"></i> Register
+                    </button>
                 </a>
             </div>
         </fieldset>
     </div>
 {% endblock %}
+

@@ -10,7 +10,7 @@
             </h2>
             <div class="delete-button">
                 <form method="post" action="{% url 'delete_user' pk=request.user.pk %}">
-                    <button class="button filled_red">Yes</button>
+                    <button class="button hover filled_red">Yes</button>
                     {% csrf_token %}
                 </form>
             </div>

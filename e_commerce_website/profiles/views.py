@@ -40,7 +40,7 @@ class UserUpdateView(NavigationBarMixin, UpdateView):
 
 
 class UserDeleteView(DeleteView):
-    template_name = 'profiles/delete.html'
+    template_name = 'profiles/delete-profile.html'
     model = UserModel
     success_url = reverse_lazy('index_page')
 
