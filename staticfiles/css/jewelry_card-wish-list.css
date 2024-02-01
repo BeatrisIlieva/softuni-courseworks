@@ -57,7 +57,7 @@ ul.content__characteristics {
     border-radius: 16px;
     overflow: hidden;
     border-style: dotted;
-    border-color: #d4af37;
+    border-color: var(--golden);
     padding: 6px;
     text-align: left;
 }
