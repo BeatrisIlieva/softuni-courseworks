@@ -43,14 +43,16 @@
 
 .wish-list-card .wish-list-content-top {
     position: absolute;
-    /*flex-direction: column;*/
+    flex-direction: column;
     right: -20%;
     top: 0;
     width: 100%;
     padding: 12px 32px;
     text-align: center;
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 32px;
+    margin-right: 100px;
 
 }
 

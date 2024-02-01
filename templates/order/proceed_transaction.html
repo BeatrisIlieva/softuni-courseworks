@@ -36,10 +36,13 @@
                 </section>
             </div>
         </form>
-                    <div class="error-container">
-                {% for field, error in form.errors.items %}
-                    <div class="error">{{ error }}</div>
-                {% endfor %}
-            </div>
+{#                    <div class="error-container">#}
+{#                {% for field, error in form.errors.items %}#}
+{#                    <div class="error">{{ error }}</div>#}
+{#                {% endfor %}#}
+{#            </div>#}
     </article>
+        {% if form.errors.items %}
+        {% include 'error-messages/error-messages.html' %}
+    {% endif %}
 {% endblock %}

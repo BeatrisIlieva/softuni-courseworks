@@ -45,8 +45,8 @@
 }
 
 .dropdown-subfield {
-    padding-top: 20px;
-    margin: 20px;
+    padding: 6px;
+    margin: 6px;
 }
 
 .dropdown-checkboxes:focus-within .dropdown-checkboxes-content {

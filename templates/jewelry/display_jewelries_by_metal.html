@@ -2,13 +2,6 @@
 {% load dict %}
 {% load static %}
 {% block page_content %}
-{#    <style>#}
-{#        .checkbox-list {#}
-{#            display: flex;#}
-{#            flex-wrap: wrap;#}
-{#            gap: 10px;#}
-{#        }#}
-{#    </style>#}
     <form action="{% url 'display_jewelries_by_metal' selected_pk %}" method="get">
         <div class="checkbox-list">
             {% for field in form %}
