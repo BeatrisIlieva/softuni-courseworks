@@ -1,4 +1,6 @@
 .details-card {
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
     height: 100vh;
     font-size: 18px;
     line-height: 1.5;
@@ -30,19 +32,28 @@
     color: white;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 44px;;
+    margin-top: 44px;
     margin-bottom: 12px;
     position: absolute;
     justify-content: space-evenly;
     top: 0;
     width: 100%;
+    overflow: hidden;
 }
 
-.complete-order-container section {
+.continue-button{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    padding: 6px;
+    margin-top: 10px;
+
 }
+
+/*.complete-order-container section {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    align-items: center;*/
+/*}*/
 
 /*.personal-element-label {*/
 /*    padding: 12px;*/
@@ -86,12 +97,7 @@
 /*}*/
 
 
-.continue-button{
-    display: flex;
-    padding: 6px;
-    margin-top: 10px;
 
-}
 
 /*.button-label{*/
 /*    padding: 12px;*/
