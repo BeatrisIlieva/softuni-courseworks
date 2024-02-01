@@ -1,6 +1,4 @@
 .details-card {
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
     height: 100vh;
     font-size: 18px;
     line-height: 1.5;
@@ -38,90 +36,13 @@
     justify-content: space-evenly;
     top: 0;
     width: 100%;
-    overflow: hidden;
 }
 
-.continue-button{
+.continue-button {
     display: flex;
     flex-wrap: wrap;
     padding: 6px;
     margin-top: 10px;
 
 }
-
-/*.complete-order-container section {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    align-items: center;*/
-/*}*/
-
-/*.personal-element-label {*/
-/*    padding: 12px;*/
-/*    display: inline-block;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.personal-element-field {*/
-/*    padding: 12px;*/
-/*    display: inline-block;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.delivery-element-label {*/
-/*    padding: 12px;*/
-/*    display: inline-block;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.delivery-element-field {*/
-/*    padding: 12px;*/
-/*    display: inline-block;*/
-/*    width: 100%;*/
-/*}*/
-
-/*.complete-order-container .personal-information {*/
-/*    flex-wrap: wrap;*/
-/*    padding: 6px;*/
-/*    width: 36vw;*/
-/*}*/
-
-/*#information-title {*/
-/*    font-size: 22px;*/
-/*    font-weight: 800;*/
-/*}*/
-
-/*.complete-order-container .delivery-information {*/
-/*    flex-wrap: wrap;*/
-/*    padding: 6px;*/
-/*    width: 64vh;*/
-/*}*/
-
-
-
-
-/*.button-label{*/
-/*    padding: 12px;*/
-/*    display: inline-block;*/
-/*    width: 100%;*/
-/*}*/
-
-/* Existing CSS remains unchanged */
-
-/*.error-container {*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 100%;*/
-/*    z-index: 1000; !* Ensure error messages are displayed above the black layer *!*/
-/*}*/
-
-/*.error {*/
-/*    background-color: #FA2A55; !* Example background color for error messages *!*/
-/*    color: white;*/
-/*    padding: 10px;*/
-/*    margin-bottom: 10px;*/
-/*}*/
-
-
-
 
