@@ -63,7 +63,7 @@ ul.content__characteristics {
 }
 
 .characteristic {
-    background-color: #fbf7eb;
+    background-color: var(--white-golden);
     border-radius: 8px;
     display: inline-block;
     padding: 2px 6px;
