@@ -1,4 +1,4 @@
-.cards{
+.cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px 32px;
@@ -10,16 +10,14 @@
     overflow: hidden;
     border-style: dotted;
     border-color: #fff6fa;
-        font-size: 0;
+    font-size: 0;
 }
 
 .thumbnail {
-    /*max-width: 100%;*/
-    /*max-height: 100%;*/
     aspect-ratio: 1 / 1;
     border-radius: 12px;
     background-color: #fff6fa;
-            position: relative;
+    position: relative;
 }
 
 .thumbnail__img {
@@ -48,7 +46,6 @@
     display: inline-block;
     margin-top: 6px;
     margin-bottom: 12px;
-    /*text-align: center;*/
 }
 
 .content__price {
@@ -63,11 +60,9 @@ ul.content__characteristics {
     border-color: #d4af37;
     padding: 6px;
     text-align: left;
-    /*font-size: 0;*/
-
 }
 
-.characteristic{
+.characteristic {
     background-color: #fbf7eb;
     border-radius: 8px;
     display: inline-block;
@@ -75,7 +70,7 @@ ul.content__characteristics {
     font-size: 16px;
 }
 
-.characteristic:not(:last-child){
+.characteristic:not(:last-child) {
     margin-right: 4px;
     margin-bottom: 4px;
 }
