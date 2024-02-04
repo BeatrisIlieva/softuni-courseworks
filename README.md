@@ -56,6 +56,7 @@
 - Followed Django Model View Template (MVT) architecture.
 4. Frontend:
 - Styled the user interface with CSS for an intuitive shopping experience tailored for desktop users.
+###### <p align="center">*Note: Currently optimized for desktop; future plans include implementing media queries for responsiveness on various devices.*</p>
 5. User Models:
 - Implemented two distinct user models: one for logging credentials and another for personal details.
 6. Asynchronous Operations:
