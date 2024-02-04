@@ -4,13 +4,13 @@
 
 # <p align="center">*DjangoE-commerceWebsite*</p>
 
-<p align="center" style="background-color: #040720; padding: 10px;">
-  <a href="#introduction" style="text-decoration: none; color: #fff;">Introduction</a> ·
-  <a href="#features" style="text-decoration: none; color: #fff;">Features</a> ·
-  <a href="#installation" style="text-decoration: none; color: #fff;">Installation</a> ·
-  <a href="#usage" style="text-decoration: none; color: #fff;">Usage</a> ·
-  <a href="#contributing" style="text-decoration: none; color: #fff;">Contributing</a> ·
-  <a href="#license" style="text-decoration: none; color: #fff;">License</a>
+<p align="center">
+  <a href="#introduction">Introduction</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#installation">Installation</a> ·
+  <a href="#usage">Usage</a> ·
+  <a href="#contributing">Contributing</a> ·
+  <a href="#license">License</a>
 </p>
 
 ## Introduction
