@@ -22,6 +22,7 @@
 *Welcome to our Online Jewelry Store built with Django! This web application serves as a platform for showcasing and selling a stunning collection of exquisite jewelry. With a user-friendly interface and seamless navigation, customers can explore, select, and purchase their favorite pieces effortlessly..* 
 
 [back to top](#djangoe-commercewebsite)
+<p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
 
 
@@ -45,7 +46,7 @@
           
 [back to top](#djangoe-commercewebsite)
 
-<p align="right" dir="auto">(<a href="#djangoe-commercewebsite">back to top</a>)</p>
+<p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
 
 ## Features 
@@ -67,6 +68,7 @@
 - Applied Object-Oriented Programming principles and SOLID for modular and maintainable code.
 
 [back to top](#djangoe-commercewebsite)
+<p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
 ## Installation
 
@@ -118,7 +120,7 @@
 10. Run [populate_jewelries.py](populate_jewelries.py)
 
 [back to top](#djangoe-commercewebsite)
-
+<p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 ## Usage
 1. Run the development server:
 
@@ -129,13 +131,16 @@
 2. Visit [localhost:8000](http://localhost:8000) in your web browser to access the Django application.
 
 [back to top](#djangoe-commercewebsite)
+<p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
 ## Entity Relationship Diagram:
 ![diagram](https://github.com/BeatrisIlieve/DjangoE-commerceWebsite/assets/122045435/9be83e6b-b8f3-410c-bed4-495924d5409c)
 
 [back to top](#djangoe-commercewebsite)
+<p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
 
 [back to top](#djangoe-commercewebsite)
+<p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
