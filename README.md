@@ -37,10 +37,7 @@
 
   <img alt="HTML5" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original-wordmark.svg" />
 
-  <img alt="CSS" width="100px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original-wordmark.svg" />
-          
-          
-          
+  <img alt="CSS" width="100px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original-wordmark.svg" />  
 </p>
           
           
@@ -123,18 +120,18 @@
   
 12. Visit [localhost:8000](http://localhost:8000) in your web browser to access the Django application.
 
-[Go back to the top](#djangoe-commercewebsite)
+[back to top](#djangoe-commercewebsite)
 
 ## Entity Relationship Diagram:
 ![accounts_accountuser](https://github.com/BeatrisIlieve/DjangoE-commerceWebsite/assets/122045435/9be83e6b-b8f3-410c-bed4-495924d5409c)
 
-[Go back to the top](#djangoe-commercewebsite)
+[back to top](#djangoe-commercewebsite)
 
 ## Usage
 1. Run the development server...
 2. Visit [localhost:8000](http://localhost:8000)...
 
-[Go back to the top](#djangoe-commercewebsite)
+[back to top](#djangoe-commercewebsite)
 
 ## Contributing
 We welcome contributions!...
