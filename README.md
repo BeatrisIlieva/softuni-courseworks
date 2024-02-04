@@ -82,6 +82,8 @@
 
 11. Run [populate_base_tables.py](populate_base_tables.py)
 
+12. Run [populate_jewelries.py](populate_jewelries.py)
+
 [Go back to the top](#djangoe-commercewebsite)
 
 
