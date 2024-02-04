@@ -5,7 +5,7 @@
 # <p align="center">*DjangoE-commerceWebsite*</p>
 
 <a name="built-with"></a>
-<a href="#122045435/9be83e6b-b8f3-410c-bed4-495924d5409c">Entity Relationship Diagram</a>
+<a name="diagram"></a>
 
 
 <p align="center">
