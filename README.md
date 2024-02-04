@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="#introduction">Introduction</a> ·
+  <a href="#builtwith">Built With</a> ·
   <a href="#features">Features</a> ·
   <a href="#contributing">Entity Relationship Diagram</a> ·
   <a href="#installation">Installation</a> ·
@@ -18,7 +19,14 @@
 
 [back to top](#djangoe-commercewebsite)
 
-## Features
+## Built With
+
+<img width="100px" align="center" alt="AWS" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
+          
+
+[back to top](#djangoe-commercewebsite)
+
+## Features          
 1. Deployment:
 - Hosted on Amazon Web Services (AWS)
 2. Databases:
