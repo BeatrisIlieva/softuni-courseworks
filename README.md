@@ -27,9 +27,75 @@
 [back to top](#djangoe-commercewebsite)
 
 ## Installation
-1. Clone the repository...
 
-[back to top](#djangoe-commercewebsite)
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/BeatrisIlieve/DjangoE-commerceWebsite.git
+    cd DjangoE-commerceWebsite
+    ```
+
+2. Create a `.env` file in the project root and configure your PostgreSQL, Redis, and Celery settings:
+
+    ```bash
+    # Example .env file
+    DB_NAME=your_database_name
+    DB_USER=your_database_user
+    DB_PASSWORD=your_database_password
+    DB_HOST=db
+    DB_PORT=5432
+
+    REDIS_HOST=redis
+    REDIS_PORT=6379
+
+    CELERY_BROKER_URL=redis://redis:6379/0
+    CELERY_RESULT_BACKEND=redis://redis:6379/0
+    ```
+
+3. Install Docker:
+
+    Follow the [official Docker installation guide](https://docs.docker.com/get-docker/) to install Docker on your machine.
+
+4. Build and start the Docker containers for PostgreSQL:
+
+    Follow the [official guide on how to use the Postgres Docker Official Image](https://hub.docker.com/_/postgres) to install Docker on your machine.
+
+5. Install the project dependencies using [pip](https://pip.pypa.io/en/stable/):
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+6. Apply database migrations:
+
+    ```bash
+    python manage.py migrate
+    ```
+
+7. Run Celery worker:
+
+    ```bash
+    celery -A e_commerce_website worker -l info
+    ```
+
+8. Run Celery Beat in a separate terminal:
+
+    ```bash
+    celery -A e_commerce_website beat -l info
+    ```
+
+9. Run the development server:
+
+    ```bash
+    python manage.py runserver
+    ```
+
+10. Visit [localhost:8000](http://localhost:8000) in your web browser to access the Django application.
+
+[Go back to the top](#djangoe-commercewebsite)
+
+
+
 
 ## Usage
 1. Run the development server...
