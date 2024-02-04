@@ -4,9 +4,11 @@
 
 # <p align="center">*DjangoE-commerceWebsite*</p>
 
+<a name="built-with"></a>
+
 <p align="center">
   <a href="#introduction">Introduction</a> ·
-  <a href="#builtwith">Built With</a> ·
+  <a href="#built-with">Built With</a> ·
   <a href="#features">Features</a> ·
   <a href="#contributing">Entity Relationship Diagram</a> ·
   <a href="#installation">Installation</a> ·
@@ -20,13 +22,15 @@
 [back to top](#djangoe-commercewebsite)
 
 ## Built With
+<img align="left" alt="AWS" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
 
-<img width="100px" align="center" alt="AWS" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
+<img align="left" alt="Dj" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain-wordmark.svg" />    
+
+<img align="left" alt="Dj" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original-wordmark.svg" />
           
-
 [back to top](#djangoe-commercewebsite)
 
-## Features          
+## Features 
 1. Deployment:
 - Hosted on Amazon Web Services (AWS)
 2. Databases:
