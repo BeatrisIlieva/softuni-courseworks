@@ -45,6 +45,8 @@
           
 [back to top](#djangoe-commercewebsite)
 
+<p align="right" dir="auto">(<a href="#djangoe-commercewebsite">back to top</a>)</p>
+
 
 ## Features 
 1. Deployment:
