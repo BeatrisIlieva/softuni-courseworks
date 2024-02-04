@@ -19,10 +19,21 @@
 [back to top](#djangoe-commercewebsite)
 
 ## Features
-- Product Catalog
-- User Authentication
-- Shopping Cart
-- Order Management
+1. Deployment:
+- Hosted on Amazon Web Services (AWS)
+2. Databases:
+- PostgreSQL: Optimized CRUD operations, pre-fetched data, and dynamic filtration.
+- Redis: Enhanced performance through caching. Implemented sessions for non-registered users to add products to their shopping carts and temporarily store customer wishlist.
+3. Backend:
+- Followed Django Model View Template (MVT) architecture.
+4. Frontend:
+- Styled the user interface with CSS for an intuitive shopping experience tailored for desktop users.
+5. User Models:
+- Implemented two distinct user models: one for logging credentials and another for personal details.
+6. Asynchronous Operations:
+- Utilized Celery for background tasks, specifically for cleaning expired shopping carts and managing inventory updates.
+7. OOP & SOLID:
+- Applied Object-Oriented Programming principles and SOLID for modular and maintainable code.
 
 [back to top](#djangoe-commercewebsite)
 
@@ -78,11 +89,11 @@
     python manage.py runserver
     ```
 
-10. Visit [localhost:8000](http://localhost:8000) in your web browser to access the Django application.
+10. Run [populate_base_tables.py](populate_base_tables.py)
 
-11. Run [populate_base_tables.py](populate_base_tables.py)
-
-12. Run [populate_jewelries.py](populate_jewelries.py)
+11. Run [populate_jewelries.py](populate_jewelries.py)
+  
+12. Visit [localhost:8000](http://localhost:8000) in your web browser to access the Django application.
 
 [Go back to the top](#djangoe-commercewebsite)
 
