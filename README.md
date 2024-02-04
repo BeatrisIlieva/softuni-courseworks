@@ -15,7 +15,7 @@
 
 ## Introduction
 
-Welcome to the Online Jewelry Store with Django...
+*Welcome to our Online Jewelry Store built with Django! This web application serves as a platform for showcasing and selling a stunning collection of exquisite jewelry. With a user-friendly interface and seamless navigation, customers can explore, select, and purchase their favorite pieces effortlessly..* 
 
 ## Features
 
@@ -43,6 +43,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 
 ### Overview 
-*Welcome to our Online Jewelry Store built with Django! This web application serves as a platform for showcasing and selling a stunning collection of exquisite jewelry. With a user-friendly interface and seamless navigation, customers can explore, select, and purchase their favorite pieces effortlessly..*</p> 
+
 ### Entity Relationship Diagram:
 ![accounts_accountuser](https://github.com/BeatrisIlieve/DjangoE-commerceWebsite/assets/122045435/9be83e6b-b8f3-410c-bed4-495924d5409c)
