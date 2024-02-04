@@ -36,9 +36,8 @@
   </tr>
 </table>
 
-<p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
+---
 
-## Features 
 1. Deployment:
 - Hosted on Amazon Web Services (AWS)
 2. Databases:
@@ -55,6 +54,11 @@
 - Utilized Celery for background tasks, specifically for cleaning expired shopping carts and managing inventory updates.
 7. OOP & SOLID:
 - Applied Object-Oriented Programming principles and SOLID for modular and maintainable code.
+
+<p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
+
+## Features 
+
 
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
@@ -85,24 +89,24 @@
     ```bash
     pip install -r requirements.txt
     ```
-
-6. Apply database migrations:
-
-    ```bash
-    python manage.py migrate
-    ```
-
-7. Run Celery worker:
+6. Run Celery worker:
 
     ```bash
     celery -A e_commerce_website worker -l info
     ```
 
-8. Run Celery Beat in a separate terminal:
+7. Run Celery Beat in a separate terminal:
 
     ```bash
     celery -A e_commerce_website beat -l info
     ```
+
+8. Apply database migrations:
+
+    ```bash
+    python manage.py migrate
+    ```
+    
 9. Run [populate_base_tables.py](populate_base_tables.py)
 
 10. Run [populate_jewelries.py](populate_jewelries.py)
