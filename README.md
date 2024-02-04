@@ -38,9 +38,6 @@
 ## Contributing
 
 We welcome contributions!...
-<a name="top"></a>
-
-[Back to Top](#top)
 
 ## License
 
@@ -48,3 +45,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Entity Relationship Diagram:
 ![accounts_accountuser](https://github.com/BeatrisIlieve/DjangoE-commerceWebsite/assets/122045435/9be83e6b-b8f3-410c-bed4-495924d5409c)
+
+<a name="top"></a>
+
+[Back to Top](#top)
