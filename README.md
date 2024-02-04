@@ -116,7 +116,7 @@
 [back to top](#djangoe-commercewebsite)
 
 ## Entity Relationship Diagram:
-![accounts_accountuser](https://github.com/BeatrisIlieve/DjangoE-commerceWebsite/assets/122045435/9be83e6b-b8f3-410c-bed4-495924d5409c)
+![diagram](https://github.com/BeatrisIlieve/DjangoE-commerceWebsite/assets/122045435/9be83e6b-b8f3-410c-bed4-495924d5409c)
 
 [back to top](#djangoe-commercewebsite)
 
