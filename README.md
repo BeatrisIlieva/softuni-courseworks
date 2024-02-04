@@ -112,14 +112,6 @@
 
 10. Run [populate_jewelries.py](populate_jewelries.py)
 
-11. Run the development server:
-
-    ```bash
-    python manage.py runserver
-    ```
-  
-12. Visit [localhost:8000](http://localhost:8000) in your web browser to access the Django application.
-
 [back to top](#djangoe-commercewebsite)
 
 ## Entity Relationship Diagram:
@@ -128,13 +120,13 @@
 [back to top](#djangoe-commercewebsite)
 
 ## Usage
-1. Run the development server...
-2. Visit [localhost:8000](http://localhost:8000)...
+1. Run the development server:
 
-[back to top](#djangoe-commercewebsite)
-
-## Contributing
-We welcome contributions!...
+    ```bash
+    python manage.py runserver
+    ```
+  
+2. Visit [localhost:8000](http://localhost:8000) in your web browser to access the Django application.
 
 [back to top](#djangoe-commercewebsite)
 
