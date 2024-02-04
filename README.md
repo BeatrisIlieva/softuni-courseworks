@@ -21,14 +21,25 @@
 
 [back to top](#djangoe-commercewebsite)
 
+
+
 ## Built With
-<img align="left" alt="AWS" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" />
+<p align="center">
+  <img alt="AWS" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"/>
+  
+  <img alt="Dj" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain-wordmark.svg"/>    
+  
+  <img alt="PostgreSQL" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original-wordmark.svg"/>
+  
+  <img alt="Docker" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original-wordmark.svg" />
 
-<img align="left" alt="Dj" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain-wordmark.svg" />    
-
-<img align="left" alt="Dj" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original-wordmark.svg" />
+  <img alt="Redis" width="100px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original-wordmark.svg" />
+          
+</p>
+          
           
 [back to top](#djangoe-commercewebsite)
+
 
 ## Features 
 1. Deployment:
