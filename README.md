@@ -35,30 +35,18 @@
     cd DjangoE-commerceWebsite
     ```
 
-2. Create a `.env` file in the project root and configure your PostgreSQL, Redis, and Celery settings:
-
-    ```bash
-    # Example .env file
-    DB_NAME=your_database_name
-    DB_USER=your_database_user
-    DB_PASSWORD=your_database_password
-    DB_HOST=db
-    DB_PORT=5432
-
-    REDIS_HOST=redis
-    REDIS_PORT=6379
-
-    CELERY_BROKER_URL=redis://redis:6379/0
-    CELERY_RESULT_BACKEND=redis://redis:6379/0
-    ```
-
-3. Install Docker:
+2. Install Docker:
 
     Follow the [official Docker installation guide](https://docs.docker.com/get-docker/) to install Docker on your machine.
 
-4. Build and start the Docker containers for PostgreSQL:
+3. Build and start the Docker containers for PostgreSQL:
 
-    Follow the [official guide on how to use the Postgres Docker Official Image](https://hub.docker.com/_/postgres) to install Docker on your machine.
+    Follow the [official guide on how to use the Postgres Docker Official Image](https://hub.docker.com/_/postgres) to run the PostgreSQL Docker Container.
+
+
+4. Build and start the Docker containers for Redis:
+
+    Follow the [official guide on how to use the Redis Docker Official Image](https://hub.docker.com/_/redis) to run the Redis Docker Container.
 
 5. Install the project dependencies using [pip](https://pip.pypa.io/en/stable/):
 
@@ -91,6 +79,8 @@
     ```
 
 10. Visit [localhost:8000](http://localhost:8000) in your web browser to access the Django application.
+
+11. Run [populate_base_tables.py](populate_base_tables.py)
 
 [Go back to the top](#djangoe-commercewebsite)
 
