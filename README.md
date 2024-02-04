@@ -7,9 +7,9 @@
 <p align="center">
   <a href="#introduction">Introduction</a> ·
   <a href="#features">Features</a> ·
+  <a href="#contributing">Entity Relationship Diagram</a> ·
   <a href="#installation">Installation</a> ·
   <a href="#usage">Usage</a> ·
-  <a href="#contributing">Contributing</a> ·
   <a href="#license">License</a>
 </p>
 
@@ -41,8 +41,5 @@ We welcome contributions!...
 
 This project is licensed under the [MIT License](LICENSE).
 
-
-### Overview 
-
-### Entity Relationship Diagram:
+## Entity Relationship Diagram:
 ![accounts_accountuser](https://github.com/BeatrisIlieve/DjangoE-commerceWebsite/assets/122045435/9be83e6b-b8f3-410c-bed4-495924d5409c)
