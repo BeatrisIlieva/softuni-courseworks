@@ -12,9 +12,9 @@
   <a href="#introduction">Introduction</a> ·
   <a href="#built-with">Built With</a> ·
   <a href="#features">Features</a> ·
-  <a href="#entity-relationship-diagram">Entity Relationship Diagram</a> ·
   <a href="#installation">Installation</a> ·
   <a href="#usage">Usage</a> ·
+  <a href="#entity-relationship-diagram">Entity Relationship Diagram</a> ·
   <a href="#license">License</a>
 </p>
 
