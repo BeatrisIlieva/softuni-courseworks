@@ -5,12 +5,13 @@
 # <p align="center">*DjangoE-commerceWebsite*</p>
 
 <a name="built-with"></a>
+<a name="diagram"></a>
 
 <p align="center">
   <a href="#introduction">Introduction</a> ·
   <a href="#built-with">Built With</a> ·
   <a href="#features">Features</a> ·
-  <a href="#contributing">Entity Relationship Diagram</a> ·
+  <a href="#diagram">Entity Relationship Diagram</a> ·
   <a href="#installation">Installation</a> ·
   <a href="#usage">Usage</a> ·
   <a href="#license">License</a>
