@@ -82,16 +82,15 @@
     ```bash
     celery -A e_commerce_website beat -l info
     ```
+9. Run [populate_base_tables.py](populate_base_tables.py)
 
-9. Run the development server:
+10. Run [populate_jewelries.py](populate_jewelries.py)
+
+11. Run the development server:
 
     ```bash
     python manage.py runserver
     ```
-
-10. Run [populate_base_tables.py](populate_base_tables.py)
-
-11. Run [populate_jewelries.py](populate_jewelries.py)
   
 12. Visit [localhost:8000](http://localhost:8000) in your web browser to access the Django application.
 
