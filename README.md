@@ -50,12 +50,12 @@
 
     Follow the [official Docker installation guide](https://docs.docker.com/get-docker/) to install Docker on your machine.
 
-3. Build and start the Docker containers for PostgreSQL:
+3. Build and start the Docker container for PostgreSQL:
 
     Follow the [official guide on how to use the Postgres Docker Official Image](https://hub.docker.com/_/postgres) to run the PostgreSQL Docker Container.
 
 
-4. Build and start the Docker containers for Redis:
+4. Build and start the Docker container for Redis:
 
     Follow the [official guide on how to use the Redis Docker Official Image](https://hub.docker.com/_/redis) to run the Redis Docker Container.
 
