@@ -4,11 +4,14 @@
 
 # <p align="center">*DjangoE-commerceWebsite*</p>
 
-# Table of Contents
-
-1. [Introduction](#introduction) | 2. [Features](#features) | 3. [Installation](#installation) | 4. [Usage](#usage) | 5. [Contributing](#contributing) | 6. [License](#license)
-
----
+<p align="center" style="background-color: #040720; padding: 10px;">
+  <a href="#introduction" style="text-decoration: none; color: #fff;">Introduction</a> ·
+  <a href="#features" style="text-decoration: none; color: #fff;">Features</a> ·
+  <a href="#installation" style="text-decoration: none; color: #fff;">Installation</a> ·
+  <a href="#usage" style="text-decoration: none; color: #fff;">Usage</a> ·
+  <a href="#contributing" style="text-decoration: none; color: #fff;">Contributing</a> ·
+  <a href="#license" style="text-decoration: none; color: #fff;">License</a>
+</p>
 
 ## Introduction
 
