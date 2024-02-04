@@ -24,9 +24,7 @@
 - Shopping Cart
 - Order Management
 
-<a name="top"></a>
 
-[Back to Top](#top)
 
 ## Installation
 
@@ -40,6 +38,9 @@
 ## Contributing
 
 We welcome contributions!...
+<a name="top"></a>
+
+[Back to Top](#top)
 
 ## License
 
