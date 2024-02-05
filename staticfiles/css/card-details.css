@@ -24,10 +24,6 @@
     object-fit: cover;
 }
 
-/*.card-details-card {*/
-/*    font-size: 18px;*/
-/*}*/
-
 .card-details-container {
     /*font-size: 18px;*/
     color: white;
@@ -68,7 +64,7 @@
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 5px;
-    width: 450px; /* Adjusted width for the container */
+    width: 450px;
     display: flex;
     flex-direction: column;
 }
@@ -82,8 +78,8 @@
 .card-details-input .expiry-cvv {
     width: 60%;
     display: flex;
-    flex-direction: column; /* Change to column layout */
-    align-items: flex-start; /* Align items to the start */
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .card-details-input .expiry-cvv label {
@@ -94,13 +90,11 @@
 .card-details-input .expiry-cvv input {
     width: 60%;
     margin-bottom: 10px;
-    /* Other input styles */
 }
 
 .card-details-input .card-number-input {
     width: 70%;
     margin-bottom: 10px;
-    /* Adjust input styles for the card number */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
