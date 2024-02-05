@@ -98,7 +98,7 @@
 
 8. Advanced Product Filtering and Real-time Availability Tracking:
    
-     When a customer selects a category from the dropdown menu, they are seamlessly redirected to the chosen category page. Here, an advanced product filtering system awaits, allowing users to refine their search further. The selection menu not only filters the displayed products based on user preferences but also dynamically adjusts other checkboxes based on the available products. A counter is placed next to each checkbox within the Django multiple checkboxes form. These counters provide real-time feedback, indicating the exact number of products available for each checkbox selection.
+     When a customer selects a category from the dropdown menu, they are redirected to the chosen category page. Here, an advanced product filtering system awaits, allowing users to refine their search further. The selection menu not only filters the displayed products based on user preferences but also dynamically adjusts other checkboxes based on the available products. A counter is placed next to each checkbox within the Django multiple checkboxes form. These counters provide real-time feedback, indicating the exact number of products available for each checkbox selection.
 
 9. Size Selection:
    
