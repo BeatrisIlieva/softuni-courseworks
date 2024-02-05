@@ -74,7 +74,7 @@ class AddToShoppingCartView(RedirectView):
 
 class UpdateShoppingCartView(MaxQuantityMixin, FormView):
     form_class = QuantityUpdateForm
-    template_name = 'shopping_cart/shopping_cart.html'
+    template_name = 'shopping-cart/shopping-cart.html'
 
     ZERO_QUANTITY = 0
 
@@ -122,7 +122,7 @@ class UpdateShoppingCartView(MaxQuantityMixin, FormView):
 
 
 class DisplayShoppingCartView(LastViewedJewelriesMixin, JewelryStonesMixin, JewelryMetalsMixin, MaxQuantityMixin, NavigationBarMixin, TemplateView):
-    template_name = 'shopping_cart/shopping_cart.html'
+    template_name = 'shopping-cart/shopping-cart.html'
 
     MIN_QUANTITY = 0
     INITIAL_TOTAL_PRICE = 0

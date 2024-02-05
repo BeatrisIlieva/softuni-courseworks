@@ -30,7 +30,7 @@ class JewelryDetailsViewTest(TestCase):
 
         self.assertTemplateUsed(
             response,
-            'jewelry/jewelry_details.html'
+            'jewelry/jewelry-details.html'
         )
 
         self.assertEqual(

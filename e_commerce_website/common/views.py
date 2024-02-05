@@ -26,7 +26,7 @@ class SearchBarView(
     NavigationBarMixin,
     ListView
 ):
-    template_name = 'common/search_results.html'
+    template_name = 'common/search-results.html'
     model = Jewelry
     paginate_by = 6
 

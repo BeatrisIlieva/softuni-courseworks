@@ -99,7 +99,7 @@ class SearchBarViewTests(TestCase):
 
         self.assertTemplateUsed(
             response,
-            'common/search_results.html'
+            'common/search-results.html'
         )
 
         self.assertEqual(

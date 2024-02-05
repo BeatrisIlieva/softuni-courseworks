@@ -21,7 +21,7 @@ from e_commerce_website.jewelry.funcs import (
 
 
 class DisplayJewelriesByCategoryView(DisplayJewelryMixin, JewelriesStonesMixin, JewelriesMetalsMixin):
-    template_name = 'jewelry/display_jewelries_by_category.html'
+    template_name = 'jewelry/display-jewelries-by-category.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -213,7 +213,7 @@ class DisplayJewelriesByCategoryView(DisplayJewelryMixin, JewelriesStonesMixin, 
 
 
 class DisplayJewelriesByMetalView(DisplayJewelryMixin):
-    template_name = 'jewelry/display_jewelries_by_metal.html'
+    template_name = 'jewelry/display-jewelries-by-metal.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -398,7 +398,7 @@ class DisplayJewelriesByMetalView(DisplayJewelryMixin):
 
 
 class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
-    template_name = 'jewelry/display_jewelries_by_stone_type.html'
+    template_name = 'jewelry/display-jewelries-by-stone-type.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -571,7 +571,7 @@ class DisplayJewelriesByStoneTypeView(DisplayJewelryMixin):
 
 
 class DisplayJewelriesByStoneColorView(DisplayJewelryMixin):
-    template_name = 'jewelry/display_jewelries_by_stone_color.html'
+    template_name = 'jewelry/display-jewelries-by-stone-color.html'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -742,7 +742,7 @@ class JewelryDetailsView(
     FormMixin
 ):
 
-    template_name = 'jewelry/jewelry_details.html'
+    template_name = 'jewelry/jewelry-details.html'
     form_class = SizeForm
 
     def get_context_data(self, **kwargs):

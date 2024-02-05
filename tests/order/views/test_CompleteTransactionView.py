@@ -174,7 +174,7 @@ class AddToShoppingCartViewTests(TestCase):
 
         self.assertTemplateUsed(
             response,
-            'order/proceed_transaction.html'
+            'order/proceed-transaction.html'
         )
 
     def test_proceed_transaction__when_invalid_card_number_data__expect__raises(self):

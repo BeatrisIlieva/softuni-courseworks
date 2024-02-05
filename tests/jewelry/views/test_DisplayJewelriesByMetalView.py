@@ -131,7 +131,7 @@ class DisplayJewelriesByMetalViewTests(TestCase):
 
         self.assertTemplateUsed(
             response,
-            'jewelry/display_jewelries_by_metal.html'
+            'jewelry/display-jewelries-by-metal.html'
         )
 
         self.assertIn(

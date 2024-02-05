@@ -11,7 +11,7 @@ app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 app.conf.beat_schedule = {
     'cleanup_expired_carts_task': {
-        'task': 'e_commerce_website.shopping_cart.tasks.cleanup_expired_carts',
+        'task': 'e_commerce_website.shopping-cart.tasks.cleanup_expired_carts',
         'schedule': 3600,
     },
 }

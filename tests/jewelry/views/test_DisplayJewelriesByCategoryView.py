@@ -104,7 +104,7 @@ class DisplayLikedJewelriesViewTests(TestCase):
 
         self.assertTemplateUsed(
             response,
-            'jewelry/display_jewelries_by_category.html'
+            'jewelry/display-jewelries-by-category.html'
         )
 
         self.assertIn(

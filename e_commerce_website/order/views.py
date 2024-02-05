@@ -21,7 +21,7 @@ from e_commerce_website.shopping_cart.models import ShoppingCart
 
 
 class CompleteOrderView(LoginRequiredMixin, NavigationBarMixin, UpdateView):
-    template_name = 'order/complete_order.html'
+    template_name = 'order/complete-order.html'
     model = AccountProfile
     form_class = AccountProfileForm
 
@@ -38,7 +38,7 @@ class CompleteOrderView(LoginRequiredMixin, NavigationBarMixin, UpdateView):
 
 
 class CompleteTransactionView(LoginRequiredMixin,NavigationBarMixin, TemplateView, FormMixin):
-    template_name = 'order/proceed_transaction.html'
+    template_name = 'order/proceed-transaction.html'
     form_class = CardDetailsForm
 
     def get_context_data(self, **kwargs):
@@ -71,7 +71,7 @@ class CompleteTransactionView(LoginRequiredMixin,NavigationBarMixin, TemplateVie
 
 
 class OrderDetailsView(LoginRequiredMixin,NavigationBarMixin, TemplateView):
-    template_name = 'order/order_details.html'
+    template_name = 'order/order-details.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -137,7 +137,7 @@ class OrderDetailsView(LoginRequiredMixin,NavigationBarMixin, TemplateView):
 
 
 class UserOrdersView(NavigationBarMixin, TemplateView):
-    template_name = 'order/orders_history.html'
+    template_name = 'order/orders-history.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
