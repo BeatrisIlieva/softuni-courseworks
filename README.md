@@ -94,7 +94,7 @@
 
 7. Order History:
    
-     Registered users can enjoy a comprehensive shopping experience with the added convenience of an order history feature. Every purchase made by a registered user is meticulously recorded and stored, allowing them to effortlessly track their order history.
+     Registered users can enjoy a shopping experience with the added convenience of an order history feature. Every purchase made by a registered user is meticulously recorded and stored, allowing them to effortlessly track their order history.
 
 8. Advanced Product Filtering and Real-time Availability Tracking:
    
