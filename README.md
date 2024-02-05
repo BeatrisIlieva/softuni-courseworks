@@ -72,9 +72,13 @@
   
     For users who are not logged in, the user icon redirects them to a new page that encourages them to register or log in.
 
-3. Search Button:
+3. Search:
    
      The search button allows users to input keywords or phrases, and in real-time, it dynamically displays related products from our extensive database. This feature ensures a seamless and efficient browsing experience, helping users find exactly what they are looking for with ease.
+
+4. Like:
+   
+     For non-registered users, their likes are stored temporarily in the session, allowing them to enjoy a personalized experience during their current visit. Registered users benefit from a seamless experience as their likes are securely stored in the database, ensuring that their preferences are maintained across sessions.
 
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
