@@ -129,6 +129,10 @@
 14. Logout Functionality:
    
      By clicking on the Logout button conveniently placed in the header, customers can initiate alog-out process. Following the click, users are redirected to the Login or Register page.
+
+15. Enhanced Form Display: Customizing Labels and Utilizing Placeholders:
+   
+     In this implementation, default Django form labels have been removed, creating a cleaner and more streamlined appearance. Instead, placeholders have been implemented, offering users intuitive cues within the form fields. This enhancement not only improves aesthetics but also ensures a more user-friendly and modern form interaction.
     
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
