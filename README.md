@@ -86,15 +86,21 @@
 
      To enhance efficiency, our system utilizes Celery to automate the cleanup process. Expired shopping carts are systematically cleared within one hour, returning the products back to the inventory. This not only optimizes the shopping experience but also ensures that the inventory remains accurate and up-to-date.
 
-6. Order History:
+   After successfully adding items to the shopping bag, customers are redirected to their personalized shopping cart. This feature-rich page provides a detailed overview, including information about the quantity of each product, the total price based on the selected quantity, and the overall order total.
+
+Customers have the flexibility to adjust the quantity directly on the shopping cart page. Increasing or decreasing the quantity dynamically updates both the displayed total price and the inventory quantity in real-time.
+
+For added convenience, if a product is added for a first or a second time from the product page, a quantity of one is automatically appended. Conversely, using the 'Update Quantity' button to set the quantity to zero removes the product from the shopping cart. Customers can also add as much quantity as available in the inventory, ensuring a flexible and tailored shopping experience.
+
+7. Order History:
    
      Registered users can enjoy a comprehensive shopping experience with the added convenience of an order history feature. Every purchase made by a registered user is meticulously recorded and stored, allowing them to effortlessly track their order history.
 
-7. Advanced Product Filtering and Real-time Availability Tracking:
+8. Advanced Product Filtering and Real-time Availability Tracking:
    
      When a customer selects a category from the dropdown menu, they are seamlessly redirected to the chosen category page. Here, an advanced product filtering system awaits, allowing users to refine their search further. The selection menu not only filters the displayed products based on user preferences but also dynamically adjusts other checkboxes based on the available products. A counter is placed next to each checkbox within the Django multiple checkboxes form. These counters provide real-time feedback, indicating the exact number of products available for each checkbox selection.
 
-8. Size Selection:
+9. Size Selection:
    
      To enhance the shopping experience, a radio select button must be chosen before adding items to the shopping bag. This ensures clarity and precision in product selection, allowing customers to effortlessly specify their preferences before proceeding to the checkout.
 
