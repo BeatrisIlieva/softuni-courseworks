@@ -82,9 +82,13 @@
 
 5. Shopping Cart:
    
-     Items added to the shopping cart are securely stored in the session, ensuring a seamless and personalized experience for both logged-in and non-logged-in users.
+     Items added to the shopping cart are stored in the session, ensuring a seamless and personalized experience for both logged-in and non-logged-in users.
 
      To enhance efficiency, our system utilizes Celery to automate the cleanup process. Expired shopping carts are systematically cleared within one hour, returning the products back to the inventory. This not only optimizes the shopping experience but also ensures that the inventory remains accurate and up-to-date.
+
+5. Order History:
+   
+     Registered users can enjoy a comprehensive shopping experience with the added convenience of an order history feature. Every purchase made by a registered user is meticulously recorded and stored, allowing them to effortlessly track their order history.
 
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
