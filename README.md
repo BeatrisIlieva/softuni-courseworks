@@ -66,7 +66,7 @@
 2. User Registration and Authentication Pages:
 -  Registration:
   
-    Users can initiate the registration process by clicking on the dedicated "Register" button in the header. This action redirects them to a new page where they can provide only Login information to create an account. After successful registration, users are directly logged in. Upon logging in, users are greeted with personalized icons in the header. Clicking on the user icon redirects users to a new page where they can view and update personal information or delete the user profile. 
+    Users can initiate the registration process by clicking on the dedicated "Register" button in the header. This action redirects them to a new page where they can provide only Login information to create an account. After successful registration, users are directly logged in. Clicking on the user icon redirects users to a new page where they can view and update personal information or delete the user profile. 
 
 - Guest Users:
   
