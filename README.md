@@ -59,10 +59,6 @@
 
 ## Features 
 
-1. Dynamic Navigation Bar:
-
-    The project features a dynamic navigation bar at the header, providing an intuitive and seamless user experience. The dropdown menu options are dynamically generated from the database, ensuring that any changes or additions are automatically reflected in the menu.
-
 2. User Registration and Authentication Pages:
 -  Registration:
   
@@ -71,6 +67,10 @@
 - Guest Users:
   
     For users who are not logged in, the user icon redirects them to a new page that encourages them to register or log in.
+
+1. Dynamic Navigation Bar:
+
+    The project features a dynamic navigation bar at the header, providing an intuitive and seamless user experience. The dropdown menu options are dynamically generated from the database, ensuring that any changes or additions are automatically reflected in the menu.
 
 9. Advanced Product Filtering and Real-time Availability Tracking:
    
