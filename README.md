@@ -80,6 +80,12 @@
    
      For non-registered users, their likes are stored temporarily in the session, allowing them to enjoy a personalized experience during their current visit. Registered users benefit from a seamless experience as their likes are securely stored in the database, ensuring that their preferences are maintained across sessions.
 
+5. Shopping Cart:
+   
+     Items added to the shopping cart are securely stored in the session, ensuring a seamless and personalized experience for both logged-in and non-logged-in users.
+
+     To enhance efficiency, our system utilizes Celery to automate the cleanup process. Expired shopping carts are systematically cleared within one hour, returning the products back to the inventory. This not only optimizes the shopping experience but also ensures that the inventory remains accurate and up-to-date.
+
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
 ## Installation
