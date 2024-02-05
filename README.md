@@ -125,6 +125,10 @@
 13. Last Seen Products:
    
      As part of our user-centric approach, the system stores the last three products viewed by users in their session. This recent product history is thoughtfully displayed on pages where it is most relevant, ensuring a personalized and efficient browsing experience. Users can easily revisit and consider these recently viewed products, adding a layer of convenience to their journey throughout the platform.
+
+14. Logout Functionality:
+   
+     By clicking on the Logout button conveniently placed in the header, customers can initiate alog-out process. Following the click, users are redirected to the Login or Register page.
     
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
