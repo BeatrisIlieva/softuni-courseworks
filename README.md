@@ -58,6 +58,10 @@
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
 ## Features 
+1. Dynamic Navigation Bar:
+
+    The project features a dynamic navigation bar at the header, providing an intuitive and seamless user experience. The navigation options are dynamically generated from the database,   ensuring that any changes or additions to product categories are automatically reflected in the menu.
+
 
 
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
