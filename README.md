@@ -121,6 +121,10 @@
 13. User-Friendly Error Messages:
    
      Enhancing user experience, our system features custom error messages that provide clear and concise feedback. These messages are designed to be user-friendly, allowing customers to easily understand and address any issues that may arise. Notably, these error messages are conveniently dismissible with a simple click, ensuring a seamless and non-intrusive interaction.
+
+13. Last Seen Products:
+   
+     As part of our user-centric approach, the system stores the last three products viewed by users in their session. This recent product history is thoughtfully displayed on pages where it is most relevant, ensuring a personalized and efficient browsing experience. Users can easily revisit and consider these recently viewed products, adding a layer of convenience to their journey throughout the platform.
     
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
