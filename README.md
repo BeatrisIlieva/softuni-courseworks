@@ -72,6 +72,10 @@
   
     For users who are not logged in, the user icon redirects them to a new page that encourages them to register or log in.
 
+9. Advanced Product Filtering and Real-time Availability Tracking:
+   
+     When a customer selects a category from the dropdown menu, they are redirected to the chosen category page. Here, an advanced product filtering system awaits, allowing users to refine their search further. The selection menu not only filters the displayed products based on user preferences but also dynamically adjusts other checkboxes based on the available products. A counter is placed next to each checkbox within the Django multiple checkboxes form. These counters provide real-time feedback, indicating the exact number of products available for each checkbox selection.
+
 3. Search:
    
      The search button allows users to input keywords or phrases, and in real-time, it dynamically displays related products from our extensive database. This feature ensures a seamless and efficient browsing experience, helping users find exactly what they are looking for with ease.
@@ -104,14 +108,6 @@
     
     For added convenience, if a product is added for a first or a second time from the product page, a quantity of one is automatically appended. Conversely, using the 'Update Quantity' button to set the quantity to zero removes the product from the shopping cart. Customers can also add as much quantity as available in the inventory, ensuring a flexible and tailored shopping experience.
 
-7. Order History:
-   
-     Registered users can enjoy a shopping experience with the added convenience of an order history feature. Every purchase made by a registered user is meticulously recorded and stored, allowing them to effortlessly track their order history.
-
-8. Advanced Product Filtering and Real-time Availability Tracking:
-   
-     When a customer selects a category from the dropdown menu, they are redirected to the chosen category page. Here, an advanced product filtering system awaits, allowing users to refine their search further. The selection menu not only filters the displayed products based on user preferences but also dynamically adjusts other checkboxes based on the available products. A counter is placed next to each checkbox within the Django multiple checkboxes form. These counters provide real-time feedback, indicating the exact number of products available for each checkbox selection.
-
 9. Size Selection:
    
      To enhance the shopping experience, a radio select button must be chosen before adding items to the shopping bag. This ensures clarity and precision in product selection, allowing customers to effortlessly specify their preferences before proceeding to the checkout.
@@ -129,6 +125,10 @@
      After the successful completion of the payment transaction, customers are redirected to an Order Details page, providing a comprehensive overview of their purchase. This page meticulously lists each product's characteristics, individual total price, and the overall total order price.
 
     Included in this detailed confirmation is a unique Order ID for reference. Users will also find a summary of their personal information, ensuring transparency and facilitating future reference. The Order Confirmation and Details page serves as a comprehensive receipt, offering customers a complete understanding of their purchase and order specifics.
+
+8. Order History:
+   
+     Registered users can enjoy a shopping experience with the added convenience of an order history feature. Every purchase made by a registered user is meticulously recorded and stored, allowing them to effortlessly track their order history.
 
 14. Logout Functionality:
    
