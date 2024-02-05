@@ -68,6 +68,10 @@
   
     Upon logging in, users are greeted with personalized icons in the header. Clicking on the user icon redirects users to a new page where they can view and update personal information or delete the user profile.
 
+- Guest Users:
+  
+    For users who are not logged in, the user icon redirects them to a new page that encourages them to register or log in.
+
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
 ## Installation
