@@ -63,7 +63,10 @@
 
     The project features a dynamic navigation bar at the header, providing an intuitive and seamless user experience. The dropdown menu options are dynamically generated from the database, ensuring that any changes or additions are automatically reflected in the menu.
 
-
+2. User Authentication and Personalization:
+- Logged-in Users:
+  
+    Upon logging in, users are greeted with personalized icons in the header. Clicking on the user icon redirects users to a new page where they can view and update personal information or delete the user profile.
 
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
