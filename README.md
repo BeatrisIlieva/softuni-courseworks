@@ -122,15 +122,19 @@
    
      Registered users can enjoy a shopping experience with the added convenience of an order history feature. Every purchase made by a registered user is meticulously recorded and stored, allowing them to effortlessly track their order history.
 
-13. Enhanced Form Display: Customizing Labels and Utilizing Placeholders:
+14. Pagination:
+   
+     To enhance accessibility, large sets of content are broken down into manageable sections. Users can effortlessly navigate through pages, ensuring a user-friendly and efficient exploration of our extensive collection. 
+
+15. Enhanced Form Display: Customizing Labels and Utilizing Placeholders:
    
      In this implementation, default Django form labels have been removed, creating a cleaner and more streamlined appearance. Instead, placeholders have been implemented, offering users intuitive cues within the form fields. This enhancement not only improves aesthetics but also ensures a more user-friendly and modern form interaction.
 
-14. User-Friendly Error Messages:
+16. User-Friendly Error Messages:
    
      Enhancing user experience, our system features custom error messages that provide clear and concise feedback. These messages are designed to be user-friendly, allowing customers to easily understand and address any issues that may arise. Notably, these error messages are conveniently dismissible with a simple click, ensuring a seamless and non-intrusive interaction.
 
-15. Logout Functionality:
+17. Logout Functionality:
    
      By clicking on the Logout button conveniently placed in the header, customers can initiate alog-out process. Following the click, users are redirected to the Login or Register page.
     
