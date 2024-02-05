@@ -51,10 +51,6 @@
     transition: background-color 300ms linear, color 300ms;
 }
 
-/*.button:hover {*/
-/*    background-color: #ffa6c9;*/
-/*}*/
-
 .button.filled_pink {
     color: #040720;
     background-color: #ffd4e2;
