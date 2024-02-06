@@ -156,3 +156,25 @@ class EmailChangedSuccessfully(NavigationBarMixin, DetailView):
         context.update(nav_bar_context)
 
         return context
+
+class DetailsChangedSuccessfully(NavigationBarMixin, DetailView):
+    template_name = 'common/details-changed.html'
+    model = UserModel
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context
+
+class ProfileDeletedSuccessfully(NavigationBarMixin, TemplateView):
+    template_name = 'common/profile-deleted.html'
+    model = UserModel
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context

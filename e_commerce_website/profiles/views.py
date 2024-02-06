@@ -27,7 +27,7 @@ class UserUpdateView(NavigationBarMixin, UpdateView):
     form_class = AccountProfileForm
 
     def get_success_url(self):
-        return reverse_lazy('update_user', kwargs={
+        return reverse_lazy('details_changed', kwargs={
             'pk': self.request.user.pk,
         })
 
@@ -42,7 +42,7 @@ class UserUpdateView(NavigationBarMixin, UpdateView):
 class UserDeleteView(DeleteView):
     template_name = 'profiles/delete-profile.html'
     model = UserModel
-    success_url = reverse_lazy('index_page')
+    success_url = reverse_lazy('profile-deleted')
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
