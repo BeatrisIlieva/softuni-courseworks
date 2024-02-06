@@ -2,10 +2,23 @@
 {% load static %}
 
 {% block page_content %}
-  <h2>Change Email</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save changes</button>
-  </form>
+    <form method="post">
+        <div class="fieldset-container-update">
+            <fieldset class="fieldset-content">
+                <legend class="fieldset-title">Change Email</legend>
+                <ul role="list">
+                    <li class="fieldset-element">
+                        {{ form.email.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.email }}
+                    </li>
+                </ul>
+                <button type="submit" class="button hover filled_green">
+                    <i class="fa-solid fa-user-plus"></i> Change Email
+                </button>
+                {% csrf_token %}
+            </fieldset>
+        </div>
+    </form>
 {% endblock %}

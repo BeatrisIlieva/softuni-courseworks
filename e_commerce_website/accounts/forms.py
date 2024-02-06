@@ -72,8 +72,10 @@ class CustomUpdateEmailForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super(CustomUpdateEmailForm, self).__init__(*args, **kwargs)
 
-        self.fields['email'].label = 'New Email'
+        self.fields['email'].label = 'Change your current email'
         self.fields['email'].widget.attrs['placeholder'] = 'Enter your new email'
+
+
 
 
 
