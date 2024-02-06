@@ -154,7 +154,11 @@
 - Defines read-only fields for user details.
 - Specifies list display, ordering, list filter, search fields, and sortable fields.
 - Organizes fields into fieldsets based on personal information, contact details, and delivery address.
-    
+
+3. Jewelries:
+- Customizes the Django admin interface for jewelry products.
+- Defines list display, list filter, search fields, and inlines for associated models (metals, stones, sizes).
+- Implements custom methods to display metals, stone types, and stone colors in the list view.
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
 ## Installation
