@@ -34,12 +34,8 @@
                 </ul>
             </form>
         </fieldset>
-        <div class="error-container">
-            {% for field, error in form.errors.items %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-        </div>
     </div>
+    {% include 'error-messages/error-messages.html' %}
 {% endblock %}
 
 

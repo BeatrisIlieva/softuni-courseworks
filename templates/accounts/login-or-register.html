@@ -22,6 +22,7 @@
                 </button>
                 {% csrf_token %}
             </form>
+            {% include 'error-messages/error-messages.html' %}
         </fieldset>
         <fieldset class="larger-fieldset">
             <legend class="fieldset-title">New Customers</legend>

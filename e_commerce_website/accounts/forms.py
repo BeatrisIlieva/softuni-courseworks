@@ -50,6 +50,10 @@ class RegisterUserForm(UserCreationForm):
 
 
 class LoginUserForm(AuthenticationForm):
+    error_messages = {
+        'invalid_login': 'Invalid email address or password. Please try again.',
+    }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -61,7 +65,6 @@ class LoginUserForm(AuthenticationForm):
 
         self.fields['password'].widget.attrs['placeholder'] = \
             'Enter your password'
-
 
 
 class CustomUpdateEmailForm(UserChangeForm):
