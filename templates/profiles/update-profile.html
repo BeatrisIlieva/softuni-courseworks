@@ -55,11 +55,6 @@
                 Update Profile
             </button>
             {% csrf_token %}
-            <div class="fieldset-button">
-                <a class="button hover filled_red continue-button" href="{% url 'delete_user' pk=object.pk %}">
-                    <i class="fa-solid fa-user-slash"></i> Delete Profile
-                </a>
-            </div>
         </div>
     </form>
     {% include 'error-messages/error-messages.html' %}
