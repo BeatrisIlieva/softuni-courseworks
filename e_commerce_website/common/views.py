@@ -1,5 +1,6 @@
 from django.db.models import Q
-from django.views.generic import TemplateView, ListView
+from django.contrib.auth import get_user_model
+from django.views.generic import TemplateView, ListView, DetailView
 from e_commerce_website.common.mixins import NavigationBarMixin
 from e_commerce_website.common.utils import get_object_pks
 from e_commerce_website.jewelry.mixins import JewelryIsLikedByUserMixin, LastViewedJewelriesMixin
@@ -7,6 +8,7 @@ from e_commerce_website.jewelry.models import (
     Category, Metal, StoneType, StoneColor, Jewelry
 )
 
+UserModel = get_user_model()
 
 class IndexView(NavigationBarMixin, TemplateView):
     template_name = 'common/index.html'
@@ -120,3 +122,15 @@ def show_last_viewed(request, pk):
     last_viewed.append(pk)
 
     request.session['last_viewed_jewelries'] = last_viewed
+
+
+class ProfileOptionsView(NavigationBarMixin, DetailView):
+    template_name = 'common/profile-options.html'
+    model = UserModel
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context

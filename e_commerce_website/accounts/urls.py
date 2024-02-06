@@ -3,7 +3,7 @@ from django.urls import path
 from e_commerce_website.accounts.views import (
     RegisterUserView,
     LoginUserView,
-    LogoutUserView
+    LogoutUserView, CustomUpdateEmailView, CustomUpdatePasswordView
 )
 
 urlpatterns = (
@@ -21,5 +21,15 @@ urlpatterns = (
         'logout/',
         LogoutUserView.as_view(),
         name='logout_user'
+    ),
+    path(
+        'update-email/<int:pk>/',
+        CustomUpdateEmailView.as_view(),
+        name='update_email'
+    ),
+    path(
+        'update-password/<int:pk>/',
+        CustomUpdatePasswordView.as_view(),
+        name='update_password'
     ),
 )

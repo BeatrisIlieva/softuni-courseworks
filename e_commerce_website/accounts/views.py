@@ -1,10 +1,11 @@
 from django.contrib.auth import login, logout
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView
-from e_commerce_website.accounts.forms import RegisterUserForm, LoginUserForm
+from django.views.generic import CreateView, UpdateView
+from e_commerce_website.accounts.forms import RegisterUserForm, LoginUserForm, CustomUpdateEmailForm, \
+    CustomUpdatePasswordForm
 from e_commerce_website.common.mixins import NavigationBarMixin
 
 
@@ -53,3 +54,26 @@ class LogoutUserView(View):
     def get(request, *args, **kwargs):
         logout(request)
         return redirect(reverse_lazy('login_user'))
+
+
+class CustomUpdateEmailView(UpdateView):
+    template_name = 'accounts/update-email.html'
+    form_class = CustomUpdateEmailForm
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_success_url(self):
+        return reverse_lazy('profile_options', kwargs={
+            'pk': self.request.user.pk,
+        })
+
+
+class CustomUpdatePasswordView(PasswordChangeView):
+    template_name = 'accounts/update-password.html'
+    form_class = CustomUpdatePasswordForm
+
+    def get_success_url(self):
+        return reverse_lazy('profile_options', kwargs={
+            'pk': self.request.user.pk,
+        })
