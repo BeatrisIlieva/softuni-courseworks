@@ -66,7 +66,7 @@ class CustomUpdateEmailView(UpdateView):
         return self.request.user
 
     def get_success_url(self):
-        return reverse_lazy('profile_options', kwargs={
+        return reverse_lazy('email_changed', kwargs={
             'pk': self.request.user.pk,
         })
 

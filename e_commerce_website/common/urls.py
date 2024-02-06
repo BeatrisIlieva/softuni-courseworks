@@ -2,7 +2,7 @@ from django.urls import path
 
 from e_commerce_website.common.views import (
     IndexView,
-    SearchBarView, ProfileOptionsView, PasswordChangedSuccessfully
+    SearchBarView, ProfileOptionsView, PasswordChangedSuccessfully, EmailChangedSuccessfully
 )
 
 urlpatterns = (
@@ -26,5 +26,11 @@ urlpatterns = (
         'password-changed/<int:pk>/',
         PasswordChangedSuccessfully.as_view(),
         name='password_changed'
+    ),
+
+    path(
+        'email-changed/<int:pk>/',
+        EmailChangedSuccessfully.as_view(),
+        name='email_changed'
     ),
 )

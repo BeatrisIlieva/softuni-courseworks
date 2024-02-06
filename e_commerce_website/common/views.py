@@ -145,3 +145,14 @@ class PasswordChangedSuccessfully(NavigationBarMixin, DetailView):
         context.update(nav_bar_context)
 
         return context
+
+class EmailChangedSuccessfully(NavigationBarMixin, DetailView):
+    template_name = 'common/email-changed.html'
+    model = UserModel
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        nav_bar_context = self.get_nav_bar_context()
+        context.update(nav_bar_context)
+
+        return context
