@@ -1,4 +1,6 @@
 from django.contrib.auth import login, logout
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -69,11 +71,11 @@ class CustomUpdateEmailView(UpdateView):
         })
 
 
-class CustomUpdatePasswordView(PasswordChangeView):
+class CustomUpdatePasswordView(SuccessMessageMixin,PasswordChangeView):
     template_name = 'accounts/update-password.html'
     form_class = CustomUpdatePasswordForm
 
     def get_success_url(self):
-        return reverse_lazy('profile_options', kwargs={
+        return reverse_lazy('password_changed', kwargs={
             'pk': self.request.user.pk,
         })

@@ -2,7 +2,7 @@ from django.urls import path
 
 from e_commerce_website.common.views import (
     IndexView,
-    SearchBarView, ProfileOptionsView
+    SearchBarView, ProfileOptionsView, PasswordChangedSuccessfully
 )
 
 urlpatterns = (
@@ -20,5 +20,11 @@ urlpatterns = (
         'profile-options/<int:pk>/',
         ProfileOptionsView.as_view(),
         name='profile_options'
+    ),
+
+    path(
+        'password-changed/<int:pk>/',
+        PasswordChangedSuccessfully.as_view(),
+        name='password_changed'
     ),
 )
