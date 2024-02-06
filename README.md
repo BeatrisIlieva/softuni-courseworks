@@ -148,6 +148,12 @@
 - Defines ordering, list display, search fields, and fieldsets for user details.
 - Implements a custom add form using the AccountProfileForm.
 - Includes fields for email, password, permissions, and important dates.
+
+2. Profile Model:
+- Customizes the Django admin interface for user profiles.
+- Defines read-only fields for user details.
+- Specifies list display, ordering, list filter, search fields, and sortable fields.
+- Organizes fields into fieldsets based on personal information, contact details, and delivery address.
     
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
