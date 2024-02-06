@@ -59,7 +59,7 @@
 
 ## Features 
 
-I. End Users
+#### I. End Users
 
 1. User Registration and Authentication Pages:
 -  Registration:
@@ -139,6 +139,15 @@ I. End Users
 17. Logout Functionality:
    
      By clicking on the Logout button conveniently placed in the header, customers can initiate alog-out process. Following the click, users are redirected to the Login or Register page.
+
+#### II. Admin Users
+
+1. User Model:
+- Customizes the Django admin interface for user accounts.
+- Disables the delete permission for user objects.
+- Defines ordering, list display, search fields, and fieldsets for user details.
+- Implements a custom add form using the AccountProfileForm.
+- Includes fields for email, password, permissions, and important dates.
     
 <p align="right" dir="auto"><a href="#djangoe-commercewebsite">Back To Top</a></p>
 
