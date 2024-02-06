@@ -42,7 +42,7 @@
 
 .button.filled_red {
     color: black;
-    background-color: #FF6961;
+    background-color: var(--red-pink);
 }
 
 .button.filled_red:hover {
