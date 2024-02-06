@@ -59,6 +59,8 @@
 
 ## Features 
 
+I. End Users
+
 1. User Registration and Authentication Pages:
 -  Registration:
   
