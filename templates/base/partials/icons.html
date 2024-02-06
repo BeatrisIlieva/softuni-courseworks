@@ -36,7 +36,7 @@
     {% endif %}
     {% if not request.user.is_authenticated %}
         <div class="icon-item">
-            <a href="{% url 'login_user' %}">
+            <a href="{% url 'login_or_register_user' %}">
                 <i class="fa-regular fa-user"></i>
             </a>
         </div>

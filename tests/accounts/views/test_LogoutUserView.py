@@ -30,5 +30,5 @@ class LogoutUserViewTests(TestCase):
         )
 
         self.assertRedirects(
-            response, reverse('login_user')
+            response, reverse('login_or_register_user')
         )

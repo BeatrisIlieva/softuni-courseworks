@@ -117,7 +117,7 @@
                         {% csrf_token %}
                     </form>
                 {% else %}
-                    <a href="{% url 'login_user' %}?next={{ request.path }}" class="button hover filled_green">
+                    <a href="{% url 'login_or_register_user' %}?next={{ request.path }}" class="button hover filled_green">
                         <i class="fa-regular fa-credit-card"></i> CHECKOUT</a>
                 {% endif %}
             </div>

@@ -7,7 +7,7 @@
         <fieldset class="smaller-fieldset">
             <legend class="fieldset-title">Registered Customers</legend>
             <h4 class="fieldset-sub-title">Please Sign In to access your account</h4>
-            <form method="post" action="{% url 'login_user' %}">
+            <form method="post" action="{% url 'login_or_register_user' %}">
                 <ul role="list">
                     <li class="fieldset-element">
                         {{ form.username }}

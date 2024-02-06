@@ -38,7 +38,7 @@ class RegisterUserView(NavigationBarMixin, CreateView):
         return next_url if next_url else self.success_url
 
 
-class LoginUserView(NavigationBarMixin, LoginView):
+class LoginOrRegisterUserView(NavigationBarMixin, LoginView):
     template_name = 'accounts/login-or-register.html'
     form_class = LoginUserForm
 
@@ -55,7 +55,7 @@ class LogoutUserView(View):
     @staticmethod
     def get(request, *args, **kwargs):
         logout(request)
-        return redirect(reverse_lazy('login_user'))
+        return redirect(reverse_lazy('login_or_register_user'))
 
 
 class CustomUpdateEmailView(UpdateView):

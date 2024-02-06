@@ -2,7 +2,7 @@ from django.urls import path
 
 from e_commerce_website.accounts.views import (
     RegisterUserView,
-    LoginUserView,
+    LoginOrRegisterUserView,
     LogoutUserView, CustomUpdateEmailView, CustomUpdatePasswordView
 )
 
@@ -13,9 +13,9 @@ urlpatterns = (
         name='register_user'
     ),
     path(
-        'login/',
-        LoginUserView.as_view(),
-        name='login_user'
+        'login-or-register/',
+        LoginOrRegisterUserView.as_view(),
+        name='login_or_register_user'
     ),
     path(
         'logout/',

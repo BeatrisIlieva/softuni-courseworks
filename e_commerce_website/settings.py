@@ -118,8 +118,8 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = reverse_lazy('index_page')
-LOGOUT_REDIRECT_URL = reverse_lazy('login_user')
-LOGIN_URL = reverse_lazy('login_user')
+LOGOUT_REDIRECT_URL = reverse_lazy('login_or_register_user')
+LOGIN_URL = reverse_lazy('login_or_register_user')
 
 AUTH_USER_MODEL = 'accounts.AccountUser'
 

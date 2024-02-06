@@ -5,7 +5,7 @@ from django.urls import reverse
 UserModel = get_user_model()
 
 
-class LoginUserViewTests(TestCase):
+class LoginOrRegisterUserViewTests(TestCase):
     def setUp(self) -> None:
         self.client = Client()
 
@@ -14,7 +14,7 @@ class LoginUserViewTests(TestCase):
             'password': 'securepassword123'
         }
 
-    def test_login_user(self):
+    def test_login_or_register_user(self):
         UserModel.objects.create_user(
             **self.user_data
         )
