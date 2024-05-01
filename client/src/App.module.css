@@ -1,0 +1,17 @@
+@import-normalize;
+.app {
+  display: grid;
+  margin: 0px;
+  padding: 0px;
+  font-size: 0px;
+  line-height: 1.5;
+  letter-spacing: 1.2px;
+  font-family: FranklinGothic;
+  background-color: white;
+  grid-template-columns: 100vw;
+  grid-template-rows: 18vh auto 6vh;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}

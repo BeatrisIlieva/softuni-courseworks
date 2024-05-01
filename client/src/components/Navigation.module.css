@@ -1,0 +1,27 @@
+.navigation {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 4vw;
+}
+
+.nav-item {
+  text-decoration: none;
+  font-size: 18px;
+  color: #fc8eac;
+  font-weight: 580;
+  text-transform: uppercase;
+}
+
+.nav-item {
+  transition: transform 0.3s ease-in-out;
+  display: inline-block;
+}
+
+.nav-item:hover {
+  transform: scale(1.2);
+}

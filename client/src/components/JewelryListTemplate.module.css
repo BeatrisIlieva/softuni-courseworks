@@ -1,0 +1,21 @@
+
+
+.jewelry-card {
+  overflow: hidden;
+  /* border-style: solid; */
+  /* border-color: #7f6921; */
+  font-size: 0;
+}
+
+.jewelry-card-thumbnail {
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  /* background-color: #fff8fa; */
+  position: relative;
+}
+
+.jewelry-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
