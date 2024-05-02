@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { SingleJewelry } from "./SingleJewelry";
-import * as jewelryService from "../services/jewelryService";
+import * as jewelryService from "../../services/jewelries/jewelryService";
 
 export const JewelryDetails = () => {
   const { categoryId, jewelryId } = useParams();

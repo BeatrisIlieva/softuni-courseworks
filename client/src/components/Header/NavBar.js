@@ -1,7 +1,7 @@
-import styles from "./Navigation.module.css";
+import styles from "./NavBar.module.css";
 import { Link } from "react-router-dom";
 
-export const Navigation = () => {
+export const NavBar = () => {
   return (
     <nav className={styles["navigation"]}>
       <ul className={styles["nav-list"]}>

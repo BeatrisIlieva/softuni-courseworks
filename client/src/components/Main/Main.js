@@ -1,8 +1,9 @@
 import styles from "./Main.module.css";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "../components/Home";
-import { JewelryList } from "../components/JewelryList";
-import { JewelryDetails } from "../components/JewelryDetails";
+import { Home } from "../Home/Home";
+import { JewelryList } from "../JewelryList/JewelryList";
+import { JewelryDetails } from "../JewelryItem/JewelryDetails";
+// import {Login} from "../../components/Users/Login";
 
 export const Main = () => {
   return (
@@ -11,6 +12,7 @@ export const Main = () => {
         <Route path="/" element={<Home />} />
         <Route path="/:categoryId" element={<JewelryList />} />
         <Route path="/:categoryId/:jewelryId" element={<JewelryDetails />} />
+        {/* <Route path="/:users/login" element={<Login />} /> */}
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
       {/* <JewelryList jewelries={jewelries}/> */}

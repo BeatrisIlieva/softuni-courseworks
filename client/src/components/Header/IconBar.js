@@ -1,5 +1,4 @@
 import styles from "./IconBar.module.css";
-
 import { Link } from "react-router-dom";
 
 export const IconBar = () => {
@@ -31,7 +30,7 @@ export const IconBar = () => {
           </Link>
         </li>
         <li>
-          <Link className={styles["icon-bar-item"]} to="/">
+          <Link className={styles["icon-bar-item"]} to="/:users/login">
             <i class="far fa-user"></i>
           </Link>
         </li>

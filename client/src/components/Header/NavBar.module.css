@@ -12,13 +12,13 @@
 .nav-item {
   text-decoration: none;
   font-size: 18px;
-  color: #fc8eac;
+  color: rgba(0, 0, 0, 0.634);
   font-weight: 580;
   text-transform: uppercase;
 }
 
 .nav-item {
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.5s ease-in-out;
   display: inline-block;
 }
 

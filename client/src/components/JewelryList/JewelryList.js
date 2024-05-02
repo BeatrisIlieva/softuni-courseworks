@@ -1,7 +1,7 @@
 import styles from "./JewelryList.module.css";
 import { JewelryListTemplate } from "./JewelryListTemplate";
 import { useEffect, useState } from "react";
-import * as jewelryService from "../services/jewelryService";
+import * as jewelryService from "../../services/jewelries/jewelryService";
 import { useParams } from "react-router-dom";
 
 
@@ -18,6 +18,7 @@ export const JewelryList = () => {
         console.log(err.message);
       });
   }, [categoryId]);
+  
   return (
     <section className={styles["jewelry-cards"]}>
       {jewelries.map((j) => (

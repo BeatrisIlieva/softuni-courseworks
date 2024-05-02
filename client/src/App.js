@@ -1,7 +1,7 @@
 import styles from "./App.module.css";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import { Main } from "../src/components/Main";
+import { Header } from "../src/components/Header/Header";
+import { Footer } from "../src/components/Footer/Footer";
+import { Main } from "../src/components/Main/Main";
 import 'normalize.css';
 
 
