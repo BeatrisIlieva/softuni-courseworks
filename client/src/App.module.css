@@ -1,4 +1,4 @@
-@import-normalize;
+/* @import-normalize; */
 .app {
   display: grid;
   margin: 0px;
@@ -14,4 +14,13 @@
     "header"
     "main"
     "footer";
+}
+
+.main {
+  grid-area: main;
+  color: #040720;
+  padding: 42px 96px;
+  padding-left: 96px;
+  padding-right: 96px;
+  font-size: 16px;
 }

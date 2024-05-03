@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const userManager = require("../managers/userManager");
-const { isAuth } = require("../middlewares/authMiddleware");
 
 router.post("/register", async (req, res) => {
   const { email, password, repeatPassword } = req.body;
@@ -21,6 +20,24 @@ router.post("/register", async (req, res) => {
     });
   }
 });
+
+router.post("/login", async (req, res) => {
+  try {
+    const {email, password} = {...req.body}
+    const result = await userManager.login(email, password);
+    console.log(result);
+
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({
+      message: err.message,
+    });
+  }
+});
+
+router.get("/logout", (req, res) => {
+    res.end();
+})
 
 // router.post("/change-email", isAuth, async (req, res) => {
 //   const { email, password } = req.body;
@@ -81,7 +98,7 @@ router.post("/register", async (req, res) => {
 
 
 
-module.exports = router;
+// module.exports = router;
 
 // const router = require("express").Router();
 

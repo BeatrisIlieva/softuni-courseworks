@@ -1,9 +1,9 @@
-import {request} from "../requester";
+import * as request from "../requester";
 
 const baseUrl = "http://localhost:3030";
 
 export const getAll = async (categoryId) => {
-  const jewelries = await request("GET", `${baseUrl}/${categoryId}`)
+  const jewelries = await request.get(`${baseUrl}/${categoryId}`)
 
   return jewelries;
   // const response = await fetch(`${baseUrl}/${categoryId}`);
