@@ -25,6 +25,7 @@ exports.register = async (userData) => {
 };
 
 exports.login = async (email, password) => {
+
   const user = await User.findOne({ email });
 
   if (!user) {

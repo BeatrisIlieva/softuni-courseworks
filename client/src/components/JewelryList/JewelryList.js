@@ -2,7 +2,7 @@ import styles from "./JewelryList.module.css";
 import { JewelryListTemplate } from "./JewelryListTemplate";
 import { useEffect, useState } from "react";
 // import * as jewelryService from "../../services/jewelries/jewelryService";
-import{jewelryServiceFactory} from "../../services/jewelries/jewelryService";
+import{jewelryServiceFactory} from "../../services/jewelryService";
 import { useParams } from "react-router-dom";
 import { useService } from "../../hooks/useService";
 // import { authServiceFactory } from "../../services/authService";

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { SingleJewelry } from "./SingleJewelry";
-import{jewelryServiceFactory} from "../../services/jewelries/jewelryService";
+import{jewelryServiceFactory} from "../../services/jewelryService";
 import { useService } from "../../hooks/useService";
 
 export const JewelryDetails = () => {

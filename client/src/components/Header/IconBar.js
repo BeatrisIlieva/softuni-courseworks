@@ -42,18 +42,27 @@ export const IconBar = () => {
             <i class="fas fa-shopping-bag"></i>
           </Link>
         </li>
-        <li>
-          <Link className={styles["icon-bar-item"]} to="/users/login">
-            <i class="far fa-user"></i>
-          </Link>
-        </li>
+        {!isAuthenticated && (
+          <li>
+            <Link className={styles["icon-bar-item"]} to="/users/login">
+              <i class="far fa-user"></i>
+            </Link>
+          </li>
+        )}
         {isAuthenticated && (
+          <li>
+            <Link className={styles["icon-bar-item"]} to="/users/details">
+              <i class="far fa-user"></i>
+            </Link>
+          </li>
+        )}
+        {/* {isAuthenticated && (
           <li>
             <Link className={styles["icon-bar-item"]} to="/users/logout">
             <i class="fas fa-sign-out-alt"></i>
             </Link>
           </li>
-        )}
+        )} */}
       </ul>
     </div>
   );
