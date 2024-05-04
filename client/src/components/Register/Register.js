@@ -1,52 +1,61 @@
 import formStyles from "../../commonCSS/Form.module.css";
-import loginStyles from "./Login.module.css";
+import registerStyles from "./Register.module.css"
 import buttonStyles from "../../commonCSS/Button.module.css";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useForm } from "../../hooks/useForm";
 import { Link } from "react-router-dom";
 
-const LoginFormKeys = {
+const RegisterFormKeys = {
   Email: "email",
   Password: "password",
+  RepeatPassword: "repeatPassword",
 };
 
-export const Login = () => {
-  const { onLoginSubmit } = useContext(AuthContext);
+export const Register = () => {
+  const { onRegisterSubmit } = useContext(AuthContext);
   const { values, changeHandler, onSubmit } = useForm(
     {
-      [LoginFormKeys.Email]: "",
-      [LoginFormKeys.Password]: "",
+      [RegisterFormKeys.Email]: "",
+      [RegisterFormKeys.Password]: "",
+      [RegisterFormKeys.RepeatPassword]: "",
     },
-    onLoginSubmit
+    onRegisterSubmit
   );
 
   return (
     <section className={formStyles["form-container"]}>
       <div className={formStyles["left-form-container"]}>
-        <h2 className={loginStyles["form-title"]}>Registered Customers</h2>
-        <p className={loginStyles["form-subtitle"]}>
-          Please Sign In to access your account
-        </p>
+        <h2 className={registerStyles["form-title"]}>New Customer</h2>
         <form method="POST" onSubmit={onSubmit}>
-          <ul role="list" className={loginStyles["equal-height"]}>
+          <ul role="list" className={registerStyles["equal-height"]}>
             <li className={formStyles["form-item"]}>
               <input
                 type="email"
-                name={LoginFormKeys.Email}
+                name={RegisterFormKeys.Email}
                 id="email"
                 placeholder="Enter your email"
-                value={values[LoginFormKeys.Email]}
+                value={values[RegisterFormKeys.Email]}
                 onChange={changeHandler}
               />
             </li>
             <li className={formStyles["form-item"]}>
               <input
                 type="password"
-                name={LoginFormKeys.Password}
+                name={RegisterFormKeys.Password}
                 id="password"
                 placeholder="Enter your password"
-                value={values[LoginFormKeys.Password]}
+                value={values[RegisterFormKeys.Password]}
+                onChange={changeHandler}
+              />
+            </li>
+            <li className={formStyles["form-item"]}>
+              <input
+                type="password"
+                name={RegisterFormKeys.Password}
+                id="repeatPassword"
+                placeholder="Repeat your password"
+                value={values[RegisterFormKeys.RepeatPassword]}
                 onChange={changeHandler}
               />
             </li>
@@ -54,39 +63,24 @@ export const Login = () => {
           <input
             className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
             type="submit"
-            value="Sign In"
+            value="Sign Up"
           />
         </form>
         <div></div>
       </div>
       <div className={formStyles["form-vertical-line"]}></div>
       <div className={formStyles["right-form-container"]}>
-        <h2 className={loginStyles["form-title"]}>New Customers</h2>
-        <p className={loginStyles["form-subtitle"]}>
-          Register with React Gems for the following benefits:
-        </p>
+        <h3 className={registerStyles["form-title"]}>Password Requirements:</h3>
         <ul
           role="list"
-          className={`${formStyles["form-list"]} ${loginStyles["equal-height"]}`}
+          className={`${formStyles["form-list"]} ${registerStyles["equal-height"]}`}
         >
-          <li className={formStyles["form-item-list"]}>Faster checkout</li>
+          <li className={formStyles["form-item-list"]}>Your password must contain at least 8 characters.</li>
           <li className={formStyles["form-item-list"]}>
-            Access your order status
+          Your password can't be entirely numeric.
           </li>
-          <li className={formStyles["form-item-list"]}>View order history</li>
-          <li className={formStyles["form-item-list"]}>
-            Enjoy the convenience of saving your wishlist permanently
-          </li>
+          <li className={formStyles["form-item-list"]}>Your password can't be entirely alphabetic.</li>
         </ul>
-        <Link to="/users/register">
-          <div>
-            <input
-              className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
-              type="submit"
-              value="Sign Up"
-            />
-          </div>
-        </Link>
       </div>
     </section>
   );

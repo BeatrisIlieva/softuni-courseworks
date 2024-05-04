@@ -1,10 +1,10 @@
 .equal-height {
-    height: 18vh;
+    height: 24vh;
   }
 
   .form-title {
     font-style: italic;
-    padding-bottom: 0.8vh;
+    padding-bottom: 4vh;
   }
   
   .form-subtitle {

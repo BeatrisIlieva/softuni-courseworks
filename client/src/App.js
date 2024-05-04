@@ -7,6 +7,7 @@ import { Footer } from "../src/components/Footer/Footer";
 import { JewelryList } from "../src/components/JewelryList/JewelryList";
 import { JewelryDetails } from "../src/components/JewelryItem/JewelryDetails";
 import { Login } from "./components/Login/Login";
+import { Register } from "./components/Register/Register";
 import { AuthContext } from "./contexts/AuthContext";
 import { Home } from "../src/components/Home/Home";
 import * as authService from "./services/authService";
@@ -26,11 +27,18 @@ function App() {
     }
   };
 
+  // const context = {
+  //   onLoginSubmit,
+  //   userId: auth.user._id,
+  //   token: auth.token,
+  //   userEmail: auth.user.email,
+  //   isAuthenticated: !!auth.token,
+  // }
   const context = {
     onLoginSubmit,
-    userId: auth.user._id,
+    userId: auth._id,
     token: auth.token,
-    userEmail: auth.user.email,
+    userEmail: auth.email,
     isAuthenticated: !!auth.token,
   }
 
@@ -48,6 +56,7 @@ function App() {
               element={<JewelryDetails />}
             />
             <Route path="/users/login" element={<Login />} />
+            <Route path="/users/register" element={<Register />} />
             <Route path="*" element={<h1>404</h1>} />
           </Routes>
         </main>
