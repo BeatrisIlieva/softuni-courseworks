@@ -6,6 +6,7 @@ const { SECRET } = require("../config/config");
 const Profile = require("../models/Profile");
 
 exports.register = async (userData) => {
+  console.log(userData);
   const user = await User.findOne({ email: userData.email });
 
   if (user) {

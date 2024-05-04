@@ -4,12 +4,11 @@ import buttonStyles from "../../commonCSS/Button.module.css";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useForm } from "../../hooks/useForm";
-import { Link } from "react-router-dom";
 
 const RegisterFormKeys = {
   Email: "email",
   Password: "password",
-  RepeatPassword: "repeatPassword",
+  RetypePassword: "retypePassword",
 };
 
 export const Register = () => {
@@ -18,7 +17,7 @@ export const Register = () => {
     {
       [RegisterFormKeys.Email]: "",
       [RegisterFormKeys.Password]: "",
-      [RegisterFormKeys.RepeatPassword]: "",
+      [RegisterFormKeys.RetypePassword]: "",
     },
     onRegisterSubmit
   );
@@ -52,10 +51,10 @@ export const Register = () => {
             <li className={formStyles["form-item"]}>
               <input
                 type="password"
-                name={RegisterFormKeys.Password}
-                id="repeatPassword"
-                placeholder="Repeat your password"
-                value={values[RegisterFormKeys.RepeatPassword]}
+                name={RegisterFormKeys.RetypePassword}
+                id="retypePassword"
+                placeholder="Retype your password"
+                value={values[RegisterFormKeys.RetypePassword]}
                 onChange={changeHandler}
               />
             </li>

@@ -24,11 +24,11 @@ const userSchema = new mongoose.Schema({
   sessionKey: String,
 });
 
-userSchema.virtual("repeatPassword").set(function (value) {
-  if (value !== this.password) {
-    throw new Error("The two password fields didn't match.");
-  }
-});
+// userSchema.virtual("retypePassword").set(function (value) {
+//   if (value !== this.password) {
+//     throw new Error("The two password fields didn't match.");
+//   }
+// });
 
 userSchema.pre("save", async function () {
   const hash = await bcrypt.hash(this.password, DEFAULT_SALT);

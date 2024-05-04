@@ -12,22 +12,39 @@ import { AuthContext } from "./contexts/AuthContext";
 import { Home } from "../src/components/Home/Home";
 import * as authService from "./services/authService";
 
-
 function App() {
   const [auth, setAuth] = useState({});
+
+  const onRegisterSubmit = async (values) => {
+    const {retypePassword, ...registerData} = values;
+    if (retypePassword !== registerData.password) {
+      console.log("Passwords do not match!")
+      return;
+    }
+    try {
+      const result = await authService.register(values);
+
+      setAuth(result);
+
+      // navigate("/");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   const onLoginSubmit = async (data) => {
     try {
       const result = await authService.login({ ...data });
       setAuth(result);
 
-      // Navigate("/");
+      // navigate("/");
     } catch (err) {
       console.log(err.message);
     }
   };
 
   // const context = {
+  // onRegisterSubmit,
   //   onLoginSubmit,
   //   userId: auth.user._id,
   //   token: auth.token,
@@ -35,13 +52,13 @@ function App() {
   //   isAuthenticated: !!auth.token,
   // }
   const context = {
+    onRegisterSubmit,
     onLoginSubmit,
     userId: auth._id,
     token: auth.token,
     userEmail: auth.email,
     isAuthenticated: !!auth.token,
-  }
-
+  };
 
   return (
     <AuthContext.Provider value={context}>
