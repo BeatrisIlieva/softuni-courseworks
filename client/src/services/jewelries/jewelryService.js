@@ -1,24 +1,22 @@
-import * as request from "../requester";
+import { requestFactory } from "../requester"
 
 const baseUrl = "http://localhost:3030";
 
-export const getAll = async (categoryId) => {
-  const jewelries = await request.get(`${baseUrl}/${categoryId}`)
+export const jewelryServiceFactory = (token) => {
+  const request = requestFactory(token);
 
-  return jewelries;
-  // const response = await fetch(`${baseUrl}/${categoryId}`);
+  const getAll = async (categoryId) => {
+    const jewelries = await request.get(`${baseUrl}/${categoryId}`);
 
-  // const result = await response.json();
+    return jewelries;
+  };
 
-  // return result;
-};
+  const getOne = async (categoryId, jewelryId) => {
+    const jewelry = await request.get(
+      `${baseUrl}/${categoryId}/${jewelryId}`
+    );
+    return jewelry;
+  };
 
-export const getOne = async (categoryId, jewelryId) => {
-  const jewelry = await request("GET", `${baseUrl}/${categoryId}/${jewelryId}`)
-  return jewelry;
-  // const response = await fetch(`${baseUrl}/${categoryId}/${jewelryId}`);
-
-  // const result = await response.json();
-
-  // return result;
+  return { getAll, getOne };
 };

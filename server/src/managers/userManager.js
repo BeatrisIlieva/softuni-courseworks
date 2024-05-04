@@ -50,7 +50,14 @@ async function generateToken(user) {
 
   const token = await jwt.sign(payload, SECRET, { expiresIn: "7d" });
 
-  return token;
+  // return token;
+  const result = {
+    _id: user._id,
+    email: user.email,
+    accessToken: token,
+  };
+
+  return result;
 }
 
 exports.changeEmail = async (email, password, userId) => {

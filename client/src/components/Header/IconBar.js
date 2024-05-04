@@ -27,8 +27,6 @@ export const IconBar = () => {
           <li>
             <Link className={styles["icon-bar-item"]} to="/">
               <i class="far fa-heart"></i>
-              <span>(1)</span>
-              <span>{userEmail}</span>
             </Link>
           </li>
         )}
@@ -49,6 +47,13 @@ export const IconBar = () => {
             <i class="far fa-user"></i>
           </Link>
         </li>
+        {isAuthenticated && (
+          <li>
+            <Link className={styles["icon-bar-item"]} to="/users/logout">
+            <i class="fas fa-sign-out-alt"></i>
+            </Link>
+          </li>
+        )}
       </ul>
     </div>
   );
