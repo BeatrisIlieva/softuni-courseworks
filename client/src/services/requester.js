@@ -51,5 +51,3 @@ export const requestFactory = (token) => {
     delete: requester.bind(null, "DELETE", token),
   };
 };
-
-

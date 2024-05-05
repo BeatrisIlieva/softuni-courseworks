@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { SingleJewelry } from "./SingleJewelry";
+import { JewelryItemTemplate } from "./JewelryItemTemplate";
 import{jewelryServiceFactory} from "../../services/jewelryService";
 import { useService } from "../../hooks/useService";
 
-export const JewelryDetails = () => {
+export const JewelryItem = () => {
   const { categoryId, jewelryId } = useParams();
   const [jewelry, setJewelry] = useState(null);
   const jewelryService = useService(jewelryServiceFactory)
@@ -22,5 +22,5 @@ export const JewelryDetails = () => {
       });
   }, [categoryId, jewelryId]);
 
-  return <div>{jewelry && <SingleJewelry {...jewelry} />}</div>;
+  return <div>{jewelry && <JewelryItemTemplate {...jewelry} />}</div>;
 };

@@ -1,4 +1,4 @@
-export const SingleJewelry = ({ _id, firstImageUrl, title }) => {
+export const JewelryItemTemplate = ({ _id, firstImageUrl, title }) => {
   return (
     <div>
       <p>{title}</p>

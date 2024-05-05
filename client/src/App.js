@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { Header } from "../src/components/Header/Header";
 import { Footer } from "../src/components/Footer/Footer";
 import { JewelryList } from "../src/components/JewelryList/JewelryList";
-import { JewelryDetails } from "../src/components/JewelryItem/JewelryDetails";
+import { JewelryItem } from "../src/components/JewelryItem/JewelryItem";
 import { Login } from "./components/Login/Login";
 import { Logout } from "./components/Logout/Logout";
 import { Register } from "./components/Register/Register";
@@ -23,7 +23,7 @@ function App() {
             <Route path="/:categoryId" element={<JewelryList />} />
             <Route
               path="/:categoryId/:jewelryId"
-              element={<JewelryDetails />}
+              element={<JewelryItem />}
             />
             <Route path="/users/login" element={<Login />} />
             <Route path="/users/register" element={<Register />} />
