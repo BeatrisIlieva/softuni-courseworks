@@ -1,81 +1,126 @@
-.relative-container-details {
-  position: relative;
-}
-
-.jewelry-details-wrapper {
+.jewelry-details-container {
   display: flex;
-  color: var(--dark-blue);
-  padding: 24px 96px 24px 96px;
   justify-content: space-evenly;
 }
 
-.jewelry-details-left-container {
+
+.jewelry-details-images-container {
   display: flex;
-  gap: 0.8vw;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  /* padding: 8px; */
 }
 
-.jewelry-details-right-container {
-  position: sticky;
-  top: calc(20vh + 12px);
-}
-
-.right-sticky {
-  position: sticky;
-  top: calc(20vh + 12px);
-}
-
-.jewelry-details-image-first,
-.jewelry-details-image-second {
-  width: calc(30vw - 48px);
-  aspect-ratio: 1 / 1.4;
+.jewelry-details-image {
+  width: calc(48vw - 96px);
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  position: relative;
+  border-radius: 16px;
 }
 
 .jewelry-details-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background-color: var(--white-pink);
-  border-radius: 16px;
+  background-color: rgba(255, 192, 203, 0.238);
 }
 
-.jewelry-details-composition {
-  width: calc(30vw - 96px);
-  /* position: relative; */
-}
 
 .zoom-image {
   transition: transform 0.3s ease;
 }
 
-.jewelry-details-image-first:hover .zoom-image {
-  transform: scale(2.2);
+.jewelry-details-image:hover .zoom-image {
+  transform: scale(1.4);
 }
 
-.jewelry-details-image-second:hover .zoom-image {
-  transform: scale(2.2);
+.jewelry-details-composition-container {
+  width: auto;
 }
 
-/* .composition-details {
-      display:flex;
-  } */
-
-.category {
-  margin-bottom: 2vh;
+.jewelry-details-composition-sticky {
+  position: sticky;
+  top: calc(18vh + 42px); 
 }
 
-.title {
-  margin-bottom: 2vh;
-}
-.price {
-  margin-top: 4vh;
-}
-
-.details-items {
-  margin-bottom: 2vh;
+.jewelry-details-jewelry-title {
+  color: black;
+  margin-top: 0;
+  font-weight: 600;
+  font-size: 18px;
+  font-style: italic;
 }
 
-.add-to-bag {
-  margin-top: 4vh;
+.jewelry-details-composition-metals {
+  color:black;
+  margin-top: 22px;
+  font-size: 16px;
 }
+
+.jewelry-details-composition-stones {
+  color:black;
+  margin-top: 22px;
+  font-size: 16px;
+}
+
+.jewelry-details-composition-price {
+  font-size: 16px;
+  margin-top: 22px;
+}
+
+.jewelry-details-composition-size {
+  font-size: 16px;
+  margin-top: 22px;
+}
+
+.jewelry-details-composition-size-title {
+  margin-bottom: 4px;
+}
+
+.composition-item {
+  line-height: 2;
+  font-size: 16px;
+}
+
+.radio-container {
+  display: flex;
+}
+
+input[type="radio"] {
+  display: none;
+  &:not(:disabled) ~ label {
+    cursor: pointer;
+  }
+  &:disabled ~ label {
+    color: hsla(150, 5%, 75%, 1);
+    border-color: hsla(150, 5%, 75%, 1);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+label {
+  display: flex;
+  gap: 1px;
+  background: white;
+  border: 1px solid pink;
+  /* border-inline: 1px solid pink;
+  border-block: 1px solid pink; */
+  border-radius: 16px;
+  padding: 4px 16px;
+  margin-right: 4px;
+  margin-top: 4px;
+  margin-bottom: 22px;
+  text-align: center;
+}
+input[type="radio"]:checked + label {
+  /* border-inline: 4px solid pink; */
+  background-color: rgba(255, 192, 203, 0.179);
+}
+
+.add-to-bag-button {
+  margin-top: 22px;
+  min-width: 30ch !important;
+}
+
+

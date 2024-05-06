@@ -25,10 +25,6 @@ router.get("/", async (req, res) => {
 
 router.post("/:jewelryId", async (req, res) => {
   const userId = req.user._id;
-  // console.log(userId); 
-
-  console.log("here");
-  console.log(req.body);
 
   const jewelryId = Number(req.params.jewelryId);
 
@@ -67,7 +63,9 @@ router.post("/:jewelryId", async (req, res) => {
       );
     }
 
-    res.json();
+    const allBagItems = await shoppingBag.find({user: userId});
+
+    res.json(allBagItems);
   } catch (err) {
     console.log(err.message);
 

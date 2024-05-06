@@ -5,6 +5,10 @@ const sizeSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  title: {
+    type: String,
+    required: false,
+  },
   measurement: {
     type: mongoose.Decimal128,
     required: true,

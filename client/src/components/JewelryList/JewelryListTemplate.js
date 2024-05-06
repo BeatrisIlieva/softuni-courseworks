@@ -8,7 +8,7 @@ export const JewelryListTemplate = ({
   categoryId,
   isSoldOut,
 }) => {
-  console.log(categoryId);
+
   return (
     <article className={styles["jewelry-card"]}>
       {!isSoldOut && (

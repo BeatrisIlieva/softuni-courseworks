@@ -3,6 +3,7 @@ import buttonStyles from "../../commonCSS/Button.module.css";
 import { bagServiceFactory } from "../../services/bagService";
 import { useForm } from "../../hooks/useForm";
 import { useService } from "../../hooks/useService";
+import { useState } from "react";
 
 export const JewelryItemTemplate = ({
   _id,
@@ -25,12 +26,28 @@ export const JewelryItemTemplate = ({
     Size: "size",
   };
 
-  const { values, changeHandler, onSubmit } = useForm(
-    {
-      [SizeFormKeys.Size]: 0,
-    },
-    onAddToBagSubmit
-  );
+  const [values, setValues] = useState({[SizeFormKeys.Size]: 0});
+
+  const changeHandler = (e) => {
+    setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    onAddToBagSubmit(values);
+
+    setValues({
+      values,
+    });
+  };
+
+  // const { values, changeHandler, onSubmit } = useForm(
+  //   {
+  //     [SizeFormKeys.Size]: 0,
+  //   },
+  //   onAddToBagSubmit
+  // );
 
   return (
     <div className={styles["relative-container-details"]}>

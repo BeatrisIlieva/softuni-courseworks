@@ -110,38 +110,47 @@ async function populateDb() {
 
   await Size.create({
     measurement: 40.64,
+    title: "S",
   });
 
   await Size.create({
     measurement: 43.18,
+    title: "M",
   });
 
   await Size.create({
     measurement: 45.72,
+    title: "L",
   });
 
   await Size.create({
     measurement: 15.2,
+    title: "S"
   });
 
   await Size.create({
     measurement: 17.8,
+    title: "M"
   });
 
   await Size.create({
     measurement: 19.3,
+    title: "L"
   });
 
   await Size.create({
     measurement: 4.7,
+    title: "S"
   });
 
   await Size.create({
     measurement: 4.9,
+    title: "M"
   });
 
   await Size.create({
     measurement: 5.05,
+    title: "L"
   });
 
   const allCategories = await Category.find();
