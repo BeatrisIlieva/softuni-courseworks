@@ -40,6 +40,9 @@ exports.getAll = async (categoryId) => {
         categoryTitle: {
           $addToSet: "$categories.title",
         },
+        categoryId: {
+          $addToSet: "$categories._id",
+        },
         jewelryTitle: {
           $addToSet: "$title",
         },
@@ -85,6 +88,7 @@ exports.getAll = async (categoryId) => {
         firstImageUrl: 1,
         jewelryIds: 1,
         categoryTitle: 1,
+        categoryId: 1,
         jewelryTitle: 1,
         isSoldOut: 1,
       },
@@ -264,12 +268,52 @@ exports.getOne = async (jewelryId) => {
       },
     },
     {
+      $addFields: {
+        categoryTitle: "$categories.title",
+      },
+    },
+    {
+      $addFields: {
+        metalTitle: "$metalInfo.metal.title",
+      },
+    },
+    {
+      $addFields: {
+        metalCaratWeight: "$metalInfo.caratWeight",
+      },
+    },
+    {
+      $addFields: {
+        stoneType: "$stoneInfo.stoneType",
+      },
+    },
+    {
+      $addFields: {
+        stoneColor: "$stoneInfo.stoneColor",
+      },
+    },
+    {
+      $addFields: {
+        stoneCaratWeight: "$stoneInfo.caratWeight",
+      },
+    },
+    {
+      $addFields: {
+        sizeMeasurement: "$sizes.measurement",
+      },
+    },
+    {
+      $addFields: {
+        sizeId: "$sizes._id",
+      },
+    },
+    {
       $project: {
         title: 1,
         price: 1,
         firstImageUrl: 1,
         secondImageUrl: 1,
-        "categories.title": 1,
+        categoryTitle: 1,
         "metalInfo.metal.title": 1,
         "metalInfo.caratWeight": 1,
         "stoneInfo.stoneType": 1,
@@ -277,6 +321,13 @@ exports.getOne = async (jewelryId) => {
         "stoneInfo.caratWeight": 1,
         "sizes.measurement": 1,
         "sizes._id": 1,
+        // metalTitle: 1,
+        // metalCaratWeight: 1,
+        // stoneType: 1,
+        // stoneColor: 1,
+        // stoneCaratWeight: 1,
+        // sizeMeasurement: 1,
+        // sizeId: 1,
       },
     },
     {

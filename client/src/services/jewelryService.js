@@ -12,6 +12,7 @@ export const jewelryServiceFactory = (token) => {
   };
 
   const getOne = async (categoryId, jewelryId) => {
+    console.log(categoryId);
     const jewelry = await request.get(
       `${baseUrl}/${categoryId}/${jewelryId}`
     );

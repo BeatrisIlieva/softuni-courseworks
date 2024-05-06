@@ -4,13 +4,11 @@ import { Link } from "react-router-dom";
 export const JewelryListTemplate = ({
   _id,
   firstImageUrl,
-  secondImageUrl,
   jewelryTitle,
   categoryId,
   isSoldOut,
 }) => {
-  // const isSoldOut = soldOut;
-  // console.log(isSoldOut);
+  console.log(categoryId);
   return (
     <article className={styles["jewelry-card"]}>
       {!isSoldOut && (

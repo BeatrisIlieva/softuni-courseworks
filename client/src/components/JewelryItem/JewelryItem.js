@@ -6,7 +6,7 @@ import { useService } from "../../hooks/useService";
 
 export const JewelryItem = () => {
   const { categoryId, jewelryId } = useParams();
-  const [jewelry, setJewelry] = useState(null);
+  const [jewelry, setJewelry] = useState();
   const jewelryService = useService(jewelryServiceFactory)
 
   useEffect(() => {

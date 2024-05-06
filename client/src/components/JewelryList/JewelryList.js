@@ -14,7 +14,7 @@ export const JewelryList = () => {
   const jewelryService = useService(jewelryServiceFactory)
   // const authService = useService(authServiceFactory);
 
-
+  
   useEffect(() => {
     jewelryService
       .getAll(categoryId)

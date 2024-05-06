@@ -2,7 +2,7 @@
   grid-area: header;
   display: flex;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 8px 32px -12px, rgba(0, 0, 0, 0.3) 0px 6px 12px -18px;
-  background-color: rgba(255, 255, 255, 0.892);
+  background-color: rgba(255, 255, 255, 0.955);
   font-size: 18px;
   align-items: center;
   top: 0;
@@ -12,8 +12,8 @@
 }
 
 .logo-img-container {
-  height: 18vh;
-  width: 18vh;
+  height: 14vh;
+  width: 22vh;
   aspect-ratio: 1 / 1;
 }
 

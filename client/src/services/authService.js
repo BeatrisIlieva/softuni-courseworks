@@ -19,5 +19,9 @@ export const authServiceFactory = (token) => {
     editPassword: (data) => request.put(`${baseUrl}/edit-password`, data),
 
     logout: () => request.get(`${baseUrl}/logout`),
+
+    
+  
+    
   };
 };

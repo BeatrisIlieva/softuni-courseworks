@@ -11,6 +11,7 @@ import { Register } from "./components/Register/Register";
 import { UserDetails } from "./components/UserDetails/UserDetails";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Home } from "../src/components/Home/Home";
+import { Bag } from "./components/Bag/Bag";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/users/register" element={<Register />} />
             <Route path="/users/logout" element={<Logout />} />
             <Route path="/users/details" element={<UserDetails />} />
+            <Route path="/bag/:jewelryId" element={<Bag />} />
             <Route path="*" element={<h1>404</h1>} />
           </Routes>
         </main>
