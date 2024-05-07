@@ -1,12 +1,6 @@
 const mongoose = require("mongoose");
 
 const shoppingBagSchema = new mongoose.Schema({
-  // user: {
-  //   type: mongoose.Types.ObjectId,
-  //   ref: "User",
-  //   default: null,
-  //   required: false,
-  // },
   user: {
     type: Number,
     ref: "User",
