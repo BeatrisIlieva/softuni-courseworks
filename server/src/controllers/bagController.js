@@ -6,6 +6,7 @@ const {
 } = require("../constants/shoppingBag");
 const jewelryManager = require("../managers/jewelryManager");
 const shoppingBag = require("../models/ShoppingBag");
+const Jewelry = require("../models/Jewelry");
 
 router.get("/", async (req, res) => {
   try {
@@ -33,10 +34,16 @@ router.post("/:jewelryId", async (req, res) => {
     let bagItem;
     let sizeId;
 
+    const jewelry = await Jewelry.findById(jewelryId);
+    const jewelryCategory = jewelry.category;
+    const jewelryWithoutSize = jewelryCategory === 2;
+
     if (!size) {
       throw new Error("Ensure you have selected the desired size.");
     } else {
+
       sizeId = Number(size);
+
       bagItem = await bagManager.getOne({
         userId,
         jewelryId,

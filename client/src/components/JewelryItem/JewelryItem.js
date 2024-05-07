@@ -38,12 +38,19 @@ export const JewelryItem = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await bagService.addToBag(values, jewelry._id);
+
+    if (categoryId === "2") {
+      const sizeId = jewelry.sizes[0]._id;
+
+      await bagService.addToBag({ size: sizeId }, jewelry._id);
+    } else {
+      await bagService.addToBag(values, jewelry._id);
+    }
 
     fetchJewelry();
   };
 
-  if (categoryId === 2) {
+  if (categoryId === "2") {
     return (
       <>
         {jewelry && (
@@ -101,6 +108,13 @@ export const JewelryItem = () => {
                     ))}
                   </li>
                   <li>
+                    <div className={styles["jewelry-details-composition-size"]}>
+                      <p>
+                        Size: {jewelry.sizes[0].measurement.$numberDecimal} cm.
+                      </p>
+                    </div>
+                  </li>
+                  <li>
                     <div
                       className={styles["jewelry-details-composition-price"]}
                     >
@@ -108,22 +122,10 @@ export const JewelryItem = () => {
                     </div>
                   </li>
                   <li>
-                    <h4>
-                      {jewelry.sizes.measurement.$numberDecimal} cm.
-                    </h4>
+                    {/* <h4>
+                      {jewelry.sizes[0].measurement.$numberDecimal} cm.
+                    </h4> */}
                     <form onSubmit={onSubmit} method="POST">
-                      <div key={jewelry.sizes._id}>
-                        <input
-                          type="hidden"
-                          name={SizeFormKeys.Size}
-                          id={jewelry.sizes._id}
-                          value={jewelry.sizes._id}
-                          onChange={changeHandler}
-                          checked={
-                            Number(values[SizeFormKeys.Size]) === jewelry.sizes._id
-                          }
-                        />
-                      </div>
                       <div className={styles["add-to-bag-button"]}>
                         <input
                           className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
