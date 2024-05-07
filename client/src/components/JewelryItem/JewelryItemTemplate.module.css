@@ -3,7 +3,6 @@
   justify-content: space-evenly;
 }
 
-
 .jewelry-details-images-container {
   display: flex;
   flex-direction: column;
@@ -26,7 +25,6 @@
   background-color: rgba(255, 192, 203, 0.238);
 }
 
-
 .zoom-image {
   transition: transform 0.3s ease;
 }
@@ -41,7 +39,7 @@
 
 .jewelry-details-composition-sticky {
   position: sticky;
-  top: calc(18vh + 42px); 
+  top: calc(18vh + 42px);
 }
 
 .jewelry-details-jewelry-title {
@@ -53,13 +51,13 @@
 }
 
 .jewelry-details-composition-metals {
-  color:black;
+  color: black;
   margin-top: 22px;
   font-size: 16px;
 }
 
 .jewelry-details-composition-stones {
-  color:black;
+  color: black;
   margin-top: 22px;
   font-size: 16px;
 }
@@ -122,5 +120,3 @@ input[type="radio"]:checked + label {
   margin-top: 22px;
   min-width: 30ch !important;
 }
-
-

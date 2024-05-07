@@ -84,20 +84,14 @@ exports.update = async (bagItemId, updatedQuantity, sizeId) => {
 };
 
 exports.getAll = async (userId) => {
-  let user;
-  let matchCondition;
+  const user = await User.findById(userId);
 
-  user = await User.findById(userId);
-  matchCondition = [
+  let jewelries = await ShoppingBag.aggregate([
     {
       $match: {
         user: user._id,
       },
     },
-  ];
-
-  let jewelries = await ShoppingBag.aggregate([
-    ...matchCondition,
     {
       $lookup: {
         as: "jewelries",

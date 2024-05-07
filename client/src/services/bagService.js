@@ -1,25 +1,20 @@
-import { requestFactory } from "./requester"
+import { requestFactory } from "./requester";
 
 const baseUrl = "http://localhost:3030/bag";
-
 
 export const bagServiceFactory = (token) => {
   const request = requestFactory(token);
 
-  const addToBag = async (data, jewelryId) => {
-    console.log("Here");
-    console.log(data);
-    // addToBag: (data) => request.post("http://localhost:3030/bag/19", data)
-    await request.post(`${baseUrl}/${jewelryId}`, data);
-
+  const add = async (data, jewelryId) => {
+    await request.post(`${baseUrl}/add/${jewelryId}`, data);
   };
 
-  const displayBag = async (categoryId, jewelryId) => {
-    const jewelry = await request.get(
-      `${baseUrl}/${categoryId}/${jewelryId}`
-    );
-    return jewelry;
+  const display = async (userId) => {
+    const items = await request.get(`${baseUrl}/display/${userId}`);
+    console.log(items);
+
+    return items;
   };
 
-  return { addToBag, displayBag };
+  return { add, display };
 };

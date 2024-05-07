@@ -42,9 +42,9 @@ export const JewelryItem = () => {
     if (categoryId === "2") {
       const sizeId = jewelry.sizes[0]._id;
 
-      await bagService.addToBag({ size: sizeId }, jewelry._id);
+      await bagService.add({ size: sizeId }, jewelry._id);
     } else {
-      await bagService.addToBag(values, jewelry._id);
+      await bagService.add(values, jewelry._id);
     }
 
     fetchJewelry();
@@ -231,7 +231,6 @@ export const JewelryItem = () => {
                               />
                               <label htmlFor={item._id}>
                                 {item.title}
-                                {/* {item.measurement.$numberDecimal} cm. */}
                               </label>
                             </div>
                           ) : (
@@ -249,7 +248,6 @@ export const JewelryItem = () => {
                               />
                               <label htmlFor={item._id}>
                                 {item.title}
-                                {/* {item.measurement.$numberDecimal} cm. */}
                               </label>
                             </div>
                           )

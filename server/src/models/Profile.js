@@ -33,7 +33,8 @@ const {
 
 const profileSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Types.ObjectId,
+    // type: mongoose.Types.ObjectId,
+    type: Number,
     ref: "User",
     required: true,
   },

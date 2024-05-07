@@ -7,14 +7,15 @@ const {
 const jewelryManager = require("../managers/jewelryManager");
 const shoppingBag = require("../models/ShoppingBag");
 const Jewelry = require("../models/Jewelry");
+const Inventory = require("../models/Inventory");
 
-router.get("/", async (req, res) => {
+router.get("/display/:userId", async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.params.userId;
 
     const jewelries = await bagManager.getAll(userId);
 
-    res.status(200).json(jewelries, DEFAULT_MIN_QUANTITY);
+    res.status(200).json({jewelries, DEFAULT_MIN_QUANTITY});
   } catch (err) {
     console.log(err.message);
 
@@ -24,7 +25,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/:jewelryId", async (req, res) => {
+router.post("/add/:jewelryId", async (req, res) => {
   const userId = req.user._id;
 
   const jewelryId = Number(req.params.jewelryId);
@@ -34,14 +35,17 @@ router.post("/:jewelryId", async (req, res) => {
     let bagItem;
     let sizeId;
 
-    const jewelry = await Jewelry.findById(jewelryId);
-    const jewelryCategory = jewelry.category;
-    const jewelryWithoutSize = jewelryCategory === 2;
+    const isAvailable = await Inventory.findOne({
+      jewelry: jewelryId,
+      size: Number(size),
+      quantity: { $gt: 0 },
+    });
 
     if (!size) {
       throw new Error("Ensure you have selected the desired size.");
+    } else if (!isAvailable) {
+      throw new Error("The jewelry has been sold out.");
     } else {
-
       sizeId = Number(size);
 
       bagItem = await bagManager.getOne({
@@ -68,9 +72,15 @@ router.post("/:jewelryId", async (req, res) => {
         },
         { quantity: newQuantity }
       );
+
+      await Inventory.findOneAndUpdate(
+        { jewelry: jewelryId, size: sizeId },
+        { $inc: { quantity: -1 } },
+        { new: true }
+      );
     }
 
-    const allBagItems = await shoppingBag.find({user: userId});
+    const allBagItems = await shoppingBag.find({ user: userId });
 
     res.json(allBagItems);
   } catch (err) {
@@ -82,25 +92,18 @@ router.post("/:jewelryId", async (req, res) => {
   }
 });
 
-// router.post("/:jewelryId/update", async (req, res) => {
-//   let { updatedQuantity, bagItemId, sizeId } = req.body;
-//   sizeId = Number(sizeId);
+router.put("/:jewelryId/update", async (req, res) => {
+  let { updatedQuantity, bagItemId, sizeId } = req.body;
+  sizeId = Number(sizeId);
 
-//   try {
-//     await bagManager.update(bagItemId, updatedQuantity, sizeId);
+  try {
+    await bagManager.update(bagItemId, updatedQuantity, sizeId);
 
-//     res.redirect("/bag");
-//   } catch (err) {
-//     const errorMessages = extractErrorMessages(err);
-//     req.session.errorMessages = errorMessages; // Store error messages in session
-//     res.redirect("/bag");
-//     // const errorMessages = extractErrorMessages(err);
-
-//     // const queryParams = new URLSearchParams({
-//     //   errorMessages: JSON.stringify(errorMessages),
-//     // });
-//     // res.redirect(`/bag?${queryParams.toString()}`);
-//   }
-// });
+    res.json();
+  } catch (err) {
+    res.status(400).json({
+      message: err.message})
+  }
+});
 
 module.exports = router;

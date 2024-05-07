@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
 export const IconBar = () => {
-  const { isAuthenticated, userEmail } = useContext(AuthContext);
+  const { isAuthenticated, userEmail, userId } = useContext(AuthContext);
 
   return (
     <div className={styles["icon-bar"]}>
@@ -23,39 +23,42 @@ export const IconBar = () => {
           </div>
           {/* </Link> */}
         </li>
-        {isAuthenticated && (
+        {/* {isAuthenticated && ( */}
           <li>
             <Link className={styles["icon-bar-item"]} to="/">
               <i class="far fa-heart"></i>
             </Link>
           </li>
-        )}
-        {!isAuthenticated && (
+        {/* )} */}
+        {/* {!isAuthenticated && ( */}
           <li>
             <Link className={styles["icon-bar-item"]} to="/">
               <i class="far fa-heart"></i>
             </Link>
           </li>
-        )}
-        <li>
-          <Link className={styles["icon-bar-item"]} to="/">
-            <i class="fas fa-shopping-bag"></i>
-          </Link>
-        </li>
-        {!isAuthenticated && (
+        {/* )} */}
+        {/* {isAuthenticated && ( */}
+          <li>
+            {/* <Link className={styles["icon-bar-item"]} to="/bag/:userId"> */}
+            <Link className={styles["icon-bar-item"]} to={`/bag/display/${userId}`}>
+              <i class="fas fa-shopping-bag"></i>
+            </Link>
+          </li>
+        {/* )} */}
+        {/* {!isAuthenticated && ( */}
           <li>
             <Link className={styles["icon-bar-item"]} to="/users/login">
               <i class="far fa-user"></i>
             </Link>
           </li>
-        )}
-        {isAuthenticated && (
+        {/* )} */}
+        {/* {isAuthenticated && ( */}
           <li>
             <Link className={styles["icon-bar-item"]} to="/users/details">
               <i class="far fa-user"></i>
             </Link>
           </li>
-        )}
+        {/* )} */}
         {/* {isAuthenticated && (
           <li>
             <Link className={styles["icon-bar-item"]} to="/users/logout">

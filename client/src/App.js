@@ -13,6 +13,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { Home } from "../src/components/Home/Home";
 import { Bag } from "./components/Bag/Bag";
 
+
 function App() {
   return (
     <AuthProvider>
@@ -30,7 +31,9 @@ function App() {
             <Route path="/users/register" element={<Register />} />
             <Route path="/users/logout" element={<Logout />} />
             <Route path="/users/details" element={<UserDetails />} />
-            <Route path="/bag/:jewelryId" element={<Bag />} />
+            <Route path="/bag/display/:userId" element={<Bag />} />
+            <Route path="/bag/add/:jewelryId" element={<JewelryItem />} />
+            {/* <Route path="/bag/:jewelryId/update" element={<Bag />} /> */}
             <Route path="*" element={<h1>404</h1>} />
           </Routes>
         </main>

@@ -3,6 +3,10 @@ const bcrypt = require("bcrypt");
 const { DEFAULT_SALT } = require("../constants/password");
 
 const userSchema = new mongoose.Schema({
+  _id: {
+    type: Number,
+    default: 0,
+  },
   email: {
     type: String,
     required: [true, "Email is required."],
@@ -24,21 +28,36 @@ const userSchema = new mongoose.Schema({
   sessionKey: String,
 });
 
-// userSchema.virtual("retypePassword").set(function (value) {
-//   if (value !== this.password) {
-//     throw new Error("The two password fields didn't match.");
-//   }
-// });
-
 userSchema.pre("save", async function () {
   const hash = await bcrypt.hash(this.password, DEFAULT_SALT);
 
   this.password = hash;
 });
 
-const User = mongoose.model("User", userSchema);
+userSchema.pre("save", async function() {
+  const currentId = await setID();
 
-module.exports = User;
+  this._id = currentId;
+});
+
+
+const user = mongoose.model("User", userSchema);
+
+module.exports = user;
+
+const setID = async () => {
+  try {
+    let lastObj = await user.findOne().sort({ _id: -1 });
+
+    lastId = lastObj._id;
+
+    nextId = lastId + 1;
+
+    return nextId;
+  } catch (err) {
+    return 1;
+  }
+};
 
 
 
