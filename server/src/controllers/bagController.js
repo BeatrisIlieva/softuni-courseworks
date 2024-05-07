@@ -4,9 +4,7 @@ const {
   DEFAULT_ADD_QUANTITY,
   DEFAULT_MIN_QUANTITY,
 } = require("../constants/shoppingBag");
-const jewelryManager = require("../managers/jewelryManager");
 const shoppingBag = require("../models/ShoppingBag");
-const Jewelry = require("../models/Jewelry");
 const Inventory = require("../models/Inventory");
 
 router.get("/display/:userId", async (req, res) => {
@@ -15,7 +13,7 @@ router.get("/display/:userId", async (req, res) => {
 
     const jewelries = await bagManager.getAll(userId);
 
-    res.status(200).json({jewelries, DEFAULT_MIN_QUANTITY});
+    res.status(200).json({ jewelries, DEFAULT_MIN_QUANTITY });
   } catch (err) {
     console.log(err.message);
 
@@ -102,7 +100,8 @@ router.put("/:jewelryId/update", async (req, res) => {
     res.json();
   } catch (err) {
     res.status(400).json({
-      message: err.message})
+      message: err.message,
+    });
   }
 });
 
