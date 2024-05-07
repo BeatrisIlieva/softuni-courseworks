@@ -34,12 +34,11 @@ userSchema.pre("save", async function () {
   this.password = hash;
 });
 
-userSchema.pre("save", async function() {
+userSchema.pre("save", async function () {
   const currentId = await setID();
 
   this._id = currentId;
 });
-
 
 const user = mongoose.model("User", userSchema);
 
@@ -58,29 +57,3 @@ const setID = async () => {
     return 1;
   }
 };
-
-
-
-// const mongoose = require("mongoose");
-// const bcrypt = require("bcrypt");
-
-// const userSchema = new mongoose.Schema({
-//     email: {
-//         type: String,
-//         required: true,
-//     },
-//     password: {
-//         type: String,
-//         required: true,
-//     }
-// });
-
-// userSchema.pre("save", async function() {
-//     const hash = await bcrypt.hash(this.password, 10);
-
-//     this.password = hash;
-// })
-
-// const User = mongoose.model("User", userSchema);
-
-// module.exports = User;
