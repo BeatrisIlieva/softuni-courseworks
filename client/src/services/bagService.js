@@ -15,5 +15,10 @@ export const bagServiceFactory = (token) => {
     return items;
   };
 
-  return { add, display };
+  const decrease = async (bagId) => {
+    console.log(`from decrease: ${bagId}`)
+    await request.put(`${baseUrl}/decrease/${bagId}`);
+  };
+
+  return { add, display, decrease };
 };

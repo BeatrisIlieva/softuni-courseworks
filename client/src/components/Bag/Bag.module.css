@@ -10,10 +10,9 @@
 }
 
 .bag-left-container-title {
-  padding-bottom: 8px;
-  font-style: italic;
-  font-size: 16px;
-  font-weight: 600;
+  padding-bottom: 16px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .bag-left-sub-container {
@@ -93,7 +92,7 @@
 }
 
 .bag-right-container {
-  width: 30%;
+  width: 24%;
 }
 
 .bag-right-container-sticky {
@@ -102,8 +101,50 @@
 }
 
 .bag-right-container-title{
-  padding-bottom: 8px;
-  font-style: italic;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  padding-bottom: 16px;
+}
+
+.bag-right-sub-container-bold {
   font-weight: 600;
+  letter-spacing: 0;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.bag-right-sub-container-not-bold {
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.552);
+}
+
+.bag-right-sub-container {
+  position: relative;
+}
+
+.bag-right-sub-right-container {
+  display: flex;
+
+}
+
+.horizontal-line {
+  background-color: pink;
+  height: 1px;
+  border: none; 
+  margin: 12px 0px 20px  0px;
+}
+
+.bag-right-sub-container-absolute {
+  position: absolute;
+  right: 0;
+}
+
+.bag-right-sub-container p {
+  padding: 0;
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+.continue-checkout-button {
+  width: 100% !important;
+  margin-top: 12px;
 }

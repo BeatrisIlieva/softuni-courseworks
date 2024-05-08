@@ -90,14 +90,15 @@ router.post("/add/:jewelryId", async (req, res) => {
   }
 });
 
-router.put("/:jewelryId/update", async (req, res) => {
-  let { updatedQuantity, bagItemId, sizeId } = req.body;
-  sizeId = Number(sizeId);
+router.put("/decrease/:bagId", async (req, res) => {
+  bagId = req.params.bagId;
+  console.log("Here");
+  console.log(bagId);
 
   try {
-    await bagManager.update(bagItemId, updatedQuantity, sizeId);
+    await bagManager.decrease(bagId);
 
-    res.json();
+    res.status(204).json();
   } catch (err) {
     res.status(400).json({
       message: err.message,
@@ -106,3 +107,20 @@ router.put("/:jewelryId/update", async (req, res) => {
 });
 
 module.exports = router;
+
+// router.put("/update/:jewelryId", async (req, res) => {
+//   let { updatedQuantity, bagItemId, sizeId } = req.body;
+//   sizeId = Number(sizeId);
+
+//   try {
+//     await bagManager.update(bagItemId, updatedQuantity, sizeId);
+
+//     res.json();
+//   } catch (err) {
+//     res.status(400).json({
+//       message: err.message,
+//     });
+//   }
+// });
+
+// module.exports = router;
