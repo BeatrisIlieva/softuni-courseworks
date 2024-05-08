@@ -13,7 +13,6 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { Home } from "../src/components/Home/Home";
 import { Bag } from "./components/Bag/Bag";
 
-
 function App() {
   return (
     <AuthProvider>
@@ -23,15 +22,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:categoryId" element={<JewelryList />} />
-            <Route
-              path="/:categoryId/:jewelryId"
-              element={<JewelryItem />}
-            />
-            <Route path="/users/login" element={<Login />} />
-            <Route path="/users/register" element={<Register />} />
-            <Route path="/users/logout" element={<Logout />} />
-            <Route path="/users/details" element={<UserDetails />} />
-            <Route path="/bag/display/:userId" element={<Bag />} />
+            <Route path="/:categoryId/:jewelryId" element={<JewelryItem />} />
+            <Route path="/user/login" element={<Login />} />
+            <Route path="/user/register" element={<Register />} />
+            <Route path="/user/logout" element={<Logout />} />
+            <Route path="/user/details" element={<UserDetails />} />
+            <Route path="/user/bag" element={<Bag />} />
             <Route path="/bag/add/:jewelryId" element={<JewelryItem />} />
             {/* <Route path="/bag/:jewelryId/update" element={<Bag />} /> */}
             <Route path="*" element={<h1>404</h1>} />

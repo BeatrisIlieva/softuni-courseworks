@@ -90,119 +90,125 @@ exports.getAll = async (userId) => {
     {
       $match: {
         user: user._id,
-      },
+      }
     },
     {
       $lookup: {
         as: "jewelries",
         from: "jewelries",
         foreignField: "_id",
-        localField: "jewelry",
-      },
+        localField: "jewelry"
+      }
     },
     {
-      $unwind: "$jewelries",
+      $unwind: "$jewelries"
     },
     {
       $lookup: {
         as: "jewelrymetals",
         from: "jewelrymetals",
         foreignField: "jewelry",
-        localField: "jewelries._id",
-      },
+        localField: "jewelries._id"
+      }
     },
     {
-      $unwind: "$jewelrymetals",
+      $unwind: "$jewelrymetals"
     },
     {
       $lookup: {
         as: "metals",
         from: "metals",
         foreignField: "_id",
-        localField: "jewelrymetals.metal",
-      },
+        localField: "jewelrymetals.metal"
+      }
     },
     {
-      $unwind: "$metals",
+      $unwind: "$metals"
     },
     {
       $lookup: {
         as: "jewelrystones",
         from: "jewelrystones",
         foreignField: "jewelry",
-        localField: "jewelries._id",
-      },
+        localField: "jewelries._id"
+      }
     },
     {
-      $unwind: "$jewelrystones",
+      $unwind: "$jewelrystones"
     },
     {
       $lookup: {
         as: "stonetypes",
         from: "stonetypes",
         foreignField: "_id",
-        localField: "jewelrystones.stoneType",
-      },
+        localField: "jewelrystones.stoneType"
+      }
     },
     {
-      $unwind: "$stonetypes",
+      $unwind: "$stonetypes"
     },
     {
       $lookup: {
         as: "stonecolors",
         from: "stonecolors",
         foreignField: "_id",
-        localField: "jewelrystones.stoneColor",
-      },
+        localField: "jewelrystones.stoneColor"
+      }
     },
     {
-      $unwind: "$stonecolors",
+      $unwind: "$stonecolors"
     },
     {
       $lookup: {
         as: "categories",
         from: "categories",
         foreignField: "_id",
-        localField: "jewelries.category",
-      },
+        localField: "jewelries.category"
+      }
     },
     {
       $lookup: {
         as: "inventories",
         from: "inventories",
         foreignField: "jewelry",
-        localField: "jewelry",
-      },
+        localField: "jewelry"
+      }
     },
     {
       $lookup: {
         as: "sizes",
         from: "sizes",
         foreignField: "_id",
-        localField: "size",
-      },
+        localField: "size"
+      }
     },
     {
-      $unwind: "$inventories",
+      $unwind: "$inventories"
     },
-
+  
     {
-      $unwind: "$sizes",
+      $unwind: "$sizes"
     },
     {
-      $unwind: "$categories",
+      $unwind: "$categories"
     },
-
+  
     {
       $addFields: {
         totalPrice: {
-          $multiply: ["$inventories.price", "$quantity"],
+          $multiply: [
+            "$inventories.price",
+            "$quantity"
+          ]
         },
         minQuantity: 0,
         maxQuantity: {
-          $sum: ["$inventories.quantity", "$quantity"],
-        },
-      },
+          $sum: [
+            "$inventories.quantity",
+            "$quantity"
+          ]
+        }
+      }
     },
     {
       $addFields: {
@@ -211,17 +217,18 @@ exports.getAll = async (userId) => {
             input: [
               {
                 metal: "$metals",
-                caratWeight: "$jewelrymetals.caratWeight",
-              },
+                caratWeight:
+                  "$jewelrymetals.caratWeight"
+              }
             ],
             as: "jm",
             in: {
               metal: "$$jm.metal.title",
-              caratWeight: "$$jm.caratWeight",
-            },
-          },
-        },
-      },
+              caratWeight: "$$jm.caratWeight"
+            }
+          }
+        }
+      }
     },
     {
       $addFields: {
@@ -231,28 +238,29 @@ exports.getAll = async (userId) => {
               {
                 stoneType: "$stonetypes",
                 stoneColor: "$stonecolors",
-                caratWeight: "$jewelrystones.caratWeight",
-              },
+                caratWeight:
+                  "$jewelrystones.caratWeight"
+              }
             ],
             as: "js",
             in: {
               stoneType: "$$js.stoneType.title",
               stoneColor: "$$js.stoneColor.title",
-              caratWeight: "$$js.caratWeight",
-            },
-          },
-        },
-      },
+              caratWeight: "$$js.caratWeight"
+            }
+          }
+        }
+      }
     },
     {
       $addFields: {
-        jewelryId: "$jewelries._id",
-      },
+        jewelryId: "$jewelries._id"
+      }
     },
     {
       $addFields: {
-        sizeId: "$sizes._id",
-      },
+        sizeId: "$sizes._id"
+      }
     },
     {
       $group: {
@@ -260,33 +268,34 @@ exports.getAll = async (userId) => {
         jewelryId: { $first: "$jewelryId" },
         user: { $first: "$user" },
         jewelryTitle: {
-          $first: "$jewelries.title",
+          $first: "$jewelries.title"
         },
         firstImageUrl: {
-          $first: "$jewelries.firstImageUrl",
+          $first: "$jewelries.firstImageUrl"
         },
         categoryTitle: {
-          $first: "$categories.title",
+          $first: "$categories.title"
         },
         size: { $first: "$sizes.measurement" },
+        sizeTitle: { $first: "$sizes.title" },
         sizeId: { $first: "$sizeId" },
         metalInfo: {
-          $addToSet: "$metalInfo",
+          $addToSet: "$metalInfo"
         },
         stoneInfo: {
-          $addToSet: "$stoneInfo",
+          $addToSet: "$stoneInfo"
         },
         quantity: { $first: "$quantity" },
         maxQuantity: { $first: "$maxQuantity" },
         minQuantity: { $first: "$minQuantity" },
         totalPrice: { $first: "$totalPrice" },
-        createdAt: { $first: "$createdAt" },
-      },
+        createdAt: { $first: "$createdAt" }
+      }
     },
     {
       $sort: {
-        createdAt: -1,
-      },
+        createdAt: -1
+      }
     },
     {
       $project: {
@@ -298,29 +307,30 @@ exports.getAll = async (userId) => {
         firstImageUrl: 1,
         size: 1,
         sizeId: 1,
+        sizeTitle: 1,
         metalInfo: 1,
         stoneInfo: 1,
         quantity: 1,
         maxQuantity: 1,
         minQuantity: 1,
-        totalPrice: 1,
-      },
+        totalPrice: 1
+      }
     },
     {
       $group: {
         _id: null,
         documents: {
-          $push: "$$ROOT",
+          $push: "$$ROOT"
         },
-        totalTotalPrice: { $sum: "$totalPrice" },
-      },
+        totalTotalPrice: { $sum: "$totalPrice" }
+      }
     },
     {
       $project: {
         documents: 1,
-        totalTotalPrice: 1,
-      },
-    },
+        totalTotalPrice: 1
+      }
+    }
   ]);
 
   return jewelries;

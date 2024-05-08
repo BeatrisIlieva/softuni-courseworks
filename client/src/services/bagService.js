@@ -11,7 +11,6 @@ export const bagServiceFactory = (token) => {
 
   const display = async (userId) => {
     const items = await request.get(`${baseUrl}/display/${userId}`);
-    console.log(items);
 
     return items;
   };

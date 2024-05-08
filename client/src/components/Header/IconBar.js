@@ -40,21 +40,21 @@ export const IconBar = () => {
         {/* {isAuthenticated && ( */}
           <li>
             {/* <Link className={styles["icon-bar-item"]} to="/bag/:userId"> */}
-            <Link className={styles["icon-bar-item"]} to={`/bag/display/${userId}`}>
+            <Link className={styles["icon-bar-item"]} to={`/user/bag`}>
               <i class="fas fa-shopping-bag"></i>
             </Link>
           </li>
         {/* )} */}
         {/* {!isAuthenticated && ( */}
           <li>
-            <Link className={styles["icon-bar-item"]} to="/users/login">
+            <Link className={styles["icon-bar-item"]} to="/user/login">
               <i class="far fa-user"></i>
             </Link>
           </li>
         {/* )} */}
         {/* {isAuthenticated && ( */}
           <li>
-            <Link className={styles["icon-bar-item"]} to="/users/details">
+            <Link className={styles["icon-bar-item"]} to="/user/details">
               <i class="far fa-user"></i>
             </Link>
           </li>
