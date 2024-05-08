@@ -43,10 +43,9 @@ export const Bag = () => {
       {bagItems && (
         <div className={styles["bag-container"]}>
           <div className={styles["bag-left-container"]}>
-            <h4 className={styles["bag-left-container-title"]}>
-              <i class="fas fa-truck"></i>
-              Delivery (0 items)
-            </h4>
+            <p className={styles["bag-left-container-title"]}>
+              <i class="fas fa-truck"></i> Delivery (0 items)
+            </p>
             <div className={styles["bag-left-sub-container"]}>
               {bagItems.map((item) => (
                 <div
@@ -130,7 +129,9 @@ export const Bag = () => {
                   </div>
                   <div className={styles["jewelry-bag-price-quantity"]}>
                     {/* <div className={styles["jewelry-bag-price"]}> */}
-                      <h4 className={styles["jewelry-bag-price"]}>${item.totalPrice}</h4>
+                    <h4 className={styles["jewelry-bag-price"]}>
+                      ${item.totalPrice}
+                    </h4>
                     {/* </div> */}
                   </div>
                 </div>
@@ -138,9 +139,11 @@ export const Bag = () => {
             </div>
           </div>
           <div className={styles["bag-right-container"]}>
-            <h4 className={styles["bag-right-container-title"]}>
-              Order Summary
-            </h4>
+            <div className={styles["bag-right-container-sticky"]}>
+              <p className={styles["bag-right-container-title"]}>
+                Order Summary
+              </p>
+            </div>
           </div>
         </div>
       )}

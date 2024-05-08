@@ -1,10 +1,19 @@
 .bag-container {
   display: flex;
   justify-content: space-evenly;
+  position: relative;
+  gap: 32px;
 }
 
 .bag-left-container {
-  width: calc(80vw - 48px);
+  width: 70%;
+}
+
+.bag-left-container-title {
+  padding-bottom: 8px;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .bag-left-sub-container {
@@ -84,5 +93,17 @@
 }
 
 .bag-right-container {
-  width: calc(40vw - 48px);
+  width: 30%;
+}
+
+.bag-right-container-sticky {
+  position: sticky;
+  top: calc(18vh + 42px);
+}
+
+.bag-right-container-title{
+  padding-bottom: 8px;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 600;
 }
