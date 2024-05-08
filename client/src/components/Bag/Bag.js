@@ -12,15 +12,6 @@ export const Bag = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const { userId } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   bagService
-  //     .display(userId)
-  //     .then(setBagItems)
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // }, []);
-
   useEffect(() => {
     fetchBagItems();
   }, []);
