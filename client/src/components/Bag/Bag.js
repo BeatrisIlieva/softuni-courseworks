@@ -101,12 +101,11 @@ export const Bag = () => {
                     </h2>
                     <ul role="list">
                       <li className={styles["bag-composition-metal"]}>
-                        {item.metalInfo.map((metalItem, metalIndex) => (
+                        {item.metalInfo.map((metalItem) => (
                           <div key={metalItem.metalId}>
                             {metalItem.map((i, index) => (
                               <span
                                 key={metalItem.metalId}
-                                // classNames={styles["bag-composition-metal"]}
                               >
                                 {i.caratWeight &&
                                   i.caratWeight.$numberDecimal &&
