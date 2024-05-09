@@ -101,15 +101,15 @@ export const Bag = () => {
                     </h2>
                     <ul role="list">
                       <li className={styles["bag-composition-metal"]}>
-                        {item.metalInfo.map((metalItem) => (
+                        {item.metalInfo.map((metalItem, metalIndex) => (
                           <div key={metalItem.metalId}>
-                            {metalItem.map((i, index) => (
+                            {metalItem.map((i) => (
                               <span key={metalItem.metalId}>
                                 {i.caratWeight &&
                                   i.caratWeight.$numberDecimal &&
                                   `${i.caratWeight.$numberDecimal}ct.`}{" "}
                                 {i.metal}
-                                {index !== item.metalInfo.length - 1 && (
+                                {metalIndex !== item.metalInfo.length - 1 && (
                                   <>
                                     ,<br />
                                   </>
@@ -128,7 +128,7 @@ export const Bag = () => {
                                   i.caratWeight.$numberDecimal &&
                                   `${i.caratWeight.$numberDecimal}ct.`}{" "}
                                 {i.stoneColor} {i.stoneType}
-                                {index !== item.stoneInfo.length - 1 && (
+                                {stoneIndex !== item.stoneInfo.length - 1 && (
                                   <>
                                     ,<br />
                                   </>
