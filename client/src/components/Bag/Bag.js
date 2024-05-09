@@ -50,10 +50,10 @@ export const Bag = () => {
   };
 
   const onQuantityChange = (e, item) => {
-    // const newQuantity = parseInt(e.target.value);
-    const newQuantity = e.target.value.trim() === "" ? "" : parseInt(e.target.value);
-    item.quantity = newQuantity; // Update the quantity for the specific item
-    setBagItems([...bagItems]); // Update the bag items array
+    const newQuantity =
+      e.target.value.trim() === "" ? "" : parseInt(e.target.value);
+    item.quantity = newQuantity;
+    setBagItems([...bagItems]);
   };
 
   const onBlur = async (item) => {
