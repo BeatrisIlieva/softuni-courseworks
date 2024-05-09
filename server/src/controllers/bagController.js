@@ -118,6 +118,22 @@ router.put("/increase/:bagId", async (req, res) => {
   }
 });
 
+router.put("/update/:bagId", async (req, res) => {
+  bagId = req.params.bagId;
+ 
+  const { quantity } = req.body;
+
+  try {
+    await bagManager.update(bagId, quantity);
+
+    res.status(204).json();
+  } catch (err) {
+    res.status(400).json({
+      message: err.message,
+    });
+  }
+});
+
 module.exports = router;
 
 // router.put("/update/:jewelryId", async (req, res) => {

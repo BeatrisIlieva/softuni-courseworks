@@ -14,147 +14,6 @@ exports.getOne = async ({ userId, jewelryId, sizeId }) => {
   return bagItem;
 };
 
-exports.create = async ({
-  userId,
-  jewelryId,
-  sizeId,
-  quantity: DEFAULT_ADD_QUANTITY,
-}) => {
-  bagItem = await ShoppingBag.create({
-    user: userId,
-    jewelry: jewelryId,
-    size: sizeId,
-    quantity: DEFAULT_ADD_QUANTITY,
-  });
-
-  await Inventory.findOneAndUpdate(
-    { jewelry: jewelryId, size: sizeId },
-    { $inc: { quantity: -1 } },
-    { new: true }
-  );
-};
-
-exports.decrease = async (bagId) => {
-  // let bagItem = await ShoppingBag.findByIdAndUpdate(
-  //   bagId,
-  //   { $inc: { quantity: -1 } }, // Decrease quantity by 1
-  //   { new: true } // Return the modified document
-  // );
-
-  // if (bagItem.quantity === 0) {
-  //   await ShoppingBag.findByIdAndDelete(bagId);
-  // }
-
-  let bagItem = await ShoppingBag.findById(bagId);
-
-  const jewelryId = Number(bagItem.jewelry);
-
-  const sizeId = Number(bagItem.size);
-
-  const bagQuantity = bagItem.quantity;
-
-  const newBagQuantity = bagQuantity - 1;
-
-  await ShoppingBag.findByIdAndUpdate(bagId, { quantity: newBagQuantity });
-
-  bagItem = await ShoppingBag.findById(bagId);
-
-  if (bagItem.quantity === 0) {
-    await ShoppingBag.findByIdAndDelete(bagId);
-  }
-
-  const inventoryItem = Inventory.findOne({
-    jewelry: jewelryId,
-    size: sizeId,
-  });
-
-  const inventoryQuantity = inventoryItem.quantity || 0;
-  const newInventoryQuantity = inventoryQuantity + 1;
-  await Inventory.findOneAndUpdate(
-    { jewelry: jewelryId, size: sizeId },
-    { quantity: newInventoryQuantity },
-    { new: true }
-  );
-};
-
-exports.increase = async (bagId) => {
-  let bagItem = await ShoppingBag.findById(bagId);
-
-  const jewelryId = Number(bagItem.jewelry);
-
-  const sizeId = Number(bagItem.size);
-
-  const bagQuantity = bagItem.quantity;
-
-  const newBagQuantity = bagQuantity + 1;
-
-  await ShoppingBag.findByIdAndUpdate(bagId, { quantity: newBagQuantity });
-
-  bagItem = await ShoppingBag.findById(bagId);
-
-  const inventoryItem = Inventory.findOne({
-    jewelry: jewelryId,
-    size: sizeId,
-  });
-
-  const inventoryQuantity = inventoryItem.quantity || 0;
-  const newInventoryQuantity = inventoryQuantity - 1;
-  await Inventory.findOneAndUpdate(
-    { jewelry: jewelryId, size: sizeId },
-    { quantity: newInventoryQuantity },
-    { new: true }
-  );
-};
-
-exports.update = async (bagItemId, updatedQuantity, sizeId) => {
-  const bagItem = await ShoppingBag.findById(bagItemId);
-
-  const jewelryId = bagItem.jewelry.toString();
-
-  // const jewelry = await Jewelry.findById(jewelryId);
-
-  const alreadyAddedQuantity = bagItem.quantity;
-
-  const inventoryItem = Inventory.findOne({
-    jewelry: Number(jewelryId),
-    size: sizeId,
-  });
-
-  const quantity = inventoryItem.quantity || 0;
-
-  const availableQuantity = quantity + alreadyAddedQuantity;
-
-  if (updatedQuantity < DEFAULT_MIN_QUANTITY) {
-    throw new Error("Quantity must be greater than zero");
-  } else if (updatedQuantity > availableQuantity) {
-    throw new Error(
-      `Please choose quantity between ${DEFAULT_MIN_QUANTITY} and ${availableQuantity}`
-    );
-  } else {
-    await bagItem.updateOne({ quantity: updatedQuantity });
-
-    let newQuantity;
-
-    if (alreadyAddedQuantity < updatedQuantity) {
-      difference = updatedQuantity - alreadyAddedQuantity;
-      newQuantity = quantity - difference;
-    } else {
-      difference = alreadyAddedQuantity - updatedQuantity;
-      newQuantity = quantity + difference;
-    }
-
-    await Inventory.findOneAndUpdate(
-      { jewelry: jewelryId, size: sizeId },
-      { quantity: newQuantity },
-      { new: true }
-    );
-
-    if (Number(updatedQuantity) === 0) {
-      await bagItem.deleteOne();
-    }
-  }
-};
-
 exports.getAll = async (userId) => {
   const user = await User.findById(userId);
 
@@ -433,3 +292,152 @@ exports.getAll = async (userId) => {
 
   return jewelries;
 };
+
+exports.create = async ({
+  userId,
+  jewelryId,
+  sizeId,
+  quantity: DEFAULT_ADD_QUANTITY,
+}) => {
+  bagItem = await ShoppingBag.create({
+    user: userId,
+    jewelry: jewelryId,
+    size: sizeId,
+    quantity: DEFAULT_ADD_QUANTITY,
+  });
+
+  await Inventory.findOneAndUpdate(
+    { jewelry: jewelryId, size: sizeId },
+    { $inc: { quantity: -1 } },
+    { new: true }
+  );
+};
+
+exports.decrease = async (bagId) => {
+  // let bagItem = await ShoppingBag.findByIdAndUpdate(
+  //   bagId,
+  //   { $inc: { quantity: -1 } }, // Decrease quantity by 1
+  //   { new: true } // Return the modified document
+  // );
+
+  // if (bagItem.quantity === 0) {
+  //   await ShoppingBag.findByIdAndDelete(bagId);
+  // }
+
+  let bagItem = await ShoppingBag.findById(bagId);
+
+  const jewelryId = Number(bagItem.jewelry);
+
+  const sizeId = Number(bagItem.size);
+
+  const bagQuantity = bagItem.quantity;
+
+  const newBagQuantity = bagQuantity - 1;
+
+  await ShoppingBag.findByIdAndUpdate(bagId, { quantity: newBagQuantity });
+
+  bagItem = await ShoppingBag.findById(bagId);
+
+  if (bagItem.quantity === 0) {
+    await ShoppingBag.findByIdAndDelete(bagId);
+  }
+
+  const inventoryItem = await Inventory.findOne({
+    jewelry: jewelryId,
+    size: sizeId,
+  });
+
+  const inventoryQuantity = inventoryItem.quantity || 0;
+  const newInventoryQuantity = inventoryQuantity + 1;
+  await Inventory.findOneAndUpdate(
+    { jewelry: jewelryId, size: sizeId },
+    { quantity: newInventoryQuantity },
+    { new: true }
+  );
+};
+
+exports.increase = async (bagId) => {
+  let bagItem = await ShoppingBag.findById(bagId);
+
+  const jewelryId = Number(bagItem.jewelry);
+
+  const sizeId = Number(bagItem.size);
+
+  const bagQuantity = bagItem.quantity;
+
+  const newBagQuantity = bagQuantity + 1;
+
+  await ShoppingBag.findByIdAndUpdate(bagId, { quantity: newBagQuantity });
+
+  bagItem = await ShoppingBag.findById(bagId);
+
+  const inventoryItem = await Inventory.findOne({
+    jewelry: jewelryId,
+    size: sizeId,
+  });
+
+  const inventoryQuantity = inventoryItem.quantity || 0;
+  const newInventoryQuantity = inventoryQuantity - 1;
+  await Inventory.findOneAndUpdate(
+    { jewelry: jewelryId, size: sizeId },
+    { quantity: newInventoryQuantity },
+    { new: true }
+  );
+};
+
+exports.update = async (bagItemId, updatedQuantity) => {
+  const bagItem = await ShoppingBag.findById(bagItemId);
+  console.log(updatedQuantity);
+
+  const sizeId = Number(bagItem.size);
+
+  const alreadyAddedQuantity = bagItem.quantity;
+  console.log(alreadyAddedQuantity)
+
+  const jewelryId = Number(bagItem.jewelry);
+
+  const inventoryItem = await Inventory.findOne({
+    jewelry: jewelryId,
+    size: sizeId,
+  });
+
+  console.log(inventoryItem.quantity);
+
+  const quantity = inventoryItem.quantity || 0;
+  console.log(quantity)
+
+  const availableQuantity = quantity + alreadyAddedQuantity;
+  console.log(availableQuantity)
+
+  if (updatedQuantity < DEFAULT_MIN_QUANTITY) {
+    throw new Error("Quantity must be greater than zero");
+  } else if (updatedQuantity > availableQuantity) {
+    throw new Error(
+      `Please choose quantity between ${DEFAULT_MIN_QUANTITY} and ${availableQuantity}`
+    );
+  } else {
+    await bagItem.updateOne({ quantity: updatedQuantity });
+
+    let newQuantity;
+
+    if (alreadyAddedQuantity < updatedQuantity) {
+      difference = updatedQuantity - alreadyAddedQuantity;
+      newQuantity = quantity - difference;
+    } else {
+      difference = alreadyAddedQuantity - updatedQuantity;
+      newQuantity = quantity + difference;
+    }
+
+    await Inventory.findOneAndUpdate(
+      { jewelry: jewelryId, size: sizeId },
+      { quantity: newQuantity },
+      { new: true }
+    );
+
+    if (Number(updatedQuantity) === 0) {
+      await bagItem.deleteOne();
+    }
+  }
+};
+
+

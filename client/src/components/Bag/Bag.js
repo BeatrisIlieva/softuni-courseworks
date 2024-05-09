@@ -49,6 +49,26 @@ export const Bag = () => {
     fetchBagItems();
   };
 
+  const onQuantityChange = (e, item) => {
+    // const newQuantity = parseInt(e.target.value);
+    const newQuantity = e.target.value.trim() === "" ? "" : parseInt(e.target.value);
+    item.quantity = newQuantity; // Update the quantity for the specific item
+    setBagItems([...bagItems]); // Update the bag items array
+  };
+
+  const onBlur = async (item) => {
+    console.log("Bag items after quantity change:", bagItems);
+    try {
+      await bagService.update(item._id, { quantity: item.quantity });
+
+      setBagItems([...bagItems]);
+
+      fetchBagItems();
+    } catch (error) {
+      console.error("Error updating quantity in the database:", error);
+    }
+  };
+
   return (
     <>
       {bagItems && (
@@ -125,8 +145,7 @@ export const Bag = () => {
                           ? item.sizeTitle
                           : `${item.size.$numberDecimal} cm.`}
                       </li>
-                      <li>
-                      </li>
+                      <li></li>
                     </ul>
                   </div>
                   <div className={styles["jewelry-bag-price-quantity"]}>
@@ -146,10 +165,20 @@ export const Bag = () => {
                       name={item._id}
                       min={item.minQuantity}
                       max={item.maxQuantity}
+                      type="number"
+                      value={item.quantity} // Initialize with item.quantity
+                      onChange={(e) => onQuantityChange(e, item)}
+                      onBlur={() => onBlur(item)}
+                    />
+
+                    {/* <input
+                      name={item._id}
+                      min={item.minQuantity}
+                      max={item.maxQuantity}
                       type="text"
                       value={Number(item.quantity)}
-                      readOnly
-                    />
+                      // readOnly
+                    /> */}
                   </div>
                 </div>
               ))}

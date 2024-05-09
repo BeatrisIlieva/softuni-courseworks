@@ -23,5 +23,9 @@ export const bagServiceFactory = (token) => {
     await request.put(`${baseUrl}/increase/${bagId}`);
   };
 
-  return { add, display, decrease, increase };
+  const update = async (bagId, quantity) => {
+    await request.put(`${baseUrl}/update/${bagId}`, quantity);
+  };
+
+  return { add, display, decrease, increase, update };
 };
