@@ -8,7 +8,7 @@ export const Header = () => {
     <header className={styles["header"]}>
       <Link to="/">
         <div className={styles["logo-img-container"]}>
-        <img className={styles["logo-img"]} src={"https://res.cloudinary.com/deztgvefu/image/upload/v1714854992/template_images/Screenshot_2024-05-04_at_23.35.42_gjc751.png"} alt={"Logo"} />
+        <img className={styles["logo-img"]} src={"https://res.cloudinary.com/deztgvefu/image/upload/v1714938711/template_images/Untitled_design_t0jumi.png"} alt={"Logo"} />
         </div>
       </Link>
       <NavBar />

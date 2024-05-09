@@ -1,6 +1,30 @@
+.bag-title {
+  font-size: 30px;
+  padding-top: 0px;
+  padding-bottom: 28px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.bag-sub-title {
+  text-align: center;
+
+}
+.bag-sub-title p {
+  line-height: 0;
+  font-size: 16px;
+}
+
+.bag-sub-title h3 {
+  font-weight: 300;
+  font-size: 26px;
+  padding: 0px;
+  margin: 0px;
+}
+
 .bag-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   position: relative;
   gap: 32px;
 }
@@ -29,7 +53,7 @@
 }
 
 .jewelry-bag-image {
-  width: 30%;
+  width: 36%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
 }
@@ -43,7 +67,7 @@
 }
 
 .jewelry-bag-composition {
-  width: 56%;
+  width: 50%;
   position: relative;
 }
 
