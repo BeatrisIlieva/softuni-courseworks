@@ -120,7 +120,7 @@ router.put("/increase/:bagId", async (req, res) => {
 
 router.put("/update/:bagId", async (req, res) => {
   bagId = req.params.bagId;
- 
+
   const { quantity } = req.body;
 
   try {
@@ -135,20 +135,3 @@ router.put("/update/:bagId", async (req, res) => {
 });
 
 module.exports = router;
-
-// router.put("/update/:jewelryId", async (req, res) => {
-//   let { updatedQuantity, bagItemId, sizeId } = req.body;
-//   sizeId = Number(sizeId);
-
-//   try {
-//     await bagManager.update(bagItemId, updatedQuantity, sizeId);
-
-//     res.json();
-//   } catch (err) {
-//     res.status(400).json({
-//       message: err.message,
-//     });
-//   }
-// });
-
-// module.exports = router;
