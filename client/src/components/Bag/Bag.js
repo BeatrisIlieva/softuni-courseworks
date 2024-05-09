@@ -24,6 +24,7 @@ export const Bag = () => {
       if (data && data.jewelries && data.jewelries.length > 0) {
         const bagData = data.jewelries;
         const bagItems = bagData[0].documents;
+        console.log(bagItems);
         setBagItems(bagItems);
         const totalPrice = bagData[0].totalTotalPrice;
         setTotalPrice(totalPrice);
@@ -42,15 +43,10 @@ export const Bag = () => {
     fetchBagItems();
   };
 
-  const onIncrement = (e) => {
-    e.preventDefault();
+  const onIncrement = async (bagId) => {
+    await bagService.increase(bagId);
 
-    const currentQuantity = e.target.value;
-    const updatedQuantity = currentQuantity - 1;
-    const bagItemId = e.target.bagItemId;
-    const sizeId = e.target.sizeId;
-
-    // const data = { bagItemId, updatedQuantity, sizeId };
+    fetchBagItems();
   };
 
   return (
@@ -80,11 +76,11 @@ export const Bag = () => {
                     </h2>
                     <ul role="list">
                       <li className={styles["bag-composition-metal"]}>
-                        {item.metalInfo.map((metalItem, index) => (
-                          <div key={index}>
+                        {item.metalInfo.map((metalItem, metalIndex) => (
+                          <div key={metalItem.metalId}>
                             {metalItem.map((i, index) => (
                               <span
-                                key={index}
+                                key={metalItem.metalId}
                                 // classNames={styles["bag-composition-metal"]}
                               >
                                 {i.caratWeight &&
@@ -102,11 +98,11 @@ export const Bag = () => {
                         ))}
                       </li>
                       <li className={styles["bag-composition-stone"]}>
-                        {item.stoneInfo.map((stoneItem, index) => (
-                          <div key={index}>
+                        {item.stoneInfo.map((stoneItem, stoneIndex) => (
+                          <div key={`stone_${stoneIndex}`}>
                             {stoneItem.map((i, index) => (
                               <span
-                                key={index}
+                                key={`stone_${stoneIndex}_${index}`}
                                 // classNames={styles["bag-composition-stone"]}
                               >
                                 {i.caratWeight &&
@@ -130,15 +126,6 @@ export const Bag = () => {
                           : `${item.size.$numberDecimal} cm.`}
                       </li>
                       <li>
-                        {/* <form onSubmit={onSubmit} method="POST">
-                      <div className={styles["add-to-bag-button"]}>
-                        <input
-                          className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
-                          type="submit"
-                          value="ADD TO BAG"
-                        />
-                      </div>
-                    </form> */}
                       </li>
                     </ul>
                   </div>
@@ -151,16 +138,9 @@ export const Bag = () => {
                     <div>
                       <button onClick={() => onDecrement(item._id)}>-</button>
                     </div>
-                    <form onSubmit={onDecrement}>
-                      {/* <button type="submit">-</button> */}
-                      <input
-                        name="1"
-                        min={item.minQuantity}
-                        max={item.maxQuantity}
-                        type="submit"
-                        value="-"
-                      />
-                    </form>
+                    <div>
+                      <button onClick={() => onIncrement(item._id)}>+</button>
+                    </div>
 
                     <input
                       name={item._id}
@@ -170,21 +150,6 @@ export const Bag = () => {
                       value={Number(item.quantity)}
                       readOnly
                     />
-
-                    <form
-                      className="counter-form"
-                      onSubmit={onIncrement}
-                      method="POST"
-                    >
-                      <button type="submit">+</button>
-                      <input
-                        name={item._id}
-                        min={item.minQuantity}
-                        max={item.maxQuantity}
-                        type="hidden"
-                        value={1}
-                      />
-                    </form>
                   </div>
                 </div>
               ))}

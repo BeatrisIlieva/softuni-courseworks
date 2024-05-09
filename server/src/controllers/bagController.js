@@ -92,11 +92,23 @@ router.post("/add/:jewelryId", async (req, res) => {
 
 router.put("/decrease/:bagId", async (req, res) => {
   bagId = req.params.bagId;
-  console.log("Here");
-  console.log(bagId);
 
   try {
     await bagManager.decrease(bagId);
+
+    res.status(204).json();
+  } catch (err) {
+    res.status(400).json({
+      message: err.message,
+    });
+  }
+});
+
+router.put("/increase/:bagId", async (req, res) => {
+  bagId = req.params.bagId;
+
+  try {
+    await bagManager.increase(bagId);
 
     res.status(204).json();
   } catch (err) {

@@ -16,9 +16,12 @@ export const bagServiceFactory = (token) => {
   };
 
   const decrease = async (bagId) => {
-    console.log(`from decrease: ${bagId}`)
     await request.put(`${baseUrl}/decrease/${bagId}`);
   };
 
-  return { add, display, decrease };
+  const increase = async (bagId) => {
+    await request.put(`${baseUrl}/increase/${bagId}`);
+  };
+
+  return { add, display, decrease, increase };
 };

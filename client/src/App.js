@@ -30,6 +30,7 @@ function App() {
             <Route path="/user/bag" element={<Bag />} />
             <Route path="/bag/add/:jewelryId" element={<JewelryItem />} />
             <Route path="/bag/decrease/:bagId" element={<Bag />} />
+            <Route path="/bag/increase/:bagId" element={<Bag />} />
             <Route path="*" element={<h1>404</h1>} />
           </Routes>
         </main>

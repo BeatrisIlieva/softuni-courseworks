@@ -40,11 +40,11 @@ exports.decrease = async (bagId) => {
   //   { $inc: { quantity: -1 } }, // Decrease quantity by 1
   //   { new: true } // Return the modified document
   // );
-  
+
   // if (bagItem.quantity === 0) {
   //   await ShoppingBag.findByIdAndDelete(bagId);
   // }
-  
+
   let bagItem = await ShoppingBag.findById(bagId);
 
   const jewelryId = Number(bagItem.jewelry);
@@ -56,12 +56,8 @@ exports.decrease = async (bagId) => {
   const newBagQuantity = bagQuantity - 1;
 
   await ShoppingBag.findByIdAndUpdate(bagId, { quantity: newBagQuantity });
-  
-  bagItem = await ShoppingBag.findById(bagId);
 
-  if (bagItem.quantity === 0) {
-    await ShoppingBag.findByIdAndDelete(bagId);
-  }
+  bagItem = await ShoppingBag.findById(bagId);
 
   if (bagItem.quantity === 0) {
     await ShoppingBag.findByIdAndDelete(bagId);
@@ -74,6 +70,35 @@ exports.decrease = async (bagId) => {
 
   const inventoryQuantity = inventoryItem.quantity || 0;
   const newInventoryQuantity = inventoryQuantity + 1;
+  await Inventory.findOneAndUpdate(
+    { jewelry: jewelryId, size: sizeId },
+    { quantity: newInventoryQuantity },
+    { new: true }
+  );
+};
+
+exports.increase = async (bagId) => {
+  let bagItem = await ShoppingBag.findById(bagId);
+
+  const jewelryId = Number(bagItem.jewelry);
+
+  const sizeId = Number(bagItem.size);
+
+  const bagQuantity = bagItem.quantity;
+
+  const newBagQuantity = bagQuantity + 1;
+
+  await ShoppingBag.findByIdAndUpdate(bagId, { quantity: newBagQuantity });
+
+  bagItem = await ShoppingBag.findById(bagId);
+
+  const inventoryItem = Inventory.findOne({
+    jewelry: jewelryId,
+    size: sizeId,
+  });
+
+  const inventoryQuantity = inventoryItem.quantity || 0;
+  const newInventoryQuantity = inventoryQuantity - 1;
   await Inventory.findOneAndUpdate(
     { jewelry: jewelryId, size: sizeId },
     { quantity: newInventoryQuantity },
@@ -232,14 +257,12 @@ exports.getAll = async (userId) => {
     {
       $unwind: "$inventories",
     },
-
     {
       $unwind: "$sizes",
     },
     {
       $unwind: "$categories",
     },
-
     {
       $addFields: {
         totalPrice: {
@@ -265,6 +288,7 @@ exports.getAll = async (userId) => {
             in: {
               metal: "$$jm.metal.title",
               caratWeight: "$$jm.caratWeight",
+              metalId: "$$jm.metal._id",
             },
           },
         },
@@ -286,6 +310,7 @@ exports.getAll = async (userId) => {
               stoneType: "$$js.stoneType.title",
               stoneColor: "$$js.stoneColor.title",
               caratWeight: "$$js.caratWeight",
+              stoneTypeId: "$$js.stoneType._id",
             },
           },
         },
@@ -304,8 +329,12 @@ exports.getAll = async (userId) => {
     {
       $group: {
         _id: "$_id",
-        jewelryId: { $first: "$jewelryId" },
-        user: { $first: "$user" },
+        jewelryId: {
+          $first: "$jewelryId",
+        },
+        user: {
+          $first: "$user",
+        },
         jewelryTitle: {
           $first: "$jewelries.title",
         },
@@ -315,20 +344,46 @@ exports.getAll = async (userId) => {
         categoryTitle: {
           $first: "$categories.title",
         },
-        size: { $first: "$sizes.measurement" },
-        sizeTitle: { $first: "$sizes.title" },
-        sizeId: { $first: "$sizeId" },
+        size: {
+          $first: "$sizes.measurement",
+        },
+        sizeTitle: {
+          $first: "$sizes.title",
+        },
+        sizeId: {
+          $first: "$sizeId",
+        },
         metalInfo: {
-          $addToSet: "$metalInfo",
+          $push: "$metalInfo",
         },
         stoneInfo: {
-          $addToSet: "$stoneInfo",
+          $push: "$stoneInfo",
         },
-        quantity: { $first: "$quantity" },
-        maxQuantity: { $first: "$maxQuantity" },
-        minQuantity: { $first: "$minQuantity" },
-        totalPrice: { $first: "$totalPrice" },
-        createdAt: { $first: "$createdAt" },
+        quantity: {
+          $first: "$quantity",
+        },
+        maxQuantity: {
+          $first: "$maxQuantity",
+        },
+        minQuantity: {
+          $first: "$minQuantity",
+        },
+        totalPrice: {
+          $first: "$totalPrice",
+        },
+        createdAt: {
+          $first: "$createdAt",
+        },
+      },
+    },
+    {
+      $sort: {
+        "metalInfo.metalId": 1,
+      },
+    },
+    {
+      $sort: {
+        "stoneInfo.stoneTypeId": 1,
       },
     },
     {
@@ -347,12 +402,14 @@ exports.getAll = async (userId) => {
         size: 1,
         sizeId: 1,
         sizeTitle: 1,
-        metalInfo: 1,
-        stoneInfo: 1,
+        metalInfo: { $setUnion: "$metalInfo" },
+        stoneInfo: { $setUnion: "$stoneInfo" },
         quantity: 1,
         maxQuantity: 1,
         minQuantity: 1,
         totalPrice: 1,
+        metalId: 1,
+        stoneTypeId: 1,
       },
     },
     {
@@ -361,7 +418,9 @@ exports.getAll = async (userId) => {
         documents: {
           $push: "$$ROOT",
         },
-        totalTotalPrice: { $sum: "$totalPrice" },
+        totalTotalPrice: {
+          $sum: "$totalPrice",
+        },
       },
     },
     {
