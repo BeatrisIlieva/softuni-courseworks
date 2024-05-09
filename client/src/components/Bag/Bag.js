@@ -13,6 +13,7 @@ export const Bag = () => {
   const bagService = useService(bagServiceFactory);
   const [bagItems, setBagItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
   const { userId } = useContext(AuthContext);
 
   useEffect(() => {
@@ -31,6 +32,8 @@ export const Bag = () => {
         setBagItems(bagItems);
         const totalPrice = bagData[0].totalTotalPrice;
         setTotalPrice(totalPrice);
+        const totalQuantity = bagData[0].totalQuantity;
+        setTotalQuantity(totalQuantity);
       } else {
         setBagItems([]);
         setTotalPrice(0);
@@ -79,14 +82,21 @@ export const Bag = () => {
 
   return (
     <>
-    <h2 className={styles["bag-title"]}>Your Bag</h2>
+      <h2 className={styles["bag-title"]}>Your Bag</h2>
       {bagItems.length > 0 ? (
         <div>
           <div className={styles["bag-container"]}>
             <div className={styles["bag-left-container"]}>
               <p className={styles["bag-left-container-title"]}>
-                <FontAwesomeIcon icon={faTruck} className={colorStyles["dark-pink"]} /> {" "}
-                Delivery (0 items)
+                <FontAwesomeIcon
+                  icon={faTruck}
+                  className={colorStyles["dark-pink"]}
+                />{" "}
+                Delivery
+                {" "}
+                <span className={styles["delivery-span"]}>
+                  ({totalQuantity} {totalQuantity > 1 ? "items" : "item"})
+                </span>
               </p>
               <div className={styles["bag-left-sub-container"]}>
                 {bagItems.map((item) => (
