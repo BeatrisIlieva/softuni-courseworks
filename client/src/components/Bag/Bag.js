@@ -104,9 +104,7 @@ export const Bag = () => {
                         {item.metalInfo.map((metalItem) => (
                           <div key={metalItem.metalId}>
                             {metalItem.map((i, index) => (
-                              <span
-                                key={metalItem.metalId}
-                              >
+                              <span key={metalItem.metalId}>
                                 {i.caratWeight &&
                                   i.caratWeight.$numberDecimal &&
                                   `${i.caratWeight.$numberDecimal}ct.`}{" "}
@@ -125,10 +123,7 @@ export const Bag = () => {
                         {item.stoneInfo.map((stoneItem, stoneIndex) => (
                           <div key={`stone_${stoneIndex}`}>
                             {stoneItem.map((i, index) => (
-                              <span
-                                key={`stone_${stoneIndex}_${index}`}
-                                // classNames={styles["bag-composition-stone"]}
-                              >
+                              <span key={`stone_${stoneIndex}_${index}`}>
                                 {i.caratWeight &&
                                   i.caratWeight.$numberDecimal &&
                                   `${i.caratWeight.$numberDecimal}ct.`}{" "}
@@ -176,11 +171,9 @@ export const Bag = () => {
                     </div>
                   </div>
                   <div className={styles["jewelry-bag-price-quantity"]}>
-                    {/* <div className={styles["jewelry-bag-price"]}> */}
                     <h4 className={styles["jewelry-bag-price"]}>
                       ${item.totalPrice}
                     </h4>
-                    {/* </div> */}
                     <div className={styles["jewelry-bag-quantity"]}>
                       <div>
                         <button
