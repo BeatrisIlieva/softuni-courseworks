@@ -49,6 +49,12 @@ export const Bag = () => {
     fetchBagItems();
   };
 
+  const onRemove = async (bagId) => {
+    await bagService.remove(bagId);
+
+    fetchBagItems();
+  };
+
   const onQuantityChange = (e, item) => {
     const newQuantity =
       e.target.value.trim() === "" ? "" : parseInt(e.target.value);
@@ -144,8 +150,31 @@ export const Bag = () => {
                           ? item.sizeTitle
                           : `${item.size.$numberDecimal} cm.`}
                       </li>
-                      <li></li>
                     </ul>
+                    <div
+                      className={
+                        styles["jewelry-bag-composition-button-container"]
+                      }
+                    >
+                      <button
+                        className={styles["jewelry-bag-composition-button"]}
+                        onClick={() => onRemove(item._id)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className={styles["jewelry-bag-composition-button"]}
+                        onClick={() => onRemove(item._id)}
+                      >
+                        Move to wishlist
+                      </button>
+                      <button
+                        className={styles["jewelry-bag-composition-button"]}
+                        onClick={() => onRemove(item._id)}
+                      >
+                        Remove
+                      </button>
+                    </div>
                   </div>
                   <div className={styles["jewelry-bag-price-quantity"]}>
                     {/* <div className={styles["jewelry-bag-price"]}> */}

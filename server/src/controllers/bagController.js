@@ -134,4 +134,18 @@ router.put("/update/:bagId", async (req, res) => {
   }
 });
 
+router.delete("/delete/:bagId", async (req, res) => {
+  bagId = req.params.bagId;
+
+  try {
+    await bagManager.delete(bagId);
+
+    res.status(204).json();
+  } catch (err) {
+    res.status(400).json({
+      message: err.message,
+    });
+  }
+});
+
 module.exports = router;

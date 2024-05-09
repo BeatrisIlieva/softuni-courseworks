@@ -27,5 +27,9 @@ export const bagServiceFactory = (token) => {
     await request.put(`${baseUrl}/update/${bagId}`, quantity);
   };
 
-  return { add, display, decrease, increase, update };
+  const remove = async (bagId) => {
+    await request.delete(`${baseUrl}/delete/${bagId}`);
+  };
+
+  return { add, display, decrease, increase, update, remove };
 };

@@ -56,12 +56,6 @@
   line-height: 0;
 }
 
-.jewelry-bag-composition-size {
-  position: absolute;
-  bottom: 0;
-  padding-left: 8px;
-}
-
 .jewelry-bag-composition {
   font-size: 16px;
   line-height: 1.5;
@@ -77,6 +71,31 @@
 }
 .composition-item-bag {
   font-size: 16px;
+}
+
+.jewelry-bag-composition-size {
+  padding: 8px;
+}
+
+.jewelry-bag-composition-button-container {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+
+.jewelry-bag-composition-button {
+  padding: 0px 8px 0px 8px;
+  text-decoration: underline;
+  text-decoration-color: black;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.589);
+  font-size: 14px;
+}
+
+
+
+.jewelry-bag-composition-button:hover {
+  text-decoration: none;
 }
 
 .jewelry-bag-price-quantity {
@@ -101,13 +120,15 @@
   border: 1px solid rgba(0, 0, 0, 0.19);
   padding: 2px;
 }
-
-.jewelry-bag-quantity-button {
-  text-decoration: none;
+.jewelry-bag-quantity-button,
+.jewelry-bag-composition-button {
   overflow: hidden;
   cursor: pointer;
-  width: 4ch;
   border: none;
+}
+.jewelry-bag-quantity-button {
+  text-decoration: none;
+  width: 4ch;
   background-color: white;
   color: rgba(0, 0, 0, 0.335);
   font-size: 12px;
@@ -122,10 +143,9 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.jewelry-bag-quantity-input input[type="text"]:focus{
+.jewelry-bag-quantity-input input[type="text"]:focus {
   outline: none;
 }
-
 
 .bag-right-container {
   width: 24%;
@@ -136,7 +156,7 @@
   top: calc(18vh + 42px);
 }
 
-.bag-right-container-title{
+.bag-right-container-title {
   font-size: 20px;
   font-weight: 500;
   padding-bottom: 16px;
@@ -145,7 +165,7 @@
 .bag-right-sub-container-bold {
   font-weight: 600;
   letter-spacing: 0;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .bag-right-sub-container-not-bold {
@@ -159,14 +179,13 @@
 
 .bag-right-sub-right-container {
   display: flex;
-
 }
 
 .horizontal-line {
   background-color: pink;
   height: 1px;
-  border: none; 
-  margin: 12px 0px 20px  0px;
+  border: none;
+  margin: 12px 0px 20px 0px;
 }
 
 .bag-right-sub-container-absolute {

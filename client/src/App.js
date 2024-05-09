@@ -32,6 +32,7 @@ function App() {
             <Route path="/bag/decrease/:bagId" element={<Bag />} />
             <Route path="/bag/increase/:bagId" element={<Bag />} />
             <Route path="/bag/update/:bagId" element={<Bag />} />
+            <Route path="/bag/remove/:bagId" element={<Bag />} />
             <Route path="*" element={<h1>404</h1>} />
           </Routes>
         </main>
