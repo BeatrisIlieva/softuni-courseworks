@@ -57,7 +57,6 @@ export const Bag = () => {
   };
 
   const onBlur = async (item) => {
-    console.log("Bag items after quantity change:", bagItems);
     try {
       await bagService.update(item._id, { quantity: item.quantity });
 
