@@ -153,21 +153,35 @@ export const Bag = () => {
                       ${item.totalPrice}
                     </h4>
                     {/* </div> */}
-                    <div>
-                      <button onClick={() => onDecrement(item._id)}>-</button>
+                    <div className={styles["jewelry-bag-quantity"]}>
+                      <div>
+                        <button
+                          className={styles["jewelry-bag-quantity-button"]}
+                          onClick={() => onDecrement(item._id)}
+                        >
+                          <i class="fas fa-minus"></i>
+                        </button>
+                      </div>
+                      <div className={styles["jewelry-bag-quantity-input"]}>
+                        <input
+                          name={item._id}
+                          min={item.minQuantity}
+                          max={item.maxQuantity}
+                          type="text"
+                          value={item.quantity}
+                          onChange={(e) => onQuantityChange(e, item)}
+                          onBlur={() => onBlur(item)}
+                        />
+                      </div>
+                      <div>
+                        <button
+                          className={styles["jewelry-bag-quantity-button"]}
+                          onClick={() => onIncrement(item._id)}
+                        >
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
                     </div>
-                    <div>
-                      <button onClick={() => onIncrement(item._id)}>+</button>
-                    </div>
-                    <input
-                      name={item._id}
-                      min={item.minQuantity}
-                      max={item.maxQuantity}
-                      type="number"
-                      value={item.quantity}
-                      onChange={(e) => onQuantityChange(e, item)}
-                      onBlur={() => onBlur(item)}
-                    />
                   </div>
                 </div>
               ))}
