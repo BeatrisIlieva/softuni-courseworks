@@ -160,25 +160,15 @@ export const Bag = () => {
                     <div>
                       <button onClick={() => onIncrement(item._id)}>+</button>
                     </div>
-
                     <input
                       name={item._id}
                       min={item.minQuantity}
                       max={item.maxQuantity}
                       type="number"
-                      value={item.quantity} // Initialize with item.quantity
+                      value={item.quantity}
                       onChange={(e) => onQuantityChange(e, item)}
                       onBlur={() => onBlur(item)}
                     />
-
-                    {/* <input
-                      name={item._id}
-                      min={item.minQuantity}
-                      max={item.maxQuantity}
-                      type="text"
-                      value={Number(item.quantity)}
-                      // readOnly
-                    /> */}
                   </div>
                 </div>
               ))}
