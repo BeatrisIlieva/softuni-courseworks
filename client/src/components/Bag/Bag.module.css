@@ -40,12 +40,17 @@
   letter-spacing: 0;
 }
 
+.bag-left-container-title-with-padding {
+  padding-right: 10px;
+}
+
 .delivery-span {
   padding-bottom: 16px;
   font-size: 14px;
   font-weight: 200;
   font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 0;
+  color: rgba(0, 0, 0, 0.739);
 }
 
 .bag-left-sub-container {
@@ -122,7 +127,7 @@
   text-decoration-color: black;
   background-color: white;
   color: rgba(0, 0, 0, 0.589);
-  font-size: 14px;
+  font-size: 14.8px;
 }
 
 .jewelry-bag-composition-button:hover {
