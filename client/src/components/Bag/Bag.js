@@ -9,10 +9,11 @@ import { useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import buttonStyles from "../../commonCSS/Button.module.css";
+import { BagTemplate } from "./BagTemplate";
 
 export const Bag = () => {
   const bagService = useService(bagServiceFactory);
-  const [bagItems, setBagItems] = useState([]);
+  let [bagItems, setBagItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
   const { userId } = useContext(AuthContext);
@@ -29,10 +30,11 @@ export const Bag = () => {
       if (data && data.jewelries && data.jewelries.length > 0) {
         const bagData = data.jewelries;
         const bagItems = bagData[0].documents;
-        console.log(bagItems);
         setBagItems(bagItems);
+
         const totalPrice = bagData[0].totalTotalPrice;
         setTotalPrice(totalPrice);
+
         const totalQuantity = bagData[0].totalQuantity;
         setTotalQuantity(totalQuantity);
       } else {
@@ -62,16 +64,26 @@ export const Bag = () => {
     fetchBagItems();
   };
 
-  const onQuantityChange = (e, item) => {
+  const onQuantityChange = (e, _id) => {
     const newQuantity =
       e.target.value.trim() === "" ? "" : parseInt(e.target.value);
-    item.quantity = newQuantity;
+
+    bagItems = bagItems.map((item) => {
+      if (item._id === _id) {
+        return {
+          ...item,
+          quantity: newQuantity,
+        };
+      }
+      return item;
+    });
+
     setBagItems([...bagItems]);
   };
 
-  const onBlur = async (item) => {
+  const onBlur = async (_id, quantity) => {
     try {
-      await bagService.update(item._id, { quantity: item.quantity });
+      await bagService.update(_id, { quantity: quantity });
 
       setBagItems([...bagItems]);
 
@@ -108,131 +120,23 @@ export const Bag = () => {
                   ({totalQuantity} {totalQuantity > 1 ? "items" : "item"})
                 </span>
               </p>
-              <div className={styles["bag-left-sub-container"]}>
+              <ul className={styles["bag-left-sub-container"]}>
                 {bagItems.map((item) => (
-                  <div
+                  <li
                     key={item._id}
                     className={styles["bag-left-sub-left-container"]}
                   >
-                    <div className={styles["jewelry-bag-image"]}>
-                      <img
-                        className={styles["jewelry-bag-img"]}
-                        src={item.firstImageUrl}
-                        alt={item.firstImageUrl}
-                      />
-                    </div>
-                    <div className={styles["jewelry-bag-composition"]}>
-                      <h2 className={styles["jewelry-bag-composition-title"]}>
-                        {item.jewelryTitle} {item.categoryTitle}
-                      </h2>
-                      <ul role="list">
-                        <li className={styles["bag-composition-metal"]}>
-                          {item.metalInfo.map((metalItem, metalIndex) => (
-                            <div key={`metal_${metalItem.metalId}`}>
-                              {metalItem.map((i) => (
-                                <span key={`metal_${metalItem.metalId}${metalIndex}`}>
-                                  {i.caratWeight &&
-                                    i.caratWeight.$numberDecimal &&
-                                    `${i.caratWeight.$numberDecimal}ct.`}{" "}
-                                  {i.metal}
-                                  {metalIndex !== item.metalInfo.length - 1 && (
-                                    <>
-                                      ,<br />
-                                    </>
-                                  )}
-                                </span>
-                              ))}
-                            </div>
-                          ))}
-                        </li>
-                        <li className={styles["bag-composition-stone"]}>
-                          {item.stoneInfo.map((stoneItem, stoneIndex) => (
-                            <div key={`stone_${stoneItem.stoneId}`}>
-                              {stoneItem.map((i) => (
-                                <span key={`stone_${stoneItem.stoneId}${stoneIndex}`}>
-                                  {i.caratWeight &&
-                                    i.caratWeight.$numberDecimal &&
-                                    `${i.caratWeight.$numberDecimal}ct.`}{" "}
-                                  {i.stoneColor} {i.stoneType}
-                                  {stoneIndex !== item.stoneInfo.length - 1 && (
-                                    <>
-                                      ,<br />
-                                    </>
-                                  )}
-                                </span>
-                              ))}
-                            </div>
-                          ))}
-                        </li>
-                        <li className={styles["jewelry-bag-composition-size"]}>
-                          Size:{" "}
-                          {item.sizeTitle
-                            ? item.sizeTitle
-                            : `${item.size.$numberDecimal} cm.`}
-                        </li>
-                      </ul>
-                      <div
-                        className={
-                          styles["jewelry-bag-composition-button-container"]
-                        }
-                      >
-                        <button
-                          className={styles["jewelry-bag-composition-button"]}
-                          onClick={() => onRemove(item._id)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className={styles["jewelry-bag-composition-button"]}
-                          onClick={() => onRemove(item._id)}
-                        >
-                          Move to wishlist
-                        </button>
-                        <button
-                          className={styles["jewelry-bag-composition-button"]}
-                          onClick={() => onRemove(item._id)}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                    <div className={styles["jewelry-bag-price-quantity"]}>
-                      <h4 className={styles["jewelry-bag-price"]}>
-                        ${item.totalPrice}
-                      </h4>
-                      <div className={styles["jewelry-bag-quantity"]}>
-                        <div>
-                          <button
-                            className={styles["jewelry-bag-quantity-button"]}
-                            onClick={() => onDecrement(item._id)}
-                          >
-                            <i class="fas fa-minus"></i>
-                          </button>
-                        </div>
-                        <div className={styles["jewelry-bag-quantity-input"]}>
-                          <input
-                            name={item._id}
-                            min={item.minQuantity}
-                            max={item.maxQuantity}
-                            type="text"
-                            value={item.quantity}
-                            onChange={(e) => onQuantityChange(e, item)}
-                            onBlur={() => onBlur(item)}
-                          />
-                        </div>
-                        <div>
-                          <button
-                            className={styles["jewelry-bag-quantity-button"]}
-                            onClick={() => onIncrement(item._id)}
-                          >
-                            <i class="fas fa-plus"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    <BagTemplate
+                      {...item}
+                      onRemove={onRemove}
+                      onDecrement={onDecrement}
+                      onQuantityChange={onQuantityChange}
+                      onBlur={onBlur}
+                      onIncrement={onIncrement}
+                    />
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
             <div className={styles["bag-right-container"]}>
               <div className={styles["bag-right-container-sticky"]}>
