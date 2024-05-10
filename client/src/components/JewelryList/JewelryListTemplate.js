@@ -7,8 +7,9 @@ export const JewelryListTemplate = ({
   jewelryTitle,
   categoryId,
   isSoldOut,
+  isHovered,
+  handleMouseEnter,
 }) => {
-
   return (
     <article className={styles["jewelry-card"]}>
       {!isSoldOut && (
@@ -18,7 +19,9 @@ export const JewelryListTemplate = ({
               className={styles["jewelry-card-img"]}
               src={firstImageUrl}
               alt={jewelryTitle}
+              onMouseEnter={() => handleMouseEnter(_id)}
             />
+            {isHovered && <p>is hovered</p>}
           </Link>
         </div>
       )}

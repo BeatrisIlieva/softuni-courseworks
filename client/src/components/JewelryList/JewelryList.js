@@ -19,10 +19,22 @@ export const JewelryList = () => {
       });
   }, [categoryId]);
 
+  const handleMouseEnter = (_id) => {
+    setJewelries((state) =>
+      state.map((j) =>
+        j._id === _id ? { ...j, isHovered: true } : { ...j, isHovered: false }
+      )
+    );
+  };
+
   return (
     <section className={styles["jewelry-cards"]}>
       {jewelries.map((j) => (
-        <JewelryListTemplate key={j._id} {...j} />
+        <JewelryListTemplate
+          key={j._id}
+          {...j}
+          handleMouseEnter={handleMouseEnter}
+        />
       ))}
     </section>
   );
