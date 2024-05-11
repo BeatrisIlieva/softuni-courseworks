@@ -1,0 +1,26 @@
+.popup-address-container {
+  display: flex;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow-y: auto;
+  /* animation: slideIn 1s forwards;
+  transition: opacity 0.8s ease, transform 0.8s ease; */
+}
+
+
+/* @keyframes slideIn {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+} */
+
+.address-button {
+    
+}

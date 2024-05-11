@@ -45,20 +45,20 @@ export const IconBar = () => {
             </Link>
           </li>
         {/* )} */}
-        {/* {!isAuthenticated && ( */}
+        {!isAuthenticated && (
           <li>
             <Link className={styles["icon-bar-item"]} to="/user/login">
               <i class="far fa-user"></i>
             </Link>
           </li>
-        {/* )} */}
-        {/* {isAuthenticated && ( */}
+        )}
+        {isAuthenticated && (
           <li>
             <Link className={styles["icon-bar-item"]} to="/user/details">
               <i class="far fa-user"></i>
             </Link>
           </li>
-        {/* )} */}
+        )}
         {/* {isAuthenticated && (
           <li>
             <Link className={styles["icon-bar-item"]} to="/users/logout">

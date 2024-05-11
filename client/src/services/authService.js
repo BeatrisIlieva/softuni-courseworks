@@ -10,14 +10,13 @@ export const authServiceFactory = (token) => {
 
     register: (data) => request.post(`${baseUrl}/register`, data),
 
-    editPersonalDetails: (data) =>
-      request.put("http://localhost:3030/profiles/edit-personal-details", data),
+    edit: (data, userId) => request.put(`${baseUrl}/profiles/${userId}`, data),
 
     // getPersonalDetails: () =>
     //   request.get("http://localhost:3030/profiles/get-personal-details"),
 
-    editDeliveryDetails: (data) =>
-      request.put(`${baseUrl}/edit-delivery-details`, data),
+    // editDeliveryDetails: (data) =>
+    //   request.put(`${baseUrl}/edit-delivery-details`, data),
 
     editEmail: (data) => request.put(`${baseUrl}/edit-email`, data),
 

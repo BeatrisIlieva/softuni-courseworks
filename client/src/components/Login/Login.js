@@ -77,7 +77,7 @@ export const Login = () => {
             Enjoy the convenience of saving your wishlist permanently
           </li>
         </ul>
-        <Link to="/users/register">
+        <Link to="/user/register">
           <div>
             <input
               className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}

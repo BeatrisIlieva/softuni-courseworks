@@ -5,10 +5,12 @@ import { useService } from "../../hooks/useService";
 import styles from "./JewelryItemTemplate.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
 import { bagServiceFactory } from "../../services/bagService";
+import { BagPopup } from "../Bag/BagPopup";
 
 export const JewelryItem = () => {
   const { categoryId, jewelryId } = useParams();
   const [jewelry, setJewelry] = useState();
+  const [bagPopup, setBagPopup] = useState(false);
   const jewelryService = useService(jewelryServiceFactory);
   const bagService = useService(bagServiceFactory);
 
@@ -36,6 +38,11 @@ export const JewelryItem = () => {
     setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
   };
 
+    
+  
+     
+
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,12 +54,17 @@ export const JewelryItem = () => {
       await bagService.add(values, jewelry._id);
     }
 
+    setBagPopup(true);
+
+    document.body.style.overflow = "hidden";
+
     fetchJewelry();
   };
 
   if (categoryId === "2") {
     return (
       <>
+        <>{bagPopup && <BagPopup />}</>
         {jewelry && (
           <div className={styles["jewelry-details-container"]}>
             <div className={styles["jewelry-details-images-container"]}>
@@ -145,6 +157,7 @@ export const JewelryItem = () => {
   } else {
     return (
       <>
+        <>{bagPopup && <BagPopup />}</>
         {jewelry && (
           <div className={styles["jewelry-details-container"]}>
             <div className={styles["jewelry-details-images-container"]}>
@@ -229,9 +242,7 @@ export const JewelryItem = () => {
                                   Number(values[SizeFormKeys.Size]) === item._id
                                 }
                               />
-                              <label htmlFor={item._id}>
-                                {item.title}
-                              </label>
+                              <label htmlFor={item._id}>{item.title}</label>
                             </div>
                           ) : (
                             <div key={item._id}>
@@ -246,9 +257,7 @@ export const JewelryItem = () => {
                                   Number(values[SizeFormKeys.Size]) === item._id
                                 }
                               />
-                              <label htmlFor={item._id}>
-                                {item.title}
-                              </label>
+                              <label htmlFor={item._id}>{item.title}</label>
                             </div>
                           )
                         )}

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const userManager = require("../managers/userManager");
+const addressManager = require("../managers/addressBookManager");
 
 router.post("/register", async (req, res) => {
   const { email, password, retypePassword } = {...req.body};
@@ -37,6 +38,19 @@ router.post("/login", async (req, res) => {
 
 router.get("/logout", (req, res) => {
     res.end();
+})
+
+router.get("/edit/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    address = await addressManager.getOne(userId);
+
+    res.json({address});
+  } catch (err) {
+    res.status(400).json({
+      message: err.message,
+    });
+  }
 })
 
 

@@ -39,16 +39,6 @@
   min-width: 24ch;
 }
 
-/* .form-item input[type="password"] {
-  width: auto;
-  min-width: 24ch;
-}
-
-.form-item input[type="email"] {
-  width: auto;
-  min-width: 24ch;
-} */
-
 .form-item input {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;

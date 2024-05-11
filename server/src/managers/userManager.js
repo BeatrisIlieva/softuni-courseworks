@@ -4,6 +4,7 @@ const User = require("../models/User");
 const profileManager = require("./profileManager");
 const { SECRET } = require("../config/config");
 const Profile = require("../models/Profile");
+const addressManager = require("./addressBookManager");
 
 exports.register = async (userData) => {
 
@@ -19,7 +20,9 @@ exports.register = async (userData) => {
 
   const token = await generateToken(createdUser);
 
-  await profileManager.createProfile(createdUser._id);
+  await profileManager.create(createdUser._id);
+
+  await addressManager.create(createdUser._id);
 
   return { token, userId };
 };

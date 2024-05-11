@@ -1,5 +1,5 @@
 import styles from "./Bag.module.css";
-import React from "react";
+import {Fragment} from "react";
 
 export const BagTemplate = ({
   _id,
@@ -35,7 +35,7 @@ export const BagTemplate = ({
         </h2>
         <ul role="list">
           {metalInfo.map((metalItem, index) => (
-            <React.Fragment key={`metal_${index}`}>
+            <Fragment key={`metal_${index}`}>
               {metalItem.map((i, metalIndex) => (
                 <li
                   key={`metal_${i.metalId}_${metalIndex}`}
@@ -52,12 +52,12 @@ export const BagTemplate = ({
                   )}
                 </li>
               ))}
-            </React.Fragment>
+            </Fragment>
           ))}
         </ul>
           <ul role="list">
             {stoneInfo.map((stoneItem, index) => (
-              <React.Fragment key={`stone_${index}`}>
+              <Fragment key={`stone_${index}`}>
                 {stoneItem.map((i, stoneIndex) => (
                   <li
                     key={`stone_${i.stoneId}_${stoneIndex}`}
@@ -74,7 +74,7 @@ export const BagTemplate = ({
                     )}
                   </li>
                 ))}
-              </React.Fragment>
+              </Fragment>
             ))}
           </ul>
           <span className={styles["jewelry-bag-composition-size"]}>

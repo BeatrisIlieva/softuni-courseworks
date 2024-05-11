@@ -38,16 +38,16 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const onEditPersonalDetailsSubmit = async (data) => {
-    try {
-      const result = await authService.editPersonalDetails({ ...data });
-      console.log(auth);
-      // console.log(result);
-      setAuth({ ...auth, ...result });
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+  // const onEditPersonalDetailsSubmit = async (data) => {
+  //   try {
+  //     const result = await authService.editPersonalDetails({ ...data });
+  //     console.log(auth);
+  //     // console.log(result);
+  //     setAuth({ ...auth, ...result });
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // };
 
   const onLogout = async () => {
     await authService.logout();
@@ -58,13 +58,13 @@ export const AuthProvider = ({ children }) => {
   const context = {
     onRegisterSubmit,
     onLoginSubmit,
-    onEditPersonalDetailsSubmit,
+    // onEditPersonalDetailsSubmit,
     onLogout,
     userId: auth._id,
     token: auth.accessToken,
     userEmail: auth.email,
     isAuthenticated: !!auth.accessToken,
-    firstName: auth.firstName,
+    // firstName: auth.firstName,
   };
 
   return (

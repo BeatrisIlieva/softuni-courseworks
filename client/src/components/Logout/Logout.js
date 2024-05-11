@@ -9,5 +9,5 @@ export const Logout = () => {
         onLogout();
     }, [onLogout]);
 
-    return <Navigate to="/users/login" />
+    return <Navigate to="/user/login" />
 };

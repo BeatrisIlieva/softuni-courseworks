@@ -1,12 +1,13 @@
 const router = require("express").Router();
-const profileManager = require("../managers/profileManager");
+const addressBookManager = require("../managers/addressBookManager");
 
 
 router.get("/display/:userId", async (req, res) => {
   const userId = req.user._id;
 
   try {
-    const data = await profileManager.getOne({user: userId});
+    const data = await addressBookManager.getOne(userId);
+    console.log(data)
     res.json(data);
   } catch (err) {
     res.status(400).json({
@@ -18,10 +19,10 @@ router.get("/display/:userId", async (req, res) => {
 router.put("/edit/:userId", async (req, res) => {
   const userId = req.user._id;
 
-  const profileData = req.body;
+  const addressData = req.body;
 
   try {
-    const data  =await profileManager.update(userId, profileData);
+    const data  =await addressBookManager.update(userId, addressData);
     res.json(data);
   } catch (err) {
     res.status(400).json({
@@ -29,5 +30,6 @@ router.put("/edit/:userId", async (req, res) => {
       
   }
 }) 
+
 
 module.exports = router;
