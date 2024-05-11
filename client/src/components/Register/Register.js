@@ -1,9 +1,13 @@
 import formStyles from "../../commonCSS/Form.module.css";
-import registerStyles from "./Register.module.css"
+import registerStyles from "./Register.module.css";
+import colorStyles from "../../commonCSS/Colors.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import buttonStyles from "../../commonCSS/Button.module.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useForm } from "../../hooks/useForm";
+import { QuestionMarkEmail } from "../Register/QuestionMarkEmail";
 
 const RegisterFormKeys = {
   Email: "email",
@@ -16,58 +20,132 @@ export const Register = () => {
   const { values, changeHandler, onSubmit } = useForm(
     {
       [RegisterFormKeys.Email]: "",
+      [RegisterFormKeys.RetypeEmail]: "",
       [RegisterFormKeys.Password]: "",
       [RegisterFormKeys.RetypePassword]: "",
+      [RegisterFormKeys.FirstName]: "",
+      [RegisterFormKeys.LastName]: "",
     },
     onRegisterSubmit
   );
 
+  const [hoveredQuestionMarkEmail, setHoveredQuestionMarkEmail] =
+    useState(false);
+
+  const onHoverQuestionMarkEmail = () => {
+    setHoveredQuestionMarkEmail(true);
+  };
+
+  const onUnhoverQuestionMarkEmail = () => {
+    setHoveredQuestionMarkEmail(false);
+  };
+
   return (
-    <section className={formStyles["form-container"]}>
-      <div className={formStyles["left-form-container"]}>
-        <h2 className={registerStyles["form-title"]}>New Customer</h2>
-        <form method="POST" onSubmit={onSubmit}>
-          <ul role="list" className={registerStyles["equal-height"]}>
-            <li className={formStyles["form-item"]}>
-              <input
-                type="email"
-                name={RegisterFormKeys.Email}
-                id="email"
-                placeholder="Enter your email"
-                value={values[RegisterFormKeys.Email]}
-                onChange={changeHandler}
-              />
-            </li>
-            <li className={formStyles["form-item"]}>
-              <input
-                type="password"
-                name={RegisterFormKeys.Password}
-                id="password"
-                placeholder="Enter your password"
-                value={values[RegisterFormKeys.Password]}
-                onChange={changeHandler}
-              />
-            </li>
-            <li className={formStyles["form-item"]}>
-              <input
-                type="password"
-                name={RegisterFormKeys.RetypePassword}
-                id="retypePassword"
-                placeholder="Retype your password"
-                value={values[RegisterFormKeys.RetypePassword]}
-                onChange={changeHandler}
-              />
-            </li>
-          </ul>
-          <input
-            className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
-            type="submit"
-            value="Sign Up"
-          />
-        </form>
-        <div></div>
-      </div>
-      <div className={formStyles["form-vertical-line"]}></div>
+    <section className={registerStyles["container"]}>
+      <h2 className={registerStyles["title"]}>New Customer</h2>
+      <form method="POST" onSubmit={onSubmit}>
+        <div className={registerStyles["sub-container"]}>
+          <div className={registerStyles["left-container"]}>
+            <ul role="list">
+              <li className={formStyles["filed-container"]}>
+                <div className={formStyles["input-field"]}>
+                  <p>First Name*</p>
+                  <input
+                    type="text"
+                    name={RegisterFormKeys.FirstName}
+                    id="firstName"
+                    value={values[RegisterFormKeys.FirstName]}
+                    onChange={changeHandler}
+                  />
+                </div>
+              </li>
+              <li
+                className={`${formStyles["filed-container"]} ${registerStyles["input-container"]}`}
+              >
+                <div className={formStyles["input-field"]}>
+                  <p>Email*</p>
+                  <input
+                    type="email"
+                    name={RegisterFormKeys.Email}
+                    id="email"
+                    value={values[RegisterFormKeys.Email]}
+                    onChange={changeHandler}
+                  />
+                  <span>
+                    <>{hoveredQuestionMarkEmail && <QuestionMarkEmail />}</>
+                    <FontAwesomeIcon
+                      icon={faQuestion}
+                      className={`${colorStyles["dark-pink"]} ${registerStyles["input-icon"]}`}
+                      onMouseEnter={() => onHoverQuestionMarkEmail()}
+                      onMouseLeave={() => onUnhoverQuestionMarkEmail()}
+                    />
+                  </span>
+                </div>
+              </li>
+              <li className={formStyles["filed-container"]}>
+                <div className={formStyles["input-field"]}>
+                  <p>Password*</p>
+                  <input
+                    type="password"
+                    name={RegisterFormKeys.Password}
+                    id="password"
+                    value={values[RegisterFormKeys.Password]}
+                    onChange={changeHandler}
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className={registerStyles["right-container"]}>
+            <ul role="list">
+              <li className={formStyles["filed-container"]}>
+                <div className={formStyles["input-field"]}>
+                  <p>Last Name*</p>
+                  <input
+                    type="text"
+                    name={RegisterFormKeys.LastName}
+                    id="lastName"
+                    value={values[RegisterFormKeys.LastName]}
+                    onChange={changeHandler}
+                  />
+                </div>
+              </li>
+              <li className={formStyles["filed-container"]}>
+                <div className={formStyles["input-field"]}>
+                  <p>Retype Email Address*</p>
+                  <input
+                    type="email"
+                    name={RegisterFormKeys.RetypeEmail}
+                    id="email"
+                    value={values[RegisterFormKeys.RetypeEmail]}
+                    onChange={changeHandler}
+                  />
+                </div>
+              </li>
+
+              <li className={formStyles["filed-container"]}>
+                <div className={formStyles["input-field"]}>
+                  <p>Retype Password*</p>
+                  <input
+                    type="password"
+                    name={RegisterFormKeys.RetypePassword}
+                    id="retypePassword"
+                    value={values[RegisterFormKeys.RetypePassword]}
+                    onChange={changeHandler}
+                  />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <input
+          className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+          type="submit"
+          value="Sign Up"
+        />
+      </form>
+
+      {/* <div className={formStyles["form-vertical-line"]}></div>
       <div className={formStyles["right-form-container"]}>
         <h3 className={registerStyles["form-title"]}>Password Requirements:</h3>
         <ul
@@ -80,7 +158,7 @@ export const Register = () => {
           </li>
           <li className={formStyles["form-item-list"]}>Your password can't be entirely alphabetic.</li>
         </ul>
-      </div>
+      </div> */}
     </section>
   );
 };

@@ -20,7 +20,15 @@ exports.register = async (userData) => {
 
   const token = await generateToken(createdUser);
 
-  await profileManager.create(createdUser._id);
+  const profile = await profileManager.create(createdUser._id);
+
+  const profileId = profile._id;
+
+  const firstName = userData.firstName;
+
+  const lastName = userData.lastName;
+
+  await profileManager.findByIdAndUpdate(profileId, {firstName, lastName});
 
   await addressManager.create(createdUser._id);
 

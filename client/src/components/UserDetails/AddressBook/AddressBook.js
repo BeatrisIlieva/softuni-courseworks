@@ -16,7 +16,7 @@ const FormKeys = {
   Address: "address",
 };
 
-export const AddressBook = () => {
+export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
   const addressBookService = useService(addressBookServiceFactory);
   const { userId } = useContext(AuthContext);
 
@@ -44,6 +44,8 @@ export const AddressBook = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    onAddressBookSubmit();
 
     await addressBookService.update(userId, values);
   };
@@ -119,7 +121,14 @@ export const AddressBook = () => {
               className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
               type="submit"
               value="Save"
+
             />
+            <button
+              onClick={() => onCloseAddressBook()}
+              className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+            >
+              Cancel
+            </button>
           </form>
         </div>
       )}

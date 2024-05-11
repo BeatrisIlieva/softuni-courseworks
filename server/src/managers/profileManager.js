@@ -1,8 +1,10 @@
 const Profile = require("../models/Profile");
 
-exports.create = async (userId) => {
+exports.create = async (userId, firstName, lastName) => {
   await Profile.create({
     user: userId,
+    firstName,
+    lastName
   });
 };
 
