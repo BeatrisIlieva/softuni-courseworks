@@ -7,7 +7,6 @@ const Profile = require("../models/Profile");
 const addressManager = require("./addressBookManager");
 
 exports.register = async (userData) => {
-
   const user = await User.findOne({ email: userData.email });
 
   if (user) {
@@ -20,15 +19,11 @@ exports.register = async (userData) => {
 
   const token = await generateToken(createdUser);
 
-  const profile = await profileManager.create(createdUser._id);
-
-  const profileId = profile._id;
-
   const firstName = userData.firstName;
 
   const lastName = userData.lastName;
 
-  await profileManager.findByIdAndUpdate(profileId, {firstName, lastName});
+  await profileManager.create(createdUser._id, firstName, lastName);
 
   await addressManager.create(createdUser._id);
 
@@ -36,7 +31,6 @@ exports.register = async (userData) => {
 };
 
 exports.login = async (email, password) => {
-
   const user = await User.findOne({ email });
 
   if (!user) {

@@ -20,17 +20,54 @@ const RegisterFormKeys = {
 
 export const Register = () => {
   const { onRegisterSubmit } = useContext(AuthContext);
-  const { values, changeHandler, onSubmit } = useForm(
-    {
-      [RegisterFormKeys.Email]: "",
-      [RegisterFormKeys.RetypeEmail]: "",
-      [RegisterFormKeys.Password]: "",
-      [RegisterFormKeys.RetypePassword]: "",
-      [RegisterFormKeys.FirstName]: "",
-      [RegisterFormKeys.LastName]: "",
-    },
-    onRegisterSubmit
-  );
+  // const { values, changeHandler, onSubmit } = useForm(
+  //   {
+      // [RegisterFormKeys.Email]: "",
+      // [RegisterFormKeys.RetypeEmail]: "",
+      // [RegisterFormKeys.Password]: "",
+      // [RegisterFormKeys.RetypePassword]: "",
+      // [RegisterFormKeys.FirstName]: "",
+      // [RegisterFormKeys.LastName]: "",
+  //   },
+  //   onRegisterSubmit
+  // );
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    onRegisterSubmit(values);
+  };
+
+  const [values, setValues] = useState({
+    [RegisterFormKeys.Email]: {"value": "", "focusField": false},
+    [RegisterFormKeys.RetypeEmail]: {"value": "", "focusField": false},
+    [RegisterFormKeys.Password]: {"value": "", "focusField": false},
+    [RegisterFormKeys.RetypePassword]: {"value": "", "focusField": false},
+    [RegisterFormKeys.FirstName]: {"value": "", "focusField": false},
+    [RegisterFormKeys.LastName]: {"value": "", "focusField": false},
+  });
+
+  // const changeHandler = (e) => {
+  //   setValues(state => ({...state, [e.target.name]: e.target.value}))
+  // };
+  const changeHandler = (fieldKey, newValue) => {
+    setValues(prevValues => {
+      // Create a new object by spreading the previous state
+      const updatedValues = { ...prevValues };
+  
+      // Update the value of the specified field
+      updatedValues[fieldKey].value = newValue;
+  
+      // Iterate over each key in the state object
+      Object.keys(updatedValues).forEach(key => {
+        // Update the focusField property based on the fieldKey parameter
+        updatedValues[key].focusField = (key === fieldKey);
+      });
+  
+      // Since we're directly modifying the state object, we don't need to return anything
+      return updatedValues;
+    });
+  };
 
   const [hoveredQuestionMarkEmail, setHoveredQuestionMarkEmail] =
     useState(false);
@@ -43,14 +80,23 @@ export const Register = () => {
     setHoveredQuestionMarkEmail(false);
   };
 
-  const [focusField, setFocusField] = useState(false);
 
-  const onFocusField = () => {
-    setFocusField(true);
-  };
 
-  const onNotFocusedField = () => {
-    setFocusField(false);
+  const onFocusField = (fieldKey) => {
+    setValues(prevValues => {
+      // Create a new object by spreading the previous state
+      const updatedValues = { ...prevValues };
+  
+      // Iterate over each key in the state object
+      Object.keys(updatedValues).forEach(key => {
+        // Update the focusField property based on the fieldKey parameter
+        updatedValues[key].focusField = (key === fieldKey);
+      });
+  
+      // console.log(values[RegisterFormKeys.FirstName]["focusField"])
+      // console.log(values)
+      return updatedValues;
+    });
   };
 
   return (
@@ -62,19 +108,26 @@ export const Register = () => {
             <ul role="list">
               <li className={formStyles["filed-container"]}>
                 <div
-                  onClick={onFocusField}
-                  onBlur={onNotFocusedField}
+                  onClick={() => onFocusField("firstName")}
                   className={formStyles["input-field-container"]}
                 >
-                  <p className={focusField ? formStyles["placeholder-on-blur"] : formStyles["placeholder"]}>First Name*</p>
-                  {focusField && (
+                  <p
+                    className={
+                      values[RegisterFormKeys.FirstName]["focusField"]
+                        ? formStyles["placeholder-on-blur"]
+                        : formStyles["placeholder"]
+                    }
+                  >
+                    First Name*
+                  </p>
+                  {values[RegisterFormKeys.FirstName]["focusField"] && (
                     <input
                       className={formStyles["input-spot"]}
                       type="text"
                       name={RegisterFormKeys.FirstName}
                       id="firstName"
-                      value={values[RegisterFormKeys.FirstName]}
-                      onChange={changeHandler}
+                      value={values[RegisterFormKeys.FirstName].value}
+                      onChange={(e) => changeHandler(RegisterFormKeys.FirstName, e.target.value)} 
                       autoFocus
                     />
                   )}
@@ -83,15 +136,31 @@ export const Register = () => {
               <li
                 className={`${formStyles["filed-container"]} ${registerStyles["input-container"]}`}
               >
-                <div className={formStyles["input-field-container"]}>
-                  <p>Email*</p>
-                  <input
-                    type="email"
-                    name={RegisterFormKeys.Email}
-                    id="email"
-                    value={values[RegisterFormKeys.Email]}
-                    onChange={changeHandler}
-                  />
+                <div
+                  onClick={() => onFocusField("email")}
+                  // onBlur={onNotFocusedField}
+                  className={formStyles["input-field-container"]}
+                >
+                  <p
+                    className={
+                      values[RegisterFormKeys.Email]["focusField"]
+                        ? formStyles["placeholder-on-blur"]
+                        : formStyles["placeholder"]
+                    }
+                  >
+                    Email*
+                  </p>
+                  {values[RegisterFormKeys.Email]["focusField"] && (
+                    <input
+                    className={formStyles["input-spot"]}
+                      type="email"
+                      name={RegisterFormKeys.Email}
+                      id="email"
+                      value={values[RegisterFormKeys.Email].value}
+                      onChange={(e) => changeHandler(RegisterFormKeys.Email, e.target.value)} 
+                      autoFocus
+                    />
+                  )}
                   <span>
                     <>{hoveredQuestionMarkEmail && <QuestionMarkEmail />}</>
                     <FontAwesomeIcon
@@ -104,15 +173,30 @@ export const Register = () => {
                 </div>
               </li>
               <li className={formStyles["filed-container"]}>
-                <div className={formStyles["input-field-container"]}>
-                  <p>Password*</p>
-                  <input
-                    type="password"
-                    name={RegisterFormKeys.Password}
-                    id="password"
-                    value={values[RegisterFormKeys.Password]}
-                    onChange={changeHandler}
-                  />
+                <div
+                  onClick={() => onFocusField("password")}
+                  // onBlur={onNotFocusedField}
+                  className={formStyles["input-field-container"]}
+                >
+                  <p
+                    className={
+                      values[RegisterFormKeys.Password]["focusField"]
+                        ? formStyles["placeholder-on-blur"]
+                        : formStyles["placeholder"]
+                    }
+                  >
+                    Password*
+                  </p>
+                  {values[RegisterFormKeys.Password]["focusField"] && (
+                    <input
+                      type="password"
+                      name={RegisterFormKeys.Password}
+                      id="password"
+                      value={values[RegisterFormKeys.Password].value}
+                      onChange={(e) => changeHandler(RegisterFormKeys.Password, e.target.value)} 
+                      autoFocus
+                    />
+                  )}
                 </div>
               </li>
             </ul>
@@ -120,40 +204,85 @@ export const Register = () => {
           <div className={registerStyles["right-container"]}>
             <ul role="list">
               <li className={formStyles["filed-container"]}>
-                <div className={formStyles["input-field-container"]}>
-                  <p>Last Name*</p>
-                  <input
-                    type="text"
-                    name={RegisterFormKeys.LastName}
-                    id="lastName"
-                    value={values[RegisterFormKeys.LastName]}
-                    onChange={changeHandler}
-                  />
+                <div
+                  onClick={() => onFocusField("lastName")}
+                  // onBlur={onNotFocusedField}
+                  className={formStyles["input-field-container"]}
+                >
+                  <p
+                    className={
+                      values[RegisterFormKeys.LastName]["focusField"]
+                        ? formStyles["placeholder-on-blur"]
+                        : formStyles["placeholder"]
+                    }
+                  >
+                    Last Name*
+                  </p>
+                  {values[RegisterFormKeys.LastName]["focusField"] && (
+                    <input
+                      type="text"
+                      name={RegisterFormKeys.LastName}
+                      id="lastName"
+                      value={values[RegisterFormKeys.LastName].value}
+                      onChange={(e) => changeHandler(RegisterFormKeys.LastName, e.target.value)} 
+                      autoFocus
+                    />
+                  )}
                 </div>
               </li>
               <li className={formStyles["filed-container"]}>
-                <div className={formStyles["input-field-container"]}>
-                  <p>Retype Email Address*</p>
-                  <input
-                    type="email"
-                    name={RegisterFormKeys.RetypeEmail}
-                    id="email"
-                    value={values[RegisterFormKeys.RetypeEmail]}
-                    onChange={changeHandler}
-                  />
+                <div
+                  onClick={() => onFocusField("retypeEmail")}
+                  // onBlur={onNotFocusedField}
+                  className={formStyles["input-field-container"]}
+                >
+                  <p
+                    className={
+                      values[RegisterFormKeys.RetypeEmail]["focusField"]
+                        ? formStyles["placeholder-on-blur"]
+                        : formStyles["placeholder"]
+                    }
+                  >
+                    Retype Email Address*
+                  </p>
+                  {values[RegisterFormKeys.RetypeEmail]["focusField"] && (
+                    <input
+                      type="email"
+                      name={RegisterFormKeys.RetypeEmail}
+                      id="retypeEmail"
+                      value={values[RegisterFormKeys.RetypeEmail].value}
+                      onChange={(e) => changeHandler(RegisterFormKeys.RetypeEmail, e.target.value)} 
+                      autoFocus
+                    />
+                  )}
                 </div>
               </li>
 
               <li className={formStyles["filed-container"]}>
-                <div className={formStyles["input-field-container"]}>
-                  <p>Retype Password*</p>
-                  <input
-                    type="password"
-                    name={RegisterFormKeys.RetypePassword}
-                    id="retypePassword"
-                    value={values[RegisterFormKeys.RetypePassword]}
-                    onChange={changeHandler}
-                  />
+                <div
+                  onClick={() => onFocusField("retypePassword")}
+                  // onBlur={onNotFocusedField}
+                  className={formStyles["input-field-container"]}
+                >
+                  <p
+                    className={
+                      values[RegisterFormKeys.RetypePassword]["focusField"]
+                        ? formStyles["placeholder-on-blur"]
+                        : formStyles["placeholder"]
+                    }
+                  >
+                    Retype Password*
+                  </p>
+                  {values[RegisterFormKeys.RetypePassword]["focusField"] && (
+                    <input
+                      type="password"
+                      name={RegisterFormKeys.RetypePassword}
+                      id="retypePassword"
+                      value={values[RegisterFormKeys.RetypePassword].value}
+                      onChange={(e) => changeHandler(RegisterFormKeys.RetypePassword, e.target.value)} 
+                      autoFocus
+                    />
+                  )}
                 </div>
               </li>
             </ul>

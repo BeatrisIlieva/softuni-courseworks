@@ -11,19 +11,33 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const onRegisterSubmit = async (values) => {
-    const { retypePassword, retypeEmail, ...registerData } = values;
-    if (retypePassword !== registerData.password) {
+
+    const email = values.email.value;
+    const retypeEmail = values.retypeEmail.value;
+    const firstName = values.firstName.value;
+    const lastName = values.lastName.value;
+    const password = values.password.value;
+    const retypePassword = values.retypePassword.value;
+    console.log(email);
+    const data = {email,password, firstName, lastName}
+    
+    // const { retypePassword, retypeEmail, ...registerData } = values;
+    // console.log(retypePassword)
+    // console.log(retypeEmail)
+    // console.log(registerData)
+    
+    if (retypePassword !== password) {
       console.log("Passwords do not match!");
       return;
     }
 
-    if (retypeEmail !== registerData.email) {
+    if (retypeEmail !== email) {
       console.log("Emails do not match!");
       return;
     }
-    
+
     try {
-      const result = await authService.register(registerData);
+      const result = await authService.register({...data});
 
       setAuth(result["token"]);
 

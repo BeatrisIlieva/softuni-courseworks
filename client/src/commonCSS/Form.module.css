@@ -2,13 +2,18 @@
 .input-field-container input[type="password"],
 .input-field-container input[type="email"] {
   border: none;
-  min-width: 50ch;
+  width: calc(50ch - 16px);
 }
 
 .input-field-container input[type="text"]:focus,
 .input-field-container input[type="password"]:focus,
 .input-field-container input[type="email"]:focus {
   outline: none;
+}
+
+.input-field-container {
+  width: 50ch;
+  height: 50px;
 }
 
 
@@ -27,21 +32,22 @@
 }
 
 .placeholder {
-  padding: 12px;
+  padding: 12px;;
   margin: 0;
-  display: block;
   cursor: pointer;
   font-size: 14px;
 }
 
 .placeholder-on-blur {
-  font-size: 6px;
+  font-size: 10px;
+  margin: 0;
+  cursor: pointer;
+  padding-left: 12px;
 }
 
 .input-spot {
   padding: 0;
   margin: 0;
-  background-color: black;
   padding: 4px;
   margin-left: 12px;
 }

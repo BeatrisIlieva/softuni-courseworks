@@ -3,7 +3,8 @@ const userManager = require("../managers/userManager");
 const addressManager = require("../managers/addressBookManager");
 
 router.post("/register", async (req, res) => {
-  const { email, password, firstName, lastName } = {...req.body};
+  console.log(req.body)
+  const { email, password, firstName, lastName } = req.body;
 
   try {
     const { token, userId } = await userManager.register({
