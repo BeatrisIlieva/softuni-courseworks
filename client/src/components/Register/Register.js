@@ -91,10 +91,10 @@ export const Register = () => {
   return (
     <section className={registerStyles["container"]}>
       <h2 className={registerStyles["title"]}>New Customer</h2>
-      <form method="POST" onSubmit={onSubmit}>
+      <form className={registerStyles["form-container"]} method="POST" onSubmit={onSubmit}>
         <div className={registerStyles["sub-container"]}>
-          <div className={registerStyles["left-container"]}>
-            <ul role="list">
+          <div>
+            <ul className={registerStyles["left-container"]} role="list">
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("firstName")}
@@ -200,8 +200,8 @@ export const Register = () => {
               </li>
             </ul>
           </div>
-          <div className={registerStyles["right-container"]}>
-            <ul role="list">
+          <div>
+            <ul className={registerStyles["right-container"]} role="list">
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("lastName")}
@@ -299,8 +299,9 @@ export const Register = () => {
             </ul>
           </div>
         </div>
+        <p>* Indicates required fields</p>
         <input
-          className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+          className={`${registerStyles["button"]} ${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
           type="submit"
           value="Sign Up"
         />

@@ -32,9 +32,6 @@
   padding: 4px;
 }
 
-.filed-container {
-  margin-bottom: 42px;
-}
 
 .placeholder {
   padding: 12px;
@@ -57,7 +54,7 @@
   margin-left: 12px;
 }
 
-.form-container {
+/* .form-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -100,4 +97,4 @@ input::-webkit-input-placeholder {
 .form-list {
   list-style-type: circle !important;
   margin-left: 2vw !important;
-}
+} */
