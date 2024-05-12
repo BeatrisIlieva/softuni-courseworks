@@ -11,13 +11,6 @@
   outline: none;
 }
 
-.input-field-hidden {
-  display: none;
-}
-
-.input-field {
-  display: inline;
-}
 
 .filed-container {
   border-top-left-radius: 16px;
@@ -38,8 +31,20 @@
   margin: 0;
   display: block;
   cursor: pointer;
+  font-size: 14px;
 }
 
+.placeholder-on-blur {
+  font-size: 6px;
+}
+
+.input-spot {
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  padding: 4px;
+  margin-left: 12px;
+}
 
 
 

@@ -66,9 +66,10 @@ export const Register = () => {
                   onBlur={onNotFocusedField}
                   className={formStyles["input-field-container"]}
                 >
-                  <p className={formStyles["placeholder"]}>First Name*</p>
+                  <p className={focusField ? formStyles["placeholder-on-blur"] : formStyles["placeholder"]}>First Name*</p>
                   {focusField && (
                     <input
+                      className={formStyles["input-spot"]}
                       type="text"
                       name={RegisterFormKeys.FirstName}
                       id="firstName"
@@ -79,7 +80,6 @@ export const Register = () => {
                   )}
                 </div>
               </li>
-
               <li
                 className={`${formStyles["filed-container"]} ${registerStyles["input-container"]}`}
               >
