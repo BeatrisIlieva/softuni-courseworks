@@ -296,10 +296,11 @@ export const Register = () => {
                   )}
                 </div>
               </li>
+              <li className={registerStyles["required-fields"]}>* Indicates required fields</li>
             </ul>
           </div>
         </div>
-        <p>* Indicates required fields</p>
+        
         <input
           className={`${registerStyles["button"]} ${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
           type="submit"
