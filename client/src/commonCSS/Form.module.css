@@ -1,14 +1,22 @@
-.input-field input[type="text"],
-.input-field input[type="password"],
-.input-field input[type="email"] {
+.input-field-container input[type="text"],
+.input-field-container input[type="password"],
+.input-field-container input[type="email"] {
   border: none;
-  min-width: 40ch;
+  min-width: 50ch;
 }
 
-.input-field input[type="text"]:focus,
-.input-field input[type="password"]:focus,
-.input-field input[type="email"]:focus {
+.input-field-container input[type="text"]:focus,
+.input-field-container input[type="password"]:focus,
+.input-field-container input[type="email"]:focus {
   outline: none;
+}
+
+.input-field-hidden {
+  display: none;
+}
+
+.input-field {
+  display: inline;
 }
 
 .filed-container {
@@ -17,9 +25,34 @@
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   border: 1px solid #fc8eac;
-  padding: 1vh;
-  line-height: 1.5;
+  padding: 4px;
+ 
 }
+
+.filed-container {
+  margin-bottom: 42px;
+}
+
+.placeholder {
+  padding: 12px;
+  margin: 0;
+  display: block;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .form-container {
   display: flex;

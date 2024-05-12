@@ -12,7 +12,10 @@ import { QuestionMarkEmail } from "../Register/QuestionMarkEmail";
 const RegisterFormKeys = {
   Email: "email",
   Password: "password",
+  RetypeEmail: "retypeEmail",
   RetypePassword: "retypePassword",
+  FirstName: "firstName",
+  LastName: "lastName",
 };
 
 export const Register = () => {
@@ -40,6 +43,16 @@ export const Register = () => {
     setHoveredQuestionMarkEmail(false);
   };
 
+  const [focusField, setFocusField] = useState(false);
+
+  const onFocusField = () => {
+    setFocusField(true);
+  };
+
+  const onNotFocusedField = () => {
+    setFocusField(false);
+  };
+
   return (
     <section className={registerStyles["container"]}>
       <h2 className={registerStyles["title"]}>New Customer</h2>
@@ -48,21 +61,29 @@ export const Register = () => {
           <div className={registerStyles["left-container"]}>
             <ul role="list">
               <li className={formStyles["filed-container"]}>
-                <div className={formStyles["input-field"]}>
-                  <p>First Name*</p>
-                  <input
-                    type="text"
-                    name={RegisterFormKeys.FirstName}
-                    id="firstName"
-                    value={values[RegisterFormKeys.FirstName]}
-                    onChange={changeHandler}
-                  />
+                <div
+                  onClick={onFocusField}
+                  onBlur={onNotFocusedField}
+                  className={formStyles["input-field-container"]}
+                >
+                  <p className={formStyles["placeholder"]}>First Name*</p>
+                  {focusField && (
+                    <input
+                      type="text"
+                      name={RegisterFormKeys.FirstName}
+                      id="firstName"
+                      value={values[RegisterFormKeys.FirstName]}
+                      onChange={changeHandler}
+                      autoFocus
+                    />
+                  )}
                 </div>
               </li>
+
               <li
                 className={`${formStyles["filed-container"]} ${registerStyles["input-container"]}`}
               >
-                <div className={formStyles["input-field"]}>
+                <div className={formStyles["input-field-container"]}>
                   <p>Email*</p>
                   <input
                     type="email"
@@ -83,7 +104,7 @@ export const Register = () => {
                 </div>
               </li>
               <li className={formStyles["filed-container"]}>
-                <div className={formStyles["input-field"]}>
+                <div className={formStyles["input-field-container"]}>
                   <p>Password*</p>
                   <input
                     type="password"
@@ -99,7 +120,7 @@ export const Register = () => {
           <div className={registerStyles["right-container"]}>
             <ul role="list">
               <li className={formStyles["filed-container"]}>
-                <div className={formStyles["input-field"]}>
+                <div className={formStyles["input-field-container"]}>
                   <p>Last Name*</p>
                   <input
                     type="text"
@@ -111,7 +132,7 @@ export const Register = () => {
                 </div>
               </li>
               <li className={formStyles["filed-container"]}>
-                <div className={formStyles["input-field"]}>
+                <div className={formStyles["input-field-container"]}>
                   <p>Retype Email Address*</p>
                   <input
                     type="email"
@@ -124,7 +145,7 @@ export const Register = () => {
               </li>
 
               <li className={formStyles["filed-container"]}>
-                <div className={formStyles["input-field"]}>
+                <div className={formStyles["input-field-container"]}>
                   <p>Retype Password*</p>
                   <input
                     type="password"
