@@ -91,7 +91,11 @@ export const Register = () => {
   return (
     <section className={registerStyles["container"]}>
       <h2 className={registerStyles["title"]}>New Customer</h2>
-      <form className={registerStyles["form-container"]} method="POST" onSubmit={onSubmit}>
+      <form
+        className={registerStyles["form-container"]}
+        method="POST"
+        onSubmit={onSubmit}
+      >
         <div className={registerStyles["sub-container"]}>
           <div>
             <ul className={registerStyles["left-container"]} role="list">
@@ -296,11 +300,13 @@ export const Register = () => {
                   )}
                 </div>
               </li>
-              <li className={registerStyles["required-fields"]}>* Indicates required fields</li>
             </ul>
+            <p className={registerStyles["required-fields"]}>
+                * Indicates required fields
+              </p>
           </div>
         </div>
-        
+
         <input
           className={`${registerStyles["button"]} ${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
           type="submit"

@@ -10,7 +10,7 @@
 .title {
   font-style: italic;
   text-align: center;
-  margin: 0;
+  margin-bottom: 42px;
   padding: 0;
 }
 
@@ -24,7 +24,7 @@
 .left-container, .right-container {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 42px;
 }
 
 .input-container {
@@ -50,5 +50,8 @@
 
 .required-fields {
   display: flex;
-  margin-left: auto;
+  flex-direction:row-reverse;
+  font-style: italic;
+  font-size: 12px;
+  padding-top: 0;
 }
