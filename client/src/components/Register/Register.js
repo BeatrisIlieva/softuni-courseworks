@@ -119,7 +119,6 @@ export const Register = () => {
               >
                 <div
                   onClick={() => onFocusField("email")}
-                  // onBlur={onNotFocusedField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
@@ -156,7 +155,6 @@ export const Register = () => {
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("password")}
-                  // onBlur={onNotFocusedField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
@@ -187,7 +185,6 @@ export const Register = () => {
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("lastName")}
-                  // onBlur={onNotFocusedField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
@@ -214,7 +211,6 @@ export const Register = () => {
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("retypeEmail")}
-                  // onBlur={onNotFocusedField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
@@ -242,7 +238,6 @@ export const Register = () => {
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("retypePassword")}
-                  // onBlur={onNotFocusedField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
