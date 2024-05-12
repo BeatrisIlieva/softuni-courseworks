@@ -69,17 +69,13 @@ export const Register = () => {
 
   const onFocusField = (fieldKey) => {
     setValues(prevValues => {
-      // Create a new object by spreading the previous state
+
       const updatedValues = { ...prevValues };
   
-      // Iterate over each key in the state object
       Object.keys(updatedValues).forEach(key => {
-        // Update the focusField property based on the fieldKey parameter
         updatedValues[key].focusField = (key === fieldKey);
       });
   
-      // console.log(values[RegisterFormKeys.FirstName]["focusField"])
-      // console.log(values)
       return updatedValues;
     });
   };
