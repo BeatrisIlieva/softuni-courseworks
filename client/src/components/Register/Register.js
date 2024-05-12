@@ -27,27 +27,28 @@ export const Register = () => {
   };
 
   const [values, setValues] = useState({
-    [RegisterFormKeys.Email]: {"value": "", "focusField": false},
-    [RegisterFormKeys.RetypeEmail]: {"value": "", "focusField": false},
-    [RegisterFormKeys.Password]: {"value": "", "focusField": false},
-    [RegisterFormKeys.RetypePassword]: {"value": "", "focusField": false},
-    [RegisterFormKeys.FirstName]: {"value": "", "focusField": false},
-    [RegisterFormKeys.LastName]: {"value": "", "focusField": false},
+    [RegisterFormKeys.Email]: { value: "", focusField: false },
+    [RegisterFormKeys.RetypeEmail]: { value: "", focusField: false },
+    [RegisterFormKeys.Password]: { value: "", focusField: false },
+    [RegisterFormKeys.RetypePassword]: { value: "", focusField: false },
+    [RegisterFormKeys.FirstName]: { value: "", focusField: false },
+    [RegisterFormKeys.LastName]: { value: "", focusField: false },
   });
 
+  for (let key in values) {
+    if (values[key].value !== "") {
+      values[key].focusField = true;
+    }
+  }
 
   const changeHandler = (fieldKey, newValue) => {
-    setValues(prevValues => {
-
+    setValues((prevValues) => {
       const updatedValues = { ...prevValues };
-  
 
       updatedValues[fieldKey].value = newValue;
-  
 
-      Object.keys(updatedValues).forEach(key => {
-        
-        updatedValues[key].focusField = (key === fieldKey);
+      Object.keys(updatedValues).forEach((key) => {
+        updatedValues[key].focusField = key === fieldKey;
       });
 
       return updatedValues;
@@ -65,17 +66,14 @@ export const Register = () => {
     setHoveredQuestionMarkEmail(false);
   };
 
-
-
   const onFocusField = (fieldKey) => {
-    setValues(prevValues => {
-
+    setValues((prevValues) => {
       const updatedValues = { ...prevValues };
-  
-      Object.keys(updatedValues).forEach(key => {
-        updatedValues[key].focusField = (key === fieldKey);
+
+      Object.keys(updatedValues).forEach((key) => {
+        updatedValues[key].focusField = key === fieldKey;
       });
-  
+
       return updatedValues;
     });
   };
@@ -108,7 +106,12 @@ export const Register = () => {
                       name={RegisterFormKeys.FirstName}
                       id="firstName"
                       value={values[RegisterFormKeys.FirstName].value}
-                      onChange={(e) => changeHandler(RegisterFormKeys.FirstName, e.target.value)} 
+                      onChange={(e) =>
+                        changeHandler(
+                          RegisterFormKeys.FirstName,
+                          e.target.value
+                        )
+                      }
                       autoFocus
                     />
                   )}
@@ -132,12 +135,14 @@ export const Register = () => {
                   </p>
                   {values[RegisterFormKeys.Email]["focusField"] && (
                     <input
-                    className={formStyles["input-spot"]}
+                      className={formStyles["input-spot"]}
                       type="email"
                       name={RegisterFormKeys.Email}
                       id="email"
                       value={values[RegisterFormKeys.Email].value}
-                      onChange={(e) => changeHandler(RegisterFormKeys.Email, e.target.value)} 
+                      onChange={(e) =>
+                        changeHandler(RegisterFormKeys.Email, e.target.value)
+                      }
                       autoFocus
                     />
                   )}
@@ -172,7 +177,9 @@ export const Register = () => {
                       name={RegisterFormKeys.Password}
                       id="password"
                       value={values[RegisterFormKeys.Password].value}
-                      onChange={(e) => changeHandler(RegisterFormKeys.Password, e.target.value)} 
+                      onChange={(e) =>
+                        changeHandler(RegisterFormKeys.Password, e.target.value)
+                      }
                       autoFocus
                     />
                   )}
@@ -202,7 +209,9 @@ export const Register = () => {
                       name={RegisterFormKeys.LastName}
                       id="lastName"
                       value={values[RegisterFormKeys.LastName].value}
-                      onChange={(e) => changeHandler(RegisterFormKeys.LastName, e.target.value)} 
+                      onChange={(e) =>
+                        changeHandler(RegisterFormKeys.LastName, e.target.value)
+                      }
                       autoFocus
                     />
                   )}
@@ -228,7 +237,12 @@ export const Register = () => {
                       name={RegisterFormKeys.RetypeEmail}
                       id="retypeEmail"
                       value={values[RegisterFormKeys.RetypeEmail].value}
-                      onChange={(e) => changeHandler(RegisterFormKeys.RetypeEmail, e.target.value)} 
+                      onChange={(e) =>
+                        changeHandler(
+                          RegisterFormKeys.RetypeEmail,
+                          e.target.value
+                        )
+                      }
                       autoFocus
                     />
                   )}
@@ -255,7 +269,12 @@ export const Register = () => {
                       name={RegisterFormKeys.RetypePassword}
                       id="retypePassword"
                       value={values[RegisterFormKeys.RetypePassword].value}
-                      onChange={(e) => changeHandler(RegisterFormKeys.RetypePassword, e.target.value)} 
+                      onChange={(e) =>
+                        changeHandler(
+                          RegisterFormKeys.RetypePassword,
+                          e.target.value
+                        )
+                      }
                       autoFocus
                     />
                   )}
