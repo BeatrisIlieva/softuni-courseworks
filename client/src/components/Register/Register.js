@@ -6,7 +6,6 @@ import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import buttonStyles from "../../commonCSS/Button.module.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useForm } from "../../hooks/useForm";
 import { QuestionMarkEmail } from "../Register/QuestionMarkEmail";
 
 const RegisterFormKeys = {
@@ -20,17 +19,6 @@ const RegisterFormKeys = {
 
 export const Register = () => {
   const { onRegisterSubmit } = useContext(AuthContext);
-  // const { values, changeHandler, onSubmit } = useForm(
-  //   {
-      // [RegisterFormKeys.Email]: "",
-      // [RegisterFormKeys.RetypeEmail]: "",
-      // [RegisterFormKeys.Password]: "",
-      // [RegisterFormKeys.RetypePassword]: "",
-      // [RegisterFormKeys.FirstName]: "",
-      // [RegisterFormKeys.LastName]: "",
-  //   },
-  //   onRegisterSubmit
-  // );
 
   const onSubmit = (e) => {
     e.preventDefault();
