@@ -90,7 +90,7 @@ export const Register = () => {
 
   return (
     <section className={registerStyles["register-box"]}>
-      <h2>New Customer</h2>
+      <h2 className={registerStyles["register-title"]}>New Customer</h2>
       <form
         className={registerStyles["form-container"]}
         method="POST"
@@ -294,21 +294,35 @@ export const Register = () => {
           </div>
         </div>
         <div className={registerStyles["required-fields"]}>
-              * Indicates required fields
+          * Indicates required fields
         </div>
         <div className={registerStyles["password-requirements"]}>
-        <h3 className={registerStyles["password-requirements-title"]}>Password Requirements:</h3>
-        <ul
-          role="list"
-          className={`${formStyles["form-list"]} ${registerStyles["equal-height"]}`}
-        >
-          <li className={formStyles["form-item-list"]}>Your password must contain at least 8 characters</li>
-          <li className={formStyles["form-item-list"]}>
-          Your password can't be entirely numeric
-          </li>
-          <li className={formStyles["form-item-list"]}>Your password can't be entirely alphabetic</li>
-        </ul>
-      </div> 
+          <h3 className={registerStyles["password-requirements-title"]}>
+            Password Requirements:
+          </h3>
+          <p className={registerStyles["password-requirements-sub-title"]}>Please ensure your password:</p>
+          <ul
+            role="list"
+            className={`${formStyles["form-list"]}`}
+          >
+            <li className={formStyles["form-item-list"]}>
+              Your password must contain at least 8 characters
+            </li>
+            <li className={formStyles["form-item-list"]}>
+              Your password can't be entirely numeric
+            </li>
+            <li className={formStyles["form-item-list"]}>
+              Your password can't be entirely alphabetic
+            </li>
+          </ul>
+        </div>
+        {/* <div className={registerStyles["button-register"]}> */}
+          <input
+            className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+            type="submit"
+            value="Sign Up"
+          />
+        {/* </div> */}
       </form>
     </section>
   );

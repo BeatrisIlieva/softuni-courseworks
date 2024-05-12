@@ -4,6 +4,12 @@
   margin-right: 100px;
 }
 
+.register-title {
+  margin-bottom: 40px;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.782);
+}
+
 .form-container {
   display: flex;
   flex-wrap: wrap;
@@ -21,7 +27,7 @@
 }
 
 .input-container-left, .input-container-right {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .input-field-container {
@@ -40,4 +46,15 @@
 .password-requirements-title {
   font-size: 14px;
   margin-bottom: 10px;
+}
+
+.password-requirements-sub-title {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.714);
+}
+
+.password-requirements {
+  width: 100%;
+  margin-bottom: 50px;
 }

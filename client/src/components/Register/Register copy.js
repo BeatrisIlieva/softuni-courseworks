@@ -320,7 +320,7 @@ export const Register = () => {
         </ul>
       </div> 
         <input
-          className={`${registerStyles["button"]} ${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+          className={`${registerStyles["button-register"]} ${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
           type="submit"
           value="Sign Up"
         />
