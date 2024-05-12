@@ -38,19 +38,18 @@ export const Register = () => {
 
   const changeHandler = (fieldKey, newValue) => {
     setValues(prevValues => {
-      // Create a new object by spreading the previous state
+
       const updatedValues = { ...prevValues };
   
-      // Update the value of the specified field
+
       updatedValues[fieldKey].value = newValue;
   
-      // Iterate over each key in the state object
+
       Object.keys(updatedValues).forEach(key => {
-        // Update the focusField property based on the fieldKey parameter
+        
         updatedValues[key].focusField = (key === fieldKey);
       });
-  
-      // Since we're directly modifying the state object, we don't need to return anything
+
       return updatedValues;
     });
   };
