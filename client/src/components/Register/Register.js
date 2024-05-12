@@ -298,30 +298,29 @@ export const Register = () => {
         </div>
         <div className={registerStyles["password-requirements"]}>
           <h3 className={registerStyles["password-requirements-title"]}>
-            Password Requirements:
+            Password Requirements
           </h3>
-          <p className={registerStyles["password-requirements-sub-title"]}>Please ensure your password:</p>
-          <ul
-            role="list"
-            className={`${formStyles["form-list"]}`}
-          >
+          <p className={registerStyles["password-requirements-sub-title"]}>
+            Please ensure your password:
+          </p>
+          <ul role="list" className={`${formStyles["form-list"]}`}>
             <li className={formStyles["form-item-list"]}>
-              Your password must contain at least 8 characters
+              Is at least eight characters in length
             </li>
             <li className={formStyles["form-item-list"]}>
-              Your password can't be entirely numeric
+              Contains at least one letter
             </li>
             <li className={formStyles["form-item-list"]}>
-              Your password can't be entirely alphabetic
+              Contains at least one number
             </li>
           </ul>
         </div>
         {/* <div className={registerStyles["button-register"]}> */}
-          <input
-            className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
-            type="submit"
-            value="Sign Up"
-          />
+        <input
+          className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+          type="submit"
+          value="Sign Up"
+        />
         {/* </div> */}
       </form>
     </section>
