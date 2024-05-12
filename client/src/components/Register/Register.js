@@ -78,6 +78,16 @@ export const Register = () => {
     });
   };
 
+  const onBlurField = () => {
+    setValues((prevValues) => {
+      const updatedValues = { ...prevValues };
+      Object.keys(updatedValues).forEach((key) => {
+        updatedValues[key].focusField = false;
+      });
+      return updatedValues;
+    });
+  };
+
   return (
     <section className={registerStyles["container"]}>
       <h2 className={registerStyles["title"]}>New Customer</h2>
@@ -88,6 +98,7 @@ export const Register = () => {
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("firstName")}
+                  onBlur={onBlurField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
@@ -122,6 +133,7 @@ export const Register = () => {
               >
                 <div
                   onClick={() => onFocusField("email")}
+                  onBlur={onBlurField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
@@ -160,6 +172,7 @@ export const Register = () => {
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("password")}
+                  onBlur={onBlurField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
@@ -192,6 +205,7 @@ export const Register = () => {
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("lastName")}
+                  onBlur={onBlurField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
@@ -220,6 +234,7 @@ export const Register = () => {
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("retypeEmail")}
+                  onBlur={onBlurField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
@@ -252,6 +267,7 @@ export const Register = () => {
               <li className={formStyles["filed-container"]}>
                 <div
                   onClick={() => onFocusField("retypePassword")}
+                  onBlur={onBlurField}
                   className={formStyles["input-field-container"]}
                 >
                   <p
