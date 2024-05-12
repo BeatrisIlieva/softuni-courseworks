@@ -11,21 +11,14 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const onRegisterSubmit = async (values) => {
-
     const email = values.email.value;
     const retypeEmail = values.retypeEmail.value;
     const firstName = values.firstName.value;
     const lastName = values.lastName.value;
     const password = values.password.value;
     const retypePassword = values.retypePassword.value;
-    console.log(email);
-    const data = {email,password, firstName, lastName}
-    
-    // const { retypePassword, retypeEmail, ...registerData } = values;
-    // console.log(retypePassword)
-    // console.log(retypeEmail)
-    // console.log(registerData)
-    
+    const data = { email, password, firstName, lastName };
+
     if (retypePassword !== password) {
       console.log("Passwords do not match!");
       return;
@@ -37,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const result = await authService.register({...data});
+      const result = await authService.register({ ...data });
 
       setAuth(result["token"]);
 
@@ -58,17 +51,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // const onEditPersonalDetailsSubmit = async (data) => {
-  //   try {
-  //     const result = await authService.editPersonalDetails({ ...data });
-  //     console.log(auth);
-  //     // console.log(result);
-  //     setAuth({ ...auth, ...result });
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // };
-
   const onLogout = async () => {
     await authService.logout();
 
@@ -78,13 +60,11 @@ export const AuthProvider = ({ children }) => {
   const context = {
     onRegisterSubmit,
     onLoginSubmit,
-    // onEditPersonalDetailsSubmit,
     onLogout,
     userId: auth._id,
     token: auth.accessToken,
     userEmail: auth.email,
     isAuthenticated: !!auth.accessToken,
-    // firstName: auth.firstName,
   };
 
   return (
