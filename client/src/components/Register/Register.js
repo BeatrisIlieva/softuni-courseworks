@@ -35,9 +35,7 @@ export const Register = () => {
     [RegisterFormKeys.LastName]: {"value": "", "focusField": false},
   });
 
-  // const changeHandler = (e) => {
-  //   setValues(state => ({...state, [e.target.name]: e.target.value}))
-  // };
+
   const changeHandler = (fieldKey, newValue) => {
     setValues(prevValues => {
       // Create a new object by spreading the previous state
