@@ -1,11 +1,13 @@
 .container {
   display: flex;
   flex-direction: column;
+  height: calc(100% - 192px);
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
+  
 }
 .title {
   font-style: italic;
@@ -21,10 +23,16 @@
   gap: 42px;
 }
 
+
+
 .left-container, .right-container {
   display: flex;
   flex-direction: column;
   gap: 42px;
+}
+
+.left-container {
+  margin-right: auto;
 }
 
 .input-container {
@@ -54,4 +62,10 @@
   font-style: italic;
   font-size: 12px;
   padding-top: 0;
+}
+
+.password-requirements {
+display: flex;
+flex-direction: column;
+
 }

@@ -302,20 +302,11 @@ export const Register = () => {
               </li>
             </ul>
             <p className={registerStyles["required-fields"]}>
-                * Indicates required fields
-              </p>
+              * Indicates required fields
+            </p>
           </div>
         </div>
-
-        <input
-          className={`${registerStyles["button"]} ${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
-          type="submit"
-          value="Sign Up"
-        />
-      </form>
-
-      {/* <div className={formStyles["form-vertical-line"]}></div>
-      <div className={formStyles["right-form-container"]}>
+        <div className={registerStyles["password-requirements"]}>
         <h3 className={registerStyles["form-title"]}>Password Requirements:</h3>
         <ul
           role="list"
@@ -327,7 +318,14 @@ export const Register = () => {
           </li>
           <li className={formStyles["form-item-list"]}>Your password can't be entirely alphabetic.</li>
         </ul>
-      </div> */}
+      </div> 
+        <input
+          className={`${registerStyles["button"]} ${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+          type="submit"
+          value="Sign Up"
+        />
+      </form>
+      {/* <div className={formStyles["form-vertical-line"]}></div>*/}
     </section>
   );
 };
