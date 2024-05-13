@@ -97,7 +97,7 @@ export const Register = () => {
 
   const title = "Password Requirements";
 
-  const subtitle= "Please ensure your password:"
+  const subtitle = "Please ensure your password:";
 
   return (
     <section className={registerStyles["register-box"]}>
@@ -312,8 +312,8 @@ export const Register = () => {
           * Indicates required fields
         </div>
         <div className={registerStyles["password-requirements"]}>
-          <hr className={registerStyles["horizontal-line"]}/>
-          <ToggleMenu options={options} title={title} subtitle={subtitle}/>
+          <hr className={registerStyles["horizontal-line"]} />
+          <ToggleMenu options={options} title={title} subtitle={subtitle} />
         </div>
         <input
           className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
