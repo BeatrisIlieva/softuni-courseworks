@@ -10,16 +10,15 @@
   line-height: 1.5;
 }
 
-.button.register{
+.button.register {
   width: 100%;
 }
 
-
 .button.pink {
-    background-color: pink;
-    border: 1px solid #fc8eac;
+  background-color: pink;
+  border: 1px solid #fc8eac;
 }
 
 .button.pink:hover {
-    background-color: white;
+  background-color: white;
 }

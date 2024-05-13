@@ -30,13 +30,6 @@ export const IconBar = () => {
             </Link>
           </li>
         {/* )} */}
-        {/* {!isAuthenticated && ( */}
-          <li>
-            <Link className={styles["icon-bar-item"]} to="/">
-              <i class="far fa-heart"></i>
-            </Link>
-          </li>
-        {/* )} */}
         {/* {isAuthenticated && ( */}
           <li>
             {/* <Link className={styles["icon-bar-item"]} to="/bag/:userId"> */}

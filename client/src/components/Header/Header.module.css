@@ -1,19 +1,43 @@
 .header {
   grid-area: header;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 8px 32px -12px,
+    rgba(0, 0, 0, 0.3) 0px 6px 12px -18px;
+  padding: 0px 96px;
   display: flex;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 8px 32px -12px, rgba(0, 0, 0, 0.3) 0px 6px 12px -18px;
-  background-color: rgba(255, 255, 255, 0.955);
-  font-size: 18px;
   align-items: center;
-  top: 0;
   position: sticky;
   z-index: 10;
-  padding: 0px 96px;
+  top: 0;
+  background-color: white;
 }
 
+.header-box {
+  display: flex;
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-box {
+  width: 150px;
+}
+
+.nav-box {
+  margin-right: 50px;
+}
+
+.search-box {
+  width: 400px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon-box {
+  width: 150px;
+}
 .logo-img-container {
-  height: 14vh;
-  width: 22vh;
+  width: 100px;
   aspect-ratio: 1 / 1;
 }
 
@@ -30,4 +54,90 @@
 
 .logo-img-container:hover {
   transform: scale(1.2);
+}
+
+.navigation {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 36px;
+}
+
+.nav-item {
+  text-decoration: none;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.634);
+  font-weight: 580;
+  text-transform: uppercase;
+}
+
+.nav-item {
+  transition: transform 0.5s ease-in-out;
+  display: inline-block;
+}
+
+.nav-item:hover {
+  transform: scale(1.2);
+}
+
+.icon-bar-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  justify-content: flex-end;
+}
+
+.icon-bar-item {
+  text-decoration: none;
+  font-size: 18px;
+  color: #fc8eac;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 32px;
+}
+
+/* .icon-bar-item-no-margin{
+  margin-left: 0;
+  padding-left: 0;
+} */
+
+.icon-bar-item {
+  transition: transform 0.5s ease-in-out;
+  display: inline-block;
+}
+
+.icon-bar-item:hover {
+  transform: scale(1.3);
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border: 1px solid #fc8eac;
+  color: #040720cb;
+  text-align: left;
+  padding: 4px 24px;
+  width: 400px;
+}
+
+.search-input:hover {
+  background-color: #fc8eab20;
+}
+
+.icon-search {
+  right: 14.8vw;
+  top: 0.6vh;
+  position: absolute;
+  font-size: 14.4px;
+  color: #0407204c;
 }
