@@ -1,4 +1,3 @@
-// Menu.js
 import { useState } from "react";
 import formStyles from "../../commonCSS/Form.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,9 +12,7 @@ export const ToggleMenu = ({ options, title, subtitle }) => {
   };
 
   const handleMenuItemClick = (action) => {
-    // Implement actions for menu items
     console.log("Menu item clicked:", action);
-    // Close the menu after selecting an item
     setMenuOpen(false);
   };
 
@@ -29,7 +26,10 @@ export const ToggleMenu = ({ options, title, subtitle }) => {
       {isMenuOpen && (
         <>
           <p className={formStyles["sub-title"]}>{subtitle}</p>
-          <ul role="list" className={`${formStyles["form-list"]} ${styles["slideIn"]}`}>
+          <ul
+            role="list"
+            className={`${formStyles["form-list"]} ${styles["slideIn"]}`}
+          >
             {options.map((option, index) => (
               <li
                 className={formStyles["form-item-list"]}
