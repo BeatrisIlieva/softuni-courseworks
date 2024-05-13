@@ -1,7 +1,8 @@
 .register-box {
-  width: calc(100vw - 392px);
   margin-left: 100px;
   margin-right: 100px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .register-title {
@@ -12,13 +13,14 @@
 
 .form-container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
 }
 
 .input-container-left {
   width: calc(50% - 20px);
   margin-right: 20px;
+  position: relative;
 }
 
 .input-container-right {
@@ -26,8 +28,9 @@
   margin-left: 20px;
 }
 
-.input-container-left, .input-container-right {
-  margin-bottom: 30px;
+.input-container-left,
+.input-container-right {
+  margin-bottom: 40px;
 }
 
 .input-field-container {
@@ -45,7 +48,7 @@
 
 .password-requirements-title {
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }
 
 .password-requirements-sub-title {
@@ -57,4 +60,15 @@
 .password-requirements {
   width: 100%;
   margin-bottom: 20px;
+}
+
+.input-icon {
+  position: absolute;
+  top: 15px;
+  /* transform: translateY(calc(20%)); */
+  right: 14px;
+  color: rgba(0, 0, 0, 0.607);
+  background-color: rgba(255, 192, 203, 0.643);
+  border-radius: 32px;
+  padding: 4px;
 }

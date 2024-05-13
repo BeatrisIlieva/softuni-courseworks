@@ -315,13 +315,11 @@ export const Register = () => {
             </li>
           </ul>
         </div>
-        {/* <div className={registerStyles["button-register"]}> */}
         <input
           className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
           type="submit"
           value="Sign Up"
         />
-        {/* </div> */}
       </form>
     </section>
   );
