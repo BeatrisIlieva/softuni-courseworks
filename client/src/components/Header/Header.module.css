@@ -91,7 +91,6 @@
   justify-content: flex-end;
 }
 
-
 .icon-bar-item {
   text-decoration: none;
   font-size: 18px;
@@ -129,8 +128,14 @@
   border: 1px solid #fc8eac;
   color: #040720cb;
   text-align: left;
-  padding: 4px 24px;
+  padding: 4px 30px;
   width: 320px;
+  background-color: transparent;
+}
+
+.search-container input[type="text"] {
+  padding-left: 40px;
+  /* z-index: 100; */
 }
 
 .search-input:hover {
@@ -138,9 +143,11 @@
 }
 
 .icon-search {
-  right: 14.8vw;
-  top: 0.6vh;
   position: absolute;
-  font-size: 14.4px;
-  color: #0407204c;
+  transform: translateY(calc(40%));
+  left: 14px;
+}
+
+.search-container input[type="text"]:focus {
+  outline: none;
 }

@@ -4,6 +4,10 @@ import { NavBar } from "./NavBar";
 import { IconBar } from "./IconBar";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import colorStyles from "../../commonCSS/Colors.module.css";
+import formStyles from "../../commonCSS/Form.module.css";
 
 export const Header = () => {
   const { isAuthenticated, userEmail, userId } = useContext(AuthContext);
@@ -49,16 +53,21 @@ export const Header = () => {
             </ul>
           </nav>
         </div>
-        <div className={styles["search-box"]}>
+        <div className={styles["search-box"]} >
           {/* <Link className={styles["icon-bar-item"]} to="/"> */}
           <div className={styles["search-container"]}>
-            <span className={styles["icon-search"]}>
-              <i class="fas fa-search"></i>
-            </span>
+
+          <span>
+              <FontAwesomeIcon
+                icon={faSearch}
+                className={`${colorStyles["dark-pink"]} ${styles["icon-search"]}`}
+              />
+            </span> 
             <input
               type="text"
-              placeholder="  Find a jewelry"
               className={styles["search-input"]}
+              placeholder="Find a jewelry"
+              autoFocus
             />
           </div>
           {/* </Link> */}
