@@ -6,14 +6,13 @@ import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import styles from "../ToggleMenu/ToggleMenu.module.css";
 
 export const ToggleMenu = ({ options, title, subtitle }) => {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(true);
 
   const toggleMenu = () => {
     setMenuOpen((prevState) => !prevState);
   };
 
   const handleMenuItemClick = (action) => {
-    console.log("Menu item clicked:", action);
     setMenuOpen(false);
   };
 
@@ -56,12 +55,12 @@ export const ToggleMenu = ({ options, title, subtitle }) => {
                 <FontAwesomeIcon icon={faAngleDown} />
               </span>
               <>
-                <p
+                {/* <p
                   className={`${formStyles["sub-title"]} ${styles["slideOut"]}`}
                 >
                   {subtitle}
-                </p>
-                <ul
+                </p> */}
+                {/* <ul
                   role="list"
                   className={`${formStyles["form-list"]} ${styles["slideOut"]}`}
                 >
@@ -74,7 +73,7 @@ export const ToggleMenu = ({ options, title, subtitle }) => {
                       {option}
                     </li>
                   ))}
-                </ul>
+                </ul> */}
               </>
             </>
           )}
