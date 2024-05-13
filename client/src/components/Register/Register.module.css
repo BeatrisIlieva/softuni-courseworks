@@ -33,10 +33,6 @@
   margin-bottom: 40px;
 }
 
-.input-field-container {
-  height: 50px;
-}
-
 .required-fields {
   display: block;
   width: 100%;
@@ -44,11 +40,13 @@
   font-style: italic;
   font-size: 12px;
   padding-top: 0;
+  margin-top: 0;
 }
 
 .password-requirements-title {
   font-size: 14px;
-  margin-bottom: 40px;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .password-requirements-sub-title {
