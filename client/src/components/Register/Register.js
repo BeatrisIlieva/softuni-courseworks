@@ -147,6 +147,7 @@ export const Register = () => {
             </p>
             {values[RegisterFormKeys.LastName]["focusField"] && (
               <input
+                className={formStyles["input-spot"]}
                 type="text"
                 name={RegisterFormKeys.LastName}
                 id="lastName"
@@ -219,6 +220,7 @@ export const Register = () => {
             </p>
             {values[RegisterFormKeys.RetypeEmail]["focusField"] && (
               <input
+                className={formStyles["input-spot"]}
                 type="email"
                 name={RegisterFormKeys.RetypeEmail}
                 id="retypeEmail"
@@ -250,6 +252,7 @@ export const Register = () => {
             </p>
             {values[RegisterFormKeys.Password]["focusField"] && (
               <input
+                className={formStyles["input-spot"]}
                 type="password"
                 name={RegisterFormKeys.Password}
                 id="password"
@@ -281,6 +284,7 @@ export const Register = () => {
             </p>
             {values[RegisterFormKeys.RetypePassword]["focusField"] && (
               <input
+                className={formStyles["input-spot"]}
                 type="password"
                 name={RegisterFormKeys.RetypePassword}
                 id="retypePassword"
