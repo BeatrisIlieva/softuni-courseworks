@@ -1,13 +1,10 @@
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-import { NavBar } from "./NavBar";
-import { IconBar } from "./IconBar";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import colorStyles from "../../commonCSS/Colors.module.css";
-import formStyles from "../../commonCSS/Form.module.css";
 
 export const Header = () => {
   const { isAuthenticated, userEmail, userId } = useContext(AuthContext);
@@ -67,7 +64,6 @@ export const Header = () => {
               type="text"
               className={styles["search-input"]}
               placeholder="Find a jewelry"
-              autoFocus
             />
           </div>
           {/* </Link> */}

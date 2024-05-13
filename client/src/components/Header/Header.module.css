@@ -135,7 +135,6 @@
 
 .search-container input[type="text"] {
   padding-left: 40px;
-  /* z-index: 100; */
 }
 
 .search-input:hover {
@@ -144,10 +143,11 @@
 
 .icon-search {
   position: absolute;
-  transform: translateY(calc(40%));
+  transform: translateY(calc(34%));
   left: 14px;
 }
 
 .search-container input[type="text"]:focus {
   outline: none;
+  background-color: #fc8eab20;
 }
