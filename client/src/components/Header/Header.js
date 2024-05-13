@@ -67,9 +67,10 @@ export const Header = () => {
           <div className={styles["icon-bar"]}>
             <ul className={styles["icon-bar-list"]}>
               {/* {isAuthenticated && ( */}
-              <li>
+              <li className={styles["icon-bar-list-flex"]}>
                 <Link className={`${styles["icon-bar-item"]} ${styles["icon-bar-item-no-margin"]}`} to="/">
-                  <i class="far fa-heart"></i>
+                  <i class="far fa-heart"></i> 
+                  {" "}<span className={styles["icon-bar-count"]}>(1)</span>
                 </Link>
               </li>
               {/* )} */}
@@ -77,7 +78,8 @@ export const Header = () => {
               <li>
                 {/* <Link className={styles["icon-bar-item"]} to="/bag/:userId"> */}
                 <Link className={styles["icon-bar-item"]} to={`/user/bag`}>
-                  <i class="fas fa-shopping-bag"></i>
+                  <i class="fas fa-shopping-bag"></i> 
+                  {" "}<span className={styles["icon-bar-count"]}>(1)</span>
                 </Link>
               </li>
               {/* )} */}

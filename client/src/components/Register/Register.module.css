@@ -1,6 +1,6 @@
 .register-box {
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 200px;
+  margin-right: 200px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -62,7 +62,7 @@
 
 .input-icon {
   position: absolute;
-  top: 15px;
+  top: 10px;
   /* transform: translateY(calc(20%)); */
   right: 14px;
   color: rgba(0, 0, 0, 0.607);
