@@ -7,6 +7,7 @@ import buttonStyles from "../../commonCSS/Button.module.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { QuestionMarkEmail } from "../Register/QuestionMarkEmail";
+import { ToggleMenu } from "../ToggleMenu/ToggleMenu";
 
 const RegisterFormKeys = {
   Email: "email",
@@ -87,6 +88,16 @@ export const Register = () => {
       return updatedValues;
     });
   };
+
+  const options = [
+    "Is at least eight characters in length",
+    "Contains at least one letter",
+    "Contains at least one number",
+  ];
+
+  const title = "Password Requirements";
+
+  const subtitle= "Please ensure your password:"
 
   return (
     <section className={registerStyles["register-box"]}>
@@ -301,13 +312,15 @@ export const Register = () => {
           * Indicates required fields
         </div>
         <div className={registerStyles["password-requirements"]}>
-          <h3 className={registerStyles["password-requirements-title"]}>
+          {/* <h3 className={registerStyles["password-requirements-title"]}>
             Password Requirements
-          </h3>
-          <p className={registerStyles["password-requirements-sub-title"]}>
+          </h3> */}
+          {/* <p className={registerStyles["password-requirements-sub-title"]}>
             Please ensure your password:
-          </p>
-          <ul role="list" className={`${formStyles["form-list"]}`}>
+          </p> */}
+          <hr className={registerStyles["horizontal-line"]}/>
+          <ToggleMenu options={options} title={title} subtitle={subtitle}/>
+          {/* <ul role="list" className={`${formStyles["form-list"]}`}>
             <li className={formStyles["form-item-list"]}>
               Is at least eight characters in length
             </li>
@@ -317,7 +330,7 @@ export const Register = () => {
             <li className={formStyles["form-item-list"]}>
               Contains at least one number
             </li>
-          </ul>
+          </ul> */}
         </div>
         <input
           className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}

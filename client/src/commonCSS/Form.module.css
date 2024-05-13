@@ -1,27 +1,54 @@
-.input-field-container input[type="text"],
-.input-field-container input[type="password"],
-.input-field-container input[type="email"] {
-  border: none;
-  width: 40ch;
-  /* width: calc(50ch - 16px); */
+.title {
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 20px;
 }
 
-.input-field-container input:-webkit-autofill,
-.input-field-container input:-webkit-autofill:hover,
-.input-field-container input:-webkit-autofill:focus,
-.input-field-container input:-internal-autofill-selected {
-  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-}
-
-.input-field-container input[type="text"]:focus,
-.input-field-container input[type="password"]:focus,
-.input-field-container input[type="email"]:focus {
-  outline: none;
+.sub-title {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.714);
 }
 
 .input-field-container {
   width: 500px;
   height: 40px;
+}
+
+.input-field-container-login {
+  width: 500px;
+  height: 40px;
+}
+
+.input-field-container input[type="text"],
+.input-field-container input[type="password"],
+.input-field-container input[type="email"],
+.input-field-container-login input[type="text"],
+.input-field-container-login input[type="password"],
+.input-field-container-login input[type="email"] {
+  border: none;
+  width: 40ch;
+}
+
+.input-field-container input:-webkit-autofill,
+.input-field-container input:-webkit-autofill:hover,
+.input-field-container input:-webkit-autofill:focus,
+.input-field-container input:-internal-autofill-selected,
+.input-field-container-login input:-webkit-autofill,
+.input-field-container-login input:-webkit-autofill:hover,
+.input-field-container-login input:-webkit-autofill:focus,
+.input-field-container-login input:-internal-autofill-selected {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+
+
+.input-field-container input[type="text"]:focus,
+.input-field-container input[type="password"]:focus,
+.input-field-container input[type="email"]:focus,
+.input-field-container-login input[type="text"]:focus,
+.input-field-container-login input[type="password"]:focus,
+.input-field-container-login input[type="email"]:focus {
+  outline: none;
 }
 
 .filed-container {
@@ -70,5 +97,5 @@ ul.form-list {
 
 .form-vertical-line {
   border-left: 1px solid pink;
-  height: calc(60vh - 84px);
 }
+

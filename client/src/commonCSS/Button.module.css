@@ -10,8 +10,12 @@
   line-height: 1.5;
 }
 
-.button.register {
+.button.register, .button.login {
   width: 100%;
+}
+
+.button.login {
+  margin-top: 20px;
 }
 
 .button.pink {

@@ -18,9 +18,12 @@
 .main {
   grid-area: main;
   color: #040720;
-  padding: 42px 96px;
+  padding: 0px 96px 42px;
+  /* padding: 42px 96px; */
   font-size: 16px;
 }
+
+
 
 
 

@@ -97,7 +97,7 @@
   color: #fc8eac;
   font-weight: 600;
   text-transform: uppercase;
-  margin-left: 32px;
+  margin-left: 16px;
 }
 
 .icon-bar-item {
@@ -110,7 +110,7 @@
 }
 
 .icon-bar-count {
-  font-size: 12px;
+  font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
