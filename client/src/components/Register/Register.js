@@ -312,25 +312,8 @@ export const Register = () => {
           * Indicates required fields
         </div>
         <div className={registerStyles["password-requirements"]}>
-          {/* <h3 className={registerStyles["password-requirements-title"]}>
-            Password Requirements
-          </h3> */}
-          {/* <p className={registerStyles["password-requirements-sub-title"]}>
-            Please ensure your password:
-          </p> */}
           <hr className={registerStyles["horizontal-line"]}/>
           <ToggleMenu options={options} title={title} subtitle={subtitle}/>
-          {/* <ul role="list" className={`${formStyles["form-list"]}`}>
-            <li className={formStyles["form-item-list"]}>
-              Is at least eight characters in length
-            </li>
-            <li className={formStyles["form-item-list"]}>
-              Contains at least one letter
-            </li>
-            <li className={formStyles["form-item-list"]}>
-              Contains at least one number
-            </li>
-          </ul> */}
         </div>
         <input
           className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
