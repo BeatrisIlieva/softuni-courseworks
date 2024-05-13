@@ -19,7 +19,7 @@ export const ToggleMenu = ({ options, title, subtitle }) => {
 
   return (
     <div>
-      <div onClick={toggleMenu} className={styles["menu"]}>
+      <div onClick={toggleMenu}>
         <h3 className={`${formStyles["title"]}`}>
           {isMenuOpen ? (
             <>
@@ -27,6 +27,27 @@ export const ToggleMenu = ({ options, title, subtitle }) => {
               <span className={styles["arrow"]}>
                 <FontAwesomeIcon icon={faAngleUp} />
               </span>
+              <>
+                <p
+                  className={`${formStyles["sub-title"]} ${styles["slideIn"]}`}
+                >
+                  {subtitle}
+                </p>
+                <ul
+                  role="list"
+                  className={`${formStyles["form-list"]} ${styles["slideIn"]}`}
+                >
+                  {options.map((option, index) => (
+                    <li
+                      className={formStyles["form-item-list"]}
+                      key={index}
+                      onClick={() => handleMenuItemClick(option)}
+                    >
+                      {option}
+                    </li>
+                  ))}
+                </ul>
+              </>
             </>
           ) : (
             <>
@@ -34,29 +55,31 @@ export const ToggleMenu = ({ options, title, subtitle }) => {
               <span className={styles["arrow"]}>
                 <FontAwesomeIcon icon={faAngleDown} />
               </span>
+              <>
+                <p
+                  className={`${formStyles["sub-title"]} ${styles["slideOut"]}`}
+                >
+                  {subtitle}
+                </p>
+                <ul
+                  role="list"
+                  className={`${formStyles["form-list"]} ${styles["slideOut"]}`}
+                >
+                  {options.map((option, index) => (
+                    <li
+                      className={formStyles["form-item-list"]}
+                      key={index}
+                      onClick={() => handleMenuItemClick(option)}
+                    >
+                      {option}
+                    </li>
+                  ))}
+                </ul>
+              </>
             </>
           )}
         </h3>
       </div>
-      {isMenuOpen && (
-        <>
-          <p className={formStyles["sub-title"]}>{subtitle}</p>
-          <ul
-            role="list"
-            className={`${formStyles["form-list"]} ${styles["slideIn"]}`}
-          >
-            {options.map((option, index) => (
-              <li
-                className={formStyles["form-item-list"]}
-                key={index}
-                onClick={() => handleMenuItemClick(option)}
-              >
-                {option}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
     </div>
   );
 };
