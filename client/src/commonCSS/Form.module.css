@@ -20,14 +20,23 @@
   height: 40px;
 }
 
+.input-field-container-profile {
+  width: 230px;
+  height: 40px;
+}
+
 .input-field-container input[type="text"],
 .input-field-container input[type="password"],
 .input-field-container input[type="email"],
 .input-field-container-login input[type="text"],
 .input-field-container-login input[type="password"],
-.input-field-container-login input[type="email"] {
+.input-field-container-login input[type="email"],
+.input-field-container-profile input[type="text"],
+.input-field-container-profile input[type="password"],
+.input-field-container-profile input[type="email"] {
   border: none;
   width: 40ch;
+  background-color: transparent;
 }
 
 .input-field-container input:-webkit-autofill,
@@ -37,7 +46,11 @@
 .input-field-container-login input:-webkit-autofill,
 .input-field-container-login input:-webkit-autofill:hover,
 .input-field-container-login input:-webkit-autofill:focus,
-.input-field-container-login input:-internal-autofill-selected {
+.input-field-container-login input:-internal-autofill-selected,
+.input-field-container-login input:-webkit-autofill,
+.input-field-container-profile input:-webkit-autofill:hover,
+.input-field-container-profile input:-webkit-autofill:focus,
+.input-field-container-profile input:-internal-autofill-selected {
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
@@ -47,7 +60,10 @@
 .input-field-container input[type="email"]:focus,
 .input-field-container-login input[type="text"]:focus,
 .input-field-container-login input[type="password"]:focus,
-.input-field-container-login input[type="email"]:focus {
+.input-field-container-login input[type="email"]:focus,
+.input-field-container-profile input[type="text"]:focus,
+.input-field-container-profile input[type="password"]:focus,
+.input-field-container-profile input[type="email"]:focus {
   outline: none;
 }
 
