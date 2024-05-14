@@ -53,8 +53,8 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
   return (
     <>
       {values && (
-        <div className={styles["popup-address-container"]}>
-          <form method="POST" onSubmit={onSubmit}>
+        <div className={styles["overlay"]}>
+          <form method="POST" onSubmit={onSubmit} className={styles["popup"]}>
             <ul role="list">
               <li className={formStyles["form-item"]}>
                 <input

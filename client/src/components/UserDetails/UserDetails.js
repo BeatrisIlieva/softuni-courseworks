@@ -98,6 +98,7 @@ export const UserDetails = () => {
   };
 
   const onCloseAddressBook = () => {
+    document.body.style.overflow = "visible";
     setShowAddressBook(false);
   };
 
