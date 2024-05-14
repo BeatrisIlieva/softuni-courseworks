@@ -26,26 +26,23 @@ export const UserDetails = () => {
   });
 
   useEffect(() => {
-    profileService.display(userId)
+    profileService
+      .display(userId)
       .then((dataFromServer) => {
         const updatedValues = { ...values };
         for (let key in FormKeys) {
-          updatedValues[FormKeys[key]] = { 
-            value: dataFromServer[FormKeys[key]], 
-            focusField: true ? dataFromServer[FormKeys[key]] : false
+          updatedValues[FormKeys[key]] = {
+            value: dataFromServer[FormKeys[key]],
+            focusField: true ? dataFromServer[FormKeys[key]] : false,
           };
         }
-        
+
         setValues(updatedValues);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
-
-  
-  
-  
 
   const changeHandler = (fieldKey, newValue) => {
     setValues((prevValues) => ({
@@ -65,9 +62,9 @@ export const UserDetails = () => {
     setValues((prevValues) => {
       const updatedValues = { ...prevValues };
       for (let key in updatedValues) {
-        updatedValues[key].focusField = true ? values[key].value : false
+        updatedValues[key].focusField = true ? values[key].value : false;
       }
-      
+
       return updatedValues;
     });
   };
@@ -80,11 +77,9 @@ export const UserDetails = () => {
       [FormKeys.Birthday]: values[FormKeys.Birthday].value,
       [FormKeys.SpecialDay]: values[FormKeys.SpecialDay].value,
     };
-    
 
     await profileService.update(userId, data);
   };
-
 
   return (
     <>
