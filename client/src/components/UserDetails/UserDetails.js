@@ -25,13 +25,6 @@ export const UserDetails = () => {
     [FormKeys.SpecialDay]: { value: "", focusField: false },
   });
 
-
-  // const onCloseAddressBook = () => {
-  //   setShowAddressBook(false);
-  // };
-
-
-
   // useEffect(() => {
   //   profileService.display(userId)
   //     .then((dataFromServer) => {
