@@ -25,6 +25,8 @@ export const UserDetails = () => {
     [FormKeys.SpecialDay]: { value: "", focusField: false },
   });
 
+  let firstName = values[FormKeys.FirstName].value;
+
   useEffect(() => {
     profileService
       .display(userId)
@@ -36,7 +38,6 @@ export const UserDetails = () => {
             focusField: true ? dataFromServer[FormKeys[key]] : false,
           };
         }
-
         setValues(updatedValues);
       })
       .catch((error) => {
@@ -84,7 +85,12 @@ export const UserDetails = () => {
   return (
     <>
       <section className={styles["user-box"]}>
-        <h2 className={styles["register-title"]}>New Customer</h2>
+        <h2 className={styles["register-title"]}>Hi {firstName}</h2>
+        <p>
+          You can access all your previous transactions, set default shipping
+          addresses for faster checkout as well as save items to your wishlist
+          for quick access.
+        </p>
         <form
           className={styles["form-container"]}
           method="POST"
