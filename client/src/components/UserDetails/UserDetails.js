@@ -1,11 +1,15 @@
 import styles from "../UserDetails/UserDetails.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
+import colorStyles from "../../commonCSS/Colors.module.css";
 import { profileServiceFactory } from "../../services/profileService";
 import { AddressBook } from "./AddressBook/AddressBook";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useService } from "../../hooks/useService";
 import formStyles from "../../commonCSS/Form.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faFileInvoiceDollar } from "@fortawesome/free-solid-svg-icons";
 
 const FormKeys = {
   FirstName: "firstName",
@@ -16,7 +20,7 @@ const FormKeys = {
 
 export const UserDetails = () => {
   const profileService = useService(profileServiceFactory);
-  const { userId } = useContext(AuthContext);
+  const { userId, userEmail } = useContext(AuthContext);
 
   const [values, setValues] = useState({
     [FormKeys.FirstName]: { value: "", focusField: false },
@@ -25,7 +29,7 @@ export const UserDetails = () => {
     [FormKeys.SpecialDay]: { value: "", focusField: false },
   });
 
-  let firstName = values[FormKeys.FirstName].value;
+  const firstName = values[FormKeys.FirstName].value;
 
   useEffect(() => {
     profileService
@@ -82,168 +86,227 @@ export const UserDetails = () => {
     await profileService.update(userId, data);
   };
 
+  const [showAddressBook, setShowAddressBook] = useState(false);
+
+  const onAddressBookClick = async () => {
+    document.body.style.overflow = "hidden";
+    setShowAddressBook(true);
+  };
+
+  const onAddressBookSubmit = () => {
+    setShowAddressBook(false);
+  };
+
+  const onCloseAddressBook = () => {
+    setShowAddressBook(false);
+  };
+
   return (
-    <>
-      <section className={styles["user-box"]}>
-        <h2 className={styles["title"]}>Hi, {firstName}</h2>
-        <p className={styles["subtitle"]}>
-          You can access all your previous transactions, set default shipping
-          addresses for faster checkout as well as save items to your wishlist
-          for quick access.
-        </p>
-        <hr className={styles["horizontal-line"]} />
-        <div className={styles["profile-box"]}>
-          <h3 className={styles["container-title"]}>Personal Information</h3>
-          <form
-            className={styles["profile-form-container"]}
-            method="POST"
-            onSubmit={onSubmit}
-          >
-            <div
-              className={`${formStyles["filed-container"]}`}
-            >
-              <div
-                onClick={() => onFocusField("firstName")}
-                onBlur={onBlurField}
-                className={formStyles["input-field-container-profile"]}
+    <section className={styles["user-details-box"]}>
+      <h2 className={styles["title"]}>Hi, {firstName}</h2>
+      <p className={styles["subtitle"]}>
+        You can access all your previous transactions, set default shipping
+        addresses for faster checkout as well as save items to your wishlist for
+        quick access.
+      </p>
+      <hr className={styles["horizontal-line"]} />
+      <div className={styles["user-details-container"]}>
+        <div className={styles["left-container"]}>
+          <div className={styles["left-upper-sub-container"]}>
+            <h3 className={styles["container-title"]}>Personal Information</h3>
+            <div className={styles["upper-sub-sub-container"]}>
+              <form
+                className={styles["profile-form-container"]}
+                method="POST"
+                onSubmit={onSubmit}
               >
-                <p
-                  className={
-                    values[FormKeys.FirstName]["focusField"]
-                      ? formStyles["placeholder-on-blur"]
-                      : formStyles["placeholder"]
-                  }
+                <div className={`${formStyles["filed-container"]}`}>
+                  <div
+                    onClick={() => onFocusField("firstName")}
+                    onBlur={onBlurField}
+                    className={formStyles["input-field-container-profile"]}
+                  >
+                    <p
+                      className={
+                        values[FormKeys.FirstName]["focusField"]
+                          ? formStyles["placeholder-on-blur"]
+                          : formStyles["placeholder"]
+                      }
+                    >
+                      First Name
+                    </p>
+                    {values[FormKeys.FirstName]["focusField"] && (
+                      <input
+                        className={formStyles["input-spot"]}
+                        type="text"
+                        name={FormKeys.FirstName}
+                        id="firstName"
+                        value={values[FormKeys.FirstName].value}
+                        onChange={(e) =>
+                          changeHandler(FormKeys.FirstName, e.target.value)
+                        }
+                        autoFocus
+                      />
+                    )}
+                  </div>
+                </div>
+                <div
+                  className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
                 >
-                  First Name
-                </p>
-                {values[FormKeys.FirstName]["focusField"] && (
-                  <input
-                    className={formStyles["input-spot"]}
-                    type="text"
-                    name={FormKeys.FirstName}
-                    id="firstName"
-                    value={values[FormKeys.FirstName].value}
-                    onChange={(e) =>
-                      changeHandler(FormKeys.FirstName, e.target.value)
-                    }
-                    autoFocus
-                  />
-                )}
-              </div>
+                  <div
+                    onClick={() => onFocusField("lastName")}
+                    onBlur={onBlurField}
+                    className={formStyles["input-field-container-profile"]}
+                  >
+                    <p
+                      className={
+                        values[FormKeys.LastName]["focusField"]
+                          ? formStyles["placeholder-on-blur"]
+                          : formStyles["placeholder"]
+                      }
+                    >
+                      Last Name
+                    </p>
+                    {values[FormKeys.LastName]["focusField"] && (
+                      <input
+                        className={formStyles["input-spot"]}
+                        type="text"
+                        name={FormKeys.LastName}
+                        id="lastName"
+                        value={values[FormKeys.LastName].value}
+                        onChange={(e) =>
+                          changeHandler(FormKeys.LastName, e.target.value)
+                        }
+                        autoFocus
+                      />
+                    )}
+                  </div>
+                </div>
+                <div
+                  className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
+                >
+                  <div
+                    onClick={() => onFocusField("birthday")}
+                    onBlur={onBlurField}
+                    className={formStyles["input-field-container-profile"]}
+                  >
+                    <p
+                      className={
+                        values[FormKeys.Birthday]["focusField"]
+                          ? formStyles["placeholder-on-blur"]
+                          : formStyles["placeholder"]
+                      }
+                    >
+                      Birthday (MM/DD/YYYY)
+                    </p>
+                    {values[FormKeys.Birthday]["focusField"] && (
+                      <input
+                        className={formStyles["input-spot"]}
+                        type="text"
+                        name={FormKeys.Birthday}
+                        id="birthday"
+                        value={values[FormKeys.Birthday].value}
+                        onChange={(e) =>
+                          changeHandler(FormKeys.Birthday, e.target.value)
+                        }
+                        autoFocus
+                      />
+                    )}
+                  </div>
+                </div>
+                <div
+                  className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
+                >
+                  <div
+                    onClick={() => onFocusField("specialDay")}
+                    onBlur={onBlurField}
+                    className={formStyles["input-field-container-profile"]}
+                  >
+                    <p
+                      className={
+                        values[FormKeys.SpecialDay]["focusField"]
+                          ? formStyles["placeholder-on-blur"]
+                          : formStyles["placeholder"]
+                      }
+                    >
+                      Anniversary/Wedding (MM/DD/YYYY)
+                    </p>
+                    {values[FormKeys.SpecialDay]["focusField"] && (
+                      <input
+                        className={formStyles["input-spot"]}
+                        type="text"
+                        name={FormKeys.SpecialDay}
+                        id="specialDay"
+                        value={values[FormKeys.SpecialDay].value}
+                        onChange={(e) =>
+                          changeHandler(FormKeys.SpecialDay, e.target.value)
+                        }
+                        autoFocus
+                      />
+                    )}
+                  </div>
+                </div>
+                <input
+                  className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+                  type="submit"
+                  value="Save"
+                />
+              </form>
             </div>
-            <div
-              className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
+          </div>
+          <div className={styles["left-bottom-sub-container"]}>
+          <button
+              className={buttonStyles["button"]}
+              onClick={() => onAddressBookClick()}
             >
-              <div
-                onClick={() => onFocusField("lastName")}
-                onBlur={onBlurField}
-                className={formStyles["input-field-container-profile"]}
-              >
-                <p
-                  className={
-                    values[FormKeys.LastName]["focusField"]
-                      ? formStyles["placeholder-on-blur"]
-                      : formStyles["placeholder"]
-                  }
-                >
-                  Last Name
-                </p>
-                {values[FormKeys.LastName]["focusField"] && (
-                  <input
-                    className={formStyles["input-spot"]}
-                    type="text"
-                    name={FormKeys.LastName}
-                    id="lastName"
-                    value={values[FormKeys.LastName].value}
-                    onChange={(e) =>
-                      changeHandler(FormKeys.LastName, e.target.value)
-                    }
-                    autoFocus
-                  />
-                )}
+              <div className={styles["orders-button-container"]}>
+                <FontAwesomeIcon
+                  icon={faFileInvoiceDollar}
+                  className={`${colorStyles["dark-pink"]} ${styles["address-icon"]}`}
+                />
+                <div>View Order History</div>
               </div>
-            </div>
-            <div
-              className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
-            >
-              <div
-                onClick={() => onFocusField("birthday")}
-                onBlur={onBlurField}
-                className={formStyles["input-field-container-profile"]}
-              >
-                <p
-                  className={
-                    values[FormKeys.Birthday]["focusField"]
-                      ? formStyles["placeholder-on-blur"]
-                      : formStyles["placeholder"]
-                  }
-                >
-                  Birthday (MM/DD/YYYY)
-                </p>
-                {values[FormKeys.Birthday]["focusField"] && (
-                  <input
-                    className={formStyles["input-spot"]}
-                    type="text"
-                    name={FormKeys.Birthday}
-                    id="birthday"
-                    value={values[FormKeys.Birthday].value}
-                    onChange={(e) =>
-                      changeHandler(FormKeys.Birthday, e.target.value)
-                    }
-                    autoFocus
-                  />
-                )}
-              </div>
-            </div>
-            <div
-              className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
-            >
-              <div
-                onClick={() => onFocusField("specialDay")}
-                onBlur={onBlurField}
-                className={formStyles["input-field-container-profile"]}
-              >
-                <p
-                  className={
-                    values[FormKeys.SpecialDay]["focusField"]
-                      ? formStyles["placeholder-on-blur"]
-                      : formStyles["placeholder"]
-                  }
-                >
-                  Anniversary/Wedding (MM/DD/YYYY)
-                </p>
-                {values[FormKeys.SpecialDay]["focusField"] && (
-                  <input
-                    className={formStyles["input-spot"]}
-                    type="text"
-                    name={FormKeys.SpecialDay}
-                    id="specialDay"
-                    value={values[FormKeys.SpecialDay].value}
-                    onChange={(e) =>
-                      changeHandler(FormKeys.SpecialDay, e.target.value)
-                    }
-                    autoFocus
-                  />
-                )}
-              </div>
-            </div>
-            <input
-              className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
-              type="submit"
-              value="Save"
-            />
-          </form>
+            </button>
+          </div>
         </div>
-      </section>
-    </>
-    // <>
-    //   {showAddressBook && (
-    //     <AddressBook
-    //       onCloseAddressBook={onCloseAddressBook}
-    //       onAddressBookSubmit={onAddressBookSubmit}
-    //     />
-    //   )}
-    //   <button onClick={() => onAddressBookClick()}>Add new address book</button>
-    // </>
+        <div className={styles["right-container"]}>
+          <div className={styles["right-upper-sub-container"]}>
+            <div className={styles["login-box"]}>
+              <h3 className={styles["container-title-login"]}>
+                Login Information
+              </h3>
+              <h5 className={styles["login-subtitle"]}>Email Address</h5>
+              <p className={styles["login-email"]}>{userEmail}</p>
+              <p className={styles["update"]}>Update Email Address</p>
+              <p className={styles["update"]}>Change Password</p>
+            </div>
+          </div>
+          <div className={styles["right-bottom-sub-container"]}>
+          <div className={styles["address-box"]}>
+            <h3 className={styles["container-title-address"]}>Address Book</h3>
+            <hr className={styles["horizontal-line-address"]} />
+            {showAddressBook && (
+              <AddressBook
+                onCloseAddressBook={onCloseAddressBook}
+                onAddressBookSubmit={onAddressBookSubmit}
+              />
+            )}
+            <button
+              className={buttonStyles["button"]}
+              onClick={() => onAddressBookClick()}
+            >
+              <div className={styles["address-button-container"]}>
+                <FontAwesomeIcon
+                  icon={faCirclePlus}
+                  className={`${colorStyles["dark-pink"]} ${styles["address-icon"]}`}
+                />
+                <div>Add new address book</div>
+              </div>
+            </button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };

@@ -7,6 +7,7 @@
   top: 0;
   right: 0;
   overflow-y: auto;
+  /* z-index: 1000; */
   /* animation: slideIn 1s forwards;
   transition: opacity 0.8s ease, transform 0.8s ease; */
 }

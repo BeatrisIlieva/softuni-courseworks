@@ -8,6 +8,8 @@
   border-bottom-right-radius: 32px;
   padding: 8px;
   line-height: 1.5;
+  background-color: transparent;
+  border: none;
 }
 
 .button.register, .button.login {
@@ -26,3 +28,4 @@
 .button.pink:hover {
   background-color: white;
 }
+
