@@ -3,10 +3,12 @@ const profileManager = require("../managers/profileManager");
 
 
 router.get("/display/:userId", async (req, res) => {
+
   const userId = req.user._id;
 
   try {
-    const data = await profileManager.getOne({user: userId});
+    const data = await profileManager.getOne(userId);
+
     res.json(data);
   } catch (err) {
     res.status(400).json({

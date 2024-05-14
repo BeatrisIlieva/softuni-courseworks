@@ -51,6 +51,14 @@ const profileSchema = new mongoose.Schema({
     maxLength: [LAST_NAME_MAX_LENGTH, LAST_NAME_MAX_LENGTH_ERROR_MESSAGE],
     match: [/^[A-za-z]+$/, ONLY_LETTERS_LAST_NAME_EXCEPTION_MESSAGE],
   }, 
+  birthday: {
+    type:String,
+    match: [/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/, "Please enter a valid date"],
+  },
+  specialDay: {
+    type:String,
+    match: [/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/, "Please enter a valid date"],
+  }
   // phoneNumber: {
   //   type: String,
   //   // required: [true, "Phone Number is required!"],

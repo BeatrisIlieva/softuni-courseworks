@@ -9,7 +9,7 @@ exports.create = async (userId) => {
 exports.getOne = async (userId) => {
   const address = await AddressBook.findOne({
     user: userId,
-  }).lean();
+  });
 
   return address;
 };

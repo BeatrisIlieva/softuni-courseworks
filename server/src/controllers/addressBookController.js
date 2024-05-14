@@ -7,7 +7,6 @@ router.get("/display/:userId", async (req, res) => {
 
   try {
     const data = await addressBookManager.getOne(userId);
-    console.log(data)
     res.json(data);
   } catch (err) {
     res.status(400).json({

@@ -11,7 +11,7 @@ exports.create = async (userId, firstName, lastName) => {
 exports.getOne = async (userId) => {
   const profile = await Profile.findOne({
     user: userId,
-  }).lean();
+  });
 
   return profile;
 };

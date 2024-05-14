@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import buttonStyles from "../../commonCSS/Button.module.css";
-import { BagPopupTemplate } from "./BagPopupTemplate"
+import { BagPopupTemplate } from "./BagPopupTemplate";
 
 export const BagPopup = () => {
   const bagService = useService(bagServiceFactory);
@@ -103,31 +103,42 @@ export const BagPopup = () => {
             <span className={styles["popup-items"]}>
               {totalQuantity} {totalQuantity > 1 ? "items" : "item"}
             </span>
-            <FontAwesomeIcon
-                    icon={faXmark}
-                    className={styles["x-mark"]}
-                  />
+            <FontAwesomeIcon icon={faXmark} className={styles["x-mark"]} />
           </h2>
           <p className={styles["popup-delivery"]}>Delivery</p>
           <ul className={styles["popup-jewelry-container"]} role="list">
-                {bagItems.map((item) => (
-                  <li
-                    key={item._id}
-                    className={styles["popup-jewelry-sub-container"]}
-                  >
-                    <BagPopupTemplate
-                      {...item}
-                      onRemove={onRemove}
-                      onDecrement={onDecrement}
-                      onQuantityChange={onQuantityChange}
-                      onBlur={onBlur}
-                      onIncrement={onIncrement}
-                    />
-                  </li>
-                ))}
-              </ul>
+            {bagItems.map((item) => (
+              <li
+                key={item._id}
+                className={styles["popup-jewelry-sub-container"]}
+              >
+                <BagPopupTemplate
+                  {...item}
+                  onRemove={onRemove}
+                  onDecrement={onDecrement}
+                  onQuantityChange={onQuantityChange}
+                  onBlur={onBlur}
+                  onIncrement={onIncrement}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
-        
+        {/* <div className={styles["bag-right-sub-right-container"]}>
+          <p className={styles["bag-right-sub-container-bold"]}>Total</p>
+          <p
+            className={`${styles["bag-right-sub-container-absolute"]} ${styles["bag-right-sub-container-bold"]}`}
+          >
+            ${totalPrice}
+          </p>
+        </div>
+        <div className={styles["continue-checkout-button-container"]}>
+          <input
+            className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
+            type="submit"
+            value="Continue Checkout"
+          />
+        </div> */}
       </div>
     </div>
   );

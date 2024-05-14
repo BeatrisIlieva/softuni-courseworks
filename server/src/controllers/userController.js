@@ -3,7 +3,6 @@ const userManager = require("../managers/userManager");
 const addressManager = require("../managers/addressBookManager");
 
 router.post("/register", async (req, res) => {
-  console.log(req.body)
   const { email, password, firstName, lastName } = req.body;
 
   try {

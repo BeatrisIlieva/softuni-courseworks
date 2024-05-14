@@ -10,6 +10,7 @@ export const authServiceFactory = (token) => {
 
     register: (data) => request.post(`${baseUrl}/register`, data),
 
+
     edit: (data, userId) => request.put(`${baseUrl}/profiles/${userId}`, data),
 
     editEmail: (data) => request.put(`${baseUrl}/edit-email`, data),
