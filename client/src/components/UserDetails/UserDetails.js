@@ -26,18 +26,6 @@ export const UserDetails = () => {
   });
 
 
-
-  // const [showAddressBook, setShowAddressBook] = useState(false);
-
-  // const onAddressBookClick = async () => {
-  //   document.body.style.overflow = "hidden";
-  //   setShowAddressBook(true);
-  // };
-
-  // const onAddressBookSubmit = () => {
-  //   setShowAddressBook(false);
-  // }
-
   // const onCloseAddressBook = () => {
   //   setShowAddressBook(false);
   // };
