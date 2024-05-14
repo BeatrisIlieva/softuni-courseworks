@@ -25,20 +25,6 @@ export const UserDetails = () => {
     [FormKeys.SpecialDay]: { value: "", focusField: false },
   });
 
-  // useEffect(() => {
-  //   profileService.display(userId)
-  //     .then((dataFromServer) => {
-  //       const updatedValues = {
-  //         ...values,
-  //         [FormKeys.FirstName]: { value: dataFromServer[FormKeys.FirstName], focusField: false },
-  //       };
-  //       setValues(updatedValues);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []); 
-
   useEffect(() => {
     profileService.display(userId)
       .then((dataFromServer) => {
