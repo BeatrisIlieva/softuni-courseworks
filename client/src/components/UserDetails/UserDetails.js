@@ -64,7 +64,6 @@ export const UserDetails = () => {
   const onBlurField = () => {
     setValues((prevValues) => {
       const updatedValues = { ...prevValues };
-      // Set focus to false for all fields
       for (let key in updatedValues) {
         updatedValues[key].focusField = true ? values[key].value : false
       }
