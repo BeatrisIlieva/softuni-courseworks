@@ -12,7 +12,7 @@ export const ToggleMenu = ({ options, title, subtitle }) => {
     setMenuOpen((prevState) => !prevState);
   };
 
-  const handleMenuItemClick = (action) => {
+  const handleMenuItemClick = () => {
     setMenuOpen(false);
   };
 

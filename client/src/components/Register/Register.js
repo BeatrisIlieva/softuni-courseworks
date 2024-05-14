@@ -101,6 +101,13 @@ export const Register = () => {
 
   return (
     <section className={registerStyles["register-box"]}>
+            <div className={registerStyles["register-image"]}>
+        <img
+        className={registerStyles["register-image-img "]}
+          src="https://res.cloudinary.com/deztgvefu/image/upload/v1715634191/template_images/herolarged_ny24_plp_cl_earrings_qswzmg.avif"
+          alt="image"
+        />
+      </div>
       <h2 className={registerStyles["register-title"]}>New Customer</h2>
       <form
         className={registerStyles["form-container"]}

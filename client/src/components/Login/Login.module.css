@@ -6,9 +6,8 @@
 
 .login-image {
   aspect-ratio: 1 / 1;
-  width: 850px;
-  height: 330px;
-  margin-bottom: 20px;
+  width: 960px;
+  height: 470px;
   z-index: 1;
 }
 
@@ -21,17 +20,17 @@
 
 
 .login-container {
-  margin-left: 200px;
-  margin-right: 200px;
+  /* margin-left: 200px;
+  margin-right: 200px;  */
   display: flex;
   gap: 20px;
 }
 
 .login-title {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   font-size: 22px;
   color: rgba(0, 0, 0, 0.782);
-  margin-top: 90px;
+  margin-top: 40px;
 }
 
 .login-subtitle {
@@ -46,9 +45,9 @@
   gap: 20px;
 }
 
-.left-login-container {
-  width: 50%;
-}
-.right-login-container {
-  width: 50%;
-}
+  .left-login-container {
+    width: 50%;
+  }
+  .right-login-container {
+    width: 50%;
+  }

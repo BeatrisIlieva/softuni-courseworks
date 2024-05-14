@@ -40,7 +40,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const onLoginSubmit = async (data) => {
+  const onLoginSubmit = async (values) => {
+    const email = values.email.value;
+    const password = values.password.value;
+
+    const data = {email, password};
+
     try {
       const result = await authService.login({ ...data });
       setAuth(result["token"]);

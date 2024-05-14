@@ -83,6 +83,7 @@ export const Login = () => {
     <section className={`${loginStyles["login-box"]}`}>
       <div className={loginStyles["login-image"]}>
         <img
+        className={loginStyles["login-image-img"]}
           src="https://res.cloudinary.com/deztgvefu/image/upload/v1715602900/template_images/herolarged_ny24_plp_718_necklace_blue_g0wqz9.jpg"
           alt="image"
         />
@@ -146,7 +147,7 @@ export const Login = () => {
                 {values[LoginFormKeys.Password]["focusField"] && (
                   <input
                     className={formStyles["input-spot"]}
-                    type="text"
+                    type="password"
                     name={LoginFormKeys.Password}
                     id="password"
                     value={values[LoginFormKeys.Password].value}
