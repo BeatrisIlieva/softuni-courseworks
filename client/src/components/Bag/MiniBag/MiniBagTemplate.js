@@ -82,18 +82,6 @@ export const MiniBagTemplate = ({
           Size: {sizeTitle ? sizeTitle : `${size.$numberDecimal} cm.`}
         </span>
         <div className={styles["popup-composition-button-container"]}>
-          {/* <button
-            className={styles["popup-bag-composition-button"]}
-            onClick={() => onRemove(_id)}
-          >
-            Edit
-          </button>
-          <button
-            className={styles["popup-bag-composition-button"]}
-            onClick={() => onRemove(_id)}
-          >
-            Move to wishlist
-          </button> */}
           <button
             className={styles["popup-bag-composition-button"]}
             onClick={() => onRemove(_id)}
