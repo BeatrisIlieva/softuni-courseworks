@@ -101,7 +101,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
         <div className={styles["modal-dialog"]}>
           <div className={styles["modal-content"]}>
             <div className={styles["modal-header"]}>
-              <div id={styles["xMark"]}>
+              <div id={styles["xMark"]} onClick={() => onCloseAddressBook()}>
                 <FontAwesomeIcon icon={faXmark} className={styles["x-mark"]} />
               </div>
               <h2 className={styles["title"]}>Add a New Address</h2>

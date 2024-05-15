@@ -94,11 +94,12 @@ export const UserDetails = () => {
   };
 
   const onAddressBookSubmit = () => {
+    document.body.style.overflow = "visible";
     setShowAddressBook(false);
   };
 
   const onCloseAddressBook = () => {
-    // document.body.style.overflow = "visible";
+    document.body.style.overflow = "visible";
     setShowAddressBook(false);
   };
 

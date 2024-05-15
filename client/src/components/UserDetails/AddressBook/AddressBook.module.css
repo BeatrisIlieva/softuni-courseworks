@@ -58,6 +58,8 @@
 #xMark {
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
+  padding: 10px;
 }
 .x-mark {
   padding: 26px 26px 26px 26px;

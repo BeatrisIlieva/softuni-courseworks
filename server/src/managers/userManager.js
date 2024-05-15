@@ -25,7 +25,7 @@ exports.register = async (userData) => {
 
   await profileManager.create(createdUser._id, firstName, lastName);
 
-  await addressManager.create(createdUser._id);
+  await addressManager.create(createdUser._id, firstName, lastName);
 
   return { token, userId };
 };

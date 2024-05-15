@@ -1,8 +1,10 @@
 const AddressBook = require("../models/AddressBook");
 
-exports.create = async (userId) => {
+exports.create = async (userId, firstName, lastName) => {
   await AddressBook.create({
     user: userId,
+    firstName,
+    lastName
   });
 };
 
