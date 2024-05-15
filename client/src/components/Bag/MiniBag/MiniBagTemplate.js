@@ -1,14 +1,10 @@
 import styles from "./MiniBag.module.css";
-import { Fragment } from "react";
-import { useState } from "react";
 
 export const MiniBagTemplate = ({
   _id,
   firstImageUrl,
   jewelryTitle,
   categoryTitle,
-  metalInfo,
-  stoneInfo,
   sizeTitle,
   totalPrice,
   minQuantity,
