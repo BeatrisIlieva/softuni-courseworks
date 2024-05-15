@@ -30,6 +30,12 @@ exports.register = async (userData) => {
   return { token, userId };
 };
 
+exports.getOne = async(userId) => {
+  const user = await User.findById(userId);
+
+  return user;
+}
+
 exports.login = async (email, password) => {
   const user = await User.findOne({ email });
 
@@ -67,14 +73,16 @@ async function generateToken(user) {
 }
 
 exports.changeEmail = async (email, password, userId) => {
-  user = await User.findById(userId);
+  let user = await User.findById(userId);
+  
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {
     throw new Error("Ensure you enter a valid password.");
   } else {
-    await User.findByIdAndUpdate(userId, { email: email });
+    user = await User.findByIdAndUpdate(userId, { email: email });
+    return user
   }
 };
 
@@ -84,7 +92,7 @@ exports.changePassword = async (
   repeatPassword,
   userId
 ) => {
-  user = await User.findById(userId);
+  const user = await User.findById(userId);
 
   const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
 

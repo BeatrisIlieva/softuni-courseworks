@@ -9,12 +9,11 @@ router.post("/register", async (req, res) => {
     const { token, userId } = await userManager.register({
       email,
       password,
-      firstName, 
+      firstName,
       lastName,
     });
 
     res.status(200).json({ token, userId });
-
   } catch (err) {
     console.log(err.message);
     res.status(400).json({
@@ -25,7 +24,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const {email, password} = {...req.body}
+    const { email, password } = { ...req.body };
     const result = await userManager.login(email, password);
     console.log(result);
 
@@ -38,40 +37,51 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-    res.end();
-})
+  res.end();
+});
 
 router.get("/edit/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
     address = await addressManager.getOne(userId);
 
-    res.json({address});
+    res.json({ address });
   } catch (err) {
     res.status(400).json({
       message: err.message,
     });
   }
-})
+});
+
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await userManager.getOne(userId);
+    res.json(user)
+  } catch (err) {
+    res.status(400).json({
+      message: err.message,
+    });
+  }
+});
+
+router.put("/edit-email/:userId",  async (req, res) => {
+  const { email, password } = req.body;
+  const userId = req.user._id;
 
 
+  try {
+    const user = await userManager.changeEmail(email, password, userId);
 
-// router.post("/change-email", isAuth, async (req, res) => {
-//   const { email, password } = req.body;
-//   userId = req.user._id;
-
-//   try {
-//     await userManager.changeEmail(email, password, userId);
-
-//     req.flash("success", "Email updated successfully!");
-
-//     res.status(200).json();
-//   } catch (err) {
-//       console.log(err.message);
-//       res.status(400).json({
-//         message: "Some error"})
-//   }
-// });
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err.message);
+    res.status(400).json({
+      message: "Some error",
+    });
+  }
+});
 
 // router.post("/change-password", isAuth, async (req, res) => {
 //   const { oldPassword, password, repeatPassword } = req.body;
@@ -97,14 +107,12 @@ router.get("/edit/:userId", async (req, res) => {
 //   }
 // });
 
-
 // router.post("/login", async (req, res, next) => {
 //   const { email, password } = req.body;
-   
 
 //     try {
 //       const { token, user } = await userManager.login(email, password);
-      
+
 //           res.json({token, user});
 //         } catch (err) {
 //           res.status(400).json({
@@ -112,8 +120,6 @@ router.get("/edit/:userId", async (req, res) => {
 //           });
 //         }
 // });
-
-
 
 // module.exports = router;
 

@@ -51,7 +51,7 @@
 .input-field-container-name input[type="password"],
 .input-field-container-name input[type="email"] {
   border: none;
-  width: 40ch;
+  width: 32ch;
   background-color: transparent;
 }
 
@@ -124,6 +124,7 @@
   margin: 0;
   padding: 4px;
   margin-left: 12px;
+  overflow: hidden;
 }
 
 .form-list {

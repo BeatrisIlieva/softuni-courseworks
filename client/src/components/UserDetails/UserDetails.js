@@ -3,6 +3,7 @@ import buttonStyles from "../../commonCSS/Button.module.css";
 import colorStyles from "../../commonCSS/Colors.module.css";
 import { profileServiceFactory } from "../../services/profileService";
 import { AddressBook } from "./AddressBook/AddressBook";
+import { UpdateEmail } from "./UpdateEmail/UpdateEmail";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useService } from "../../hooks/useService";
@@ -101,6 +102,23 @@ export const UserDetails = () => {
   const onCloseAddressBook = () => {
     document.body.style.overflow = "visible";
     setShowAddressBook(false);
+  };
+
+  const [showUpdateEmail, setShowUpdateEmail] = useState(false);
+
+  const onUpdateEmailClick = async () => {
+ 
+    setShowUpdateEmail(true);
+  };
+
+  const onUpdateEmailSubmit = () => {
+
+    setShowUpdateEmail(false);
+  };
+
+  const onCloseUpdateEmail = () => {
+    document.body.style.overflow = "visible";
+    setShowUpdateEmail(false);
   };
 
   return (
@@ -258,7 +276,7 @@ export const UserDetails = () => {
             </div>
           </div>
           <div className={styles["left-bottom-sub-container"]}>
-          <button
+            <button
               className={buttonStyles["button"]}
               onClick={() => onAddressBookClick()}
             >
@@ -280,33 +298,56 @@ export const UserDetails = () => {
               </h3>
               <h5 className={styles["login-subtitle"]}>Email Address</h5>
               <p className={styles["login-email"]}>{userEmail}</p>
-              <p className={styles["update"]}>Update Email Address</p>
-              <p className={styles["update"]}>Change Password</p>
+              <button
+                className={`${styles["update"]} ${buttonStyles["button"]}`}
+                onClick={() => onUpdateEmailClick()}
+              >
+                Update Email Address
+              </button>
+              {showAddressBook && (
+                <AddressBook
+                  onCloseAddressBook={onCloseAddressBook}
+                  onAddressBookSubmit={onAddressBookSubmit}
+                />
+              )}
+              <button
+                className={`${styles["update"]} ${buttonStyles["button"]}`}
+                onClick={() => onAddressBookClick()}
+              >
+                Change Password
+              </button>
+              {showUpdateEmail && (
+                <UpdateEmail
+                  onUpdateEmailSubmit={onUpdateEmailSubmit}
+                />
+              )}
             </div>
           </div>
           <div className={styles["right-bottom-sub-container"]}>
-          <div className={styles["address-box"]}>
-            <h3 className={styles["container-title-address"]}>Address Book</h3>
-            <hr className={styles["horizontal-line-address"]} />
-            {showAddressBook && (
-              <AddressBook
-                onCloseAddressBook={onCloseAddressBook}
-                onAddressBookSubmit={onAddressBookSubmit}
-              />
-            )}
-            <button
-              className={buttonStyles["button"]}
-              onClick={() => onAddressBookClick()}
-            >
-              <div className={styles["address-button-container"]}>
-                <FontAwesomeIcon
-                  icon={faCirclePlus}
-                  className={`${colorStyles["dark-pink"]} ${styles["address-icon"]}`}
+            <div className={styles["address-box"]}>
+              <h3 className={styles["container-title-address"]}>
+                Address Book
+              </h3>
+              <hr className={styles["horizontal-line-address"]} />
+              {showAddressBook && (
+                <AddressBook
+                  onCloseAddressBook={onCloseAddressBook}
+                  onAddressBookSubmit={onAddressBookSubmit}
                 />
-                <div>Add new address book</div>
-              </div>
-            </button>
-          </div>
+              )}
+              <button
+                className={buttonStyles["button"]}
+                onClick={() => onAddressBookClick()}
+              >
+                <div className={styles["address-button-container"]}>
+                  <FontAwesomeIcon
+                    icon={faCirclePlus}
+                    className={`${colorStyles["dark-pink"]} ${styles["address-icon"]}`}
+                  />
+                  <div>Add new address book</div>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
