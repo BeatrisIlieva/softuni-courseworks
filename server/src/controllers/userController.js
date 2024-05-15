@@ -83,29 +83,28 @@ router.put("/edit-email/:userId",  async (req, res) => {
   }
 });
 
-// router.post("/change-password", isAuth, async (req, res) => {
-//   const { oldPassword, password, repeatPassword } = req.body;
-//   userId = req.user._id;
+router.put("/change-password/:userId", async (req, res) => {
+  const { oldPassword, newPassword} = req.body;
+  const userId = req.user._id;
+  console.log("controller");
+  console.log(userId);
+  console.log(req.user._id);
 
-//   const email = req.user.email;
+  try {
+    const user = await userManager.changePassword(
+      oldPassword,
+      newPassword,
+      userId
+    );
 
-//   try {
-//     await userManager.changePassword(
-//       oldPassword,
-//       password,
-//       repeatPassword,
-//       userId
-//     );
-
-//     req.flash("success", "Password updated successfully!");
-
-//     res.redirect("/profiles/edit");
-//   } catch (err) {
-//     res.status(400).json({
-//       message: "Some error",
-//     });
-//   }
-// });
+    res.status(200).json(user);
+  } catch (err) {
+    console.log(err.message);
+    res.status(400).json({
+      message: "Some error",
+    });
+  }
+});
 
 // router.post("/login", async (req, res, next) => {
 //   const { email, password } = req.body;

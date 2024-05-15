@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const { DEFAULT_SALT } = require("../constants/password");
 const jwt = require("../lib/jwt");
 const User = require("../models/User");
 const profileManager = require("./profileManager");
@@ -88,20 +89,22 @@ exports.changeEmail = async (email, password, userId) => {
 
 exports.changePassword = async (
   oldPassword,
-  password,
-  repeatPassword,
+  newPassword,
   userId
 ) => {
   const user = await User.findById(userId);
+  console.log("manager")
+  console.log(user);
 
   const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
+  console.log(isPasswordValid)
 
   if (!isPasswordValid) {
     throw new Error("Ensure you enter a valid password.");
   } else {
-    user.password = password;
-    user.repeatPassword = repeatPassword;
-    await user.save();
+    const hash = await bcrypt.hash(newPassword, DEFAULT_SALT);
+    const user = await User.findByIdAndUpdate(userId, {password: hash});
+    return user;
   }
 };
 

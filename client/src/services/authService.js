@@ -17,6 +17,8 @@ export const authServiceFactory = (token) => {
 
     editEmail: (userId, data) => request.put(`${baseUrl}/edit-email/${userId}`, data),
 
+    changePassword: (userId, data) => request.put(`${baseUrl}/change-password/${userId}`, data),
+
     editPassword: (data) => request.put(`${baseUrl}/edit-password`, data),
 
     logout: () => request.get(`${baseUrl}/logout`),

@@ -34,6 +34,7 @@ userSchema.pre("save", async function () {
   this.password = hash;
 });
 
+
 userSchema.pre("save", async function () {
   const currentId = await setID();
 

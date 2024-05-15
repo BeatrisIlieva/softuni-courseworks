@@ -4,6 +4,7 @@ import colorStyles from "../../commonCSS/Colors.module.css";
 import { profileServiceFactory } from "../../services/profileService";
 import { AddressBook } from "./AddressBook/AddressBook";
 import { UpdateEmail } from "./UpdateEmail/UpdateEmail";
+import { UpdatePassword } from "./UpdatePassword/UpdatePassword";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useService } from "../../hooks/useService";
@@ -107,17 +108,30 @@ export const UserDetails = () => {
   const [showUpdateEmail, setShowUpdateEmail] = useState(false);
 
   const onUpdateEmailClick = async () => {
- 
     setShowUpdateEmail(true);
+    setShowUpdatePassword(false);
   };
 
   const onUpdateEmailSubmit = () => {
-
-    setShowUpdateEmail(false);
+    setShowUpdateEmail();
   };
 
   const onCloseUpdateEmail = () => {
-    document.body.style.overflow = "visible";
+    setShowUpdateEmail(false);
+  };
+
+  const [showUpdatePassword, setShowUpdatePassword] = useState(false);
+
+  const onUpdatePasswordClick = async () => {
+    setShowUpdatePassword(true);
+    setShowUpdateEmail(false);
+  };
+
+  const onUpdatePasswordSubmit = () => {
+    setShowUpdatePassword();
+  };
+
+  const onCloseUpdatePassword = () => {
     setShowUpdateEmail(false);
   };
 
@@ -304,21 +318,24 @@ export const UserDetails = () => {
               >
                 Update Email Address
               </button>
-              {showAddressBook && (
-                <AddressBook
-                  onCloseAddressBook={onCloseAddressBook}
-                  onAddressBookSubmit={onAddressBookSubmit}
-                />
-              )}
               <button
                 className={`${styles["update"]} ${buttonStyles["button"]}`}
-                onClick={() => onAddressBookClick()}
+                onClick={() => onUpdatePasswordClick()}
               >
                 Change Password
               </button>
               {showUpdateEmail && (
-                <UpdateEmail
-                  onUpdateEmailSubmit={onUpdateEmailSubmit}
+                <UpdateEmail onUpdateEmailSubmit={onUpdateEmailSubmit} />
+              )}
+              {showUpdatePassword && (
+                <UpdatePassword
+                  onUpdatePasswordSubmit={onUpdatePasswordSubmit}
+                />
+              )}
+              {showAddressBook && (
+                <AddressBook
+                  onCloseAddressBook={onCloseAddressBook}
+                  onAddressBookSubmit={onAddressBookSubmit}
                 />
               )}
             </div>
