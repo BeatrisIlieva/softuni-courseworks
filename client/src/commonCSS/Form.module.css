@@ -25,6 +25,17 @@
   height: 40px;
 }
 
+
+.input-field-name {
+  width: 293px;
+  height: 40px;
+}
+
+.input-field-details {
+  width: 626px;
+  height: 40px;
+}
+
 .input-field-container input[type="text"],
 .input-field-container input[type="password"],
 .input-field-container input[type="email"],

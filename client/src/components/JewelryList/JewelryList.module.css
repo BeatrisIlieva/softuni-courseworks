@@ -1,6 +1,7 @@
 .jewelry-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 42px 42px;
     text-align: center;
+    margin: 40px 200px;
   }

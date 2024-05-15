@@ -20,6 +20,11 @@
   margin-top: 20px;
 }
 
+.button.address {
+  margin-bottom: 20px;
+  width: 293px
+}
+
 .button.pink {
   background-color: pink;
   border: 1px solid #fc8eac;
@@ -27,5 +32,17 @@
 
 .button.pink:hover {
   background-color: white;
+}
+
+.button.data-dismiss {
+  text-decoration: underline;
+  /* padding: 20px; */
+  color: rgba(0, 0, 0, 0.649);
+  letter-spacing: 1.5px;
+}
+
+.button.save {
+  margin-bottom: 6px;
+  width: 293px
 }
 

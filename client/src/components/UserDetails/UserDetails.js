@@ -98,7 +98,7 @@ export const UserDetails = () => {
   };
 
   const onCloseAddressBook = () => {
-    document.body.style.overflow = "visible";
+    // document.body.style.overflow = "visible";
     setShowAddressBook(false);
   };
 
@@ -215,13 +215,13 @@ export const UserDetails = () => {
                     )}
                   </div>
                 </div>
-                <div
+                {/* <div
                   className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
                 >
                   <div
                     onClick={() => onFocusField("specialDay")}
                     onBlur={onBlurField}
-                    className={formStyles["input-field-container-profile"]}
+                    className={`${formStyles["input-field-container-profile"]}}`}
                   >
                     <p
                       className={
@@ -230,7 +230,8 @@ export const UserDetails = () => {
                           : formStyles["placeholder"]
                       }
                     >
-                      Anniversary/Wedding (MM/DD/YYYY)
+                      Anniversary/Wedding <br />
+                      (MM/DD/YYYY)
                     </p>
                     {values[FormKeys.SpecialDay]["focusField"] && (
                       <input
@@ -246,7 +247,7 @@ export const UserDetails = () => {
                       />
                     )}
                   </div>
-                </div>
+                </div> */}
                 <input
                   className={`${buttonStyles["button"]} ${buttonStyles["register"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
                   type="submit"
