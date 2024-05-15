@@ -93,8 +93,6 @@ exports.changePassword = async (
   userId
 ) => {
   const user = await User.findById(userId);
-  console.log("manager")
-  console.log(user);
 
   const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
   console.log(isPasswordValid)

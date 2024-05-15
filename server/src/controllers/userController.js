@@ -86,9 +86,6 @@ router.put("/edit-email/:userId",  async (req, res) => {
 router.put("/change-password/:userId", async (req, res) => {
   const { oldPassword, newPassword} = req.body;
   const userId = req.user._id;
-  console.log("controller");
-  console.log(userId);
-  console.log(req.user._id);
 
   try {
     const user = await userManager.changePassword(
