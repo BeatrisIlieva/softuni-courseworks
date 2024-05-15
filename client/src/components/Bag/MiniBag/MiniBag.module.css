@@ -69,11 +69,7 @@
   overflow: hidden;
 }
 
-.modal-content {
-  /* display: flex;
-    flex-direction: column;
-    flex-wrap: wrap; */
-}
+
 
 .modal-body {
   padding: 20px;
