@@ -34,11 +34,55 @@ export const BagPopupTemplate = ({
         <h2 className={styles["jewelry-popup-composition-title"]}>
           {jewelryTitle} {categoryTitle}
         </h2>
+        {/* <ul role="list">
+          {metalInfo.map((metalItem, index) => (
+            <Fragment key={`metal_${index}`}>
+              {metalItem.map((i, metalIndex) => (
+                <li
+                  key={`metal_${i.metalId}_${metalIndex}`}
+                  className={styles["bag-composition-metal"]}
+                >
+                  {i.caratWeight &&
+                    i.caratWeight.$numberDecimal &&
+                    `${i.caratWeight.$numberDecimal}ct.`}{" "}
+                  {i.metal}
+                  {index !== metalInfo.length - 1 && (
+                    <>
+                      ,<br />
+                    </>
+                  )}
+                </li>
+              ))}
+            </Fragment>
+          ))}
+        </ul>
+        <ul role="list">
+          {stoneInfo.map((stoneItem, index) => (
+            <Fragment key={`stone_${index}`}>
+              {stoneItem.map((i, stoneIndex) => (
+                <li
+                  key={`stone_${i.stoneId}_${stoneIndex}`}
+                  className={styles["bag-composition-stone"]}
+                >
+                  {i.caratWeight &&
+                    i.caratWeight.$numberDecimal &&
+                    `${i.caratWeight.$numberDecimal}ct.`}{" "}
+                  {i.stoneColor} {i.stoneType}
+                  {index !== stoneInfo.length - 1 && (
+                    <>
+                      ,<br />
+                    </>
+                  )}
+                </li>
+              ))}
+            </Fragment>
+          ))}
+        </ul> */}
         <span className={styles["popup-composition-size"]}>
           Size: {sizeTitle ? sizeTitle : `${size.$numberDecimal} cm.`}
         </span>
         <div className={styles["popup-composition-button-container"]}>
-          <button
+          {/* <button
             className={styles["popup-bag-composition-button"]}
             onClick={() => onRemove(_id)}
           >
@@ -49,7 +93,7 @@ export const BagPopupTemplate = ({
             onClick={() => onRemove(_id)}
           >
             Move to wishlist
-          </button>
+          </button> */}
           <button
             className={styles["popup-bag-composition-button"]}
             onClick={() => onRemove(_id)}

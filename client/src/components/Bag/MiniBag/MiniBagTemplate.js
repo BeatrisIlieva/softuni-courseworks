@@ -1,7 +1,8 @@
-import styles from "./Bag.module.css";
+import styles from "./MiniBag.module.css";
 import { Fragment } from "react";
+import { useState } from "react";
 
-export const BagTemplate = ({
+export const MiniBagTemplate = ({
   _id,
   firstImageUrl,
   jewelryTitle,
@@ -22,18 +23,18 @@ export const BagTemplate = ({
 }) => {
   return (
     <>
-      <div className={styles["jewelry-bag-image"]}>
+      <div className={styles["jewelry-popup-image"]}>
         <img
-          className={styles["jewelry-bag-img"]}
+          className={styles["jewelry-popup-img"]}
           src={firstImageUrl}
           alt={firstImageUrl}
         />
       </div>
-      <div className={styles["jewelry-bag-composition"]}>
-        <h2 className={styles["jewelry-bag-composition-title"]}>
+      <div className={styles["popup-container-open"]}>
+        <h2 className={styles["jewelry-popup-composition-title"]}>
           {jewelryTitle} {categoryTitle}
         </h2>
-        <ul role="list">
+        {/* <ul role="list">
           {metalInfo.map((metalItem, index) => (
             <Fragment key={`metal_${index}`}>
               {metalItem.map((i, metalIndex) => (
@@ -76,43 +77,43 @@ export const BagTemplate = ({
               ))}
             </Fragment>
           ))}
-        </ul>
-        <span className={styles["jewelry-bag-composition-size"]}>
+        </ul> */}
+        <span className={styles["popup-composition-size"]}>
           Size: {sizeTitle ? sizeTitle : `${size.$numberDecimal} cm.`}
         </span>
-        <div className={styles["jewelry-bag-composition-button-container"]}>
-          <button
-            className={styles["jewelry-bag-composition-button"]}
+        <div className={styles["popup-composition-button-container"]}>
+          {/* <button
+            className={styles["popup-bag-composition-button"]}
             onClick={() => onRemove(_id)}
           >
             Edit
           </button>
           <button
-            className={styles["jewelry-bag-composition-button"]}
+            className={styles["popup-bag-composition-button"]}
             onClick={() => onRemove(_id)}
           >
             Move to wishlist
-          </button>
+          </button> */}
           <button
-            className={styles["jewelry-bag-composition-button"]}
+            className={styles["popup-bag-composition-button"]}
             onClick={() => onRemove(_id)}
           >
             Remove
           </button>
         </div>
       </div>
-      <div className={styles["jewelry-bag-price-quantity"]}>
-        <h4 className={styles["jewelry-bag-price"]}>${totalPrice}</h4>
-        <div className={styles["jewelry-bag-quantity"]}>
+      <div className={styles["popup-bag-price-quantity"]}>
+        <h4 className={styles["popup-bag-price"]}>${totalPrice}</h4>
+        <div className={styles["popup-bag-quantity"]}>
           <div>
             <button
-              className={styles["jewelry-bag-quantity-button"]}
+              className={styles["popup-bag-quantity-button"]}
               onClick={() => onDecrement(_id)}
             >
               <i class="fas fa-minus"></i>
             </button>
           </div>
-          <div className={styles["jewelry-bag-quantity-input"]}>
+          <div className={styles["popup-bag-quantity-input"]}>
             <input
               name={_id}
               min={minQuantity}
@@ -125,7 +126,7 @@ export const BagTemplate = ({
           </div>
           <div>
             <button
-              className={styles["jewelry-bag-quantity-button"]}
+              className={styles["popup-bag-quantity-button"]}
               onClick={() => onIncrement(_id)}
             >
               <i class="fas fa-plus"></i>

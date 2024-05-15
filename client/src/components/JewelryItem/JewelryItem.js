@@ -5,12 +5,12 @@ import { useService } from "../../hooks/useService";
 import styles from "./JewelryItemTemplate.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
 import { bagServiceFactory } from "../../services/bagService";
-import { BagPopup } from "../Bag/BagPopup";
+import { MiniBag } from "../Bag/MiniBag/MiniBag";
 
 export const JewelryItem = () => {
   const { categoryId, jewelryId } = useParams();
   const [jewelry, setJewelry] = useState();
-  const [bagPopup, setBagPopup] = useState(false);
+  const [miniBag, setMiniBag] = useState(false);
   const jewelryService = useService(jewelryServiceFactory);
   const bagService = useService(bagServiceFactory);
 
@@ -38,11 +38,6 @@ export const JewelryItem = () => {
     setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
   };
 
-    
-  
-     
-
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -54,7 +49,7 @@ export const JewelryItem = () => {
       await bagService.add(values, jewelry._id);
     }
 
-    setBagPopup(true);
+    setMiniBag(true);
 
     document.body.style.overflow = "hidden";
 
@@ -64,7 +59,7 @@ export const JewelryItem = () => {
   if (categoryId === "2") {
     return (
       <>
-        <>{bagPopup && <BagPopup />}</>
+        <>{miniBag && <MiniBag />}</>
         {jewelry && (
           <div className={styles["jewelry-details-container"]}>
             <div className={styles["jewelry-details-images-container"]}>
@@ -157,7 +152,7 @@ export const JewelryItem = () => {
   } else {
     return (
       <>
-        <>{bagPopup && <BagPopup />}</>
+        <>{miniBag && <MiniBag />}</>
         {jewelry && (
           <div className={styles["jewelry-details-container"]}>
             <div className={styles["jewelry-details-images-container"]}>

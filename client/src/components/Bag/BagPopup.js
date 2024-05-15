@@ -94,52 +94,66 @@ export const BagPopup = () => {
   };
 
   return (
-    <div className={styles["popup-container"]}>
-      <div className={styles["left-container"]}></div>
-      <div className={styles["right-container"]}>
-        <div className={styles["popup"]}>
-          <h2 className={styles["popup-title"]}>
-            Your Bag{" "}
-            <span className={styles["popup-items"]}>
-              {totalQuantity} {totalQuantity > 1 ? "items" : "item"}
-            </span>
-            <FontAwesomeIcon icon={faXmark} className={styles["x-mark"]} />
-          </h2>
-          <p className={styles["popup-delivery"]}>Delivery</p>
-          <ul className={styles["popup-jewelry-container"]} role="list">
-            {bagItems.map((item) => (
-              <li
-                key={item._id}
-                className={styles["popup-jewelry-sub-container"]}
+    <section
+      id={styles["bagPopup"]}
+      role="dialog"
+      aria-modal="true"
+      tabIndex={-1}
+    >
+      <div className={styles["modal-dialog"]}>
+        <div className={styles["modal-content"]}>
+          <div className={styles["modal-header"]}>
+            {/* onClick={() => onCloseAddressBook()} */}
+            <h2 className={styles["popup-title"]}>
+              Your Bag
+              <span className={styles["popup-items"]}>
+                {totalQuantity} {totalQuantity > 1 ? "items" : "item"}
+              </span>
+            </h2>
+            <div id={styles["xMark"]}>
+              <FontAwesomeIcon icon={faXmark} className={styles["x-mark"]} />
+            </div>
+          </div>
+          <hr className={styles["horizontal-line"]} />
+          <div className={styles["modal-body"]}>
+            <p className={styles["popup-delivery"]}>Delivery</p>
+            <ul className={styles["popup-jewelry-container"]} role="list">
+              {bagItems.map((item) => (
+                <li
+                  key={item._id}
+                  className={styles["popup-jewelry-sub-container"]}
+                >
+                  <BagPopupTemplate
+                    {...item}
+                    onRemove={onRemove}
+                    onDecrement={onDecrement}
+                    onQuantityChange={onQuantityChange}
+                    onBlur={onBlur}
+                    onIncrement={onIncrement}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles["bag-popup-checkout-container"]}>
+            <div className={styles["bag-popup-total"]}>
+              <p className={styles["bag-right-sub-container-bold"]}>Total</p>
+              <p
+                className={`${styles["bag-right-sub-container-absolute"]} ${styles["bag-right-sub-container-bold"]}`}
               >
-                <BagPopupTemplate
-                  {...item}
-                  onRemove={onRemove}
-                  onDecrement={onDecrement}
-                  onQuantityChange={onQuantityChange}
-                  onBlur={onBlur}
-                  onIncrement={onIncrement}
-                />
-              </li>
-            ))}
-          </ul>
+                ${totalPrice}
+              </p>
+            </div>
+            <div className={styles["continue-checkout-button-container"]}>
+              <input
+                className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
+                type="submit"
+                value="Continue Checkout"
+              />
+            </div>
+          </div>
         </div>
-        {/* <div className={styles["bag-right-sub-right-container"]}>
-          <p className={styles["bag-right-sub-container-bold"]}>Total</p>
-          <p
-            className={`${styles["bag-right-sub-container-absolute"]} ${styles["bag-right-sub-container-bold"]}`}
-          >
-            ${totalPrice}
-          </p>
-        </div>
-        <div className={styles["continue-checkout-button-container"]}>
-          <input
-            className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
-            type="submit"
-            value="Continue Checkout"
-          />
-        </div> */}
       </div>
-    </div>
+    </section>
   );
 };
