@@ -69,8 +69,6 @@
   overflow: hidden;
 }
 
-
-
 .modal-body {
   padding: 20px;
   height: 380px;
@@ -90,7 +88,6 @@
 .popup-jewelry-sub-container {
   display: flex;
   position: relative;
-
 }
 
 .jewelry-popup-image {
@@ -110,7 +107,6 @@
 
 .jewelry-popup-composition-title {
   font-size: 14px;
-  /* padding: 8px; */
   padding-bottom: 6px;
   padding-top: 0 !important;
 }
@@ -158,8 +154,6 @@
 .popup-bag-price-quantity {
   display: flex;
   padding: 0px;
-  /* align-items: flex-end; */
-  /* width: 20px; */
 }
 
 .popup-bag-price {
@@ -214,12 +208,12 @@
 }
 
 .view-bag-button {
-    width: 530px;
-    margin: 16px;
-    background-color: white;
-    border: 1px solid pink;
-    margin-bottom: 0;
-  }
+  width: 530px;
+  margin: 16px;
+  background-color: white;
+  border: 1px solid pink;
+  margin-bottom: 0;
+}
 
 .bag-popup-total {
   display: flex;
@@ -239,5 +233,4 @@
 .bag-popup-checkout-container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
 }
