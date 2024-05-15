@@ -90,52 +90,6 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
     await addressBookService.update(userId, data);
   };
 
-  // const [showAddressBook, setShowAddressBook] = useState(false);
-
-  // const onAddressBookClick = async () => {
-  //   document.body.style.overflow = "hidden";
-  //   setShowAddressBook(true);
-  // };
-
-  // const onAddressBookSubmit = () => {
-  //   setShowAddressBook(false);
-  // };
-
-  // const onCloseAddressBook = () => {
-  //   document.body.style.overflow = "visible";
-  //   setShowAddressBook(false);
-  // };
-
-  // useEffect(() => {
-  //   addressBookService
-  //     .display(userId)
-  //     .then(setValues)
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // }, []);
-
-  // const [values, setValues] = useState({
-  //   [FormKeys.FirstName]: "",
-  //   [FormKeys.LastName]: "",
-  //   [FormKeys.PhoneNumber]: "",
-  //   [FormKeys.Country]: "",
-  //   [FormKeys.City]: "",
-  //   [FormKeys.Address]: "",
-  // });
-
-  // const changeHandler = (e) => {
-  //   setValues((state) => ({ ...state, [e.target.name]: e.target.value }));
-  // };
-
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   onAddressBookSubmit();
-
-  //   await addressBookService.update(userId, values);
-  // };
-
   return (
     <section
       id={styles["addAddress"]}
