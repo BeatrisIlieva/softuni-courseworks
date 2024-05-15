@@ -162,7 +162,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
                   <div
                     onClick={() => onFocusField("firstName")}
                     onBlur={onBlurField}
-                    className={formStyles["input-field-name"]}
+                    className={formStyles["input-field-container-name"]}
                   >
                     <p
                       className={
@@ -192,7 +192,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
                   <div
                     onClick={() => onFocusField("lastName")}
                     onBlur={onBlurField}
-                    className={formStyles["input-field-name"]}
+                    className={formStyles["input-field-container-name"]}
                   >
                     <p
                       className={
@@ -224,7 +224,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
                   <div
                     onClick={() => onFocusField("phoneNumber")}
                     onBlur={onBlurField}
-                    className={formStyles["input-field-details"]}
+                    className={formStyles["input-field-container-details"]}
                   >
                     <p
                       className={
@@ -256,7 +256,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
                   <div
                     onClick={() => onFocusField("country")}
                     onBlur={onBlurField}
-                    className={formStyles["input-field-name"]}
+                    className={formStyles["input-field-container-name"]}
                   >
                     <p
                       className={
@@ -288,7 +288,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
                   <div
                     onClick={() => onFocusField("city")}
                     onBlur={onBlurField}
-                    className={formStyles["input-field-name"]}
+                    className={formStyles["input-field-container-name"]}
                   >
                     <p
                       className={
@@ -320,7 +320,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
                   <div
                     onClick={() => onFocusField("address")}
                     onBlur={onBlurField}
-                    className={formStyles["input-field-details"]}
+                    className={formStyles["input-field-container-details"]}
                   >
                     <p
                       className={
