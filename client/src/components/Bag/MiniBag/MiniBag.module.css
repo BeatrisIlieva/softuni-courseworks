@@ -4,9 +4,15 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: black;
-  opacity: 0.3;
   height: 100vh;
+  overflow-y: auto;
+  background-color: black;
+  opacity: 0; 
+  transition: opacity 0.5s ease;
+}
+
+.mini-bag-shadow.active {
+  opacity: 0.5;
 }
 
 .mini-bag-dialog {
@@ -71,7 +77,7 @@
 
 .modal-body {
   padding: 20px;
-  min-height: 380px;
+  min-height: calc(380px);
 }
 
 .popup-delivery {

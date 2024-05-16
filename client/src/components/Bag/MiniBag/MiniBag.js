@@ -92,10 +92,12 @@ export const MiniBag = () => {
       console.error("Error updating quantity in the database:", error);
     }
   };
-
+  const isVisible = true;
   return (
     <section id={styles["mini-bag"]}>
-      <div className={styles["mini-bag-shadow"]}></div>
+      
+      <div className={`${styles["mini-bag-shadow"]} ${isVisible ? styles.active : ''}`}></div>
+      {/* <div className={styles["mini-bag-shadow"]}></div> */}
       <div className={styles["mini-bag-dialog"]}>
         <div className={styles["modal-dialog"]}>
           <div className={styles["modal-content"]}>

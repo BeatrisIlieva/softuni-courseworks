@@ -259,7 +259,7 @@ export const JewelryItem = () => {
                       </div>
                       <div className={styles["add-to-bag-button"]}>
                         <input
-                          className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+                          className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["add-to-bag-button"]}`}
                           type="submit"
                           value="ADD TO BAG"
                         />

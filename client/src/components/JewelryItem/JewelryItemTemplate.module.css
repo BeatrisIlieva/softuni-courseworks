@@ -1,6 +1,7 @@
 .jewelry-details-container {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 40px;
 }
 
 .jewelry-details-images-container {
