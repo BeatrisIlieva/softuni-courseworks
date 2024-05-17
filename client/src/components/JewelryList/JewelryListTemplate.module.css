@@ -17,6 +17,7 @@
 .jewelry-card-thumbnail {
   aspect-ratio: 1 / 1;
   position: relative;
+  
 }
 
 .jewelry-card-thumbnail-sold-out {
@@ -30,6 +31,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  
 }
 
 .jewelry-card-img-sold-out {
@@ -48,4 +50,55 @@
   right: 20px;
   top: 10px;
   padding: 10px;
+}
+
+.heart{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #fc8eac;
+  height: 20px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.content {
+  margin: 0;
+  padding: 0;
+}
+
+.hovered-content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 12px;
+
+}
+
+
+.hovered-content-left, .hovered-content-right {
+ font-size: 16px;
+ color: black;
+}
+
+.jewelry-card a {
+text-decoration: none;
+}
+
+.dollar-icon {
+  margin-right: 10px;
+}
+
+.hovered {
+  display: flex;
+  flex-direction: column;
+}
+
+.hovered-content-down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 14px;
+  margin-bottom: 10px;
 }

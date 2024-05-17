@@ -11,7 +11,7 @@ import { useContext } from "react";
 import buttonStyles from "../../../commonCSS/Button.module.css";
 import { MiniBagTemplate } from "./MiniBagTemplate";
 
-export const MiniBag = () => {
+export const MiniBag = ({onClose}) => {
   const bagService = useService(bagServiceFactory);
   let [bagItems, setBagItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -92,10 +92,11 @@ export const MiniBag = () => {
       console.error("Error updating quantity in the database:", error);
     }
   };
+
   const isVisible = true;
+
   return (
     <section id={styles["mini-bag"]}>
-      
       <div className={`${styles["mini-bag-shadow"]} ${isVisible ? styles.active : ''}`}></div>
       {/* <div className={styles["mini-bag-shadow"]}></div> */}
       <div className={styles["mini-bag-dialog"]}>
@@ -109,7 +110,7 @@ export const MiniBag = () => {
                   {totalQuantity} {totalQuantity > 1 ? "items" : "item"}
                 </span>
               </h2>
-              <div id={styles["xMark"]}>
+              <div id={styles["xMark"]} onClick={onClose}>
                 <FontAwesomeIcon icon={faXmark} className={styles["x-mark"]} />
               </div>
             </div>

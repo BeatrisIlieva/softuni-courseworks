@@ -1,4 +1,4 @@
-import styles from "./Header.module.css";
+  import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -11,22 +11,20 @@ export const Header = () => {
   return (
     <header className={styles["header"]}>
       <div className={styles["header-box"]}>
-        <div className={styles["header-container"]}>
-          <div className={styles["logo-box"]}>
-            <div className={styles["logo-box"]}>
-              <Link to="/">
-                <div className={styles["logo-img-container"]}>
-                  <img
-                    className={styles["logo-img"]}
-                    src={
-                      "https://res.cloudinary.com/deztgvefu/image/upload/v1714938711/template_images/Untitled_design_t0jumi.png"
-                    }
-                    alt={"Logo"}
-                  />
-                </div>
-              </Link>
+        <div className={styles["logo-box"]}>
+          <Link to="/">
+            <div className={styles["logo-img-container"]}>
+              <img
+                className={styles["logo-img"]}
+                src={
+                  "https://res.cloudinary.com/deztgvefu/image/upload/v1714938711/template_images/Untitled_design_t0jumi.png"
+                }
+                alt={"Logo"}
+              />
             </div>
-          </div>
+          </Link>
+        </div>
+        <div className={styles["separate-box"]}>
           <div className={styles["nav-box"]}>
             <nav className={styles["navigation"]}>
               <ul className={styles["nav-list"]} role="list">
@@ -70,7 +68,8 @@ export const Header = () => {
             </div>
             {/* </Link> */}
           </div>
-          <div className={styles["icon-box"]}>
+        </div>
+        <div className={styles["icon-box"]}>
           <div className={styles["icon-bar"]}>
             <ul className={styles["icon-bar-list"]} role="list">
               {/* {isAuthenticated && ( */}
@@ -116,7 +115,6 @@ export const Header = () => {
         )} */}
             </ul>
           </div>
-        </div>
         </div>
       </div>
     </header>

@@ -1,5 +1,5 @@
 .user-details-box {
-  margin: 40px 200px 0 200px;
+  margin: 40px 170px 0 170px;
   position: relative;
 }
 
@@ -31,17 +31,25 @@
 }
 
 .left-container {
-  width: calc(62% - 20px);
+  width: calc(68% - 20px);
   display: flex;
   gap: 40px;
   flex-direction: column;
 }
 .right-container {
-  width: calc(38% - 20px);
+  width: calc(32% - 20px);
   display: flex;
   gap: 40px;
   flex-direction: column;
 }
+
+/* .right-upper-sub-container {
+  height: 60%;
+}
+
+.right-bottom-sub-container {
+  height: 40%;
+} */
 
 .left-upper-sub-container,
 .left-bottom-sub-container {
@@ -62,8 +70,6 @@
   padding: 30px;
 }
 
-.bottom-sub-container {
-}
 
 .container-title-login {
   font-size: 20px;

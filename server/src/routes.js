@@ -4,11 +4,13 @@ const profileController = require("./controllers/profileController");
 const jewelryController = require("./controllers/jewelryController");
 const bagController = require("./controllers/bagController");
 const addressBookController = require("./controllers/addressBookController");
+const wishListController = require("./controllers/wishlistController");
 
 router.use("", jewelryController);
 router.use("/users", userController);
 router.use("/profiles", profileController);
 router.use("/addresses", addressBookController);
 router.use("/bag", bagController);
+router.use("/wishlist", wishListController);
 
 module.exports = router;

@@ -129,7 +129,7 @@ export const UpdateEmail = ({ onUpdateEmailSubmit }) => {
               </p>
               {values[FormKeys.Password]["focusField"] && (
                 <input
-                  className={formStyles["input-spot"]}
+                  className={`${formStyles["input-spot"]} ${styles["password-input"]}`}
                   type="password"
                   name={FormKeys.Password}
                   id="password"
@@ -144,7 +144,7 @@ export const UpdateEmail = ({ onUpdateEmailSubmit }) => {
           </div>
           <div>
             <input
-              className={`${buttonStyles["button"]} ${buttonStyles["save"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+              className={`${buttonStyles["button"]} ${styles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
               type="submit"
               value="Save"
             />

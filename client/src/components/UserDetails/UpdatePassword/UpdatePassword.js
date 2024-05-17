@@ -186,7 +186,7 @@ export const UpdatePassword = ({ onUpdatePasswordSubmit }) => {
           </div>
           <div>
             <input
-              className={`${buttonStyles["button"]} ${buttonStyles["save"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+              className={`${buttonStyles["button"]} ${styles["button"]}  ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
               type="submit"
               value="Save"
             />

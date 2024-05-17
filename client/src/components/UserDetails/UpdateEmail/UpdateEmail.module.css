@@ -35,3 +35,12 @@
       transform: translateY(-40px);
     }
   }
+
+.button {
+  margin-top: 20px;
+  width: 257px;
+}
+
+.password-input {
+  width: 28ch !important;
+}

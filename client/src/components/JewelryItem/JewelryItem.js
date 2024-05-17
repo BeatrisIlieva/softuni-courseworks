@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { jewelryServiceFactory } from "../../services/jewelryService";
 import { useService } from "../../hooks/useService";
-import styles from "./JewelryItemTemplate.module.css";
+import styles from "./JewelryItem.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
 import { bagServiceFactory } from "../../services/bagService";
 import { MiniBag } from "../Bag/MiniBag/MiniBag";
@@ -56,10 +56,15 @@ export const JewelryItem = () => {
     fetchJewelry();
   };
 
+  const onClose = () => {
+    setMiniBag(false);
+    document.body.style.overflow = "visible";
+  }
+
   if (categoryId === "2") {
     return (
       <>
-        <>{miniBag && <MiniBag />}</>
+        <>{miniBag && <MiniBag onClose={onClose}/>}</>
         {jewelry && (
           <div className={styles["jewelry-details-container"]}>
             <div className={styles["jewelry-details-images-container"]}>
@@ -152,7 +157,7 @@ export const JewelryItem = () => {
   } else {
     return (
       <>
-        <>{miniBag && <MiniBag />}</>
+        <>{miniBag && <MiniBag onClose={onClose} />}</>
         {jewelry && (
           <div className={styles["jewelry-details-container"]}>
             <div className={styles["jewelry-details-images-container"]}>
