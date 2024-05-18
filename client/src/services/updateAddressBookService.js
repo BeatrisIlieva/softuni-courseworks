@@ -2,7 +2,7 @@ import { requestFactory } from "./requester";
 
 const baseUrl = "http://localhost:3030/addresses";
 
-export const addressBookServiceFactory = (token) => {
+export const updateAddressBookServiceFactory = (token) => {
   const request = requestFactory(token);
 
   return {

@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { useState, useEffect } from "react";
 import { useService } from "../../../hooks/useService";
-import { addressBookServiceFactory } from "../../../services/addressBookService";
-import styles from "../AddressBook/AddressBook.module.css";
+import { updateAddressBookServiceFactory } from "../../../services/updateAddressBookService";
+import styles from "../UpdateAddressBook/UpdateAddressBook.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,8 +18,8 @@ const FormKeys = {
   Address: "address",
 };
 
-export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
-  const addressBookService = useService(addressBookServiceFactory);
+export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBookSubmit }) => {
+  const updateAddressBookService = useService(updateAddressBookServiceFactory);
   const { userId } = useContext(AuthContext);
 
   const [values, setValues] = useState({
@@ -32,7 +32,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
   });
 
   useEffect(() => {
-    addressBookService
+    updateAddressBookService
       .display(userId)
       .then((dataFromServer) => {
         const updatedValues = { ...values };
@@ -85,9 +85,9 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
       [FormKeys.Address]: values[FormKeys.Address].value,
     };
 
-    onAddressBookSubmit();
+    onUpdateAddressBookSubmit();
 
-    await addressBookService.update(userId, data);
+    await updateAddressBookService.update(userId, data);
   };
 
   return (
@@ -101,7 +101,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
         <div className={styles["modal-dialog"]}>
           <div className={styles["modal-content"]}>
             <div className={styles["modal-header"]}>
-              <div id={styles["xMark"]} onClick={() => onCloseAddressBook()}>
+              <div id={styles["xMark"]} onClick={() => onCloseUpdateAddressBook()}>
                 <FontAwesomeIcon icon={faXmark} className={styles["x-mark"]} />
               </div>
               <h2 className={styles["title"]}>Add a New Address</h2>
@@ -310,7 +310,7 @@ export const AddressBook = ({ onCloseAddressBook, onAddressBookSubmit }) => {
                   </div>
                   <div>
                     <button
-                      onClick={() => onCloseAddressBook()}
+                      onClick={() => onCloseUpdateAddressBook()}
                       className={`${buttonStyles["button"]} ${buttonStyles["data-dismiss"]}`}
                     >
                       Cancel

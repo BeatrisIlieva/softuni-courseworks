@@ -2,7 +2,7 @@ import styles from "../UserDetails/UserDetails.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
 import colorStyles from "../../commonCSS/Colors.module.css";
 import { profileServiceFactory } from "../../services/profileService";
-import { AddressBook } from "./AddressBook/AddressBook";
+import { UpdateAddressBook } from "./UpdateAddressBook/UpdateAddressBook";
 import { UpdateEmail } from "./UpdateEmail/UpdateEmail";
 import { UpdatePassword } from "./UpdatePassword/UpdatePassword";
 import { useState, useContext, useEffect } from "react";
@@ -102,21 +102,21 @@ export const UserDetails = () => {
     await profileService.update(userId, data);
   };
 
-  const [showAddressBook, setShowAddressBook] = useState(false);
+  const [showUpdateAddressBook, setShowUpdateAddressBook] = useState(false);
 
-  const onAddressBookClick = async () => {
+  const onUpdateAddressBookClick = async () => {
     document.body.style.overflow = "hidden";
-    setShowAddressBook(true);
+    setShowUpdateAddressBook(true);
   };
 
-  const onAddressBookSubmit = () => {
+  const onUpdateAddressBookSubmit = () => {
     document.body.style.overflow = "visible";
-    setShowAddressBook(false);
+    setShowUpdateAddressBook(false);
   };
 
-  const onCloseAddressBook = () => {
+  const onCloseUpdateAddressBook = () => {
     document.body.style.overflow = "visible";
-    setShowAddressBook(false);
+    setShowUpdateAddressBook(false);
   };
 
   const [showUpdateEmail, setShowUpdateEmail] = useState(false);
@@ -289,7 +289,7 @@ export const UserDetails = () => {
           <div className={styles["left-bottom-sub-container"]}>
             <button
               className={buttonStyles["button"]}
-              onClick={() => onAddressBookClick()}
+              onClick={() => onUpdateAddressBookClick()}
             >
               <div className={styles["orders-button-container"]}>
                 <FontAwesomeIcon
@@ -323,10 +323,10 @@ export const UserDetails = () => {
               </button>
               {showUpdateEmail && <UpdateEmail />}
               {showUpdatePassword && <UpdatePassword />}
-              {showAddressBook && (
-                <AddressBook
-                  onCloseAddressBook={onCloseAddressBook}
-                  onAddressBookSubmit={onAddressBookSubmit}
+              {showUpdateAddressBook && (
+                <UpdateAddressBook
+                  onCloseUpdateAddressBook={onCloseUpdateAddressBook}
+                  onUpdateAddressBookSubmit={onUpdateAddressBookSubmit}
                 />
               )}
             </div>
@@ -337,15 +337,15 @@ export const UserDetails = () => {
                 Address Book
               </h3>
               <hr className={styles["horizontal-line-address"]} />
-              {showAddressBook && (
-                <AddressBook
-                  onCloseAddressBook={onCloseAddressBook}
-                  onAddressBookSubmit={onAddressBookSubmit}
+              {showUpdateAddressBook && (
+                <UpdateAddressBook
+                  onCloseUpdateAddressBook={onCloseUpdateAddressBook}
+                  onUpdateAddressBookSubmit={onUpdateAddressBookSubmit}
                 />
               )}
               <button
                 className={buttonStyles["button"]}
-                onClick={() => onAddressBookClick()}
+                onClick={() => onUpdateAddressBookClick()}
               >
                 <div className={styles["address-button-container"]}>
                   <FontAwesomeIcon
