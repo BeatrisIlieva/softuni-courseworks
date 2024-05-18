@@ -40,12 +40,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-
   const onLoginSubmit = async (values) => {
     const email = values.email.value;
     const password = values.password.value;
 
-    const data = {email, password};
+    const data = { email, password };
 
     try {
       const result = await authService.login({ ...data });
@@ -63,14 +62,38 @@ export const AuthProvider = ({ children }) => {
     setAuth({});
   };
 
+  const getOne = async(userId) => {
+    const user = await authService.getOne(userId);
+    
+    return user;
+  }
+
+  const onUpdateEmailSubmit = async (userId, values) => {
+    console.log(values);
+    const data = {
+      email: values.email.value,
+      password: values.password.value,
+    };
+    try {
+      await authService.updateEmail(userId, data);
+      // setAuth({});
+
+      // setAuth(result["token"]);
+
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   const context = {
     onRegisterSubmit,
     onLoginSubmit,
     onLogout,
+    getOne,
+    onUpdateEmailSubmit,
     userId: auth._id,
     token: auth.accessToken,
-    userEmail: auth.email,
+    // userEmail: auth.email,
     isAuthenticated: !!auth.accessToken,
   };
 

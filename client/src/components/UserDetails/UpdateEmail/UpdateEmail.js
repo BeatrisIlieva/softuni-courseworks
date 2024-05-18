@@ -6,77 +6,95 @@ import { useState, useEffect } from "react";
 import { useService } from "../../../hooks/useService";
 import { authServiceFactory } from "../../../services/authService";
 import styles from "../UpdateEmail/UpdateEmail.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useFormAuthUser } from "../../../hooks/useFormAuthUser"
+
+
 
 const FormKeys = {
   Email: "email",
   Password: "password",
 };
 
-export const UpdateEmail = ({ onUpdateEmailSubmit }) => {
+export const UpdateEmail = () => {
   const authService = useService(authServiceFactory);
+  const {onUpdateEmailSubmit} = useContext(AuthContext);
   const { userId } = useContext(AuthContext);
 
-  const [values, setValues] = useState({
-    [FormKeys.Email]: { value: "", focusField: false },
-    [FormKeys.Password]: { value: "", focusField: false },
-  });
 
-  useEffect(() => {
-    authService
-      .getOne(userId)
-      .then((dataFromServer) => {
-        const updatedValues = { ...values };
-        for (let key in FormKeys) {
-          updatedValues[FormKeys[key]] = {
-            value: dataFromServer[FormKeys[key]],
-            focusField: true ? dataFromServer[FormKeys[key]] : false,
-          };
-        }
-        setValues(updatedValues);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  const { values, changeHandler, onFocusField, onBlurField, onSubmit } =
+  useFormAuthUser(
+    {
+      [FormKeys.Email]: { value: "", focusField: false },
+      [FormKeys.Password]: { value: "", focusField: false },
+    },
+    onUpdateEmailSubmit,
+    FormKeys,
+  );
 
-  const changeHandler = (fieldKey, newValue) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      [fieldKey]: { ...prevValues[fieldKey], value: newValue },
-    }));
-  };
+  // const [values, setValues] = useState({
+  //   [FormKeys.Email]: { value: "", focusField: false },
+  //   [FormKeys.Password]: { value: "", focusField: false },
+  // });
 
-  const onFocusField = (fieldKey) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      [fieldKey]: { ...prevValues[fieldKey], focusField: true },
-    }));
-  };
 
-  const onBlurField = () => {
-    setValues((prevValues) => {
-      const updatedValues = { ...prevValues };
-      for (let key in updatedValues) {
-        updatedValues[key].focusField = true ? values[key].value : false;
-      }
+  // useEffect(() => {
+  //   authService
+  //     .getOne(userId)
+  //     .then((dataFromServer) => {
+  //       const updatedValues = { ...values };
+  //       for (let key in FormKeys) {
+  //         updatedValues[FormKeys[key]] = {
+  //           value: dataFromServer[FormKeys[key]],
+  //           focusField: true ? dataFromServer[FormKeys[key]] : false,
+  //         };
+  //       }
+  //       setValues(updatedValues);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, []);
 
-      return updatedValues;
-    });
-  };
+  // const changeHandler = (fieldKey, newValue) => {
+  //   setValues((prevValues) => ({
+  //     ...prevValues,
+  //     [fieldKey]: { ...prevValues[fieldKey], value: newValue },
+  //   }));
+  // };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const data = {
-      [FormKeys.Email]: values[FormKeys.Email].value,
-      [FormKeys.Password]: values[FormKeys.Password].value,
-    };
+  // const onFocusField = (fieldKey) => {
+  //   setValues((prevValues) => ({
+  //     ...prevValues,
+  //     [fieldKey]: { ...prevValues[fieldKey], focusField: true },
+  //   }));
+  // };
 
-    onUpdateEmailSubmit();
+  // const onBlurField = () => {
+  //   setValues((prevValues) => {
+  //     const updatedValues = { ...prevValues };
+  //     for (let key in updatedValues) {
+  //       updatedValues[key].focusField = true ? values[key].value : false;
+  //     }
 
-    await authService.editEmail(userId, data);
-  };
+  //     return updatedValues;
+  //   });
+  // };
+
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     [FormKeys.Email]: values[FormKeys.Email].value,
+  //     [FormKeys.Password]: values[FormKeys.Password].value,
+  //   };
+
+  //   onUpdateEmailSubmit(userId, data);
+
+  //   // await authService.updateEmail(userId, data);
+
+  //   // fetchData();
+  // };
 
   return (
     <form method="POST" onSubmit={onSubmit} className={styles["modal-dialog"]}>
@@ -147,6 +165,7 @@ export const UpdateEmail = ({ onUpdateEmailSubmit }) => {
               className={`${buttonStyles["button"]} ${styles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
               type="submit"
               value="Save"
+              // onClick={() => fetchData()}
             />
           </div>
         </div>

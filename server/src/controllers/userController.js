@@ -58,7 +58,7 @@ router.get("/user/:userId", async (req, res) => {
     const userId = req.user._id;
 
     const user = await userManager.getOne(userId);
-    res.json(user)
+    res.status(200).json(user)
   } catch (err) {
     res.status(400).json({
       message: err.message,
@@ -68,13 +68,14 @@ router.get("/user/:userId", async (req, res) => {
 
 router.put("/edit-email/:userId",  async (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body)
   const userId = req.user._id;
 
 
   try {
-    const user = await userManager.changeEmail(email, password, userId);
+    const result = await userManager.changeEmail(email, password, userId);
 
-    res.status(200).json(user);
+    res.status(200).json(result);
   } catch (err) {
     console.log(err.message);
     res.status(400).json({

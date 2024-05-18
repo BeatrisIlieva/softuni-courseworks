@@ -9,7 +9,6 @@
   flex-direction: column;
   gap: 8px;
   align-items: center;
-  /* padding: 8px; */
 }
 
 .jewelry-details-image {
@@ -103,8 +102,6 @@ label {
   gap: 1px;
   background: white;
   border: 1px solid pink;
-  /* border-inline: 1px solid pink;
-  border-block: 1px solid pink; */
   border-radius: 16px;
   padding: 4px 16px;
   margin-right: 4px;
@@ -113,7 +110,6 @@ label {
   text-align: center;
 }
 input[type="radio"]:checked + label {
-  /* border-inline: 4px solid pink; */
   background-color: rgba(255, 192, 203, 0.179);
 }
 
@@ -121,5 +117,3 @@ input[type="radio"]:checked + label {
   margin-top: 22px;
   min-width: 30ch !important;
 }
-
-

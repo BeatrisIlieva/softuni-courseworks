@@ -12,6 +12,7 @@ import formStyles from "../../commonCSS/Form.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { faFileInvoiceDollar } from "@fortawesome/free-solid-svg-icons";
+import { authServiceFactory } from "../../services/authService";
 
 const FormKeys = {
   FirstName: "firstName",
@@ -22,7 +23,9 @@ const FormKeys = {
 
 export const UserDetails = () => {
   const profileService = useService(profileServiceFactory);
-  const { userId, userEmail } = useContext(AuthContext);
+  const { userId} = useContext(AuthContext);
+  const authService = useService(authServiceFactory);
+  const [user, setUser] = useState([]);
 
   const [values, setValues] = useState({
     [FormKeys.FirstName]: { value: "", focusField: false },
@@ -50,6 +53,16 @@ export const UserDetails = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+  useEffect (() => {
+    authService.getOne(userId)
+    .then((dataFromServer) => {
+        setUser(dataFromServer)
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+  }, [user])
 
   const changeHandler = (fieldKey, newValue) => {
     setValues((prevValues) => ({
@@ -124,9 +137,9 @@ export const UserDetails = () => {
     setShowUpdateEmail(false);
   };
 
-  const onUpdatePasswordSubmit = () => {
-    setShowUpdatePassword();
-  };
+  // const onUpdatePasswordSubmit = () => {
+  //   setShowUpdatePassword();
+  // };
 
 
   return (
@@ -304,7 +317,7 @@ export const UserDetails = () => {
                 Login Information
               </h3>
               <h5 className={styles["login-subtitle"]}>Email Address</h5>
-              <p className={styles["login-email"]}>{userEmail}</p>
+              <p className={styles["login-email"]}>{user.email}</p>
               <button
                 className={`${styles["update"]} ${buttonStyles["button"]}`}
                 onClick={() => onUpdateEmailClick()}
@@ -322,7 +335,7 @@ export const UserDetails = () => {
               )}
               {showUpdatePassword && (
                 <UpdatePassword
-                  onUpdatePasswordSubmit={onUpdatePasswordSubmit}
+                  // onUpdatePasswordSubmit={onUpdatePasswordSubmit}
                 />
               )}
               {showAddressBook && (

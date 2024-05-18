@@ -58,15 +58,14 @@ exports.login = async (email, password) => {
 async function generateToken(user) {
   const payload = {
     _id: user._id,
-    email: user.email,
+    // email: user.email,
   };
 
-  const token = await jwt.sign(payload, SECRET, { expiresIn: "7d" });
+  const token = await jwt.sign(payload, SECRET, { expiresIn: "1d" });
 
-  // return token;
   const result = {
     _id: user._id,
-    email: user.email,
+    // email: user.email,
     accessToken: token,
   };
 
@@ -83,7 +82,9 @@ exports.changeEmail = async (email, password, userId) => {
     throw new Error("Ensure you enter a valid password.");
   } else {
     user = await User.findByIdAndUpdate(userId, { email: email });
-    return user
+    // const token = await generateToken(user);
+    // return { token, user };
+    return user;
   }
 };
 

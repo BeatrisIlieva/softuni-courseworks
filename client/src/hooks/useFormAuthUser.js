@@ -1,54 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { authServiceFactory } from "../services/authService";
+import { useService } from "./useService";
+import { AuthContext } from "../contexts/AuthContext";
 
-export const useFormNotAuthUser = (initialValues, submitHandler) => {
+export const useFormAuthUser = (initialValues, submitHandler, FormKeys) => {
+  const authService = useService(authServiceFactory);
+  const { userId } = useContext(AuthContext);
   const [values, setValues] = useState(initialValues);
 
-  const changeHandler = (fieldKey, newValue) => {
-    setValues((prevValues) => {
-      const updatedValues = { ...prevValues };
 
-      updatedValues[fieldKey].value = newValue;
-
-      Object.keys(updatedValues).forEach((key) => {
-        updatedValues[key].focusField = key === fieldKey;
+  useEffect(() => {
+    authService
+      .getOne(userId)
+      .then((dataFromServer) => {
+        const updatedValues = { ...values };
+        for (let key in FormKeys) {
+          updatedValues[FormKeys[key]] = {
+            value: dataFromServer[FormKeys[key]],
+            focusField: true ? dataFromServer[FormKeys[key]] : false,
+          };
+        }
+        setValues(updatedValues);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
+  }, []);
 
-      return updatedValues;
-    });
+  const changeHandler = (fieldKey, newValue) => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      [fieldKey]: { ...prevValues[fieldKey], value: newValue },
+    }));
   };
 
-  for (let key in values) {
-    if (values[key].value !== "") {
-      values[key].focusField = true;
-    }
-  }
-
   const onFocusField = (fieldKey) => {
-    setValues((prevValues) => {
-      const updatedValues = { ...prevValues };
-
-      Object.keys(updatedValues).forEach((key) => {
-        updatedValues[key].focusField = key === fieldKey;
-      });
-
-      return updatedValues;
-    });
+    setValues((prevValues) => ({
+      ...prevValues,
+      [fieldKey]: { ...prevValues[fieldKey], focusField: true },
+    }));
   };
 
   const onBlurField = () => {
     setValues((prevValues) => {
       const updatedValues = { ...prevValues };
-      Object.keys(updatedValues).forEach((key) => {
-        updatedValues[key].focusField = false;
-      });
+      for (let key in updatedValues) {
+        updatedValues[key].focusField = true ? values[key].value : false;
+      }
+
       return updatedValues;
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    submitHandler(values);
+    submitHandler(userId, values);
+
   };
 
   return {

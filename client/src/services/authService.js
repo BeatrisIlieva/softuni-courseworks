@@ -12,11 +12,11 @@ export const authServiceFactory = (token) => {
 
     getOne: (userId) => request.get(`${baseUrl}/user/${userId}`),
 
-    editEmail: (userId, data) => request.put(`${baseUrl}/edit-email/${userId}`, data),
+    updateEmail: (userId, data) => request.put(`${baseUrl}/edit-email/${userId}`, data),
 
     changePassword: (userId, data) => request.put(`${baseUrl}/change-password/${userId}`, data),
 
-    editPassword: (data) => request.put(`${baseUrl}/edit-password`, data),
+    // editPassword: (data) => request.put(`${baseUrl}/edit-password`, data),
 
     logout: () => request.get(`${baseUrl}/logout`),
   };
