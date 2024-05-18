@@ -44,7 +44,8 @@ function App() {
           </main>
           <Footer />
         </div>
-      </WishListProvider>
+
+        </WishListProvider>
     </AuthProvider>
   );
 }

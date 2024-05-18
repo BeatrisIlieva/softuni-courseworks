@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   const onUpdateEmailSubmit = async (userId, values) => {
-    console.log(values);
+
     const data = {
       email: values.email.value,
       password: values.password.value,

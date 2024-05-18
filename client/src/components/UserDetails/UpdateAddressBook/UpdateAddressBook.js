@@ -4,10 +4,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { useState, useEffect } from "react";
 import { useService } from "../../../hooks/useService";
-import { updateAddressBookServiceFactory } from "../../../services/updateAddressBookService";
+import { addressBookServiceFactory } from "../../../services/addressBookService";
 import styles from "../UpdateAddressBook/UpdateAddressBook.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useFormAuthUser } from "../../../hooks/useFormAuthUser";
 
 const FormKeys = {
   FirstName: "firstName",
@@ -19,7 +20,8 @@ const FormKeys = {
 };
 
 export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBookSubmit }) => {
-  const updateAddressBookService = useService(updateAddressBookServiceFactory);
+
+  const addressBookService = useService(addressBookServiceFactory);
   const { userId } = useContext(AuthContext);
 
   const [values, setValues] = useState({
@@ -32,7 +34,7 @@ export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBoo
   });
 
   useEffect(() => {
-    updateAddressBookService
+    addressBookService
       .display(userId)
       .then((dataFromServer) => {
         const updatedValues = { ...values };
@@ -87,7 +89,7 @@ export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBoo
 
     onUpdateAddressBookSubmit();
 
-    await updateAddressBookService.update(userId, data);
+    await addressBookService.update(userId, data);
   };
 
   return (

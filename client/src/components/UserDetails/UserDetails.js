@@ -26,6 +26,7 @@ export const UserDetails = () => {
   const { userId } = useContext(AuthContext);
   const authService = useService(authServiceFactory);
   const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState([]);
 
   const [values, setValues] = useState({
     [FormKeys.FirstName]: { value: "", focusField: false },
@@ -34,7 +35,6 @@ export const UserDetails = () => {
     [FormKeys.SpecialDay]: { value: "", focusField: false },
   });
 
-  const firstName = values[FormKeys.FirstName].value;
 
   useEffect(() => {
     profileService
@@ -64,6 +64,17 @@ export const UserDetails = () => {
         console.error("Error fetching data:", error);
       });
   }, [user]);
+
+  useEffect(() => {
+    profileService
+      .display(userId)
+      .then((dataFromServer) => {
+        setProfile(dataFromServer);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [profile]);
 
   const changeHandler = (fieldKey, newValue) => {
     setValues((prevValues) => ({
@@ -135,7 +146,7 @@ export const UserDetails = () => {
 
   return (
     <section className={styles["user-details-box"]}>
-      <h2 className={styles["title"]}>Hi, {firstName}</h2>
+      <h2 className={styles["title"]}>Hi, {profile.firstName}</h2>
       <p className={styles["subtitle"]}>
         You can access all your previous transactions, set default shipping
         addresses for faster checkout as well as save items to your wishlist for
