@@ -4,7 +4,6 @@ const baseUrl = "http://localhost:3030/users";
 
 export const authServiceFactory = (token) => {
   const request = requestFactory(token);
-  
 
   return {
     login: (data) => request.post(`${baseUrl}/login`, data),
@@ -13,9 +12,11 @@ export const authServiceFactory = (token) => {
 
     getOne: (userId) => request.get(`${baseUrl}/user/${userId}`),
 
-    updateEmail: (userId, data) => request.put(`${baseUrl}/edit-email/${userId}`, data),
+    updateEmail: (userId, data) =>
+      request.put(`${baseUrl}/edit-email/${userId}`, data),
 
-    changePassword: (userId, data) => request.put(`${baseUrl}/change-password/${userId}`, data),
+    changePassword: (userId, data) =>
+      request.put(`${baseUrl}/change-password/${userId}`, data),
 
     logout: () => request.get(`${baseUrl}/logout`),
   };

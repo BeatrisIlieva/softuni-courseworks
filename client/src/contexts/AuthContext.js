@@ -62,21 +62,19 @@ export const AuthProvider = ({ children }) => {
     setAuth({});
   };
 
-  const getOne = async(userId) => {
+  const getOne = async (userId) => {
     const user = await authService.getOne(userId);
 
     return user;
-  }
+  };
 
   const onUpdateEmailSubmit = async (userId, values) => {
-
     const data = {
       email: values.email.value,
       password: values.password.value,
     };
     try {
       await authService.updateEmail(userId, data);
-
     } catch (err) {
       console.log(err.message);
     }
@@ -90,7 +88,6 @@ export const AuthProvider = ({ children }) => {
     };
     try {
       await authService.changePassword(userId, data);
-
     } catch (err) {
       console.log(err.message);
     }

@@ -1,14 +1,6 @@
 // import formStyles from "../../../commonCSS/Form.module.css";
 // import buttonStyles from "../../../commonCSS/Button.module.css";
 import { useContext, useState, useEffect } from "react";
-// import { AuthContext } from "../../../contexts/AuthContext";
-// import styles from "../UpdateEmail/UpdateEmail.module.css";
-// import { profileServiceFactory } from "../../../services/profileService";
-// import { AuthContext } from "../../contexts/AuthContext";
-// import { useService } from "../../../hooks/useService";
-// import formStyles from "../../commonCSS/Form.module.css";
-// import { authServiceFactory } from "../../services/authService";
-
 import { useService } from "../../../hooks/useService";
 import { profileServiceFactory } from "../../../services/profileService";
 import { AuthContext } from "../../../contexts/AuthContext";
