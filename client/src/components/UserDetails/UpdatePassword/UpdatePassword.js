@@ -26,16 +26,6 @@ export const UpdatePassword = () => {
 
 
 
-  //   onUpdatePasswordSubmit();
-
-  //   const data = {
-  //     [FormKeys.OldPassword]: values[FormKeys.OldPassword].value,
-  //     [FormKeys.NewPassword]: values[FormKeys.NewPassword].value,
-  //   };
-
-  //   await authService.changePassword(userId, data);
-  // };
-
   return (
     <form method="POST" onSubmit={onSubmit} className={styles["modal-dialog"]}>
       {values && (
