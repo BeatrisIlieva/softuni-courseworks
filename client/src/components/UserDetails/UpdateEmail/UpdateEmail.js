@@ -27,10 +27,6 @@ export const UpdateEmail = () => {
     FormKeys,
   );
 
-  // const [values, setValues] = useState({
-  //   [FormKeys.Email]: { value: "", focusField: false },
-  //   [FormKeys.Password]: { value: "", focusField: false },
-  // });
 
 
   // useEffect(() => {
