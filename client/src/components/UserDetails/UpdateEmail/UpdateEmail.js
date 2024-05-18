@@ -29,21 +29,6 @@ export const UpdateEmail = () => {
 
 
 
-
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const data = {
-  //     [FormKeys.Email]: values[FormKeys.Email].value,
-  //     [FormKeys.Password]: values[FormKeys.Password].value,
-  //   };
-
-  //   onUpdateEmailSubmit(userId, data);
-
-  //   // await authService.updateEmail(userId, data);
-
-  //   // fetchData();
-  // };
-
   return (
     <form method="POST" onSubmit={onSubmit} className={styles["modal-dialog"]}>
       {values && (
