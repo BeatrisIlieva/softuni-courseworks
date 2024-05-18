@@ -2,12 +2,7 @@ import formStyles from "../../../commonCSS/Form.module.css";
 import buttonStyles from "../../../commonCSS/Button.module.css";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { useState, useEffect } from "react";
-import { useService } from "../../../hooks/useService";
-import { authServiceFactory } from "../../../services/authService";
 import styles from "../UpdateEmail/UpdateEmail.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useFormAuthUser } from "../../../hooks/useFormAuthUser";
 const FormKeys = {
   OldPassword: "oldPassword",
