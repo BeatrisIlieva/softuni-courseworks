@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import styles from "../UpdateEmail/UpdateEmail.module.css";
 import { useFormAuthUser } from "../../../hooks/useFormAuthUser";
+
 const FormKeys = {
   OldPassword: "oldPassword",
   NewPassword: "newPassword",
@@ -23,8 +24,6 @@ export const UpdatePassword = () => {
       onUpdatePasswordSubmit,
       FormKeys
     );
-
-
 
   return (
     <form method="POST" onSubmit={onSubmit} className={styles["modal-dialog"]}>

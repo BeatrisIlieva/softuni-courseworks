@@ -125,20 +125,12 @@ export const UserDetails = () => {
     setShowUpdatePassword(false);
   };
 
-  const onUpdateEmailSubmit = () => {
-    setShowUpdateEmail();
-  };
-
 
   const [showUpdatePassword, setShowUpdatePassword] = useState(false);
 
   const onUpdatePasswordClick = async () => {
     setShowUpdatePassword(true);
     setShowUpdateEmail(false);
-  };
-
-  const onUpdatePasswordSubmit = () => {
-    setShowUpdatePassword();
   };
 
 
@@ -331,11 +323,10 @@ export const UserDetails = () => {
                 Change Password
               </button>
               {showUpdateEmail && (
-                <UpdateEmail onUpdateEmailSubmit={onUpdateEmailSubmit} />
+                <UpdateEmail />
               )}
               {showUpdatePassword && (
                 <UpdatePassword
-                  onUpdatePasswordSubmit={onUpdatePasswordSubmit}
                 />
               )}
               {showAddressBook && (
