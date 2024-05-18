@@ -137,9 +137,9 @@ export const UserDetails = () => {
     setShowUpdateEmail(false);
   };
 
-  // const onUpdatePasswordSubmit = () => {
-  //   setShowUpdatePassword();
-  // };
+  const onUpdatePasswordSubmit = () => {
+    setShowUpdatePassword();
+  };
 
 
   return (
@@ -335,7 +335,7 @@ export const UserDetails = () => {
               )}
               {showUpdatePassword && (
                 <UpdatePassword
-                  // onUpdatePasswordSubmit={onUpdatePasswordSubmit}
+                  onUpdatePasswordSubmit={onUpdatePasswordSubmit}
                 />
               )}
               {showAddressBook && (

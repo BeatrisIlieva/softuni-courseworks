@@ -8,22 +8,39 @@ import { authServiceFactory } from "../../../services/authService";
 import styles from "../UpdateEmail/UpdateEmail.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-
+import { useFormAuthUser } from "../../../hooks/useFormAuthUser";
 const FormKeys = {
   OldPassword: "oldPassword",
   NewPassword: "newPassword",
   RetypeNewPassword: "retypeNewPassword",
 };
 
-export const UpdatePassword = ({ onUpdatePasswordSubmit }) => {
-  const authService = useService(authServiceFactory);
-  const { userId } = useContext(AuthContext);
+export const UpdatePassword = () => {
+  const { onUpdatePasswordSubmit } = useContext(AuthContext);
 
-  const [values, setValues] = useState({
-    [FormKeys.OldPassword]: { value: "", focusField: false },
-    [FormKeys.NewPassword]: { value: "", focusField: false },
-    [FormKeys.RetypeNewPassword]: { value: "", focusField: false },
-  });
+  const { values, changeHandler, onFocusField, onBlurField, onSubmit } =
+    useFormAuthUser(
+      {
+        [FormKeys.OldPassword]: { value: "", focusField: false },
+        [FormKeys.NewPassword]: { value: "", focusField: false },
+        [FormKeys.RetypeNewPassword]: { value: "", focusField: false },
+      },
+      onUpdatePasswordSubmit,
+      FormKeys
+    );
+
+
+
+
+
+  // const authService = useService(authServiceFactory);
+  // const { userId } = useContext(AuthContext);
+
+  // const [values, setValues] = useState({
+  //   [FormKeys.OldPassword]: { value: "", focusField: false },
+  //   [FormKeys.NewPassword]: { value: "", focusField: false },
+  //   [FormKeys.RetypeNewPassword]: { value: "", focusField: false },
+  // });
 
   // useEffect(() => {
   //   authService
@@ -43,52 +60,52 @@ export const UpdatePassword = ({ onUpdatePasswordSubmit }) => {
   //     });
   // }, []);
 
-  const changeHandler = (fieldKey, newValue) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      [fieldKey]: { ...prevValues[fieldKey], value: newValue },
-    }));
-  };
+  // const changeHandler = (fieldKey, newValue) => {
+  //   setValues((prevValues) => ({
+  //     ...prevValues,
+  //     [fieldKey]: { ...prevValues[fieldKey], value: newValue },
+  //   }));
+  // };
 
-  const onFocusField = (fieldKey) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      [fieldKey]: { ...prevValues[fieldKey], focusField: true },
-    }));
-  };
+  // const onFocusField = (fieldKey) => {
+  //   setValues((prevValues) => ({
+  //     ...prevValues,
+  //     [fieldKey]: { ...prevValues[fieldKey], focusField: true },
+  //   }));
+  // };
 
-  const onBlurField = () => {
-    setValues((prevValues) => {
-      const updatedValues = { ...prevValues };
-      for (let key in updatedValues) {
-        updatedValues[key].focusField = true ? values[key].value : false;
-      }
+  // const onBlurField = () => {
+  //   setValues((prevValues) => {
+  //     const updatedValues = { ...prevValues };
+  //     for (let key in updatedValues) {
+  //       updatedValues[key].focusField = true ? values[key].value : false;
+  //     }
 
-      return updatedValues;
-    });
-  };
+  //     return updatedValues;
+  //   });
+  // };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  // const onSubmit = async (e) => {
+  //   e.preventDefault();
     
-      const NewPassword = values[FormKeys.NewPassword].value;
-      const RetypeNewPassword  = values[FormKeys.RetypeNewPassword].value;
+  //     const NewPassword = values[FormKeys.NewPassword].value;
+  //     const RetypeNewPassword  = values[FormKeys.RetypeNewPassword].value;
 
 
-    if (RetypeNewPassword !== NewPassword) {
-      console.log("Passwords do not match!");
-      return;
-    }
+  //   if (RetypeNewPassword !== NewPassword) {
+  //     console.log("Passwords do not match!");
+  //     return;
+  //   }
 
-    onUpdatePasswordSubmit();
+  //   onUpdatePasswordSubmit();
 
-    const data = {
-      [FormKeys.OldPassword]: values[FormKeys.OldPassword].value,
-      [FormKeys.NewPassword]: values[FormKeys.NewPassword].value,
-    };
+  //   const data = {
+  //     [FormKeys.OldPassword]: values[FormKeys.OldPassword].value,
+  //     [FormKeys.NewPassword]: values[FormKeys.NewPassword].value,
+  //   };
 
-    await authService.changePassword(userId, data);
-  };
+  //   await authService.changePassword(userId, data);
+  // };
 
   return (
     <form method="POST" onSubmit={onSubmit} className={styles["modal-dialog"]}>

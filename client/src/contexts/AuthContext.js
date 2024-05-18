@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
 
   const getOne = async(userId) => {
     const user = await authService.getOne(userId);
-    
+
     return user;
   }
 
@@ -76,9 +76,20 @@ export const AuthProvider = ({ children }) => {
     };
     try {
       await authService.updateEmail(userId, data);
-      // setAuth({});
 
-      // setAuth(result["token"]);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const onUpdatePasswordSubmit = async (userId, values) => {
+    console.log(values);
+    const data = {
+      oldPassword: values.oldPassword.value,
+      newPassword: values.newPassword.value,
+    };
+    try {
+      await authService.changePassword(userId, data);
 
     } catch (err) {
       console.log(err.message);
@@ -91,6 +102,7 @@ export const AuthProvider = ({ children }) => {
     onLogout,
     getOne,
     onUpdateEmailSubmit,
+    onUpdatePasswordSubmit,
     userId: auth._id,
     token: auth.accessToken,
     // userEmail: auth.email,

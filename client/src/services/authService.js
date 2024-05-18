@@ -16,8 +16,6 @@ export const authServiceFactory = (token) => {
 
     changePassword: (userId, data) => request.put(`${baseUrl}/change-password/${userId}`, data),
 
-    // editPassword: (data) => request.put(`${baseUrl}/edit-password`, data),
-
     logout: () => request.get(`${baseUrl}/logout`),
   };
 };
