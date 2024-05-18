@@ -26,19 +26,6 @@ export const UpdatePassword = () => {
 
 
 
-
-  // const onSubmit = async (e) => {
-  //   e.preventDefault();
-    
-  //     const NewPassword = values[FormKeys.NewPassword].value;
-  //     const RetypeNewPassword  = values[FormKeys.RetypeNewPassword].value;
-
-
-  //   if (RetypeNewPassword !== NewPassword) {
-  //     console.log("Passwords do not match!");
-  //     return;
-  //   }
-
   //   onUpdatePasswordSubmit();
 
   //   const data = {
