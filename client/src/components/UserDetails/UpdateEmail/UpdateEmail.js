@@ -2,12 +2,8 @@ import formStyles from "../../../commonCSS/Form.module.css";
 import buttonStyles from "../../../commonCSS/Button.module.css";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { useService } from "../../../hooks/useService";
-import { authServiceFactory } from "../../../services/authService";
 import styles from "../UpdateEmail/UpdateEmail.module.css";
-import { useFormAuthUser } from "../../../hooks/useFormAuthUser"
-
-
+import { useFormAuthUser } from "../../../hooks/useFormAuthUser";
 
 const FormKeys = {
   Email: "email",
@@ -15,19 +11,17 @@ const FormKeys = {
 };
 
 export const UpdateEmail = () => {
-  const {onUpdateEmailSubmit} = useContext(AuthContext);
+  const { onUpdateEmailSubmit } = useContext(AuthContext);
 
   const { values, changeHandler, onFocusField, onBlurField, onSubmit } =
-  useFormAuthUser(
-    {
-      [FormKeys.Email]: { value: "", focusField: false },
-      [FormKeys.Password]: { value: "", focusField: false },
-    },
-    onUpdateEmailSubmit,
-    FormKeys,
-  );
-
-
+    useFormAuthUser(
+      {
+        [FormKeys.Email]: { value: "", focusField: false },
+        [FormKeys.Password]: { value: "", focusField: false },
+      },
+      onUpdateEmailSubmit,
+      FormKeys
+    );
 
   return (
     <form method="POST" onSubmit={onSubmit} className={styles["modal-dialog"]}>
