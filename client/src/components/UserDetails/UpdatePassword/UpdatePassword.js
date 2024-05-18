@@ -27,31 +27,6 @@ export const UpdatePassword = () => {
 
 
 
-  // const changeHandler = (fieldKey, newValue) => {
-  //   setValues((prevValues) => ({
-  //     ...prevValues,
-  //     [fieldKey]: { ...prevValues[fieldKey], value: newValue },
-  //   }));
-  // };
-
-  // const onFocusField = (fieldKey) => {
-  //   setValues((prevValues) => ({
-  //     ...prevValues,
-  //     [fieldKey]: { ...prevValues[fieldKey], focusField: true },
-  //   }));
-  // };
-
-  // const onBlurField = () => {
-  //   setValues((prevValues) => {
-  //     const updatedValues = { ...prevValues };
-  //     for (let key in updatedValues) {
-  //       updatedValues[key].focusField = true ? values[key].value : false;
-  //     }
-
-  //     return updatedValues;
-  //   });
-  // };
-
   // const onSubmit = async (e) => {
   //   e.preventDefault();
     
