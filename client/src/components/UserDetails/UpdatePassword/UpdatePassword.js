@@ -27,16 +27,6 @@ export const UpdatePassword = () => {
 
 
 
-
-  // const authService = useService(authServiceFactory);
-  // const { userId } = useContext(AuthContext);
-
-  // const [values, setValues] = useState({
-  //   [FormKeys.OldPassword]: { value: "", focusField: false },
-  //   [FormKeys.NewPassword]: { value: "", focusField: false },
-  //   [FormKeys.RetypeNewPassword]: { value: "", focusField: false },
-  // });
-
   // useEffect(() => {
   //   authService
   //     .getOne(userId)
