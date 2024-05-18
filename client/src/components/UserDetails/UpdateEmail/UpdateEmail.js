@@ -29,38 +29,6 @@ export const UpdateEmail = () => {
 
 
 
-  // useEffect(() => {
-  //   authService
-  //     .getOne(userId)
-  //     .then((dataFromServer) => {
-  //       const updatedValues = { ...values };
-  //       for (let key in FormKeys) {
-  //         updatedValues[FormKeys[key]] = {
-  //           value: dataFromServer[FormKeys[key]],
-  //           focusField: true ? dataFromServer[FormKeys[key]] : false,
-  //         };
-  //       }
-  //       setValues(updatedValues);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []);
-
-  // const changeHandler = (fieldKey, newValue) => {
-  //   setValues((prevValues) => ({
-  //     ...prevValues,
-  //     [fieldKey]: { ...prevValues[fieldKey], value: newValue },
-  //   }));
-  // };
-
-  // const onFocusField = (fieldKey) => {
-  //   setValues((prevValues) => ({
-  //     ...prevValues,
-  //     [fieldKey]: { ...prevValues[fieldKey], focusField: true },
-  //   }));
-  // };
-
   // const onBlurField = () => {
   //   setValues((prevValues) => {
   //     const updatedValues = { ...prevValues };
