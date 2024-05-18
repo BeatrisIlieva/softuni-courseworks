@@ -15,10 +15,7 @@ const FormKeys = {
 };
 
 export const UpdateEmail = () => {
-  const authService = useService(authServiceFactory);
   const {onUpdateEmailSubmit} = useContext(AuthContext);
-  const { userId } = useContext(AuthContext);
-
 
   const { values, changeHandler, onFocusField, onBlurField, onSubmit } =
   useFormAuthUser(
