@@ -23,7 +23,7 @@ const FormKeys = {
 
 export const UserDetails = () => {
   const profileService = useService(profileServiceFactory);
-  const { userId} = useContext(AuthContext);
+  const { userId } = useContext(AuthContext);
   const authService = useService(authServiceFactory);
   const [user, setUser] = useState([]);
 
@@ -54,15 +54,16 @@ export const UserDetails = () => {
       });
   }, []);
 
-  useEffect (() => {
-    authService.getOne(userId)
-    .then((dataFromServer) => {
-        setUser(dataFromServer)
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-  }, [user])
+  useEffect(() => {
+    authService
+      .getOne(userId)
+      .then((dataFromServer) => {
+        setUser(dataFromServer);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [user]);
 
   const changeHandler = (fieldKey, newValue) => {
     setValues((prevValues) => ({
@@ -125,14 +126,12 @@ export const UserDetails = () => {
     setShowUpdatePassword(false);
   };
 
-
   const [showUpdatePassword, setShowUpdatePassword] = useState(false);
 
   const onUpdatePasswordClick = async () => {
     setShowUpdatePassword(true);
     setShowUpdateEmail(false);
   };
-
 
   return (
     <section className={styles["user-details-box"]}>
@@ -322,13 +321,8 @@ export const UserDetails = () => {
               >
                 Change Password
               </button>
-              {showUpdateEmail && (
-                <UpdateEmail />
-              )}
-              {showUpdatePassword && (
-                <UpdatePassword
-                />
-              )}
+              {showUpdateEmail && <UpdateEmail />}
+              {showUpdatePassword && <UpdatePassword />}
               {showAddressBook && (
                 <AddressBook
                   onCloseAddressBook={onCloseAddressBook}
