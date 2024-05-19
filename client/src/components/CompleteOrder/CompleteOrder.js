@@ -22,16 +22,6 @@ export const CompleteOrder = () => {
      navigate("/");
   }
 
-//   useEffect(() => {
-//     completeOrderService
-//       .getOne(userId)
-//       .then((dataFromServer) => {
-//         setAddressBook(dataFromServer);
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching data:", error);
-//       });
-//   });
 
   useEffect(() => {
     authService
