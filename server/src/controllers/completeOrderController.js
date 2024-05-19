@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const addressBookManager = require("../managers/addressBookManager");
 
-router.get("/:userId",  async (req, res) => {
+router.get("/:userId", async (req, res) => {
   const userId = req.user._id;
 
   try {

@@ -22,8 +22,6 @@ const FormKeys = {
 
 export const ShippingDetails = ({onContinueCheckoutSubmit}) => {
 
-  // const addressBookService = useService(addressBookServiceFactory);
-  // const { userId } = useContext(AuthContext);
 
 
   const { values, changeHandler, onFocusField, onBlurField } =
