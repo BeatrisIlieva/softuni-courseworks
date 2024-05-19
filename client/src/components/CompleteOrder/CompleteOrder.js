@@ -8,6 +8,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { authServiceFactory } from "../../services/authService";
 import { ShippingDetails } from "./ShippingDetails/ShippingDetails";
 import { useNavigate } from "react-router-dom";
+import { OrderSummary } from "./OrderSummary/OrderSummary";
 
 export const CompleteOrder = () => {
   const { userId } = useContext(AuthContext);
@@ -56,7 +57,9 @@ export const CompleteOrder = () => {
             />
           </div>
         </div>
-        <div className={styles["right-container"]}></div>
+        <div className={styles["right-container"]}>
+          <OrderSummary />
+        </div>
       </div>
     </section>
   );

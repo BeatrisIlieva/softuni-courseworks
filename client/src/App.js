@@ -14,6 +14,7 @@ import { Home } from "../src/components/Home/Home";
 import { Bag } from "./components/Bag/Bag";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { WishListProvider } from "./contexts/WishListContext";
+import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
           <main className={styles["main"]}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/:categoryId" element={<JewelryList />} />
+              <Route path="/:categoryId" element={                  <RouteGuard><JewelryList /></RouteGuard>} />
               <Route path="/:categoryId/:jewelryId" element={<JewelryItem />} />
               <Route path="/user/login" element={<Login />} />
               <Route path="/user/register" element={<Register />} />
@@ -40,14 +41,20 @@ function App() {
                 path="/wishlist/create/:jewelryId"
                 element={<JewelryList />}
               />
-              <Route path="complete-order/:userId" element={<CompleteOrder/>}/>
+              <Route
+                path="/complete-order/:userId"
+                element={
+                  <RouteGuard>
+                    <CompleteOrder />
+                  </RouteGuard>
+                }
+              />
               <Route path="*" element={<h1>404</h1>} />
             </Routes>
           </main>
           <Footer />
         </div>
-
-        </WishListProvider>
+      </WishListProvider>
     </AuthProvider>
   );
 }
