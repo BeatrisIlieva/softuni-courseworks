@@ -29,7 +29,7 @@ function App() {
                 path="/:categoryId"
                 element={<RouteGuard>{<JewelryList />}</RouteGuard>}
               /> */}
-              {/* <Route path="/:categoryId" element={<JewelryList />} /> */}
+              <Route path="/:categoryId" element={<JewelryList />} />
               {/* <Route
                 path="/:categoryId"
                 element={
@@ -39,7 +39,7 @@ function App() {
                 }
               /> */}
               <Route element={<RouteGuard />}>
-                <Route path="/:categoryId" element={<JewelryList />} />
+                {/* <Route path="/:categoryId" element={<JewelryList />} /> */}
                 <Route
                 path="/complete-order/:userId"
                 element={

@@ -6,15 +6,23 @@ const {
 
 router.get("/:categoryId", async (req, res) => {
   try {
-    const userId = req.user._id;
-    
     let categoryId = req.params.categoryId;
 
     categoryId = Number(categoryId);
 
     let jewelries = await jewelryManager.getAll(categoryId);
 
+
+    if (req.user) {
+      const userId = req.user._id;
+
+
     jewelries = await setJewelriesLikedAuthUser(jewelries, userId);
+    }
+
+    else {
+      jewelries = await jewelryManager.getAll(categoryId);
+    }
 
     res.status(200).json(jewelries);
   } catch (err) {

@@ -21,8 +21,14 @@ export const JewelryListTemplate = ({
   handleMouseLeave,
   handleLikedByUser,
 }) => {
-  const { onAddToWishListClick, onRemoveFromWishListClick } =
+  const { onAddToWishListClick, onRemoveFromWishListClick, wishlist } =
     useContext(WishListContext);
+
+    const jewelryIsLikedByNotAuthUser = wishlist.find(id => id === _id);
+
+    if (jewelryIsLikedByNotAuthUser) {
+      isLikedByUser = true;
+    }
 
   return (
     <article className={styles["jewelry-card"]}>

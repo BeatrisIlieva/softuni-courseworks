@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { authServiceFactory } from "../services/authService";
-import { useNavigate, useLocation  } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const AuthContext = createContext();
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
 
     const data = { email, password };
 
-    const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || "/";
 
     try {
       const result = await authService.login({ ...data });

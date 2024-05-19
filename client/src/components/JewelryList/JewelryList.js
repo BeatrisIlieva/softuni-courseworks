@@ -52,7 +52,6 @@ export const JewelryList = () => {
   };
 
   const handleLikedByUser = (_id) => {
-    console.log(_id)
     fetchData();
   };
 
