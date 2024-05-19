@@ -1,19 +1,46 @@
-import { Navigate } from "react-router-dom";
-import { useAuthContext } from "../../contexts/AuthContext"
+// import { Navigate, Outlet } from "react-router-dom";
+// import { useAuthContext } from "../../contexts/AuthContext";
+
+// export const RouteGuard = ({children}) => {
+//   const { isAuthenticated } = useAuthContext();
+
+//   if (!isAuthenticated) {
+//     return <Navigate to="/user/login" />;
+//   }
+
+//   return children ? children : <Outlet />;
+// };
 
 
-export const RouteGuard = ({
-    children
-}) => {
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useAuthContext } from "../../contexts/AuthContext";
 
-    const {isAuthenticated} = useAuthContext();
+export const RouteGuard = ({children}) => {
+  const { isAuthenticated } = useAuthContext();
 
-    if (!isAuthenticated) {
-        return < Navigate to="/user/login"/>
-    }
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/user/login" state={{ from: location }} />;
+  }
+
+  return children ? children : <Outlet />;
+};
 
 
-    return (
-        <>{children}</>
-    )
-}
+
+
+// export const RouteGuard = ({
+//     children
+// }) => {
+
+//     const {isAuthenticated} = useAuthContext();
+
+//     if (!isAuthenticated) {
+//         return < Navigate to="/user/login"/>
+//     }
+
+//     return (
+//         <>{children}</>
+//     )
+// }

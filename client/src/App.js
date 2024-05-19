@@ -25,11 +25,35 @@ function App() {
           <main className={styles["main"]}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/:categoryId" element={                  <RouteGuard><JewelryList /></RouteGuard>} />
+              {/* <Route
+                path="/:categoryId"
+                element={<RouteGuard>{<JewelryList />}</RouteGuard>}
+              /> */}
+              {/* <Route path="/:categoryId" element={<JewelryList />} /> */}
+              {/* <Route
+                path="/:categoryId"
+                element={
+                  <RouteGuard>
+                    <JewelryList />
+                  </RouteGuard>
+                }
+              /> */}
+              <Route element={<RouteGuard />}>
+                <Route path="/:categoryId" element={<JewelryList />} />
+                <Route
+                path="/complete-order/:userId"
+                element={
+                  <RouteGuard>
+                    <CompleteOrder />
+                  </RouteGuard>
+                }
+              />
+              <Route path="/user/logout" element={<Logout />} />
+              </Route>
               <Route path="/:categoryId/:jewelryId" element={<JewelryItem />} />
               <Route path="/user/login" element={<Login />} />
               <Route path="/user/register" element={<Register />} />
-              <Route path="/user/logout" element={<Logout />} />
+              
               <Route path="/user/details" element={<UserDetails />} />
               <Route path="/user/bag" element={<Bag />} />
               <Route path="/bag/add/:jewelryId" element={<JewelryItem />} />
@@ -41,14 +65,14 @@ function App() {
                 path="/wishlist/create/:jewelryId"
                 element={<JewelryList />}
               />
-              <Route
+              {/* <Route
                 path="/complete-order/:userId"
                 element={
                   <RouteGuard>
                     <CompleteOrder />
                   </RouteGuard>
                 }
-              />
+              /> */}
               <Route path="*" element={<h1>404</h1>} />
             </Routes>
           </main>

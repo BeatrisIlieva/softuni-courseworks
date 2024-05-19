@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { authServiceFactory } from "../services/authService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation  } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const AuthContext = createContext();
@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useLocalStorage("auth", {});
   const authService = authServiceFactory(auth.accessToken);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onRegisterSubmit = async (values) => {
     const email = values.email.value;
@@ -46,11 +47,13 @@ export const AuthProvider = ({ children }) => {
 
     const data = { email, password };
 
+    const from = location.state?.from?.pathname || '/';
+
     try {
       const result = await authService.login({ ...data });
       setAuth(result["token"]);
 
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (err) {
       console.log(err.message);
     }
