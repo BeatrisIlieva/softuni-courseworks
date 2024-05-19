@@ -12,16 +12,14 @@ import { useNavigate } from "react-router-dom";
 export const CompleteOrder = () => {
   const { userId } = useContext(AuthContext);
   const completeOrderService = useService(completeOrderServiceFactory);
-  const [addressBook, setAddressBook] = useState([]);
   const authService = useService(authServiceFactory);
   const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
   const onContinueCheckoutSubmit = async (data) => {
     await completeOrderService.update(userId, data);
-     navigate("/");
-  }
-
+    navigate("/");
+  };
 
   useEffect(() => {
     authService
@@ -53,7 +51,9 @@ export const CompleteOrder = () => {
             <h4 className={styles["left-top-container-email"]}>{user.email}</h4>
           </div>
           <div>
-            <ShippingDetails onContinueCheckoutSubmit={onContinueCheckoutSubmit} />
+            <ShippingDetails
+              onContinueCheckoutSubmit={onContinueCheckoutSubmit}
+            />
           </div>
         </div>
         <div className={styles["right-container"]}></div>
