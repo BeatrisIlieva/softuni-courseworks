@@ -3,11 +3,10 @@ import { useService } from "./useService";
 import { addressBookServiceFactory } from "../services/addressBookService";
 import { AuthContext } from "../contexts/AuthContext";
 
-
 export const useFormAddressBook = (initialValues, FormKeys) => {
-    const addressBookService = useService(addressBookServiceFactory);
-    const [values, setValues] = useState(initialValues);
-    const { userId } = useContext(AuthContext);
+  const addressBookService = useService(addressBookServiceFactory);
+  const [values, setValues] = useState(initialValues);
+  const { userId } = useContext(AuthContext);
 
   useEffect(() => {
     addressBookService
@@ -51,8 +50,6 @@ export const useFormAddressBook = (initialValues, FormKeys) => {
       return updatedValues;
     });
   };
-
-
 
   return {
     values,

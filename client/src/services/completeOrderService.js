@@ -11,5 +11,5 @@ export const completeOrderServiceFactory = (token) => {
     return addressBook;
   };
 
-  return { getOne, update };
+  return { update };
 };
