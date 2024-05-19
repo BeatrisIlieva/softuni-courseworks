@@ -1,15 +1,7 @@
 import formStyles from "../../../commonCSS/Form.module.css";
 import buttonStyles from "../../../commonCSS/Button.module.css";
-import { useContext } from "react";
-import { AuthContext } from "../../../contexts/AuthContext";
-import { useState, useEffect } from "react";
-import { useService } from "../../../hooks/useService";
-import { addressBookServiceFactory } from "../../../services/addressBookService";
 import styles from "./ShippingDetails.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useFormAuthUser } from "../../../hooks/useFormAuthUser";
-import {useFormAddressBook} from "../../../hooks/useFormAddressBook"
+import { useFormAddressBook } from "../../../hooks/useFormAddressBook";
 
 const FormKeys = {
   FirstName: "firstName",
@@ -20,24 +12,20 @@ const FormKeys = {
   Address: "address",
 };
 
-export const ShippingDetails = ({onContinueCheckoutSubmit}) => {
-
-
-
+export const ShippingDetails = ({ onContinueCheckoutSubmit }) => {
   const { values, changeHandler, onFocusField, onBlurField } =
-  useFormAddressBook(
-    {
-      [FormKeys.FirstName]: { value: "", focusField: false },
-      [FormKeys.LastName]: { value: "", focusField: false },
-      [FormKeys.PhoneNumber]: { value: "", focusField: false },
-      [FormKeys.Country]: { value: "", focusField: false },
-      [FormKeys.City]: { value: "", focusField: false },
-      [FormKeys.Address]: { value: "", focusField: false },
-    },
+    useFormAddressBook(
+      {
+        [FormKeys.FirstName]: { value: "", focusField: false },
+        [FormKeys.LastName]: { value: "", focusField: false },
+        [FormKeys.PhoneNumber]: { value: "", focusField: false },
+        [FormKeys.Country]: { value: "", focusField: false },
+        [FormKeys.City]: { value: "", focusField: false },
+        [FormKeys.Address]: { value: "", focusField: false },
+      },
 
-    FormKeys
-  );
-
+      FormKeys
+    );
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -54,13 +42,11 @@ export const ShippingDetails = ({onContinueCheckoutSubmit}) => {
   };
 
   return (
-    <section id={styles["shipping-details-box"]}
-    >
+    <section id={styles["shipping-details-box"]}>
       {values && (
         <div className={styles["modal-dialog"]}>
           <div className={styles["modal-content"]}>
             <div className={styles["modal-header"]}>
-              
               <h2 className={styles["title"]}>Add Address</h2>
             </div>
             <div className={styles["modal-body"]}>
