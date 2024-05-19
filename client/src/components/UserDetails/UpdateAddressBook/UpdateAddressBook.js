@@ -2,14 +2,12 @@ import formStyles from "../../../commonCSS/Form.module.css";
 import buttonStyles from "../../../commonCSS/Button.module.css";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { useState, useEffect } from "react";
 import { useService } from "../../../hooks/useService";
 import { addressBookServiceFactory } from "../../../services/addressBookService";
 import styles from "../UpdateAddressBook/UpdateAddressBook.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useFormAuthUser } from "../../../hooks/useFormAuthUser";
-import {useFormAddressBook} from "../../../hooks/useFormAddressBook"
+import { useFormAddressBook } from "../../../hooks/useFormAddressBook";
 
 const FormKeys = {
   FirstName: "firstName",
@@ -20,26 +18,26 @@ const FormKeys = {
   Address: "address",
 };
 
-export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBookSubmit }) => {
-
+export const UpdateAddressBook = ({
+  onCloseUpdateAddressBook,
+  onUpdateAddressBookSubmit,
+}) => {
   const addressBookService = useService(addressBookServiceFactory);
   const { userId } = useContext(AuthContext);
 
-
   const { values, changeHandler, onFocusField, onBlurField } =
-  useFormAddressBook(
-    {
-      [FormKeys.FirstName]: { value: "", focusField: false },
-      [FormKeys.LastName]: { value: "", focusField: false },
-      [FormKeys.PhoneNumber]: { value: "", focusField: false },
-      [FormKeys.Country]: { value: "", focusField: false },
-      [FormKeys.City]: { value: "", focusField: false },
-      [FormKeys.Address]: { value: "", focusField: false },
-    },
+    useFormAddressBook(
+      {
+        [FormKeys.FirstName]: { value: "", focusField: false },
+        [FormKeys.LastName]: { value: "", focusField: false },
+        [FormKeys.PhoneNumber]: { value: "", focusField: false },
+        [FormKeys.Country]: { value: "", focusField: false },
+        [FormKeys.City]: { value: "", focusField: false },
+        [FormKeys.Address]: { value: "", focusField: false },
+      },
 
-    FormKeys
-  );
-
+      FormKeys
+    );
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -68,7 +66,10 @@ export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBoo
         <div className={styles["modal-dialog"]}>
           <div className={styles["modal-content"]}>
             <div className={styles["modal-header"]}>
-              <div id={styles["xMark"]} onClick={() => onCloseUpdateAddressBook()}>
+              <div
+                id={styles["xMark"]}
+                onClick={() => onCloseUpdateAddressBook()}
+              >
                 <FontAwesomeIcon icon={faXmark} className={styles["x-mark"]} />
               </div>
               <h2 className={styles["title"]}>Add a New Address</h2>
