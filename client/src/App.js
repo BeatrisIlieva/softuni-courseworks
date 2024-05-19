@@ -12,6 +12,7 @@ import { UserDetails } from "./components/UserDetails/UserDetails";
 import { AuthProvider } from "./contexts/AuthContext";
 import { Home } from "../src/components/Home/Home";
 import { Bag } from "./components/Bag/Bag";
+import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { WishListProvider } from "./contexts/WishListContext";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
                 path="/wishlist/create/:jewelryId"
                 element={<JewelryList />}
               />
+              <Route path="complete-order/:userId" element={<CompleteOrder/>}/>
               <Route path="*" element={<h1>404</h1>} />
             </Routes>
           </main>

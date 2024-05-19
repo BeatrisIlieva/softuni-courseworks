@@ -10,6 +10,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import buttonStyles from "../../commonCSS/Button.module.css";
 import { BagTemplate } from "./BagTemplate";
+import { Link } from "react-router-dom";
 
 export const Bag = () => {
   const bagService = useService(bagServiceFactory);
@@ -174,11 +175,13 @@ export const Bag = () => {
                     </p>
                   </div>
                   <div className={styles["continue-checkout-button-container"]}>
-                    <input
-                      className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
-                      type="submit"
-                      value="Continue Checkout"
-                    />
+                    <Link to={`/complete-order/${userId}`}>
+                      <input
+                        className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
+                        type="submit"
+                        value="Continue Checkout"
+                      />
+                    </Link>
                   </div>
                 </div>
               </div>

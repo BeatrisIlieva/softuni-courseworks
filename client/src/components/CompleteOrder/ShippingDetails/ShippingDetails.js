@@ -5,7 +5,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { useState, useEffect } from "react";
 import { useService } from "../../../hooks/useService";
 import { addressBookServiceFactory } from "../../../services/addressBookService";
-import styles from "../UpdateAddressBook/UpdateAddressBook.module.css";
+import styles from "./ShippingDetails.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useFormAuthUser } from "../../../hooks/useFormAuthUser";
@@ -20,10 +20,10 @@ const FormKeys = {
   Address: "address",
 };
 
-export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBookSubmit }) => {
+export const ShippingDetails = ({onContinueCheckoutSubmit}) => {
 
-  const addressBookService = useService(addressBookServiceFactory);
-  const { userId } = useContext(AuthContext);
+  // const addressBookService = useService(addressBookServiceFactory);
+  // const { userId } = useContext(AuthContext);
 
 
   const { values, changeHandler, onFocusField, onBlurField } =
@@ -41,60 +41,6 @@ export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBoo
   );
 
 
-
-
-  // const [values, setValues] = useState({
-  //   [FormKeys.FirstName]: { value: "", focusField: false },
-  //   [FormKeys.LastName]: { value: "", focusField: false },
-  //   [FormKeys.PhoneNumber]: { value: "", focusField: false },
-  //   [FormKeys.Country]: { value: "", focusField: false },
-  //   [FormKeys.City]: { value: "", focusField: false },
-  //   [FormKeys.Address]: { value: "", focusField: false },
-  // });
-
-  // useEffect(() => {
-  //   addressBookService
-  //     .display(userId)
-  //     .then((dataFromServer) => {
-  //       const updatedValues = { ...values };
-  //       for (let key in FormKeys) {
-  //         updatedValues[FormKeys[key]] = {
-  //           value: dataFromServer[FormKeys[key]],
-  //           focusField: true ? dataFromServer[FormKeys[key]] : false,
-  //         };
-  //       }
-  //       setValues(updatedValues);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []);
-
-  // const changeHandler = (fieldKey, newValue) => {
-  //   setValues((prevValues) => ({
-  //     ...prevValues,
-  //     [fieldKey]: { ...prevValues[fieldKey], value: newValue },
-  //   }));
-  // };
-
-  // const onFocusField = (fieldKey) => {
-  //   setValues((prevValues) => ({
-  //     ...prevValues,
-  //     [fieldKey]: { ...prevValues[fieldKey], focusField: true },
-  //   }));
-  // };
-
-  // const onBlurField = () => {
-  //   setValues((prevValues) => {
-  //     const updatedValues = { ...prevValues };
-  //     for (let key in updatedValues) {
-  //       updatedValues[key].focusField = true ? values[key].value : false;
-  //     }
-
-  //     return updatedValues;
-  //   });
-  // };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     const data = {
@@ -106,26 +52,18 @@ export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBoo
       [FormKeys.Address]: values[FormKeys.Address].value,
     };
 
-    onUpdateAddressBookSubmit();
-
-    await addressBookService.update(userId, data);
+    onContinueCheckoutSubmit(data);
   };
 
   return (
-    <section
-      id={styles["addAddress"]}
-      role="dialog"
-      aria-modal="true"
-      tabIndex={-1}
+    <section id={styles["shipping-details-box"]}
     >
       {values && (
         <div className={styles["modal-dialog"]}>
           <div className={styles["modal-content"]}>
             <div className={styles["modal-header"]}>
-              <div id={styles["xMark"]} onClick={() => onCloseUpdateAddressBook()}>
-                <FontAwesomeIcon icon={faXmark} className={styles["x-mark"]} />
-              </div>
-              <h2 className={styles["title"]}>Add a New Address</h2>
+              
+              <h2 className={styles["title"]}>Add Address</h2>
             </div>
             <div className={styles["modal-body"]}>
               <form
@@ -326,16 +264,8 @@ export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBoo
                     <input
                       className={`${buttonStyles["button"]} ${buttonStyles["save"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
                       type="submit"
-                      value="Save"
+                      value="Continue Checkout"
                     />
-                  </div>
-                  <div>
-                    <button
-                      onClick={() => onCloseUpdateAddressBook()}
-                      className={`${buttonStyles["button"]} ${buttonStyles["data-dismiss"]}`}
-                    >
-                      Cancel
-                    </button>
                   </div>
                 </div>
               </form>

@@ -1,5 +1,5 @@
 .user-details-box {
-  margin: 40px 170px 0 170px;
+  margin-top: 30px;
   position: relative;
 }
 
@@ -31,13 +31,14 @@
 }
 
 .left-container {
-  width: calc(68% - 20px);
+  /* width: calc(72% - 20px); */
+  width: 68%;
   display: flex;
   gap: 40px;
   flex-direction: column;
 }
 .right-container {
-  width: calc(32% - 20px);
+  /* width: calc(28% - 20px); */
   display: flex;
   gap: 40px;
   flex-direction: column;
