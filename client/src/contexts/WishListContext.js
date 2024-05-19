@@ -11,6 +11,7 @@ export const WishListProvider = ({ children }) => {
   const { isAuthenticated } = useContext(AuthContext);
   const [wishlist, setWishlist] = useLocalStorage("wishlist", []);
   const [wishlistCount, setWishlistCount] = useState(0);
+  const wishListCountGreaterThanZero = wishlistCount >0;
 
   useEffect(() => {
     setWishlistCount(wishlist.length);
@@ -48,7 +49,8 @@ export const WishListProvider = ({ children }) => {
     onAddToWishListClick,
     onRemoveFromWishListClick,
     wishlist,
-    wishlistCount
+    wishlistCount,
+    wishListCountGreaterThanZero
   };
 
   return (

@@ -9,7 +9,8 @@ import { WishListContext } from "../../contexts/WishListContext";
 
 export const Header = () => {
   const { isAuthenticated } = useContext(AuthContext);
-  const {wishlistCount} = useContext(WishListContext)
+  const { wishlistCount } = useContext(WishListContext);
+  const { wishListCountGreaterThanZero } = useContext(WishListContext);
   return (
     <header className={styles["header"]}>
       <div className={styles["header-box"]}>
@@ -73,52 +74,61 @@ export const Header = () => {
             {/* </Link> */}
           </div>
           <div className={styles["icon-box"]}>
-          <div className={styles["icon-bar"]}>
-            <ul className={styles["icon-bar-list"]} role="list">
-              {/* {isAuthenticated && ( */}
-              <li className={styles["icon-bar-list-flex"]}>
-                <Link
-                  className={`${styles["icon-bar-item"]} ${styles["icon-bar-item-no-margin"]}`}
-                  to="/"
-                >
-                  <i class="far fa-heart"></i>{" "}
-                  <span className={styles["icon-bar-count"]}>({wishlistCount})</span>
-                </Link>
-              </li>
-              {/* )} */}
-              {/* {isAuthenticated && ( */}
-              <li>
-                {/* <Link className={styles["icon-bar-item"]} to="/bag/:userId"> */}
-                <Link className={styles["icon-bar-item"]} to={`/user/bag`}>
-                  <i class="fas fa-shopping-bag"></i>{" "}
-                  <span className={styles["icon-bar-count"]}>(1)</span>
-                </Link>
-              </li>
-              {/* )} */}
-              {!isAuthenticated && (
-                <li>
-                  <Link className={styles["icon-bar-item"]} to="/user/login">
-                    <i class="far fa-user"></i>
+            <div className={styles["icon-bar"]}>
+              <ul className={styles["icon-bar-list"]} role="list">
+                {/* {isAuthenticated && ( */}
+                <li className={styles["icon-bar-list-flex"]}>
+                  <Link
+                    className={`${styles["icon-bar-item"]} ${styles["icon-bar-item-no-margin"]}`}
+                    to="/"
+                  >
+                    <i class="far fa-heart"></i>{" "}
+                    {wishListCountGreaterThanZero ? (
+                      <span className={styles["icon-bar-count"]}>
+                        ({wishlistCount})
+                      </span>
+                    ) : (
+                      <span className={styles["icon-bar-count"]} />
+                    )}
                   </Link>
                 </li>
-              )}
-              {isAuthenticated && (
+                {/* )} */}
+                {/* {isAuthenticated && ( */}
                 <li>
-                  <Link className={styles["icon-bar-item"]} to="/user/details">
-                    <i class="far fa-user"></i>
+                  {/* <Link className={styles["icon-bar-item"]} to="/bag/:userId"> */}
+                  <Link className={styles["icon-bar-item"]} to={`/user/bag`}>
+                    <i class="fas fa-shopping-bag"></i>{" "}
+                    <span className={styles["icon-bar-count"]}>(1)</span>
                   </Link>
                 </li>
-              )}
-              {/* {isAuthenticated && (
+                {/* )} */}
+                {!isAuthenticated && (
+                  <li>
+                    <Link className={styles["icon-bar-item"]} to="/user/login">
+                      <i class="far fa-user"></i>
+                    </Link>
+                  </li>
+                )}
+                {isAuthenticated && (
+                  <li>
+                    <Link
+                      className={styles["icon-bar-item"]}
+                      to="/user/details"
+                    >
+                      <i class="far fa-user"></i>
+                    </Link>
+                  </li>
+                )}
+                {/* {isAuthenticated && (
           <li>
             <Link className={styles["icon-bar-item"]} to="/users/logout">
             <i class="fas fa-sign-out-alt"></i>
             </Link>
           </li>
         )} */}
-            </ul>
+              </ul>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </header>
