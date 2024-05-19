@@ -42,16 +42,6 @@ export const UpdateAddressBook = ({ onCloseUpdateAddressBook, onUpdateAddressBoo
 
 
 
-
-  // const [values, setValues] = useState({
-  //   [FormKeys.FirstName]: { value: "", focusField: false },
-  //   [FormKeys.LastName]: { value: "", focusField: false },
-  //   [FormKeys.PhoneNumber]: { value: "", focusField: false },
-  //   [FormKeys.Country]: { value: "", focusField: false },
-  //   [FormKeys.City]: { value: "", focusField: false },
-  //   [FormKeys.Address]: { value: "", focusField: false },
-  // });
-
   // useEffect(() => {
   //   addressBookService
   //     .display(userId)
