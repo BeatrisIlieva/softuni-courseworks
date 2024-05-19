@@ -5,9 +5,11 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import colorStyles from "../../commonCSS/Colors.module.css";
+import { WishListContext } from "../../contexts/WishListContext";
 
 export const Header = () => {
-  const { isAuthenticated, userEmail, userId } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
+  const {wishlistCount} = useContext(WishListContext)
   return (
     <header className={styles["header"]}>
       <div className={styles["header-box"]}>
@@ -80,7 +82,7 @@ export const Header = () => {
                   to="/"
                 >
                   <i class="far fa-heart"></i>{" "}
-                  <span className={styles["icon-bar-count"]}>(1)</span>
+                  <span className={styles["icon-bar-count"]}>({wishlistCount})</span>
                 </Link>
               </li>
               {/* )} */}
