@@ -5,12 +5,14 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import colorStyles from "../../commonCSS/Colors.module.css";
-import { WishListContext } from "../../contexts/WishListContext";
+import { useWishListContext } from "../../contexts/WishListContext";
+import { useBagContext } from "../../contexts/BagContext";
 
 export const Header = () => {
   const { isAuthenticated } = useContext(AuthContext);
-  const { wishlistCount } = useContext(WishListContext);
-  const { wishListCountGreaterThanZero } = useContext(WishListContext);
+  const { wishlistCount, wishListCountGreaterThanZero } = useWishListContext();
+  const { bagCount, bagCountGreaterThanZero } = useBagContext();
+
   return (
     <header className={styles["header"]}>
       <div className={styles["header-box"]}>
@@ -76,7 +78,6 @@ export const Header = () => {
           <div className={styles["icon-box"]}>
             <div className={styles["icon-bar"]}>
               <ul className={styles["icon-bar-list"]} role="list">
-                {/* {isAuthenticated && ( */}
                 <li className={styles["icon-bar-list-flex"]}>
                   <Link
                     className={`${styles["icon-bar-item"]} ${styles["icon-bar-item-no-margin"]}`}
@@ -92,16 +93,16 @@ export const Header = () => {
                     )}
                   </Link>
                 </li>
-                {/* )} */}
-                {/* {isAuthenticated && ( */}
                 <li>
-                  {/* <Link className={styles["icon-bar-item"]} to="/bag/:userId"> */}
                   <Link className={styles["icon-bar-item"]} to={`/user/bag`}>
                     <i class="fas fa-shopping-bag"></i>{" "}
-                    <span className={styles["icon-bar-count"]}>(1)</span>
+                    {bagCountGreaterThanZero && (
+                      <span className={styles["icon-bar-count"]}>
+                        ({bagCount})
+                      </span>
+                    )}
                   </Link>
                 </li>
-                {/* )} */}
                 {!isAuthenticated && (
                   <li>
                     <Link className={styles["icon-bar-item"]} to="/user/login">

@@ -12,7 +12,7 @@ export const JewelryItem = () => {
   const [jewelry, setJewelry] = useState();
   const [miniBag, setMiniBag] = useState(false);
   const jewelryService = useService(jewelryServiceFactory);
-  const { onAddToBagClick} = useBagContext();
+  const { onAddToBagClick } = useBagContext();
 
   useEffect(() => {
     fetchJewelry();
