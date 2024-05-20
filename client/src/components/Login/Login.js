@@ -1,7 +1,8 @@
 import formStyles from "../../commonCSS/Form.module.css";
 import loginStyles from "./Login.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
-import { AuthContext } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
+// import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { useFormNotAuthUser } from "../../hooks/useFormNotAuthUser";
@@ -12,7 +13,8 @@ const FormKeys = {
 };
 
 export const Login = () => {
-  const { onLoginSubmit } = useContext(AuthContext);
+  const { onLoginSubmit } = useAuthContext();
+  // const { onLoginSubmit } = useContext(AuthContext);
 
   const { values, changeHandler, onFocusField, onBlurField, onSubmit } =
     useFormNotAuthUser(

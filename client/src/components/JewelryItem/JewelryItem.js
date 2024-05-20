@@ -4,15 +4,15 @@ import { jewelryServiceFactory } from "../../services/jewelryService";
 import { useService } from "../../hooks/useService";
 import styles from "./JewelryItem.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
-import { bagServiceFactory } from "../../services/bagService";
 import { MiniBag } from "../Bag/MiniBag/MiniBag";
+import { useBagContext } from "../../contexts/BagContext";
 
 export const JewelryItem = () => {
   const { categoryId, jewelryId } = useParams();
   const [jewelry, setJewelry] = useState();
   const [miniBag, setMiniBag] = useState(false);
   const jewelryService = useService(jewelryServiceFactory);
-  const bagService = useService(bagServiceFactory);
+  const { onAddToBagClick} = useBagContext();
 
   useEffect(() => {
     fetchJewelry();
@@ -44,9 +44,9 @@ export const JewelryItem = () => {
     if (categoryId === "2") {
       const sizeId = jewelry.sizes[0]._id;
 
-      await bagService.add({ size: sizeId }, jewelry._id);
+      await onAddToBagClick({ size: sizeId }, jewelry._id);
     } else {
-      await bagService.add(values, jewelry._id);
+      await onAddToBagClick(values, jewelry._id);
     }
 
     setMiniBag(true);
@@ -59,12 +59,12 @@ export const JewelryItem = () => {
   const onClose = () => {
     setMiniBag(false);
     document.body.style.overflow = "visible";
-  }
+  };
 
   if (categoryId === "2") {
     return (
       <>
-        <>{miniBag && <MiniBag onClose={onClose}/>}</>
+        <>{miniBag && <MiniBag onClose={onClose} />}</>
         {jewelry && (
           <div className={styles["jewelry-details-container"]}>
             <div className={styles["jewelry-details-images-container"]}>

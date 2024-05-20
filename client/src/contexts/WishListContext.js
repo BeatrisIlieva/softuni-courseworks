@@ -11,7 +11,7 @@ export const WishListProvider = ({ children }) => {
   const { isAuthenticated } = useContext(AuthContext);
   const [wishlist, setWishlist] = useLocalStorage("wishlist", []);
   const [wishlistCount, setWishlistCount] = useState(0);
-  const wishListCountGreaterThanZero = wishlistCount >0;
+  const wishListCountGreaterThanZero = wishlistCount > 0;
 
   useEffect(() => {
     setWishlistCount(wishlist.length);
@@ -25,7 +25,6 @@ export const WishListProvider = ({ children }) => {
         setWishlist((state) => [...state, _id]);
       }
 
-
       console.log(wishlistCount);
     } catch (error) {
       console.error("Error adding item to wishlist:", error);
@@ -37,9 +36,8 @@ export const WishListProvider = ({ children }) => {
       if (isAuthenticated) {
         await wishlistService.remove(_id);
       } else {
-        setWishlist((state) => state.filter(id => id !== _id));
+        setWishlist((state) => state.filter((id) => id !== _id));
       }
-
     } catch (error) {
       console.error("Error removing item to wishlist:", error);
     }
@@ -50,7 +48,7 @@ export const WishListProvider = ({ children }) => {
     onRemoveFromWishListClick,
     wishlist,
     wishlistCount,
-    wishListCountGreaterThanZero
+    wishListCountGreaterThanZero,
   };
 
   return (

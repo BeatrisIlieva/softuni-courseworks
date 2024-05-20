@@ -14,12 +14,14 @@ import { Home } from "../src/components/Home/Home";
 import { Bag } from "./components/Bag/Bag";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { WishListProvider } from "./contexts/WishListContext";
+import {BagProvider} from "./contexts/BagContext"
 import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 
 function App() {
   return (
     <AuthProvider>
       <WishListProvider>
+      <BagProvider>
         <div className={styles["app"]}>
           <Header />
           <main className={styles["main"]}>
@@ -78,6 +80,7 @@ function App() {
           </main>
           <Footer />
         </div>
+        </BagProvider>
       </WishListProvider>
     </AuthProvider>
   );
