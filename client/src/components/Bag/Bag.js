@@ -84,19 +84,6 @@ export const Bag = () => {
   //   setBagItems([...bagItems]);
   // };
 
-  // const onBlur = async (_id, quantity) => {
-  //   try {
-  //     await bagService.update(_id, { quantity: quantity });
-
-  //     setBagItems([...bagItems]);
-
-  //     fetchBagItems();
-  //   } catch (error) {
-  //     console.error("Error updating quantity in the database:", error);
-  //   }
-  // };
-
-  // const isEmpty = bagItems.length < 1;
 
   const {
     user,
