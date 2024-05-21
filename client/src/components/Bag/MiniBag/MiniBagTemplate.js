@@ -1,4 +1,5 @@
 import styles from "./MiniBag.module.css";
+import { useBagContext } from "../../../contexts/BagContext";
 
 export const MiniBagTemplate = ({
   _id,
@@ -11,12 +12,14 @@ export const MiniBagTemplate = ({
   maxQuantity,
   quantity,
   size,
-  onRemove,
-  onDecrement,
-  onQuantityChange,
-  onBlur,
-  onIncrement,
+  // onRemove,
+  // onDecrement,
+  // onQuantityChange,
+  // onBlur,
+  // onIncrement,
 }) => {
+  const { onDecrement, onIncrement, onRemove, onQuantityChange, onBlur } =
+  useBagContext();
   return (
     <>
       <div className={styles["jewelry-popup-image"]}>

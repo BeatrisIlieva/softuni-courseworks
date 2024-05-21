@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const userManager = require("../managers/userManager");
 const addressManager = require("../managers/addressBookManager");
+const {transferUUIDToUserIDForModelShoppingBag} = require("../utils/transferUUIDToUserIDForModelShoppingBag");
 
 router.post("/register", async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
@@ -12,6 +13,12 @@ router.post("/register", async (req, res) => {
       firstName,
       lastName,
     });
+
+    const userUUID = req.headers["user-uuid"];
+
+    // await transferSessionWishlistToModelWishlist(req, userId);
+
+    await transferUUIDToUserIDForModelShoppingBag(userUUID, userId);
 
     res.status(200).json({ token, userId });
   } catch (err) {
@@ -26,10 +33,18 @@ router.post("/login", async (req, res) => {
   try {
     const { email, password } = { ...req.body };
     const result = await userManager.login(email, password);
-    console.log(result);
+    const userId = result.user._id;
 
-    res.json(result);
+    const userUUID = req.headers["user-uuid"];
+
+
+    // await transferSessionWishlistToModelWishlist(req, userId);
+
+    await transferUUIDToUserIDForModelShoppingBag(userUUID, userId);
+
+    res.status(200).json(result);
   } catch (err) {
+    console.log(err.message)
     res.status(400).json({
       message: err.message,
     });

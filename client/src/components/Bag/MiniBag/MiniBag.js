@@ -10,88 +10,16 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { useContext } from "react";
 import buttonStyles from "../../../commonCSS/Button.module.css";
 import { MiniBagTemplate } from "./MiniBagTemplate";
+import { useBagContext } from "../../../contexts/BagContext";
+import { Link } from "react-router-dom";
 
 export const MiniBag = ({onClose}) => {
-  const bagService = useService(bagServiceFactory);
-  let [bagItems, setBagItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalQuantity, setTotalQuantity] = useState(0);
-  let { userId } = useContext(AuthContext);
 
-  useEffect(() => {
-    fetchBagItems();
-  }, []);
 
-  const fetchBagItems = async () => {
-    try {
-      let data = await bagService.display(userId);
-      data = Array.isArray(data) ? data[0] : data;
+  const { user, bagItems, totalPrice, totalQuantity,  } =
+  useBagContext();
 
-      if (data && data.jewelries && data.jewelries.length > 0) {
-        const bagData = data.jewelries;
-        const bagItems = bagData[0].documents;
-        setBagItems(bagItems);
-
-        const totalPrice = bagData[0].totalTotalPrice;
-        setTotalPrice(totalPrice);
-
-        const totalQuantity = bagData[0].totalQuantity;
-        setTotalQuantity(totalQuantity);
-      } else {
-        setBagItems([]);
-        setTotalPrice(0);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const onDecrement = async (bagId) => {
-    await bagService.decrease(bagId);
-
-    fetchBagItems();
-  };
-
-  const onIncrement = async (bagId) => {
-    await bagService.increase(bagId);
-
-    fetchBagItems();
-  };
-
-  const onRemove = async (bagId) => {
-    await bagService.remove(bagId);
-
-    fetchBagItems();
-  };
-
-  const onQuantityChange = (e, _id) => {
-    const newQuantity =
-      e.target.value.trim() === "" ? "" : parseInt(e.target.value);
-
-    bagItems = bagItems.map((item) => {
-      if (item._id === _id) {
-        return {
-          ...item,
-          quantity: newQuantity,
-        };
-      }
-      return item;
-    });
-
-    setBagItems([...bagItems]);
-  };
-
-  const onBlur = async (_id, quantity) => {
-    try {
-      await bagService.update(_id, { quantity: quantity });
-
-      setBagItems([...bagItems]);
-
-      fetchBagItems();
-    } catch (error) {
-      console.error("Error updating quantity in the database:", error);
-    }
-  };
+ 
 
   const isVisible = true;
 
@@ -125,11 +53,11 @@ export const MiniBag = ({onClose}) => {
                   >
                     <MiniBagTemplate
                       {...item}
-                      onRemove={onRemove}
-                      onDecrement={onDecrement}
-                      onQuantityChange={onQuantityChange}
-                      onBlur={onBlur}
-                      onIncrement={onIncrement}
+                      // onRemove={onRemove}
+                      // onDecrement={onDecrement}
+                      // onQuantityChange={onQuantityChange}
+                      // onBlur={onBlur}
+                      // onIncrement={onIncrement}
                     />
                   </li>
                 ))}
@@ -153,11 +81,13 @@ export const MiniBag = ({onClose}) => {
                 />
               </div>
               <div className={styles["continue-checkout-button-container"]}>
+              <Link to={`/complete-order/${user}`}>
                 <input
                   className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
                   type="submit"
                   value="Continue Checkout"
                 />
+                </Link>
               </div>
             </div>
           </div>
