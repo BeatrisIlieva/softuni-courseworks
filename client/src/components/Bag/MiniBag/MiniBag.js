@@ -45,11 +45,6 @@ export const MiniBag = ({ onClose }) => {
                   >
                     <MiniBagTemplate
                       {...item}
-                      // onRemove={onRemove}
-                      // onDecrement={onDecrement}
-                      // onQuantityChange={onQuantityChange}
-                      // onBlur={onBlur}
-                      // onIncrement={onIncrement}
                     />
                   </li>
                 ))}
