@@ -14,7 +14,7 @@ export const MiniBagTemplate = ({
   size,
 }) => {
   const { onDecrement, onIncrement, onRemove, onQuantityChange, onBlur } =
-  useBagContext();
+    useBagContext();
   return (
     <>
       <div className={styles["jewelry-popup-image"]}>

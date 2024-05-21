@@ -18,12 +18,10 @@ export const MiniBag = ({ onClose }) => {
           isVisible ? styles.active : ""
         }`}
       ></div>
-      {/* <div className={styles["mini-bag-shadow"]}></div> */}
       <div className={styles["mini-bag-dialog"]}>
         <div className={styles["modal-dialog"]}>
           <div className={styles["modal-content"]}>
             <div className={styles["modal-header"]}>
-              {/* onClick={() => onCloseAddressBook()} */}
               <h2 className={styles["popup-title"]}>
                 Your Bag
                 <span className={styles["popup-items"]}>
