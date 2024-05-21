@@ -9,13 +9,8 @@ import { Link } from "react-router-dom";
 import { useBagContext } from "../../contexts/BagContext";
 
 export const Bag = () => {
-  const {
-    user,
-    bagItems,
-    totalPrice,
-    totalQuantity,
-    isEmpty,
-  } = useBagContext();
+  const { user, bagItems, totalPrice, totalQuantity, isEmpty } =
+    useBagContext();
 
   return (
     <>
@@ -48,14 +43,7 @@ export const Bag = () => {
                     key={item._id}
                     className={styles["bag-left-sub-left-container"]}
                   >
-                    <BagTemplate
-                      {...item}
-                      // onRemove={onRemove}
-                      // onDecrement={onDecrement}
-                      // onQuantityChange={onQuantityChange}
-                      // onBlur={onBlur}
-                      // onIncrement={onIncrement}
-                    />
+                    <BagTemplate {...item} />
                   </li>
                 ))}
               </ul>
