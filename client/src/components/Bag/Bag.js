@@ -49,23 +49,7 @@ export const Bag = () => {
   //   }
   // };
 
-  // const onDecrement = async (bagId) => {
-  //   await bagService.decrease(bagId);
 
-  //   fetchBagItems();
-  // };
-
-  // const onIncrement = async (bagId) => {
-  //   await bagService.increase(bagId);
-
-  //   fetchBagItems();
-  // };
-
-  // const onRemove = async (bagId) => {
-  //   await bagService.remove(bagId);
-
-  //   fetchBagItems();
-  // };
 
 
 
