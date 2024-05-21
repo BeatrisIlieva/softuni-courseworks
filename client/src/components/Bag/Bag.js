@@ -30,24 +30,6 @@ export const Bag = () => {
   //     let data = await onDisplayBagClick();
   //     data = Array.isArray(data) ? data[0] : data;
 
-  //     if (data && data.jewelries && data.jewelries.length > 0) {
-  //       const bagData = data.jewelries;
-  //       const bagItems = bagData[0].documents;
-  //       setBagItems(bagItems);
-
-  //       const totalPrice = bagData[0].totalTotalPrice;
-  //       setTotalPrice(totalPrice);
-
-  //       const totalQuantity = bagData[0].totalQuantity;
-  //       setTotalQuantity(totalQuantity);
-  //     } else {
-  //       setBagItems([]);
-  //       setTotalPrice(0);
-  //     }
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
 
 
 
