@@ -12,11 +12,6 @@ export const MiniBagTemplate = ({
   maxQuantity,
   quantity,
   size,
-  // onRemove,
-  // onDecrement,
-  // onQuantityChange,
-  // onBlur,
-  // onIncrement,
 }) => {
   const { onDecrement, onIncrement, onRemove, onQuantityChange, onBlur } =
   useBagContext();
