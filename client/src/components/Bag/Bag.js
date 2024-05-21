@@ -14,21 +14,7 @@ import { Link } from "react-router-dom";
 import { useBagContext } from "../../contexts/BagContext";
 
 export const Bag = () => {
-  // const {onDisplayBagClick} = useBagContext();
-  // const bagService = useService(bagServiceFactory);
-  // let [bagItems, setBagItems] = useState([]);
-  // const [totalPrice, setTotalPrice] = useState(0);
-  // const [totalQuantity, setTotalQuantity] = useState(0);
-  // const { userId } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   fetchBagItems();
-  // }, []);
-
-  // const fetchBagItems = async () => {
-  //   try {
-  //     let data = await onDisplayBagClick();
-  //     data = Array.isArray(data) ? data[0] : data;
 
 
 
