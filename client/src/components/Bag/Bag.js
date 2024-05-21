@@ -14,11 +14,11 @@ export const Bag = () => {
     bagItems,
     totalPrice,
     totalQuantity,
-    onDecrement,
-    onIncrement,
-    onRemove,
-    onQuantityChange,
-    onBlur,
+    // onDecrement,
+    // onIncrement,
+    // onRemove,
+    // onQuantityChange,
+    // onBlur,
     isEmpty,
   } = useBagContext();
 
@@ -55,11 +55,11 @@ export const Bag = () => {
                   >
                     <BagTemplate
                       {...item}
-                      onRemove={onRemove}
-                      onDecrement={onDecrement}
-                      onQuantityChange={onQuantityChange}
-                      onBlur={onBlur}
-                      onIncrement={onIncrement}
+                      // onRemove={onRemove}
+                      // onDecrement={onDecrement}
+                      // onQuantityChange={onQuantityChange}
+                      // onBlur={onBlur}
+                      // onIncrement={onIncrement}
                     />
                   </li>
                 ))}

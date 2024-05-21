@@ -1,5 +1,6 @@
 import styles from "./Bag.module.css";
 import { Fragment } from "react";
+import { useBagContext } from "../../contexts/BagContext";
 
 export const BagTemplate = ({
   _id,
@@ -14,12 +15,9 @@ export const BagTemplate = ({
   maxQuantity,
   quantity,
   size,
-  onRemove,
-  onDecrement,
-  onQuantityChange,
-  onBlur,
-  onIncrement,
 }) => {
+  const { onDecrement, onIncrement, onRemove, onQuantityChange, onBlur } =
+    useBagContext();
   return (
     <>
       <div className={styles["jewelry-bag-image"]}>
