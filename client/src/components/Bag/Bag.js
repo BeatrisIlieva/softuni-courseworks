@@ -14,11 +14,6 @@ export const Bag = () => {
     bagItems,
     totalPrice,
     totalQuantity,
-    // onDecrement,
-    // onIncrement,
-    // onRemove,
-    // onQuantityChange,
-    // onBlur,
     isEmpty,
   } = useBagContext();
 
