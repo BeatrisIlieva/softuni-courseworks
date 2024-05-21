@@ -41,9 +41,7 @@ export const MiniBag = ({ onClose }) => {
                     key={item._id}
                     className={styles["popup-jewelry-sub-container"]}
                   >
-                    <MiniBagTemplate
-                      {...item}
-                    />
+                    <MiniBagTemplate {...item} />
                   </li>
                 ))}
               </ul>
@@ -59,11 +57,16 @@ export const MiniBag = ({ onClose }) => {
                 </p>
               </div>
               <div className={styles["continue-checkout-button-container"]}>
-                <input
-                  className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["view-bag-button"]}`}
-                  type="submit"
-                  value="View Bag"
-                />
+                <Link
+                  className={styles["icon-bar-item"]}
+                  to={`/bag/display/${user}`}
+                >
+                  <input
+                    className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["view-bag-button"]}`}
+                    type="submit"
+                    value="View Bag"
+                  />
+                </Link>
               </div>
               <div className={styles["continue-checkout-button-container"]}>
                 <Link to={`/complete-order/${user}`}>
