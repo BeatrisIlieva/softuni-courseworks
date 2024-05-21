@@ -14,27 +14,27 @@ import { Home } from "../src/components/Home/Home";
 import { Bag } from "./components/Bag/Bag";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { WishListProvider } from "./contexts/WishListContext";
-import {BagProvider} from "./contexts/BagContext"
+import { BagProvider } from "./contexts/BagContext";
 import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 import { UserUUIDProvider } from "./contexts/UserUUIDContext";
 
 function App() {
   return (
     <UserUUIDProvider>
-    <AuthProvider>
-      <WishListProvider>
-      <BagProvider>
-        <div className={styles["app"]}>
-          <Header />
-          <main className={styles["main"]}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              {/* <Route
+      <AuthProvider>
+        <WishListProvider>
+          <BagProvider>
+            <div className={styles["app"]}>
+              <Header />
+              <main className={styles["main"]}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  {/* <Route
                 path="/:categoryId"
                 element={<RouteGuard>{<JewelryList />}</RouteGuard>}
               /> */}
-              <Route path="/:categoryId" element={<JewelryList />} />
-              {/* <Route
+                  <Route path="/:categoryId" element={<JewelryList />} />
+                  {/* <Route
                 path="/:categoryId"
                 element={
                   <RouteGuard>
@@ -42,34 +42,37 @@ function App() {
                   </RouteGuard>
                 }
               /> */}
-              <Route element={<RouteGuard />}>
-                {/* <Route path="/:categoryId" element={<JewelryList />} /> */}
-                <Route
-                path="/complete-order/:userId"
-                element={
-                  <RouteGuard>
-                    <CompleteOrder />
-                  </RouteGuard>
-                }
-              />
-              <Route path="/user/logout" element={<Logout />} />
-              </Route>
-              <Route path="/:categoryId/:jewelryId" element={<JewelryItem />} />
-              <Route path="/user/login" element={<Login />} />
-              <Route path="/user/register" element={<Register />} />
-              
-              <Route path="/user/details" element={<UserDetails />} />
-              <Route path="/bag/display/:user" element={<Bag />} />
-              <Route path="/bag/add/:jewelryId" element={<JewelryItem />} />
-              <Route path="/bag/decrease/:bagId" element={<Bag />} />
-              <Route path="/bag/increase/:bagId" element={<Bag />} />
-              <Route path="/bag/update/:bagId" element={<Bag />} />
-              <Route path="/bag/remove/:bagId" element={<Bag />} />
-              <Route
-                path="/wishlist/create/:jewelryId"
-                element={<JewelryList />}
-              />
-              {/* <Route
+                  <Route element={<RouteGuard />}>
+                    {/* <Route path="/:categoryId" element={<JewelryList />} /> */}
+                    <Route
+                      path="/complete-order/:userId"
+                      element={
+                        <RouteGuard>
+                          <CompleteOrder />
+                        </RouteGuard>
+                      }
+                    />
+                    <Route path="/user/logout" element={<Logout />} />
+                  </Route>
+                  <Route
+                    path="/:categoryId/:jewelryId"
+                    element={<JewelryItem />}
+                  />
+                  <Route path="/user/login" element={<Login />} />
+                  <Route path="/user/register" element={<Register />} />
+
+                  <Route path="/user/details" element={<UserDetails />} />
+                  <Route path="/bag/display/:user" element={<Bag />} />
+                  <Route path="/bag/add/:jewelryId" element={<JewelryItem />} />
+                  <Route path="/bag/decrease/:bagId" element={<Bag />} />
+                  <Route path="/bag/increase/:bagId" element={<Bag />} />
+                  <Route path="/bag/update/:bagId" element={<Bag />} />
+                  <Route path="/bag/remove/:bagId" element={<Bag />} />
+                  <Route
+                    path="/wishlist/create/:jewelryId"
+                    element={<JewelryList />}
+                  />
+                  {/* <Route
                 path="/complete-order/:userId"
                 element={
                   <RouteGuard>
@@ -77,14 +80,14 @@ function App() {
                   </RouteGuard>
                 }
               /> */}
-              <Route path="*" element={<h1>404</h1>} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-        </BagProvider>
-      </WishListProvider>
-    </AuthProvider>
+                  <Route path="*" element={<h1>404</h1>} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          </BagProvider>
+        </WishListProvider>
+      </AuthProvider>
     </UserUUIDProvider>
   );
 }

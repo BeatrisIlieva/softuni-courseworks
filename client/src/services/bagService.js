@@ -1,5 +1,4 @@
 import { requestFactory } from "./requester";
-import { useAuthContext } from "../contexts/AuthContext";
 const baseUrl = "http://localhost:3030/bag";
 
 export const bagServiceFactory = (token) => {

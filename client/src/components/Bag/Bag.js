@@ -14,89 +14,102 @@ import { Link } from "react-router-dom";
 import { useBagContext } from "../../contexts/BagContext";
 
 export const Bag = () => {
-  const {onDisplayBagClick} = useBagContext();
-  const bagService = useService(bagServiceFactory);
-  let [bagItems, setBagItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalQuantity, setTotalQuantity] = useState(0);
-  const { userId } = useContext(AuthContext);
+  // const {onDisplayBagClick} = useBagContext();
+  // const bagService = useService(bagServiceFactory);
+  // let [bagItems, setBagItems] = useState([]);
+  // const [totalPrice, setTotalPrice] = useState(0);
+  // const [totalQuantity, setTotalQuantity] = useState(0);
+  // const { userId } = useContext(AuthContext);
 
-  useEffect(() => {
-    fetchBagItems();
-  }, []);
+  // useEffect(() => {
+  //   fetchBagItems();
+  // }, []);
 
-  const fetchBagItems = async () => {
-    try {
-      let data = await onDisplayBagClick();
-      data = Array.isArray(data) ? data[0] : data;
+  // const fetchBagItems = async () => {
+  //   try {
+  //     let data = await onDisplayBagClick();
+  //     data = Array.isArray(data) ? data[0] : data;
 
-      if (data && data.jewelries && data.jewelries.length > 0) {
-        const bagData = data.jewelries;
-        const bagItems = bagData[0].documents;
-        setBagItems(bagItems);
+  //     if (data && data.jewelries && data.jewelries.length > 0) {
+  //       const bagData = data.jewelries;
+  //       const bagItems = bagData[0].documents;
+  //       setBagItems(bagItems);
 
-        const totalPrice = bagData[0].totalTotalPrice;
-        setTotalPrice(totalPrice);
+  //       const totalPrice = bagData[0].totalTotalPrice;
+  //       setTotalPrice(totalPrice);
 
-        const totalQuantity = bagData[0].totalQuantity;
-        setTotalQuantity(totalQuantity);
-      } else {
-        setBagItems([]);
-        setTotalPrice(0);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  //       const totalQuantity = bagData[0].totalQuantity;
+  //       setTotalQuantity(totalQuantity);
+  //     } else {
+  //       setBagItems([]);
+  //       setTotalPrice(0);
+  //     }
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
-  const onDecrement = async (bagId) => {
-    await bagService.decrease(bagId);
+  // const onDecrement = async (bagId) => {
+  //   await bagService.decrease(bagId);
 
-    fetchBagItems();
-  };
+  //   fetchBagItems();
+  // };
 
-  const onIncrement = async (bagId) => {
-    await bagService.increase(bagId);
+  // const onIncrement = async (bagId) => {
+  //   await bagService.increase(bagId);
 
-    fetchBagItems();
-  };
+  //   fetchBagItems();
+  // };
 
-  const onRemove = async (bagId) => {
-    await bagService.remove(bagId);
+  // const onRemove = async (bagId) => {
+  //   await bagService.remove(bagId);
 
-    fetchBagItems();
-  };
+  //   fetchBagItems();
+  // };
 
-  const onQuantityChange = (e, _id) => {
-    const newQuantity =
-      e.target.value.trim() === "" ? "" : parseInt(e.target.value);
+  // const onQuantityChange = (e, _id) => {
+  //   const newQuantity =
+  //     e.target.value.trim() === "" ? "" : parseInt(e.target.value);
 
-    bagItems = bagItems.map((item) => {
-      if (item._id === _id) {
-        return {
-          ...item,
-          quantity: newQuantity,
-        };
-      }
-      return item;
-    });
+  //   bagItems = bagItems.map((item) => {
+  //     if (item._id === _id) {
+  //       return {
+  //         ...item,
+  //         quantity: newQuantity,
+  //       };
+  //     }
+  //     return item;
+  //   });
 
-    setBagItems([...bagItems]);
-  };
+  //   setBagItems([...bagItems]);
+  // };
 
-  const onBlur = async (_id, quantity) => {
-    try {
-      await bagService.update(_id, { quantity: quantity });
+  // const onBlur = async (_id, quantity) => {
+  //   try {
+  //     await bagService.update(_id, { quantity: quantity });
 
-      setBagItems([...bagItems]);
+  //     setBagItems([...bagItems]);
 
-      fetchBagItems();
-    } catch (error) {
-      console.error("Error updating quantity in the database:", error);
-    }
-  };
+  //     fetchBagItems();
+  //   } catch (error) {
+  //     console.error("Error updating quantity in the database:", error);
+  //   }
+  // };
 
-  const isEmpty = bagItems.length < 1;
+  // const isEmpty = bagItems.length < 1;
+
+  const {
+    user,
+    bagItems,
+    totalPrice,
+    totalQuantity,
+    onDecrement,
+    onIncrement,
+    onRemove,
+    onQuantityChange,
+    onBlur,
+    isEmpty,
+  } = useBagContext();
 
   return (
     <>
@@ -177,7 +190,7 @@ export const Bag = () => {
                     </p>
                   </div>
                   <div className={styles["continue-checkout-button-container"]}>
-                    <Link to={`/complete-order/${userId}`}>
+                    <Link to={`/complete-order/${user}`}>
                       <input
                         className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
                         type="submit"

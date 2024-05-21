@@ -12,11 +12,8 @@ import { useUserUUIDContext } from "../../contexts/UserUUIDContext";
 export const Header = () => {
   const { isAuthenticated } = useContext(AuthContext);
   const { wishlistCount, wishListCountGreaterThanZero } = useWishListContext();
-  const { bagCount, bagCountGreaterThanZero, onDisplayBagClick } = useBagContext();
+  const { user, totalQuantity, isEmpty} = useBagContext();
 
-  const {userUUID} = useUserUUIDContext();
-  const user = userUUID;
-  console.log(userUUID);
 
   return (
     <header className={styles["header"]}>
@@ -101,9 +98,9 @@ export const Header = () => {
                 <li>
                   <Link className={styles["icon-bar-item"]} to={`/bag/display/${user}`}>
                     <i class="fas fa-shopping-bag"></i>{" "}
-                    {bagCountGreaterThanZero && (
+                    {!isEmpty && (
                       <span className={styles["icon-bar-count"]}>
-                        ({bagCount})
+                        ({totalQuantity})
                       </span>
                     )}
                   </Link>
