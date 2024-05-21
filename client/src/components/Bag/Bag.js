@@ -67,22 +67,6 @@ export const Bag = () => {
   //   fetchBagItems();
   // };
 
-  // const onQuantityChange = (e, _id) => {
-  //   const newQuantity =
-  //     e.target.value.trim() === "" ? "" : parseInt(e.target.value);
-
-  //   bagItems = bagItems.map((item) => {
-  //     if (item._id === _id) {
-  //       return {
-  //         ...item,
-  //         quantity: newQuantity,
-  //       };
-  //     }
-  //     return item;
-  //   });
-
-  //   setBagItems([...bagItems]);
-  // };
 
 
   const {
