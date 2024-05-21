@@ -1,6 +1,4 @@
 import styles from "./MiniBag.module.css";
-import colorStyles from "../../../commonCSS/Colors.module.css";
-import discoverStyles from "../../Discover/Discover.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import buttonStyles from "../../../commonCSS/Button.module.css";
@@ -8,19 +6,18 @@ import { MiniBagTemplate } from "./MiniBagTemplate";
 import { useBagContext } from "../../../contexts/BagContext";
 import { Link } from "react-router-dom";
 
-export const MiniBag = ({onClose}) => {
-
-
-  const { user, bagItems, totalPrice, totalQuantity,  } =
-  useBagContext();
-
- 
+export const MiniBag = ({ onClose }) => {
+  const { user, bagItems, totalPrice, totalQuantity } = useBagContext();
 
   const isVisible = true;
 
   return (
     <section id={styles["mini-bag"]}>
-      <div className={`${styles["mini-bag-shadow"]} ${isVisible ? styles.active : ''}`}></div>
+      <div
+        className={`${styles["mini-bag-shadow"]} ${
+          isVisible ? styles.active : ""
+        }`}
+      ></div>
       {/* <div className={styles["mini-bag-shadow"]}></div> */}
       <div className={styles["mini-bag-dialog"]}>
         <div className={styles["modal-dialog"]}>
@@ -76,12 +73,12 @@ export const MiniBag = ({onClose}) => {
                 />
               </div>
               <div className={styles["continue-checkout-button-container"]}>
-              <Link to={`/complete-order/${user}`}>
-                <input
-                  className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
-                  type="submit"
-                  value="Continue Checkout"
-                />
+                <Link to={`/complete-order/${user}`}>
+                  <input
+                    className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
+                    type="submit"
+                    value="Continue Checkout"
+                  />
                 </Link>
               </div>
             </div>
