@@ -11,8 +11,10 @@ import { useContext } from "react";
 import buttonStyles from "../../commonCSS/Button.module.css";
 import { BagTemplate } from "./BagTemplate";
 import { Link } from "react-router-dom";
+import { useBagContext } from "../../contexts/BagContext";
 
 export const Bag = () => {
+  const {onDisplayBagClick} = useBagContext();
   const bagService = useService(bagServiceFactory);
   let [bagItems, setBagItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -25,7 +27,7 @@ export const Bag = () => {
 
   const fetchBagItems = async () => {
     try {
-      let data = await bagService.display(userId);
+      let data = await onDisplayBagClick();
       data = Array.isArray(data) ? data[0] : data;
 
       if (data && data.jewelries && data.jewelries.length > 0) {

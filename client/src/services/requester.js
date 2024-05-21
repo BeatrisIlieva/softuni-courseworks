@@ -1,4 +1,6 @@
 const requester = async (method, token, url, data) => {
+  const userUUID = localStorage.getItem("userUUID");
+
   const options = {};
 
   if (method !== "GET") {
@@ -7,6 +9,7 @@ const requester = async (method, token, url, data) => {
     if (data) {
       options.headers = {
         "content-type": "application/json",
+        "user-uuid": userUUID,
       };
       options.body = JSON.stringify(data);
     }

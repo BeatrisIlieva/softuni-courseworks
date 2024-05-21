@@ -7,11 +7,16 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import colorStyles from "../../commonCSS/Colors.module.css";
 import { useWishListContext } from "../../contexts/WishListContext";
 import { useBagContext } from "../../contexts/BagContext";
+import { useUserUUIDContext } from "../../contexts/UserUUIDContext";
 
 export const Header = () => {
   const { isAuthenticated } = useContext(AuthContext);
   const { wishlistCount, wishListCountGreaterThanZero } = useWishListContext();
-  const { bagCount, bagCountGreaterThanZero } = useBagContext();
+  const { bagCount, bagCountGreaterThanZero, onDisplayBagClick } = useBagContext();
+
+  const {userUUID} = useUserUUIDContext();
+  const user = userUUID;
+  console.log(userUUID);
 
   return (
     <header className={styles["header"]}>
@@ -94,7 +99,7 @@ export const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className={styles["icon-bar-item"]} to={`/user/bag`}>
+                  <Link className={styles["icon-bar-item"]} to={`/bag/display/${user}`}>
                     <i class="fas fa-shopping-bag"></i>{" "}
                     {bagCountGreaterThanZero && (
                       <span className={styles["icon-bar-count"]}>

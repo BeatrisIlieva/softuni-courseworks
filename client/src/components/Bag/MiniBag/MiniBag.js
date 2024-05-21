@@ -16,7 +16,7 @@ export const MiniBag = ({onClose}) => {
   let [bagItems, setBagItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
-  const { userId } = useContext(AuthContext);
+  let { userId } = useContext(AuthContext);
 
   useEffect(() => {
     fetchBagItems();

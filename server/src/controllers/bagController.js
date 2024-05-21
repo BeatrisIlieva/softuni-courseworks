@@ -7,11 +7,11 @@ const {
 const shoppingBag = require("../models/ShoppingBag");
 const Inventory = require("../models/Inventory");
 
-router.get("/display/:userId", async (req, res) => {
+router.get("/display/:user", async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const user = req.params.user;
 
-    const jewelries = await bagManager.getAll(userId);
+    const jewelries = await bagManager.getAll(user);
 
     res.status(200).json({ jewelries, DEFAULT_MIN_QUANTITY });
   } catch (err) {
@@ -24,12 +24,18 @@ router.get("/display/:userId", async (req, res) => {
 });
 
 router.post("/add/:jewelryId", async (req, res) => {
-  const userId = req.user._id;
+  const userUUID = req.headers["user-uuid"];
+  const { size } = req.body;
+
+  let userId;
+
+  if (req.user) {
+    userId = req.user._id;
+  }
 
   const jewelryId = Number(req.params.jewelryId);
 
   try {
-    const { size } = req.body;
     let bagItem;
     let sizeId;
 
@@ -48,6 +54,7 @@ router.post("/add/:jewelryId", async (req, res) => {
 
       bagItem = await bagManager.getOne({
         userId,
+        userUUID,
         jewelryId,
         sizeId,
       });
@@ -56,6 +63,7 @@ router.post("/add/:jewelryId", async (req, res) => {
     if (!bagItem) {
       await bagManager.create({
         userId,
+        userUUID,
         jewelryId,
         sizeId,
         quantity: DEFAULT_ADD_QUANTITY,
@@ -65,6 +73,7 @@ router.post("/add/:jewelryId", async (req, res) => {
       await shoppingBag.findOneAndUpdate(
         {
           user: userId,
+          userUUID,
           jewelry: jewelryId,
           size: sizeId,
         },
@@ -78,7 +87,9 @@ router.post("/add/:jewelryId", async (req, res) => {
       );
     }
 
-    const allBagItems = await shoppingBag.find({ user: userId });
+    const allBagItems = await shoppingBag.find({
+      $or: [{ user: userId }, { userUUID: userUUID }],
+    });
 
     res.json(allBagItems);
   } catch (err) {

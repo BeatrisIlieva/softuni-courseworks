@@ -4,15 +4,17 @@ import { jewelryServiceFactory } from "../../services/jewelryService";
 import { useService } from "../../hooks/useService";
 import styles from "./JewelryItem.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
+import { bagServiceFactory } from "../../services/bagService";
 import { MiniBag } from "../Bag/MiniBag/MiniBag";
 import { useBagContext } from "../../contexts/BagContext";
+
 
 export const JewelryItem = () => {
   const { categoryId, jewelryId } = useParams();
   const [jewelry, setJewelry] = useState();
   const [miniBag, setMiniBag] = useState(false);
   const jewelryService = useService(jewelryServiceFactory);
-  const { onAddToBagClick } = useBagContext();
+  const { onAddToBagClick} = useBagContext();
 
   useEffect(() => {
     fetchJewelry();

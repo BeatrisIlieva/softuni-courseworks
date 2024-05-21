@@ -16,9 +16,11 @@ import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
 import { WishListProvider } from "./contexts/WishListContext";
 import {BagProvider} from "./contexts/BagContext"
 import { RouteGuard } from "./components/RouteGuard/RouteGuard";
+import { UserUUIDProvider } from "./contexts/UserUUIDContext";
 
 function App() {
   return (
+    <UserUUIDProvider>
     <AuthProvider>
       <WishListProvider>
       <BagProvider>
@@ -57,7 +59,7 @@ function App() {
               <Route path="/user/register" element={<Register />} />
               
               <Route path="/user/details" element={<UserDetails />} />
-              <Route path="/user/bag" element={<Bag />} />
+              <Route path="/bag/display/:user" element={<Bag />} />
               <Route path="/bag/add/:jewelryId" element={<JewelryItem />} />
               <Route path="/bag/decrease/:bagId" element={<Bag />} />
               <Route path="/bag/increase/:bagId" element={<Bag />} />
@@ -83,6 +85,7 @@ function App() {
         </BagProvider>
       </WishListProvider>
     </AuthProvider>
+    </UserUUIDProvider>
   );
 }
 

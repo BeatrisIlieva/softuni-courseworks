@@ -1,16 +1,18 @@
 import { requestFactory } from "./requester";
-
+import { useAuthContext } from "../contexts/AuthContext";
 const baseUrl = "http://localhost:3030/bag";
 
 export const bagServiceFactory = (token) => {
   const request = requestFactory(token);
 
+
+
   const add = async (data, jewelryId) => {
     await request.post(`${baseUrl}/add/${jewelryId}`, data);
   };
 
-  const display = async (userId) => {
-    const items = await request.get(`${baseUrl}/display/${userId}`);
+  const display = async (user) => {
+    const items = await request.get(`${baseUrl}/display/${user}`);
 
     return items;
   };

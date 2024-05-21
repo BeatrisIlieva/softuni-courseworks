@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
 
 const shoppingBagSchema = new mongoose.Schema({
-  user: {
+  userID: {
     type: Number,
     ref: "User",
+    default: null,
+    required: false,
+  },
+  userUUID: {
+    type: String,
     default: null,
     required: false,
   },
