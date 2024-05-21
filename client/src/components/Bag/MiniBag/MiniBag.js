@@ -5,6 +5,7 @@ import buttonStyles from "../../../commonCSS/Button.module.css";
 import { MiniBagTemplate } from "./MiniBagTemplate";
 import { useBagContext } from "../../../contexts/BagContext";
 import { Link } from "react-router-dom";
+import { setBodyOverflowVisible } from "../../../hooks/useSetBodyOverflow";
 
 export const MiniBag = ({ onClose }) => {
   const { user, bagItems, totalPrice, totalQuantity } = useBagContext();
@@ -65,6 +66,7 @@ export const MiniBag = ({ onClose }) => {
                     className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["view-bag-button"]}`}
                     type="submit"
                     value="View Bag"
+                    onClick={() => setBodyOverflowVisible()}
                   />
                 </Link>
               </div>
@@ -74,6 +76,7 @@ export const MiniBag = ({ onClose }) => {
                     className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]} ${styles["continue-checkout-button"]}`}
                     type="submit"
                     value="Continue Checkout"
+                    onClick={() => setBodyOverflowVisible()}
                   />
                 </Link>
               </div>

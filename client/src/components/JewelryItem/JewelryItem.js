@@ -4,17 +4,19 @@ import { jewelryServiceFactory } from "../../services/jewelryService";
 import { useService } from "../../hooks/useService";
 import styles from "./JewelryItem.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
-import { bagServiceFactory } from "../../services/bagService";
 import { MiniBag } from "../Bag/MiniBag/MiniBag";
 import { useBagContext } from "../../contexts/BagContext";
-
+import {
+  setBodyOverflowVisible,
+  setBodyOverflowHidden,
+} from "../../hooks/useSetBodyOverflow";
 
 export const JewelryItem = () => {
   const { categoryId, jewelryId } = useParams();
   const [jewelry, setJewelry] = useState();
   const [miniBag, setMiniBag] = useState(false);
   const jewelryService = useService(jewelryServiceFactory);
-  const { onAddToBagClick} = useBagContext();
+  const { onAddToBagClick } = useBagContext();
 
   useEffect(() => {
     fetchJewelry();
@@ -53,14 +55,15 @@ export const JewelryItem = () => {
 
     setMiniBag(true);
 
-    document.body.style.overflow = "hidden";
+    setBodyOverflowHidden();
 
     fetchJewelry();
   };
 
   const onClose = () => {
     setMiniBag(false);
-    document.body.style.overflow = "visible";
+
+    setBodyOverflowVisible();
   };
 
   if (categoryId === "2") {
