@@ -2,9 +2,16 @@ const router = require("express").Router();
 const userManager = require("../managers/userManager");
 const addressManager = require("../managers/addressBookManager");
 const {transferUUIDToUserIDForModelShoppingBag} = require("../utils/transferUUIDToUserIDForModelShoppingBag");
+const {transferUUIDToUserIDForModelWishlist} = require("../utils/transferUUIDToUserIDForModelWishlist");
 
 router.post("/register", async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
+
+  const ids = req.query.id;
+  
+    let jewelryIds = Array.isArray(ids) ? ids : [ids];
+    jewelryIds = jewelryIds.map((id) => Number(id));
+
 
   try {
     const { token, userId } = await userManager.register({
@@ -16,9 +23,9 @@ router.post("/register", async (req, res) => {
 
     const userUUID = req.headers["user-uuid"];
 
-    // await transferSessionWishlistToModelWishlist(req, userId);
-
     await transferUUIDToUserIDForModelShoppingBag(userUUID, userId);
+
+    await transferUUIDToUserIDForModelWishlist(userId, jewelryIds);
 
     res.status(200).json({ token, userId });
   } catch (err) {
@@ -30,6 +37,11 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  const ids = req.query.id;
+  
+  let jewelryIds = Array.isArray(ids) ? ids : [ids];
+  jewelryIds = jewelryIds.map((id) => Number(id));
+
   try {
     const { email, password } = { ...req.body };
     const result = await userManager.login(email, password);
@@ -37,10 +49,8 @@ router.post("/login", async (req, res) => {
 
     const userUUID = req.headers["user-uuid"];
 
-
-    // await transferSessionWishlistToModelWishlist(req, userId);
-
     await transferUUIDToUserIDForModelShoppingBag(userUUID, userId);
+    await transferUUIDToUserIDForModelWishlist(userId, jewelryIds);
 
     res.status(200).json(result);
   } catch (err) {

@@ -5,10 +5,13 @@ const baseUrl = "http://localhost:3030/users";
 export const authServiceFactory = (token) => {
   const request = requestFactory(token);
 
-  return {
-    login: (data) => request.post(`${baseUrl}/login`, data),
+  const ids = JSON.parse(localStorage.getItem("wishlist"));
+  const queryString = ids.map((id) => `id=${id}`).join("&");
 
-    register: (data) => request.post(`${baseUrl}/register`, data),
+  return {
+    login: (data) => request.post(`${baseUrl}/login?${queryString}`, data),
+
+    register: (data) => request.post(`${baseUrl}/register?${queryString}`, data),
 
     getOne: (userId) => request.get(`${baseUrl}/user/${userId}`),
 
