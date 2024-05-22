@@ -12,7 +12,7 @@ exports.create = async (userId, jewelryId) => {
 };
 
 exports.delete = async (userId, jewelryId) => {
-  wishlistItem = await Wishlist.findOneAndDelete({
+  const wishlistItem = await Wishlist.findOneAndDelete({
     user: userId,
     jewelry: jewelryId,
   });

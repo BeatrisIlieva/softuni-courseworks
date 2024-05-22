@@ -17,6 +17,7 @@ import { WishListProvider } from "./contexts/WishListContext";
 import { BagProvider } from "./contexts/BagContext";
 import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 import { UserUUIDProvider } from "./contexts/UserUUIDContext";
+import { Wishlist } from "./components/Wishlist/WishList";
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
                   <Route path="/bag/increase/:bagId" element={<Bag />} />
                   <Route path="/bag/update/:bagId" element={<Bag />} />
                   <Route path="/bag/remove/:bagId" element={<Bag />} />
+                  <Route path="/wishlist" element={<Wishlist />} />
                   <Route
                     path="/wishlist/create/:jewelryId"
                     element={<JewelryList />}

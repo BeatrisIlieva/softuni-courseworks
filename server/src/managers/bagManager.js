@@ -1,5 +1,4 @@
 const ShoppingBag = require("../models/ShoppingBag");
-const Jewelry = require("../models/Jewelry");
 const Inventory = require("../models/Inventory");
 const { DEFAULT_MIN_QUANTITY } = require("../constants/shoppingBag");
 const User = require("../models/User");
@@ -15,12 +14,30 @@ exports.getOne = async ({ userId, jewelryId, sizeId }) => {
 };
 
 exports.getAll = async (user) => {
-  let jewelries = await ShoppingBag.aggregate([
-    {
-      $match: {
-        $or: [{ userID: user }, { userUUID: user }],
+  let matchCondition;
+
+  if (!isNaN(Number(user))) {
+    const userById = await User.findById(user);
+
+    matchCondition = [
+      {
+        $match: {
+          userID: userById._id,
+        },
       },
-    },
+    ];
+  } else {
+    matchCondition = [
+      {
+        $match: {
+          userUUID: user,
+        },
+      },
+    ];
+  }
+
+  let jewelries = await ShoppingBag.aggregate([
+    ...matchCondition,
     {
       $lookup: {
         as: "jewelries",
@@ -291,7 +308,7 @@ exports.getAll = async (user) => {
       },
     },
   ]);
-
+  console.log(jewelries);
   return jewelries;
 };
 
@@ -303,7 +320,7 @@ exports.create = async ({
   quantity: DEFAULT_ADD_QUANTITY,
 }) => {
   bagItem = await ShoppingBag.create({
-    user: userId,
+    userID: userId,
     userUUID: userUUID,
     jewelry: jewelryId,
     size: sizeId,

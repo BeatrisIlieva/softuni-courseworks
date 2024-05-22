@@ -8,14 +8,48 @@ export const WishListContext = createContext();
 
 export const WishListProvider = ({ children }) => {
   const wishlistService = useService(wishListServiceFactory);
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, userId} = useContext(AuthContext);
   const [wishlist, setWishlist] = useLocalStorage("wishlist", []);
   const [wishlistCount, setWishlistCount] = useState(0);
   const wishListCountGreaterThanZero = wishlistCount > 0;
 
+  const [jewelries, setJewelries] = useState([]);
+
+  const userUUID = localStorage.getItem("userUUID");
+
+  let user;
+
+  if (!userId) {
+    user = userUUID;
+  } else {
+    user = userId;
+  }
+
+  const fetchData = async () => {
+    try {
+      const data = await wishlistService.display(user);
+      setJewelries(data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  
   useEffect(() => {
-    setWishlistCount(wishlist.length);
-  }, [wishlist]);
+    fetchData();
+  }, [jewelries]);
+
+
+  const handleLikedByUser = (_id) => {
+    fetchData();
+  };
+
+
+
+
+  useEffect(() => {
+    setWishlistCount(isAuthenticated ? jewelries.length : wishlist.length);
+    // setWishlistCount(wishlist.length);
+  }, [wishlist, jewelries]);
 
   const onAddToWishListClick = async (_id) => {
     try {
@@ -25,7 +59,6 @@ export const WishListProvider = ({ children }) => {
         setWishlist((state) => [...state, _id]);
       }
 
-      console.log(wishlistCount);
     } catch (error) {
       console.error("Error adding item to wishlist:", error);
     }
@@ -35,6 +68,7 @@ export const WishListProvider = ({ children }) => {
     try {
       if (isAuthenticated) {
         await wishlistService.remove(_id);
+        
       } else {
         setWishlist((state) => state.filter((id) => id !== _id));
       }
@@ -49,6 +83,8 @@ export const WishListProvider = ({ children }) => {
     wishlist,
     wishlistCount,
     wishListCountGreaterThanZero,
+    jewelries,
+    handleLikedByUser
   };
 
   return (

@@ -7,10 +7,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import colorStyles from "../../commonCSS/Colors.module.css";
 import { useWishListContext } from "../../contexts/WishListContext";
 import { useBagContext } from "../../contexts/BagContext";
-import { useUserUUIDContext } from "../../contexts/UserUUIDContext";
 
 export const Header = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, userId } = useContext(AuthContext);
   const { wishlistCount, wishListCountGreaterThanZero } = useWishListContext();
   const { user, totalQuantity, isEmpty} = useBagContext();
 
@@ -83,7 +82,7 @@ export const Header = () => {
                 <li className={styles["icon-bar-list-flex"]}>
                   <Link
                     className={`${styles["icon-bar-item"]} ${styles["icon-bar-item-no-margin"]}`}
-                    to="/"
+                    to={`/wishlist`}
                   >
                     <i class="far fa-heart"></i>{" "}
                     {wishListCountGreaterThanZero ? (

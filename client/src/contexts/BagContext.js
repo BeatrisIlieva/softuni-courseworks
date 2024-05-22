@@ -6,13 +6,14 @@ import { useAuthContext } from "./AuthContext";
 export const BagContext = createContext();
 export const BagProvider = ({ children }) => {
   const bagService = useService(bagServiceFactory);
-  const { userId } = useAuthContext();
 
   let [bagItems, setBagItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
 
+  const { userId } = useAuthContext();
   const userUUID = localStorage.getItem("userUUID");
+
   let user;
 
   if (!userId) {
