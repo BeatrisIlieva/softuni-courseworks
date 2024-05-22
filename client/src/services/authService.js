@@ -11,7 +11,8 @@ export const authServiceFactory = (token) => {
   return {
     login: (data) => request.post(`${baseUrl}/login?${queryString}`, data),
 
-    register: (data) => request.post(`${baseUrl}/register?${queryString}`, data),
+    register: (data) =>
+      request.post(`${baseUrl}/register?${queryString}`, data),
 
     getOne: (userId) => request.get(`${baseUrl}/user/${userId}`),
 

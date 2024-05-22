@@ -8,7 +8,7 @@ export const WishListContext = createContext();
 
 export const WishListProvider = ({ children }) => {
   const wishlistService = useService(wishListServiceFactory);
-  const { isAuthenticated, userId} = useContext(AuthContext);
+  const { isAuthenticated, userId } = useContext(AuthContext);
   const [wishlist, setWishlist] = useLocalStorage("wishlist", []);
   const [wishlistCount, setWishlistCount] = useState(0);
   const wishListCountGreaterThanZero = wishlistCount > 0;
@@ -33,22 +33,17 @@ export const WishListProvider = ({ children }) => {
       console.log(err.message);
     }
   };
-  
+
   useEffect(() => {
     fetchData();
   }, [jewelries]);
-
 
   const handleLikedByUser = (_id) => {
     fetchData();
   };
 
-
-
-
   useEffect(() => {
     setWishlistCount(isAuthenticated ? jewelries.length : wishlist.length);
-    // setWishlistCount(wishlist.length);
   }, [wishlist, jewelries]);
 
   const onAddToWishListClick = async (_id) => {
@@ -58,7 +53,6 @@ export const WishListProvider = ({ children }) => {
       } else {
         setWishlist((state) => [...state, _id]);
       }
-
     } catch (error) {
       console.error("Error adding item to wishlist:", error);
     }
@@ -68,7 +62,6 @@ export const WishListProvider = ({ children }) => {
     try {
       if (isAuthenticated) {
         await wishlistService.remove(_id);
-        
       } else {
         setWishlist((state) => state.filter((id) => id !== _id));
       }
@@ -84,7 +77,7 @@ export const WishListProvider = ({ children }) => {
     wishlistCount,
     wishListCountGreaterThanZero,
     jewelries,
-    handleLikedByUser
+    handleLikedByUser,
   };
 
   return (

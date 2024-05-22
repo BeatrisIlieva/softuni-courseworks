@@ -24,11 +24,11 @@ export const JewelryListTemplate = ({
   const { onAddToWishListClick, onRemoveFromWishListClick, wishlist } =
     useContext(WishListContext);
 
-    const jewelryIsLikedByNotAuthUser = wishlist.find(id => id === _id);
+  const jewelryIsLikedByNotAuthUser = wishlist.find((id) => id === _id);
 
-    if (jewelryIsLikedByNotAuthUser) {
-      isLikedByUser = true;
-    }
+  if (jewelryIsLikedByNotAuthUser) {
+    isLikedByUser = true;
+  }
 
   return (
     <article className={styles["jewelry-card"]}>
@@ -73,7 +73,10 @@ export const JewelryListTemplate = ({
                   </p>
                 </div>
                 <div className={styles["hovered-content-down"]}>
-                  <FontAwesomeIcon icon={faSackDollar} className={styles["dollar-icon"]}/>
+                  <FontAwesomeIcon
+                    icon={faSackDollar}
+                    className={styles["dollar-icon"]}
+                  />
                   <p className={styles["dollar-icon"]}>{price}</p>
                 </div>
               </div>
