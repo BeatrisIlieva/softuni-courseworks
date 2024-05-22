@@ -3,17 +3,8 @@ import styles from "./Wishlist.module.css";
 import { WishListTemplate } from "./WishListTemplate";
 
 export const Wishlist = () => {
-  const {
-    onAddToWishListClick,
-    onRemoveFromWishListClick,
-    jewelries,
-    wishlistCount,
-    wishListCountGreaterThanZero,
-    // handleMouseEnter,
-    // handleMouseLeave,
-    // handleLikedByUser
-  } = useWishListContext();
-
+  const { jewelries, wishlistCount, wishListCountGreaterThanZero } =
+    useWishListContext();
 
   return (
     <>
@@ -52,13 +43,7 @@ export const Wishlist = () => {
 
       <section className={styles["jewelry-cards"]}>
         {jewelries.map((j) => (
-          <WishListTemplate
-            key={j._id}
-            {...j}
-            // handleMouseEnter={handleMouseEnter}
-            // handleLikedByUser={handleLikedByUser}
-            // handleMouseLeave={handleMouseLeave}
-          />
+          <WishListTemplate key={j._id} {...j} />
         ))}
       </section>
     </>
