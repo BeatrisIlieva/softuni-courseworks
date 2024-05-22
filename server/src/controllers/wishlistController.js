@@ -8,7 +8,7 @@ const Jewelry = require("../models/Jewelry");
 
 router.get("/display/:user", async (req, res) => {
   try {
-    const user = req.params.user;
+
     let jewelries;
 
     if (!req.user) {

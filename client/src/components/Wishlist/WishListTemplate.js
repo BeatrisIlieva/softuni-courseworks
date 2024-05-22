@@ -18,15 +18,18 @@ export const WishListTemplate = ({
   isSoldOut,
   isHovered,
 }) => {
-  const { onAddToWishListClick, onRemoveFromWishListClick, wishlist, 
-    handleLikedByUser, } =
-    useContext(WishListContext);
+  const {
+    onAddToWishListClick,
+    onRemoveFromWishListClick,
+    wishlist,
+    handleLikedByUser,
+  } = useContext(WishListContext);
 
-    const jewelryIsLikedByNotAuthUser = wishlist.find(id => id === _id);
+  const jewelryIsLikedByNotAuthUser = wishlist.find((id) => id === _id);
 
-    if (jewelryIsLikedByNotAuthUser) {
-      isLikedByUser = true;
-    }
+  if (jewelryIsLikedByNotAuthUser) {
+    isLikedByUser = true;
+  }
 
   return (
     <article className={styles["jewelry-card"]}>
@@ -56,9 +59,6 @@ export const WishListTemplate = ({
               className={styles["jewelry-card-img"]}
               src={firstImageUrl}
               alt={jewelryTitle}
-            //   onMouseEnter={() => handleMouseEnter(_id)}
-            //   onMouseLeave={() => handleMouseLeave(_id)}
-            //   onBlur={() => handleMouseEnter(_id)}
             />
             {isHovered && (
               <div className={styles["hovered"]}>
@@ -71,7 +71,10 @@ export const WishListTemplate = ({
                   </p>
                 </div>
                 <div className={styles["hovered-content-down"]}>
-                  <FontAwesomeIcon icon={faSackDollar} className={styles["dollar-icon"]}/>
+                  <FontAwesomeIcon
+                    icon={faSackDollar}
+                    className={styles["dollar-icon"]}
+                  />
                   <p className={styles["dollar-icon"]}>{price}</p>
                 </div>
               </div>

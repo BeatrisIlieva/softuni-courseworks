@@ -1,17 +1,20 @@
 const router = require("express").Router();
 const userManager = require("../managers/userManager");
 const addressManager = require("../managers/addressBookManager");
-const {transferUUIDToUserIDForModelShoppingBag} = require("../utils/transferUUIDToUserIDForModelShoppingBag");
-const {transferUUIDToUserIDForModelWishlist} = require("../utils/transferUUIDToUserIDForModelWishlist");
+const {
+  transferUUIDToUserIDForModelShoppingBag,
+} = require("../utils/transferUUIDToUserIDForModelShoppingBag");
+const {
+  transferUUIDToUserIDForModelWishlist,
+} = require("../utils/transferUUIDToUserIDForModelWishlist");
 
 router.post("/register", async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
 
   const ids = req.query.id;
-  
-    let jewelryIds = Array.isArray(ids) ? ids : [ids];
-    jewelryIds = jewelryIds.map((id) => Number(id));
 
+  let jewelryIds = Array.isArray(ids) ? ids : [ids];
+  jewelryIds = jewelryIds.map((id) => Number(id));
 
   try {
     const { token, userId } = await userManager.register({
@@ -38,7 +41,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const ids = req.query.id;
-  
+
   let jewelryIds = Array.isArray(ids) ? ids : [ids];
   jewelryIds = jewelryIds.map((id) => Number(id));
 
@@ -54,7 +57,7 @@ router.post("/login", async (req, res) => {
 
     res.status(200).json(result);
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
     res.status(400).json({
       message: err.message,
     });
@@ -83,7 +86,7 @@ router.get("/user/:userId", async (req, res) => {
     const userId = req.user._id;
 
     const user = await userManager.getOne(userId);
-    res.status(200).json(user)
+    res.status(200).json(user);
   } catch (err) {
     res.status(400).json({
       message: err.message,
@@ -91,11 +94,10 @@ router.get("/user/:userId", async (req, res) => {
   }
 });
 
-router.put("/edit-email/:userId",  async (req, res) => {
+router.put("/edit-email/:userId", async (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body)
+  console.log(req.body);
   const userId = req.user._id;
-
 
   try {
     const result = await userManager.changeEmail(email, password, userId);
@@ -110,7 +112,7 @@ router.put("/edit-email/:userId",  async (req, res) => {
 });
 
 router.put("/change-password/:userId", async (req, res) => {
-  const { oldPassword, newPassword} = req.body;
+  const { oldPassword, newPassword } = req.body;
   const userId = req.user._id;
 
   try {
