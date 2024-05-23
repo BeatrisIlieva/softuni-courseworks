@@ -11,6 +11,8 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [wishlist, setWishlist] = useLocalStorage('wishlist', []);
+
   const onRegisterSubmit = async (values) => {
     const email = values.email.value;
     const retypeEmail = values.retypeEmail.value;
@@ -35,6 +37,8 @@ export const AuthProvider = ({ children }) => {
 
       setAuth(result["token"]);
 
+      setWishlist([]);
+
       navigate("/");
     } catch (err) {
       console.log(err.message);
@@ -53,6 +57,8 @@ export const AuthProvider = ({ children }) => {
       const result = await authService.login({ ...data });
       setAuth(result["token"]);
 
+      setWishlist([]);
+
       navigate(from, { replace: true });
     } catch (err) {
       console.log(err.message);
@@ -61,6 +67,8 @@ export const AuthProvider = ({ children }) => {
 
   const onLogout = async () => {
     await authService.logout();
+
+    setWishlist([]);
 
     setAuth({});
   };

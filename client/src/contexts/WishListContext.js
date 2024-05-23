@@ -38,6 +38,7 @@ export const WishListProvider = ({ children }) => {
     fetchData();
   }, [jewelries]);
 
+
   const handleLikedByUser = (_id) => {
     fetchData();
   };

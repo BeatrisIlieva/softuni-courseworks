@@ -58,7 +58,13 @@ export const CompleteOrder = () => {
           </div>
         </div>
         <div className={styles["right-container"]}>
-          <OrderSummary />
+        <div className={styles["right-container-image"]}>
+            <img
+              className={styles["right-container-img"]}
+              src="https://res.cloudinary.com/deztgvefu/image/upload/v1706522736/template_images/pink-delivery-car-deliver-express-with-cardboard-boxes-cartoon-shipping-transportation-concept-pink-background-3d-rendering_56104-1526_ttrakq.jpg"
+              alt="image"
+            />
+          </div>
         </div>
       </div>
     </section>
