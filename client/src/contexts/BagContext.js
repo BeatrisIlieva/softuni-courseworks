@@ -43,6 +43,7 @@ export const BagProvider = ({ children }) => {
         setTotalQuantity(totalQuantity);
       } else {
         setBagItems([]);
+        setTotalQuantity(0);
         setTotalPrice(0);
       }
     } catch (error) {
@@ -117,6 +118,12 @@ export const BagProvider = ({ children }) => {
     }
   };
 
+  const clearShoppingBag = () => {
+    setBagItems([]);
+    setTotalQuantity(0);
+    setTotalPrice(0);
+  };
+
   const isEmpty = bagItems.length < 1;
 
   const context = {
@@ -132,6 +139,7 @@ export const BagProvider = ({ children }) => {
     onQuantityChange,
     onBlur,
     isEmpty,
+    clearShoppingBag,
   };
 
   return <BagContext.Provider value={context}>{children}</BagContext.Provider>;

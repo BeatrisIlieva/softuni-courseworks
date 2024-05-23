@@ -3,12 +3,14 @@ import { useService } from "../../hooks/useService";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { useEffect, useState } from "react";
 import styles from "./OrderConfirmation.module.css";
+import { useBagContext } from "../../contexts/BagContext";
 
 export const OrderConfirmation = () => {
   const orderConfirmationService = useService(orderConfirmationServiceFactory);
   const { userId } = useAuthContext();
   const [currentOrder, setOrder] = useState(null);
   const [currentAddress, setAddress] = useState(null);
+  const { clearShoppingBag } = useBagContext();
 
   useEffect(() => {
     fetchOrderAndAddress();
@@ -20,6 +22,7 @@ export const OrderConfirmation = () => {
 
       setOrder(order);
       setAddress(address);
+      clearShoppingBag();
     } catch (error) {
       console.error("Error fetching order and address:", error);
     }

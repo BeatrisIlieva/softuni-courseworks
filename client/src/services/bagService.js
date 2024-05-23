@@ -4,8 +4,6 @@ const baseUrl = "http://localhost:3030/bag";
 export const bagServiceFactory = (token) => {
   const request = requestFactory(token);
 
-
-
   const add = async (data, jewelryId) => {
     await request.post(`${baseUrl}/add/${jewelryId}`, data);
   };
