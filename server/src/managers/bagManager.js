@@ -308,7 +308,7 @@ exports.getAll = async (user) => {
       },
     },
   ]);
-  console.log(jewelries);
+  console.log("jewelries");
   return jewelries;
 };
 

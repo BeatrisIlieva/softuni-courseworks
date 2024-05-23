@@ -13,11 +13,13 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { Home } from "../src/components/Home/Home";
 import { Bag } from "./components/Bag/Bag";
 import { CompleteOrder } from "./components/CompleteOrder/CompleteOrder";
+import { CompleteCheckout } from "./components/CompleteCheckout/CompleteCheckout";
 import { WishListProvider } from "./contexts/WishListContext";
 import { BagProvider } from "./contexts/BagContext";
 import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 import { UserUUIDProvider } from "./contexts/UserUUIDContext";
 import { Wishlist } from "./components/Wishlist/WishList";
+import { OrderConfirmation } from "./components/OrderConfirmation/OrderConfirmation";
 
 function App() {
   return (
@@ -50,6 +52,22 @@ function App() {
                       element={
                         <RouteGuard>
                           <CompleteOrder />
+                        </RouteGuard>
+                      }
+                    />
+                    <Route
+                      path="/complete-checkout/:userId"
+                      element={
+                        <RouteGuard>
+                          <CompleteCheckout />
+                        </RouteGuard>
+                      }
+                    />
+                    <Route
+                      path="/order-confirmation/:userId"
+                      element={
+                        <RouteGuard>
+                          <OrderConfirmation />
                         </RouteGuard>
                       }
                     />

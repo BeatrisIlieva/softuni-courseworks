@@ -8,7 +8,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { authServiceFactory } from "../../services/authService";
 import { ShippingDetails } from "./ShippingDetails/ShippingDetails";
 import { useNavigate } from "react-router-dom";
-import { OrderSummary } from "./OrderSummary/OrderSummary";
+
 
 export const CompleteOrder = () => {
   const { userId } = useContext(AuthContext);
@@ -19,7 +19,7 @@ export const CompleteOrder = () => {
 
   const onContinueCheckoutSubmit = async (data) => {
     await completeOrderService.update(userId, data);
-    navigate("/");
+    navigate(`/complete-checkout/${userId}`);
   };
 
   useEffect(() => {
