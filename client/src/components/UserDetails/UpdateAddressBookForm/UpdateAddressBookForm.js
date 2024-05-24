@@ -36,12 +36,12 @@ export const UpdateAddressBookForm = ({
   const { values, changeHandler, onFocusField, onBlurField } =
     useFormAddressBook(
       {
-        [FormKeys.FirstName]: { value: "", focusField: false },
-        [FormKeys.LastName]: { value: "", focusField: false },
-        [FormKeys.PhoneNumber]: { value: "", focusField: false },
-        [FormKeys.Country]: { value: "", focusField: false },
-        [FormKeys.City]: { value: "", focusField: false },
-        [FormKeys.Address]: { value: "", focusField: false },
+        [FormKeys.FirstName]: { value: "", focusField: false, error: null },
+        [FormKeys.LastName]: { value: "", focusField: false, error: null },
+        [FormKeys.PhoneNumber]: { value: "", focusField: false, error: null },
+        [FormKeys.Country]: { value: "", focusField: false, error: null },
+        [FormKeys.City]: { value: "", focusField: false, error: null },
+        [FormKeys.Address]: { value: "", focusField: false, error: null },
       },
 
       FormKeys
