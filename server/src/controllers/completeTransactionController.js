@@ -19,9 +19,7 @@ router.post("/:userId",  async (req, res) => {
         res.status(200).json(order);
 
     } catch(err) {
-        // const errorMessages = extractErrorMessages(err);
-  
-        // res.status(404).render("orders/completeTransaction", { errorMessages});
+        res.status(400).json({ message: err.message }); 
     }
 });
 

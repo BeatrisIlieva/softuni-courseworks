@@ -11,20 +11,6 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { CardDetails } from "./CardDetails/CardDetails";
 
 export const CompleteCheckout = () => {
-//   const { userId } = useAuthContext();
-//   const completeCheckoutService = useService(completeCheckoutServiceFactory);
-
-//   const navigate = useNavigate();
-
-//   const onConfirmCheckoutSubmit = async (values) => {
-//     const longCardNumber = values.longCardNumber.value;
-//     const expirationDate = values.expirationDate.value;
-//     const cvvCode = values.cvvCode.value;
-//     const data = { longCardNumber, expirationDate, cvvCode };
-//     await completeCheckoutService.confirm(userId, data);
-//     navigate("/");
-//   };
-
   return (
     <section id={styles["complete-order-box"]}>
       <div className={styles["title-container"]}>

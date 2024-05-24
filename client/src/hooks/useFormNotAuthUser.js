@@ -57,5 +57,6 @@ export const useFormNotAuthUser = (initialValues, submitHandler) => {
     onFocusField,
     onBlurField,
     onSubmit,
+    setValues
   };
 };

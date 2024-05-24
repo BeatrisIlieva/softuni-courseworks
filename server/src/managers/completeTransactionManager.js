@@ -13,8 +13,6 @@ exports.verifyCardDetails = (longCardNumber, expirationDate, cvvCode) => {
   } else if (isCardExpired(expirationDate)) {
     throw new Error("This card has expired.");
   }
-
-  console.log(longCardNumber)
 };
 
 function isCardExpired(expirationDate) {

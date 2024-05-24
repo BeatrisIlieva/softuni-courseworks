@@ -105,6 +105,10 @@
   padding: 2px;
 }
 
+.error {
+  border: 1px solid red;
+}
+
 .placeholder {
   padding: 12px;
   margin: 0;
@@ -145,4 +149,20 @@ ul.form-list {
   border-left: 1px solid pink;
   margin-left: 100px;
   margin-right: 100px;
+}
+
+.filed-box {
+  
+}
+
+.error-message {
+  font-size: 14px;
+  color: red;
+  padding-top: 4px;
+  text-align: center;
+  /* display: none; */
+}
+
+.visible {
+  display: block;
 }
