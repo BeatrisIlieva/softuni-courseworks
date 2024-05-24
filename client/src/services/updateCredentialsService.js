@@ -4,7 +4,6 @@ const baseUrl = "http://localhost:3030/users";
 
 export const updateCredentialsServiceFactory = (token) => {
   const request = requestFactory(token);
-  
 
   return {
     updateEmail: (userId, data) =>
