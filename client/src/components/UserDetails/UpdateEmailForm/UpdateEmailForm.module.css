@@ -38,9 +38,14 @@
 
 .button {
   margin-top: 20px;
-  width: 257px;
+  width: 290px;
 }
 
 .password-input {
   width: 28ch !important;
+}
+
+.field-box {
+  height: 80px;
+  width: 290px;
 }
