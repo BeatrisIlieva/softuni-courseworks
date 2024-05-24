@@ -27,6 +27,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+
 }
 
 .modal-header {
@@ -79,4 +80,14 @@
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+.field-box {
+  height: 66px;
+  width: 620px;
+}
+
+.field-box-smaller {
+  height: 66px;
+  width: 290px;
 }

@@ -33,7 +33,7 @@ export const UpdateAddressBookForm = ({
   const addressBookService = useService(addressBookServiceFactory);
   const { userId } = useContext(AuthContext);
 
-  const { values, changeHandler, onFocusField, onBlurField } =
+  const { values, changeHandler, onFocusField, onBlurField, setValues } =
     useFormAddressBook(
       {
         [FormKeys.FirstName]: { value: "", focusField: false, error: null },
@@ -58,9 +58,48 @@ export const UpdateAddressBookForm = ({
       [FormKeys.Address]: values[FormKeys.Address].value,
     };
 
-    onUpdateAddressBookSubmit();
+    try {
+      values[FormKeys.FirstName].error = validateFirstName(
+        values[FormKeys.FirstName].value
+      );
 
-    await addressBookService.update(userId, data);
+      values[FormKeys.LastName].error = validateLastName(
+        values[FormKeys.LastName].value
+      );
+
+      values[FormKeys.PhoneNumber].error = validatePhoneNumber(
+        values[FormKeys.PhoneNumber].value
+      );
+
+      values[FormKeys.Country].error = validateCountry(
+        values[FormKeys.Country].value
+      );
+
+      values[FormKeys.City].error = validateCity(values[FormKeys.City].value);
+
+      values[FormKeys.Address].error = validateAddress(
+        values[FormKeys.Address].value
+      );
+
+      if (
+        values[FormKeys.FirstName].error === null &&
+        values[FormKeys.LastName].error === null &&
+        values[FormKeys.PhoneNumber].error === null &&
+        values[FormKeys.Country].error === null &&
+        values[FormKeys.City].error === null &&
+        values[FormKeys.Address].error === null
+      ) {
+        onUpdateAddressBookSubmit();
+
+        await addressBookService.update(userId, data);
+      }
+
+      const currentValues = { ...values };
+
+      setValues(currentValues);
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -88,193 +127,255 @@ export const UpdateAddressBookForm = ({
                 onSubmit={onSubmit}
                 className={styles["address-book-box"]}
               >
-                <div className={`${formStyles["filed-container"]}`}>
+                <div className={`${styles["field-box-smaller"]}`}>
                   <div
-                    onClick={() => onFocusField("firstName")}
-                    onBlur={onBlurField}
-                    className={formStyles["input-field-container-name"]}
+                    className={`${formStyles["filed-container"]} ${
+                      values[FormKeys.FirstName].error
+                        ? formStyles["error"]
+                        : ""
+                    }`}
                   >
-                    <p
-                      className={
-                        values[FormKeys.FirstName]["focusField"]
-                          ? formStyles["placeholder-on-blur"]
-                          : formStyles["placeholder"]
-                      }
+                    <div
+                      onClick={() => onFocusField("firstName")}
+                      onBlur={onBlurField}
+                      className={formStyles["input-field-container-name"]}
                     >
-                      First Name*
-                    </p>
-                    {values[FormKeys.FirstName]["focusField"] && (
-                      <input
-                        className={formStyles["input-spot"]}
-                        type="text"
-                        name={FormKeys.FirstName}
-                        id="firstName"
-                        value={values[FormKeys.FirstName].value}
-                        onChange={(e) =>
-                          changeHandler(FormKeys.FirstName, e.target.value)
+                      <p
+                        className={
+                          values[FormKeys.FirstName]["focusField"]
+                            ? formStyles["placeholder-on-blur"]
+                            : formStyles["placeholder"]
                         }
-                        autoFocus
-                      />
-                    )}
+                      >
+                        First Name*
+                      </p>
+                      {values[FormKeys.FirstName]["focusField"] && (
+                        <input
+                          className={formStyles["input-spot"]}
+                          type="text"
+                          name={FormKeys.FirstName}
+                          id="firstName"
+                          value={values[FormKeys.FirstName].value}
+                          onChange={(e) =>
+                            changeHandler(FormKeys.FirstName, e.target.value)
+                          }
+                          autoFocus
+                        />
+                      )}
+                    </div>
                   </div>
+                  {values[FormKeys.FirstName].error && (
+                    <div className={formStyles["error-message"]}>
+                      {values[FormKeys.FirstName].error}
+                    </div>
+                  )}
                 </div>
-                <div className={`${formStyles["filed-container"]}`}>
+                <div className={`${styles["field-box-smaller"]}`}>
                   <div
-                    onClick={() => onFocusField("lastName")}
-                    onBlur={onBlurField}
-                    className={formStyles["input-field-container-name"]}
+                    className={`${formStyles["filed-container"]} ${
+                      values[FormKeys.LastName].error ? formStyles["error"] : ""
+                    }`}
                   >
-                    <p
-                      className={
-                        values[FormKeys.LastName]["focusField"]
-                          ? formStyles["placeholder-on-blur"]
-                          : formStyles["placeholder"]
-                      }
+                    <div
+                      onClick={() => onFocusField("lastName")}
+                      onBlur={onBlurField}
+                      className={formStyles["input-field-container-name"]}
                     >
-                      Last Name*
-                    </p>
-                    {values[FormKeys.LastName]["focusField"] && (
-                      <input
-                        className={formStyles["input-spot"]}
-                        type="text"
-                        name={FormKeys.LastName}
-                        id="lastName"
-                        value={values[FormKeys.LastName].value}
-                        onChange={(e) =>
-                          changeHandler(FormKeys.LastName, e.target.value)
+                      <p
+                        className={
+                          values[FormKeys.LastName]["focusField"]
+                            ? formStyles["placeholder-on-blur"]
+                            : formStyles["placeholder"]
                         }
-                        autoFocus
-                      />
-                    )}
+                      >
+                        Last Name*
+                      </p>
+                      {values[FormKeys.LastName]["focusField"] && (
+                        <input
+                          className={formStyles["input-spot"]}
+                          type="text"
+                          name={FormKeys.LastName}
+                          id="lastName"
+                          value={values[FormKeys.LastName].value}
+                          onChange={(e) =>
+                            changeHandler(FormKeys.LastName, e.target.value)
+                          }
+                          autoFocus
+                        />
+                      )}
+                    </div>
                   </div>
+                  {values[FormKeys.LastName].error && (
+                    <div className={formStyles["error-message"]}>
+                      {values[FormKeys.LastName].error}
+                    </div>
+                  )}
                 </div>
-                <div
-                  className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
-                >
+                <div className={`${styles["field-box"]}`}>
                   <div
-                    onClick={() => onFocusField("phoneNumber")}
-                    onBlur={onBlurField}
-                    className={formStyles["input-field-container-details"]}
+                    className={`${formStyles["filed-container"]} ${
+                      values[FormKeys.PhoneNumber].error
+                        ? formStyles["error"]
+                        : ""
+                    }`}
                   >
-                    <p
-                      className={
-                        values[FormKeys.PhoneNumber]["focusField"]
-                          ? formStyles["placeholder-on-blur"]
-                          : formStyles["placeholder"]
-                      }
+                    <div
+                      onClick={() => onFocusField("phoneNumber")}
+                      onBlur={onBlurField}
+                      className={formStyles["input-field-container-details"]}
                     >
-                      Phone Number*
-                    </p>
-                    {values[FormKeys.PhoneNumber]["focusField"] && (
-                      <input
-                        className={formStyles["input-spot"]}
-                        type="text"
-                        name={FormKeys.PhoneNumber}
-                        id="phoneNumber"
-                        value={values[FormKeys.PhoneNumber].value}
-                        onChange={(e) =>
-                          changeHandler(FormKeys.PhoneNumber, e.target.value)
+                      <p
+                        className={
+                          values[FormKeys.PhoneNumber]["focusField"]
+                            ? formStyles["placeholder-on-blur"]
+                            : formStyles["placeholder"]
                         }
-                        autoFocus
-                      />
-                    )}
+                      >
+                        Phone Number*
+                      </p>
+                      {values[FormKeys.PhoneNumber]["focusField"] && (
+                        <input
+                          className={formStyles["input-spot"]}
+                          type="text"
+                          name={FormKeys.PhoneNumber}
+                          id="phoneNumber"
+                          value={values[FormKeys.PhoneNumber].value}
+                          onChange={(e) =>
+                            changeHandler(FormKeys.PhoneNumber, e.target.value)
+                          }
+                          autoFocus
+                        />
+                      )}
+                    </div>
                   </div>
+                  {values[FormKeys.PhoneNumber].error && (
+                    <div className={formStyles["error-message"]}>
+                      {values[FormKeys.PhoneNumber].error}
+                    </div>
+                  )}
                 </div>
-                <div
-                  className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
-                >
+                <div className={`${styles["field-box-smaller"]}`}>
                   <div
-                    onClick={() => onFocusField("country")}
-                    onBlur={onBlurField}
-                    className={formStyles["input-field-container-name"]}
+                    className={`${formStyles["filed-container"]} ${
+                      values[FormKeys.Country].error ? formStyles["error"] : ""
+                    }`}
                   >
-                    <p
-                      className={
-                        values[FormKeys.Country]["focusField"]
-                          ? formStyles["placeholder-on-blur"]
-                          : formStyles["placeholder"]
-                      }
+                    <div
+                      onClick={() => onFocusField("country")}
+                      onBlur={onBlurField}
+                      className={formStyles["input-field-container-name"]}
                     >
-                      Country*
-                    </p>
-                    {values[FormKeys.Country]["focusField"] && (
-                      <input
-                        className={formStyles["input-spot"]}
-                        type="text"
-                        name={FormKeys.Country}
-                        id="country"
-                        value={values[FormKeys.Country].value}
-                        onChange={(e) =>
-                          changeHandler(FormKeys.Country, e.target.value)
+                      <p
+                        className={
+                          values[FormKeys.Country]["focusField"]
+                            ? formStyles["placeholder-on-blur"]
+                            : formStyles["placeholder"]
                         }
-                        autoFocus
-                      />
-                    )}
+                      >
+                        Country*
+                      </p>
+                      {values[FormKeys.Country]["focusField"] && (
+                        <input
+                          className={formStyles["input-spot"]}
+                          type="text"
+                          name={FormKeys.Country}
+                          id="country"
+                          value={values[FormKeys.Country].value}
+                          onChange={(e) =>
+                            changeHandler(FormKeys.Country, e.target.value)
+                          }
+                          autoFocus
+                        />
+                      )}
+                    </div>
                   </div>
+                  {values[FormKeys.Country].error && (
+                    <div className={formStyles["error-message"]}>
+                      {values[FormKeys.Country].error}
+                    </div>
+                  )}
                 </div>
-                <div
-                  className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
-                >
+                <div className={`${styles["field-box-smaller"]}`}>
                   <div
-                    onClick={() => onFocusField("city")}
-                    onBlur={onBlurField}
-                    className={formStyles["input-field-container-name"]}
+                    className={`${formStyles["filed-container"]} ${
+                      values[FormKeys.City].error ? formStyles["error"] : ""
+                    }`}
                   >
-                    <p
-                      className={
-                        values[FormKeys.City]["focusField"]
-                          ? formStyles["placeholder-on-blur"]
-                          : formStyles["placeholder"]
-                      }
+                    <div
+                      onClick={() => onFocusField("city")}
+                      onBlur={onBlurField}
+                      className={formStyles["input-field-container-name"]}
                     >
-                      City*
-                    </p>
-                    {values[FormKeys.City]["focusField"] && (
-                      <input
-                        className={formStyles["input-spot"]}
-                        type="text"
-                        name={FormKeys.City}
-                        id="city"
-                        value={values[FormKeys.City].value}
-                        onChange={(e) =>
-                          changeHandler(FormKeys.City, e.target.value)
+                      <p
+                        className={
+                          values[FormKeys.City]["focusField"]
+                            ? formStyles["placeholder-on-blur"]
+                            : formStyles["placeholder"]
                         }
-                        autoFocus
-                      />
-                    )}
+                      >
+                        City*
+                      </p>
+                      {values[FormKeys.City]["focusField"] && (
+                        <input
+                          className={formStyles["input-spot"]}
+                          type="text"
+                          name={FormKeys.City}
+                          id="city"
+                          value={values[FormKeys.City].value}
+                          onChange={(e) =>
+                            changeHandler(FormKeys.City, e.target.value)
+                          }
+                          autoFocus
+                        />
+                      )}
+                    </div>
                   </div>
+                  {values[FormKeys.City].error && (
+                    <div className={formStyles["error-message"]}>
+                      {values[FormKeys.City].error}
+                    </div>
+                  )}
                 </div>
-                <div
-                  className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}
-                >
+                <div className={`${styles["field-box"]}`}>
                   <div
-                    onClick={() => onFocusField("address")}
-                    onBlur={onBlurField}
-                    className={formStyles["input-field-container-details"]}
+                    className={`${formStyles["filed-container"]} ${
+                      values[FormKeys.Address].error ? formStyles["error"] : ""
+                    }`}
                   >
-                    <p
-                      className={
-                        values[FormKeys.Address]["focusField"]
-                          ? formStyles["placeholder-on-blur"]
-                          : formStyles["placeholder"]
-                      }
+                    <div
+                      onClick={() => onFocusField("address")}
+                      onBlur={onBlurField}
+                      className={formStyles["input-field-container-details"]}
                     >
-                      Street Address*
-                    </p>
-                    {values[FormKeys.Address]["focusField"] && (
-                      <input
-                        className={formStyles["input-spot"]}
-                        type="text"
-                        name={FormKeys.Address}
-                        id="address"
-                        value={values[FormKeys.Address].value}
-                        onChange={(e) =>
-                          changeHandler(FormKeys.Address, e.target.value)
+                      <p
+                        className={
+                          values[FormKeys.Address]["focusField"]
+                            ? formStyles["placeholder-on-blur"]
+                            : formStyles["placeholder"]
                         }
-                        autoFocus
-                      />
-                    )}
+                      >
+                        Street Address*
+                      </p>
+                      {values[FormKeys.Address]["focusField"] && (
+                        <input
+                          className={formStyles["input-spot"]}
+                          type="text"
+                          name={FormKeys.Address}
+                          id="address"
+                          value={values[FormKeys.Address].value}
+                          onChange={(e) =>
+                            changeHandler(FormKeys.Address, e.target.value)
+                          }
+                          autoFocus
+                        />
+                      )}
+                    </div>
                   </div>
+                  {values[FormKeys.Address].error && (
+                    <div className={formStyles["error-message"]}>
+                      {values[FormKeys.Address].error}
+                    </div>
+                  )}
                 </div>
                 <div className={styles["center"]}>
                   <div>
