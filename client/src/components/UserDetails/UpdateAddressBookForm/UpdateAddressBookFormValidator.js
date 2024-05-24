@@ -29,3 +29,46 @@ import {
   ADDRESS_MIN_LENGTH_ERROR_MESSAGE,
   ADDRESS_MAX_LENGTH_ERROR_MESSAGE,
 } from "../../../constants/updateAddressBookFormConstants";
+
+const isValid = (value, pattern) => {
+  return pattern.test(value);
+};
+
+export const validateFirstName = (firstName) => {
+  const firstNamePattern = /^[A-za-z]+$/;
+  if (!isValid(firstName, firstNamePattern)) {
+    return ONLY_LETTERS_FIRST_NAME_EXCEPTION_MESSAGE;
+  } else if (firstName.length < FIRST_NAME_MIN_LENGTH) {
+    return FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE;
+  } else if (firstName.length > FIRST_NAME_MAX_LENGTH) {
+    return FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE;
+  } else {
+    return null;
+  }
+};
+
+export const validateLastName = (lastName) => {
+  const lastNamePattern = /^[A-za-z]+$/;
+  if (!isValid(lastName, lastNamePattern)) {
+    return ONLY_LETTERS_LAST_NAME_EXCEPTION_MESSAGE;
+  } else if (lastName.length < LAST_NAME_MIN_LENGTH) {
+    return LAST_NAME_MIN_LENGTH_ERROR_MESSAGE;
+  } else if (lastName.length > LAST_NAME_MAX_LENGTH) {
+    return LAST_NAME_MAX_LENGTH_ERROR_MESSAGE;
+  } else {
+    return null;
+  }
+};
+
+export const validatePhoneNumber = (phoneNumber) => {
+  const phoneNumberPattern = /^[0-9]+$/;
+  if (!isValid(phoneNumber, phoneNumberPattern)) {
+    return ONLY_DIGITS_PHONE_NUMBER_EXCEPTION_MESSAGE;
+  } else if (phoneNumber.length < PHONE_NUMBER_MIN_LENGTH) {
+    return PHONE_NUMBER_MIN_LENGTH_ERROR_MESSAGE;
+  } else if (phoneNumber.length > PHONE_NUMBER_MAX_LENGTH) {
+    return PHONE_NUMBER_MAX_LENGTH_ERROR_MESSAGE;
+  } else {
+    return null;
+  }
+};
