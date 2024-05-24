@@ -31,26 +31,17 @@
 }
 
 .left-container {
-  /* width: calc(72% - 20px); */
-  width: 68%;
+  width: 70%;
   display: flex;
   gap: 40px;
   flex-direction: column;
 }
 .right-container {
-  /* width: calc(28% - 20px); */
+  width: 30%;
   display: flex;
   gap: 40px;
   flex-direction: column;
 }
-
-/* .right-upper-sub-container {
-  height: 60%;
-}
-
-.right-bottom-sub-container {
-  height: 40%;
-} */
 
 .left-upper-sub-container,
 .left-bottom-sub-container {
@@ -70,7 +61,6 @@
   gap: 40px;
   padding: 30px;
 }
-
 
 .container-title-login {
   font-size: 20px;

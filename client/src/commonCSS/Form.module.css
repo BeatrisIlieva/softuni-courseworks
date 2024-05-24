@@ -21,7 +21,7 @@
 }
 
 .input-field-container-profile {
-  width: 292px;
+  width: 350px;
   height: 40px;
 }
 
@@ -32,6 +32,11 @@
 
 .input-field-container-details {
   width: 626px;
+  height: 40px;
+}
+
+.input-field-container-card {
+  width: 540px;
   height: 40px;
 }
 
@@ -49,7 +54,10 @@
 .input-field-container-details input[type="email"],
 .input-field-container-name input[type="text"],
 .input-field-container-name input[type="password"],
-.input-field-container-name input[type="email"] {
+.input-field-container-name input[type="email"],
+.input-field-container-card input[type="text"],
+.input-field-container-card input[type="password"],
+.input-field-container-card input[type="email"] {
   border: none;
   width: 32ch;
   background-color: transparent;
@@ -74,7 +82,11 @@
 .input-field-container-name input:-webkit-autofill,
 .input-field-container-name input:-webkit-autofill:hover,
 .input-field-container-name input:-webkit-autofill:focus,
-.input-field-container-name input:-internal-autofill-selected {
+.input-field-container-name input:-internal-autofill-selected,
+.input-field-container-card input:-webkit-autofill,
+.input-field-container-card input:-webkit-autofill:hover,
+.input-field-container-card input:-webkit-autofill:focus,
+.input-field-container-card input:-internal-autofill-selected {
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
@@ -92,7 +104,10 @@
 .input-field-container-details input[type="email"]:focus,
 .input-field-container-name input[type="text"]:focus,
 .input-field-container-name input[type="password"]:focus,
-.input-field-container-name input[type="email"]:focus {
+.input-field-container-name input[type="email"]:focus,
+.input-field-container-card input[type="text"]:focus,
+.input-field-container-card input[type="password"]:focus,
+.input-field-container-card input[type="email"]:focus {
   outline: none;
 }
 
@@ -151,18 +166,11 @@ ul.form-list {
   margin-right: 100px;
 }
 
-.filed-box {
-  
-}
-
 .error-message {
   font-size: 14px;
   color: red;
   padding-top: 4px;
   text-align: center;
-  /* display: none; */
-}
-
-.visible {
-  display: block;
+  margin: 0px;
+  padding-bottom: 0px;
 }

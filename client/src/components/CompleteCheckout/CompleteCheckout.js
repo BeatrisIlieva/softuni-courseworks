@@ -8,7 +8,7 @@ import styles from "../CompleteCheckout/CompleteCheckout.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { CardDetails } from "./CardDetails/CardDetails";
+import { CardDetailsForm } from "./CardDetailsForm/CardDetailsForm";
 
 export const CompleteCheckout = () => {
   return (
@@ -27,7 +27,7 @@ export const CompleteCheckout = () => {
             <h4 className={styles["left-top-container-title"]}>Card Details</h4>
           </div>
           <div>
-            <CardDetails />
+            <CardDetailsForm />
           </div>
         </div>
         <div className={styles["right-container"]}>

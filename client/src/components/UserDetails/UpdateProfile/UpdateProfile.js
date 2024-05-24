@@ -17,10 +17,10 @@ export const UpdateProfile = () => {
   const { userId } = useContext(AuthContext);
 
   const [values, setValues] = useState({
-    [FormKeys.FirstName]: { value: "", focusField: false },
-    [FormKeys.LastName]: { value: "", focusField: false },
-    [FormKeys.Birthday]: { value: "", focusField: false },
-    [FormKeys.SpecialDay]: { value: "", focusField: false },
+    [FormKeys.FirstName]: { value: "", focusField: false,  error: null  },
+    [FormKeys.LastName]: { value: "", focusField: false,  error: null  },
+    [FormKeys.Birthday]: { value: "", focusField: false,  error: null  },
+    [FormKeys.SpecialDay]: { value: "", focusField: false,  error: null  },
   });
 
   useEffect(() => {
@@ -75,7 +75,12 @@ export const UpdateProfile = () => {
       [FormKeys.SpecialDay]: values[FormKeys.SpecialDay].value,
     };
 
-    await profileService.update(userId, data);
+    try {
+      await profileService.update(userId, data);
+    } catch (err) {
+      
+    }
+
   };
   return (
     <section>

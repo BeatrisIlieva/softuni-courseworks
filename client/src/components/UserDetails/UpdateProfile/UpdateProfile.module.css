@@ -6,13 +6,13 @@
   }
   
   .left-container {
-    width: calc(68% - 20px);
+    width: calc(66% - 20px);
     display: flex;
     gap: 40px;
     flex-direction: column;
   }
   .right-container {
-    width: calc(32% - 20px);
+    width: calc(34% - 20px);
     display: flex;
     gap: 40px;
     flex-direction: column;

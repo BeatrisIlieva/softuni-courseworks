@@ -41,7 +41,7 @@
   }
   
   .left-container {
-    width: 30%;
+    width: 50%;
     padding: 30px;
     background-color: white;
     border-radius: 16px;
@@ -66,7 +66,7 @@
   }
   
   .right-container {
-    width: 70%;
+    width: 50%;
     position: sticky;
     top: 30px;
   }

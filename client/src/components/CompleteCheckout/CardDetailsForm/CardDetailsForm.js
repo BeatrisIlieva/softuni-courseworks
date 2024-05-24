@@ -6,6 +6,7 @@ import { completeCheckoutServiceFactory } from "../../../services/completeChecko
 import { useNavigate } from "react-router-dom";
 import { useService } from "../../../hooks/useService";
 import { useAuthContext } from "../../../contexts/AuthContext";
+import { validateLongCardNumber, validateExpirationDate, validateCVVCode } from "./CardDetailsFormValidators";
 
 const FormKeys = {
   LongCardNumber: "longCardNumber",
@@ -13,7 +14,22 @@ const FormKeys = {
   CvvCode: "cvvCode",
 };
 
-export const CardDetails = () => {
+function isCardExpired(expirationDate) {
+  const [month, year] = expirationDate
+    .split("/")
+    .map((val) => parseInt(val, 10));
+  const expiration = new Date("20" + year + "-" + month + "-01");
+
+  const currentDate = new Date();
+
+  if (expiration < currentDate) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export const CardDetailsForm = () => {
   const { userId } = useAuthContext();
   const completeCheckoutService = useService(completeCheckoutServiceFactory);
   const navigate = useNavigate();
@@ -25,22 +41,57 @@ export const CardDetails = () => {
     const data = { longCardNumber, expirationDate, cvvCode };
 
     try {
-      await completeCheckoutService.confirm(userId, data);
+      values[FormKeys.LongCardNumber].error = validateLongCardNumber(
+        values[FormKeys.LongCardNumber].value
+      );
 
-      navigate(`/order-confirmation/${userId}`);
+      values[FormKeys.ExpirationDate].error = validateExpirationDate(
+        values[FormKeys.ExpirationDate].value
+      );
+
+      values[FormKeys.CvvCode].error = validateCVVCode(
+        values[FormKeys.CvvCode].value
+      );
+
+      // if (!/^\d{16}$/.test(values[FormKeys.LongCardNumber].value)) {
+      //   values[FormKeys.LongCardNumber].error =
+      //     "The card number should be exactly 16 digits long.";
+      // } else {
+      //   values[FormKeys.LongCardNumber].error = null;
+      // }
+      // if (!/^\d{2}\/\d{2}$/.test(values[FormKeys.ExpirationDate].value)) {
+      //   values[FormKeys.ExpirationDate].error =
+      //     "The expiration date should be in the format MM/YY.";
+      // }
+      // if (isCardExpired(expirationDate)) {
+      //   values[FormKeys.ExpirationDate].error = "This card has expired.";
+      // }
+      // if (!/^\d{3}$/.test(values[FormKeys.CvvCode].value)) {
+      //   values[FormKeys.CvvCode].error =
+      //     "The CVV code should be exactly 3 digits long.";
+      // }
+      if (
+        values[FormKeys.LongCardNumber].error === null &&
+        values[FormKeys.ExpirationDate].error === null &&
+        values[FormKeys.CvvCode].error === null
+      ) {
+        await completeCheckoutService.confirm(userId, data);
+        navigate(`/order-confirmation/${userId}`);
+      }
     } catch (err) {
-      if (!/^\d{16}$/.test(values[FormKeys.LongCardNumber].value)) {
-        values[FormKeys.LongCardNumber].error =
-          "The card number should be exactly 16 digits long.";
-      }
-      if (!/^\d{2}\/\d{2}$/.test(values[FormKeys.ExpirationDate].value)) {
-        values[FormKeys.ExpirationDate].error =
-          "The expiration date should be in the format MM/YY.";
-      }
-      if (!/^\d{3}$/.test(values[FormKeys.CvvCode].value)) {
-        values[FormKeys.CvvCode].error =
-          "The CVV code should be exactly 3 digits long.";
-      }
+      console.log(err);
+      // if (!/^\d{16}$/.test(values[FormKeys.LongCardNumber].value)) {
+      //   values[FormKeys.LongCardNumber].error =
+      //     "The card number should be exactly 16 digits long.";
+      // }
+      // if (!/^\d{2}\/\d{2}$/.test(values[FormKeys.ExpirationDate].value)) {
+      //   values[FormKeys.ExpirationDate].error =
+      //     "The expiration date should be in the format MM/YY.";
+      // }
+      // if (!/^\d{3}$/.test(values[FormKeys.CvvCode].value)) {
+      //   values[FormKeys.CvvCode].error =
+      //     "The CVV code should be exactly 3 digits long.";
+      // }
     }
 
     const currentValues = { ...values };
@@ -87,7 +138,7 @@ export const CardDetails = () => {
                     <div
                       onClick={() => onFocusField("longCardNumber")}
                       onBlur={onBlurField}
-                      className={formStyles["input-field-container-name"]}
+                      className={formStyles["input-field-container-card"]}
                     >
                       <p
                         className={
@@ -134,7 +185,7 @@ export const CardDetails = () => {
                     <div
                       onClick={() => onFocusField("expirationDate")}
                       onBlur={onBlurField}
-                      className={formStyles["input-field-container-name"]}
+                      className={formStyles["input-field-container-card"]}
                     >
                       <p
                         className={
@@ -178,7 +229,7 @@ export const CardDetails = () => {
                     <div
                       onClick={() => onFocusField("cvvCode")}
                       onBlur={onBlurField}
-                      className={formStyles["input-field-container-name"]}
+                      className={formStyles["input-field-container-card"]}
                     >
                       <p
                         className={
