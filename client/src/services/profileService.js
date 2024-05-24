@@ -7,7 +7,7 @@ export const profileServiceFactory = (token) => {
 
   return {
     display: (userId) => request.get(`${baseUrl}/display/${userId}`),
-    
+
     update: (userId, data) => request.put(`${baseUrl}/edit/${userId}`, data),
   };
 };

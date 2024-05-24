@@ -3,7 +3,7 @@ const isValid = (value, pattern) => {
 };
 
 export const validateEmail = (email) => {
-    console.log(email)
+
   const emailPattern = /^[A-za-z0-9]+@+[a-z]+\.[a-z]+$/;
 
   if (!isValid(email, emailPattern)) {
