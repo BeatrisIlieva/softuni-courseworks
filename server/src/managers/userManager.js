@@ -31,11 +31,11 @@ exports.register = async (userData) => {
   return { token, userId };
 };
 
-exports.getOne = async(userId) => {
+exports.getOne = async (userId) => {
   const user = await User.findById(userId);
 
   return user;
-}
+};
 
 exports.login = async (email, password) => {
   const user = await User.findOne({ email });
@@ -74,35 +74,35 @@ async function generateToken(user) {
 
 exports.changeEmail = async (email, password, userId) => {
   let user = await User.findById(userId);
-  
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
+  const emailPattern = /^[A-za-z0-9]+@+[a-z]+\.[a-z]+$/;
+
+  const isEmailValid = emailPattern.test(email);
+
   if (!isPasswordValid) {
     throw new Error("Ensure you enter a valid password.");
+  } else if (!isEmailValid) {
+    throw new Error("Invalid email format.");
   } else {
-    user = await User.findByIdAndUpdate(userId, { email: email });
-    // const token = await generateToken(user);
-    // return { token, user };
-    return user;
+    await User.findByIdAndUpdate(userId, { email: email });
+
+    return user 
   }
 };
 
-exports.changePassword = async (
-  oldPassword,
-  newPassword,
-  userId
-) => {
+exports.changePassword = async (oldPassword, newPassword, userId) => {
   const user = await User.findById(userId);
 
   const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
-  console.log(isPasswordValid)
+  console.log(isPasswordValid);
 
   if (!isPasswordValid) {
     throw new Error("Ensure you enter a valid password.");
   } else {
     const hash = await bcrypt.hash(newPassword, DEFAULT_SALT);
-    const user = await User.findByIdAndUpdate(userId, {password: hash});
+    const user = await User.findByIdAndUpdate(userId, { password: hash });
     return user;
   }
 };

@@ -79,17 +79,7 @@ export const AuthProvider = ({ children }) => {
     return user;
   };
 
-  const onUpdateEmailSubmit = async (userId, values) => {
-    const data = {
-      email: values.email.value,
-      password: values.password.value,
-    };
-    try {
-      await authService.updateEmail(userId, data);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+
 
   const onUpdatePasswordSubmit = async (userId, values) => {
     console.log(values);
@@ -109,7 +99,7 @@ export const AuthProvider = ({ children }) => {
     onLoginSubmit,
     onLogout,
     getOne,
-    onUpdateEmailSubmit,
+    // onUpdateEmailSubmit,
     onUpdatePasswordSubmit,
     userId: auth._id,
     token: auth.accessToken,
