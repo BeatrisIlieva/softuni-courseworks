@@ -86,3 +86,27 @@ export const validateCountry = (country) => {
     return null;
   }
 };
+
+export const validateCity = (city) => {
+  const cityPattern = /^[A-za-z]+$/;
+
+  if (!isValid(city, cityPattern)) {
+    return ONLY_LETTERS_CITY_EXCEPTION_MESSAGE;
+  } else if (city.length < CITY_MIN_LENGTH) {
+    return CITY_MIN_LENGTH_ERROR_MESSAGE;
+  } else if (city.length > CITY_MAX_LENGTH) {
+    return CITY_MAX_LENGTH_ERROR_MESSAGE;
+  } else {
+    return null;
+  }
+};
+
+export const validateAddress = (address) => {
+  if (address.length < ADDRESS_MIN_LENGTH) {
+    return ADDRESS_MIN_LENGTH_ERROR_MESSAGE;
+  } else if (address.length > ADDRESS_MAX_LENGTH) {
+    return ADDRESS_MAX_LENGTH_ERROR_MESSAGE;
+  } else {
+    return null;
+  }
+};

@@ -8,6 +8,14 @@ import styles from "./UpdateAddressBookForm.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useFormAddressBook } from "../../../hooks/useFormAddressBook";
+import {
+  validateFirstName,
+  validateLastName,
+  validatePhoneNumber,
+  validateCity,
+  validateCountry,
+  validateAddress,
+} from "./UpdateAddressBookFormValidator";
 
 const FormKeys = {
   FirstName: "firstName",
