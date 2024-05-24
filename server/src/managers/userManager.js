@@ -88,7 +88,7 @@ exports.changeEmail = async (email, password, userId) => {
   } else {
     await User.findByIdAndUpdate(userId, { email: email });
 
-    return user 
+    return user;
   }
 };
 

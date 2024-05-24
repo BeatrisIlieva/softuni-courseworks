@@ -95,7 +95,6 @@ router.get("/user/:userId", async (req, res) => {
 });
 
 router.put("/edit-email/:userId", async (req, res) => {
-
   const { email, password } = req.body;
 
   const userId = req.user._id;
@@ -105,8 +104,6 @@ router.put("/edit-email/:userId", async (req, res) => {
 
     res.status(200).json(user);
   } catch (err) {
-    console.log("----")
-  
     console.log(err.message);
     res.status(400).json({
       message: err.message,
