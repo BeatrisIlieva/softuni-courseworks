@@ -6,15 +6,17 @@ import { completeCheckoutServiceFactory } from "../../../services/completeChecko
 import { useNavigate } from "react-router-dom";
 import { useService } from "../../../hooks/useService";
 import { useAuthContext } from "../../../contexts/AuthContext";
-import { validateLongCardNumber, validateExpirationDate, validateCVVCode } from "./CardDetailsFormValidators";
+import {
+  validateLongCardNumber,
+  validateExpirationDate,
+  validateCVVCode,
+} from "./CardDetailsFormValidators";
 
 const FormKeys = {
   LongCardNumber: "longCardNumber",
   ExpirationDate: "expirationDate",
   CvvCode: "cvvCode",
 };
-
-
 
 export const CardDetailsForm = () => {
   const { userId } = useAuthContext();
@@ -50,7 +52,6 @@ export const CardDetailsForm = () => {
       }
     } catch (err) {
       console.log(err);
-
     }
 
     const currentValues = { ...values };
