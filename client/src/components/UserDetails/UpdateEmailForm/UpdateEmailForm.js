@@ -99,7 +99,6 @@ export const UpdateEmailForm = () => {
 
   return (
     <form method="POST" onSubmit={onSubmit} className={styles["modal-dialog"]}>
-      {/* {values && ( */}
       <div className={`${styles["modal-dialog"]} ${styles["slideIn"]}`}>
         <div className={`${styles["field-box"]}`}>
           <div
@@ -191,7 +190,6 @@ export const UpdateEmailForm = () => {
           />
         </div>
       </div>
-      {/* )} */}
     </form>
   );
 };
