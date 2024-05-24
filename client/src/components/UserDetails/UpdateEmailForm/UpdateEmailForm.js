@@ -1,11 +1,8 @@
 import formStyles from "../../../commonCSS/Form.module.css";
 import buttonStyles from "../../../commonCSS/Button.module.css";
-
 import styles from "./UpdateEmailForm.module.css";
-
 import { useAuthContext } from "../../../contexts/AuthContext";
-
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { updateCredentialsServiceFactory } from "../../../services/updateCredentialsService";
 import { useService } from "../../../hooks/useService";
 import { validateEmail } from "./UpdateEmailFormValidator";
@@ -75,15 +72,14 @@ export const UpdateEmailForm = () => {
     };
 
     try {
-      
       await updateCredentialsService.updateEmail(userId, data);
 
-      setValues(prevValues => ({
+      setValues((prevValues) => ({
         email: { ...prevValues.email, error: null },
         password: { ...prevValues.password, error: null },
       }));
     } catch (err) {
-      if (err.message === "Invalid email format."){
+      if (err.message === "Invalid email format.") {
         values[FormKeys.Password].error = null;
       } else {
         values[FormKeys.Password].error = err.message;
