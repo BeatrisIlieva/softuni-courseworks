@@ -40,7 +40,7 @@
   height: 40px;
 }
 
-.input-field-container input[type="text"],
+/* .input-field-container input[type="text"],
 .input-field-container input[type="password"],
 .input-field-container input[type="email"],
 .input-field-container-login input[type="text"],
@@ -61,9 +61,9 @@
   border: none;
   width: 32ch;
   background-color: transparent;
-}
+} */
 
-.input-field-container input:-webkit-autofill,
+/* .input-field-container input:-webkit-autofill,
 .input-field-container input:-webkit-autofill:hover,
 .input-field-container input:-webkit-autofill:focus,
 .input-field-container input:-internal-autofill-selected,
@@ -88,9 +88,9 @@
 .input-field-container-card input:-webkit-autofill:focus,
 .input-field-container-card input:-internal-autofill-selected {
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-}
+} */
 
-.input-field-container input[type="text"]:focus,
+/* .input-field-container input[type="text"]:focus,
 .input-field-container input[type="password"]:focus,
 .input-field-container input[type="email"]:focus,
 .input-field-container-login input[type="text"]:focus,
@@ -109,6 +109,10 @@
 .input-field-container-card input[type="password"]:focus,
 .input-field-container-card input[type="email"]:focus {
   outline: none;
+} */
+
+.field-box {
+  height: 100px;
 }
 
 .filed-container {
@@ -173,4 +177,9 @@ ul.form-list {
   text-align: center;
   margin: 0px;
   padding-bottom: 0px;
+  /* display: none; */
+}
+
+.visible {
+  display: block;
 }

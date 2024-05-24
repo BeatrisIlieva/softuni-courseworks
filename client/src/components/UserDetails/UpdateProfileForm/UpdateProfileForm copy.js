@@ -2,9 +2,10 @@ import { useContext, useState, useEffect } from "react";
 import { useService } from "../../../hooks/useService";
 import { profileServiceFactory } from "../../../services/profileService";
 import { AuthContext } from "../../../contexts/AuthContext";
-import styles from "./UpdateProfile.module.css";
+import styles from "./UpdateProfileForm.module.css";
 import formStyles from "../../../commonCSS/Form.module.css";
 import buttonStyles from "../../../commonCSS/Button.module.css";
+import { validateFirstName } from "./UpdateProfileFormValidator";
 
 const FormKeys = {
   FirstName: "firstName",
@@ -12,15 +13,15 @@ const FormKeys = {
   Birthday: "birthday",
   SpecialDay: "specialDay",
 };
-export const UpdateProfile = () => {
+export const UpdateProfileForm = () => {
   const profileService = useService(profileServiceFactory);
   const { userId } = useContext(AuthContext);
 
   const [values, setValues] = useState({
-    [FormKeys.FirstName]: { value: "", focusField: false,  error: null  },
-    [FormKeys.LastName]: { value: "", focusField: false,  error: null  },
-    [FormKeys.Birthday]: { value: "", focusField: false,  error: null  },
-    [FormKeys.SpecialDay]: { value: "", focusField: false,  error: null  },
+    [FormKeys.FirstName]: { value: "", focusField: false, error: null },
+    [FormKeys.LastName]: { value: "", focusField: false, error: null },
+    [FormKeys.Birthday]: { value: "", focusField: false, error: null },
+    [FormKeys.SpecialDay]: { value: "", focusField: false, error: null },
   });
 
   useEffect(() => {
@@ -76,11 +77,18 @@ export const UpdateProfile = () => {
     };
 
     try {
-      await profileService.update(userId, data);
-    } catch (err) {
-      
-    }
-
+      values[FormKeys.FirstName].error = validateFirstName(
+        values[FormKeys.FirstName].value
+      );
+      if (
+        values[FormKeys.FirstName].error === null &&
+        values[FormKeys.LastName].error === null &&
+        values[FormKeys.Birthday].error === null &&
+        values[FormKeys.SpecialDay].error === null
+      ) {
+        await profileService.update(userId, data);
+      }
+    } catch (err) {}
   };
   return (
     <section>
@@ -90,35 +98,46 @@ export const UpdateProfile = () => {
           method="POST"
           onSubmit={onSubmit}
         >
-          <div className={`${formStyles["filed-container"]}`}>
+          <div className={`${formStyles["filed-box"]}`}>
             <div
-              onClick={() => onFocusField("firstName")}
-              onBlur={onBlurField}
-              className={formStyles["input-field-container-profile"]}
+              className={`${formStyles["filed-container"]} ${
+                values[FormKeys.FirstName].error ? formStyles["error"] : ""
+              }`}
             >
-              <p
-                className={
-                  values[FormKeys.FirstName]["focusField"]
-                    ? formStyles["placeholder-on-blur"]
-                    : formStyles["placeholder"]
-                }
+              <div
+                onClick={() => onFocusField("firstName")}
+                onBlur={onBlurField}
+                className={formStyles["input-field-container-profile"]}
               >
-                First Name
-              </p>
-              {values[FormKeys.FirstName]["focusField"] && (
-                <input
-                  className={formStyles["input-spot"]}
-                  type="text"
-                  name={FormKeys.FirstName}
-                  id="firstName"
-                  value={values[FormKeys.FirstName].value}
-                  onChange={(e) =>
-                    changeHandler(FormKeys.FirstName, e.target.value)
+                <p
+                  className={
+                    values[FormKeys.FirstName]["focusField"]
+                      ? formStyles["placeholder-on-blur"]
+                      : formStyles["placeholder"]
                   }
-                  autoFocus
-                />
-              )}
+                >
+                  First Name
+                </p>
+                {values[FormKeys.FirstName]["focusField"] && (
+                  <input
+                    className={formStyles["input-spot"]}
+                    type="text"
+                    name={FormKeys.FirstName}
+                    id="firstName"
+                    value={values[FormKeys.FirstName].value}
+                    onChange={(e) =>
+                      changeHandler(FormKeys.FirstName, e.target.value)
+                    }
+                    autoFocus
+                  />
+                )}
+              </div>
             </div>
+            {values[FormKeys.FirstName].error && (
+              <div className={formStyles["error-message"]}>
+                {values[FormKeys.FirstName].error}
+              </div>
+            )}
           </div>
           <div
             className={`${formStyles["filed-container"]} ${styles["input-container-left"]}`}

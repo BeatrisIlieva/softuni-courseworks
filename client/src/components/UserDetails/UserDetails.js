@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { faFileInvoiceDollar } from "@fortawesome/free-solid-svg-icons";
 import { authServiceFactory } from "../../services/authService";
-import { UpdateProfile } from "./UpdateProfile/UpdateProfile";
+import { UpdateProfileForm } from "./UpdateProfileForm/UpdateProfileForm";
 
 export const UserDetails = () => {
   const { userId } = useContext(AuthContext);
@@ -87,7 +87,7 @@ export const UserDetails = () => {
         <div className={styles["left-container"]}>
           <div className={styles["left-upper-sub-container"]}>
             <h3 className={styles["container-title"]}>Personal Information</h3>
-            <UpdateProfile />
+            <UpdateProfileForm />
           </div>
           <div className={styles["left-bottom-sub-container"]}>
             <button
