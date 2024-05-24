@@ -40,11 +40,11 @@ export const validateExpirationDate = (expirationDate) => {
 };
 
 export const validateCVVCode = (CVVCode) => {
-    const CVVCodePattern = /^\d{3}$/;
-  
-    if (!isValid(CVVCode, CVVCodePattern)) {
-      return "The CVV code should be exactly 3 digits long.";
-    } else {
-      return null;
-    }
-  };
+  const CVVCodePattern = /^\d{3}$/;
+
+  if (!isValid(CVVCode, CVVCodePattern)) {
+    return "The CVV code should be exactly 3 digits long.";
+  } else {
+    return null;
+  }
+};

@@ -1,11 +1,4 @@
-import { useAuthContext } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
-import { useService } from "../../hooks/useService";
-import { completeCheckoutServiceFactory } from "../../services/completeCheckoutService";
-import { useFormNotAuthUser } from "../../hooks/useFormNotAuthUser";
-import formStyles from "../../commonCSS/Form.module.css";
 import styles from "../CompleteCheckout/CompleteCheckout.module.css";
-import buttonStyles from "../../commonCSS/Button.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { CardDetailsForm } from "./CardDetailsForm/CardDetailsForm";
