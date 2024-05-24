@@ -2,8 +2,8 @@ import styles from "../UserDetails/UserDetails.module.css";
 import buttonStyles from "../../commonCSS/Button.module.css";
 import colorStyles from "../../commonCSS/Colors.module.css";
 import { profileServiceFactory } from "../../services/profileService";
-import { UpdateAddressBook } from "./UpdateAddressBook/UpdateAddressBook";
-import { UpdateEmail } from "./UpdateEmail/UpdateEmail";
+import { UpdateAddressBookForm } from "./UpdateAddressBookForm/UpdateAddressBookForm";
+import { UpdateEmailForm } from "./UpdateEmailForm/UpdateEmailForm";
 import { UpdatePassword } from "./UpdatePassword/UpdatePassword";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -124,10 +124,10 @@ export const UserDetails = () => {
               >
                 Change Password
               </button>
-              {showUpdateEmail && <UpdateEmail />}
+              {showUpdateEmail && <UpdateEmailForm />}
               {showUpdatePassword && <UpdatePassword />}
               {showUpdateAddressBook && (
-                <UpdateAddressBook
+                <UpdateAddressBookForm
                   onCloseUpdateAddressBook={onCloseUpdateAddressBook}
                   onUpdateAddressBookSubmit={onUpdateAddressBookSubmit}
                 />
@@ -141,7 +141,7 @@ export const UserDetails = () => {
               </h3>
               <hr className={styles["horizontal-line-address"]} />
               {showUpdateAddressBook && (
-                <UpdateAddressBook
+                <UpdateAddressBookForm
                   onCloseUpdateAddressBook={onCloseUpdateAddressBook}
                   onUpdateAddressBookSubmit={onUpdateAddressBookSubmit}
                 />

@@ -8,7 +8,7 @@ import buttonStyles from "../../../commonCSS/Button.module.css";
 import {
   validateFirstName,
   validateLastName,
-  validateDate
+  validateDate,
 } from "./UpdateProfileFormValidator";
 
 const FormKeys = {
@@ -203,7 +203,7 @@ export const UpdateProfileForm = () => {
             )}
           </div>
           <div className={`${styles["field-box"]}`}>
-          <div
+            <div
               className={`${formStyles["filed-container"]} ${
                 values[FormKeys.Birthday].error ? formStyles["error"] : ""
               }`}
@@ -244,7 +244,7 @@ export const UpdateProfileForm = () => {
             )}
           </div>
           <div className={`${styles["field-box"]}`}>
-          <div
+            <div
               className={`${formStyles["filed-container"]} ${
                 values[FormKeys.SpecialDay].error ? formStyles["error"] : ""
               }`}

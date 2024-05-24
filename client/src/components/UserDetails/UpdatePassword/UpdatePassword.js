@@ -2,7 +2,7 @@ import formStyles from "../../../commonCSS/Form.module.css";
 import buttonStyles from "../../../commonCSS/Button.module.css";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import styles from "../UpdateEmail/UpdateEmail.module.css";
+import styles from "../UpdateEmailForm/UpdateEmailForm.module.css";
 import { useFormAuthUser } from "../../../hooks/useFormAuthUser";
 
 const FormKeys = {

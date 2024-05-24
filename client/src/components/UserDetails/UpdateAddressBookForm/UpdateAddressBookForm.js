@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { useService } from "../../../hooks/useService";
 import { addressBookServiceFactory } from "../../../services/addressBookService";
-import styles from "../UpdateAddressBook/UpdateAddressBook.module.css";
+import styles from "./UpdateAddressBookForm.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useFormAddressBook } from "../../../hooks/useFormAddressBook";
@@ -18,7 +18,7 @@ const FormKeys = {
   Address: "address",
 };
 
-export const UpdateAddressBook = ({
+export const UpdateAddressBookForm = ({
   onCloseUpdateAddressBook,
   onUpdateAddressBookSubmit,
 }) => {
