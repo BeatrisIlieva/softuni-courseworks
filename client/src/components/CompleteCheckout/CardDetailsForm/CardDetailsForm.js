@@ -80,18 +80,7 @@ export const CardDetailsForm = () => {
       }
     } catch (err) {
       console.log(err);
-      // if (!/^\d{16}$/.test(values[FormKeys.LongCardNumber].value)) {
-      //   values[FormKeys.LongCardNumber].error =
-      //     "The card number should be exactly 16 digits long.";
-      // }
-      // if (!/^\d{2}\/\d{2}$/.test(values[FormKeys.ExpirationDate].value)) {
-      //   values[FormKeys.ExpirationDate].error =
-      //     "The expiration date should be in the format MM/YY.";
-      // }
-      // if (!/^\d{3}$/.test(values[FormKeys.CvvCode].value)) {
-      //   values[FormKeys.CvvCode].error =
-      //     "The CVV code should be exactly 3 digits long.";
-      // }
+
     }
 
     const currentValues = { ...values };
