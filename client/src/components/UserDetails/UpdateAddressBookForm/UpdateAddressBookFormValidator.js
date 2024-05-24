@@ -72,3 +72,17 @@ export const validatePhoneNumber = (phoneNumber) => {
     return null;
   }
 };
+
+export const validateCountry = (country) => {
+  const countryPattern = /^[A-za-z]+$/;
+
+  if (!isValid(country, countryPattern)) {
+    return ONLY_LETTERS_COUNTRY_EXCEPTION_MESSAGE;
+  } else if (country.length < COUNTRY_MIN_LENGTH) {
+    return COUNTRY_MIN_LENGTH_ERROR_MESSAGE;
+  } else if (country.length > COUNTRY_MAX_LENGTH) {
+    return COUNTRY_MAX_LENGTH_ERROR_MESSAGE;
+  } else {
+    return null;
+  }
+};
