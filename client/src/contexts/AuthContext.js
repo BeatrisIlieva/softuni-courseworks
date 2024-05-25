@@ -3,6 +3,7 @@ import { authServiceFactory } from "../services/authService";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -10,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   const authService = authServiceFactory(auth.accessToken);
   const navigate = useNavigate();
   const location = useLocation();
+
 
   const [wishlist, setWishlist] = useLocalStorage("wishlist", []);
 
@@ -32,6 +34,8 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
+    const from = location.state?.from?.pathname || "/";
+
     try {
       const result = await authService.register({ ...data });
 
@@ -39,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 
       setWishlist([]);
 
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (err) {
       console.log(err.message);
     }
@@ -69,6 +73,7 @@ export const AuthProvider = ({ children }) => {
     await authService.logout();
 
     setWishlist([]);
+
 
     setAuth({});
   };

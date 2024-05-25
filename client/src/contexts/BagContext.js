@@ -140,6 +140,7 @@ export const BagProvider = ({ children }) => {
     onBlur,
     isEmpty,
     clearShoppingBag,
+
   };
 
   return <BagContext.Provider value={context}>{children}</BagContext.Provider>;

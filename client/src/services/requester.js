@@ -22,7 +22,6 @@ const requester = async (method, token, url, data) => {
     };
   }
 
-
   const response = await fetch(url, options);
 
   if (response.status === 204) {

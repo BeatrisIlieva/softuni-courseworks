@@ -57,8 +57,6 @@ export const useFormAuthUser = (initialValues, submitHandler, FormKeys) => {
 
     const result = await submitHandler(userId, values);
 
-    console.log(`Result from service ${result}`)
-
   };
 
   return {

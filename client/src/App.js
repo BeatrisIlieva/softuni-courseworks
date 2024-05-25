@@ -20,6 +20,8 @@ import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 import { UserUUIDProvider } from "./contexts/UserUUIDContext";
 import { Wishlist } from "./components/Wishlist/WishList";
 import { OrderConfirmation } from "./components/OrderConfirmation/OrderConfirmation";
+import { SearchResult } from "./components/Search/SearchResult/SearchResult";
+import { Search } from "./components/Search/Search";
 
 function App() {
   return (
@@ -32,21 +34,10 @@ function App() {
               <main className={styles["main"]}>
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  {/* <Route
-                path="/:categoryId"
-                element={<RouteGuard>{<JewelryList />}</RouteGuard>}
-              /> */}
+                  <Route path="/search/display/:user" element={<Search />} />
+                  <Route path="/search" element={<SearchResult />} />
                   <Route path="/:categoryId" element={<JewelryList />} />
-                  {/* <Route
-                path="/:categoryId"
-                element={
-                  <RouteGuard>
-                    <JewelryList />
-                  </RouteGuard>
-                }
-              /> */}
                   <Route element={<RouteGuard />}>
-                    {/* <Route path="/:categoryId" element={<JewelryList />} /> */}
                     <Route
                       path="/complete-order/:userId"
                       element={
@@ -79,7 +70,6 @@ function App() {
                   />
                   <Route path="/user/login" element={<Login />} />
                   <Route path="/user/register" element={<Register />} />
-
                   <Route path="/user/details" element={<UserDetails />} />
                   <Route path="/bag/display/:user" element={<Bag />} />
                   <Route path="/bag/add/:jewelryId" element={<JewelryItem />} />
@@ -92,14 +82,6 @@ function App() {
                     path="/wishlist/create/:jewelryId"
                     element={<JewelryList />}
                   />
-                  {/* <Route
-                path="/complete-order/:userId"
-                element={
-                  <RouteGuard>
-                    <CompleteOrder />
-                  </RouteGuard>
-                }
-              /> */}
                   <Route path="*" element={<h1>404</h1>} />
                 </Routes>
               </main>

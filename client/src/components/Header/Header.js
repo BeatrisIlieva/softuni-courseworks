@@ -7,6 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import colorStyles from "../../commonCSS/Colors.module.css";
 import { useWishListContext } from "../../contexts/WishListContext";
 import { useBagContext } from "../../contexts/BagContext";
+import { Search } from "../Search/Search";
 
 export const Header = () => {
   const { isAuthenticated, userId } = useContext(AuthContext);
@@ -59,23 +60,7 @@ export const Header = () => {
               </ul>
             </nav>
           </div>
-          <div className={styles["search-box"]}>
-            {/* <Link className={styles["icon-bar-item"]} to="/"> */}
-            <div className={styles["search-container"]}>
-              <span>
-                <FontAwesomeIcon
-                  icon={faSearch}
-                  className={`${colorStyles["dark-pink"]} ${styles["icon-search"]}`}
-                />
-              </span>
-              <input
-                type="text"
-                className={styles["search-input"]}
-                placeholder="Find a jewelry"
-              />
-            </div>
-            {/* </Link> */}
-          </div>
+<Search/>
           <div className={styles["icon-box"]}>
             <div className={styles["icon-bar"]}>
               <ul className={styles["icon-bar-list"]} role="list">
