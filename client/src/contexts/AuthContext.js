@@ -81,18 +81,18 @@ export const AuthProvider = ({ children }) => {
 
 
 
-  const onUpdatePasswordSubmit = async (userId, values) => {
-    console.log(values);
-    const data = {
-      oldPassword: values.oldPassword.value,
-      newPassword: values.newPassword.value,
-    };
-    try {
-      await authService.changePassword(userId, data);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+  // const onUpdatePasswordSubmit = async (userId, values) => {
+  //   console.log(values);
+  //   const data = {
+  //     oldPassword: values.oldPassword.value,
+  //     newPassword: values.newPassword.value,
+  //   };
+  //   try {
+  //     await authService.changePassword(userId, data);
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // };
 
   const context = {
     onRegisterSubmit,
@@ -100,7 +100,7 @@ export const AuthProvider = ({ children }) => {
     onLogout,
     getOne,
     // onUpdateEmailSubmit,
-    onUpdatePasswordSubmit,
+    // onUpdatePasswordSubmit,
     userId: auth._id,
     token: auth.accessToken,
     // userEmail: auth.email,
