@@ -3,10 +3,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import colorStyles from "../../commonCSS/Colors.module.css";
 import styles from "./Search.module.css";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export const Search = () => {
-  
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
@@ -17,7 +16,7 @@ export const Search = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    navigate('/search', { state: { query: query } });
+    navigate("/search", { state: { query: query } });
   };
 
   return (
