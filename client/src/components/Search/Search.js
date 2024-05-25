@@ -2,8 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import colorStyles from "../../commonCSS/Colors.module.css";
 import styles from "./Search.module.css";
-import { searchServiceFactory } from "../../services/searchService";
-import { useService } from "../../hooks/useService";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
