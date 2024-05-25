@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [wishlist, setWishlist] = useLocalStorage('wishlist', []);
+  const [wishlist, setWishlist] = useLocalStorage("wishlist", []);
 
   const onRegisterSubmit = async (values) => {
     const email = values.email.value;
@@ -79,31 +79,13 @@ export const AuthProvider = ({ children }) => {
     return user;
   };
 
-
-
-  // const onUpdatePasswordSubmit = async (userId, values) => {
-  //   console.log(values);
-  //   const data = {
-  //     oldPassword: values.oldPassword.value,
-  //     newPassword: values.newPassword.value,
-  //   };
-  //   try {
-  //     await authService.changePassword(userId, data);
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // };
-
   const context = {
     onRegisterSubmit,
     onLoginSubmit,
     onLogout,
     getOne,
-    // onUpdateEmailSubmit,
-    // onUpdatePasswordSubmit,
     userId: auth._id,
     token: auth.accessToken,
-    // userEmail: auth.email,
     isAuthenticated: !!auth.accessToken,
   };
 
