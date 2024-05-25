@@ -5,7 +5,6 @@ import styles from "./Search.module.css";
 import { searchServiceFactory } from "../../services/searchService";
 import { useService } from "../../hooks/useService";
 import { useState } from "react";
-import { SearchResult } from "./SearchResult/SearchResult";
 import { useNavigate } from 'react-router-dom';
 
 export const Search = () => {
