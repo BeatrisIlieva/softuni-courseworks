@@ -5,13 +5,10 @@ import { jewelryServiceFactory } from "../../services/jewelryService";
 import { useParams } from "react-router-dom";
 import { useService } from "../../hooks/useService";
 
-
 export const JewelryList = () => {
   const { categoryId } = useParams();
   const [jewelries, setJewelries] = useState([]);
   const jewelryService = useService(jewelryServiceFactory);
-
-  
 
   // useEffect(() => {
   //   jewelryService
@@ -30,7 +27,7 @@ export const JewelryList = () => {
       console.log(err.message);
     }
   };
-  
+
   useEffect(() => {
     fetchData();
   }, [categoryId]);
@@ -45,17 +42,13 @@ export const JewelryList = () => {
 
   const handleMouseLeave = (_id) => {
     setJewelries((state) =>
-      state.map((j) =>
-        j._id === _id ? { ...j, isHovered: false } : j
-      )
+      state.map((j) => (j._id === _id ? { ...j, isHovered: false } : j))
     );
   };
 
   const handleLikedByUser = (_id) => {
     fetchData();
   };
-
-
 
   return (
     <section className={styles["jewelry-cards"]}>

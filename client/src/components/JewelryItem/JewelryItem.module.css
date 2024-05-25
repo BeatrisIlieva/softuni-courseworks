@@ -65,6 +65,7 @@
 .jewelry-details-composition-price {
   font-size: 16px;
   margin-top: 22px;
+  font-weight: 600;
 }
 
 .jewelry-details-composition-size {
@@ -74,6 +75,7 @@
 
 .jewelry-details-composition-size-title {
   margin-bottom: 4px;
+  font-size: 16px;
 }
 
 .composition-item {
@@ -115,5 +117,5 @@ input[type="radio"]:checked + label {
 
 .add-to-bag-button {
   margin-top: 22px;
-  min-width: 30ch !important;
+  min-width: 300px !important;
 }

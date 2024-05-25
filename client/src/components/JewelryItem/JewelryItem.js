@@ -133,9 +133,8 @@ export const JewelryItem = () => {
                   </li>
                   <li>
                     <div
-                      className={styles["jewelry-details-composition-price"]}
                     >
-                      <h4>${jewelry.price}</h4>
+                      <h4 className={styles["jewelry-details-composition-price"]}>${jewelry.price}</h4>
                     </div>
                   </li>
                   <li>
@@ -145,7 +144,7 @@ export const JewelryItem = () => {
                     <form onSubmit={onSubmit} method="POST">
                       <div className={styles["add-to-bag-button"]}>
                         <input
-                          className={`${buttonStyles["button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
+                          className={`${buttonStyles["button"]} ${styles["add-to-bag-button"]} ${buttonStyles["pink"]} ${buttonStyles["hover"]}`}
                           type="submit"
                           value="ADD TO BAG"
                         />
@@ -221,7 +220,7 @@ export const JewelryItem = () => {
                     <div
                       className={styles["jewelry-details-composition-price"]}
                     >
-                      <h4>${jewelry.price}</h4>
+                      <h4 className={styles["jewelry-details-composition-price"]}>${jewelry.price}</h4>
                     </div>
                   </li>
                   <li className={styles["jewelry-details-composition-size"]}>

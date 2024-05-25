@@ -11,7 +11,7 @@ const FormKeys = {
   RetypeNewPassword: "retypeNewPassword",
 };
 
-export const UpdatePassword = () => {
+export const UpdatePasswordForm = () => {
   const { onUpdatePasswordSubmit } = useContext(AuthContext);
 
   const { values, changeHandler, onFocusField, onBlurField, onSubmit } =

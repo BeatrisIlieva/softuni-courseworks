@@ -62,7 +62,7 @@ export const JewelryListTemplate = ({
               onMouseLeave={() => handleMouseLeave(_id)}
               onBlur={() => handleMouseEnter(_id)}
             />
-            {isHovered && (
+            {/* {isHovered && (
               <div className={styles["hovered"]}>
                 <div className={styles["hovered-content"]}>
                   <p className={styles["hovered-content-left"]}>
@@ -80,7 +80,7 @@ export const JewelryListTemplate = ({
                   <p className={styles["dollar-icon"]}>{price}</p>
                 </div>
               </div>
-            )}
+            )} */}
           </Link>
         </div>
       )}

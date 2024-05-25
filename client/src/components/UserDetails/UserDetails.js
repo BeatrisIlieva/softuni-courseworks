@@ -4,7 +4,7 @@ import colorStyles from "../../commonCSS/Colors.module.css";
 import { profileServiceFactory } from "../../services/profileService";
 import { UpdateAddressBookForm } from "./UpdateAddressBookForm/UpdateAddressBookForm";
 import { UpdateEmailForm } from "./UpdateEmailForm/UpdateEmailForm";
-import { UpdatePassword } from "./UpdatePassword/UpdatePassword";
+import { UpdatePasswordForm } from "./UpdatePasswordForm/UpdatePasswordForm";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useService } from "../../hooks/useService";
@@ -125,7 +125,7 @@ export const UserDetails = () => {
                 Change Password
               </button>
               {showUpdateEmail && <UpdateEmailForm />}
-              {showUpdatePassword && <UpdatePassword />}
+              {showUpdatePassword && <UpdatePasswordForm />}
               {showUpdateAddressBook && (
                 <UpdateAddressBookForm
                   onCloseUpdateAddressBook={onCloseUpdateAddressBook}
