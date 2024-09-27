@@ -6,7 +6,7 @@ const furniture = ["chair", "table", "armchair"];
 
 const copy = [];
 
-furniture.forEach((item) => {
+furniture.forEach(function (item) {
   copy.push(item);
 });
 
