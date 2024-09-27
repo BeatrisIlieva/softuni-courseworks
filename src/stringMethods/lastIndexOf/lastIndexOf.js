@@ -1,6 +1,6 @@
 "use strict";
 
-// The indexOf() method returns the starting index at which a searched string is found; if a search string is not found, it returns -1
+// The lastIndexOf() method returns the last index at which a searched an element is found; if a search element is not found, it returns -1
 
 const sentence = "Beautiful Brazilian sky";
 
@@ -8,3 +8,8 @@ const foundIndex = sentence.lastIndexOf("B");
 
 // expected 10
 console.log(foundIndex);
+
+const notFoundIndex = sentence.lastIndexOf("p");
+
+// expected -1
+console.log(notFoundIndex);
