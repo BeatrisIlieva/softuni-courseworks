@@ -8,52 +8,107 @@
     <link rel="stylesheet" type="text/css" href="/reset.css" />
   </head>
   <body>
-    <section className="challenge">
-      <h2 class="question">What is the result from this function?</h2>
-      <div class="source-code">
-        <pre><code>
+    <main>
+      <section id="1" class="challenge">
+        <h2 class="question">What is the result from this function?</h2>
+        <div class="source-code">
+          <pre><code>
           const elements = [1, 6, 9, 2, 13];
 
           const filteredElements = elements.filter(function (el) {
             return el > 1 && el < 9;
           });
         </code></pre>
-      </div>
-      <form class="form" action="#">
-        <div class="option">
-          <input type="radio" id="firstLabel" name="selection" value="[6, 2]" />
-          <label for="firstLabel">[6, 2]</label>
         </div>
-        <div class="option">
-          <input
-            type="radio"
-            id="secondLabel"
-            name="selection"
-            value="[1, 2]"
-          />
-          <label for="secondLabel">[1, 2]</label>
+        <form class="form" action="#">
+          <div class="option">
+            <input
+              type="radio"
+              id="firstLabel"
+              name="selection"
+              value="[6, 2]"
+            />
+            <label for="firstLabel">[6, 2]</label>
+          </div>
+          <div class="option">
+            <input
+              type="radio"
+              id="secondLabel"
+              name="selection"
+              value="[1, 2]"
+            />
+            <label for="secondLabel">[1, 2]</label>
+          </div>
+          <div class="option">
+            <input
+              type="radio"
+              id="thirdLabel"
+              name="selection"
+              value="[6, 13]"
+            />
+            <label for="thirdLabel">[6, 13]</label>
+          </div>
+          <button class="submit-button" type="submit">Submit</button>
+        </form>
+        <button class="show-description-button">Show Description</button>
+        <div class="description">
+          The filter() method creates a new array with filtered elements
         </div>
-        <div class="option">
-          <input
-            type="radio"
-            id="thirdLabel"
-            name="selection"
-            value="[6, 13]"
-          />
-          <label for="thirdLabel">[6, 13]</label>
+        <button class="button-next">Next</button>
+      </section>
+      <section id="2" class="challenge">
+        <h2 class="question">What is the result from this function second?</h2>
+        <div class="source-code">
+          <pre><code>
+          const elements = [1, 6, 9, 2, 13];
+
+          const filteredElements = elements.filter(function (el) {
+            return el > 1 && el < 9;
+          });
+        </code></pre>
         </div>
-        <button class="submit-button" type="submit">Submit</button>
-      </form>
-      <button class="show-description-button">Show Description</button>
-      <div class="description">
-        The filter() method creates a new array with filtered elements
-      </div>
-    </div>
+        <form class="form" action="#">
+          <div class="option">
+            <input
+              type="radio"
+              id="firstLabel"
+              name="selection"
+              value="[6, 2]"
+            />
+            <label for="firstLabel">[6, 2]</label>
+          </div>
+          <div class="option">
+            <input
+              type="radio"
+              id="secondLabel"
+              name="selection"
+              value="[1, 2]"
+            />
+            <label for="secondLabel">[1, 2]</label>
+          </div>
+          <div class="option">
+            <input
+              type="radio"
+              id="thirdLabel"
+              name="selection"
+              value="[6, 13]"
+            />
+            <label for="thirdLabel">[6, 13]</label>
+          </div>
+          <button class="submit-button" type="submit">Submit</button>
+        </form>
+        <button class="show-description-button">Show Description</button>
+        <div class="description">
+          The filter() method creates a new array with filtered elements
+        </div>
+        <button class="button-next">Next</button>
+      </section>
+    </main>
     <script src="index.js"></script>
-    <!-- <script>
+    <script>
       window.onload = function () {
-        create();
+        showTask();
       };
-    </script> -->
+    </script>
   </body>
 </html>

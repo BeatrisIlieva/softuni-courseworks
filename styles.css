@@ -1,10 +1,12 @@
 .challenge {
   background-color: aliceblue;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   background-color: aliceblue;
   gap: 1rem;
+  display: none;
 }
+
 
 .question {
   color: blueviolet;

@@ -104,19 +104,58 @@
 // }
 
 function showDescription() {
-  const description = document.getElementById("description");
+  const descriptions = Array.from(document.querySelectorAll(".description"));
 
-  const button = document.getElementById("show-description-button");
+  const buttons = Array.from(
+    document.querySelectorAll(".show-description-button")
+  );
 
-  description.style.display =
-    description.style.display === "block" ? "none" : "block";
+  buttons.forEach((button) => {
+    button.textContent =
+      button.textContent === "Show Description"
+        ? "Hide Description"
+        : "Show Description";
+  });
 
-  button.textContent =
-    button.textContent === "Show Description"
-      ? "Hide Description"
-      : "Show Description";
+  descriptions.forEach((description) => {
+    description.style.display =
+      description.style.display === "block" ? "none" : "block";
+  });
 }
 
-const button = document.getElementById("show-description-button");
+const buttons = Array.from(
+  document.querySelectorAll(".show-description-button")
+);
 
-button.addEventListener("click", showDescription)
+buttons.forEach((button) => {
+  button.addEventListener("click", showDescription);
+});
+
+const nextButtons = Array.from(document.querySelectorAll(".button-next"));
+
+let currentTask = 1;
+
+function showNextTask() {
+  currentTask += 1;
+
+  let previousIndex = currentTask - 1;
+
+  const previousTask = document.getElementById(String(previousIndex));
+
+
+  previousTask.style.display = "none";
+
+  const task = document.getElementById(String(currentTask));
+
+  task.style.display = "flex";
+}
+
+nextButtons.forEach((button) => {
+  button.addEventListener("click", showNextTask);
+});
+
+const showTask = () => {
+  const task = document.getElementById(String(currentTask));
+
+  task.style.display = "flex";
+};
