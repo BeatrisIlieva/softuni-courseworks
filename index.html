@@ -33,4 +33,28 @@
     <input type="button" value "Add" onclick="addItem()">
   </body>
   <script src="index.js"></script>
+  <!-- Remove email from table -->
+  <table id="customers">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Eve</td>
+        <td>eve@mail.com</td>
+      </tr>
+      <tr>
+        <td>John</td>
+        <td>john@mail.com</td>
+      </tr>
+    </tbody>
+  </table>
+  <label for="">
+    Email: <input type="text" name="email" id="email"/>
+    <button onclick="deleteByEmail()">Delete</button>
+  </label>
+  <div id="result-email"></div>
 </html>

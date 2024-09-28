@@ -2,3 +2,7 @@
   display: none;
   color: aquamarine;
 }
+
+#result {
+  background-color: aqua;
+}

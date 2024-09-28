@@ -23,6 +23,39 @@ function addItem() {
   const item = document.createElement("li");
   item.textContent = value;
 
-  document.getElementById("items-list").appendChild(item)
+  item.appendChild(createDeleteButton());
 
+  document.getElementById("items-list").appendChild(item);
+}
+
+function deleteByEmail() {
+  const email = document.querySelector('input[name="email"]').value;
+
+  const emailBoxes = Array.from(
+    document.querySelectorAll("td:nth-child(even)")
+  );
+
+  const userBox = emailBoxes.find((box) => box.textContent === email);
+
+  const result = document.getElementById("result-email");
+
+  if (userBox) {
+    userBox.parentElement.remove();
+
+    result.textContent = "deleted";
+  } else {
+    result.textContent = "not found";
+  }
+}
+
+function createDeleteButton() {
+  const deleteButton = document.createElement("a");
+
+  deleteButton.href = "#";
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", (e) => {
+    e.target.parentElement.remove();
+  });
+
+  return deleteButton;
 }
