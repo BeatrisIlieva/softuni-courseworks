@@ -106,14 +106,13 @@
 function showDescription() {
   const description = document.getElementById("description");
 
-  if (description.style.display !== "block") {
-    description.style.display = "block";
-    const button = document.getElementById("show-description-button");
-    button.textContent = "Hide Description";
-  } else {
-    description.style.display = "none";
-    const button = document.getElementById("show-description-button");
-    button.textContent = "Show Description";
-  }
+  const button = document.getElementById("show-description-button");
 
+  description.style.display =
+    description.style.display === "block" ? "none" : "block";
+
+  button.textContent =
+    button.textContent === "Show Description"
+      ? "Hide Description"
+      : "Show Description";
 }
