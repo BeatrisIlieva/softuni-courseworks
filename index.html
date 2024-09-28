@@ -5,56 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VanillaJS-ChallengeHub</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="/reset.css" />
   </head>
   <body>
-    <section>
-      <input type="text" name="firstInput" id="firstInput" />
-      <span>+</span>
-      <input type="text" name="secondInput" id="secondInput" />
-      <button onclick="calc()">sum</button>
-      <input id="result" />
-      <a href="#" id="more" onclick="showText()">Read more...</a>
-      <span id="text">Text to show</span>
-    </section>
-    <!-- List items -->
-    <ul id="items">
-      <li>first item</li>
-      <li>second item</li>
-      <li>third item</li>
-    </ul>
-    <textarea id="result"></textarea>
-    <button onclick="extractText()">Extract</button>
-    <!-- Add new item -->
-    <ul id="items-list">
-      <li>First</li>
-      <li>Second</li>
-    </ul>
-    <input type="text" id="newItem" />
-    <input type="button" value "Add" onclick="addItem()">
+    <div id="container">
+      <h2 id="question">What is the result from this function?</h2>
+      <div id="source-code">
+        <pre><code>
+          const elements = [1, 6, 9, 2, 13];
+
+          const filteredElements = elements.filter(function (el) {
+            return el > 1 && el < 9;
+          });
+        </code></pre>
+      </div>
+      <form id="form" action="#">
+        <div class="option">
+          <input type="radio" id="firstLabel" name="selection" value="[6, 2]" />
+          <label for="firstLabel">[6, 2]</label>
+        </div>
+        <div class="option">
+          <input
+            type="radio"
+            id="secondLabel"
+            name="selection"
+            value="[1, 2]"
+          />
+          <label for="secondLabel">[1, 2]</label>
+        </div>
+        <div class="option">
+          <input
+            type="radio"
+            id="thirdLabel"
+            name="selection"
+            value="[6, 13]"
+          />
+          <label for="thirdLabel">[6, 13]</label>
+        </div>
+        <button class="submit-button" type="submit">Submit</button>
+      </form>
+      <button id="show-description-button" onclick="showDescription()">Show Description</button>
+      <div id="description">
+        The filter() method creates a new array with filtered elements
+      </div>
+    </div>
+    <script src="index.js"></script>
+    <!-- <script>
+      window.onload = function () {
+        create();
+      };
+    </script> -->
   </body>
-  <script src="index.js"></script>
-  <!-- Remove email from table -->
-  <table id="customers">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Eve</td>
-        <td>eve@mail.com</td>
-      </tr>
-      <tr>
-        <td>John</td>
-        <td>john@mail.com</td>
-      </tr>
-    </tbody>
-  </table>
-  <label for="">
-    Email: <input type="text" name="email" id="email"/>
-    <button onclick="deleteByEmail()">Delete</button>
-  </label>
-  <div id="result-email"></div>
 </html>

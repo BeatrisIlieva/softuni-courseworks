@@ -1,8 +1,48 @@
-#text {
-  display: none;
-  color: aquamarine;
+#container {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  gap: 1rem;
 }
 
-#result {
-  background-color: aqua;
+#question {
+  color: blueviolet;
+}
+
+#source-code {
+  color: blue;
+}
+
+#description {
+  display: none;
+}
+
+#form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#options {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.option {
+  background-color: pink;
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: yellow;
+}
+
+#show-description-button {
+  all: unset;
+  background-color: greenyellow;
+  border-radius: 2rem;
+  padding: 1rem;
+  cursor: pointer;
 }
