@@ -134,21 +134,35 @@ buttons.forEach((button) => {
 const nextButtons = Array.from(document.querySelectorAll(".button-next"));
 
 let currentTask = 1;
+let selectedValue = "";
 
-function showNextTask() {
+const showNextTask = () => {
+  document.querySelector(".result").textContent = "";
+
+  const allRadios = document.querySelectorAll('input[name="selection"]');
+  allRadios.forEach((radio) => {
+    radio.checked = false; // Uncheck each radio button
+  });
+
   currentTask += 1;
 
   let previousIndex = currentTask - 1;
 
   const previousTask = document.getElementById(String(previousIndex));
 
-
   previousTask.style.display = "none";
 
   const task = document.getElementById(String(currentTask));
 
-  task.style.display = "flex";
-}
+  if (task) {
+    console.log("true");
+    task.style.display = "flex";
+  } else {
+    const noMoreChallenges = document.querySelector(".no-more-challenges");
+
+    noMoreChallenges.style.display = "block";
+  }
+};
 
 nextButtons.forEach((button) => {
   button.addEventListener("click", showNextTask);
@@ -158,4 +172,33 @@ const showTask = () => {
   const task = document.getElementById(String(currentTask));
 
   task.style.display = "flex";
+};
+
+const submitSelection = (formId) => {
+  const form = document.getElementById(formId);
+
+  // Add an event listener to handle form submission
+  form.addEventListener("submit", function (event) {
+    // Prevent the default form submission
+    event.preventDefault();
+
+    // Get the selected radio button
+    const selectedRadio = document.querySelector(
+      'input[name="selection"]:checked'
+    );
+
+    // Check if a radio button is selected
+    if (selectedRadio) {
+      // Store the selected value in the state
+      selectedValue = selectedRadio.value;
+
+      // Display the selected value
+      document.querySelector(
+        ".result"
+      ).textContent = `You selected: ${selectedValue}`;
+    } else {
+      document.querySelector(".result").textContent =
+        "Please select an option.";
+    }
+  });
 };
