@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VanillaJS-ChallengeHub</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="index.js"></script>
   </head>
   <body>
     <section>
@@ -17,7 +16,21 @@
       <a href="#" id="more" onclick="showText()">Read more...</a>
       <span id="text">Text to show</span>
     </section>
-    <!-- HTML Collection vs NodeList -->
-     <p id="more-text" onclick="showMoreText()">HTML Collection is always Live</p>
+    <!-- List items -->
+    <ul id="items">
+      <li>first item</li>
+      <li>second item</li>
+      <li>third item</li>
+    </ul>
+    <textarea id="result"></textarea>
+    <button onclick="extractText()">Extract</button>
+    <!-- Add new item -->
+    <ul id="items-list">
+      <li>First</li>
+      <li>Second</li>
+    </ul>
+    <input type="text" id="newItem" />
+    <input type="button" value "Add" onclick="addItem()">
   </body>
+  <script src="index.js"></script>
 </html>

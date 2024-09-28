@@ -9,15 +9,20 @@ function calc() {
   resultField.value = sum;
 }
 
-function showText() {
-  document.getElementById("text").style.display = "block";
-  setTimeout(() => {
-    document.getElementById("more").style.display = "none";
-  }, 1000);
+function extractText() {
+  const listItems = Array.from(document.querySelectorAll("li"));
+
+  const text = listItems.map((item) => item.textContent).join("\n");
+
+  document.querySelector("textarea").value = text;
 }
 
-function showMoreText() {
-  const element = document.querySelector("#more-text");
+function addItem() {
+  const value = document.getElementById("newItem").value;
 
-  element.innerHTML += "<span>which means that it can change</span>";
+  const item = document.createElement("li");
+  item.textContent = value;
+
+  document.getElementById("items-list").appendChild(item)
+
 }
