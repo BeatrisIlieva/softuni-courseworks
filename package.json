@@ -12,5 +12,8 @@
   "devDependencies": {
     "lite-server": "^2.6.1",
     "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
   }
 }
