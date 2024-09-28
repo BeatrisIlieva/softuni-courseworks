@@ -1,4 +1,4 @@
-#container {
+.challenge {
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
@@ -6,24 +6,24 @@
   gap: 1rem;
 }
 
-#question {
+.question {
   color: blueviolet;
 }
 
-#source-code {
+.source-code {
   color: blue;
 }
 
-#description {
+.description {
   display: none;
 }
 
-#form {
+.form {
   display: flex;
   gap: 0.5rem;
 }
 
-#options {
+.options {
   display: flex;
   gap: 0.5rem;
 }
@@ -39,7 +39,7 @@
   background-color: yellow;
 }
 
-#show-description-button {
+.show-description-button {
   all: unset;
   background-color: greenyellow;
   border-radius: 2rem;

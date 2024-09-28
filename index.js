@@ -116,3 +116,7 @@ function showDescription() {
       ? "Hide Description"
       : "Show Description";
 }
+
+const button = document.getElementById("show-description-button");
+
+button.addEventListener("click", showDescription)

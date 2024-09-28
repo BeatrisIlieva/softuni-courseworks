@@ -8,9 +8,9 @@
     <link rel="stylesheet" type="text/css" href="/reset.css" />
   </head>
   <body>
-    <div id="container">
-      <h2 id="question">What is the result from this function?</h2>
-      <div id="source-code">
+    <section className="challenge">
+      <h2 class="question">What is the result from this function?</h2>
+      <div class="source-code">
         <pre><code>
           const elements = [1, 6, 9, 2, 13];
 
@@ -19,7 +19,7 @@
           });
         </code></pre>
       </div>
-      <form id="form" action="#">
+      <form class="form" action="#">
         <div class="option">
           <input type="radio" id="firstLabel" name="selection" value="[6, 2]" />
           <label for="firstLabel">[6, 2]</label>
@@ -44,8 +44,8 @@
         </div>
         <button class="submit-button" type="submit">Submit</button>
       </form>
-      <button id="show-description-button" onclick="showDescription()">Show Description</button>
-      <div id="description">
+      <button class="show-description-button">Show Description</button>
+      <div class="description">
         The filter() method creates a new array with filtered elements
       </div>
     </div>
