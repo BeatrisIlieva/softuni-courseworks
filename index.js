@@ -67,28 +67,28 @@ function createChallenge(input) {
     form.id = challenge.formId;
     form.classList.add("form");
 
-    const formOptionWrapper = document.createElement("div");
-    formOptionWrapper.classList.add("option");
+    challenge.selectionOptions.forEach((option) => {
+      const formOptionWrapper = document.createElement("div");
+      formOptionWrapper.classList.add("option");
 
-    const formInput = document.createElement("input");
+      const formInput = document.createElement("input");
 
-    formInput.setAttribute("type", "radio");
-    formInput.setAttribute("id", "firstLabel");
-    formInput.setAttribute("name", "selection");
-    formInput.setAttribute("value", challenge.selectionOptions[0]);
+      formInput.setAttribute("type", "radio");
+      formInput.setAttribute("id", "firstLabel");
+      formInput.setAttribute("name", "selection");
+      formInput.setAttribute("value", option);
 
-    const inputLabel = document.createElement("label");
-    inputLabel.setAttribute("for", "firstLabel");
-    inputLabel.textContent = challenge.selectionOptions[0];
+      const inputLabel = document.createElement("label");
+      inputLabel.setAttribute("for", "firstLabel");
+      inputLabel.textContent = option;
 
-    formOptionWrapper.appendChild(inputLabel);
-    formOptionWrapper.appendChild(formInput);
+      formOptionWrapper.appendChild(inputLabel);
+      formOptionWrapper.appendChild(formInput);
 
-    form.appendChild(formOptionWrapper)
+      form.appendChild(formOptionWrapper);
+    });
 
-    app.appendChild(form)
-
-
+    app.appendChild(form);
   });
 }
 
