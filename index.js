@@ -177,22 +177,16 @@ const showTask = () => {
 const submitSelection = (formId) => {
   const form = document.getElementById(formId);
 
-  // Add an event listener to handle form submission
   form.addEventListener("submit", function (event) {
-    // Prevent the default form submission
     event.preventDefault();
 
-    // Get the selected radio button
     const selectedRadio = document.querySelector(
       'input[name="selection"]:checked'
     );
 
-    // Check if a radio button is selected
     if (selectedRadio) {
-      // Store the selected value in the state
       selectedValue = selectedRadio.value;
 
-      // Display the selected value
       document.querySelector(
         ".result"
       ).textContent = `You selected: ${selectedValue}`;
