@@ -1,12 +1,52 @@
-import { Challenge } from "./Challenge.js";
-import { updateCorrectAnswersCount } from "./updateCorrectAnswersCount.js";
-import { updateIncorrectAnswersCount } from "./updateIncorrectAnswersCount.js";
-import { submitSelection } from "./submitSelections.js";
-
 let counter = 0;
 let challenges = []; // To store dynamically loaded challenges
 let currentChallengeIndex = 1; // Start from challenge file '1.js'
 let challengeFolder = ""; // This will hold the folder based on the difficulty level
+
+let correctAnswersCount = 0;
+let incorrectAnswersCount = 0;
+
+class Challenge {
+  static selectedValue = "";
+
+  constructor(sourceCode, selectionOptions, description, correctAnswer) {
+    this.question = "What is the result from the following function?";
+    this.sourceCode = sourceCode;
+    this.selectionOptions = selectionOptions;
+    this.description = description;
+    this.correctAnswer = correctAnswer;
+  }
+
+  submitSelection(e) {
+    e.preventDefault();
+
+    const selectedRadio = document.querySelector(
+      'input[name="selection"]:checked'
+    );
+
+    if (selectedRadio) {
+      const answerIsCorrect = selectedRadio.value === this.correctAnswer;
+
+      if (answerIsCorrect) {
+        correctAnswersCount += 1;
+      } else {
+        incorrectAnswersCount += 1;
+      }
+
+      document.querySelector(".result").textContent = answerIsCorrect
+        ? "Correct"
+        : "Incorrect";
+      const submitButton = document.getElementById("submit-button");
+      submitButton.disabled = true;
+
+      const nextButton = document.getElementById("next-button");
+      nextButton.disabled = false;
+    } else {
+      document.querySelector(".result").textContent =
+        "Please select an option.";
+    }
+  }
+}
 
 // Function to create the challenge UI
 function createChallenge(challenge) {
@@ -54,7 +94,7 @@ function createChallenge(challenge) {
   submitButton.textContent = "Submit";
   submitButton.disabled = true;
 
-  submitButton.addEventListener("click", (e) => submitSelection(e, challenge));
+  submitButton.addEventListener("click", (e) => challenge.submitSelection(e));
 
   form.appendChild(submitButton);
   section.appendChild(form);
@@ -139,10 +179,6 @@ async function loadChallengeByNumber(number) {
 
       const correctAnswerContainer = document.createElement("div");
       const incorrectAnswerContainer = document.createElement("div");
-
-      let correctAnswersCount = updateCorrectAnswersCount();
-      let incorrectAnswersCount = updateIncorrectAnswersCount();
-
       correctAnswerContainer.textContent = `Correct Answers ${correctAnswersCount}`;
       incorrectAnswerContainer.textContent = `Incorrect Answers ${incorrectAnswersCount}`;
 
