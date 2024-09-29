@@ -26,4 +26,4 @@ const foundElement = elements.find(function (el) {
 
 export const selectionOptions = [1, 9, 6];
 
-export const correctAnswer = 6;
+export const correctAnswer = "6";

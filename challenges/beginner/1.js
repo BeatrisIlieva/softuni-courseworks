@@ -11,10 +11,6 @@ const filteredElements = elements.filter(function (el) {
 };
 `;
 
-export const selectionOptions = [
-  [6, 2],
-  [1, 2],
-  [6, 13],
-];
+export const selectionOptions = ["[6, 2]", "[1, 2]", "[6, 13]"];
 
-export const correctAnswer = [6, 2];
+export const correctAnswer = "[6, 2]";

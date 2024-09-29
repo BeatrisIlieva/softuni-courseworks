@@ -163,7 +163,6 @@
 
 // // // window.onload = loadChallenges;
 
-
 // // let counter = 0;
 // // let challenges = []; // To store dynamically loaded challenges
 
@@ -366,7 +365,6 @@
 // // document.getElementById("beginner-button").addEventListener("click", () => handleDifficultySelection('beginner'));
 // // document.getElementById("intermediate-button").addEventListener("click", () => handleDifficultySelection('intermediate'));
 // // document.getElementById("advanced-button").addEventListener("click", () => handleDifficultySelection('advanced'));
-
 
 // let counter = 0;
 // let challenges = []; // To store dynamically loaded challenges
@@ -598,8 +596,6 @@
 //   createPopup();
 // };
 
-
-
 let counter = 0;
 let challenges = []; // To store dynamically loaded challenges
 let currentChallengeIndex = 1; // Start from challenge file '1.js'
@@ -624,13 +620,14 @@ class Challenge {
     );
 
     if (selectedRadio) {
-      Challenge.selectedValue = selectedRadio.value;
+      const answerIsCorrect = selectedRadio.value === this.correctAnswer;
 
-      document.querySelector(
-        ".result"
-      ).textContent = `You selected: ${Challenge.selectedValue}`;
+      console.log(Challenge.selectedValue);
+
+      document.querySelector(".result").textContent = answerIsCorrect;
     } else {
-      document.querySelector(".result").textContent = "Please select an option.";
+      document.querySelector(".result").textContent =
+        "Please select an option.";
     }
   }
 }
@@ -714,7 +711,9 @@ function showDescription() {
   const button = document.getElementById("show-description-button");
 
   button.textContent =
-    button.textContent === "Show Description" ? "Hide Description" : "Show Description";
+    button.textContent === "Show Description"
+      ? "Hide Description"
+      : "Show Description";
 
   const description = document.getElementById("description");
   description.style.display =
@@ -742,7 +741,8 @@ async function loadChallengeByNumber(number) {
     console.error(`Failed to load challenge from ${filePath}: `, error);
     if (number > 1) {
       // If no more challenges exist, show a "No more challenges" message
-      document.getElementById("app").innerHTML = "<h2>No more challenges available!</h2>";
+      document.getElementById("app").innerHTML =
+        "<h2>No more challenges available!</h2>";
     }
   }
 }
