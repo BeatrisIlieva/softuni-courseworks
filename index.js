@@ -1,40 +1,43 @@
 import { sourceCode } from "./src/arrayMethods/filterMethod/filterMethod.js";
 
 class Challenge {
-  static counter = 0;
+  static sectionId = 1;
+
+  static counter = 1;
 
   static formId = `form-${Challenge.counter}`;
+
+  static selectedValue = "";
 
   constructor(sourceCode, selectionOptions, description) {
     this.question = "What is the result from the following function?";
     this.sourceCode = sourceCode;
-    this.formId = this.formId;
     this.selectionOptions = selectionOptions;
     this.description = description;
+    this.formId = Challenge.formId;
+    this.sectionId = Challenge.sectionId;
 
+    Challenge.sectionId += 1;
     Challenge.counter += 1;
   }
-  submitSelection() {
-    const form = document.getElementById(this.formId);
-
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
+  submitSelection(e) {
+      e.preventDefault();
 
       const selectedRadio = document.querySelector(
         'input[name="selection"]:checked'
       );
 
       if (selectedRadio) {
-        selectedValue = selectedRadio.value;
+        Challenge.selectedValue = selectedRadio.value;
 
         document.querySelector(
           ".result"
-        ).textContent = `You selected: ${selectedValue}`;
+        ).textContent = `You selected: ${Challenge.selectedValue}`;
       } else {
         document.querySelector(".result").textContent =
           "Please select an option.";
       }
-    });
+    // });
   }
 }
 
@@ -50,9 +53,13 @@ function createChallenge(input) {
 
     const app = document.getElementById("app");
 
+    const section = document.createElement("section");
+    section.id = challenge.sectionId;
+    section.classList.add("challenge")
+
     const challengeQuestion = document.createElement("h2");
     challengeQuestion.textContent = challenge.question;
-    app.appendChild(challengeQuestion);
+    section.appendChild(challengeQuestion);
 
     const challengeSourceCodePreElement = document.createElement("pre");
     const challengeSourceCodeCodeElement = document.createElement("code");
@@ -61,7 +68,7 @@ function createChallenge(input) {
 
     challengeSourceCodeCodeElement.textContent = challenge.sourceCode;
 
-    app.appendChild(challengeSourceCodePreElement);
+    section.appendChild(challengeSourceCodePreElement);
 
     const form = document.createElement("form");
     form.id = challenge.formId;
@@ -88,7 +95,26 @@ function createChallenge(input) {
       form.appendChild(formOptionWrapper);
     });
 
-    app.appendChild(form);
+    const submitButton = document.createElement("button");
+    submitButton.setAttribute("type", "submit");
+
+    submitButton.addEventListener("click", challenge.submitSelection);
+
+    form.appendChild(submitButton);
+
+    section.appendChild(form);
+
+    const resultContainer = document.createElement("div");
+    resultContainer.classList.add("result");
+
+    section.appendChild(resultContainer)
+
+    const nextButton = document.createElement("button");
+    nextButton.textContent = "Next"
+
+    section.appendChild(nextButton);
+
+    app.appendChild(section)
   });
 }
 
@@ -110,4 +136,17 @@ const initiate = () => {
   createChallenge(challenges);
 };
 
-window.onload = initiate;
+let currentTask = 1;
+
+const showTask = () => {
+
+  initiate();
+
+    const task = document.getElementById(String(currentTask));
+
+  task.style.display = "flex";
+};
+
+window.onload = showTask;
+
+
