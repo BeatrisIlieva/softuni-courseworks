@@ -624,7 +624,9 @@ class Challenge {
 
       console.log(Challenge.selectedValue);
 
-      document.querySelector(".result").textContent = answerIsCorrect;
+      document.querySelector(".result").textContent = answerIsCorrect
+        ? "Correct"
+        : "Incorrect";
     } else {
       document.querySelector(".result").textContent =
         "Please select an option.";
