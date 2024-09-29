@@ -8,12 +8,18 @@
     <link rel="stylesheet" type="text/css" href="/reset.css" />
   </head>
   <body>
+    <div id="level-selection-modal" style="display: block; position: fixed; background: rgba(0, 0, 0, 0.5); top: 0; left: 0; right: 0; bottom: 0; z-index: 1000;">
+      <div style="background: white; padding: 20px; max-width: 400px; margin: 100px auto; text-align: center;">
+        <h2>Select Difficulty Level</h2>
+        <button id="beginner-button">Beginner</button>
+        <button id="intermediate-button">Intermediate</button>
+        <button id="advanced-button">Advanced</button>
+      </div>
+    </div>
     <main id="app"></main>
     <script src="index.js" type="module"></script>
-    <!-- <script>
-      window.onload = function () {
-        createChallenge();
-      };
-    </script> -->
   </body>
 </html>
+
+
+
