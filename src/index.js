@@ -3,6 +3,9 @@ let challenges = []; // To store dynamically loaded challenges
 let currentChallengeIndex = 1; // Start from challenge file '1.js'
 let challengeFolder = ""; // This will hold the folder based on the difficulty level
 
+let correctAnswersCount = 0;
+let incorrectAnswersCount = 0;
+
 class Challenge {
   static selectedValue = "";
 
@@ -23,6 +26,12 @@ class Challenge {
 
     if (selectedRadio) {
       const answerIsCorrect = selectedRadio.value === this.correctAnswer;
+
+      if (answerIsCorrect) {
+        correctAnswersCount += 1;
+      } else {
+        incorrectAnswersCount += 1;
+      }
 
       document.querySelector(".result").textContent = answerIsCorrect
         ? "Correct"
@@ -160,9 +169,24 @@ async function loadChallengeByNumber(number) {
   } catch (error) {
     console.error(`Failed to load challenge from ${filePath}: `, error);
     if (number > 1) {
-      // If no more challenges exist, show a "No more challenges" message
-      document.getElementById("app").innerHTML =
-        "<h2>No more challenges available!</h2>";
+      const endContainer = document.createElement("section");
+
+      const heading = document.createElement("h3");
+
+      heading.textContent = "No more challenges";
+
+      const resultContainer = document.createElement("div");
+
+      const correctAnswerContainer = document.createElement("div");
+      const incorrectAnswerContainer = document.createElement("div");
+      correctAnswerContainer.textContent = `Correct Answers ${correctAnswersCount}`;
+      incorrectAnswerContainer.textContent = `Incorrect Answers ${incorrectAnswersCount}`;
+
+      resultContainer.append(correctAnswerContainer, incorrectAnswerContainer);
+
+      endContainer.append(heading, resultContainer);
+
+      app.appendChild(endContainer);
     }
   }
 }
