@@ -1,10 +1,11 @@
 .challenge {
   background-color: aliceblue;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   background-color: aliceblue;
   gap: 1rem;
-  display: none;
+  /* display: none; */
+
 }
 
 
@@ -16,11 +17,11 @@
   color: blue;
 }
 
-.description {
+#description {
   display: none;
 }
 
-.form {
+#form {
   display: flex;
   gap: 0.5rem;
 }
@@ -37,11 +38,11 @@
   cursor: pointer;
 }
 
-.submit-button {
+#submit-button {
   background-color: yellow;
 }
 
-.show-description-button {
+#show-description-button {
   all: unset;
   background-color: greenyellow;
   border-radius: 2rem;
