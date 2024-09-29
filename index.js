@@ -7,8 +7,8 @@ class Challenge {
 
   constructor(sourceCode, selectionOptions, description) {
     this.question = "What is the result from the following function?";
-    this.formId = this.formId;
     this.sourceCode = sourceCode;
+    this.formId = this.formId;
     this.selectionOptions = selectionOptions;
     this.description = description;
 
@@ -40,8 +40,7 @@ class Challenge {
 
 function createChallenge(input) {
   input.forEach((element) => {
-    const [sourceCode, selectionOptions, firstChallengeDescription] =
-      element.split(", ");
+    const [sourceCode, selectionOptions, firstChallengeDescription] = element;
 
     const challenge = new Challenge(
       sourceCode,
@@ -54,6 +53,40 @@ function createChallenge(input) {
     const challengeQuestion = document.createElement("h2");
     challengeQuestion.textContent = challenge.question;
     app.appendChild(challengeQuestion);
+
+    const challengeSourceCodePreElement = document.createElement("pre");
+    const challengeSourceCodeCodeElement = document.createElement("code");
+
+    challengeSourceCodePreElement.appendChild(challengeSourceCodeCodeElement);
+
+    challengeSourceCodeCodeElement.textContent = challenge.sourceCode;
+
+    app.appendChild(challengeSourceCodePreElement);
+
+    const form = document.createElement("form");
+    form.id = challenge.formId;
+    form.classList.add("form");
+
+    const formOptionWrapper = document.createElement("div");
+    formOptionWrapper.classList.add("option");
+
+    const formInput = document.createElement("input");
+
+    formInput.setAttribute("type", "radio");
+    formInput.setAttribute("id", "firstLabel");
+    formInput.setAttribute("name", "selection");
+    formInput.setAttribute("value", challenge.selectionOptions[0]);
+
+    const inputLabel = document.createElement("label");
+    inputLabel.setAttribute("for", "firstLabel");
+    inputLabel.textContent = challenge.selectionOptions[0];
+
+    formOptionWrapper.appendChild(inputLabel);
+    formOptionWrapper.appendChild(formInput);
+
+    form.appendChild(formOptionWrapper)
+
+    app.appendChild(form)
 
 
   });
@@ -68,10 +101,13 @@ const selectionOptions = [
 const firstChallengeDescription =
   "The filter() method creates a new array with filtered elements";
 
-const challenges = [[sourceCode, selectionOptions, firstChallengeDescription], [sourceCode, selectionOptions, firstChallengeDescription]];
+const challenges = [
+  [sourceCode, selectionOptions, firstChallengeDescription],
+  [sourceCode, selectionOptions, firstChallengeDescription],
+];
 
 const initiate = () => {
   createChallenge(challenges);
 };
 
-window.onload = initiate; 
+window.onload = initiate;
