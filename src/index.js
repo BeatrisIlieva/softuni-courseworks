@@ -24,11 +24,14 @@ class Challenge {
     if (selectedRadio) {
       const answerIsCorrect = selectedRadio.value === this.correctAnswer;
 
-      console.log(Challenge.selectedValue);
-
       document.querySelector(".result").textContent = answerIsCorrect
         ? "Correct"
         : "Incorrect";
+      const submitButton = document.getElementById("submit-button");
+      submitButton.disabled = true;
+
+      const nextButton = document.getElementById("next-button");
+      nextButton.disabled = false;
     } else {
       document.querySelector(".result").textContent =
         "Please select an option.";
@@ -80,6 +83,7 @@ function createChallenge(challenge) {
   submitButton.setAttribute("type", "submit");
   submitButton.id = "submit-button";
   submitButton.textContent = "Submit";
+  submitButton.disabled = true;
 
   submitButton.addEventListener("click", (e) => challenge.submitSelection(e));
 
@@ -93,7 +97,9 @@ function createChallenge(challenge) {
   const nextButton = document.createElement("button");
   nextButton.textContent = "Next";
   nextButton.addEventListener("click", showNextTask);
+  nextButton.id = "next-button";
   section.appendChild(nextButton);
+  nextButton.disabled = true;
 
   const description = document.createElement("p");
   description.id = "description";
@@ -108,6 +114,16 @@ function createChallenge(challenge) {
   section.appendChild(description);
 
   app.appendChild(section);
+
+  const formInputs = document.querySelectorAll("input");
+
+  formInputs.forEach((input) => {
+    input.addEventListener("change", () => {
+      submitButton.disabled = !form.querySelector(
+        'input[name="selection"]:checked'
+      );
+    });
+  });
 }
 
 // Show the description toggle functionality
