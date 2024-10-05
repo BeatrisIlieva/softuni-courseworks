@@ -2853,6 +2853,18 @@ var createCard = function createCard(data) {
   return cards;
 };
 var _default = exports.default = createCard;
+},{}],"../src/constants/urls.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var urls = {
+  catsUrl: "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang",
+  dogsUrl: "https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_8k0bswMQHsla4qR661aep5e6QmCkwd7ws4rWDcOUsFR6gzOJMK5z8zpCEEsJROBu"
+};
+var _default = exports.default = urls;
 },{}],"../src/components/Main.js":[function(require,module,exports) {
 "use strict";
 
@@ -2865,9 +2877,8 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regene
 var _fetchData = _interopRequireDefault(require("../services/fetchData"));
 var _createAnimal = _interopRequireDefault(require("../utils/createAnimal"));
 var _createCard = _interopRequireDefault(require("../utils/createCard"));
+var _urls = _interopRequireDefault(require("../constants/urls"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-var catsUrl = "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang";
-var dogsUrl = "https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_8k0bswMQHsla4qR661aep5e6QmCkwd7ws4rWDcOUsFR6gzOJMK5z8zpCEEsJROBu";
 var Main = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
     var catsData, dogsData, catObjects, dogObjects, catTemplate, dogTemplate;
@@ -2875,11 +2886,11 @@ var Main = /*#__PURE__*/function () {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return (0, _fetchData.default)(catsUrl);
+          return (0, _fetchData.default)(_urls.default.catsUrl);
         case 2:
           catsData = _context.sent;
           _context.next = 5;
-          return (0, _fetchData.default)(dogsUrl);
+          return (0, _fetchData.default)(_urls.default.dogsUrl);
         case 5:
           dogsData = _context.sent;
           catObjects = catsData.map(function (cat) {
@@ -2902,7 +2913,7 @@ var Main = /*#__PURE__*/function () {
   };
 }();
 var _default = exports.default = Main;
-},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","../services/fetchData":"../src/services/fetchData.js","../utils/createAnimal":"../src/utils/createAnimal.js","../utils/createCard":"../src/utils/createCard.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","../services/fetchData":"../src/services/fetchData.js","../utils/createAnimal":"../src/utils/createAnimal.js","../utils/createCard":"../src/utils/createCard.js","../constants/urls":"../src/constants/urls.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
