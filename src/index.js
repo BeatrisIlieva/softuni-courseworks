@@ -1,17 +1,18 @@
 import Header from "./components/Header";
-import Cat from "./components/Cat";
+import Main from "./components/Main";
 
 import "./scss/index.scss";
 
 const app = async () => {
   document.getElementById("header").innerHTML = Header();
-  const catContainer = document.getElementById("cat");
+  const mainContainer = document.getElementById("main");
 
-  const catImages = await Cat();
-  // Append each image element to the container
-  catImages.forEach(img => {
-    catContainer.appendChild(img); // Append the image element to the DOM
-  });
+  const animals = await Main();
+  const cats = animals[0];
+  const dogs = animals[1];
+//   animals.forEach((img) => {
+//     mainContainer.appendChild(img);
+//   });
 };
 
 app();

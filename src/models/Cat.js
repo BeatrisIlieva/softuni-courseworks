@@ -1,4 +1,3 @@
-// Cat.js
 import Animal from "./Animal";
 
 class Cat extends Animal {
@@ -19,9 +18,8 @@ class Cat extends Animal {
     stranger_friendly,
     temperament
   ) {
-    super(life_span, temperament, id, url, name); // Pass base class properties to Animal
-    this.kind = "Cat"; // Specific property for Cat
-    // Cat-specific properties
+    super(life_span, temperament, id, url, name);
+    this.kind = "Cat";
     this.adaptability = adaptability;
     this.affection_level = affection_level;
     this.child_friendly = child_friendly;

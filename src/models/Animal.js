@@ -1,4 +1,3 @@
-// Animal.js
 class Animal {
   constructor(life_span, temperament, id, url, name) {
     this.life_span = life_span;

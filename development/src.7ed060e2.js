@@ -2377,7 +2377,7 @@ var Header = function Header() {
   return template;
 };
 var _default = exports.default = Header;
-},{}],"../src/components/Cat.js":[function(require,module,exports) {
+},{}],"../src/components/Main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2388,7 +2388,7 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs2/
 var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regenerator"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var url = "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang";
-var Cat = /*#__PURE__*/function () {
+var Main = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
     var cats, response, data;
     return _regenerator.default.wrap(function _callee$(_context) {
@@ -2421,7 +2421,7 @@ var Cat = /*#__PURE__*/function () {
       }
     }, _callee);
   }));
-  return function Cat() {
+  return function Main() {
     return _ref.apply(this, arguments);
   };
 }();
@@ -2487,26 +2487,26 @@ module.hot.accept(reloadCSS);
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/asyncToGenerator"));
 var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regenerator"));
 var _Header = _interopRequireDefault(require("./components/Header"));
-var _Cat = _interopRequireDefault(require("./components/Cat"));
+var _Main = _interopRequireDefault(require("./components/Main"));
 require("./scss/index.scss");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var app = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
-    var catContainer, catImages;
+    var mainContainer, animals, cats, dogs;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           document.getElementById("header").innerHTML = (0, _Header.default)();
-          catContainer = document.getElementById("cat");
+          mainContainer = document.getElementById("main");
           _context.next = 4;
-          return (0, _Cat.default)();
+          return (0, _Main.default)();
         case 4:
-          catImages = _context.sent;
-          // Append each image element to the container
-          catImages.forEach(function (img) {
-            catContainer.appendChild(img); // Append the image element to the DOM
-          });
-        case 6:
+          animals = _context.sent;
+          cats = animals[0];
+          dogs = animals[1]; //   animals.forEach((img) => {
+          //     mainContainer.appendChild(img);
+          //   });
+        case 7:
         case "end":
           return _context.stop();
       }
@@ -2517,7 +2517,7 @@ var app = /*#__PURE__*/function () {
   };
 }();
 app();
-},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","./components/Header":"../src/components/Header.js","./components/Cat":"../src/components/Cat.js","./scss/index.scss":"../src/scss/index.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","./components/Header":"../src/components/Header.js","./components/Main":"../src/components/Main.js","./scss/index.scss":"../src/scss/index.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
