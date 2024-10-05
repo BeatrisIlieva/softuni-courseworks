@@ -1,1 +1,1 @@
-{"version":3,"sources":["../src/scss/index.scss"],"names":[],"mappings":"AAAA;EACI","file":"src.7ed060e2.css","sourceRoot":"../public","sourcesContent":["body {\n    background-color: beige;\n}"]}
+{"version":3,"sources":["../src/scss/index.scss"],"names":[],"mappings":"AAEA;EACE","file":"src.7ed060e2.css","sourceRoot":"../public","sourcesContent":["@import \"card.scss\";\n\nbody {\n  background-color: beige;\n}\n"]}

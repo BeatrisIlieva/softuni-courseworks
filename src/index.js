@@ -7,12 +7,15 @@ const app = async () => {
   document.getElementById("header").innerHTML = Header();
   const mainContainer = document.getElementById("main");
 
-  const animals = await Main();
-//   const cats = animals[0];
-//   const dogs = animals[1];
-//   animals.forEach((img) => {
-//     mainContainer.appendChild(img);
-//   });
+  const [catTemplate, dogTemplate] = await Main();
+  dogTemplate.forEach((img) => {
+    mainContainer.appendChild(img);
+  });
+  catTemplate.forEach((img) => {
+    mainContainer.appendChild(img);
+  });
+
+
 };
 
 app();

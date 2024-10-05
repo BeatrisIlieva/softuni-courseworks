@@ -28,7 +28,7 @@ const createAnimal = (type, options) => {
         options.breeds[0].life_span,
         options.breeds[0].temperament,
         options.id,
-        options.breeds[0].url,
+        options.url,
         options.breeds[0].name
       );
     default:
