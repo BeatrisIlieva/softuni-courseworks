@@ -2390,12 +2390,12 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
 var url = "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang";
 var Cat = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
-    var cats, response, data, images, template;
+    var cats, response, data;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return fetch(url);
+          return fetch("https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_8k0bswMQHsla4qR661aep5e6QmCkwd7ws4rWDcOUsFR6gzOJMK5z8zpCEEsJROBu");
         case 2:
           response = _context.sent;
           _context.next = 5;
@@ -2404,18 +2404,18 @@ var Cat = /*#__PURE__*/function () {
           data = _context.sent;
           cats = structuredClone(data);
           console.log(cats);
-          images = cats.map(function (image) {
-            return image.url;
-          }); //   console.log(images)
-          template = images.map(function (image) {
-            var imageElm = document.createElement("img");
-            imageElm.src = image;
-            imageElm.alt = "Cat Image";
-            return imageElm;
-          });
-          console.log(template);
-          return _context.abrupt("return", template);
-        case 12:
+
+          //   const images = cats.map((image) => image.url);
+
+          //   const template = images.map((image) => {
+          //     let imageElm = document.createElement("img");
+          //     imageElm.src = image;
+          //     imageElm.alt = "Cat Image";
+          //     return imageElm;
+          //   });
+
+          //   return template;
+        case 8:
         case "end":
           return _context.stop();
       }
