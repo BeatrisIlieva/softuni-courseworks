@@ -2377,7 +2377,7 @@ var Header = function Header() {
   return template;
 };
 var _default = exports.default = Header;
-},{}],"../src/components/Main.js":[function(require,module,exports) {
+},{}],"../src/services/fetchData.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2387,24 +2387,354 @@ exports.default = void 0;
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/asyncToGenerator"));
 var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regenerator"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-var url = "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang";
-var Main = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
-    var cats, response, data;
+var fetchData = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee(url) {
+    var response;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return fetch("https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_8k0bswMQHsla4qR661aep5e6QmCkwd7ws4rWDcOUsFR6gzOJMK5z8zpCEEsJROBu");
+          return fetch(url);
         case 2:
           response = _context.sent;
           _context.next = 5;
           return response.json();
         case 5:
-          data = _context.sent;
-          cats = structuredClone(data);
-          console.log(cats);
+          return _context.abrupt("return", _context.sent);
+        case 6:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee);
+  }));
+  return function fetchData(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+var _default = exports.default = fetchData;
+},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js"}],"../node_modules/core-js/library/modules/_bind.js":[function(require,module,exports) {
+'use strict';
+var aFunction = require('./_a-function');
+var isObject = require('./_is-object');
+var invoke = require('./_invoke');
+var arraySlice = [].slice;
+var factories = {};
 
+var construct = function (F, len, args) {
+  if (!(len in factories)) {
+    for (var n = [], i = 0; i < len; i++) n[i] = 'a[' + i + ']';
+    // eslint-disable-next-line no-new-func
+    factories[len] = Function('F,a', 'return new F(' + n.join(',') + ')');
+  } return factories[len](F, args);
+};
+
+module.exports = Function.bind || function bind(that /* , ...args */) {
+  var fn = aFunction(this);
+  var partArgs = arraySlice.call(arguments, 1);
+  var bound = function (/* args... */) {
+    var args = partArgs.concat(arraySlice.call(arguments));
+    return this instanceof bound ? construct(fn, args.length, args) : invoke(fn, args, that);
+  };
+  if (isObject(fn.prototype)) bound.prototype = fn.prototype;
+  return bound;
+};
+
+},{"./_a-function":"../node_modules/core-js/library/modules/_a-function.js","./_is-object":"../node_modules/core-js/library/modules/_is-object.js","./_invoke":"../node_modules/core-js/library/modules/_invoke.js"}],"../node_modules/core-js/library/modules/es6.reflect.construct.js":[function(require,module,exports) {
+// 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
+var $export = require('./_export');
+var create = require('./_object-create');
+var aFunction = require('./_a-function');
+var anObject = require('./_an-object');
+var isObject = require('./_is-object');
+var fails = require('./_fails');
+var bind = require('./_bind');
+var rConstruct = (require('./_global').Reflect || {}).construct;
+
+// MS Edge supports only 2 arguments and argumentsList argument is optional
+// FF Nightly sets third argument as `new.target`, but does not create `this` from it
+var NEW_TARGET_BUG = fails(function () {
+  function F() { /* empty */ }
+  return !(rConstruct(function () { /* empty */ }, [], F) instanceof F);
+});
+var ARGS_BUG = !fails(function () {
+  rConstruct(function () { /* empty */ });
+});
+
+$export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
+  construct: function construct(Target, args /* , newTarget */) {
+    aFunction(Target);
+    anObject(args);
+    var newTarget = arguments.length < 3 ? Target : aFunction(arguments[2]);
+    if (ARGS_BUG && !NEW_TARGET_BUG) return rConstruct(Target, args, newTarget);
+    if (Target == newTarget) {
+      // w/o altered newTarget, optimization for 0-4 arguments
+      switch (args.length) {
+        case 0: return new Target();
+        case 1: return new Target(args[0]);
+        case 2: return new Target(args[0], args[1]);
+        case 3: return new Target(args[0], args[1], args[2]);
+        case 4: return new Target(args[0], args[1], args[2], args[3]);
+      }
+      // w/o altered newTarget, lot of arguments case
+      var $args = [null];
+      $args.push.apply($args, args);
+      return new (bind.apply(Target, $args))();
+    }
+    // with altered newTarget, not support built-in constructors
+    var proto = newTarget.prototype;
+    var instance = create(isObject(proto) ? proto : Object.prototype);
+    var result = Function.apply.call(Target, instance, args);
+    return isObject(result) ? result : instance;
+  }
+});
+
+},{"./_export":"../node_modules/core-js/library/modules/_export.js","./_object-create":"../node_modules/core-js/library/modules/_object-create.js","./_a-function":"../node_modules/core-js/library/modules/_a-function.js","./_an-object":"../node_modules/core-js/library/modules/_an-object.js","./_is-object":"../node_modules/core-js/library/modules/_is-object.js","./_fails":"../node_modules/core-js/library/modules/_fails.js","./_bind":"../node_modules/core-js/library/modules/_bind.js","./_global":"../node_modules/core-js/library/modules/_global.js"}],"../node_modules/core-js/library/fn/reflect/construct.js":[function(require,module,exports) {
+require('../../modules/es6.reflect.construct');
+module.exports = require('../../modules/_core').Reflect.construct;
+
+},{"../../modules/es6.reflect.construct":"../node_modules/core-js/library/modules/es6.reflect.construct.js","../../modules/_core":"../node_modules/core-js/library/modules/_core.js"}],"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js":[function(require,module,exports) {
+module.exports = require("core-js/library/fn/reflect/construct");
+},{"core-js/library/fn/reflect/construct":"../node_modules/core-js/library/fn/reflect/construct.js"}],"../node_modules/core-js/library/fn/symbol/to-primitive.js":[function(require,module,exports) {
+module.exports = require('../../modules/_wks-ext').f('toPrimitive');
+
+},{"../../modules/_wks-ext":"../node_modules/core-js/library/modules/_wks-ext.js"}],"../node_modules/@babel/runtime-corejs2/helpers/toPrimitive.js":[function(require,module,exports) {
+var _Symbol$toPrimitive = require("core-js/library/fn/symbol/to-primitive.js");
+var _typeof = require("./typeof.js")["default"];
+function toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[_Symbol$toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r ? String : Number)(t);
+}
+module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"core-js/library/fn/symbol/to-primitive.js":"../node_modules/core-js/library/fn/symbol/to-primitive.js","./typeof.js":"../node_modules/@babel/runtime-corejs2/helpers/typeof.js"}],"../node_modules/@babel/runtime-corejs2/helpers/toPropertyKey.js":[function(require,module,exports) {
+var _typeof = require("./typeof.js")["default"];
+var toPrimitive = require("./toPrimitive.js");
+function toPropertyKey(t) {
+  var i = toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : i + "";
+}
+module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"./typeof.js":"../node_modules/@babel/runtime-corejs2/helpers/typeof.js","./toPrimitive.js":"../node_modules/@babel/runtime-corejs2/helpers/toPrimitive.js"}],"../node_modules/@babel/runtime-corejs2/helpers/createClass.js":[function(require,module,exports) {
+var _Object$defineProperty = require("core-js/library/fn/object/define-property.js");
+var toPropertyKey = require("./toPropertyKey.js");
+function _defineProperties(e, r) {
+  for (var t = 0; t < r.length; t++) {
+    var o = r[t];
+    o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), _Object$defineProperty(e, toPropertyKey(o.key), o);
+  }
+}
+function _createClass(e, r, t) {
+  return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), _Object$defineProperty(e, "prototype", {
+    writable: !1
+  }), e;
+}
+module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"core-js/library/fn/object/define-property.js":"../node_modules/core-js/library/fn/object/define-property.js","./toPropertyKey.js":"../node_modules/@babel/runtime-corejs2/helpers/toPropertyKey.js"}],"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js":[function(require,module,exports) {
+function _classCallCheck(a, n) {
+  if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
+}
+module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{}],"../node_modules/@babel/runtime-corejs2/helpers/assertThisInitialized.js":[function(require,module,exports) {
+function _assertThisInitialized(e) {
+  if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  return e;
+}
+module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{}],"../node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js":[function(require,module,exports) {
+var _typeof = require("./typeof.js")["default"];
+var assertThisInitialized = require("./assertThisInitialized.js");
+function _possibleConstructorReturn(t, e) {
+  if (e && ("object" == _typeof(e) || "function" == typeof e)) return e;
+  if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined");
+  return assertThisInitialized(t);
+}
+module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"./typeof.js":"../node_modules/@babel/runtime-corejs2/helpers/typeof.js","./assertThisInitialized.js":"../node_modules/@babel/runtime-corejs2/helpers/assertThisInitialized.js"}],"../node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js":[function(require,module,exports) {
+var _Object$setPrototypeOf = require("core-js/library/fn/object/set-prototype-of.js");
+var _Object$getPrototypeOf = require("core-js/library/fn/object/get-prototype-of.js");
+function _getPrototypeOf(t) {
+  return module.exports = _getPrototypeOf = _Object$setPrototypeOf ? _Object$getPrototypeOf.bind() : function (t) {
+    return t.__proto__ || _Object$getPrototypeOf(t);
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports, _getPrototypeOf(t);
+}
+module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"core-js/library/fn/object/set-prototype-of.js":"../node_modules/core-js/library/fn/object/set-prototype-of.js","core-js/library/fn/object/get-prototype-of.js":"../node_modules/core-js/library/fn/object/get-prototype-of.js"}],"../node_modules/@babel/runtime-corejs2/helpers/setPrototypeOf.js":[function(require,module,exports) {
+var _Object$setPrototypeOf = require("core-js/library/fn/object/set-prototype-of.js");
+function _setPrototypeOf(t, e) {
+  return module.exports = _setPrototypeOf = _Object$setPrototypeOf ? _Object$setPrototypeOf.bind() : function (t, e) {
+    return t.__proto__ = e, t;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports, _setPrototypeOf(t, e);
+}
+module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"core-js/library/fn/object/set-prototype-of.js":"../node_modules/core-js/library/fn/object/set-prototype-of.js"}],"../node_modules/@babel/runtime-corejs2/helpers/inherits.js":[function(require,module,exports) {
+var _Object$create = require("core-js/library/fn/object/create.js");
+var _Object$defineProperty = require("core-js/library/fn/object/define-property.js");
+var setPrototypeOf = require("./setPrototypeOf.js");
+function _inherits(t, e) {
+  if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function");
+  t.prototype = _Object$create(e && e.prototype, {
+    constructor: {
+      value: t,
+      writable: !0,
+      configurable: !0
+    }
+  }), _Object$defineProperty(t, "prototype", {
+    writable: !1
+  }), e && setPrototypeOf(t, e);
+}
+module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"core-js/library/fn/object/create.js":"../node_modules/core-js/library/fn/object/create.js","core-js/library/fn/object/define-property.js":"../node_modules/core-js/library/fn/object/define-property.js","./setPrototypeOf.js":"../node_modules/@babel/runtime-corejs2/helpers/setPrototypeOf.js"}],"../src/models/Animal.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/createClass"));
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/classCallCheck"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var Animal = /*#__PURE__*/(0, _createClass2.default)(function Animal(life_span, temperament, id, url, name) {
+  (0, _classCallCheck2.default)(this, Animal);
+  this.life_span = life_span;
+  this.temperament = temperament;
+  this.url = url;
+  this.id = id;
+  this.name = name;
+});
+var _default = exports.default = Animal;
+},{"@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js","@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js"}],"../src/models/Cat.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _construct = _interopRequireDefault(require("@babel/runtime-corejs2/core-js/reflect/construct"));
+var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/createClass"));
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/classCallCheck"));
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/possibleConstructorReturn"));
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/getPrototypeOf"));
+var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/inherits"));
+var _Animal2 = _interopRequireDefault(require("./Animal"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? (0, _construct.default)(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call((0, _construct.default)(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+var Cat = /*#__PURE__*/function (_Animal) {
+  function Cat(url, adaptability, affection_level, child_friendly, description, energy_level, grooming, hairless, id, intelligence, life_span, name, social_needs, stranger_friendly, temperament) {
+    var _this;
+    (0, _classCallCheck2.default)(this, Cat);
+    _this = _callSuper(this, Cat, [life_span, temperament, id, url, name]);
+    _this.kind = "Cat";
+    _this.adaptability = adaptability;
+    _this.affection_level = affection_level;
+    _this.child_friendly = child_friendly;
+    _this.description = description;
+    _this.energy_level = energy_level;
+    _this.grooming = grooming;
+    _this.hairless = hairless;
+    _this.intelligence = intelligence;
+    _this.social_needs = social_needs;
+    _this.stranger_friendly = stranger_friendly;
+    return _this;
+  }
+  (0, _inherits2.default)(Cat, _Animal);
+  return (0, _createClass2.default)(Cat);
+}(_Animal2.default);
+var _default = exports.default = Cat;
+},{"@babel/runtime-corejs2/core-js/reflect/construct":"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js","@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js","@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js","@babel/runtime-corejs2/helpers/possibleConstructorReturn":"../node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js","@babel/runtime-corejs2/helpers/getPrototypeOf":"../node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js","@babel/runtime-corejs2/helpers/inherits":"../node_modules/@babel/runtime-corejs2/helpers/inherits.js","./Animal":"../src/models/Animal.js"}],"../src/models/Dog.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _construct = _interopRequireDefault(require("@babel/runtime-corejs2/core-js/reflect/construct"));
+var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/createClass"));
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/classCallCheck"));
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/possibleConstructorReturn"));
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/getPrototypeOf"));
+var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/inherits"));
+var _Animal2 = _interopRequireDefault(require("./Animal"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? (0, _construct.default)(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call((0, _construct.default)(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+var Dog = /*#__PURE__*/function (_Animal) {
+  function Dog(bred_for, breed_group, life_span, temperament, id, url, name) {
+    var _this;
+    (0, _classCallCheck2.default)(this, Dog);
+    _this = _callSuper(this, Dog, [life_span, temperament, id, url, name]);
+    _this.kind = "Dog";
+    _this.bred_for = bred_for;
+    _this.breed_group = breed_group;
+    return _this;
+  }
+  (0, _inherits2.default)(Dog, _Animal);
+  return (0, _createClass2.default)(Dog);
+}(_Animal2.default);
+var _default = exports.default = Dog;
+},{"@babel/runtime-corejs2/core-js/reflect/construct":"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js","@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js","@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js","@babel/runtime-corejs2/helpers/possibleConstructorReturn":"../node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js","@babel/runtime-corejs2/helpers/getPrototypeOf":"../node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js","@babel/runtime-corejs2/helpers/inherits":"../node_modules/@babel/runtime-corejs2/helpers/inherits.js","./Animal":"../src/models/Animal.js"}],"../src/utils/createAnimal.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _Cat = _interopRequireDefault(require("../models/Cat"));
+var _Dog = _interopRequireDefault(require("../models/Dog"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var createAnimal = function createAnimal(type, options) {
+  switch (type.toLowerCase()) {
+    case "cat":
+      return new _Cat.default(options.url, options.breeds[0].adaptability, options.breeds[0].affection_level, options.breeds[0].child_friendly, options.breeds[0].description, options.breeds[0].energy_level, options.breeds[0].grooming, options.breeds[0].hairless, options.id, options.breeds[0].intelligence, options.breeds[0].life_span, options.breeds[0].name, options.breeds[0].social_needs, options.breeds[0].stranger_friendly, options.breeds[0].temperament);
+    case "dog":
+      return new _Dog.default(options.breeds[0].bred_for, options.breeds[0].breed_group, options.breeds[0].life_span, options.breeds[0].temperament, options.id, options.breeds[0].url, options.breeds[0].name);
+    default:
+      throw new Error("Unknown animal type");
+  }
+};
+var _default = exports.default = createAnimal;
+},{"../models/Cat":"../src/models/Cat.js","../models/Dog":"../src/models/Dog.js"}],"../src/components/Main.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/asyncToGenerator"));
+var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regenerator"));
+var _fetchData = _interopRequireDefault(require("../services/fetchData"));
+var _createAnimal = _interopRequireDefault(require("../utils/createAnimal"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var catsUrl = "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang";
+var dogsUrl = "https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_8k0bswMQHsla4qR661aep5e6QmCkwd7ws4rWDcOUsFR6gzOJMK5z8zpCEEsJROBu";
+var Main = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
+    var catsData, dogsData, catObjects, dogObjects;
+    return _regenerator.default.wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return (0, _fetchData.default)(catsUrl);
+        case 2:
+          catsData = _context.sent;
+          _context.next = 5;
+          return (0, _fetchData.default)(dogsUrl);
+        case 5:
+          dogsData = _context.sent;
+          console.log(catsData);
+          console.log(dogsData);
+          catObjects = catsData.map(function (cat) {
+            return (0, _createAnimal.default)("Cat", cat);
+          });
+          dogObjects = catsData.map(function (cat) {
+            return (0, _createAnimal.default)("Dog", cat);
+          });
+          console.log(catObjects, dogObjects);
           //   const images = cats.map((image) => image.url);
 
           //   const template = images.map((image) => {
@@ -2415,7 +2745,7 @@ var Main = /*#__PURE__*/function () {
           //   });
 
           //   return template;
-        case 8:
+        case 11:
         case "end":
           return _context.stop();
       }
@@ -2425,8 +2755,8 @@ var Main = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
-var _default = exports.default = Cat;
-},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var _default = exports.default = Main;
+},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","../services/fetchData":"../src/services/fetchData.js","../utils/createAnimal":"../src/utils/createAnimal.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -2492,7 +2822,7 @@ require("./scss/index.scss");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var app = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
-    var mainContainer, animals, cats, dogs;
+    var mainContainer, animals;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -2502,11 +2832,7 @@ var app = /*#__PURE__*/function () {
           return (0, _Main.default)();
         case 4:
           animals = _context.sent;
-          cats = animals[0];
-          dogs = animals[1]; //   animals.forEach((img) => {
-          //     mainContainer.appendChild(img);
-          //   });
-        case 7:
+        case 5:
         case "end":
           return _context.stop();
       }

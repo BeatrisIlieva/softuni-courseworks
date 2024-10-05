@@ -8,8 +8,8 @@ const app = async () => {
   const mainContainer = document.getElementById("main");
 
   const animals = await Main();
-  const cats = animals[0];
-  const dogs = animals[1];
+//   const cats = animals[0];
+//   const dogs = animals[1];
 //   animals.forEach((img) => {
 //     mainContainer.appendChild(img);
 //   });
