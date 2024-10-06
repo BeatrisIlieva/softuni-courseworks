@@ -1,20 +1,18 @@
 "use strict";
 
 import fetchData from "../../services/fetchData";
-import createAnimal from "../../utils/createAnimal";
+import createCat from "../../utils/createCat";
 import createCard from "../../utils/createCard";
-import urls from "../../constants/urls";
 import createLayout from "../../utils/createLayout";
 import createDescription from "../../utils/createDescription";
 
 const Main = async () => {
-  const currentKindOfAnimal = "Cat";
-  const currentUrl = urls[currentKindOfAnimal];
-
-  const data = await fetchData(currentUrl);
+  const data = await fetchData(
+    "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang"
+  );
 
   const dataObjects = data.map((el) => {
-    return createAnimal(currentKindOfAnimal, el);
+    return createCat(el);
   });
 
   const cards = createCard(dataObjects);

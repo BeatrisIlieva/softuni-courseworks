@@ -2588,7 +2588,7 @@ function _inherits(t, e) {
   }), e && setPrototypeOf(t, e);
 }
 module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},{"core-js/library/fn/object/create.js":"../node_modules/core-js/library/fn/object/create.js","core-js/library/fn/object/define-property.js":"../node_modules/core-js/library/fn/object/define-property.js","./setPrototypeOf.js":"../node_modules/@babel/runtime-corejs2/helpers/setPrototypeOf.js"}],"../src/models/Animal.js":[function(require,module,exports) {
+},{"core-js/library/fn/object/create.js":"../node_modules/core-js/library/fn/object/create.js","core-js/library/fn/object/define-property.js":"../node_modules/core-js/library/fn/object/define-property.js","./setPrototypeOf.js":"../node_modules/@babel/runtime-corejs2/helpers/setPrototypeOf.js"}],"../src/models/Cat.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2598,47 +2598,26 @@ exports.default = void 0;
 var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/createClass"));
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/classCallCheck"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-var Animal = /*#__PURE__*/(0, _createClass2.default)(function Animal(id, url, name, temperament, life_span) {
-  (0, _classCallCheck2.default)(this, Animal);
+var Cat = /*#__PURE__*/(0, _createClass2.default)(function Cat(id, url, temperament, energy_level, intelligence, adaptability, affection_level, child_friendly, dog_friendly, grooming, origin, lap, stranger_friendly, life_span, description) {
+  (0, _classCallCheck2.default)(this, Cat);
   this.url = url;
   this.id = id;
-  this.name = name;
   this.temperament = temperament;
   this.life_span = life_span;
+  this.energy_level = energy_level;
+  this.intelligence = intelligence;
+  this.adaptability = adaptability;
+  this.affection_level = affection_level;
+  this.child_friendly = child_friendly;
+  this.dog_friendly = dog_friendly;
+  this.grooming = grooming;
+  this.origin = origin;
+  this.lap = lap;
+  this.stranger_friendly = stranger_friendly;
+  this.description = description;
 });
-var _default = exports.default = Animal;
-},{"@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js","@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js"}],"../src/models/Cat.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _construct = _interopRequireDefault(require("@babel/runtime-corejs2/core-js/reflect/construct"));
-var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/createClass"));
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/classCallCheck"));
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/possibleConstructorReturn"));
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/getPrototypeOf"));
-var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/inherits"));
-var _Animal2 = _interopRequireDefault(require("./Animal"));
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? (0, _construct.default)(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
-function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call((0, _construct.default)(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-var Cat = /*#__PURE__*/function (_Animal) {
-  function Cat(id, url, name, temperament, energy_level, intelligence, life_span) {
-    var _this;
-    (0, _classCallCheck2.default)(this, Cat);
-    _this = _callSuper(this, Cat, [id, url, name, temperament, life_span]);
-    _this.kind = "Cat";
-    _this.energy_level = energy_level;
-    _this.intelligence = intelligence;
-    return _this;
-  }
-  (0, _inherits2.default)(Cat, _Animal);
-  return (0, _createClass2.default)(Cat);
-}(_Animal2.default);
 var _default = exports.default = Cat;
-},{"@babel/runtime-corejs2/core-js/reflect/construct":"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js","@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js","@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js","@babel/runtime-corejs2/helpers/possibleConstructorReturn":"../node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js","@babel/runtime-corejs2/helpers/getPrototypeOf":"../node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js","@babel/runtime-corejs2/helpers/inherits":"../node_modules/@babel/runtime-corejs2/helpers/inherits.js","./Animal":"../src/models/Animal.js"}],"../src/models/Dog.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js","@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js"}],"../src/models/Breed.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2651,46 +2630,36 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs2/he
 var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/possibleConstructorReturn"));
 var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/getPrototypeOf"));
 var _inherits2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/inherits"));
-var _Animal2 = _interopRequireDefault(require("./Animal"));
+var _Cat2 = _interopRequireDefault(require("./Cat"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? (0, _construct.default)(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call((0, _construct.default)(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-var Dog = /*#__PURE__*/function (_Animal) {
-  function Dog(id, url, name, temperament, bred_for, breed_group, life_span) {
+var Breed = /*#__PURE__*/function (_Cat) {
+  function Breed(id, url, name, temperament, energy_level, intelligence, adaptability, affection_level, child_friendly, dog_friendly, grooming, origin, lap, stranger_friendly, life_span, description) {
     var _this;
-    (0, _classCallCheck2.default)(this, Dog);
-    _this = _callSuper(this, Dog, [id, url, name, life_span, temperament]);
-    _this.kind = "Dog";
-    _this.bred_for = bred_for;
-    _this.breed_group = breed_group;
+    (0, _classCallCheck2.default)(this, Breed);
+    _this = _callSuper(this, Breed, [id, url, temperament, energy_level, intelligence, adaptability, affection_level, child_friendly, dog_friendly, grooming, origin, lap, stranger_friendly, life_span, description]);
+    _this.name = name;
     return _this;
   }
-  (0, _inherits2.default)(Dog, _Animal);
-  return (0, _createClass2.default)(Dog);
-}(_Animal2.default);
-var _default = exports.default = Dog;
-},{"@babel/runtime-corejs2/core-js/reflect/construct":"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js","@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js","@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js","@babel/runtime-corejs2/helpers/possibleConstructorReturn":"../node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js","@babel/runtime-corejs2/helpers/getPrototypeOf":"../node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js","@babel/runtime-corejs2/helpers/inherits":"../node_modules/@babel/runtime-corejs2/helpers/inherits.js","./Animal":"../src/models/Animal.js"}],"../src/utils/createAnimal.js":[function(require,module,exports) {
+  (0, _inherits2.default)(Breed, _Cat);
+  return (0, _createClass2.default)(Breed);
+}(_Cat2.default);
+var _default = exports.default = Breed;
+},{"@babel/runtime-corejs2/core-js/reflect/construct":"../node_modules/@babel/runtime-corejs2/core-js/reflect/construct.js","@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js","@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js","@babel/runtime-corejs2/helpers/possibleConstructorReturn":"../node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js","@babel/runtime-corejs2/helpers/getPrototypeOf":"../node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js","@babel/runtime-corejs2/helpers/inherits":"../node_modules/@babel/runtime-corejs2/helpers/inherits.js","./Cat":"../src/models/Cat.js"}],"../src/utils/createCat.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _Cat = _interopRequireDefault(require("../models/Cat"));
-var _Dog = _interopRequireDefault(require("../models/Dog"));
+var _Breed = _interopRequireDefault(require("../models/Breed"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-var createAnimal = function createAnimal(type, options) {
-  switch (type.toLowerCase()) {
-    case "cat":
-      return new _Cat.default(options.id, options.url, options.breeds[0].name, options.breeds[0].temperament, options.breeds[0].energy_level, options.breeds[0].intelligence, options.breeds[0].life_span);
-    case "dog":
-      return new _Dog.default(options.id, options.url, options.breeds[0].name, options.breeds[0].temperament, options.breeds[0].bred_for, options.breeds[0].breed_group, options.breeds[0].life_span);
-    default:
-      throw new Error("Unknown animal type");
-  }
+var createCat = function createCat(options) {
+  return new _Breed.default(options.id, options.url, options.breeds[0].name, options.breeds[0].temperament, options.breeds[0].energy_level, options.breeds[0].intelligence, options.breeds[0].adaptability, options.breeds[0].affection_level, options.breeds[0].child_friendly, options.breeds[0].dog_friendly, options.breeds[0].grooming, options.breeds[0].origin, options.breeds[0].lap, options.breeds[0].stranger_friendly, options.breeds[0].life_span, options.breeds[0].description);
 };
-var _default = exports.default = createAnimal;
-},{"../models/Cat":"../src/models/Cat.js","../models/Dog":"../src/models/Dog.js"}],"../src/utils/createCard.js":[function(require,module,exports) {
+var _default = exports.default = createCat;
+},{"../models/Breed":"../src/models/Breed.js"}],"../src/utils/createCard.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2713,18 +2682,6 @@ var createCard = function createCard(data) {
   return cards;
 };
 var _default = exports.default = createCard;
-},{}],"../src/constants/urls.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var urls = {
-  Cat: "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang",
-  Dog: "https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_8k0bswMQHsla4qR661aep5e6QmCkwd7ws4rWDcOUsFR6gzOJMK5z8zpCEEsJROBu"
-};
-var _default = exports.default = urls;
 },{}],"../src/utils/createLayout.js":[function(require,module,exports) {
 "use strict";
 
@@ -2979,32 +2936,29 @@ exports.default = void 0;
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/asyncToGenerator"));
 var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regenerator"));
 var _fetchData = _interopRequireDefault(require("../../services/fetchData"));
-var _createAnimal = _interopRequireDefault(require("../../utils/createAnimal"));
+var _createCat = _interopRequireDefault(require("../../utils/createCat"));
 var _createCard = _interopRequireDefault(require("../../utils/createCard"));
-var _urls = _interopRequireDefault(require("../../constants/urls"));
 var _createLayout = _interopRequireDefault(require("../../utils/createLayout"));
 var _createDescription = _interopRequireDefault(require("../../utils/createDescription"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var Main = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
-    var currentKindOfAnimal, currentUrl, data, dataObjects, cards, descriptions, result;
+    var data, dataObjects, cards, descriptions, result;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          currentKindOfAnimal = "Cat";
-          currentUrl = _urls.default[currentKindOfAnimal];
-          _context.next = 4;
-          return (0, _fetchData.default)(currentUrl);
-        case 4:
+          _context.next = 2;
+          return (0, _fetchData.default)("https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang");
+        case 2:
           data = _context.sent;
           dataObjects = data.map(function (el) {
-            return (0, _createAnimal.default)(currentKindOfAnimal, el);
+            return (0, _createCat.default)(el);
           });
           cards = (0, _createCard.default)(dataObjects);
           descriptions = (0, _createDescription.default)(dataObjects);
           result = (0, _createLayout.default)(cards, descriptions);
           return _context.abrupt("return", result);
-        case 10:
+        case 8:
         case "end":
           return _context.stop();
       }
@@ -3015,7 +2969,7 @@ var Main = /*#__PURE__*/function () {
   };
 }();
 var _default = exports.default = Main;
-},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","../../services/fetchData":"../src/services/fetchData.js","../../utils/createAnimal":"../src/utils/createAnimal.js","../../utils/createCard":"../src/utils/createCard.js","../../constants/urls":"../src/constants/urls.js","../../utils/createLayout":"../src/utils/createLayout.js","../../utils/createDescription":"../src/utils/createDescription.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","../../services/fetchData":"../src/services/fetchData.js","../../utils/createCat":"../src/utils/createCat.js","../../utils/createCard":"../src/utils/createCard.js","../../utils/createLayout":"../src/utils/createLayout.js","../../utils/createDescription":"../src/utils/createDescription.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
