@@ -1,5 +1,9 @@
+@import "reset.scss";
 @import "card.scss";
+@import "layout.scss";
 
 body {
-  background-color: beige;
+  width: 100vw;
+  height: 100vh;
+  background-color: aqua;
 }
