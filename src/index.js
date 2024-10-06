@@ -8,9 +8,11 @@ const app = async () => {
   
   const mainContainer = document.getElementById("main");
 
-  const result = await Main();
+  const {result, findTheLargestLifeSpanButton} = await Main();
+  console.log(findTheLargestLifeSpanButton)
 
   mainContainer.appendChild(result);
+  mainContainer.appendChild(findTheLargestLifeSpanButton);
 
   // result.forEach((img) => {
   //   mainContainer.appendChild(img);
