@@ -2598,13 +2598,13 @@ exports.default = void 0;
 var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/createClass"));
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/classCallCheck"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-var Animal = /*#__PURE__*/(0, _createClass2.default)(function Animal(life_span, temperament, id, url, name) {
+var Animal = /*#__PURE__*/(0, _createClass2.default)(function Animal(id, url, name, temperament, life_span) {
   (0, _classCallCheck2.default)(this, Animal);
-  this.life_span = life_span;
-  this.temperament = temperament;
   this.url = url;
   this.id = id;
   this.name = name;
+  this.temperament = temperament;
+  this.life_span = life_span;
 });
 var _default = exports.default = Animal;
 },{"@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js","@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js"}],"../src/models/Cat.js":[function(require,module,exports) {
@@ -2625,21 +2625,13 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? (0, _construct.default)(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call((0, _construct.default)(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
 var Cat = /*#__PURE__*/function (_Animal) {
-  function Cat(url, adaptability, affection_level, child_friendly, description, energy_level, grooming, hairless, id, intelligence, life_span, name, social_needs, stranger_friendly, temperament) {
+  function Cat(id, url, name, temperament, energy_level, intelligence, life_span) {
     var _this;
     (0, _classCallCheck2.default)(this, Cat);
-    _this = _callSuper(this, Cat, [life_span, temperament, id, url, name]);
+    _this = _callSuper(this, Cat, [id, url, name, temperament, life_span]);
     _this.kind = "Cat";
-    _this.adaptability = adaptability;
-    _this.affection_level = affection_level;
-    _this.child_friendly = child_friendly;
-    _this.description = description;
     _this.energy_level = energy_level;
-    _this.grooming = grooming;
-    _this.hairless = hairless;
     _this.intelligence = intelligence;
-    _this.social_needs = social_needs;
-    _this.stranger_friendly = stranger_friendly;
     return _this;
   }
   (0, _inherits2.default)(Cat, _Animal);
@@ -2664,10 +2656,10 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? (0, _construct.default)(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call((0, _construct.default)(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
 var Dog = /*#__PURE__*/function (_Animal) {
-  function Dog(bred_for, breed_group, life_span, temperament, id, url, name) {
+  function Dog(id, url, name, temperament, bred_for, breed_group, life_span) {
     var _this;
     (0, _classCallCheck2.default)(this, Dog);
-    _this = _callSuper(this, Dog, [life_span, temperament, id, url, name]);
+    _this = _callSuper(this, Dog, [id, url, name, life_span, temperament]);
     _this.kind = "Dog";
     _this.bred_for = bred_for;
     _this.breed_group = breed_group;
@@ -2690,9 +2682,9 @@ function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e
 var createAnimal = function createAnimal(type, options) {
   switch (type.toLowerCase()) {
     case "cat":
-      return new _Cat.default(options.url, options.breeds[0].adaptability, options.breeds[0].affection_level, options.breeds[0].child_friendly, options.breeds[0].description, options.breeds[0].energy_level, options.breeds[0].grooming, options.breeds[0].hairless, options.id, options.breeds[0].intelligence, options.breeds[0].life_span, options.breeds[0].name, options.breeds[0].social_needs, options.breeds[0].stranger_friendly, options.breeds[0].temperament);
+      return new _Cat.default(options.id, options.url, options.breeds[0].name, options.breeds[0].temperament, options.breeds[0].energy_level, options.breeds[0].intelligence, options.breeds[0].life_span);
     case "dog":
-      return new _Dog.default(options.breeds[0].bred_for, options.breeds[0].breed_group, options.breeds[0].life_span, options.breeds[0].temperament, options.id, options.url, options.breeds[0].name);
+      return new _Dog.default(options.id, options.url, options.breeds[0].name, options.breeds[0].temperament, options.breeds[0].bred_for, options.breeds[0].breed_group, options.breeds[0].life_span);
     default:
       throw new Error("Unknown animal type");
   }
@@ -2740,19 +2732,244 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var createLayout = function createLayout(cards) {
+var createLayout = function createLayout(cards, descriptions) {
   var gridContainer = document.createElement("section");
   gridContainer.classList.add("grid-container");
   for (var index = 0; index < cards.length; index++) {
     var wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
     wrapper.appendChild(cards[index]);
+    wrapper.appendChild(descriptions[index]);
     gridContainer.appendChild(wrapper);
   }
   return gridContainer;
 };
 var _default = exports.default = createLayout;
-},{}],"../src/components/layout/Main.js":[function(require,module,exports) {
+},{}],"../node_modules/core-js/library/modules/es6.array.is-array.js":[function(require,module,exports) {
+// 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
+var $export = require('./_export');
+
+$export($export.S, 'Array', { isArray: require('./_is-array') });
+
+},{"./_export":"../node_modules/core-js/library/modules/_export.js","./_is-array":"../node_modules/core-js/library/modules/_is-array.js"}],"../node_modules/core-js/library/fn/array/is-array.js":[function(require,module,exports) {
+require('../../modules/es6.array.is-array');
+module.exports = require('../../modules/_core').Array.isArray;
+
+},{"../../modules/es6.array.is-array":"../node_modules/core-js/library/modules/es6.array.is-array.js","../../modules/_core":"../node_modules/core-js/library/modules/_core.js"}],"../node_modules/@babel/runtime-corejs2/helpers/arrayWithHoles.js":[function(require,module,exports) {
+var _Array$isArray = require("core-js/library/fn/array/is-array.js");
+function _arrayWithHoles(r) {
+  if (_Array$isArray(r)) return r;
+}
+module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"core-js/library/fn/array/is-array.js":"../node_modules/core-js/library/fn/array/is-array.js"}],"../node_modules/@babel/runtime-corejs2/helpers/iterableToArrayLimit.js":[function(require,module,exports) {
+var _Symbol = require("core-js/library/fn/symbol/index.js");
+var _Symbol$iterator = require("core-js/library/fn/symbol/iterator.js");
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof _Symbol && r[_Symbol$iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = !0, n = r;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"core-js/library/fn/symbol/index.js":"../node_modules/core-js/library/fn/symbol/index.js","core-js/library/fn/symbol/iterator.js":"../node_modules/core-js/library/fn/symbol/iterator.js"}],"../node_modules/core-js/library/modules/_create-property.js":[function(require,module,exports) {
+'use strict';
+var $defineProperty = require('./_object-dp');
+var createDesc = require('./_property-desc');
+
+module.exports = function (object, index, value) {
+  if (index in object) $defineProperty.f(object, index, createDesc(0, value));
+  else object[index] = value;
+};
+
+},{"./_object-dp":"../node_modules/core-js/library/modules/_object-dp.js","./_property-desc":"../node_modules/core-js/library/modules/_property-desc.js"}],"../node_modules/core-js/library/modules/es6.array.from.js":[function(require,module,exports) {
+'use strict';
+var ctx = require('./_ctx');
+var $export = require('./_export');
+var toObject = require('./_to-object');
+var call = require('./_iter-call');
+var isArrayIter = require('./_is-array-iter');
+var toLength = require('./_to-length');
+var createProperty = require('./_create-property');
+var getIterFn = require('./core.get-iterator-method');
+
+$export($export.S + $export.F * !require('./_iter-detect')(function (iter) { Array.from(iter); }), 'Array', {
+  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
+  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
+    var O = toObject(arrayLike);
+    var C = typeof this == 'function' ? this : Array;
+    var aLen = arguments.length;
+    var mapfn = aLen > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var index = 0;
+    var iterFn = getIterFn(O);
+    var length, result, step, iterator;
+    if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
+    // if object isn't iterable or it's array with default iterator - use simple case
+    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
+      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
+        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
+      }
+    } else {
+      length = toLength(O.length);
+      for (result = new C(length); length > index; index++) {
+        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
+      }
+    }
+    result.length = index;
+    return result;
+  }
+});
+
+},{"./_ctx":"../node_modules/core-js/library/modules/_ctx.js","./_export":"../node_modules/core-js/library/modules/_export.js","./_to-object":"../node_modules/core-js/library/modules/_to-object.js","./_iter-call":"../node_modules/core-js/library/modules/_iter-call.js","./_is-array-iter":"../node_modules/core-js/library/modules/_is-array-iter.js","./_to-length":"../node_modules/core-js/library/modules/_to-length.js","./_create-property":"../node_modules/core-js/library/modules/_create-property.js","./core.get-iterator-method":"../node_modules/core-js/library/modules/core.get-iterator-method.js","./_iter-detect":"../node_modules/core-js/library/modules/_iter-detect.js"}],"../node_modules/core-js/library/fn/array/from.js":[function(require,module,exports) {
+require('../../modules/es6.string.iterator');
+require('../../modules/es6.array.from');
+module.exports = require('../../modules/_core').Array.from;
+
+},{"../../modules/es6.string.iterator":"../node_modules/core-js/library/modules/es6.string.iterator.js","../../modules/es6.array.from":"../node_modules/core-js/library/modules/es6.array.from.js","../../modules/_core":"../node_modules/core-js/library/modules/_core.js"}],"../node_modules/@babel/runtime-corejs2/helpers/arrayLikeToArray.js":[function(require,module,exports) {
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{}],"../node_modules/@babel/runtime-corejs2/helpers/unsupportedIterableToArray.js":[function(require,module,exports) {
+var _Array$from = require("core-js/library/fn/array/from.js");
+var arrayLikeToArray = require("./arrayLikeToArray.js");
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? _Array$from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? arrayLikeToArray(r, a) : void 0;
+  }
+}
+module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"core-js/library/fn/array/from.js":"../node_modules/core-js/library/fn/array/from.js","./arrayLikeToArray.js":"../node_modules/@babel/runtime-corejs2/helpers/arrayLikeToArray.js"}],"../node_modules/@babel/runtime-corejs2/helpers/nonIterableRest.js":[function(require,module,exports) {
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+module.exports = _nonIterableRest, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{}],"../node_modules/@babel/runtime-corejs2/helpers/slicedToArray.js":[function(require,module,exports) {
+var arrayWithHoles = require("./arrayWithHoles.js");
+var iterableToArrayLimit = require("./iterableToArrayLimit.js");
+var unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
+var nonIterableRest = require("./nonIterableRest.js");
+function _slicedToArray(r, e) {
+  return arrayWithHoles(r) || iterableToArrayLimit(r, e) || unsupportedIterableToArray(r, e) || nonIterableRest();
+}
+module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+},{"./arrayWithHoles.js":"../node_modules/@babel/runtime-corejs2/helpers/arrayWithHoles.js","./iterableToArrayLimit.js":"../node_modules/@babel/runtime-corejs2/helpers/iterableToArrayLimit.js","./unsupportedIterableToArray.js":"../node_modules/@babel/runtime-corejs2/helpers/unsupportedIterableToArray.js","./nonIterableRest.js":"../node_modules/@babel/runtime-corejs2/helpers/nonIterableRest.js"}],"../node_modules/core-js/library/modules/_object-to-array.js":[function(require,module,exports) {
+var DESCRIPTORS = require('./_descriptors');
+var getKeys = require('./_object-keys');
+var toIObject = require('./_to-iobject');
+var isEnum = require('./_object-pie').f;
+module.exports = function (isEntries) {
+  return function (it) {
+    var O = toIObject(it);
+    var keys = getKeys(O);
+    var length = keys.length;
+    var i = 0;
+    var result = [];
+    var key;
+    while (length > i) {
+      key = keys[i++];
+      if (!DESCRIPTORS || isEnum.call(O, key)) {
+        result.push(isEntries ? [key, O[key]] : O[key]);
+      }
+    }
+    return result;
+  };
+};
+
+},{"./_descriptors":"../node_modules/core-js/library/modules/_descriptors.js","./_object-keys":"../node_modules/core-js/library/modules/_object-keys.js","./_to-iobject":"../node_modules/core-js/library/modules/_to-iobject.js","./_object-pie":"../node_modules/core-js/library/modules/_object-pie.js"}],"../node_modules/core-js/library/modules/es7.object.entries.js":[function(require,module,exports) {
+// https://github.com/tc39/proposal-object-values-entries
+var $export = require('./_export');
+var $entries = require('./_object-to-array')(true);
+
+$export($export.S, 'Object', {
+  entries: function entries(it) {
+    return $entries(it);
+  }
+});
+
+},{"./_export":"../node_modules/core-js/library/modules/_export.js","./_object-to-array":"../node_modules/core-js/library/modules/_object-to-array.js"}],"../node_modules/core-js/library/fn/object/entries.js":[function(require,module,exports) {
+require('../../modules/es7.object.entries');
+module.exports = require('../../modules/_core').Object.entries;
+
+},{"../../modules/es7.object.entries":"../node_modules/core-js/library/modules/es7.object.entries.js","../../modules/_core":"../node_modules/core-js/library/modules/_core.js"}],"../node_modules/@babel/runtime-corejs2/core-js/object/entries.js":[function(require,module,exports) {
+module.exports = require("core-js/library/fn/object/entries");
+},{"core-js/library/fn/object/entries":"../node_modules/core-js/library/fn/object/entries.js"}],"../src/utils/createDescription.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/slicedToArray"));
+var _entries = _interopRequireDefault(require("@babel/runtime-corejs2/core-js/object/entries"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+var createDescription = function createDescription(data) {
+  var descriptionItems = data.map(function (item) {
+    var listItems = document.createElement("ul");
+    listItems.classList.add("list");
+    (0, _entries.default)(item).forEach(function (_ref) {
+      var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
+        key = _ref2[0],
+        value = _ref2[1];
+      if (key !== "url" && key !== "id" && key !== "kind") {
+        var keyElement = createKeyElement(key);
+        var listItem = document.createElement("li");
+        listItem.classList.add("list-item");
+        var leftElement = document.createElement("h3");
+        leftElement.classList.add("left-element");
+        leftElement.textContent = keyElement;
+        var rightElement = document.createElement("h4");
+        rightElement.classList.add("right-element");
+        rightElement.textContent = value;
+        listItem.appendChild(leftElement);
+        listItem.appendChild(rightElement);
+        listItems.appendChild(listItem);
+      }
+    });
+    return listItems;
+  });
+  return descriptionItems;
+};
+var createKeyElement = function createKeyElement(key) {
+  var receivedKey = key !== "name" ? key : "breed";
+  console.log(receivedKey);
+  var keyWords = receivedKey.split("_");
+  var keyElement = "";
+  keyWords.forEach(function (word) {
+    var firstLetter = word.charAt(0).toUpperCase();
+    var restLetters = word.slice(1);
+    keyElement += firstLetter.concat("".concat(restLetters, " "));
+  });
+  var result = keyElement.trim() + ":";
+  return result;
+};
+var _default = exports.default = createDescription;
+},{"@babel/runtime-corejs2/helpers/slicedToArray":"../node_modules/@babel/runtime-corejs2/helpers/slicedToArray.js","@babel/runtime-corejs2/core-js/object/entries":"../node_modules/@babel/runtime-corejs2/core-js/object/entries.js"}],"../src/components/layout/Main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2766,10 +2983,11 @@ var _createAnimal = _interopRequireDefault(require("../../utils/createAnimal"));
 var _createCard = _interopRequireDefault(require("../../utils/createCard"));
 var _urls = _interopRequireDefault(require("../../constants/urls"));
 var _createLayout = _interopRequireDefault(require("../../utils/createLayout"));
+var _createDescription = _interopRequireDefault(require("../../utils/createDescription"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var Main = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
-    var currentKindOfAnimal, currentUrl, data, dataObjects, cards, result;
+    var currentKindOfAnimal, currentUrl, data, dataObjects, cards, descriptions, result;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -2783,9 +3001,10 @@ var Main = /*#__PURE__*/function () {
             return (0, _createAnimal.default)(currentKindOfAnimal, el);
           });
           cards = (0, _createCard.default)(dataObjects);
-          result = (0, _createLayout.default)(cards);
+          descriptions = (0, _createDescription.default)(dataObjects);
+          result = (0, _createLayout.default)(cards, descriptions);
           return _context.abrupt("return", result);
-        case 9:
+        case 10:
         case "end":
           return _context.stop();
       }
@@ -2796,7 +3015,7 @@ var Main = /*#__PURE__*/function () {
   };
 }();
 var _default = exports.default = Main;
-},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","../../services/fetchData":"../src/services/fetchData.js","../../utils/createAnimal":"../src/utils/createAnimal.js","../../utils/createCard":"../src/utils/createCard.js","../../constants/urls":"../src/constants/urls.js","../../utils/createLayout":"../src/utils/createLayout.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","../../services/fetchData":"../src/services/fetchData.js","../../utils/createAnimal":"../src/utils/createAnimal.js","../../utils/createCard":"../src/utils/createCard.js","../../constants/urls":"../src/constants/urls.js","../../utils/createLayout":"../src/utils/createLayout.js","../../utils/createDescription":"../src/utils/createDescription.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {

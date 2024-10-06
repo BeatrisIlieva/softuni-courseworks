@@ -2,34 +2,18 @@ import Animal from "./Animal";
 
 class Cat extends Animal {
   constructor(
-    url,
-    adaptability,
-    affection_level,
-    child_friendly,
-    description,
-    energy_level,
-    grooming,
-    hairless,
     id,
-    intelligence,
-    life_span,
+    url,
     name,
-    social_needs,
-    stranger_friendly,
-    temperament
+    temperament,
+    energy_level,
+    intelligence,
+    life_span
   ) {
-    super(life_span, temperament, id, url, name);
+    super(id, url, name, temperament, life_span);
     this.kind = "Cat";
-    this.adaptability = adaptability;
-    this.affection_level = affection_level;
-    this.child_friendly = child_friendly;
-    this.description = description;
     this.energy_level = energy_level;
-    this.grooming = grooming;
-    this.hairless = hairless;
     this.intelligence = intelligence;
-    this.social_needs = social_needs;
-    this.stranger_friendly = stranger_friendly;
   }
 }
 

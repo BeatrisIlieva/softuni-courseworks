@@ -5,6 +5,7 @@ import createAnimal from "../../utils/createAnimal";
 import createCard from "../../utils/createCard";
 import urls from "../../constants/urls";
 import createLayout from "../../utils/createLayout";
+import createDescription from "../../utils/createDescription";
 
 const Main = async () => {
   const currentKindOfAnimal = "Cat";
@@ -18,7 +19,9 @@ const Main = async () => {
 
   const cards = createCard(dataObjects);
 
-  const result = createLayout(cards);
+  const descriptions = createDescription(dataObjects);
+
+  const result = createLayout(cards, descriptions);
 
   return result;
 };

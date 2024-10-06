@@ -1,4 +1,4 @@
-const createLayout = (cards) => {
+const createLayout = (cards, descriptions) => {
   const gridContainer = document.createElement("section");
   gridContainer.classList.add("grid-container");
 
@@ -7,8 +7,11 @@ const createLayout = (cards) => {
     wrapper.classList.add("wrapper");
     
     wrapper.appendChild(cards[index]);
+    wrapper.appendChild(descriptions[index])
 
-    gridContainer.appendChild(wrapper)
+    gridContainer.appendChild(wrapper);
+
+
   }
 
   return gridContainer;
