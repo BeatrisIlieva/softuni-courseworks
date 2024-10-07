@@ -9,7 +9,6 @@ const app = async () => {
   const mainContainer = document.getElementById("main");
 
   const {result, findTheLargestLifeSpanButton} = await Main();
-  console.log(findTheLargestLifeSpanButton)
 
   mainContainer.appendChild(result);
   mainContainer.appendChild(findTheLargestLifeSpanButton);

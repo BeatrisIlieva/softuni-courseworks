@@ -31,7 +31,6 @@ const createDescription = (data) => {
 
 const createKeyElement = (key) => {
   let receivedKey = key !== "name" ? key : "breed";
-  console.log(receivedKey);
 
   let keyWords = receivedKey.split("_");
   let keyElement = "";

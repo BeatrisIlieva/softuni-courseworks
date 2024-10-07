@@ -2377,42 +2377,7 @@ var Header = function Header() {
   return template;
 };
 var _default = exports.default = Header;
-},{}],"../src/services/fetchData.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/asyncToGenerator"));
-var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regenerator"));
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-var fetchData = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee(url) {
-    var response;
-    return _regenerator.default.wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          _context.next = 2;
-          return fetch(url);
-        case 2:
-          response = _context.sent;
-          _context.next = 5;
-          return response.json();
-        case 5:
-          return _context.abrupt("return", _context.sent);
-        case 6:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee);
-  }));
-  return function fetchData(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-var _default = exports.default = fetchData;
-},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js"}],"../node_modules/core-js/library/modules/_bind.js":[function(require,module,exports) {
+},{}],"../node_modules/core-js/library/modules/_bind.js":[function(require,module,exports) {
 'use strict';
 var aFunction = require('./_a-function');
 var isObject = require('./_is-object');
@@ -2914,7 +2879,6 @@ var createDescription = function createDescription(data) {
 };
 var createKeyElement = function createKeyElement(key) {
   var receivedKey = key !== "name" ? key : "breed";
-  console.log(receivedKey);
   var keyWords = receivedKey.split("_");
   var keyElement = "";
   keyWords.forEach(function (word) {
@@ -2926,103 +2890,1055 @@ var createKeyElement = function createKeyElement(key) {
   return result;
 };
 var _default = exports.default = createDescription;
-},{"@babel/runtime-corejs2/helpers/slicedToArray":"../node_modules/@babel/runtime-corejs2/helpers/slicedToArray.js","@babel/runtime-corejs2/core-js/object/entries":"../node_modules/@babel/runtime-corejs2/core-js/object/entries.js"}],"../src/functions/findTheLargestLifeSpan.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/helpers/slicedToArray":"../node_modules/@babel/runtime-corejs2/helpers/slicedToArray.js","@babel/runtime-corejs2/core-js/object/entries":"../node_modules/@babel/runtime-corejs2/core-js/object/entries.js"}],"../src/contexts/catContext.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var findTheLargestLifeSpan = function findTheLargestLifeSpan(input) {
-  console.log(input);
-};
-var _default = exports.default = findTheLargestLifeSpan;
-},{}],"../node_modules/@babel/runtime-corejs2/helpers/arrayWithoutHoles.js":[function(require,module,exports) {
-var _Array$isArray = require("core-js/library/fn/array/is-array.js");
-var arrayLikeToArray = require("./arrayLikeToArray.js");
-function _arrayWithoutHoles(r) {
-  if (_Array$isArray(r)) return arrayLikeToArray(r);
-}
-module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},{"core-js/library/fn/array/is-array.js":"../node_modules/core-js/library/fn/array/is-array.js","./arrayLikeToArray.js":"../node_modules/@babel/runtime-corejs2/helpers/arrayLikeToArray.js"}],"../node_modules/@babel/runtime-corejs2/helpers/iterableToArray.js":[function(require,module,exports) {
-var _Symbol = require("core-js/library/fn/symbol/index.js");
-var _Symbol$iterator = require("core-js/library/fn/symbol/iterator.js");
-var _Array$from = require("core-js/library/fn/array/from.js");
-function _iterableToArray(r) {
-  if ("undefined" != typeof _Symbol && null != r[_Symbol$iterator] || null != r["@@iterator"]) return _Array$from(r);
-}
-module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},{"core-js/library/fn/symbol/index.js":"../node_modules/core-js/library/fn/symbol/index.js","core-js/library/fn/symbol/iterator.js":"../node_modules/core-js/library/fn/symbol/iterator.js","core-js/library/fn/array/from.js":"../node_modules/core-js/library/fn/array/from.js"}],"../node_modules/@babel/runtime-corejs2/helpers/nonIterableSpread.js":[function(require,module,exports) {
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},{}],"../node_modules/@babel/runtime-corejs2/helpers/toConsumableArray.js":[function(require,module,exports) {
-var arrayWithoutHoles = require("./arrayWithoutHoles.js");
-var iterableToArray = require("./iterableToArray.js");
-var unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
-var nonIterableSpread = require("./nonIterableSpread.js");
-function _toConsumableArray(r) {
-  return arrayWithoutHoles(r) || iterableToArray(r) || unsupportedIterableToArray(r) || nonIterableSpread();
-}
-module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-},{"./arrayWithoutHoles.js":"../node_modules/@babel/runtime-corejs2/helpers/arrayWithoutHoles.js","./iterableToArray.js":"../node_modules/@babel/runtime-corejs2/helpers/iterableToArray.js","./unsupportedIterableToArray.js":"../node_modules/@babel/runtime-corejs2/helpers/unsupportedIterableToArray.js","./nonIterableSpread.js":"../node_modules/@babel/runtime-corejs2/helpers/nonIterableSpread.js"}],"../src/contexts/catContext.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/toConsumableArray"));
-var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/asyncToGenerator"));
-var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regenerator"));
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/classCallCheck"));
+var _createClass2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/createClass"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var url = "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang";
-function catContext() {
-  var cats = [];
-  function fetchData() {
-    return _fetchData.apply(this, arguments);
+
+// function catContext() {
+//   const cats = [
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "8 - 18", metric: "4 - 8" },
+//           id: "bslo",
+//           name: "British Longhair",
+//           temperament:
+//             "Affectionate, Easy Going, Independent, Intelligent, Loyal, Social",
+//           origin: "United Kingdom",
+//           country_codes: "GB",
+//           country_code: "GB",
+//           description:
+//             "The British Longhair is a very laid-back relaxed cat, often perceived to be very independent although they will enjoy the company of an equally relaxed and likeminded cat. They are an affectionate breed, but very much on their own terms and tend to prefer to choose to come and sit with their owners rather than being picked up.",
+//           life_span: "12 - 14",
+//           indoor: 0,
+//           alt_names: "",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 4,
+//           dog_friendly: 5,
+//           energy_level: 4,
+//           grooming: 5,
+//           health_issues: 1,
+//           intelligence: 5,
+//           shedding_level: 1,
+//           social_needs: 3,
+//           stranger_friendly: 4,
+//           vocalisation: 1,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 0,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/British_Longhair",
+//           hypoallergenic: 0,
+//           reference_image_id: "7isAO4Cav",
+//         },
+//       ],
+//       id: "JWOrjbhum",
+//       url: "https://cdn2.thecatapi.com/images/JWOrjbhum.jpg",
+//       width: 768,
+//       height: 1024,
+//     },
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "9 - 14", metric: "4 - 6" },
+//           id: "pers",
+//           name: "Persian",
+//           cfa_url: "http://cfa.org/Breeds/BreedsKthruR/Persian.aspx",
+//           vetstreet_url: "http://www.vetstreet.com/cats/persian",
+//           vcahospitals_url:
+//             "https://vcahospitals.com/know-your-pet/cat-breeds/persian",
+//           temperament: "Affectionate, loyal, Sedate, Quiet",
+//           origin: "Iran (Persia)",
+//           country_codes: "IR",
+//           country_code: "IR",
+//           description:
+//             "Persians are sweet, gentle cats that can be playful or quiet and laid-back. Great with families and children, they absolutely love to lounge around the house. While they don’t mind a full house or active kids, they’ll usually hide when they need some alone time.",
+//           life_span: "14 - 15",
+//           indoor: 0,
+//           lap: 1,
+//           alt_names: "Longhair, Persian Longhair, Shiraz, Shirazi",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 2,
+//           dog_friendly: 2,
+//           energy_level: 1,
+//           grooming: 5,
+//           health_issues: 3,
+//           intelligence: 3,
+//           shedding_level: 4,
+//           social_needs: 4,
+//           stranger_friendly: 2,
+//           vocalisation: 1,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 1,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/Persian_(cat)",
+//           hypoallergenic: 0,
+//           reference_image_id: "-Zfz5z2jK",
+//         },
+//       ],
+//       id: "tSbM4vHB_",
+//       url: "https://cdn2.thecatapi.com/images/tSbM4vHB_.png",
+//       width: 4096,
+//       height: 2304,
+//     },
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "12 - 20", metric: "5 - 9" },
+//           id: "ragd",
+//           name: "Ragdoll",
+//           cfa_url: "http://cfa.org/Breeds/BreedsKthruR/Ragdoll.aspx",
+//           vetstreet_url: "http://www.vetstreet.com/cats/ragdoll",
+//           vcahospitals_url:
+//             "https://vcahospitals.com/know-your-pet/cat-breeds/ragdoll",
+//           temperament: "Affectionate, Friendly, Gentle, Quiet, Easygoing",
+//           origin: "United States",
+//           country_codes: "US",
+//           country_code: "US",
+//           description:
+//             "Ragdolls love their people, greeting them at the door, following them around the house, and leaping into a lap or snuggling in bed whenever given the chance. They are the epitome of a lap cat, enjoy being carried and collapsing into the arms of anyone who holds them.",
+//           life_span: "12 - 17",
+//           indoor: 0,
+//           lap: 1,
+//           alt_names: "Rag doll",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 4,
+//           dog_friendly: 5,
+//           energy_level: 3,
+//           grooming: 2,
+//           health_issues: 3,
+//           intelligence: 3,
+//           shedding_level: 3,
+//           social_needs: 5,
+//           stranger_friendly: 3,
+//           vocalisation: 1,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 0,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/Ragdoll",
+//           hypoallergenic: 0,
+//           reference_image_id: "oGefY4YoG",
+//         },
+//       ],
+//       id: "UYLI_E-SZ",
+//       url: "https://cdn2.thecatapi.com/images/UYLI_E-SZ.jpg",
+//       width: 750,
+//       height: 500,
+//     },
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "12 - 20", metric: "5 - 9" },
+//           id: "ragd",
+//           name: "Ragdoll",
+//           cfa_url: "http://cfa.org/Breeds/BreedsKthruR/Ragdoll.aspx",
+//           vetstreet_url: "http://www.vetstreet.com/cats/ragdoll",
+//           vcahospitals_url:
+//             "https://vcahospitals.com/know-your-pet/cat-breeds/ragdoll",
+//           temperament: "Affectionate, Friendly, Gentle, Quiet, Easygoing",
+//           origin: "United States",
+//           country_codes: "US",
+//           country_code: "US",
+//           description:
+//             "Ragdolls love their people, greeting them at the door, following them around the house, and leaping into a lap or snuggling in bed whenever given the chance. They are the epitome of a lap cat, enjoy being carried and collapsing into the arms of anyone who holds them.",
+//           life_span: "12 - 17",
+//           indoor: 0,
+//           lap: 1,
+//           alt_names: "Rag doll",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 4,
+//           dog_friendly: 5,
+//           energy_level: 3,
+//           grooming: 2,
+//           health_issues: 3,
+//           intelligence: 3,
+//           shedding_level: 3,
+//           social_needs: 5,
+//           stranger_friendly: 3,
+//           vocalisation: 1,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 0,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/Ragdoll",
+//           hypoallergenic: 0,
+//           reference_image_id: "oGefY4YoG",
+//         },
+//       ],
+//       id: "TnwHiS7nO",
+//       url: "https://cdn2.thecatapi.com/images/TnwHiS7nO.jpg",
+//       width: 1920,
+//       height: 1080,
+//     },
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "5 - 11", metric: "2 - 5" },
+//           id: "sfol",
+//           name: "Scottish Fold",
+//           cfa_url: "http://cfa.org/Breeds/BreedsSthruT/ScottishFold.aspx",
+//           vetstreet_url:
+//             "http://www.vetstreet.com/cats/scottish-fold-highland-fold",
+//           vcahospitals_url:
+//             "https://vcahospitals.com/know-your-pet/cat-breeds/scottish-fold",
+//           temperament:
+//             "Affectionate, Intelligent, Loyal, Playful, Social, Sweet, Loving",
+//           origin: "United Kingdom",
+//           country_codes: "GB",
+//           country_code: "GB",
+//           description:
+//             'The Scottish Fold is a sweet, charming breed. She is an easy cat to live with and to care for. She is affectionate and is comfortable with all members of her family. Her tail should be handled gently. Folds are known for sleeping on their backs, and for sitting with their legs stretched out and their paws on their belly. This is called the "Buddha Position".',
+//           life_span: "11 - 14",
+//           indoor: 0,
+//           alt_names: "Scot Fold",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 4,
+//           dog_friendly: 5,
+//           energy_level: 3,
+//           grooming: 1,
+//           health_issues: 4,
+//           intelligence: 3,
+//           shedding_level: 3,
+//           social_needs: 3,
+//           stranger_friendly: 3,
+//           vocalisation: 1,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 0,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/Scottish_Fold",
+//           hypoallergenic: 0,
+//           reference_image_id: "o9t0LDcsa",
+//         },
+//       ],
+//       id: "JYLVJkyq_",
+//       url: "https://cdn2.thecatapi.com/images/JYLVJkyq_.jpg",
+//       width: 4330,
+//       height: 2436,
+//     },
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "5 - 11", metric: "2 - 5" },
+//           id: "sfol",
+//           name: "Scottish Fold",
+//           cfa_url: "http://cfa.org/Breeds/BreedsSthruT/ScottishFold.aspx",
+//           vetstreet_url:
+//             "http://www.vetstreet.com/cats/scottish-fold-highland-fold",
+//           vcahospitals_url:
+//             "https://vcahospitals.com/know-your-pet/cat-breeds/scottish-fold",
+//           temperament:
+//             "Affectionate, Intelligent, Loyal, Playful, Social, Sweet, Loving",
+//           origin: "United Kingdom",
+//           country_codes: "GB",
+//           country_code: "GB",
+//           description:
+//             'The Scottish Fold is a sweet, charming breed. She is an easy cat to live with and to care for. She is affectionate and is comfortable with all members of her family. Her tail should be handled gently. Folds are known for sleeping on their backs, and for sitting with their legs stretched out and their paws on their belly. This is called the "Buddha Position".',
+//           life_span: "11 - 14",
+//           indoor: 0,
+//           alt_names: "Scot Fold",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 4,
+//           dog_friendly: 5,
+//           energy_level: 3,
+//           grooming: 1,
+//           health_issues: 4,
+//           intelligence: 3,
+//           shedding_level: 3,
+//           social_needs: 3,
+//           stranger_friendly: 3,
+//           vocalisation: 1,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 0,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/Scottish_Fold",
+//           hypoallergenic: 0,
+//           reference_image_id: "o9t0LDcsa",
+//         },
+//       ],
+//       id: "Tbc8_VStM",
+//       url: "https://cdn2.thecatapi.com/images/Tbc8_VStM.jpg",
+//       width: 1500,
+//       height: 996,
+//     },
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "5 - 11", metric: "2 - 5" },
+//           id: "sfol",
+//           name: "Scottish Fold",
+//           cfa_url: "http://cfa.org/Breeds/BreedsSthruT/ScottishFold.aspx",
+//           vetstreet_url:
+//             "http://www.vetstreet.com/cats/scottish-fold-highland-fold",
+//           vcahospitals_url:
+//             "https://vcahospitals.com/know-your-pet/cat-breeds/scottish-fold",
+//           temperament:
+//             "Affectionate, Intelligent, Loyal, Playful, Social, Sweet, Loving",
+//           origin: "United Kingdom",
+//           country_codes: "GB",
+//           country_code: "GB",
+//           description:
+//             'The Scottish Fold is a sweet, charming breed. She is an easy cat to live with and to care for. She is affectionate and is comfortable with all members of her family. Her tail should be handled gently. Folds are known for sleeping on their backs, and for sitting with their legs stretched out and their paws on their belly. This is called the "Buddha Position".',
+//           life_span: "11 - 14",
+//           indoor: 0,
+//           alt_names: "Scot Fold",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 4,
+//           dog_friendly: 5,
+//           energy_level: 3,
+//           grooming: 1,
+//           health_issues: 4,
+//           intelligence: 3,
+//           shedding_level: 3,
+//           social_needs: 3,
+//           stranger_friendly: 3,
+//           vocalisation: 1,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 0,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/Scottish_Fold",
+//           hypoallergenic: 0,
+//           reference_image_id: "o9t0LDcsa",
+//         },
+//       ],
+//       id: "o9t0LDcsa",
+//       url: "https://cdn2.thecatapi.com/images/o9t0LDcsa.jpg",
+//       width: 1920,
+//       height: 1440,
+//     },
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "5 - 11", metric: "2 - 5" },
+//           id: "sfol",
+//           name: "Scottish Fold",
+//           cfa_url: "http://cfa.org/Breeds/BreedsSthruT/ScottishFold.aspx",
+//           vetstreet_url:
+//             "http://www.vetstreet.com/cats/scottish-fold-highland-fold",
+//           vcahospitals_url:
+//             "https://vcahospitals.com/know-your-pet/cat-breeds/scottish-fold",
+//           temperament:
+//             "Affectionate, Intelligent, Loyal, Playful, Social, Sweet, Loving",
+//           origin: "United Kingdom",
+//           country_codes: "GB",
+//           country_code: "GB",
+//           description:
+//             'The Scottish Fold is a sweet, charming breed. She is an easy cat to live with and to care for. She is affectionate and is comfortable with all members of her family. Her tail should be handled gently. Folds are known for sleeping on their backs, and for sitting with their legs stretched out and their paws on their belly. This is called the "Buddha Position".',
+//           life_span: "11 - 14",
+//           indoor: 0,
+//           alt_names: "Scot Fold",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 4,
+//           dog_friendly: 5,
+//           energy_level: 3,
+//           grooming: 1,
+//           health_issues: 4,
+//           intelligence: 3,
+//           shedding_level: 3,
+//           social_needs: 3,
+//           stranger_friendly: 3,
+//           vocalisation: 1,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 0,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/Scottish_Fold",
+//           hypoallergenic: 0,
+//           reference_image_id: "o9t0LDcsa",
+//         },
+//       ],
+//       id: "5txKBK89Y",
+//       url: "https://cdn2.thecatapi.com/images/5txKBK89Y.jpg",
+//       width: 3912,
+//       height: 2602,
+//     },
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "5 - 10", metric: "2 - 5" },
+//           id: "tang",
+//           name: "Turkish Angora",
+//           cfa_url: "http://cfa.org/Breeds/BreedsSthruT/TurkishAngora.aspx",
+//           vetstreet_url: "http://www.vetstreet.com/cats/turkish-angora",
+//           vcahospitals_url:
+//             "https://vcahospitals.com/know-your-pet/cat-breeds/turkish-angora",
+//           temperament:
+//             "Affectionate, Agile, Clever, Gentle, Intelligent, Playful, Social",
+//           origin: "Turkey",
+//           country_codes: "TR",
+//           country_code: "TR",
+//           description:
+//             "This is a smart and intelligent cat which bonds well with humans. With its affectionate and playful personality the Angora is a top choice for families. The Angora gets along great with other pets in the home, but it will make clear who is in charge, and who the house belongs to",
+//           life_span: "15 - 18",
+//           indoor: 0,
+//           alt_names: "Ankara",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 4,
+//           dog_friendly: 5,
+//           energy_level: 5,
+//           grooming: 2,
+//           health_issues: 2,
+//           intelligence: 5,
+//           shedding_level: 2,
+//           social_needs: 5,
+//           stranger_friendly: 5,
+//           vocalisation: 3,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 1,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/Turkish_Angora",
+//           hypoallergenic: 0,
+//           reference_image_id: "7CGV6WVXq",
+//         },
+//       ],
+//       id: "41Fe8q9vU",
+//       url: "https://cdn2.thecatapi.com/images/41Fe8q9vU.jpg",
+//       width: 1080,
+//       height: 1080,
+//     },
+//     {
+//       breeds: [
+//         {
+//           weight: { imperial: "5 - 10", metric: "2 - 5" },
+//           id: "tang",
+//           name: "Turkish Angora",
+//           cfa_url: "http://cfa.org/Breeds/BreedsSthruT/TurkishAngora.aspx",
+//           vetstreet_url: "http://www.vetstreet.com/cats/turkish-angora",
+//           vcahospitals_url:
+//             "https://vcahospitals.com/know-your-pet/cat-breeds/turkish-angora",
+//           temperament:
+//             "Affectionate, Agile, Clever, Gentle, Intelligent, Playful, Social",
+//           origin: "Turkey",
+//           country_codes: "TR",
+//           country_code: "TR",
+//           description:
+//             "This is a smart and intelligent cat which bonds well with humans. With its affectionate and playful personality the Angora is a top choice for families. The Angora gets along great with other pets in the home, but it will make clear who is in charge, and who the house belongs to",
+//           life_span: "15 - 18",
+//           indoor: 0,
+//           alt_names: "Ankara",
+//           adaptability: 5,
+//           affection_level: 5,
+//           child_friendly: 4,
+//           dog_friendly: 5,
+//           energy_level: 5,
+//           grooming: 2,
+//           health_issues: 2,
+//           intelligence: 5,
+//           shedding_level: 2,
+//           social_needs: 5,
+//           stranger_friendly: 5,
+//           vocalisation: 3,
+//           experimental: 0,
+//           hairless: 0,
+//           natural: 1,
+//           rare: 0,
+//           rex: 0,
+//           suppressed_tail: 0,
+//           short_legs: 0,
+//           wikipedia_url: "https://en.wikipedia.org/wiki/Turkish_Angora",
+//           hypoallergenic: 0,
+//           reference_image_id: "7CGV6WVXq",
+//         },
+//       ],
+//       id: "58mi0uCwO",
+//       url: "https://cdn2.thecatapi.com/images/58mi0uCwO.jpg",
+//       width: 1600,
+//       height: 1200,
+//     },
+//   ];
+
+//   async function fetchData() {
+//     // try {
+//     //   const response = await fetch(url);
+//     //   const data = await response.json();
+//     //   cats.push(...data);
+//     // } catch (err) {
+//     //   console.log(err.message);
+//     // }
+//   }
+
+//   function getCatsByTheLargestLifeSpan() {
+//     let highestAge = 0;
+//     let searchIndex;
+
+//     cats.forEach((cat, index) => {
+//       let catObject = cat.breeds[0];
+//       let lifeSpan = catObject["life_span"];
+
+//       let age = Number(lifeSpan.split("_")[1]);
+//       searchIndex = index;
+
+//       if (age > highestAge) {
+//         highestAge = age;
+//       }
+//     });
+
+//     const catsAsArray = [cats[searchIndex]];
+
+//     return catsAsArray;
+//   }
+
+//   function getAllCats(requestedAction) {
+//     console.log(requestedAction)
+//     requestedAction();
+//     return cats;
+//   }
+
+//   return { fetchData, getAllCats, getCatsByTheLargestLifeSpan };
+// }
+var catContext = /*#__PURE__*/function () {
+  function catContext() {
+    (0, _classCallCheck2.default)(this, catContext);
+    this.cats = [{
+      breeds: [{
+        weight: {
+          imperial: "8 - 18",
+          metric: "4 - 8"
+        },
+        id: "bslo",
+        name: "British Longhair",
+        temperament: "Affectionate, Easy Going, Independent, Intelligent, Loyal, Social",
+        origin: "United Kingdom",
+        country_codes: "GB",
+        country_code: "GB",
+        description: "The British Longhair is a very laid-back relaxed cat, often perceived to be very independent although they will enjoy the company of an equally relaxed and likeminded cat. They are an affectionate breed, but very much on their own terms and tend to prefer to choose to come and sit with their owners rather than being picked up.",
+        life_span: "12 - 14",
+        indoor: 0,
+        alt_names: "",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 4,
+        dog_friendly: 5,
+        energy_level: 4,
+        grooming: 5,
+        health_issues: 1,
+        intelligence: 5,
+        shedding_level: 1,
+        social_needs: 3,
+        stranger_friendly: 4,
+        vocalisation: 1,
+        experimental: 0,
+        hairless: 0,
+        natural: 0,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/British_Longhair",
+        hypoallergenic: 0,
+        reference_image_id: "7isAO4Cav"
+      }],
+      id: "JWOrjbhum",
+      url: "https://cdn2.thecatapi.com/images/JWOrjbhum.jpg",
+      width: 768,
+      height: 1024
+    }, {
+      breeds: [{
+        weight: {
+          imperial: "9 - 14",
+          metric: "4 - 6"
+        },
+        id: "pers",
+        name: "Persian",
+        cfa_url: "http://cfa.org/Breeds/BreedsKthruR/Persian.aspx",
+        vetstreet_url: "http://www.vetstreet.com/cats/persian",
+        vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/persian",
+        temperament: "Affectionate, loyal, Sedate, Quiet",
+        origin: "Iran (Persia)",
+        country_codes: "IR",
+        country_code: "IR",
+        description: "Persians are sweet, gentle cats that can be playful or quiet and laid-back. Great with families and children, they absolutely love to lounge around the house. While they don’t mind a full house or active kids, they’ll usually hide when they need some alone time.",
+        life_span: "14 - 15",
+        indoor: 0,
+        lap: 1,
+        alt_names: "Longhair, Persian Longhair, Shiraz, Shirazi",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 2,
+        dog_friendly: 2,
+        energy_level: 1,
+        grooming: 5,
+        health_issues: 3,
+        intelligence: 3,
+        shedding_level: 4,
+        social_needs: 4,
+        stranger_friendly: 2,
+        vocalisation: 1,
+        experimental: 0,
+        hairless: 0,
+        natural: 1,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/Persian_(cat)",
+        hypoallergenic: 0,
+        reference_image_id: "-Zfz5z2jK"
+      }],
+      id: "tSbM4vHB_",
+      url: "https://cdn2.thecatapi.com/images/tSbM4vHB_.png",
+      width: 4096,
+      height: 2304
+    }, {
+      breeds: [{
+        weight: {
+          imperial: "12 - 20",
+          metric: "5 - 9"
+        },
+        id: "ragd",
+        name: "Ragdoll",
+        cfa_url: "http://cfa.org/Breeds/BreedsKthruR/Ragdoll.aspx",
+        vetstreet_url: "http://www.vetstreet.com/cats/ragdoll",
+        vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/ragdoll",
+        temperament: "Affectionate, Friendly, Gentle, Quiet, Easygoing",
+        origin: "United States",
+        country_codes: "US",
+        country_code: "US",
+        description: "Ragdolls love their people, greeting them at the door, following them around the house, and leaping into a lap or snuggling in bed whenever given the chance. They are the epitome of a lap cat, enjoy being carried and collapsing into the arms of anyone who holds them.",
+        life_span: "12 - 17",
+        indoor: 0,
+        lap: 1,
+        alt_names: "Rag doll",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 4,
+        dog_friendly: 5,
+        energy_level: 3,
+        grooming: 2,
+        health_issues: 3,
+        intelligence: 3,
+        shedding_level: 3,
+        social_needs: 5,
+        stranger_friendly: 3,
+        vocalisation: 1,
+        experimental: 0,
+        hairless: 0,
+        natural: 0,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/Ragdoll",
+        hypoallergenic: 0,
+        reference_image_id: "oGefY4YoG"
+      }],
+      id: "UYLI_E-SZ",
+      url: "https://cdn2.thecatapi.com/images/UYLI_E-SZ.jpg",
+      width: 750,
+      height: 500
+    }, {
+      breeds: [{
+        weight: {
+          imperial: "12 - 20",
+          metric: "5 - 9"
+        },
+        id: "ragd",
+        name: "Ragdoll",
+        cfa_url: "http://cfa.org/Breeds/BreedsKthruR/Ragdoll.aspx",
+        vetstreet_url: "http://www.vetstreet.com/cats/ragdoll",
+        vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/ragdoll",
+        temperament: "Affectionate, Friendly, Gentle, Quiet, Easygoing",
+        origin: "United States",
+        country_codes: "US",
+        country_code: "US",
+        description: "Ragdolls love their people, greeting them at the door, following them around the house, and leaping into a lap or snuggling in bed whenever given the chance. They are the epitome of a lap cat, enjoy being carried and collapsing into the arms of anyone who holds them.",
+        life_span: "12 - 17",
+        indoor: 0,
+        lap: 1,
+        alt_names: "Rag doll",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 4,
+        dog_friendly: 5,
+        energy_level: 3,
+        grooming: 2,
+        health_issues: 3,
+        intelligence: 3,
+        shedding_level: 3,
+        social_needs: 5,
+        stranger_friendly: 3,
+        vocalisation: 1,
+        experimental: 0,
+        hairless: 0,
+        natural: 0,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/Ragdoll",
+        hypoallergenic: 0,
+        reference_image_id: "oGefY4YoG"
+      }],
+      id: "TnwHiS7nO",
+      url: "https://cdn2.thecatapi.com/images/TnwHiS7nO.jpg",
+      width: 1920,
+      height: 1080
+    }, {
+      breeds: [{
+        weight: {
+          imperial: "5 - 11",
+          metric: "2 - 5"
+        },
+        id: "sfol",
+        name: "Scottish Fold",
+        cfa_url: "http://cfa.org/Breeds/BreedsSthruT/ScottishFold.aspx",
+        vetstreet_url: "http://www.vetstreet.com/cats/scottish-fold-highland-fold",
+        vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/scottish-fold",
+        temperament: "Affectionate, Intelligent, Loyal, Playful, Social, Sweet, Loving",
+        origin: "United Kingdom",
+        country_codes: "GB",
+        country_code: "GB",
+        description: 'The Scottish Fold is a sweet, charming breed. She is an easy cat to live with and to care for. She is affectionate and is comfortable with all members of her family. Her tail should be handled gently. Folds are known for sleeping on their backs, and for sitting with their legs stretched out and their paws on their belly. This is called the "Buddha Position".',
+        life_span: "11 - 14",
+        indoor: 0,
+        alt_names: "Scot Fold",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 4,
+        dog_friendly: 5,
+        energy_level: 3,
+        grooming: 1,
+        health_issues: 4,
+        intelligence: 3,
+        shedding_level: 3,
+        social_needs: 3,
+        stranger_friendly: 3,
+        vocalisation: 1,
+        experimental: 0,
+        hairless: 0,
+        natural: 0,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/Scottish_Fold",
+        hypoallergenic: 0,
+        reference_image_id: "o9t0LDcsa"
+      }],
+      id: "JYLVJkyq_",
+      url: "https://cdn2.thecatapi.com/images/JYLVJkyq_.jpg",
+      width: 4330,
+      height: 2436
+    }, {
+      breeds: [{
+        weight: {
+          imperial: "5 - 11",
+          metric: "2 - 5"
+        },
+        id: "sfol",
+        name: "Scottish Fold",
+        cfa_url: "http://cfa.org/Breeds/BreedsSthruT/ScottishFold.aspx",
+        vetstreet_url: "http://www.vetstreet.com/cats/scottish-fold-highland-fold",
+        vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/scottish-fold",
+        temperament: "Affectionate, Intelligent, Loyal, Playful, Social, Sweet, Loving",
+        origin: "United Kingdom",
+        country_codes: "GB",
+        country_code: "GB",
+        description: 'The Scottish Fold is a sweet, charming breed. She is an easy cat to live with and to care for. She is affectionate and is comfortable with all members of her family. Her tail should be handled gently. Folds are known for sleeping on their backs, and for sitting with their legs stretched out and their paws on their belly. This is called the "Buddha Position".',
+        life_span: "11 - 14",
+        indoor: 0,
+        alt_names: "Scot Fold",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 4,
+        dog_friendly: 5,
+        energy_level: 3,
+        grooming: 1,
+        health_issues: 4,
+        intelligence: 3,
+        shedding_level: 3,
+        social_needs: 3,
+        stranger_friendly: 3,
+        vocalisation: 1,
+        experimental: 0,
+        hairless: 0,
+        natural: 0,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/Scottish_Fold",
+        hypoallergenic: 0,
+        reference_image_id: "o9t0LDcsa"
+      }],
+      id: "Tbc8_VStM",
+      url: "https://cdn2.thecatapi.com/images/Tbc8_VStM.jpg",
+      width: 1500,
+      height: 996
+    }, {
+      breeds: [{
+        weight: {
+          imperial: "5 - 11",
+          metric: "2 - 5"
+        },
+        id: "sfol",
+        name: "Scottish Fold",
+        cfa_url: "http://cfa.org/Breeds/BreedsSthruT/ScottishFold.aspx",
+        vetstreet_url: "http://www.vetstreet.com/cats/scottish-fold-highland-fold",
+        vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/scottish-fold",
+        temperament: "Affectionate, Intelligent, Loyal, Playful, Social, Sweet, Loving",
+        origin: "United Kingdom",
+        country_codes: "GB",
+        country_code: "GB",
+        description: 'The Scottish Fold is a sweet, charming breed. She is an easy cat to live with and to care for. She is affectionate and is comfortable with all members of her family. Her tail should be handled gently. Folds are known for sleeping on their backs, and for sitting with their legs stretched out and their paws on their belly. This is called the "Buddha Position".',
+        life_span: "11 - 14",
+        indoor: 0,
+        alt_names: "Scot Fold",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 4,
+        dog_friendly: 5,
+        energy_level: 3,
+        grooming: 1,
+        health_issues: 4,
+        intelligence: 3,
+        shedding_level: 3,
+        social_needs: 3,
+        stranger_friendly: 3,
+        vocalisation: 1,
+        experimental: 0,
+        hairless: 0,
+        natural: 0,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/Scottish_Fold",
+        hypoallergenic: 0,
+        reference_image_id: "o9t0LDcsa"
+      }],
+      id: "o9t0LDcsa",
+      url: "https://cdn2.thecatapi.com/images/o9t0LDcsa.jpg",
+      width: 1920,
+      height: 1440
+    }, {
+      breeds: [{
+        weight: {
+          imperial: "5 - 11",
+          metric: "2 - 5"
+        },
+        id: "sfol",
+        name: "Scottish Fold",
+        cfa_url: "http://cfa.org/Breeds/BreedsSthruT/ScottishFold.aspx",
+        vetstreet_url: "http://www.vetstreet.com/cats/scottish-fold-highland-fold",
+        vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/scottish-fold",
+        temperament: "Affectionate, Intelligent, Loyal, Playful, Social, Sweet, Loving",
+        origin: "United Kingdom",
+        country_codes: "GB",
+        country_code: "GB",
+        description: 'The Scottish Fold is a sweet, charming breed. She is an easy cat to live with and to care for. She is affectionate and is comfortable with all members of her family. Her tail should be handled gently. Folds are known for sleeping on their backs, and for sitting with their legs stretched out and their paws on their belly. This is called the "Buddha Position".',
+        life_span: "11 - 14",
+        indoor: 0,
+        alt_names: "Scot Fold",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 4,
+        dog_friendly: 5,
+        energy_level: 3,
+        grooming: 1,
+        health_issues: 4,
+        intelligence: 3,
+        shedding_level: 3,
+        social_needs: 3,
+        stranger_friendly: 3,
+        vocalisation: 1,
+        experimental: 0,
+        hairless: 0,
+        natural: 0,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/Scottish_Fold",
+        hypoallergenic: 0,
+        reference_image_id: "o9t0LDcsa"
+      }],
+      id: "5txKBK89Y",
+      url: "https://cdn2.thecatapi.com/images/5txKBK89Y.jpg",
+      width: 3912,
+      height: 2602
+    }, {
+      breeds: [{
+        weight: {
+          imperial: "5 - 10",
+          metric: "2 - 5"
+        },
+        id: "tang",
+        name: "Turkish Angora",
+        cfa_url: "http://cfa.org/Breeds/BreedsSthruT/TurkishAngora.aspx",
+        vetstreet_url: "http://www.vetstreet.com/cats/turkish-angora",
+        vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/turkish-angora",
+        temperament: "Affectionate, Agile, Clever, Gentle, Intelligent, Playful, Social",
+        origin: "Turkey",
+        country_codes: "TR",
+        country_code: "TR",
+        description: "This is a smart and intelligent cat which bonds well with humans. With its affectionate and playful personality the Angora is a top choice for families. The Angora gets along great with other pets in the home, but it will make clear who is in charge, and who the house belongs to",
+        life_span: "15 - 18",
+        indoor: 0,
+        alt_names: "Ankara",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 4,
+        dog_friendly: 5,
+        energy_level: 5,
+        grooming: 2,
+        health_issues: 2,
+        intelligence: 5,
+        shedding_level: 2,
+        social_needs: 5,
+        stranger_friendly: 5,
+        vocalisation: 3,
+        experimental: 0,
+        hairless: 0,
+        natural: 1,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/Turkish_Angora",
+        hypoallergenic: 0,
+        reference_image_id: "7CGV6WVXq"
+      }],
+      id: "41Fe8q9vU",
+      url: "https://cdn2.thecatapi.com/images/41Fe8q9vU.jpg",
+      width: 1080,
+      height: 1080
+    }, {
+      breeds: [{
+        weight: {
+          imperial: "5 - 10",
+          metric: "2 - 5"
+        },
+        id: "tang",
+        name: "Turkish Angora",
+        cfa_url: "http://cfa.org/Breeds/BreedsSthruT/TurkishAngora.aspx",
+        vetstreet_url: "http://www.vetstreet.com/cats/turkish-angora",
+        vcahospitals_url: "https://vcahospitals.com/know-your-pet/cat-breeds/turkish-angora",
+        temperament: "Affectionate, Agile, Clever, Gentle, Intelligent, Playful, Social",
+        origin: "Turkey",
+        country_codes: "TR",
+        country_code: "TR",
+        description: "This is a smart and intelligent cat which bonds well with humans. With its affectionate and playful personality the Angora is a top choice for families. The Angora gets along great with other pets in the home, but it will make clear who is in charge, and who the house belongs to",
+        life_span: "15 - 18",
+        indoor: 0,
+        alt_names: "Ankara",
+        adaptability: 5,
+        affection_level: 5,
+        child_friendly: 4,
+        dog_friendly: 5,
+        energy_level: 5,
+        grooming: 2,
+        health_issues: 2,
+        intelligence: 5,
+        shedding_level: 2,
+        social_needs: 5,
+        stranger_friendly: 5,
+        vocalisation: 3,
+        experimental: 0,
+        hairless: 0,
+        natural: 1,
+        rare: 0,
+        rex: 0,
+        suppressed_tail: 0,
+        short_legs: 0,
+        wikipedia_url: "https://en.wikipedia.org/wiki/Turkish_Angora",
+        hypoallergenic: 0,
+        reference_image_id: "7CGV6WVXq"
+      }],
+      id: "58mi0uCwO",
+      url: "https://cdn2.thecatapi.com/images/58mi0uCwO.jpg",
+      width: 1600,
+      height: 1200
+    }];
   }
-  function _fetchData() {
-    _fetchData = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var response, data;
-      return _regenerator.default.wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
-          case 0:
-            _context.prev = 0;
-            _context.next = 3;
-            return fetch(url);
-          case 3:
-            response = _context.sent;
-            _context.next = 6;
-            return response.json();
-          case 6:
-            data = _context.sent;
-            cats.push.apply(cats, (0, _toConsumableArray2.default)(data));
-            _context.next = 13;
-            break;
-          case 10:
-            _context.prev = 10;
-            _context.t0 = _context["catch"](0);
-            console.log(_context.t0.message);
-          case 13:
-          case "end":
-            return _context.stop();
+  return (0, _createClass2.default)(catContext, [{
+    key: "fetchData",
+    value: function fetchData() {
+      // try {
+      //   const response = await fetch(url);
+      //   const data = await response.json();
+      //   cats.push(...data);
+      // } catch (err) {
+      //   console.log(err.message);
+      // }
+    }
+  }, {
+    key: "getCatsByTheLargestLifeSpan",
+    value: function getCatsByTheLargestLifeSpan() {
+      var highestAge = 0;
+      var searchIndex;
+      console.log(this.cats);
+      this.cats.forEach(function (cat, index) {
+        var catObject = cat.breeds[0];
+        var lifeSpan = catObject["life_span"];
+        var age = Number(lifeSpan.split("_")[1]);
+        searchIndex = index;
+        if (age > highestAge) {
+          highestAge = age;
         }
-      }, _callee, null, [[0, 10]]);
-    }));
-    return _fetchData.apply(this, arguments);
-  }
-  function getCats() {
-    return cats;
-  }
-  return {
-    fetchData: fetchData,
-    getCats: getCats
-  };
-}
+      });
+      var catsAsArray = [this.cats[searchIndex]];
+      return catsAsArray;
+    }
+  }, {
+    key: "getAllCats",
+    value: function getAllCats() {
+      fetchData();
+      return this.cats;
+    }
+  }]);
+}();
 var _default = exports.default = catContext;
-},{"@babel/runtime-corejs2/helpers/toConsumableArray":"../node_modules/@babel/runtime-corejs2/helpers/toConsumableArray.js","@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js"}],"../src/components/layout/Main.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/helpers/classCallCheck":"../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js","@babel/runtime-corejs2/helpers/createClass":"../node_modules/@babel/runtime-corejs2/helpers/createClass.js"}],"../src/components/layout/Main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3031,29 +3947,24 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime-corejs2/helpers/asyncToGenerator"));
 var _regenerator = _interopRequireDefault(require("@babel/runtime-corejs2/regenerator"));
-var _fetchData = _interopRequireDefault(require("../../services/fetchData"));
 var _createCat = _interopRequireDefault(require("../../utils/createCat"));
 var _createCard = _interopRequireDefault(require("../../utils/createCard"));
 var _createLayout = _interopRequireDefault(require("../../utils/createLayout"));
 var _createDescription = _interopRequireDefault(require("../../utils/createDescription"));
-var _findTheLargestLifeSpan = _interopRequireDefault(require("../../functions/findTheLargestLifeSpan"));
 var _catContext = _interopRequireDefault(require("../../contexts/catContext"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 var Main = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
-    var catManager, data, dataObjects, cards, descriptions, result, findTheLargestLifeSpanButton;
+    var context, functionMapper, data, dataObjects, cards, descriptions, result, findTheLargestLifeSpanButton;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          // const data = await fetchData(
-          //   "https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1&api_key=live_tsajPiuraUElbMg02ZXoB0xjlNtutoamS75kWTdQKYQ3pHWnaWAuRjw8MRcX98oD&breed_ids=acur&breed_ids=pers&breed_ids=bslo&breed_ids=birm&breed_ids=sfol&breed_ids=ragd&breed_ids=tang"
-          // );
-          catManager = (0, _catContext.default)();
-          _context.next = 3;
-          return catManager.fetchData();
-        case 3:
-          data = catManager.getCats();
-          console.log(data);
+          context = new _catContext.default();
+          functionMapper = {
+            getAll: context.getAllCats.bind(context),
+            getByLifeSpan: context.getCatsByTheLargestLifeSpan.bind(context)
+          };
+          data = functionMapper.getByLifeSpan();
           dataObjects = data.map(function (el) {
             return (0, _createCat.default)(el);
           });
@@ -3062,14 +3973,14 @@ var Main = /*#__PURE__*/function () {
           result = (0, _createLayout.default)(cards, descriptions);
           findTheLargestLifeSpanButton = document.createElement("button");
           findTheLargestLifeSpanButton.textContent = "findTheLargestLifeSpanButton";
-          findTheLargestLifeSpanButton.addEventListener("click", (0, _findTheLargestLifeSpan.default)(function () {
-            return dataObjects;
-          }));
+          findTheLargestLifeSpanButton.addEventListener("click", function () {
+            return updateRequestedAction(catManager.getCatsByTheLargestLifeSpan);
+          });
           return _context.abrupt("return", {
             result: result,
             findTheLargestLifeSpanButton: findTheLargestLifeSpanButton
           });
-        case 13:
+        case 11:
         case "end":
           return _context.stop();
       }
@@ -3080,7 +3991,7 @@ var Main = /*#__PURE__*/function () {
   };
 }();
 var _default = exports.default = Main;
-},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","../../services/fetchData":"../src/services/fetchData.js","../../utils/createCat":"../src/utils/createCat.js","../../utils/createCard":"../src/utils/createCard.js","../../utils/createLayout":"../src/utils/createLayout.js","../../utils/createDescription":"../src/utils/createDescription.js","../../functions/findTheLargestLifeSpan":"../src/functions/findTheLargestLifeSpan.js","../../contexts/catContext":"../src/contexts/catContext.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"@babel/runtime-corejs2/helpers/asyncToGenerator":"../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js","@babel/runtime-corejs2/regenerator":"../node_modules/@babel/runtime-corejs2/regenerator/index.js","../../utils/createCat":"../src/utils/createCat.js","../../utils/createCard":"../src/utils/createCard.js","../../utils/createLayout":"../src/utils/createLayout.js","../../utils/createDescription":"../src/utils/createDescription.js","../../contexts/catContext":"../src/contexts/catContext.js"}],"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -3158,14 +4069,13 @@ var app = /*#__PURE__*/function () {
           _yield$Main = _context.sent;
           result = _yield$Main.result;
           findTheLargestLifeSpanButton = _yield$Main.findTheLargestLifeSpanButton;
-          console.log(findTheLargestLifeSpanButton);
           mainContainer.appendChild(result);
           mainContainer.appendChild(findTheLargestLifeSpanButton);
 
           // result.forEach((img) => {
           //   mainContainer.appendChild(img);
           // });
-        case 10:
+        case 9:
         case "end":
           return _context.stop();
       }
@@ -3201,7 +4111,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49323" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49247" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
