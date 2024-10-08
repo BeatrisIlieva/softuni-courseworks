@@ -9,7 +9,8 @@ class Flower:
             self.is_happy = True
 
     def status(self) -> str:
-        return f"{self.name} is happy" if self.is_happy else f"{self.name} is not happy"
+        return f"{self.name} is {'' if self.is_happy else 'not '}happy"
+
 
 flower = Flower("Lilly", 100)
 flower.water(50)
