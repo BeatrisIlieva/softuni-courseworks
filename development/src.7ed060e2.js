@@ -3932,7 +3932,7 @@ var catContext = /*#__PURE__*/function () {
   }, {
     key: "getAllCats",
     value: function getAllCats() {
-      fetchData();
+      this.fetchData();
       return this.cats;
     }
   }]);
@@ -3964,7 +3964,7 @@ var Main = /*#__PURE__*/function () {
             getAll: context.getAllCats.bind(context),
             getByLifeSpan: context.getCatsByTheLargestLifeSpan.bind(context)
           };
-          data = functionMapper.getByLifeSpan();
+          data = functionMapper.getAll();
           dataObjects = data.map(function (el) {
             return (0, _createCat.default)(el);
           });

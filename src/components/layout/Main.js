@@ -14,7 +14,11 @@ const Main = async () => {
     getByLifeSpan: context.getCatsByTheLargestLifeSpan.bind(context),
   };
 
-  const data = functionMapper.getByLifeSpan();
+  let data;
+
+  if (!Array.isArray(data)) {
+    data.push(functionMapper.getAll());
+  }
 
   const dataObjects = data.map((el) => {
     return createCat(el);

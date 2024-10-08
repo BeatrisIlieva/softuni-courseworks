@@ -1031,20 +1031,20 @@ class catContext {
     ];
   }
 
-  fetchData() {
-    // try {
-    //   const response = await fetch(url);
-    //   const data = await response.json();
-    //   cats.push(...data);
-    // } catch (err) {
-    //   console.log(err.message);
-    // }
+  async fetchData() {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      cats.push(...data);
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
-  getCatsByTheLargestLifeSpan () {
+  getCatsByTheLargestLifeSpan() {
     let highestAge = 0;
     let searchIndex;
-     console.log(this.cats)
+    console.log(this.cats);
 
     this.cats.forEach((cat, index) => {
       let catObject = cat.breeds[0];
@@ -1063,8 +1063,8 @@ class catContext {
     return catsAsArray;
   }
 
-  getAllCats() {
-    fetchData();
+  async getAllCats() {
+    await this.fetchData();
 
     return this.cats;
   }
