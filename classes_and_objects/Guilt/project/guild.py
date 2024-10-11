@@ -41,4 +41,3 @@ guild = Guild("UGT")
 print(guild.assign_player(player))
 print(guild.guild_info())
 
-Ï
