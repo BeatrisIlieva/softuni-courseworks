@@ -50,3 +50,4 @@ print(album.add_photo("wedding"))
 print(album.display())
 
 
+from __future__ import annotations
