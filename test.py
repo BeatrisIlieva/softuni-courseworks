@@ -1,1 +1,5 @@
-print(2 % 4)
+mydict = {"A": 1}
+
+for key in mydict:
+    print(key)
+    print(mydict[key])
