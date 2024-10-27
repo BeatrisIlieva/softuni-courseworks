@@ -17,5 +17,10 @@ class TestMammal(TestCase):
         self.assertEqual("some sound", self.mammal.sound)
         self.assertEqual("animals", self.mammal._Mammal__kingdom)
 
+    def test_makes_correct_sound(self):
+        result = self.mammal.make_sound()
+
+        self.assertEqual("some name makes some sound", result)
+
 if __name__ == "__main__":
     main()
