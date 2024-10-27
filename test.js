@@ -1,11 +1,9 @@
+function mather(){
+    child()
 
-
-function change_result(){
-    a = 6
-    console.log(a)
+    function child(){
+        console.log("child")
+    }
 }
 
-let a = 5
-
-change_result()
-console.log(a)
+mather()
