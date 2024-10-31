@@ -1,7 +1,7 @@
 ALTER TABLE 
 	countries
 ADD COLUMN 
-	capital_code VARCHAR(2);
+	capital_code CHAR(2);
 
 UPDATE
 	countries
