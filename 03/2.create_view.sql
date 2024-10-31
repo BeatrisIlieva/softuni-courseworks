@@ -1,3 +1,5 @@
+DROP VIEW view_continents_countries_currencies_details;
+
 CREATE OR REPLACE VIEW
 	view_continents_countries_currencies_details
 AS
@@ -24,8 +26,12 @@ FROM
 	continents AS con,
 	countries AS cou,
 	currencies AS cur
+WHERE
+	cou.continent_code = con.continent_code
+				AND
+	cou.currency_code = cur.currency_code
 ORDER BY
 	country_information ASC,
 	currencies ASC;
 	
-SELECT * FROM view_continents_countries_currencies_details
+SELECT * FROM view_continents_countries_currencies_details;
