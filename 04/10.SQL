@@ -1,3 +1,5 @@
+CREATE OR REPLACE VIEW view_wizard_deposits_with_expiration_date_before_1983_08_17
+AS
 SELECT
 	CONCAT_WS(
 		' ',
@@ -18,3 +20,8 @@ GROUP BY
 	deposit_amount
 ORDER BY
 	deposit_expiration_date ASC;
+	
+SELECT * FROM view_wizard_deposits_with_expiration_date_before_1983_08_17;
+
+
+
