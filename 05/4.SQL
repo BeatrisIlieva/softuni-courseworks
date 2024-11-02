@@ -18,7 +18,7 @@ CREATE TABLE production_years (
 	established_on DATE,
 	manufacturer_id INT,
 	
-	CONSTRAINT fk_production_years
+	CONSTRAINT fk_production_years_manufacturers
 	FOREIGN KEY (manufacturer_id)
 	REFERENCES manufacturers(id)
 );
