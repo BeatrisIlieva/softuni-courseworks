@@ -13,3 +13,5 @@ FROM
 	wizard_deposits
 GROUP BY
 	"Age Group"
+ORDER BY
+	"Age Group" ASC
