@@ -1,3 +1,6 @@
+CREATE VIEW 
+	view_performance_rating
+AS
 SELECT
 	first_name,
 	last_name,
@@ -11,5 +14,7 @@ SELECT
 				ELSE 'High-performing Employee'
 			END
 		ELSE 'Average_performing'
-	END AS performence_rating
+	END AS performance_rating
 FROM employees;
+
+SELECT * FROM view_performance_rating;
