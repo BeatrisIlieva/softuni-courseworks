@@ -6,6 +6,6 @@ FROM
 JOIN
 	apartments AS a
 USING
-	(apartment_id)
+	(booking_id)
 ORDER BY 
 	a.apartment_id ASC
