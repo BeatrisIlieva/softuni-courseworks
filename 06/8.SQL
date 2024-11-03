@@ -12,4 +12,4 @@ WHERE
 GROUP BY
 	mc.country_code
 ORDER BY
-	country_code ASC
+	mountain_range_count DESC;
