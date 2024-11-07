@@ -32,14 +32,7 @@ lab = [list(input()) for _ in range(rows)]
 find_all_paths_in_a_labyrinth(0, 0, lab, "", [])
 
 # 3
-# 4
-# ----
-# -*--
-# --e-
-
-
 # 3
-# 4
-# ----
-# -*--
-# --e-
+# ---
+# -*-
+# --e
