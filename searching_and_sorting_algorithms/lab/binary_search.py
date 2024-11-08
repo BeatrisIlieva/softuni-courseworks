@@ -1,5 +1,3 @@
-# 1 2 3 4 5 6 7
-
 def binary_search(array, target):
     left_idx = 0
     right_idx = len(array) - 1
@@ -8,13 +6,13 @@ def binary_search(array, target):
         mid_idx = (left_idx + right_idx) // 2
         mid_el = array[mid_idx]
 
-        if mid_el == target:
+        if target == mid_el:
             return mid_idx
 
         if target < mid_el:
-            right_idx = mid_idx - 1
+            right_idx -= 1
         else:
-            left_idx = mid_idx + 1
+            left_idx += 1
 
     return -1
 
