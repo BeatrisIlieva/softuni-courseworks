@@ -42,3 +42,10 @@ print(f"Total areas found: {len(areas)}")
 
 for idx, area in enumerate(sorted(areas, key=lambda x: -x.size)):
     print(f"Area #{idx + 1} at ({area.row}, {area.col}), size: {area.size}")
+
+
+# 3
+# 8
+# --*---*-
+# --*---*-
+# ---*-*--
