@@ -7,7 +7,9 @@ django.setup()
 
 from decimal import Decimal
 
-from main_app.models import Pet, Artifact, Location, Car
+from django.db.models import F
+
+from main_app.models import Pet, Artifact, Location, Car, Task
 
 
 def create_pet(name: str, species: str):
@@ -31,8 +33,7 @@ def create_artifact(
 
 
 def rename_artifact(artifact: Artifact, new_name: str):
-
-    Artifact.objects.filter(pk=artifact.pk, is_magical=True, age__gt=250).update(
+    Artifact.objects.filter(is_magical=True, age__gt=250, pk=artifact.pk).update(
         name=new_name
     )
 
@@ -93,3 +94,32 @@ def get_recent_cars():
 
 def delete_last_car():
     Car.objects.last().delete()
+    
+    
+def show_unfinished_tasks():
+    tasks = Task.objects.filter(is_finished=False)
+    
+    return "\n".join([
+        f"Task - {x.title} needs to be done until {x.due_date}!"
+        for x in tasks
+    ])
+
+def complete_odd_tasks():
+    tasks = Task.objects.all()
+    
+    for task in tasks:
+        if task.pk % 2 != 0:
+            task.is_finished = True
+            
+    Task.objects.bulk_update(tasks, ["is_finished"])
+    
+def encode_and_replace(text: str, task_title: str):
+    tasks = Task.objects.filter(title=task_title)
+    
+    for task in tasks:
+        task.description = "".join([chr(ord(char) - 3) for char in text])
+        
+    Task.objects.bulk_update(tasks, ["description"])
+        
+
+        

@@ -26,6 +26,8 @@ class Artifact(models.Model):
 
     is_magical = models.BooleanField(
         default=False,
+        null=True,
+        blank=True
     )
 
 
@@ -69,4 +71,17 @@ class Car(models.Model):
         default=0,
         null=True,
         blank=True,
+    )
+    
+class Task(models.Model):
+    title = models.CharField(
+        max_length=25,
+    )
+    
+    description = models.TextField()
+    
+    due_date = models.DateField()
+    
+    is_finished = models.BooleanField(
+        default=False,
     )
