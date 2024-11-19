@@ -125,11 +125,13 @@ def encode_and_replace(text: str, task_title: str):
 
 def get_deluxe_rooms():
     rooms = HotelRoom.objects.filter(room_type="Deluxe")
+    
+    even_rooms = [x for x in rooms if x.pk % 2 == 0]
 
     return "\n".join(
         [
             f"Deluxe room with number {r.room_number} costs {r.price_per_night}$ per night!"
-            for r in rooms
+            for r in even_rooms
         ]
     )
 
