@@ -24,11 +24,7 @@ class Artifact(models.Model):
 
     description = models.TextField()
 
-    is_magical = models.BooleanField(
-        default=False,
-        null=True,
-        blank=True
-    )
+    is_magical = models.BooleanField(default=False, null=True, blank=True)
 
 
 class Location(models.Model):
@@ -72,16 +68,45 @@ class Car(models.Model):
         null=True,
         blank=True,
     )
-    
+
+
 class Task(models.Model):
     title = models.CharField(
         max_length=25,
     )
-    
+
     description = models.TextField()
-    
+
     due_date = models.DateField()
-    
+
     is_finished = models.BooleanField(
+        default=False,
+    )
+
+
+class HotelRoom(models.Model):
+    ROOM_TYPE_CHOICES = (
+        ("Standard", "Standard"),
+        ("Deluxe", "Deluxe"),
+        ("Suite", "Suite"),
+    )
+    
+    room_number = models.PositiveIntegerField()
+
+    room_type = models.CharField(
+        max_length=10,
+        choices=ROOM_TYPE_CHOICES,
+    )
+
+    capacity = models.PositiveIntegerField()
+
+    amenities = models.TextField()
+
+    price_per_night = models.DecimalField(
+        max_digits=8,
+        decimal_places=2,
+    )
+
+    is_reserved = models.BooleanField(
         default=False,
     )

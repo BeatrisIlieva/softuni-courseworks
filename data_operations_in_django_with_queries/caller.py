@@ -9,7 +9,7 @@ from decimal import Decimal
 
 from django.db.models import F
 
-from main_app.models import Pet, Artifact, Location, Car, Task
+from main_app.models import Pet, Artifact, Location, Car, Task, HotelRoom
 
 
 def create_pet(name: str, species: str):
@@ -94,32 +94,79 @@ def get_recent_cars():
 
 def delete_last_car():
     Car.objects.last().delete()
-    
-    
+
+
 def show_unfinished_tasks():
     tasks = Task.objects.filter(is_finished=False)
-    
-    return "\n".join([
-        f"Task - {x.title} needs to be done until {x.due_date}!"
-        for x in tasks
-    ])
+
+    return "\n".join(
+        [f"Task - {x.title} needs to be done until {x.due_date}!" for x in tasks]
+    )
+
 
 def complete_odd_tasks():
     tasks = Task.objects.all()
-    
+
     for task in tasks:
         if task.pk % 2 != 0:
             task.is_finished = True
-            
+
     Task.objects.bulk_update(tasks, ["is_finished"])
-    
+
+
 def encode_and_replace(text: str, task_title: str):
     tasks = Task.objects.filter(title=task_title)
-    
+
     for task in tasks:
         task.description = "".join([chr(ord(char) - 3) for char in text])
-        
-    Task.objects.bulk_update(tasks, ["description"])
-        
 
-        
+    Task.objects.bulk_update(tasks, ["description"])
+
+
+def get_deluxe_rooms():
+    rooms = HotelRoom.objects.filter(room_type="Deluxe")
+
+    return "\n".join(
+        [
+            f"Deluxe room with number {r.room_number} costs {r.price_per_night}$ per night!"
+            for r in rooms
+        ]
+    )
+
+
+def increase_room_capacity():
+    rooms = HotelRoom.objects.all().order_by("pk")
+
+    index = 0
+
+    previous_room_capacity = 0
+
+    for room in rooms:
+        if not room.is_reserved:
+            continue
+
+        if index == 0:
+            room.capacity += room.pk
+            index = 1
+
+        else:
+            room.capacity += previous_room_capacity
+
+        previous_room_capacity += room.capacity
+
+    HotelRoom.objects.bulk_update(rooms, ["capacity"])
+
+
+def reserve_first_room():
+    room = HotelRoom.objects.first()
+
+    room.is_reserved = True
+
+    room.save()
+
+
+def delete_last_room():
+    room = HotelRoom.objects.last()
+
+    if not room.is_reserved:
+        room.delete()
