@@ -31,9 +31,10 @@ def create_artifact(
 
 
 def rename_artifact(artifact: Artifact, new_name: str):
-    if artifact.is_magical and artifact.age > 250:
-        artifact.name = new_name
-        artifact.save()
+
+    Artifact.objects.filter(pk=artifact.pk, is_magical=True, age__gt=250).update(
+        name=new_name
+    )
 
 
 def delete_all_artifacts():
@@ -71,6 +72,8 @@ def delete_first_location():
 def apply_discount():
     all_cars = Car.objects.all()
 
+    updated_cars = []
+
     for car in all_cars:
         year = str(car.year)
         discount = sum(int(d) for d in year)
@@ -79,7 +82,9 @@ def apply_discount():
 
         car.price_with_discount = Decimal(car.price - discount_percentage)
 
-        car.save()
+        updated_cars.append(car)
+
+    Car.objects.bulk_update(updated_cars, ["price_with_discount"])
 
 
 def get_recent_cars():
