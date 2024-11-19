@@ -24,9 +24,18 @@ def create_artifact(
         description=description,
         is_magical=is_magical,
     )
-    
+
     return f"The artifact {artifact.name} is {artifact.age} years old!"
+
+
+def rename_artifact(artifact: Artifact, new_name: str):
+    if artifact.is_magical and artifact.age >= 250:
+        artifact.name=new_name
+        artifact.save()
+
 
 def delete_all_artifacts():
     Artifact.objects.all().delete()
-    
+
+
+
