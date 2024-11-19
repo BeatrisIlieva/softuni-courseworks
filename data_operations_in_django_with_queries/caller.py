@@ -5,7 +5,9 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-from main_app.models import Pet, Artifact, Location
+from decimal import Decimal
+
+from main_app.models import Pet, Artifact, Location, Car
 
 
 def create_pet(name: str, species: str):
@@ -64,3 +66,25 @@ def delete_first_location():
 
     if location:
         location.delete()
+
+
+def apply_discount():
+    all_cars = Car.objects.all()
+
+    for car in all_cars:
+        year = str(car.year)
+        discount = sum(int(d) for d in year)
+
+        discount_percentage = car.price * Decimal(discount / 100)
+
+        car.price_with_discount = Decimal(car.price - discount_percentage)
+
+        car.save()
+
+
+def get_recent_cars():
+    return Car.objects.filter(year__gt=2020).values("model", "price_with_discount")
+
+
+def delete_last_car():
+    Car.objects.last().delete()
