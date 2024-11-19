@@ -7,9 +7,9 @@ django.setup()
 
 from decimal import Decimal
 
-from django.db.models import F
+from django.db.models import F, Case, When, Value, Q
 
-from main_app.models import Pet, Artifact, Location, Car, Task, HotelRoom
+from main_app.models import Pet, Artifact, Location, Car, Task, HotelRoom, Character
 
 
 def create_pet(name: str, species: str):
@@ -125,7 +125,7 @@ def encode_and_replace(text: str, task_title: str):
 
 def get_deluxe_rooms():
     rooms = HotelRoom.objects.filter(room_type="Deluxe")
-    
+
     even_rooms = [x for x in rooms if x.pk % 2 == 0]
 
     return "\n".join(
@@ -166,3 +166,58 @@ def delete_last_room():
 
     if not room.is_reserved:
         room.delete()
+
+
+def update_characters():
+    Character.objects.filter(class_name="Mage").update(
+        level=F("level") + 3, intelligence=F("intelligence") - 7
+    )
+
+    Character.objects.filter(class_name="Warrior").update(
+        hit_points=F("hit_points") / 2, dexterity=F("dexterity") + 4
+    )
+
+    Character.objects.filter(Q(class_name="Assassin") | Q(class_name="Scout")).update(
+        inventory="The inventory is empty"
+    )
+
+
+def fuse_characters(first_character: Character, second_character: Character):
+    Character.objects.create(
+        name=first_character.name + " " + second_character.name,
+        class_name="Fusion",
+        level=abs(int(first_character.level + second_character.level // 2)),
+        strength=abs(int(first_character.strength + second_character.strength * 1.2)),
+        dexterity=abs(
+            int(first_character.dexterity + second_character.dexterity * 1.4)
+        ),
+        intelligence=abs(
+            int(first_character.intelligence + second_character.intelligence * 1.5)
+        ),
+        hit_points=first_character.hit_points + second_character.hit_points,
+        inventory=Case(
+            When(
+                Q(first_character__class_name="Mage")
+                    | 
+                Q(first_character__class_name="Scout"),
+                then=Value("Bow of the Elven Lords, Amulet of Eternal Wisdom"),
+            ),
+            When(
+                Q(first_character__class_name="Warrior")
+                    |
+                Q(first_character__class_name="Assassin"),
+                then=Value("Dragon Scale Armor, Excalibur")
+            )
+        ),
+    )
+    
+    first_character.delete()
+    second_character.delete()
+
+first_character = Character.objects.get(pk=1)
+second_character= Character.objects.get(pk=2)
+
+fuse_characters(first_character, second_character)
+# Character.objects.create(name="name2", class_name="Assassin", level=1, strength=50, dexterity=50, intelligence=50, hit_points=50, inventory="inventory")
+
+

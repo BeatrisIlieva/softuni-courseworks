@@ -90,7 +90,7 @@ class HotelRoom(models.Model):
         ("Deluxe", "Deluxe"),
         ("Suite", "Suite"),
     )
-    
+
     room_number = models.PositiveIntegerField()
 
     room_type = models.CharField(
@@ -110,3 +110,33 @@ class HotelRoom(models.Model):
     is_reserved = models.BooleanField(
         default=False,
     )
+
+
+class Character(models.Model):
+    CLASS_NAME_CHOICES = (
+        ("Mage", "Mage"),
+        ("Warrior", "Warrior"),
+        ("Assassin", "Assassin"),
+        ("Scout", "Scout"),
+    )
+
+    name = models.CharField(
+        max_length=100,
+    )
+
+    class_name = models.CharField(
+        max_length=20,
+        choices=CLASS_NAME_CHOICES,
+    )
+
+    level = models.PositiveIntegerField()
+
+    strength = models.PositiveIntegerField()
+
+    dexterity = models.PositiveIntegerField()
+
+    intelligence = models.PositiveIntegerField()
+
+    hit_points = models.PositiveIntegerField()
+
+    inventory = models.TextField()
