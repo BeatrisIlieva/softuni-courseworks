@@ -142,7 +142,7 @@ def increase_room_capacity():
     previous_room_capacity = 0
 
     for room in rooms:
-        if not room.is_reserved:
+        if room.is_reserved:
             if previous_room_capacity > 0:
                 room.capacity += previous_room_capacity
             else:
