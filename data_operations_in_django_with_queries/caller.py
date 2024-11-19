@@ -5,7 +5,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-from main_app.models import Pet, Artifact
+from main_app.models import Pet, Artifact, Location
 
 
 def create_pet(name: str, species: str):
@@ -29,8 +29,8 @@ def create_artifact(
 
 
 def rename_artifact(artifact: Artifact, new_name: str):
-    if artifact.is_magical and artifact.age >= 250:
-        artifact.name=new_name
+    if artifact.is_magical and artifact.age > 250:
+        artifact.name = new_name
         artifact.save()
 
 
@@ -38,4 +38,29 @@ def delete_all_artifacts():
     Artifact.objects.all().delete()
 
 
+def show_all_locations():
+    locations = Location.objects.all().order_by("-id")
 
+    return "\n".join(
+        [f"{x.name} has a population of {x.population}!" for x in locations]
+    )
+
+
+def new_capital():
+
+    location = Location.objects.all().order_by("id").first()
+
+    if location:
+        location.is_capital = True
+        location.save()
+
+
+def get_capitals():
+    return Location.objects.filter(is_capital=True).values("name")
+
+
+def delete_first_location():
+    location = Location.objects.all().order_by("id").first()
+
+    if location:
+        location.delete()
