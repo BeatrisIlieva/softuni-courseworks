@@ -139,20 +139,14 @@ def get_deluxe_rooms():
 def increase_room_capacity():
     rooms = HotelRoom.objects.all().order_by("pk")
 
-    index = 0
-
     previous_room_capacity = 0
 
     for room in rooms:
         if not room.is_reserved:
-            continue
-
-        if index == 0:
-            room.capacity += room.pk
-            index = 1
-
-        else:
-            room.capacity += previous_room_capacity
+            if previous_room_capacity > 0:
+                room.capacity += previous_room_capacity
+            else:
+                room.capacity += room.pk
 
         previous_room_capacity += room.capacity
 
