@@ -148,7 +148,7 @@ def increase_room_capacity():
             else:
                 room.capacity += room.pk
 
-        previous_room_capacity += room.capacity
+        previous_room_capacity = room.capacity
 
     HotelRoom.objects.bulk_update(rooms, ["capacity"])
 
