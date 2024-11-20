@@ -7,9 +7,9 @@ django.setup()
 
 from typing import List
 
-from django.db.models import Q, F, Value, When, Case
+from django.db.models import Q, F, Value, When, Case, PositiveIntegerField
 
-from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal
+from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal, Dungeon
 
 
 def show_highest_rated_art():
@@ -146,3 +146,61 @@ def update_high_calorie_meals():
 
 def delete_lunch_and_snack_meals():
     Meal.objects.filter(Q(meal_type="Lunch") | Q(meal_type="Snack")).delete()
+
+
+def show_hard_dungeons():
+    dungeons = Dungeon.objects.filter(difficulty="Hard").order_by("-location")
+
+    return "\n".join([str(x) for x in dungeons])
+
+
+def bulk_create_dungeons(args: List[Dungeon]):
+    Dungeon.objects.bulk_create(args)
+
+
+def update_dungeon_names():
+    Dungeon.objects.update(
+        name=Case(
+            When(difficulty="Easy", then=Value("The Erased Thombs")),
+            When(difficulty="Medium", then=Value("The Coral Labyrinth")),
+            When(difficulty="Hard", then=Value("The Lost Haunt")),
+            default=F("name"),
+        )
+    )
+
+
+def update_dungeon_bosses_health():
+    return Dungeon.objects.exclude(difficulty="Easy").update(boss_health=500)
+
+
+def update_dungeon_recommended_levels():
+    Dungeon.objects.update(
+        recommended_level=Case(
+            When(difficulty=Dungeon.DIFFICULTY_CHOICES[0][0], then=Value(25)),
+            When(difficulty=Dungeon.DIFFICULTY_CHOICES[1][0], then=Value(50)),
+            When(difficulty=Dungeon.DIFFICULTY_CHOICES[2][0], then=Value(75)),
+            default=F("recommended_level"),
+            output_field=PositiveIntegerField(),
+        )
+    )
+
+
+def update_dungeon_rewards():
+    Dungeon.objects.filter(boss_health__exact=500).update(reward="1000 Gold")
+
+    Dungeon.objects.filter(location__startswith="E").update(
+        reward="New dungeon unlocked"
+    )
+
+    Dungeon.objects.filter(location__endswith="s").update(reward="Dragonheart Amulet")
+
+
+def set_new_locations():
+    Dungeon.objects.update(
+        location=Case(
+            When(recommended_level=25, then=Value("Enchanted Maze")),
+            When(recommended_level=50, then=Value("Grimstone Mines")),
+            When(recommended_level=75, then=Value("Shadowed Abyss")),
+            default=F("location"),
+        )
+    )
