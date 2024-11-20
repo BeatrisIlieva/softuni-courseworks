@@ -5,7 +5,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-from main_app.models import Author, Book
+from main_app.models import Author, Book, Artist, Song
 from django.contrib.postgres.aggregates import StringAgg
 
 
@@ -38,15 +38,14 @@ def delete_all_authors_without_books():
     Author.objects.filter(book__isnull=True).delete()
 
 
-# author1 = Author.objects.create(name="J.K. Rowling")
-# author2 = Author.objects.create(name="George Orwell")
-# author3 = Author.objects.create(name="Harper Lee")
-# author4 = Author.objects.create(name="Mark Twain") 
-# book1 = Book.objects.create(title="Harry Potter and the Philosopher's Stone",price=19.99,author=author1)
-# book2 = Book.objects.create(title="1984",price=14.99,author=author2)
-# book3 = Book.objects.create(title="To Kill a Mockingbird",price=12.99,author=author3)
-authors_with_books = show_all_authors_with_their_books()
-print(authors_with_books)
-delete_all_authors_without_books()
-print(Author.objects.count())
+def add_song_to_artist(artist_name: str, song_title: str):
+    artist = Artist.objects.get(name=artist_name)
+    song = Song.objects.get(title=song_title)
+    artist.songs.add(song)
+    
+def get_songs_by_artist(artist_name: str):
+    return Song.objects.prefetch_related("artists").filter(artists__name=artist_name).order_by("id")
 
+def remove_song_from_artist(artist_name: str, song_title: str):
+    Song.objects.prefetch_related("artists").filter(artists__name=artist_name, title=song_title).delete()
+    
