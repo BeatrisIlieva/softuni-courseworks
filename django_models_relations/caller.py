@@ -25,9 +25,13 @@ def show_all_authors_with_their_books():
     queryset = Book.objects.values("author__name").annotate(
         books=StringAgg("title", delimiter=", ")
     ).order_by("author_id")
-
-    for el in queryset:
-        print(f"{el['author__name']} has written - {el['books']}!")
+    
+    return "\n".join(
+        [
+            f"{el['author__name']} has written - {el['books']}!"
+            for el in queryset
+        ]
+    )
 
 
 def delete_all_authors_without_books():
@@ -41,8 +45,8 @@ def delete_all_authors_without_books():
 # book1 = Book.objects.create(title="Harry Potter and the Philosopher's Stone",price=19.99,author=author1)
 # book2 = Book.objects.create(title="1984",price=14.99,author=author2)
 # book3 = Book.objects.create(title="To Kill a Mockingbird",price=12.99,author=author3)
-# authors_with_books = show_all_authors_with_their_books()
-# print(authors_with_books)
-# delete_all_authors_without_books()
-# print(Author.objects.count())
+authors_with_books = show_all_authors_with_their_books()
+print(authors_with_books)
+delete_all_authors_without_books()
+print(Author.objects.count())
 
