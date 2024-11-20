@@ -44,8 +44,30 @@ def add_song_to_artist(artist_name: str, song_title: str):
     artist.songs.add(song)
     
 def get_songs_by_artist(artist_name: str):
-    return Song.objects.prefetch_related("artists").filter(artists__name=artist_name).order_by("id")
+    return Song.objects.prefetch_related("artists").filter(artists__name=artist_name).order_by("-id")
 
 def remove_song_from_artist(artist_name: str, song_title: str):
-    Song.objects.prefetch_related("artists").filter(artists__name=artist_name, title=song_title).delete()
+
+    artist = Artist.objects.get(name=artist_name)
+    song = Song.objects.get(title=song_title)
     
+    artist.songs.remove(song)
+
+# artist1 = Artist.objects.create(name="Daniel Di Angelo")
+# artist2 = Artist.objects.create(name="Indila")
+# song1 = Song.objects.create(title="Lose Face")
+# song2 = Song.objects.create(title="Tourner Dans Le Vide")
+# song3 = Song.objects.create(title="Loyalty")
+# add_song_to_artist("Daniel Di Angelo", "Lose Face")
+# add_song_to_artist("Daniel Di Angelo", "Loyalty")
+# add_song_to_artist("Indila", "Tourner Dans Le Vide")
+# songs = get_songs_by_artist("Daniel Di Angelo")
+# for song in songs:    
+#     print(f"Daniel Di Angelo: {song.title}")
+# songs = get_songs_by_artist("Indila")
+# for song in songs:    
+#     print(f"Indila: {song.title}")
+remove_song_from_artist("Daniel Di Angelo", "Loyalty")
+# songs = get_songs_by_artist("Daniel Di Angelo")
+# for song in songs:    
+#     print(f"Songs by Daniel Di Angelo after removal: {song.title}")
