@@ -91,5 +91,8 @@ def register_car_by_owner(owner: Owner):
     registration.registration_date = date.today()
     registration.save()
     
+    car.owner = owner
+    car.save()
+    
     return f"Successfully registered {car.model} to {owner.name} with registration number {registration.registration_number}."
     
