@@ -9,7 +9,7 @@ from typing import List
 
 from django.db.models import Q, F, Value, When, Case
 
-from main_app.models import ArtworkGallery, Laptop, ChessPlayer
+from main_app.models import ArtworkGallery, Laptop, ChessPlayer, Meal
 
 
 def show_highest_rated_art():
@@ -106,3 +106,43 @@ def grand_chess_title_regular_player():
     ChessPlayer.objects.filter(Q(rating__gte=0) & Q(rating__lte=2199)).update(
         title="regular player"
     )
+
+
+def set_new_chefs():
+    Meal.objects.update(
+        chef=Case(
+            When(meal_type="Breakfast", then=Value("Gordon Ramsay")),
+            When(meal_type="Lunch", then=Value("Julia Child")),
+            When(meal_type="Dinner", then=Value("Jamie Oliver")),
+            When(meal_type="Snack", then=Value("Thomas Keller")),
+            default=F("chef"),
+        )
+    )
+
+
+def set_new_preparation_times():
+    Meal.objects.update(
+        preparation_time=Case(
+            When(meal_type="Breakfast", then=Value("10 minutes")),
+            When(meal_type="Lunch", then=Value("12 minutes")),
+            When(meal_type="Dinner", then=Value("15 minutes")),
+            When(meal_type="Snack", then=Value("5 minutes")),
+            default=F("preparation_time"),
+        )
+    )
+
+
+def update_low_calorie_meals():
+    Meal.objects.filter(Q(meal_type="Breakfast") | Q(meal_type="Dinner")).update(
+        calories=400
+    )
+
+
+def update_high_calorie_meals():
+    Meal.objects.filter(Q(meal_type="Lunch") | Q(meal_type="Snack")).update(
+        calories=700
+    )
+
+
+def delete_lunch_and_snack_meals():
+    Meal.objects.filter(Q(meal_type="Lunch") | Q(meal_type="Snack")).delete()
