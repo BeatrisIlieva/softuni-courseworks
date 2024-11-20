@@ -5,9 +5,9 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
 
-from main_app.models import Author, Book, Artist, Song
+from main_app.models import Author, Book, Artist, Song, Product, Review
 from django.contrib.postgres.aggregates import StringAgg
-
+from django.db.models import Avg
 
 def show_all_authors_with_their_books():
     # select
@@ -53,21 +53,16 @@ def remove_song_from_artist(artist_name: str, song_title: str):
     
     artist.songs.remove(song)
 
-# artist1 = Artist.objects.create(name="Daniel Di Angelo")
-# artist2 = Artist.objects.create(name="Indila")
-# song1 = Song.objects.create(title="Lose Face")
-# song2 = Song.objects.create(title="Tourner Dans Le Vide")
-# song3 = Song.objects.create(title="Loyalty")
-# add_song_to_artist("Daniel Di Angelo", "Lose Face")
-# add_song_to_artist("Daniel Di Angelo", "Loyalty")
-# add_song_to_artist("Indila", "Tourner Dans Le Vide")
-# songs = get_songs_by_artist("Daniel Di Angelo")
-# for song in songs:    
-#     print(f"Daniel Di Angelo: {song.title}")
-# songs = get_songs_by_artist("Indila")
-# for song in songs:    
-#     print(f"Indila: {song.title}")
-remove_song_from_artist("Daniel Di Angelo", "Loyalty")
-# songs = get_songs_by_artist("Daniel Di Angelo")
-# for song in songs:    
-#     print(f"Songs by Daniel Di Angelo after removal: {song.title}")
+def calculate_average_rating_for_product_by_name(product_name: str):
+    product = Product.objects.filter(name=product_name).annotate(avg_rating=Avg("reviews__rating")).first()
+    
+    return product.avg_rating
+
+def get_reviews_with_high_ratings(threshold: int):
+    return Review.objects.filter(rating__gte=threshold)
+
+def get_products_with_no_reviews():
+    return Product.objects.filter(reviews__isnull=True)
+
+def delete_products_without_reviews():
+    Product.objects.filter(reviews__isnull=True).delete()
