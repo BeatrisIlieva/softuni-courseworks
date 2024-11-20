@@ -27,7 +27,7 @@ def delete_negative_rated_arts():
 
 
 def show_the_most_expensive_laptop():
-    laptop = Laptop.objects.order_by("-price", "id").first()
+    laptop = Laptop.objects.order_by("-price", "-id").first()
 
     return f"{laptop.brand} is the most expensive laptop available for {laptop.price}$!"
 
