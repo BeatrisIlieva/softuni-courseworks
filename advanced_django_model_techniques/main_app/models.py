@@ -1,6 +1,7 @@
 from django.db import models
 from main_app.validators import validate_name
 from django.core.validators import MinValueValidator, RegexValidator, MinLengthValidator
+from decimal import Decimal
 
 
 class Customer(models.Model):
@@ -97,3 +98,40 @@ class Music(BaseMedia):
             MinLengthValidator(9, message="Artist must be at least 9 characters long")
         ],
     )
+
+
+class Product(models.Model):
+    name = models.CharField(
+        max_length=100,
+    )
+
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+    )
+
+    def calculate_tax(self):
+        return self.price * 0.08
+
+    def calculate_shipping_cost(self, weight: Decimal):
+        return weight * 2.00
+
+    def format_product_name(self):
+        return f"Product: {self.name}"
+
+
+class DiscountedProduct(Product):
+    class Meta:
+        proxy = True
+
+    def calculate_price_without_discount(self):
+        return self.price * 1.2
+
+    def calculate_tax(self):
+        return self.price * 0.05
+
+    def calculate_shipping_cost(self, weight: Decimal):
+        return weight * 1.5
+
+    def format_product_name(self):
+        return f"Discounted Product: {self.name}"
