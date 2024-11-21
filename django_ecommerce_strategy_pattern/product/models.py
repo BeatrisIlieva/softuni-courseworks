@@ -1,6 +1,13 @@
 from django.db import models
 
 
+class Size(models.Model):
+    measurement = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+    )
+
+
 class Category(models.Model):
     TITLE_CHOICES = (
         ("E", "Earrings"),
@@ -13,6 +20,14 @@ class Category(models.Model):
         max_length=15,
         choices=TITLE_CHOICES,
     )
+
+    size = models.ManyToManyField(
+        to=Size,
+        through="CategorySize",
+    )
+    
+class CategorySize(models.Model):
+    pass
 
 
 class Color(models.Model):
@@ -27,6 +42,7 @@ class Color(models.Model):
         choices=TITLE_CHOICES,
     )
 
+
 class BaseProduct(models.Model):
     class Meta:
         abstract = True
@@ -35,4 +51,10 @@ class BaseProduct(models.Model):
         to=Category,
         on_delete=models.CASCADE,
         related_name="category",
+    )
+
+    color = models.ForeignKey(
+        to=Color,
+        on_delete=models.CASCADE,
+        related_name="color",
     )
