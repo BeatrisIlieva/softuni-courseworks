@@ -60,14 +60,17 @@ class Message(models.Model):
 class StudentIDField(models.PositiveIntegerField):
     def to_python(self, value):
         try:
-            result = int(value)
+            return int(value)
         except ValueError:
             return "Invalid input for student ID"
 
-        if result <= 0:
+    def get_prep_value(self, value):
+        cleaned_value = self.to_python(value)
+
+        if cleaned_value <= 0:
             raise ValidationError("ID cannot be less than or equal to zero")
 
-        return result
+        return cleaned_value
 
 
 class Student(models.Model):
