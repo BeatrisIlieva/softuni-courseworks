@@ -3,10 +3,7 @@ import django
 from django.core.management.base import BaseCommand
 
 from django_ecommerce_strategy_pattern.product import (
-    EarringSize,
-    BraceletSize,
-    NecklaceSize,
-    RingSize,
+    Size,
     Category,
     CategorySize,
     Color,
@@ -32,38 +29,21 @@ class Command(BaseCommand):
         )
 
     def bulk_create_size(self):
-        EarringSize.objects.bulk_create(
-            [
-                EarringSize(measurement=4.05),
-                EarringSize(measurement=4.98),
-                EarringSize(measurement=5.86),
-            ]
-        )
 
-    def bulk_create_size(self):
-        BraceletSize.objects.bulk_create(
+        Size.objects.bulk_create(
             [
-                BraceletSize(measurement=15.02),
-                BraceletSize(measurement=17.08),
-                BraceletSize(measurement=19.03),
-            ]
-        )
-
-    def bulk_create_size(self):
-        NecklaceSize.objects.bulk_create(
-            [
-                NecklaceSize(measurement=40.64),
-                NecklaceSize(measurement=43.18),
-                NecklaceSize(measurement=45.72),
-            ]
-        )
-
-    def bulk_create_size(self):
-        RingSize.objects.bulk_create(
-            [
-                RingSize(measurement=4.7),
-                RingSize(measurement=4.9),
-                RingSize(measurement=5.05),
+                Size(measurement=4.05),
+                Size(measurement=4.98),
+                Size(measurement=5.86),
+                Size(measurement=15.02),
+                Size(measurement=17.08),
+                Size(measurement=19.03),
+                Size(measurement=40.64),
+                Size(measurement=43.18),
+                Size(measurement=45.72),
+                Size(measurement=4.7),
+                Size(measurement=4.9),
+                Size(measurement=5.05),
             ]
         )
 
@@ -78,10 +58,7 @@ class Command(BaseCommand):
         )
 
     def bulk_create_category_size(self):
-        earring_sizes = EarringSize.objects.all()
-        bracelet_sizes = BraceletSize.objects.all()
-        necklace_sizes = NecklaceSize.objects.all()
-        ring_sizes = RingSize.objects.all()
+        sizes = Size.objects.all()
 
         categories = Category.objects.all()
 
@@ -89,62 +66,62 @@ class Command(BaseCommand):
             [
                 CategorySize(
                     category=categories[0],
-                    size=earring_sizes[0],
+                    size=sizes[0],
                     price=43000.00,
                 ),
                 CategorySize(
                     category=categories[0],
-                    size=earring_sizes[1],
+                    size=sizes[1],
                     price=44000.00,
                 ),
                 CategorySize(
                     category=categories[0],
-                    size=earring_sizes[2],
+                    size=sizes[2],
                     price=45000.00,
                 ),
                 CategorySize(
                     category=categories[1],
-                    size=bracelet_sizes[0],
+                    size=sizes[3],
                     price=34000.00,
                 ),
                 CategorySize(
                     category=categories[1],
-                    size=bracelet_sizes[1],
+                    size=sizes[4],
                     price=35000.00,
                 ),
                 CategorySize(
                     category=categories[1],
-                    size=bracelet_sizes[2],
+                    size=sizes[5],
                     price=36000.00,
                 ),
                 CategorySize(
                     category=categories[2],
-                    size=necklace_sizes[0],
+                    size=sizes[6],
                     price=55000.00,
                 ),
                 CategorySize(
                     category=categories[2],
-                    size=necklace_sizes[1],
+                    size=sizes[7],
                     price=56000.00,
                 ),
                 CategorySize(
                     category=categories[2],
-                    size=necklace_sizes[2],
+                    size=sizes[8],
                     price=57000.00,
                 ),
                 CategorySize(
                     category=categories[3],
-                    size=ring_sizes[0],
+                    size=sizes[9],
                     price=23000.00,
                 ),
                 CategorySize(
                     category=categories[3],
-                    size=ring_sizes[1],
+                    size=sizes[10],
                     price=24000.00,
                 ),
                 CategorySize(
                     category=categories[3],
-                    size=ring_sizes[2],
+                    size=sizes[11],
                     price=25000.00,
                 ),
             ]
