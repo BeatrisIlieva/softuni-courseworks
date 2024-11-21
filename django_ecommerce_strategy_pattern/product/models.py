@@ -3,8 +3,8 @@ from django.db import models
 
 class Category(models.Model):
     TITLE_CHOICES = (
-        ("B", "Bracelets"),
         ("E", "Earrings"),
+        ("B", "Bracelets"),
         ("N", "Necklaces"),
         ("R", "Rings"),
     )
@@ -15,12 +15,24 @@ class Category(models.Model):
     )
 
 
+class Color(models.Model):
+    TITLE_CHOICES = (
+        ("P", "Pink"),
+        ("B", "Blue"),
+        ("W", "White"),
+    )
+
+    title = models.CharField(
+        max_length=10,
+        choices=TITLE_CHOICES,
+    )
+
 class BaseProduct(models.Model):
     class Meta:
         abstract = True
-        
+
     category = models.ForeignKey(
         to=Category,
         on_delete=models.CASCADE,
-        related_name="category"
+        related_name="category",
     )
