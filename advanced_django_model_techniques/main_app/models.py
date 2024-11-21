@@ -111,10 +111,10 @@ class Product(models.Model):
     )
 
     def calculate_tax(self):
-        return self.price * 0.08
+        return self.price * Decimal(0.08)
 
     def calculate_shipping_cost(self, weight: Decimal):
-        return weight * 2.00
+        return weight * Decimal(2.00)
 
     def format_product_name(self):
         return f"Product: {self.name}"
@@ -131,7 +131,60 @@ class DiscountedProduct(Product):
         return self.price * 0.05
 
     def calculate_shipping_cost(self, weight: Decimal):
-        return weight * 1.5
+        return weight * Decimal(1.5)
 
     def format_product_name(self):
         return f"Discounted Product: {self.name}"
+
+
+class RechargeEnergyMixin:
+    def recharge_energy(self, amount: int):
+        self.energy = min(self.energy + amount, 100)
+
+
+class Hero(models.Model, RechargeEnergyMixin):
+    name = models.CharField(
+        max_length=100,
+    )
+
+    hero_title = models.CharField(
+        max_length=100,
+    )
+
+    energy = models.PositiveIntegerField()
+
+
+class SpiderHero(Hero):
+    class Meta:
+        proxy = True
+
+    def swing_from_buildings(self):
+        self.energy -= 80
+
+        if self.energy < 0:
+            return f"{self.name} as Spider Hero is out of web shooter fluid"
+
+        if self.energy == 0:
+            self.energy = 1
+
+        self.save()
+
+        return f"{self.name} as Spider Hero swings from buildings using web shooters"
+
+
+class FlashHero(Hero):
+    class Meta:
+        proxy = True
+
+    def run_at_super_speed(self):
+        self.energy -= 65
+
+        if self.energy < 0:
+            return f"{self.name} as Flash Hero needs to recharge the speed force"
+
+        if self.energy == 0:
+            self.energy = 1
+
+        self.save()
+
+        return f"{self.name} as Flash Hero runs at lightning speed, saving the day"
