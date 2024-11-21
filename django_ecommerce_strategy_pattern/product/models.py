@@ -25,9 +25,25 @@ class Category(models.Model):
         to=Size,
         through="CategorySize",
     )
-    
+
+
 class CategorySize(models.Model):
-    pass
+    category = models.ForeignKey(
+        to=Category,
+        on_delete=models.CASCADE,
+        related_name="categories",
+    )
+
+    size = models.ForeignKey(
+        to=Size,
+        on_delete=models.CASCADE,
+        related_name="sizes",
+    )
+
+    price = models.DecimalField(
+        max_digits=7,
+        decimal_places=2,
+    )
 
 
 class Color(models.Model):
