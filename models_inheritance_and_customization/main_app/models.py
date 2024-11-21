@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class UserProfile(models.Model):
@@ -54,3 +55,24 @@ class Message(models.Model):
         message = Message(sender=self.receiver, receiver=receiver, content=self.content)
         message.save()
         return message
+
+
+class StudentIDField(models.PositiveIntegerField):
+    def to_python(self, value):
+        try:
+            result = int(value)
+        except ValueError:
+            return "Invalid input for student ID"
+
+        if result <= 0:
+            raise ValidationError("ID cannot be less than or equal to zero")
+
+        return result
+
+
+class Student(models.Model):
+    name = models.CharField(
+        max_length=100,
+    )
+
+    student_id = StudentIDField()

@@ -4,16 +4,22 @@ import django
 # Set up Django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orm_skeleton.settings")
 django.setup()
-from main_app.models import UserProfile, Message
+from main_app.models import UserProfile, Message, Student
 
-# user1 = UserProfile.objects.create(username="user3", email="email3@icloud.com")
-# user2 = UserProfile.objects.create(username="user4", email="email4@icloud.com")
+# student1 = Student(name="Alice", student_id=45.23)
+# student1.full_clean()
+# student1.save()
+# retrieved_student1 = Student.objects.filter(name="Alice").first()
 
-# message = Message.objects.create(sender=user1, receiver=user2, content="some content")
+# # Print the saved ID of the student1
+# print(retrieved_student1.student_id)
 
-# message = Message.objects.get(pk=1)
+# # Try to parse zero as ID and expect ValueError
+# try:
+#     student2 = Student(name="Bob", student_id="0")
+#     student2.full_clean()
+#     student2.save()
+# except ValueError as error:
+#     print(error)
 
-# message.reply_to_message("some content2")
 
-# user7 = UserProfile.objects.create(username="user7", email="email7@icloud.com")
-# message.forward_message(user7)
