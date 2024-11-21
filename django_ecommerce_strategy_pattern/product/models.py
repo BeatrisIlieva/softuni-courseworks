@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Size(models.Model):
+
     measurement = models.DecimalField(
         max_digits=6,
         decimal_places=2,
@@ -9,6 +10,7 @@ class Size(models.Model):
 
 
 class Category(models.Model):
+
     TITLE_CHOICES = (
         ("E", "Earrings"),
         ("B", "Bracelets"),
@@ -28,6 +30,7 @@ class Category(models.Model):
 
 
 class CategorySize(models.Model):
+
     category = models.ForeignKey(
         to=Category,
         on_delete=models.CASCADE,
@@ -47,6 +50,7 @@ class CategorySize(models.Model):
 
 
 class Color(models.Model):
+
     TITLE_CHOICES = (
         ("P", "Pink"),
         ("B", "Blue"),
@@ -59,9 +63,7 @@ class Color(models.Model):
     )
 
 
-class BaseProduct(models.Model):
-    class Meta:
-        abstract = True
+class Product(models.Model):
 
     category = models.ForeignKey(
         to=Category,
@@ -74,3 +76,9 @@ class BaseProduct(models.Model):
         on_delete=models.CASCADE,
         related_name="color",
     )
+
+    description = models.TextField()
+
+    first_image_url = models.URLField()
+
+    second_image_url = models.URLField()

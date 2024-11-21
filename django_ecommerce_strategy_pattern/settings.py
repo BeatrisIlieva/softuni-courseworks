@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_ecommerce_strategy_pattern.products",
+    "django_ecommerce_strategy_pattern.product",
 ]
 
 MIDDLEWARE = [
