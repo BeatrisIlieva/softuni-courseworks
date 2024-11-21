@@ -80,8 +80,8 @@ class Command(BaseCommand):
     def bulk_create_category_size(self):
         earring_sizes = EarringSize.objects.all()
         bracelet_sizes = BraceletSize.objects.all()
-        necklace_size = NecklaceSize.objects.all()
-        ring_size = RingSize.objects.all()
+        necklace_sizes = NecklaceSize.objects.all()
+        ring_sizes = RingSize.objects.all()
 
         categories = Category.objects.all()
 
@@ -89,23 +89,63 @@ class Command(BaseCommand):
             [
                 CategorySize(
                     category=categories[0],
-                    size=sizes[0],
+                    size=earring_sizes[0],
                     price=43000.00,
                 ),
                 CategorySize(
                     category=categories[0],
-                    size=sizes[1],
+                    size=earring_sizes[1],
                     price=44000.00,
                 ),
                 CategorySize(
                     category=categories[0],
-                    size=sizes[2],
+                    size=earring_sizes[2],
                     price=45000.00,
                 ),
                 CategorySize(
                     category=categories[1],
-                    size=sizes[1],
-                    price=44000.00,
+                    size=bracelet_sizes[0],
+                    price=34000.00,
+                ),
+                CategorySize(
+                    category=categories[1],
+                    size=bracelet_sizes[1],
+                    price=35000.00,
+                ),
+                CategorySize(
+                    category=categories[1],
+                    size=bracelet_sizes[2],
+                    price=36000.00,
+                ),
+                CategorySize(
+                    category=categories[2],
+                    size=necklace_sizes[0],
+                    price=55000.00,
+                ),
+                CategorySize(
+                    category=categories[2],
+                    size=necklace_sizes[1],
+                    price=56000.00,
+                ),
+                CategorySize(
+                    category=categories[2],
+                    size=necklace_sizes[2],
+                    price=57000.00,
+                ),
+                CategorySize(
+                    category=categories[3],
+                    size=ring_sizes[0],
+                    price=23000.00,
+                ),
+                CategorySize(
+                    category=categories[3],
+                    size=ring_sizes[1],
+                    price=24000.00,
+                ),
+                CategorySize(
+                    category=categories[3],
+                    size=ring_sizes[2],
+                    price=25000.00,
                 ),
             ]
         )
