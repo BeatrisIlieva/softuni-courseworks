@@ -1,0 +1,1 @@
+# django-ecommerce-strategy-pattern
