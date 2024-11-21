@@ -1,12 +1,30 @@
 from django.db import models
 
 
-class Size(models.Model):
+class BaseSize(models.Model):
+    class Meta:
+        abstract = True
 
     measurement = models.DecimalField(
         max_digits=6,
         decimal_places=2,
     )
+
+
+class EarringSize(BaseSize):
+    pass
+
+
+class BraceletSize(BaseSize):
+    pass
+
+
+class NecklaceSize(BaseSize):
+    pass
+
+
+class RingSize(BaseSize):
+    pass
 
 
 class Category(models.Model):

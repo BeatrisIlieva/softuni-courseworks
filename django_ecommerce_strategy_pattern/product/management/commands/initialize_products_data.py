@@ -45,11 +45,37 @@ class Command(BaseCommand):
         )
         
 
-    
     def bulk_create_category(self):        
         Category.objects.bulk_create([
             Category(title="E",),
             Category(title="B"),
             Category(title="N"),
             Category(title="R"),
+        ])
+        
+    def bulk_create_category_size(self):
+        sizes = Size.objects.all()
+        categories = Category.objects.all()
+        
+        CategorySize.objects.bulk_create([
+            CategorySize(
+                category=categories[0],
+                size=sizes[0],
+                price=43000.00,
+            ),
+            CategorySize(
+                category=categories[0],
+                size=sizes[1],
+                price=44000.00,
+            ),
+            CategorySize(
+                category=categories[0],
+                size=sizes[2],
+                price=45000.00,
+            ),
+            CategorySize(
+                category=categories[1],
+                size=sizes[1],
+                price=44000.00,
+            ),
         ])
