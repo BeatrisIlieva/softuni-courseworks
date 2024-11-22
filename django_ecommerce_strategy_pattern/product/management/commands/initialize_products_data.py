@@ -37,7 +37,13 @@ class Command(BaseCommand):
                 Size(measurement=4.05),
                 Size(measurement=4.98),
                 Size(measurement=5.86),
-                Size(measurement=15.02),
+                Size(measurement=# In the provided code snippet, `15.02` is being used as a value for
+                # the `measurement` field when creating a `Size` object. This value
+                # represents a specific measurement size for a product. The `Size`
+                # model seems to be used to store different size options for
+                # products, and `15.02` is one of the predefined size measurements
+                # being added to the database during the data initialization process.
+                15.02),
                 Size(measurement=17.08),
                 Size(measurement=19.03),
                 Size(measurement=40.64),
