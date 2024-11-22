@@ -1,5 +1,22 @@
 from django.db import models
 
+from django_ecommerce_strategy_pattern.product.strategies import ProductContext
+
+
+class Category(models.Model):
+
+    TITLE_CHOICES = (
+        ("E", "Earrings"),
+        ("B", "Bracelets"),
+        ("N", "Necklaces"),
+        ("R", "Rings"),
+    )
+
+    title = models.CharField(
+        max_length=15,
+        choices=TITLE_CHOICES,
+    )
+
 
 class Color(models.Model):
 
@@ -15,12 +32,11 @@ class Color(models.Model):
     )
 
 
-class BaseProduct(models.Model):
-    
-    class Meta:
-        abstract = True
+class Description(models.Model):
+    content = models.TextField()
 
-    description = models.TextField()
+
+class Product(models.Model):
 
     first_image_url = models.URLField()
 
@@ -28,116 +44,44 @@ class BaseProduct(models.Model):
 
     quantity = models.PositiveIntegerField()
 
+    description = models.ForeignKey(
+        to=Description,
+        on_delete=models.CASCADE,
+        related_name="description",
+    )
+
+    category = models.ForeignKey(
+        to=Category,
+        on_delete=models.CASCADE,
+        related_name="category",
+    )
+
     color = models.ForeignKey(
         to=Color,
         on_delete=models.CASCADE,
-        related_name="%(class)s_color",
-    )
-
-
-class Earring(BaseProduct):
-
-    SIZE_CHOICES = (
-        (4.05, 4.05),
-        (4.98, 4.98),
-        (5.86, 5.86),
-    )
-
-    PRICE_CHOICES = (
-        (43_000.00, 43_000.00),
-        (44_000.00, 44_000.00),
-        (45_000.00, 45_000.00),
+        related_name="color",
+        # related_name="%(class)s_color",
     )
 
     size = models.DecimalField(
         max_digits=6,
         decimal_places=2,
-        choices=SIZE_CHOICES,
+        choices=[],
     )
 
     price = models.DecimalField(
         max_digits=7,
         decimal_places=2,
-        choices=PRICE_CHOICES,
+        choices=[],
     )
-
-
-class Bracelet(BaseProduct):
     
-    SIZE_CHOICES = (
-        (15.02, 15.02),
-        (17.08, 17.08),
-        (19.03, 19.03),
-    )
+    @property
+    def is_sold_out(self):
+        return self.quantity <= 0
 
-    PRICE_CHOICES = (
-        (34_000.00, 34_000.00),
-        (35_000.00, 35_000.00),
-        (36_000.00, 36_000.00),
-    )
+    def save(self, *args, **kwargs):
 
-    size = models.DecimalField(
-        max_digits=6,
-        decimal_places=2,
-        choices=SIZE_CHOICES,
-    )
+        context = ProductContext(self)
+        context.set_strategies()
 
-    price = models.DecimalField(
-        max_digits=7,
-        decimal_places=2,
-        choices=PRICE_CHOICES,
-    )
-
-
-class Necklace(BaseProduct):
-    
-    SIZE_CHOICES = (
-        (40.64, 40.64),
-        (43.18, 43.18),
-        (45.72, 45.72),
-    )
-
-    PRICE_CHOICES = (
-        (55_000.00, 55_000.00),
-        (56_000.00, 56_000.00),
-        (57_000.00, 57_000.00),
-    )
-
-    size = models.DecimalField(
-        max_digits=6,
-        decimal_places=2,
-        choices=SIZE_CHOICES,
-    )
-
-    price = models.DecimalField(
-        max_digits=7,
-        decimal_places=2,
-        choices=PRICE_CHOICES,
-    )
-
-
-class Ring(BaseProduct):
-
-    SIZE_CHOICES = (
-        (4.07, 4.07),
-        (4.09, 4.09),
-        (5.05, 5.05),
-    )
-
-    PRICE_CHOICES = (
-        (23_000.00, 23_000.00),
-        (24_000.00, 24_000.00),
-        (25_000.00, 25_000.00),
-    )
-
-    size = models.DecimalField(
-        max_digits=6,
-        decimal_places=2,
-        choices=SIZE_CHOICES,
-    )
-
-    price = models.DecimalField(
-        max_digits=7,
-        decimal_places=2,
-        choices=PRICE_CHOICES,
-    )
+        super().save(*args, **kwargs)
