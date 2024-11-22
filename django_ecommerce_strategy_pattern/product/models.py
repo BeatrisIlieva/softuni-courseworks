@@ -16,6 +16,7 @@ class Color(models.Model):
 
 
 class BaseProduct(models.Model):
+    
     class Meta:
         abstract = True
 
@@ -62,6 +63,7 @@ class Earring(BaseProduct):
 
 
 class Bracelet(BaseProduct):
+    
     SIZE_CHOICES = (
         (15.02, 15.02),
         (17.08, 17.08),
@@ -88,6 +90,7 @@ class Bracelet(BaseProduct):
 
 
 class Necklace(BaseProduct):
+    
     SIZE_CHOICES = (
         (40.64, 40.64),
         (43.18, 43.18),
