@@ -23,6 +23,8 @@ class Command(BaseCommand):
         self.bulk_create_size()
 
         self.bulk_create_category()
+        
+        self.bulk_create_category_size()
 
         self.stdout.write(
             self.style.SUCCESS("Data initialization completed successfully.")
@@ -126,3 +128,6 @@ class Command(BaseCommand):
                 ),
             ]
         )
+
+    def bulk_create_color(self):
+        pass
