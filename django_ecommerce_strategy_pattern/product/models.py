@@ -29,6 +29,10 @@ class Color(models.Model):
     )
 
 
+class Description(models.Model):
+    content = models.TextField()
+
+
 class Product(models.Model):
     class Meta:
         unique_together = ("category", "color")
@@ -36,8 +40,6 @@ class Product(models.Model):
     first_image_url = models.URLField()
 
     second_image_url = models.URLField()
-
-    description = models.TextField()
 
     category = models.ForeignKey(
         to=Category,
@@ -49,6 +51,12 @@ class Product(models.Model):
         to=Color,
         on_delete=models.CASCADE,
         related_name="color",
+    )
+
+    description = models.ForeignKey(
+        to=Description,
+        on_delete=models.CASCADE,
+        related_name="description",
     )
 
 
