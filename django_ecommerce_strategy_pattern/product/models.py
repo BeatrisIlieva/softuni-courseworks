@@ -2,6 +2,7 @@ from django.db import models
 
 
 class EarringSize(models.Model):
+    
     MEASUREMENT_CHOICES = (
         (4.05, 4.05),
         (4.98, 4.98),
@@ -16,6 +17,7 @@ class EarringSize(models.Model):
 
 
 class BraceletSize(models.Model):
+    
     MEASUREMENT_CHOICES = (
         (15.02, 15.02),
         (17.08, 17.08),
@@ -30,6 +32,7 @@ class BraceletSize(models.Model):
 
 
 class NecklaceSize(models.Model):
+    
     MEASUREMENT_CHOICES = (
         (40.64, 40.64),
         (43.18, 43.18),
@@ -44,6 +47,7 @@ class NecklaceSize(models.Model):
 
 
 class RingSize(models.Model):
+    
     MEASUREMENT_CHOICES = (
         (4.07, 4.07),
         (4.09, 4.09),
@@ -58,6 +62,7 @@ class RingSize(models.Model):
 
 
 class EarringPrice(models.Model):
+    
     PRICE_CHOICES = (
         (43_000.00, 43_000.00),
         (44_000.00, 44_000.00),
@@ -72,6 +77,7 @@ class EarringPrice(models.Model):
 
 
 class BraceletPrice(models.Model):
+    
     PRICE_CHOICES = (
         (34_000.00, 34_000.00),
         (35_000.00, 35_000.00),
@@ -86,6 +92,7 @@ class BraceletPrice(models.Model):
 
 
 class NecklacePrice(models.Model):
+    
     PRICE_CHOICES = (
         (55_000.00, 55_000.00),
         (56_000.00, 56_000.00),
@@ -100,6 +107,7 @@ class NecklacePrice(models.Model):
 
 
 class RingPrice(models.Model):
+    
     PRICE_CHOICES = (
         (23_000.00, 23_000.00),
         (24_000.00, 24_000.00),
