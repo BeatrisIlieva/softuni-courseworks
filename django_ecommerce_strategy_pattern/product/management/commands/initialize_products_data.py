@@ -2,12 +2,13 @@ import os
 import django
 from django.core.management.base import BaseCommand
 
-from django_ecommerce_strategy_pattern.product import (
-    Size,
-    Category,
-    CategorySize,
+from django_ecommerce_strategy_pattern.product.models import (
+    Description,
     Color,
-    Product,
+    Earring,
+    Bracelet,
+    Necklace,
+    Ring
 )
 
 
@@ -20,120 +21,69 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS("Starting data initialization..."))
 
-        self.bulk_create_size()
-
-        self.bulk_create_category()
+        self.bulk_create_color()
         
-        self.bulk_create_category_size()
+        self.bulk_create_description()
+
+        self.bulk_create_earring()
+        self.bulk_create_bracelet()
+        # self.bulk_create_necklace()
+        # self.bulk_create_ring()
 
         self.stdout.write(
             self.style.SUCCESS("Data initialization completed successfully.")
         )
 
-    def bulk_create_size(self):
-
-        Size.objects.bulk_create(
-            [
-                Size(measurement=4.05),
-                Size(measurement=4.98),
-                Size(measurement=5.86),
-                Size(measurement=# In the provided code snippet, `15.02` is being used as a value for
-                # the `measurement` field when creating a `Size` object. This value
-                # represents a specific measurement size for a product. The `Size`
-                # model seems to be used to store different size options for
-                # products, and `15.02` is one of the predefined size measurements
-                # being added to the database during the data initialization process.
-                15.02),
-                Size(measurement=17.08),
-                Size(measurement=19.03),
-                Size(measurement=40.64),
-                Size(measurement=43.18),
-                Size(measurement=45.72),
-                Size(measurement=4.7),
-                Size(measurement=4.9),
-                Size(measurement=5.05),
-            ]
-        )
-
-    def bulk_create_category(self):
-        Category.objects.bulk_create(
-            [
-                Category(title="E"),
-                Category(title="B"),
-                Category(title="N"),
-                Category(title="R"),
-            ]
-        )
-
-    def bulk_create_category_size(self):
-        sizes = Size.objects.all()
-
-        categories = Category.objects.all()
-
-        CategorySize.objects.bulk_create(
-            [
-                CategorySize(
-                    category=categories[0],
-                    size=sizes[0],
-                    price=43000.00,
-                ),
-                CategorySize(
-                    category=categories[0],
-                    size=sizes[1],
-                    price=44000.00,
-                ),
-                CategorySize(
-                    category=categories[0],
-                    size=sizes[2],
-                    price=45000.00,
-                ),
-                CategorySize(
-                    category=categories[1],
-                    size=sizes[3],
-                    price=34000.00,
-                ),
-                CategorySize(
-                    category=categories[1],
-                    size=sizes[4],
-                    price=35000.00,
-                ),
-                CategorySize(
-                    category=categories[1],
-                    size=sizes[5],
-                    price=36000.00,
-                ),
-                CategorySize(
-                    category=categories[2],
-                    size=sizes[6],
-                    price=55000.00,
-                ),
-                CategorySize(
-                    category=categories[2],
-                    size=sizes[7],
-                    price=56000.00,
-                ),
-                CategorySize(
-                    category=categories[2],
-                    size=sizes[8],
-                    price=57000.00,
-                ),
-                CategorySize(
-                    category=categories[3],
-                    size=sizes[9],
-                    price=23000.00,
-                ),
-                CategorySize(
-                    category=categories[3],
-                    size=sizes[10],
-                    price=24000.00,
-                ),
-                CategorySize(
-                    category=categories[3],
-                    size=sizes[11],
-                    price=25000.00,
-                ),
-            ]
-        )
-
     def bulk_create_color(self):
-        pass
+        Color.objects.bulk_create(
+            [
+                Color(title="P"),
+                Color(title="B"),
+                Color(title="W"),
+            ]
+        )
+
+    def bulk_create_description(self):
+        Description.objects.bulk_create(
+            [
+                Description(content="some content1"),
+                Description(content="some content2"),
+            ]
+        )
+
+    def bulk_create_earring(self):
+        descriptions = Description.objects.all()
+
+        colors = Color.objects.all()
+
+        Earring.objects.bulk_create(
+            [
+                Earring(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714885/forget-me-not-collection/earrings/forget_me_not_drop_earrings_diamond_and_pink_sapphire_eapspdrflrfmn_ee-1_zzaw4q.webp",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714886/forget-me-not-collection/earrings/forget_me_not_drop_earrings_diamond_and_pink_sapphire_eapspdrflrfmn_ee-2_p9jicb.webp",
+                    quantity=3,
+                    description=descriptions[0],
+                    color=colors[0],
+                    size=Earring.SIZE_CHOICES[0][0],
+                    price=Earring.PRICE_CHOICES[0][0]
+                ),
+            ]
+        )
+    def bulk_create_bracelet(self):
+        descriptions = Description.objects.all()
+
+        colors = Color.objects.all()
+        Bracelet.objects.bulk_create(
+            [
+                Bracelet(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714894/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_1_vz9pv4.avif",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714894/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_2_1_pvbpcb.png",
+                    quantity=3,
+                    description=descriptions[1],
+                    color=colors[0],
+                    size=Bracelet.SIZE_CHOICES[0][0],
+                    price=Bracelet.PRICE_CHOICES[0][0]
+                ),
+            ]
+        )
+
