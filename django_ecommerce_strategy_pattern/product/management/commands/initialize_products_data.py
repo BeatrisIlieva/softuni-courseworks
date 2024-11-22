@@ -63,7 +63,7 @@ class Command(BaseCommand):
                     second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714886/forget-me-not-collection/earrings/forget_me_not_drop_earrings_diamond_and_pink_sapphire_eapspdrflrfmn_ee-2_p9jicb.webp",
                     quantity=3,
                     description=descriptions[0],
-                    color=colors[0],
+                    color=colors[1],
                     size=Earring.SIZE_CHOICES[0][0],
                     price=Earring.PRICE_CHOICES[0][0]
                 ),
@@ -80,7 +80,7 @@ class Command(BaseCommand):
                     second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714894/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_2_1_pvbpcb.png",
                     quantity=3,
                     description=descriptions[1],
-                    color=colors[0],
+                    color=colors[1],
                     size=Bracelet.SIZE_CHOICES[0][0],
                     price=Bracelet.PRICE_CHOICES[0][0]
                 ),

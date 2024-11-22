@@ -1,30 +1,35 @@
 from django.db import models
 
 
-class Color(models.Model):
+class Description(models.Model):
 
-    TITLE_CHOICES = (
+    content = models.TextField()
+
+
+class Product(models.Model):
+    
+    CATEGORY_CHOICES = (
+        ("E", "Earrings"),
+        ("B", "Bracelets"),
+        ("N", "Necklaces"),
+        ("R", "Rings"),
+    )
+
+    category = models.CharField(
+        max_length=15,
+        choices=CATEGORY_CHOICES,
+    )
+    
+    COLOR_CHOICES = (
         ("P", "Pink"),
         ("B", "Blue"),
         ("W", "White"),
     )
 
-    title = models.CharField(
+    color = models.CharField(
         max_length=10,
-        choices=TITLE_CHOICES,
+        choices=COLOR_CHOICES,
     )
-
-
-class Description(models.Model):
-    content = models.TextField()
-
-
-class BaseProduct(models.Model):
-
-    class Meta:
-        abstract = True
-
-    description = models.TextField()
 
     first_image_url = models.URLField()
 
@@ -32,16 +37,32 @@ class BaseProduct(models.Model):
 
     quantity = models.PositiveIntegerField()
 
+    category = models.ForeignKey(
+        to=Category,
+        on_delete=models.CASCADE,
+        related_name="category",
+    )
+
     color = models.ForeignKey(
         to=Color,
         on_delete=models.CASCADE,
-        related_name="%(class)s_color",
+        related_name="color",
     )
 
     description = models.ForeignKey(
         to=Description,
         on_delete=models.CASCADE,
-        related_name="%(class)s_description",
+        related_name="description",
+    )
+    
+    size = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+    )
+
+    price = models.DecimalField(
+        max_digits=7,
+        decimal_places=2,
     )
 
 
