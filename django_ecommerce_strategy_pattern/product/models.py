@@ -30,7 +30,9 @@ class Color(models.Model):
 
 
 class Description(models.Model):
-    content = models.TextField()
+    content = models.TextField(
+        max_length=300,
+    )
 
 
 class Product(models.Model):
