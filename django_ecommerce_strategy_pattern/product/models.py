@@ -1,21 +1,6 @@
 from django.db import models
 
 
-# class Category(models.Model):
-
-#     TITLE_CHOICES = (
-#         ("E", "Earrings"),
-#         ("B", "Bracelets"),
-#         ("N", "Necklaces"),
-#         ("R", "Rings"),
-#     )
-
-#     title = models.CharField(
-#         max_length=15,
-#         choices=TITLE_CHOICES,
-#     )
-
-
 class Color(models.Model):
 
     TITLE_CHOICES = (
@@ -41,6 +26,12 @@ class BaseProduct(models.Model):
     second_image_url = models.URLField()
 
     quantity = models.PositiveIntegerField()
+
+    color = models.ForeignKey(
+        to=Color,
+        on_delete=models.CASCADE,
+        related_name="%(class)s_color",
+    )
 
 
 class Earring(BaseProduct):
@@ -68,8 +59,6 @@ class Earring(BaseProduct):
         decimal_places=2,
         choices=PRICE_CHOICES,
     )
-
-    color = models.ForeignKey(to=Color, on_delete=models.CASCADE, related_name="color")
 
 
 class Bracelet(BaseProduct):
