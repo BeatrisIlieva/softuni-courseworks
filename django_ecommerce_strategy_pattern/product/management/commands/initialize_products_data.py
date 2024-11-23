@@ -35,9 +35,9 @@ class Command(BaseCommand):
         Category.objects.bulk_create(
             [
                 Category(title=Category.TITLE_CHOICES[0][0]),
-                Category(title=Category.TITLE_CHOICES[0][1]),
-                Category(title=Category.TITLE_CHOICES[0][2]),
-                Category(title=Category.TITLE_CHOICES[0][3]),
+                Category(title=Category.TITLE_CHOICES[1][0]),
+                Category(title=Category.TITLE_CHOICES[2][0]),
+                Category(title=Category.TITLE_CHOICES[3][0]),
             ]
         )
 
@@ -45,8 +45,8 @@ class Command(BaseCommand):
         Color.objects.bulk_create(
             [
                 Color(title=Color.TITLE_CHOICES[0][0]),
-                Color(title=Color.TITLE_CHOICES[0][1]),
-                Color(title=Color.TITLE_CHOICES[0][2]),
+                Color(title=Color.TITLE_CHOICES[1][0]),
+                Color(title=Color.TITLE_CHOICES[2][0]),
             ]
         )
 

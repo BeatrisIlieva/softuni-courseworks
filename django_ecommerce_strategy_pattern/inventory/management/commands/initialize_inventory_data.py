@@ -40,37 +40,37 @@ class Command(BaseCommand):
                     measurement=Size.MEASUREMENT_CHOICES[0][0], category=categories[0]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][1], category=categories[0]
+                    measurement=Size.MEASUREMENT_CHOICES[1][0], category=categories[0]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][2], category=categories[0]
+                    measurement=Size.MEASUREMENT_CHOICES[2][0], category=categories[0]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][0], category=categories[1]
+                    measurement=Size.MEASUREMENT_CHOICES[3][0], category=categories[1]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][1], category=categories[1]
+                    measurement=Size.MEASUREMENT_CHOICES[4][0], category=categories[1]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][2], category=categories[1]
+                    measurement=Size.MEASUREMENT_CHOICES[5][0], category=categories[1]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][0], category=categories[2]
+                    measurement=Size.MEASUREMENT_CHOICES[6][0], category=categories[2]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][1], category=categories[2]
+                    measurement=Size.MEASUREMENT_CHOICES[7][0], category=categories[2]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][2], category=categories[2]
+                    measurement=Size.MEASUREMENT_CHOICES[8][0], category=categories[2]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][0], category=categories[3]
+                    measurement=Size.MEASUREMENT_CHOICES[9][0], category=categories[3]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][1], category=categories[3]
+                    measurement=Size.MEASUREMENT_CHOICES[10][0], category=categories[3]
                 ),
                 Size(
-                    measurement=Size.MEASUREMENT_CHOICES[0][2], category=categories[3]
+                    measurement=Size.MEASUREMENT_CHOICES[11][0], category=categories[3]
                 ),
             ]
         )
