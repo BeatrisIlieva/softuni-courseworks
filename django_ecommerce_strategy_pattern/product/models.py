@@ -152,11 +152,11 @@ class Product(models.Model):
 
 # class Earring(BaseProduct):
 
-#     SIZE_CHOICES = (
-#         (4.05, 4.05),
-#         (4.98, 4.98),
-#         (5.86, 5.86),
-#     )
+    # SIZE_CHOICES = (
+    #     (4.05, 4.05),
+    #     (4.98, 4.98),
+    #     (5.86, 5.86),
+    # )
 
 #     PRICE_CHOICES = (
 #         (43_000.00, 43_000.00),
@@ -180,9 +180,9 @@ class Product(models.Model):
 # class Bracelet(BaseProduct):
 
 # SIZE_CHOICES = (
-#     (15.02, 15.02),
-#     (17.08, 17.08),
-#     (19.03, 19.03),
+    # (15.02, 15.02),
+    # (17.08, 17.08),
+    # (19.03, 19.03),
 # )
 
 # PRICE_CHOICES = (
@@ -207,9 +207,9 @@ class Product(models.Model):
 # class Necklace(BaseProduct):
 
 # SIZE_CHOICES = (
-#     (40.64, 40.64),
-#     (43.18, 43.18),
-#     (45.72, 45.72),
+    # (40.64, 40.64),
+    # (43.18, 43.18),
+    # (45.72, 45.72),
 # )
 
 # PRICE_CHOICES = (
@@ -234,9 +234,9 @@ class Product(models.Model):
 # class Ring(BaseProduct):
 
 # SIZE_CHOICES = (
-#     (4.07, 4.07),
-#     (4.09, 4.09),
-#     (5.05, 5.05),
+    # (4.07, 4.07),
+    # (4.09, 4.09),
+    # (5.05, 5.05),
 # )
 
 # PRICE_CHOICES = (

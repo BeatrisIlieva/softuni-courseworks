@@ -32,6 +32,10 @@ class Command(BaseCommand):
         Inventory.objects.bulk_create(
             [
                 Inventory(quantity=3, price=43_000.00, size=4.05, product=products[0]),
-                Inventory(quantity=3, price=34_000.00, size=15.02, product=products[1]),
+                Inventory(quantity=3, price=44_000.00, size=4.98, product=products[0]),
+                Inventory(quantity=3, price=45_000.00, size=5.86, product=products[0]),
+                Inventory(quantity=3, price=43_000.00, size=4.05, product=products[1]),
+                Inventory(quantity=3, price=44_000.00, size=4.98, product=products[1]),
+                Inventory(quantity=3, price=45_000.00, size=5.86, product=products[1]),
             ]
         )
