@@ -1,12 +1,13 @@
-# import os
-# import django
+import os
+import django
 
-# # Set up Django
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_ecommerce_strategy_pattern.settings")
-# django.setup()
+# Set up Django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_ecommerce_strategy_pattern.settings")
+django.setup()
 
-# from django_ecommerce_strategy_pattern.product.models import Color, Description, Earring
+from django_ecommerce_strategy_pattern.product.models import Product
 
-# result = Earring.objects.prefetch_related("earrings_color").filter(color__pk=2)
+result = Product.objects.filter(category__pk=1).select_related("category")
 
-# print(result)
+for product in result:
+    print(product.category.get_title_display())
