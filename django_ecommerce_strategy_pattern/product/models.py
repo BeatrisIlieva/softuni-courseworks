@@ -1,5 +1,7 @@
 from django.db import models
 
+from django_ecommerce_strategy_pattern.product.managers import ProductManager
+
 
 class Category(models.Model):
 
@@ -60,3 +62,5 @@ class Product(models.Model):
         on_delete=models.CASCADE,
         related_name="description",
     )
+
+    objects = ProductManager()
