@@ -4,31 +4,44 @@ from enum import Enum
 from django_ecommerce_strategy_pattern.product.models import Product
 
 
-class CategoryEntity(Enum):
-    EARRING_PINK = {"category_pk": 1, "color_pk": 1}
-    EARRING_BLUE = {"category_pk": 1, "color_pk": 2}
-    EARRING_WHITE = {"category_pk": 1, "color_pk": 3}
+class FiltrationMethod(Enum):
 
-    BRACELET_PINK = {"category_pk": 2, "color_pk": 1}
-    BRACELET_BLUE = {"category_pk": 2, "color_pk": 2}
-    BRACELET_WHITE = {"category_pk": 2, "color_pk": 3}
-
-    NECKLACE_PINK = {"category_pk": 3, "color_pk": 1}
-    NECKLACE_BLUE = {"category_pk": 3, "color_pk": 2}
-    NECKLACE_WHITE = {"category_pk": 3, "color_pk": 3}
-
-    RING_PINK = {"category_pk": 4, "color_pk": 1}
-    RING_BLUE = {"category_pk": 4, "color_pk": 2}
-    RING_WHITE = {"category_pk": 4, "color_pk": 3}
+    SHORT_DETAILS = "short_details"
+    FULL_DETAILS = "full_details"
 
 
-class CategoryEntityStrategy(ABC):
+class FiltrationStrategy(ABC):
     @abstractmethod
-    def get_entity(self, category_by_color):
+    def get_entity_details(self, category_by_color):
         pass
 
 
-class EarringEntity(CategoryEntityStrategy):
-    def get_entity(self, category_by_color):
+class ShortEntityDetails(FiltrationStrategy):
+    def get_entity_details(self, category_pk, color_pk):
         return Product.objects.get_product_entity(category_pk, color_pk)
-        
+
+
+class FullEntityDetails(FiltrationStrategy):
+    def get_entity_details(self, category_pk, color_pk):
+        return Product.objects.get_product_entity(category_pk, color_pk)
+
+
+class FiltrationContext:
+    def __init__(self, strategy: FiltrationStrategy):
+        self.strategy = strategy
+
+    def get_entity_details(self, category_pk, color_pk):
+        return self.strategy.get_entity_details(category_pk, color_pk)
+
+
+def get_entity_details(category_pk, color_pk, method):
+    strategies = {
+        FiltrationMethod.SHORT_DETAILS: ShortEntityDetails(),
+        FiltrationMethod.FULL_DETAILS: FullEntityDetails(),
+    }
+
+    context = FiltrationContext(strategy=strategies[method])
+    return context.get_entity_details(category_pk, color_pk)
+
+
+print(get_entity_details(1, 2, FiltrationMethod.SHORT_DETAILS))
