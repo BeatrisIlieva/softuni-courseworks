@@ -35,6 +35,34 @@ class Size(models.Model):
     )
 
 
+class Price(models.Model):
+    AMOUNT_CHOICES = (
+        ("ES", 43_000.00),
+        ("EM", 44_000.00),
+        ("EL", 45_000.00),
+        ("BS", 34_000.00),
+        ("BM", 35_000.00),
+        ("BL", 36_000.00),
+        ("NS", 55_000.00),
+        ("NM", 56_000.00),
+        ("NL", 57_000.00),
+        ("RS", 23_000.00),
+        ("RM", 24_000.00),
+        ("RL", 25_000.00),
+    )
+
+    amount = models.CharField(
+        max_length=2,
+        choices=AMOUNT_CHOICES,
+    )
+
+    size = models.ForeignKey(
+        to=Size,
+        on_delete=models.CASCADE,
+        related_name="price",
+    )
+
+
 class Inventory(models.Model):
 
     class Meta:
@@ -48,19 +76,22 @@ class Inventory(models.Model):
         ]
     )
 
-    size = models.ForeignKey(
-        to=Size, on_delete=models.CASCADE, related_name="size_inventory"
-    )
-
-    price = models.DecimalField(
-        max_digits=7,
-        decimal_places=2,
-    )
-
     product = models.ForeignKey(
         to=Product,
         on_delete=models.CASCADE,
         related_name="product_inventory",
+    )
+
+    size = models.ForeignKey(
+        to=Size,
+        on_delete=models.CASCADE,
+        related_name="size_inventory",
+    )
+
+    price = models.ForeignKey(
+        to=Price,
+        on_delete=models.CASCADE,
+        related_name="price_inventory",
     )
 
     @property
