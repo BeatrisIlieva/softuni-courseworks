@@ -9,11 +9,7 @@ django.setup()
 
 from django_ecommerce_strategy_pattern.product.models import Product
 
-result = (
-    Product.objects.filter(category__pk=1)
-    .select_related("category", "description", "color")
-    .prefetch_related("product_inventory__size", "product_inventory__price")
-)
+result = Product.objects.get_product_entity(1, 1)
 
 
 for product in result:
