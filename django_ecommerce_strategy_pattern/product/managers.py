@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.db.models import Min, Max
+
 
 class ProductManager(models.Manager):
 
@@ -8,6 +10,10 @@ class ProductManager(models.Manager):
             self.filter(category__pk=category_pk, color__pk=color_pk)
             .select_related("category", "color")
             .prefetch_related("product_inventory__price")
+            .annotate(
+                min_price=Min("product_inventory__price__amount"),
+                max_price=Max("product_inventory__price__amount"),
+            )
         )
 
     def get_product_entity_full_details(self, category_pk, color_pk):
