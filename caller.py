@@ -29,3 +29,4 @@ for product in result:
             f"  Price Amount: {inventory.price.get_amount_display()}"
         )  # The full price, e.g., "43,000.00"
         print(f"  Is Sold Out: {'Yes' if inventory.is_sold_out else 'No'}")
+        print(f"Quantity: {inventory.quantity}")
