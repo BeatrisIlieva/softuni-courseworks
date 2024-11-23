@@ -19,49 +19,59 @@ class FiltrationStrategy(ABC):
 class ShortEntityDetails(FiltrationStrategy):
     def get_entity_details(self, category_pk, color_pk):
         entity = Product.objects.get_product_entity_short_details(category_pk, color_pk)
-        
+
         result = []
-        
+
         for data in entity:
             result.append(f"Product: {data}")
             result.append(f"Category: {data.category.get_title_display()}")
             result.append(f"Color: {data.color.get_title_display()}")
             result.append(f"First Image: {data.first_image_url}")
             result.append(f"Second Image: {data.second_image_url}")
-            
+
             result.append(f"Price Range: {data.min_price} - {data.max_price}")
 
             for inventory in data.product_inventory.all():
                 result.append(f"  Inventory Quantity: {inventory.quantity}")
-                result.append(f"  Size Measurement: {inventory.size.get_measurement_display()}")
+                result.append(
+                    f"  Size Measurement: {inventory.size.get_measurement_display()}"
+                )
                 result.append(f"  Price Amount: {inventory.price.amount}")
-                result.append(f"  Is Sold Out: {'Yes' if inventory.is_sold_out else 'No'}")
-                
-        return "\n".join(result)
-        
+                result.append(
+                    f"  Is Sold Out: {'Yes' if inventory.is_sold_out else 'No'}"
+                )
 
+        return "\n".join(result)
 
 
 class FullEntityDetails(FiltrationStrategy):
     def get_entity_details(self, category_pk, color_pk):
-        result =  Product.objects.get_product_entity_full_details(category_pk, color_pk)
-        
-        for product in result:
-            print(f"Product: {product}")
-            print(f"Category: {product.category.get_title_display()}")
-            print(f"Description: {product.description.content}")
-            print(f"Color: {product.color.get_title_display()}")
-            print(f"First Image: {product.first_image_url}")
-            print(f"Second Image: {product.second_image_url}")
+        entity = Product.objects.get_product_entity_full_details(category_pk, color_pk)
 
-            print(f"Min Price: {product.min_price}")
-            print(f"Max Price: {product.max_price}")
+        result = []
 
-            for inventory in product.product_inventory.all():
-                print(f"  Inventory Quantity: {inventory.quantity}")
-                print(f"  Size Measurement: {inventory.size.get_measurement_display()}")
-                print(f"  Price Amount: {inventory.price}")
-                print(f"  Is Sold Out: {'Yes' if inventory.is_sold_out else 'No'}")
+        for data in entity:
+            result.append(f"Product: {data}")
+            result.append(f"Category: {data.category.get_title_display()}")
+            result.append(f"Color: {data.color.get_title_display()}")
+            result.append(f"First Image: {data.first_image_url}")
+            result.append(f"Second Image: {data.second_image_url}")
+            result.append(f"Description: {data.description.content}")
+
+            for inventory in data.product_inventory.all():
+                result.append(
+                    f"Size Measurement: {inventory.size.get_measurement_display()}"
+                )
+                result.append(f"Inventory Quantity: {inventory.quantity}")
+                result.append(
+                    f"Size Measurement: {inventory.size.get_measurement_display()}"
+                )
+                result.append(f"Price Amount: {inventory.price.amount}")
+                result.append(
+                    f"Is Sold Out: {'Yes' if inventory.is_sold_out else 'No'}"
+                )
+
+        return "\n".join(result)
 
 
 class FiltrationContext:

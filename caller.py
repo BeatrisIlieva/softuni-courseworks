@@ -41,6 +41,6 @@ from django_ecommerce_strategy_pattern.product.strategies import get_entity_deta
 
 
 
-print(get_entity_details(1, 2, FiltrationMethod.SHORT_DETAILS))
+print(get_entity_details(1, 2, FiltrationMethod.FULL_DETAILS))
 
 
