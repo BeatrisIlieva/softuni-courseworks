@@ -25,6 +25,7 @@ class Size(models.Model):
 
     measurement = models.CharField(
         max_length=2,
+        unique=True,
         choices=MEASUREMENT_CHOICES,
     )
 
@@ -53,6 +54,7 @@ class Price(models.Model):
 
     amount = models.CharField(
         max_length=2,
+        unique=True,
         choices=AMOUNT_CHOICES,
     )
 
