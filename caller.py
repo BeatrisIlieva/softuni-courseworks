@@ -2,20 +2,34 @@ import os
 import django
 
 # Set up Django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_ecommerce_strategy_pattern.settings")
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE", "django_ecommerce_strategy_pattern.settings"
+)
 django.setup()
 
 from django_ecommerce_strategy_pattern.product.models import Product
 
-result = Product.objects.filter(category__pk=1).select_related("category", "description", "color").prefetch_related("inventory")
+result = (
+    Product.objects.filter(category__pk=1)
+    .select_related("category", "description", "color")
+    .prefetch_related("product_inventory__size", "product_inventory__price")
+)
+
 
 for product in result:
-    print(product.category.get_title_display())
-    print(product.description.content)
-    print(product.color.get_title_display())
-    print(product.first_image_url)
-    for inventory in product.inventory.all():
-        print(inventory.price)
-        print(inventory.size)
-        print(inventory.quantity)
-        
+    print(f"Product: {product}")
+    print(f"Category: {product.category.get_title_display()}")
+    print(f"Description: {product.description.content}")
+    print(f"Color: {product.color.get_title_display()}")
+
+    for inventory in product.product_inventory.all():
+        print(f"  Inventory Quantity: {inventory.quantity}")
+        print(f"  Size Code: {inventory.size.measurement}")  # The size code, e.g., "ES"
+        print(
+            f"  Size Measurement: {inventory.size.get_measurement_display()}"
+        )  # The full measurement, e.g., "4.05"
+        print(f"  Price Code: {inventory.price.amount}")  # The price code, e.g., "ES"
+        print(
+            f"  Price Amount: {inventory.price.get_amount_display()}"
+        )  # The full price, e.g., "43,000.00"
+        print(f"  Is Sold Out: {'Yes' if inventory.is_sold_out else 'No'}")
