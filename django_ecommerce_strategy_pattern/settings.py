@@ -15,7 +15,7 @@ CUSTOM_APPS = [
     "django_ecommerce_strategy_pattern.product",
     "django_ecommerce_strategy_pattern.inventory",
     "django_ecommerce_strategy_pattern.user_credential_details",
-    "django_ecommerce_strategy_pattern.user_delivery_details",
+    "django_ecommerce_strategy_pattern.user_shipping_details",
     "django_ecommerce_strategy_pattern.user_payment_details",
 ]
 
