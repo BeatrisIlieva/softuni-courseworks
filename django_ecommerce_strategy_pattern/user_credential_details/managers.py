@@ -7,7 +7,7 @@ class UserCredentialDetailsManager(BaseUserManager):
 
     def _create_user(self, email, password, **extra_fields):
         if not email:
-            raise ValueError("Please enter a valid email")
+            raise ValueError("Please enter your email")
 
         user = self.model(email=email, **extra_fields)
         user.password = make_password(password)

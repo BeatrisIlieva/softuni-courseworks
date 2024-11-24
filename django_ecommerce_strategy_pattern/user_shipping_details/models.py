@@ -29,10 +29,29 @@ class UserShippingDetails(models.Model):
     
 
     first_name = models.CharField(
+        max_length=(FIRST_NAME_MAX_LENGTH),
         validators=[
             RegexValidator(
                 regex=rf"^[A-Za-z]{{{FIRST_NAME_MIN_LENGTH},{FIRST_NAME_MAX_LENGTH}}}$",
                 message=f"This field requires ${FIRST_NAME_MIN_LENGTH}-${FIRST_NAME_MAX_LENGTH} letters",
+            )
+        ],
+    )
+    
+    last_name = models.CharField(
+        validators=[
+            RegexValidator(
+                regex=rf"^[A-Za-z]{{{LAST_NAME_MIN_LENGTH},{LAST_NAME_MAX_LENGTH}}}$",
+                message=f"This field requires ${LAST_NAME_MIN_LENGTH}-${LAST_NAME_MAX_LENGTH} letters",
+            )
+        ],
+    )
+    
+    phone_number = models.CharField(
+        validators=[
+            RegexValidator(
+                regex=rf"^[0-9]{{{PHONE_NUMBER_MIN_LENGTH},{PHONE_NUMBER_MAX_LENGTH}}}$",
+                message=f"This field requires ${PHONE_NUMBER_MIN_LENGTH}-${PHONE_NUMBER_MAX_LENGTH} digits",
             )
         ],
     )

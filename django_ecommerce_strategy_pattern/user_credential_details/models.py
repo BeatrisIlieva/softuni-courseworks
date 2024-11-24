@@ -1,5 +1,7 @@
+from django.core.exceptions import ValidationError
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
+
 from django.db import models
 
 from django_ecommerce_strategy_pattern.user_credential_details.managers import (
@@ -21,7 +23,7 @@ class UserCredentialDetails(AbstractBaseUser, PermissionsMixin):
     objects = UserCredentialDetailsManager()
 
     email = models.EmailField(
-        unique=True,
+        unique=True, error_messages={"invalid": "Please enter a valid email address"}
     )
 
     is_staff = models.BooleanField(
@@ -44,7 +46,13 @@ class UserCredentialDetails(AbstractBaseUser, PermissionsMixin):
         verbose_name="user permissions",
     )
 
+    def clean(self):
+        if UserCredentialDetails.objects.filter(email=self.email).exists():
+            raise ValidationError("User with that email address already exists")
+
     def save(self, *args, **kwargs):
+        self.clean()
+
         is_new = self.pk is None
         super().save(*args, **kwargs)
 
