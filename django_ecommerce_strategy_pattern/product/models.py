@@ -41,6 +41,8 @@ class Product(models.Model):
     class Meta:
         unique_together = ("category", "color")
 
+    objects = ProductManager()
+
     first_image_url = models.URLField()
 
     second_image_url = models.URLField()
@@ -62,5 +64,3 @@ class Product(models.Model):
         on_delete=models.CASCADE,
         related_name="description",
     )
-
-    objects = ProductManager()
