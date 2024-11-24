@@ -1,9 +1,9 @@
 from django.db import models
 from django.core.validators import RegexValidator
 
-from django_ecommerce_strategy_pattern.user_credential_details.models import (
-    UserCredentialDetails,
-)
+# from django_ecommerce_strategy_pattern.user_credential_details.models import (
+#     UserCredentialDetails,
+# )
 
 
 class UserShippingDetails(models.Model):
@@ -28,7 +28,8 @@ class UserShippingDetails(models.Model):
     postal_code = models.CharField()
     
     user = models.OneToOneField(
-        to=UserCredentialDetails,
+        to="user_credential_details.UserCredentialDetails", 
+        # to=UserCredentialDetails,
         on_delete=models.CASCADE,
         primary_key=True,
         related_name="shipping_details",

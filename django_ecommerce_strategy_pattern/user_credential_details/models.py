@@ -6,6 +6,14 @@ from django_ecommerce_strategy_pattern.user_credential_details.managers import (
     UserCredentialDetailsManager,
 )
 
+from django_ecommerce_strategy_pattern.user_shipping_details.models import (
+    UserShippingDetails,
+)
+
+from django_ecommerce_strategy_pattern.user_payment_details.models import (
+    UserPaymentDetails,
+)
+
 
 class UserCredentialDetails(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
@@ -35,3 +43,11 @@ class UserCredentialDetails(AbstractBaseUser, PermissionsMixin):
         help_text="Specific permissions for this user.",
         verbose_name="user permissions",
     )
+    
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None  
+        super().save(*args, **kwargs)
+        
+        if is_new:
+            UserShippingDetails.objects.create(user=self)
+            UserPaymentDetails.objects.create(user=self)
