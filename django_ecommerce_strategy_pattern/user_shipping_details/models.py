@@ -1,6 +1,10 @@
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.core.validators import MinLengthValidator, RegexValidator
+from django.core.validators import (
+    MinLengthValidator,
+    RegexValidator,
+    MaxLengthValidator,
+)
 from django_ecommerce_strategy_pattern.user_shipping_details.validators import (
     Validator,
     ValidationMethod,
@@ -46,16 +50,24 @@ class UserShippingDetails(models.Model):
                 regex="^[A-Za-z]$",
                 message="Please make sure your First Name contains only letters",
             ),
-            Validator(
-                length_limit=FIRST_NAME_MIN_LENGTH,
-                error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-                method=ValidationMethod.MIN_LENGTH,
+            
+            MinLengthValidator(
+                FIRST_NAME_MIN_LENGTH, message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE
             ),
-            Validator(
-                length_limit=FIRST_NAME_MAX_LENGTH,
-                error_message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
-                method=ValidationMethod.MAX_LENGTH,
+            
+            MaxLengthValidator(
+                FIRST_NAME_MAX_LENGTH, FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE
             ),
+            # Validator(
+            #     length_limit=FIRST_NAME_MIN_LENGTH,
+            #     error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+            #     method=ValidationMethod.MIN_LENGTH,
+            # ),
+            # Validator(
+            #     length_limit=FIRST_NAME_MAX_LENGTH,
+            #     error_message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
+            #     method=ValidationMethod.MAX_LENGTH,
+            # ),
         ],
     )
 
