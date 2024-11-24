@@ -29,3 +29,11 @@ class UserShippingDetails(models.Model):
         primary_key=True,
         related_name="shipping_details",
     )
+    
+    def clean(self):
+        self.first_name = self.first_name.capitalize()
+        
+    def save(self, *args, **kwargs):
+        self.clean()
+        
+        super().save(*args, **kwargs)
