@@ -1,15 +1,11 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+
 from django.core.validators import (
     MinLengthValidator,
     RegexValidator,
     MaxLengthValidator,
 )
-from django_ecommerce_strategy_pattern.user_shipping_details.validators import (
-    Validator,
-    ValidationMethod,
-)
-
 
 class UserShippingDetails(models.Model):
 
@@ -55,30 +51,14 @@ class UserShippingDetails(models.Model):
             RegexValidator(
                 regex="^[A-Za-z]$",
                 message=ONLY_LETTERS_ERROR_MESSAGE,
-
             ),
-            # MinLengthValidator(
-            #     FIRST_NAME_MIN_LENGTH,
-            #     message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-            # ),
-            # MaxLengthValidator(
-            #     FIRST_NAME_MAX_LENGTH,
-            #     message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
-            # ),
-            Validator(
-                length_limit=0,
-                error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-                method=ValidationMethod.ZERO_LENGTH,
+            MinLengthValidator(
+                FIRST_NAME_MIN_LENGTH,
+                message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
             ),
-            Validator(
-                length_limit=FIRST_NAME_MIN_LENGTH,
-                error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-                method=ValidationMethod.MIN_LENGTH,
-            ),
-            Validator(
-                length_limit=FIRST_NAME_MAX_LENGTH,
-                error_message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
-                method=ValidationMethod.MAX_LENGTH,
+            MaxLengthValidator(
+                FIRST_NAME_MAX_LENGTH,
+                message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
             ),
         ],
     )
@@ -116,7 +96,7 @@ class UserShippingDetails(models.Model):
 
     def clean(self):
         if len(self.first_name) <= 0:
-            raise ValidationError({"first_name": "Pease enter your first name"})
+            raise ValidationError({"first_name": "Please enter your first name"})
 
         self.first_name = self.first_name.capitalize()
 

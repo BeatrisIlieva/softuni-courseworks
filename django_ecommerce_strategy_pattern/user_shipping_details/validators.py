@@ -20,10 +20,9 @@ class LengthValidationStrategy(ABC):
 
 class ZeroLengthValidationStrategy(LengthValidationStrategy):
     def validate(self, value, length_limit: int, error_message: str):
-        if value == "":
+        if len(value) == 0:
             raise ValidationError(
-                message=error_message,
-                code="invalid",
+                {"first_name": "Pease enter your first name"}
             )
             
 
@@ -70,3 +69,20 @@ class Validator:
         context = ValidationContext(strategy=strategies[self.method])
 
         return context.validate(value, self.length_limit, self.error_message)
+
+
+            # Validator(
+            #     length_limit=0,
+            #     error_message="please enetr your name",
+            #     method=ValidationMethod.ZERO_LENGTH,
+            # ),
+            # Validator(
+            #     length_limit=FIRST_NAME_MIN_LENGTH,
+            #     error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+            #     method=ValidationMethod.MIN_LENGTH,
+            # ),
+            # Validator(
+            #     length_limit=FIRST_NAME_MAX_LENGTH,
+            #     error_message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
+            #     method=ValidationMethod.MAX_LENGTH,
+            # ),

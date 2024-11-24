@@ -34,7 +34,7 @@ from django_ecommerce_strategy_pattern.user_shipping_details.models import (
 
 
 user_sp = UserShippingDetails.objects.get(pk=9)
-user_sp.first_name = "b1"
+user_sp.first_name = ""
 user_sp.last_name = "ilieve"
 user_sp.phone_number = "00000000000"
 user_sp.country = "B"
