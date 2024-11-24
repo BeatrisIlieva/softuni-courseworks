@@ -5,6 +5,28 @@ from django.core.validators import RegexValidator
 class UserShippingDetails(models.Model):
     FIRST_NAME_MIN_LENGTH = 2
     FIRST_NAME_MAX_LENGTH = 255
+    
+    LAST_NAME_MIN_LENGTH = 2
+    LAST_NAME_MAX_LENGTH = 255
+    
+    PHONE_NUMBER_MIN_LENGTH = 7
+    PHONE_NUMBER_MAX_LENGTH = 15
+    
+    COUNTRY_MIN_COUNTRY = 2
+    COUNTRY_MAX_LENGTH = 255
+    
+    CITY_MIN_COUNTRY = 2
+    CITY_MAX_LENGTH = 255
+    
+    STREET_MIN_COUNTRY = 8
+    STREET_MAX_LENGTH = 255
+    
+    APARTMENT_MIN_COUNTRY = 0
+    APARTMENT_MAX_LENGTH = 10
+    
+    POSTAL_CODE_MIN_COUNTRY = 4
+    POSTAL_CODE_MAX_LENGTH = 15
+    
 
     first_name = models.CharField(
         validators=[
