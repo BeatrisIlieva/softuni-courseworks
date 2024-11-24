@@ -19,3 +19,19 @@ class UserCredentialDetails(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(
         default=False,
     )
+
+    groups = models.ManyToManyField(
+        to="auth.Group",
+        related_name="user_credential_details",
+        blank=True,
+        help_text="The groups this user belongs to. A user will get all permissions granted to each group.",
+        verbose_name="groups",
+    )
+
+    user_permissions = models.ManyToManyField(
+        to="auth.Permission",
+        related_name="user_credential_details",
+        blank=True,
+        help_text="Specific permissions for this user.",
+        verbose_name="user permissions",
+    )

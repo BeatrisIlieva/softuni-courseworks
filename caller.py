@@ -1,6 +1,9 @@
 import os
 import django
 
+from django.db import models
+from django.core.validators import RegexValidator
+
 
 os.environ.setdefault(
     "DJANGO_SETTINGS_MODULE", "django_ecommerce_strategy_pattern.settings"
@@ -8,10 +11,13 @@ os.environ.setdefault(
 django.setup()
 
 
-from django_ecommerce_strategy_pattern.product.strategies import (
-    get_entity_details,
-    FiltrationMethod,
-)
+# from django_ecommerce_strategy_pattern.product.strategies import (
+#     get_entity_details,
+#     FiltrationMethod,
+# )
 
 
-print(get_entity_details(2, 2, FiltrationMethod.FULL_DETAILS))
+# print(get_entity_details(2, 2, FiltrationMethod.FULL_DETAILS))
+
+
+
