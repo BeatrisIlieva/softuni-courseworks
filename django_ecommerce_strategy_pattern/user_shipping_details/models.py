@@ -49,29 +49,37 @@ class UserShippingDetails(models.Model):
     )
 
     first_name = models.CharField(
+        blank=True,
+        null=False,
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]$",
                 message=ONLY_LETTERS_ERROR_MESSAGE,
+
             ),
-            MinLengthValidator(
-                FIRST_NAME_MIN_LENGTH,
-                message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-            ),
-            MaxLengthValidator(
-                FIRST_NAME_MAX_LENGTH,
-                message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
-            ),
-            # Validator(
-            #     length_limit=FIRST_NAME_MIN_LENGTH,
-            #     error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-            #     method=ValidationMethod.MIN_LENGTH,
+            # MinLengthValidator(
+            #     FIRST_NAME_MIN_LENGTH,
+            #     message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
             # ),
-            # Validator(
-            #     length_limit=FIRST_NAME_MAX_LENGTH,
-            #     error_message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
-            #     method=ValidationMethod.MAX_LENGTH,
+            # MaxLengthValidator(
+            #     FIRST_NAME_MAX_LENGTH,
+            #     message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
             # ),
+            Validator(
+                length_limit=0,
+                error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+                method=ValidationMethod.ZERO_LENGTH,
+            ),
+            Validator(
+                length_limit=FIRST_NAME_MIN_LENGTH,
+                error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+                method=ValidationMethod.MIN_LENGTH,
+            ),
+            Validator(
+                length_limit=FIRST_NAME_MAX_LENGTH,
+                error_message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
+                method=ValidationMethod.MAX_LENGTH,
+            ),
         ],
     )
 
@@ -93,8 +101,6 @@ class UserShippingDetails(models.Model):
         ],
     )
 
-    last_name = models.CharField()
-    phone_number = models.CharField()
     country = models.CharField()
     city = models.CharField()
     street = models.CharField()
@@ -110,7 +116,7 @@ class UserShippingDetails(models.Model):
 
     def clean(self):
         if len(self.first_name) <= 0:
-            raise ValidationError("Pease enter your first name")
+            raise ValidationError({"first_name": "Pease enter your first name"})
 
         self.first_name = self.first_name.capitalize()
 

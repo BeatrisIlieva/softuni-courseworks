@@ -12,13 +12,20 @@ class ValidationMethod(Enum):
     MAX_LENGTH = "max_length"
 
 
-# @deconstructible
 class LengthValidationStrategy(ABC):
 
     @abstractmethod
     def validate(self, value, length_limit: int, error_message: str):
         pass
 
+class ZeroLengthValidationStrategy(LengthValidationStrategy):
+    def validate(self, value, length_limit: int, error_message: str):
+        if value == "":
+            raise ValidationError(
+                message=error_message,
+                code="invalid",
+            )
+            
 
 class MinLengthValidationStrategy(LengthValidationStrategy):
     def validate(self, value, length_limit: int, error_message: str):
@@ -55,6 +62,7 @@ class Validator:
 
     def __call__(self, value):
         strategies = {
+            ValidationMethod.ZERO_LENGTH: ZeroLengthValidationStrategy(),
             ValidationMethod.MIN_LENGTH: MinLengthValidationStrategy(),
             ValidationMethod.MAX_LENGTH: MaxLengthValidationStrategy(),
         }
