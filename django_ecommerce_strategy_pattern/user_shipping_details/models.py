@@ -44,19 +44,23 @@ class UserShippingDetails(models.Model):
     POSTAL_CODE_MIN_COUNTRY = 4
     POSTAL_CODE_MAX_LENGTH = 15
 
+    ONLY_LETTERS_ERROR_MESSAGE = (
+        "Please make sure your First Name contains only letters"
+    )
+
     first_name = models.CharField(
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]$",
-                message="Please make sure your First Name contains only letters",
+                message=ONLY_LETTERS_ERROR_MESSAGE,
             ),
-            
             MinLengthValidator(
-                FIRST_NAME_MIN_LENGTH, message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE
+                FIRST_NAME_MIN_LENGTH,
+                message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
             ),
-            
             MaxLengthValidator(
-                FIRST_NAME_MAX_LENGTH, FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE
+                FIRST_NAME_MAX_LENGTH,
+                message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
             ),
             # Validator(
             #     length_limit=FIRST_NAME_MIN_LENGTH,
