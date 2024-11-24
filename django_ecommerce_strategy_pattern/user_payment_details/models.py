@@ -15,7 +15,6 @@ class UserPaymentDetails(models.Model):
 
     user = models.OneToOneField(
         to="user_credential_details.UserCredentialDetails",
-        # to=UserCredentialDetails,
         on_delete=models.CASCADE,
         primary_key=True,
         related_name="payment_details",
