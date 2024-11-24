@@ -12,7 +12,7 @@ class FiltrationMethod(Enum):
 
 class FiltrationStrategy(ABC):
     @abstractmethod
-    def get_entity_details(self, category_by_color):
+    def get_entity_details(self, category_pk, color_pk):
         pass
 
 

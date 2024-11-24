@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CUSTOM_APPS = [
+    "django_ecommerce_strategy_pattern.product",
+    "django_ecommerce_strategy_pattern.inventory",
+    "django_ecommerce_strategy_pattern.user",
+]
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -34,9 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_ecommerce_strategy_pattern.product",
-    "django_ecommerce_strategy_pattern.inventory",
-]
+] + CUSTOM_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
