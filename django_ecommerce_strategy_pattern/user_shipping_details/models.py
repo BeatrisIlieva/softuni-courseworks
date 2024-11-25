@@ -118,11 +118,11 @@ class UserShippingDetails(models.Model):
                 message=FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
-                FIRST_NAME_MIN_LENGTH,
+                limit_value=FIRST_NAME_MIN_LENGTH,
                 message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
             ),
             MaxLengthValidator(
-                FIRST_NAME_MAX_LENGTH,
+                limit_value=FIRST_NAME_MAX_LENGTH,
                 message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
             ),
         ],
@@ -135,11 +135,11 @@ class UserShippingDetails(models.Model):
                 message=LAST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
-                LAST_NAME_MIN_LENGTH,
+                limit_value=LAST_NAME_MIN_LENGTH,
                 message=LAST_NAME_MIN_LENGTH_ERROR_MESSAGE,
             ),
             MaxLengthValidator(
-                LAST_NAME_MAX_LENGTH,
+                limit_value=LAST_NAME_MAX_LENGTH,
                 message=LAST_NAME_MAX_LENGTH_ERROR_MESSAGE,
             ),
         ],
@@ -152,11 +152,11 @@ class UserShippingDetails(models.Model):
                 message=PHONE_NUMBER_ONLY_DIGITS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
-                PHONE_NUMBER_MIN_LENGTH,
+                limit_value=PHONE_NUMBER_MIN_LENGTH,
                 message=PHONE_NUMBER_MIN_LENGTH_ERROR_MESSAGE,
             ),
             MaxLengthValidator(
-                PHONE_NUMBER_MAX_LENGTH,
+                limit_value=PHONE_NUMBER_MAX_LENGTH,
                 message=PHONE_NUMBER_MAX_LENGTH_ERROR_MESSAGE,
             ),
         ],
@@ -169,11 +169,11 @@ class UserShippingDetails(models.Model):
                 message=COUNTRY_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
-                COUNTRY_MIN_LENGTH,
+                limit_value=COUNTRY_MIN_LENGTH,
                 message=COUNTRY_MIN_LENGTH_ERROR_MESSAGE,
             ),
             MaxLengthValidator(
-                COUNTRY_MAX_LENGTH,
+                limit_value=COUNTRY_MAX_LENGTH,
                 message=COUNTRY_MAX_LENGTH_ERROR_MESSAGE,
             ),
         ],
@@ -186,11 +186,11 @@ class UserShippingDetails(models.Model):
                 message=CITY_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
-                CITY_MIN_LENGTH,
+                limit_value=CITY_MIN_LENGTH,
                 message=CITY_MIN_LENGTH_ERROR_MESSAGE,
             ),
             MaxLengthValidator(
-                CITY_MAX_LENGTH,
+                limit_value=CITY_MAX_LENGTH,
                 message=CITY_MAX_LENGTH_ERROR_MESSAGE,
             ),
         ],
@@ -199,11 +199,11 @@ class UserShippingDetails(models.Model):
     street = models.CharField(
         validators=[
             MinLengthValidator(
-                STREET_MIN_LENGTH,
+                limit_value=STREET_MIN_LENGTH,
                 message=STREET_MIN_LENGTH_ERROR_MESSAGE,
             ),
             MaxLengthValidator(
-                STREET_MAX_LENGTH,
+                limit_value=STREET_MAX_LENGTH,
                 message=STREET_MAX_LENGTH_ERROR_MESSAGE,
             ),
         ],
