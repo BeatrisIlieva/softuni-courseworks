@@ -195,9 +195,40 @@ class UserShippingDetails(models.Model):
             ),
         ],
     )
-    street = models.CharField()
-    apartment = models.CharField()
-    postal_code = models.CharField()
+
+    street = models.CharField(
+        validators=[
+            MinLengthValidator(
+                STREET_MIN_LENGTH,
+                message=STREET_MIN_LENGTH_ERROR_MESSAGE,
+            ),
+            MaxLengthValidator(
+                STREET_MAX_LENGTH,
+                message=STREET_MAX_LENGTH_ERROR_MESSAGE,
+            ),
+        ],
+    )
+
+    apartment = models.CharField(
+        validators=[
+            MaxLengthValidator(
+                APARTMENT_MAX_LENGTH,
+                message=APARTMENT_MAX_LENGTH_ERROR_MESSAGE,
+            ),
+        ],
+    )
+    postal_code = models.CharField(
+        validators=[
+            MinLengthValidator(
+                POSTAL_CODE_MIN_LENGTH,
+                message=POSTAL_CODE_MIN_LENGTH_ERROR_MESSAGE,
+            ),
+            MaxLengthValidator(
+                POSTAL_CODE_MAX_LENGTH,
+                message=POSTAL_CODE_MAX_LENGTH_ERROR_MESSAGE,
+            ),
+        ],
+    )
 
     user = models.OneToOneField(
         to="user_credential_details.UserCredentialDetails",
