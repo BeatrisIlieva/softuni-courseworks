@@ -14,21 +14,21 @@ from django_ecommerce_strategy_pattern.user_shipping_details.constants import (
 
 class UserShippingDetails(models.Model):
 
-    # FIRST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your First Name"
+    FIRST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your First Name"
 
-    # FIRST_NAME_MIN_LENGTH = 2
-    # FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
-    #     f"First Name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
-    # )
+    FIRST_NAME_MIN_LENGTH = 2
+    FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
+        f"First Name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
+    )
 
-    # FIRST_NAME_MAX_LENGTH = 255
-    # FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-    #     f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters",
-    # )
+    FIRST_NAME_MAX_LENGTH = 255
+    FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
+        f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters",
+    )
 
-    # FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
-    #     "Please make sure your First Name contains only letters"
-    # )
+    FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
+        "Please make sure your First Name contains only letters"
+    )
 
     LAST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your Last Name"
 
@@ -132,29 +132,17 @@ class UserShippingDetails(models.Model):
         },
         validators=[
             RegexValidator(
-                regex=FIRST_NAME_RULES["regex"],
-                message=FIRST_NAME_RULES["error_messages"]["regex"],
+                regex="^[A-Za-z]+$",
+                message=FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
-                limit_value=FIRST_NAME_RULES["min_length"],
-                message=FIRST_NAME_RULES["error_messages"]["min_length"],
+                limit_value=FIRST_NAME_MIN_LENGTH,
+                message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
             ),
             MaxLengthValidator(
-                limit_value=FIRST_NAME_RULES["max_length"],
-                message=FIRST_NAME_RULES["error_messages"]["max_length"],
+                limit_value=FIRST_NAME_MAX_LENGTH,
+                message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
             ),
-            # RegexValidator(
-            #     regex="^[A-Za-z]+$",
-            #     message=FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
-            # ),
-            # MinLengthValidator(
-            #     limit_value=FIRST_NAME_MIN_LENGTH,
-            #     message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-            # ),
-            # MaxLengthValidator(
-            #     limit_value=FIRST_NAME_MAX_LENGTH,
-            #     message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
-            # ),
         ],
     )
 
