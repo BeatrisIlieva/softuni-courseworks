@@ -78,11 +78,11 @@ class UserPaymentDetails(models.Model):
                 message=CARD_NUMBER_ONLY_DIGITS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
-                limit_value=CARD_NUMBER_LENGTH_ERROR_MESSAGE,
+                limit_value=CARD_NUMBER_LENGTH,
                 message=CARD_NUMBER_LENGTH_ERROR_MESSAGE,
             ),
             MaxLengthValidator(
-                limit_value=CARD_NUMBER_LENGTH_ERROR_MESSAGE,
+                limit_value=CARD_NUMBER_LENGTH,
                 message=CARD_NUMBER_LENGTH_ERROR_MESSAGE,
             ),
         ],
