@@ -7,24 +7,30 @@ from django.core.validators import (
     MaxLengthValidator,
 )
 
+from django_ecommerce_strategy_pattern.user_shipping_details.constants import (
+    FIRST_NAME_RULES,
+)
+
 
 class UserShippingDetails(models.Model):
 
-    FIRST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your First Name"
+    # FIRST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your First Name"
 
-    FIRST_NAME_MIN_LENGTH = 2
-    FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
-        f"First Name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
-    )
+    # FIRST_NAME_MIN_LENGTH = 2
+    # FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
+    #     f"First Name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
+    # )
 
-    FIRST_NAME_MAX_LENGTH = 255
-    FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-        f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters",
-    )
+    # FIRST_NAME_MAX_LENGTH = 255
+    # FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
+    #     f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters",
+    # )
 
-    FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
-        "Please make sure your First Name contains only letters"
-    )
+    # FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
+    #     "Please make sure your First Name contains only letters"
+    # )
+
+    LAST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your Last Name"
 
     LAST_NAME_MIN_LENGTH = 2
     LAST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
@@ -40,6 +46,8 @@ class UserShippingDetails(models.Model):
         "Please make sure your Last Name contains only letters"
     )
 
+    PHONE_NUMBER_EMPTY_ERROR_MESSAGE = "Please enter your Phone Number"
+
     PHONE_NUMBER_MIN_LENGTH = 7
     PHONE_NUMBER_MIN_LENGTH_ERROR_MESSAGE = (
         f"Phone Number must be at least {PHONE_NUMBER_MIN_LENGTH} digits long"
@@ -53,6 +61,8 @@ class UserShippingDetails(models.Model):
     PHONE_NUMBER_ONLY_DIGITS_ERROR_MESSAGE = (
         "Please make sure your Phone Number contains only digits"
     )
+
+    COUNTRY_EMPTY_ERROR_MESSAGE = "Please enter your Country"
 
     COUNTRY_MIN_LENGTH = 2
     COUNTRY_MIN_LENGTH_ERROR_MESSAGE = (
@@ -68,6 +78,8 @@ class UserShippingDetails(models.Model):
         "Please make sure the Country name contains only letters"
     )
 
+    CITY_EMPTY_ERROR_MESSAGE = "Please enter your City"
+
     CITY_MIN_LENGTH = 2
     CITY_MIN_LENGTH_ERROR_MESSAGE = (
         f"City name must be at least {CITY_MIN_LENGTH} characters long"
@@ -81,6 +93,8 @@ class UserShippingDetails(models.Model):
     CITY_ONLY_LETTERS_ERROR_MESSAGE = (
         "Please make sure the City name contains only letters"
     )
+
+    STREET_EMPTY_ERROR_MESSAGE = "Please enter your Street"
 
     STREET_MIN_LENGTH = 8
     STREET_MIN_LENGTH_ERROR_MESSAGE = (
@@ -99,6 +113,8 @@ class UserShippingDetails(models.Model):
         f"Apartment cannot be longer than {APARTMENT_MAX_LENGTH} characters",
     )
 
+    POSTAL_CODE_EMPTY_ERROR_MESSAGE = "Please enter your Postal Code"
+
     POSTAL_CODE_MIN_LENGTH = 4
     POSTAL_CODE_MIN_LENGTH_ERROR_MESSAGE = (
         f"Postal Code must be at least {POSTAL_CODE_MIN_LENGTH} characters long"
@@ -110,26 +126,42 @@ class UserShippingDetails(models.Model):
     )
 
     first_name = models.CharField(
+        max_length=FIRST_NAME_RULES["max_length"],
         error_messages={
-            "blank": FIRST_NAME_EMPTY_ERROR_MESSAGE,
+            "blank": FIRST_NAME_RULES["error_messages"]["blank"],
         },
         validators=[
             RegexValidator(
-                regex="^[A-Za-z]+$",
-                message=FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
+                regex=FIRST_NAME_RULES["regex"],
+                message=FIRST_NAME_RULES["error_messages"]["regex"],
             ),
             MinLengthValidator(
-                limit_value=FIRST_NAME_MIN_LENGTH,
-                message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+                limit_value=FIRST_NAME_RULES["min_length"],
+                message=FIRST_NAME_RULES["error_messages"]["min_length"],
             ),
             MaxLengthValidator(
-                limit_value=FIRST_NAME_MAX_LENGTH,
-                message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
+                limit_value=FIRST_NAME_RULES["max_length"],
+                message=FIRST_NAME_RULES["error_messages"]["max_length"],
             ),
+            # RegexValidator(
+            #     regex="^[A-Za-z]+$",
+            #     message=FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
+            # ),
+            # MinLengthValidator(
+            #     limit_value=FIRST_NAME_MIN_LENGTH,
+            #     message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+            # ),
+            # MaxLengthValidator(
+            #     limit_value=FIRST_NAME_MAX_LENGTH,
+            #     message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
+            # ),
         ],
     )
 
     last_name = models.CharField(
+        error_messages={
+            "blank": LAST_NAME_EMPTY_ERROR_MESSAGE,
+        },
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]+$",
@@ -147,6 +179,9 @@ class UserShippingDetails(models.Model):
     )
 
     phone_number = models.CharField(
+        error_messages={
+            "blank": PHONE_NUMBER_EMPTY_ERROR_MESSAGE,
+        },
         validators=[
             RegexValidator(
                 regex="^[0-9]+$",
@@ -164,6 +199,9 @@ class UserShippingDetails(models.Model):
     )
 
     country = models.CharField(
+        error_messages={
+            "blank": COUNTRY_EMPTY_ERROR_MESSAGE,
+        },
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]+$",
@@ -181,6 +219,9 @@ class UserShippingDetails(models.Model):
     )
 
     city = models.CharField(
+        error_messages={
+            "blank": CITY_EMPTY_ERROR_MESSAGE,
+        },
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]+$",
@@ -198,6 +239,9 @@ class UserShippingDetails(models.Model):
     )
 
     street = models.CharField(
+        error_messages={
+            "blank": STREET_EMPTY_ERROR_MESSAGE,
+        },
         validators=[
             MinLengthValidator(
                 limit_value=STREET_MIN_LENGTH,
@@ -222,6 +266,9 @@ class UserShippingDetails(models.Model):
     )
 
     postal_code = models.CharField(
+        error_messages={
+            "blank": POSTAL_CODE_EMPTY_ERROR_MESSAGE,
+        },
         validators=[
             MinLengthValidator(
                 POSTAL_CODE_MIN_LENGTH,
