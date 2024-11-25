@@ -28,13 +28,13 @@ from django_ecommerce_strategy_pattern.user_shipping_details.models import (
 
 # print(get_entity_details(2, 2, FiltrationMethod.FULL_DETAILS))
 # try:
-#     user_cr = UserCredentialDetails.objects.create(email="bea8@icloud.com")
+#     user_cr = UserCredentialDetails.objects.create(email="bea14@icloud.com")
 # except ValidationError as e:
 #     print(e.messages[0])
 
 
-user_sp = UserShippingDetails.objects.get(pk=9)
-user_sp.first_name = ""
+user_sp = UserShippingDetails.objects.get(pk=14)
+user_sp.first_name = "b1"
 user_sp.last_name = "ilieve"
 user_sp.phone_number = "00000000000"
 user_sp.country = "B"

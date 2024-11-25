@@ -7,6 +7,11 @@ from django.core.validators import (
     MaxLengthValidator,
 )
 
+from django_ecommerce_strategy_pattern.user_shipping_details.clean_rules import (
+    CLEAN_RULES,
+)
+
+
 class UserShippingDetails(models.Model):
 
     FIRST_NAME_MIN_LENGTH = 2
@@ -20,7 +25,14 @@ class UserShippingDetails(models.Model):
     )
 
     LAST_NAME_MIN_LENGTH = 2
+    LAST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
+        f"Last name must be at least {LAST_NAME_MIN_LENGTH} characters long"
+    )
+    
     LAST_NAME_MAX_LENGTH = 255
+    LAST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
+        f"LAst name cannot be longer than {LAST_NAME_MAX_LENGTH} characters",
+    )
 
     PHONE_NUMBER_MIN_LENGTH = 7
     PHONE_NUMBER_MAX_LENGTH = 15
@@ -46,7 +58,6 @@ class UserShippingDetails(models.Model):
 
     first_name = models.CharField(
         blank=True,
-        null=False,
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]$",
@@ -64,11 +75,20 @@ class UserShippingDetails(models.Model):
     )
 
     last_name = models.CharField(
+        blank=True,
         validators=[
             RegexValidator(
-                regex=rf"^[A-Za-z]{{{LAST_NAME_MIN_LENGTH},{LAST_NAME_MAX_LENGTH}}}$",
-                message=f"This field requires ${LAST_NAME_MIN_LENGTH}-${LAST_NAME_MAX_LENGTH} letters",
-            )
+                regex="^[A-Za-z]$",
+                message=ONLY_LETTERS_ERROR_MESSAGE,
+            ),
+            MinLengthValidator(
+                LAST_NAME_MIN_LENGTH,
+                message=LAST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+            ),
+            MaxLengthValidator(
+                LAST_NAME_MAX_LENGTH,
+                message=LAST_NAME_MAX_LENGTH_ERROR_MESSAGE,
+            ),
         ],
     )
 
@@ -95,10 +115,15 @@ class UserShippingDetails(models.Model):
     )
 
     def clean(self):
-        if len(self.first_name) <= 0:
-            raise ValidationError({"first_name": "Please enter your first name"})
+        for field, rules in CLEAN_RULES.items():
+            value = getattr(self, field)
 
-        self.first_name = self.first_name.capitalize()
+            if len(value) == 0:
+                raise ValidationError({field: rules["error_message"]})
+
+            if rules.get("capitalize", False):
+                setattr(self, field, value.capitalize())
+
 
     def save(self, *args, **kwargs):
         self.clean()
