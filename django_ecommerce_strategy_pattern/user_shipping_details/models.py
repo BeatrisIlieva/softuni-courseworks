@@ -3,12 +3,8 @@ from django.db import models
 
 from django.core.validators import (
     MinLengthValidator,
-    RegexValidator,
     MaxLengthValidator,
-)
-
-from django_ecommerce_strategy_pattern.user_shipping_details.constants import (
-    FIRST_NAME_RULES,
+    RegexValidator,
 )
 
 
@@ -126,9 +122,8 @@ class UserShippingDetails(models.Model):
     )
 
     first_name = models.CharField(
-        max_length=FIRST_NAME_RULES["max_length"],
         error_messages={
-            "blank": FIRST_NAME_RULES["error_messages"]["blank"],
+            "blank": FIRST_NAME_EMPTY_ERROR_MESSAGE,
         },
         validators=[
             RegexValidator(
