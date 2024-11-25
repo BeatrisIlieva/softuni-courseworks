@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.exceptions import ValidationError
+
 
 from django.core.validators import (
     MinLengthValidator,
@@ -7,14 +7,10 @@ from django.core.validators import (
     MaxLengthValidator,
 )
 
-from django_ecommerce_strategy_pattern.user_shipping_details.clean_rules import (
-    CLEAN_RULES,
-)
-
-from django_ecommerce_strategy_pattern.user_shipping_details.validators import Validator, ValidationMethod
-
 
 class UserShippingDetails(models.Model):
+
+    FIRST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your First Name"
 
     FIRST_NAME_MIN_LENGTH = 2
     FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
@@ -114,27 +110,18 @@ class UserShippingDetails(models.Model):
     )
 
     first_name = models.CharField(
+        error_messages={
+            "blank": FIRST_NAME_EMPTY_ERROR_MESSAGE,
+        },
         validators=[
             RegexValidator(
-                regex="^[A-Za-z]$",
+                regex="^[A-Za-z]+$",
                 message=FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
             ),
-            
-            Validator(
-                length_limit=0,
-                error_message="please enter your first name",
-                method=ValidationMethod.ZERO_LENGTH,
+            MinLengthValidator(
+                limit_value=FIRST_NAME_MIN_LENGTH,
+                message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
             ),
-            Validator(
-                length_limit=FIRST_NAME_MIN_LENGTH,
-                error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-                method=ValidationMethod.MIN_LENGTH,
-            ),
-            
-            # MinLengthValidator(
-            #     limit_value=FIRST_NAME_MIN_LENGTH,
-            #     message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-            # ),
             MaxLengthValidator(
                 limit_value=FIRST_NAME_MAX_LENGTH,
                 message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
@@ -145,7 +132,7 @@ class UserShippingDetails(models.Model):
     last_name = models.CharField(
         validators=[
             RegexValidator(
-                regex="^[A-Za-z]$",
+                regex="^[A-Za-z]+$",
                 message=LAST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
@@ -162,7 +149,7 @@ class UserShippingDetails(models.Model):
     phone_number = models.CharField(
         validators=[
             RegexValidator(
-                regex=r"^[0-9]$",
+                regex="^[0-9]+$",
                 message=PHONE_NUMBER_ONLY_DIGITS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
@@ -179,7 +166,7 @@ class UserShippingDetails(models.Model):
     country = models.CharField(
         validators=[
             RegexValidator(
-                regex="^[A-Za-z]$",
+                regex="^[A-Za-z]+$",
                 message=COUNTRY_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
@@ -196,7 +183,7 @@ class UserShippingDetails(models.Model):
     city = models.CharField(
         validators=[
             RegexValidator(
-                regex="^[A-Za-z]$",
+                regex="^[A-Za-z]+$",
                 message=CITY_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
@@ -224,6 +211,8 @@ class UserShippingDetails(models.Model):
     )
 
     apartment = models.CharField(
+        null=True,
+        blank=True,
         validators=[
             MaxLengthValidator(
                 APARTMENT_MAX_LENGTH,
@@ -231,7 +220,7 @@ class UserShippingDetails(models.Model):
             ),
         ],
     )
-    
+
     postal_code = models.CharField(
         validators=[
             MinLengthValidator(
@@ -251,18 +240,3 @@ class UserShippingDetails(models.Model):
         primary_key=True,
         related_name="shipping_details",
     )
-
-    # def clean(self):
-    #     for field, rules in CLEAN_RULES.items():
-    #         value = getattr(self, field)
-
-    #         if len(value) == 0:
-    #             raise ValidationError({field: rules["error_message"]})
-
-    #         # if rules.get("capitalize", False):
-    #         #     setattr(self, field, value.capitalize())
-
-    # def save(self, *args, **kwargs):
-    #     # self.clean()
-
-    #     super().save(*args, **kwargs)
