@@ -23,7 +23,7 @@ class UserShippingDetails(models.Model):
     FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
         f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters",
     )
-    
+
     FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
         "Please make sure your First Name contains only letters"
     )
@@ -32,12 +32,12 @@ class UserShippingDetails(models.Model):
     LAST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
         f"Last Name must be at least {LAST_NAME_MIN_LENGTH} characters long"
     )
-    
+
     LAST_NAME_MAX_LENGTH = 255
     LAST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
         f"LAst Name cannot be longer than {LAST_NAME_MAX_LENGTH} characters",
     )
-    
+
     LAST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
         "Please make sure your Last Name contains only letters"
     )
@@ -46,16 +46,16 @@ class UserShippingDetails(models.Model):
     PHONE_NUMBER_MIN_LENGTH_ERROR_MESSAGE = (
         f"Phone Number must be at least {PHONE_NUMBER_MIN_LENGTH} digits long"
     )
-    
+
     PHONE_NUMBER_MAX_LENGTH = 15
     PHONE_NUMBER_MAX_LENGTH_ERROR_MESSAGE = (
         f"Phone Number cannot be longer than {PHONE_NUMBER_MAX_LENGTH} digits"
     )
-    
+
     PHONE_NUMBER_ONLY_DIGITS_ERROR_MESSAGE = (
         "Please make sure your Phone Number contains only digits"
     )
-    
+
     COUNTRY_MIN_LENGTH = 2
     COUNTRY_MIN_LENGTH_ERROR_MESSAGE = (
         f"Country name must be at least {COUNTRY_MIN_LENGTH} characters long"
@@ -65,7 +65,7 @@ class UserShippingDetails(models.Model):
     COUNTRY_MAX_LENGTH_ERROR_MESSAGE = (
         f"Country name cannot be longer than {COUNTRY_MAX_LENGTH} characters",
     )
-    
+
     COUNTRY_ONLY_LETTERS_ERROR_MESSAGE = (
         "Please make sure the Country name contains only letters"
     )
@@ -79,7 +79,7 @@ class UserShippingDetails(models.Model):
     CITY_MAX_LENGTH_ERROR_MESSAGE = (
         f"City name cannot be longer than {CITY_MAX_LENGTH} characters",
     )
-    
+
     CITY_ONLY_LETTERS_ERROR_MESSAGE = (
         "Please make sure the City name contains only letters"
     )
@@ -92,8 +92,6 @@ class UserShippingDetails(models.Model):
 
     POSTAL_CODE_MIN_COUNTRY = 4
     POSTAL_CODE_MAX_LENGTH = 15
-
-
 
     first_name = models.CharField(
         validators=[
@@ -162,7 +160,22 @@ class UserShippingDetails(models.Model):
             ),
         ],
     )
-    city = models.CharField()
+    city = models.CharField(
+        validators=[
+            RegexValidator(
+                regex="^[A-Za-z]$",
+                message=CITY_ONLY_LETTERS_ERROR_MESSAGE,
+            ),
+            MinLengthValidator(
+                CITY_MIN_LENGTH,
+                message=CITY_MIN_LENGTH_ERROR_MESSAGE,
+            ),
+            MaxLengthValidator(
+                CITY_MAX_LENGTH,
+                message=CITY_MAX_LENGTH_ERROR_MESSAGE,
+            ),
+        ],
+    )
     street = models.CharField()
     apartment = models.CharField()
     postal_code = models.CharField()
@@ -183,7 +196,6 @@ class UserShippingDetails(models.Model):
 
             if rules.get("capitalize", False):
                 setattr(self, field, value.capitalize())
-
 
     def save(self, *args, **kwargs):
         self.clean()
