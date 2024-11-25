@@ -51,12 +51,38 @@ class UserShippingDetails(models.Model):
     PHONE_NUMBER_MAX_LENGTH_ERROR_MESSAGE = (
         f"Phone Number cannot be longer than {PHONE_NUMBER_MAX_LENGTH} digits"
     )
+    
+    PHONE_NUMBER_ONLY_DIGITS_ERROR_MESSAGE = (
+        "Please make sure your Phone Number contains only digits"
+    )
+    
+    COUNTRY_MIN_LENGTH = 2
+    COUNTRY_MIN_LENGTH_ERROR_MESSAGE = (
+        f"Country name must be at least {COUNTRY_MIN_LENGTH} characters long"
+    )
 
-    COUNTRY_MIN_COUNTRY = 2
     COUNTRY_MAX_LENGTH = 255
+    COUNTRY_MAX_LENGTH_ERROR_MESSAGE = (
+        f"Country name cannot be longer than {COUNTRY_MAX_LENGTH} characters",
+    )
+    
+    COUNTRY_ONLY_LETTERS_ERROR_MESSAGE = (
+        "Please make sure the Country name contains only letters"
+    )
 
-    CITY_MIN_COUNTRY = 2
+    CITY_MIN_LENGTH = 2
+    CITY_MIN_LENGTH_ERROR_MESSAGE = (
+        f"City name must be at least {CITY_MIN_LENGTH} characters long"
+    )
+
     CITY_MAX_LENGTH = 255
+    CITY_MAX_LENGTH_ERROR_MESSAGE = (
+        f"City name cannot be longer than {CITY_MAX_LENGTH} characters",
+    )
+    
+    CITY_ONLY_LETTERS_ERROR_MESSAGE = (
+        "Please make sure the City name contains only letters"
+    )
 
     STREET_MIN_COUNTRY = 8
     STREET_MAX_LENGTH = 255
@@ -70,7 +96,6 @@ class UserShippingDetails(models.Model):
 
 
     first_name = models.CharField(
-        blank=True,
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]$",
@@ -88,7 +113,6 @@ class UserShippingDetails(models.Model):
     )
 
     last_name = models.CharField(
-        blank=True,
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]$",
@@ -108,13 +132,36 @@ class UserShippingDetails(models.Model):
     phone_number = models.CharField(
         validators=[
             RegexValidator(
-                regex=rf"^[0-9]{{{PHONE_NUMBER_MIN_LENGTH},{PHONE_NUMBER_MAX_LENGTH}}}$",
-                message=f"This field requires ${PHONE_NUMBER_MIN_LENGTH}-${PHONE_NUMBER_MAX_LENGTH} digits",
-            )
+                regex=r"^[0-9]$",
+                message=PHONE_NUMBER_ONLY_DIGITS_ERROR_MESSAGE,
+            ),
+            MinLengthValidator(
+                PHONE_NUMBER_MIN_LENGTH,
+                message=PHONE_NUMBER_MIN_LENGTH_ERROR_MESSAGE,
+            ),
+            MaxLengthValidator(
+                PHONE_NUMBER_MAX_LENGTH,
+                message=PHONE_NUMBER_MAX_LENGTH_ERROR_MESSAGE,
+            ),
         ],
     )
 
-    country = models.CharField()
+    country = models.CharField(
+        validators=[
+            RegexValidator(
+                regex="^[A-Za-z]$",
+                message=COUNTRY_ONLY_LETTERS_ERROR_MESSAGE,
+            ),
+            MinLengthValidator(
+                COUNTRY_MIN_LENGTH,
+                message=COUNTRY_MIN_LENGTH_ERROR_MESSAGE,
+            ),
+            MaxLengthValidator(
+                COUNTRY_MAX_LENGTH,
+                message=COUNTRY_MAX_LENGTH_ERROR_MESSAGE,
+            ),
+        ],
+    )
     city = models.CharField()
     street = models.CharField()
     apartment = models.CharField()
