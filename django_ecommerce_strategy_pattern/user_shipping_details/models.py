@@ -16,26 +16,41 @@ class UserShippingDetails(models.Model):
 
     FIRST_NAME_MIN_LENGTH = 2
     FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
-        f"First name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
+        f"First Name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
     )
 
     FIRST_NAME_MAX_LENGTH = 255
     FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-        f"First name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters",
+        f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters",
+    )
+    
+    FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
+        "Please make sure your First Name contains only letters"
     )
 
     LAST_NAME_MIN_LENGTH = 2
     LAST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
-        f"Last name must be at least {LAST_NAME_MIN_LENGTH} characters long"
+        f"Last Name must be at least {LAST_NAME_MIN_LENGTH} characters long"
     )
     
     LAST_NAME_MAX_LENGTH = 255
     LAST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-        f"LAst name cannot be longer than {LAST_NAME_MAX_LENGTH} characters",
+        f"LAst Name cannot be longer than {LAST_NAME_MAX_LENGTH} characters",
+    )
+    
+    LAST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
+        "Please make sure your Last Name contains only letters"
     )
 
     PHONE_NUMBER_MIN_LENGTH = 7
+    PHONE_NUMBER_MIN_LENGTH_ERROR_MESSAGE = (
+        f"Phone Number must be at least {PHONE_NUMBER_MIN_LENGTH} digits long"
+    )
+    
     PHONE_NUMBER_MAX_LENGTH = 15
+    PHONE_NUMBER_MAX_LENGTH_ERROR_MESSAGE = (
+        f"Phone Number cannot be longer than {PHONE_NUMBER_MAX_LENGTH} digits"
+    )
 
     COUNTRY_MIN_COUNTRY = 2
     COUNTRY_MAX_LENGTH = 255
@@ -52,16 +67,14 @@ class UserShippingDetails(models.Model):
     POSTAL_CODE_MIN_COUNTRY = 4
     POSTAL_CODE_MAX_LENGTH = 15
 
-    ONLY_LETTERS_ERROR_MESSAGE = (
-        "Please make sure your First Name contains only letters"
-    )
+
 
     first_name = models.CharField(
         blank=True,
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]$",
-                message=ONLY_LETTERS_ERROR_MESSAGE,
+                message=FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
                 FIRST_NAME_MIN_LENGTH,
@@ -79,7 +92,7 @@ class UserShippingDetails(models.Model):
         validators=[
             RegexValidator(
                 regex="^[A-Za-z]$",
-                message=ONLY_LETTERS_ERROR_MESSAGE,
+                message=LAST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
             ),
             MinLengthValidator(
                 LAST_NAME_MIN_LENGTH,
