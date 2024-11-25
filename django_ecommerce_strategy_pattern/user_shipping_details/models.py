@@ -84,14 +84,32 @@ class UserShippingDetails(models.Model):
         "Please make sure the City name contains only letters"
     )
 
-    STREET_MIN_COUNTRY = 8
+    STREET_MIN_LENGTH = 8
+    STREET_MIN_LENGTH_ERROR_MESSAGE = (
+        f"Street must be at least {STREET_MIN_LENGTH} characters long"
+    )
+
     STREET_MAX_LENGTH = 255
+    STREET_MAX_LENGTH_ERROR_MESSAGE = (
+        f"Street cannot be longer than {STREET_MAX_LENGTH} characters",
+    )
 
-    APARTMENT_MIN_COUNTRY = 0
+    APARTMENT_MIN_LENGTH = 0
+
     APARTMENT_MAX_LENGTH = 10
+    APARTMENT_MAX_LENGTH_ERROR_MESSAGE = (
+        f"Apartment cannot be longer than {APARTMENT_MAX_LENGTH} characters",
+    )
 
-    POSTAL_CODE_MIN_COUNTRY = 4
+    POSTAL_CODE_MIN_LENGTH = 4
+    POSTAL_CODE_MIN_LENGTH_ERROR_MESSAGE = (
+        f"Postal Code must be at least {POSTAL_CODE_MIN_LENGTH} characters long"
+    )
+
     POSTAL_CODE_MAX_LENGTH = 15
+    POSTAL_CODE_MAX_LENGTH_ERROR_MESSAGE = (
+        f"Postal Code cannot be longer than {POSTAL_CODE_MAX_LENGTH} characters",
+    )
 
     first_name = models.CharField(
         validators=[
@@ -160,6 +178,7 @@ class UserShippingDetails(models.Model):
             ),
         ],
     )
+
     city = models.CharField(
         validators=[
             RegexValidator(
