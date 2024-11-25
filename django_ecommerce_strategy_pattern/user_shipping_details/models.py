@@ -11,6 +11,8 @@ from django_ecommerce_strategy_pattern.user_shipping_details.clean_rules import 
     CLEAN_RULES,
 )
 
+from django_ecommerce_strategy_pattern.user_shipping_details.validators import Validator, ValidationMethod
+
 
 class UserShippingDetails(models.Model):
 
@@ -35,7 +37,7 @@ class UserShippingDetails(models.Model):
 
     LAST_NAME_MAX_LENGTH = 255
     LAST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-        f"LAst Name cannot be longer than {LAST_NAME_MAX_LENGTH} characters",
+        f"Last Name cannot be longer than {LAST_NAME_MAX_LENGTH} characters",
     )
 
     LAST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
@@ -117,10 +119,22 @@ class UserShippingDetails(models.Model):
                 regex="^[A-Za-z]$",
                 message=FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
             ),
-            MinLengthValidator(
-                limit_value=FIRST_NAME_MIN_LENGTH,
-                message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+            
+            Validator(
+                length_limit=0,
+                error_message="please enter your first name",
+                method=ValidationMethod.ZERO_LENGTH,
             ),
+            Validator(
+                length_limit=FIRST_NAME_MIN_LENGTH,
+                error_message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+                method=ValidationMethod.MIN_LENGTH,
+            ),
+            
+            # MinLengthValidator(
+            #     limit_value=FIRST_NAME_MIN_LENGTH,
+            #     message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+            # ),
             MaxLengthValidator(
                 limit_value=FIRST_NAME_MAX_LENGTH,
                 message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
@@ -217,6 +231,7 @@ class UserShippingDetails(models.Model):
             ),
         ],
     )
+    
     postal_code = models.CharField(
         validators=[
             MinLengthValidator(
@@ -237,17 +252,17 @@ class UserShippingDetails(models.Model):
         related_name="shipping_details",
     )
 
-    def clean(self):
-        for field, rules in CLEAN_RULES.items():
-            value = getattr(self, field)
+    # def clean(self):
+    #     for field, rules in CLEAN_RULES.items():
+    #         value = getattr(self, field)
 
-            if len(value) == 0:
-                raise ValidationError({field: rules["error_message"]})
+    #         if len(value) == 0:
+    #             raise ValidationError({field: rules["error_message"]})
 
-            if rules.get("capitalize", False):
-                setattr(self, field, value.capitalize())
+    #         # if rules.get("capitalize", False):
+    #         #     setattr(self, field, value.capitalize())
 
-    def save(self, *args, **kwargs):
-        self.clean()
+    # def save(self, *args, **kwargs):
+    #     # self.clean()
 
-        super().save(*args, **kwargs)
+    #     super().save(*args, **kwargs)
