@@ -5,7 +5,9 @@ from django.core.exceptions import ValidationError
 from django.utils.timezone import now
 
 
-from django_ecommerce_strategy_pattern.common.utils import create_char_field
+# from django_ecommerce_strategy_pattern.common.utils import create_char_field
+
+from django_ecommerce_strategy_pattern.common.models import BaseCreateCharField
 
 from django_ecommerce_strategy_pattern.user_payment_details.constants import (
     CARD_HOLDER_RULES,
@@ -15,9 +17,9 @@ from django_ecommerce_strategy_pattern.user_payment_details.constants import (
 )
 
 
-class UserPaymentDetails(models.Model):
+class UserPaymentDetails(BaseCreateCharField):
 
-    card_holder = create_char_field(
+    card_holder = BaseCreateCharField.create_char_field(
         max_length=CARD_HOLDER_RULES["max_length"],
         min_length=CARD_HOLDER_RULES["min_length"],
         pattern=CARD_HOLDER_RULES["pattern"],
@@ -26,7 +28,7 @@ class UserPaymentDetails(models.Model):
         blank_value=CARD_HOLDER_RULES["blank"],
     )
 
-    card_number = create_char_field(
+    card_number = BaseCreateCharField.create_char_field(
         max_length=CARD_NUMBER_RULES["max_length"],
         min_length=CARD_NUMBER_RULES["min_length"],
         pattern=CARD_NUMBER_RULES["pattern"],
@@ -35,7 +37,7 @@ class UserPaymentDetails(models.Model):
         blank_value=CARD_NUMBER_RULES["blank"],
     )
 
-    expiry_date = create_char_field(
+    expiry_date = BaseCreateCharField.create_char_field(
         max_length=EXPIRY_DATE_RULES["max_length"],
         min_length=EXPIRY_DATE_RULES["min_length"],
         pattern=EXPIRY_DATE_RULES["pattern"],
@@ -44,7 +46,7 @@ class UserPaymentDetails(models.Model):
         blank_value=EXPIRY_DATE_RULES["blank"],
     )
 
-    cvv_code = create_char_field(
+    cvv_code = BaseCreateCharField.create_char_field(
         max_length=CVV_CODE_RULES["max_length"],
         min_length=CVV_CODE_RULES["min_length"],
         pattern=CVV_CODE_RULES["pattern"],
