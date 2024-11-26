@@ -1,8 +1,17 @@
-NAME_RULES = {
+FIRST_NAME_RULES = {
     "max_length": 255,
     "min_length": 2,
     "pattern": "(^[A-Za-z]{2,}$)|(^[A-Za-z]{1,}[\s\-]?[A-Za-z]{1,}$)",
-    "pattern_error_message": "This field can only contain letters, spaces, hyphens, and must start and end with a letter",
+    "pattern_error_message": "First Name can only contain letters, spaces, hyphens, and must start and end with a letter",
+    "null": False,
+    "blank": False,
+}
+
+LAST_NAME_RULES = {
+    "max_length": 255,
+    "min_length": 2,
+    "pattern": "(^[A-Za-z]{2,}$)|(^[A-Za-z]{1,}[\s\-]?[A-Za-z]{1,}$)",
+    "pattern_error_message": "Last Name can only contain letters, spaces, hyphens, and must start and end with a letter",
     "null": False,
     "blank": False,
 }
@@ -16,7 +25,25 @@ PHONE_NUMBER_RULES = {
     "blank": False,
 }
 
-STREET_RULES = {
+COUNTRY_NAME_RULES = {
+    "max_length": 255,
+    "min_length": 2,
+    "pattern": "(^[A-Za-z]{2,}$)|(^[A-Za-z]{1,}[\s\-]?[A-Za-z]{1,}$)",
+    "pattern_error_message": "Country Name can only contain letters, spaces, hyphens, and must start and end with a letter",
+    "null": False,
+    "blank": False,
+}
+
+CITY_NAME_RULES = {
+    "max_length": 255,
+    "min_length": 2,
+    "pattern": "(^[A-Za-z]{2,}$)|(^[A-Za-z]{1,}[\s\-]?[A-Za-z]{1,}$)",
+    "pattern_error_message": "City Name can only contain letters, spaces, hyphens, and must start and end with a letter",
+    "null": False,
+    "blank": False,
+}
+
+STREET_ADDRESS_RULES = {
     "max_length": 8,
     "min_length": 255,
     "pattern": "^([A-Za-z0-9]{1,})([A-Za-z0-9\s\-\.']{6,})([A-Za-z0-9])$",
