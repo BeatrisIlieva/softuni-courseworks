@@ -37,14 +37,14 @@ from django_ecommerce_strategy_pattern.user_payment_details.models import UserPa
 
 
 user_sp = UserShippingDetails.objects.get(pk=15)
-user_sp.first_name = "b1"
+user_sp.first_name = "be"
 user_sp.last_name = "ilieva"
-user_sp.phone_number = "00000000000"
-user_sp.country = "Bulgaria"
-user_sp.city = "Sofia"
-user_sp.street = "Some street"
-user_sp.apartment = ""
-user_sp.postal_code = "2000"
+user_sp.phone_number = "111111111"
+user_sp.country = "b b"
+user_sp.city = "Sofia-s"
+user_sp.street_address = "Some street"
+user_sp.apartment = "Apt. 1"
+user_sp.postal_code = "1 11"
 
 # user_cd = UserPaymentDetails.objects.get(pk=15)
 

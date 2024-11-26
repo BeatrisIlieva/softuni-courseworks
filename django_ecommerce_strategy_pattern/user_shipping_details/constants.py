@@ -1,6 +1,7 @@
 FIRST_NAME_RULES = {
     "max_length": 255,
     "min_length": 2,
+    # "pattern": "^[A-Za-z]*[A-Za-z]*[\s\-]?[A-Za-z]*$",
     "pattern": "(^[A-Za-z]{2,}$)|(^[A-Za-z]{1,}[\s\-]?[A-Za-z]{1,}$)",
     "pattern_error_message": "First Name can only contain letters, spaces, hyphens, and must start and end with a letter",
     "null": False,
@@ -44,8 +45,8 @@ CITY_NAME_RULES = {
 }
 
 STREET_ADDRESS_RULES = {
-    "max_length": 8,
-    "min_length": 255,
+    "max_length": 255,
+    "min_length": 8,
     "pattern": "^([A-Za-z0-9]{1,})([A-Za-z0-9\s\-\.']{6,})([A-Za-z0-9])$",
     "pattern_error_message": "This field can only contain letters, spaces, hyphens, apostrophes, and periods, and must start and end with a letter or digit",
     "null": False,
@@ -64,7 +65,7 @@ APARTMENT_RULES = {
 POSTAL_CODE_RULES = {
     "max_length": 15,
     "min_length": 3,
-    "pattern": "^([A-Za-z0-9]{2})([A-Za-z0-9\s\-\.\,]{0,12})([A-Za-z0-9]{1})$",
+    "pattern": "^([A-Za-z0-9]{1,})([A-Za-z0-9\s\-\.\,]{0,12})([A-Za-z0-9]{1})$",
     "pattern_error_message": "This field can only contain letters, spaces, hyphens, commas, and periods, and must start and end with a letter or digit",
     "null": False,
     "blank": False,

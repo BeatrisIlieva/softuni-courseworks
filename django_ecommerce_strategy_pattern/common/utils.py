@@ -21,13 +21,13 @@ def create_char_field(
             "max_length": f"This field must not exceed {max_length} characters",
         },
         validators=[
-            RegexValidator(
-                regex=pattern,
-                message=pattern_error_message,
-            ),
             MinLengthValidator(
                 limit_value=min_length,
                 message=f"This field must be at least {min_length} characters long",
+            ),
+            RegexValidator(
+                regex=pattern,
+                message=pattern_error_message,
             ),
         ],
         null=null_value,
