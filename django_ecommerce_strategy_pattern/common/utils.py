@@ -11,6 +11,8 @@ def create_char_field(
     min_length,
     pattern,
     pattern_error_message,
+    null_value,
+    blank_value,
 ):
     return models.CharField(
         max_length=max_length,
@@ -28,4 +30,6 @@ def create_char_field(
                 message=f"This field must be at least {min_length} characters long",
             ),
         ],
+        null=null_value,
+        blank=blank_value,
     )
