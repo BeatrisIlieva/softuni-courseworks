@@ -4,9 +4,6 @@ from django.core.exceptions import ValidationError
 
 from django.utils.timezone import now
 
-
-# from django_ecommerce_strategy_pattern.common.utils import create_char_field
-
 from django_ecommerce_strategy_pattern.common.models import BaseCreateCharField
 
 from django_ecommerce_strategy_pattern.user_payment_details.constants import (
