@@ -1,35 +1,18 @@
 from django.db import models
 
+from django_ecommerce_strategy_pattern.common.utils import create_char_field
 
-from django.core.validators import (
-    RegexValidator,
-)
 
 from django_ecommerce_strategy_pattern.user_shipping_details.constants import (
     NAME_RULES,
     PHONE_NUMBER_RULES,
     STREET_RULES,
     APARTMENT_RULES,
-)
-
-from django_ecommerce_strategy_pattern.common.utils import create_char_field
-
-from django.db import models
-
-
-from django.core.validators import (
-    MinLengthValidator,
-    MaxLengthValidator,
-    RegexValidator,
+    POSTAL_CODE_RULES,
 )
 
 
 class UserShippingDetails(models.Model):
-
-    POSTAL_CODE_MAX_LENGTH = 15
-    POSTAL_CODE_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Postal Code cannot be longer than {POSTAL_CODE_MAX_LENGTH} characters"
-    )
 
     first_name = create_char_field(
         max_length=NAME_RULES.max_length,
@@ -94,20 +77,13 @@ class UserShippingDetails(models.Model):
         blank_value=APARTMENT_RULES.blank,
     )
 
-    postal_code = models.CharField(
-        error_messages={
-            "blank": POSTAL_CODE_EMPTY_ERROR_MESSAGE,
-        },
-        validators=[
-            MinLengthValidator(
-                POSTAL_CODE_MIN_LENGTH,
-                message=POSTAL_CODE_MIN_LENGTH_ERROR_MESSAGE,
-            ),
-            MaxLengthValidator(
-                POSTAL_CODE_MAX_LENGTH,
-                message=POSTAL_CODE_MAX_LENGTH_ERROR_MESSAGE,
-            ),
-        ],
+    postal_code = create_char_field(
+        max_length=POSTAL_CODE_RULES.max_length,
+        min_length=POSTAL_CODE_RULES.min_length,
+        pattern=POSTAL_CODE_RULES.pattern,
+        pattern_error_message=POSTAL_CODE_RULES.pattern_error_message,
+        null_value=POSTAL_CODE_RULES.null,
+        blank_value=POSTAL_CODE_RULES.blank,
     )
 
     user = models.OneToOneField(
