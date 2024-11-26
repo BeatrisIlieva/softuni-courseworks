@@ -11,14 +11,12 @@ def create_char_field(
     min_length,
     pattern,
     pattern_error_message,
-    min_length_error_message,
-    max_length_error_message,
 ):
     return models.CharField(
         max_length=max_length,
         error_messages={
             "blank": "This field is required",
-            "max_length": max_length_error_message,
+            "max_length": f"This field must not exceed {max_length} characters",
         },
         validators=[
             RegexValidator(
@@ -27,7 +25,7 @@ def create_char_field(
             ),
             MinLengthValidator(
                 limit_value=min_length,
-                message=min_length_error_message,
+                message=f"This field must be at least {min_length} characters long",
             ),
         ],
     )
