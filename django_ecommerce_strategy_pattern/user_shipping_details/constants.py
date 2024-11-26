@@ -1,7 +1,6 @@
 FIRST_NAME_RULES = {
     "max_length": 255,
     "min_length": 2,
-    # "pattern": "^[A-Za-z]*[A-Za-z]*[\s\-]?[A-Za-z]*$",
     "pattern": "(^[A-Za-z]{2,}$)|(^[A-Za-z]{1,}[\s\-]?[A-Za-z]{1,}$)",
     "pattern_error_message": "First Name can only contain letters, spaces, hyphens, and must start and end with a letter",
     "null": False,

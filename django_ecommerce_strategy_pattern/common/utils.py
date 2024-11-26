@@ -30,6 +30,6 @@ def create_char_field(
                 message=pattern_error_message,
             ),
         ],
-        null=null_value,
-        blank=blank_value,
+        # null=null_value,
+        # blank=blank_value,
     )
