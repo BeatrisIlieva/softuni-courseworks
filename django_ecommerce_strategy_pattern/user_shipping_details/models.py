@@ -8,6 +8,7 @@ from django.core.validators import (
 from django_ecommerce_strategy_pattern.user_shipping_details.constants import (
     NAME_RULES,
     PHONE_NUMBER_RULES,
+    STREET_RULES,
 )
 
 from django_ecommerce_strategy_pattern.common.utils import create_char_field
@@ -23,32 +24,6 @@ from django.core.validators import (
 
 
 class UserShippingDetails(models.Model):
-
-    STREET_EMPTY_ERROR_MESSAGE = "Please enter your Street"
-
-    STREET_MIN_LENGTH = 8
-    STREET_MIN_LENGTH_ERROR_MESSAGE = (
-        f"Street must be at least {STREET_MIN_LENGTH} characters long"
-    )
-
-    STREET_MAX_LENGTH = 255
-    STREET_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Street cannot be longer than {STREET_MAX_LENGTH} characters"
-    )
-
-    APARTMENT_MIN_LENGTH = 0
-
-    APARTMENT_MAX_LENGTH = 10
-    APARTMENT_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Apartment cannot be longer than {APARTMENT_MAX_LENGTH} characters"
-    )
-
-    POSTAL_CODE_EMPTY_ERROR_MESSAGE = "Please enter your Postal Code"
-
-    POSTAL_CODE_MIN_LENGTH = 4
-    POSTAL_CODE_MIN_LENGTH_ERROR_MESSAGE = (
-        f"Postal Code must be at least {POSTAL_CODE_MIN_LENGTH} characters long"
-    )
 
     POSTAL_CODE_MAX_LENGTH = 15
     POSTAL_CODE_MAX_LENGTH_ERROR_MESSAGE = (
@@ -90,20 +65,11 @@ class UserShippingDetails(models.Model):
         pattern_error_message=NAME_RULES.pattern_error_message,
     )
 
-    street = models.CharField(
-        error_messages={
-            "blank": STREET_EMPTY_ERROR_MESSAGE,
-        },
-        validators=[
-            MinLengthValidator(
-                limit_value=STREET_MIN_LENGTH,
-                message=STREET_MIN_LENGTH_ERROR_MESSAGE,
-            ),
-            MaxLengthValidator(
-                limit_value=STREET_MAX_LENGTH,
-                message=STREET_MAX_LENGTH_ERROR_MESSAGE,
-            ),
-        ],
+    street = create_char_field(
+        max_length=STREET_RULES.max_length,
+        min_length=STREET_RULES.min_length,
+        pattern=STREET_RULES.pattern,
+        pattern_error_message=STREET_RULES.pattern_error_message,
     )
 
     apartment = models.CharField(
