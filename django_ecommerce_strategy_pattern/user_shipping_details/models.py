@@ -1,57 +1,15 @@
 from django.db import models
 
-from abc import ABC, abstractmethod
-
 
 from django.core.validators import (
     RegexValidator,
 )
 
+from django_ecommerce_strategy_pattern.user_shipping_details.constants import (
+    NAME_RULES,
+)
 
-class BaseUserDetails(models.Model, ABC):
-    BLANK_FIELD_ERROR_MESSAGE = "This field is required"
-
-    class Meta:
-        abstract = True
-
-    def base_regex_validator(self, pattern, error_message):
-        return RegexValidator(
-            regex=pattern,
-            message=error_message,
-        )
-        
-    def base_min_length_validator(self, number, error_message):
-        return MinLengthValidator(limit_value=number, message=error_message)
-        
-
-    # This field can only contain letters, spaces, hyphens, apostrophes, and periods, and must start and end with a letter
-
-    def base_only_letters_validator(self):
-        return RegexValidator(
-            regex="^[A-Za-z]{2,255}$",
-            message="This field requires 2-255 letters",
-        )
-
-    @property
-    @abstractmethod
-    def required_field_error_message(self) -> str:
-        pass
-
-    def hook_phone_number_validator():
-        pass
-
-    def hook_card_holder_validator():
-        pass
-
-    def hook_card_number_validator():
-        pass
-
-    def hook_cvv_code_validator():
-        pass
-
-    def hook_expiry_date_validator():
-        pass
-
+from django_ecommerce_strategy_pattern.common.utils import create_char_field
 
 from django.db import models
 
@@ -65,21 +23,21 @@ from django.core.validators import (
 
 class UserShippingDetails(models.Model):
 
-    FIRST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your First Name"
+    # FIRST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your First Name"
 
-    FIRST_NAME_MIN_LENGTH = 2
-    FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
-        f"First Name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
-    )
+    # FIRST_NAME_MIN_LENGTH = 2
+    # FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
+    #     f"First Name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
+    # )
 
-    FIRST_NAME_MAX_LENGTH = 5
-    FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-        f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters"
-    )
+    # FIRST_NAME_MAX_LENGTH = 5
+    # FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
+    #     f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters"
+    # )
 
-    FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
-        "Please make sure your First Name contains only letters"
-    )
+    # FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
+    #     "Please make sure your First Name contains only letters"
+    # )
 
     LAST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your Last Name"
 
@@ -176,43 +134,21 @@ class UserShippingDetails(models.Model):
         f"Postal Code cannot be longer than {POSTAL_CODE_MAX_LENGTH} characters"
     )
 
-    first_name = models.CharField(
-        max_length=FIRST_NAME_MAX_LENGTH,
-        error_messages={
-            "blank": FIRST_NAME_EMPTY_ERROR_MESSAGE,
-            "max_length": FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
-        },
-        validators=[
-            RegexValidator(
-                regex="^[A-Za-z]+$",
-                message=FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
-            ),
-            MinLengthValidator(
-                limit_value=FIRST_NAME_MIN_LENGTH,
-                message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-            ),
-        ],
+    first_name = create_char_field(
+        max_length=NAME_RULES.max_length,
+        min_length=NAME_RULES.min_length,
+        pattern=NAME_RULES.pattern,
+        pattern_error_message=NAME_RULES.pattern_error_message,
     )
 
-    last_name = models.CharField(
-        error_messages={
-            "blank": LAST_NAME_EMPTY_ERROR_MESSAGE,
-        },
-        validators=[
-            RegexValidator(
-                regex="^[A-Za-z]+$",
-                message=LAST_NAME_ONLY_LETTERS_ERROR_MESSAGE,
-            ),
-            MinLengthValidator(
-                limit_value=LAST_NAME_MIN_LENGTH,
-                message=LAST_NAME_MIN_LENGTH_ERROR_MESSAGE,
-            ),
-            MaxLengthValidator(
-                limit_value=LAST_NAME_MAX_LENGTH,
-                message=LAST_NAME_MAX_LENGTH_ERROR_MESSAGE,
-            ),
-        ],
+    last_name = create_char_field(
+        max_length=NAME_RULES.max_length,
+        min_length=NAME_RULES.min_length,
+        pattern=NAME_RULES.pattern,
+        pattern_error_message=NAME_RULES.pattern_error_message,
     )
+        
+    
 
     phone_number = models.CharField(
         error_messages={
@@ -234,44 +170,18 @@ class UserShippingDetails(models.Model):
         ],
     )
 
-    country = models.CharField(
-        error_messages={
-            "blank": COUNTRY_EMPTY_ERROR_MESSAGE,
-        },
-        validators=[
-            RegexValidator(
-                regex="^[A-Za-z]+$",
-                message=COUNTRY_ONLY_LETTERS_ERROR_MESSAGE,
-            ),
-            MinLengthValidator(
-                limit_value=COUNTRY_MIN_LENGTH,
-                message=COUNTRY_MIN_LENGTH_ERROR_MESSAGE,
-            ),
-            MaxLengthValidator(
-                limit_value=COUNTRY_MAX_LENGTH,
-                message=COUNTRY_MAX_LENGTH_ERROR_MESSAGE,
-            ),
-        ],
+    country = create_char_field(
+        max_length=NAME_RULES.max_length,
+        min_length=NAME_RULES.min_length,
+        pattern=NAME_RULES.pattern,
+        pattern_error_message=NAME_RULES.pattern_error_message,
     )
 
-    city = models.CharField(
-        error_messages={
-            "blank": CITY_EMPTY_ERROR_MESSAGE,
-        },
-        validators=[
-            RegexValidator(
-                regex="^[A-Za-z]+$",
-                message=CITY_ONLY_LETTERS_ERROR_MESSAGE,
-            ),
-            MinLengthValidator(
-                limit_value=CITY_MIN_LENGTH,
-                message=CITY_MIN_LENGTH_ERROR_MESSAGE,
-            ),
-            MaxLengthValidator(
-                limit_value=CITY_MAX_LENGTH,
-                message=CITY_MAX_LENGTH_ERROR_MESSAGE,
-            ),
-        ],
+    city = create_char_field(
+        max_length=NAME_RULES.max_length,
+        min_length=NAME_RULES.min_length,
+        pattern=NAME_RULES.pattern,
+        pattern_error_message=NAME_RULES.pattern_error_message,
     )
 
     street = models.CharField(
