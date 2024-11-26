@@ -1,6 +1,5 @@
 from django.db import models
 
-# from django_ecommerce_strategy_pattern.common.utils import create_char_field
 
 from django_ecommerce_strategy_pattern.common.models import BaseCreateCharField
 
@@ -80,7 +79,6 @@ class UserShippingDetails(BaseCreateCharField):
         null_value=APARTMENT_RULES["null"],
         blank_value=APARTMENT_RULES["blank"],
     )
-    
 
     postal_code = BaseCreateCharField.create_char_field(
         max_length=POSTAL_CODE_RULES["max_length"],
