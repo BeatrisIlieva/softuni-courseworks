@@ -23,38 +23,6 @@ from django.core.validators import (
 
 class UserShippingDetails(models.Model):
 
-    # FIRST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your First Name"
-
-    # FIRST_NAME_MIN_LENGTH = 2
-    # FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
-    #     f"First Name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
-    # )
-
-    # FIRST_NAME_MAX_LENGTH = 5
-    # FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-    #     f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters"
-    # )
-
-    # FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
-    #     "Please make sure your First Name contains only letters"
-    # )
-
-    LAST_NAME_EMPTY_ERROR_MESSAGE = "Please enter your Last Name"
-
-    LAST_NAME_MIN_LENGTH = 2
-    LAST_NAME_MIN_LENGTH_ERROR_MESSAGE = (
-        f"Last Name must be at least {LAST_NAME_MIN_LENGTH} characters long"
-    )
-
-    LAST_NAME_MAX_LENGTH = 255
-    LAST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Last Name cannot be longer than {LAST_NAME_MAX_LENGTH} characters"
-    )
-
-    LAST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
-        "Please make sure your Last Name contains only letters"
-    )
-
     PHONE_NUMBER_EMPTY_ERROR_MESSAGE = "Please enter your Phone Number"
 
     PHONE_NUMBER_MIN_LENGTH = 7
@@ -69,38 +37,6 @@ class UserShippingDetails(models.Model):
 
     PHONE_NUMBER_ONLY_DIGITS_ERROR_MESSAGE = (
         "Please make sure your Phone Number contains only digits"
-    )
-
-    COUNTRY_EMPTY_ERROR_MESSAGE = "Please enter your Country"
-
-    COUNTRY_MIN_LENGTH = 2
-    COUNTRY_MIN_LENGTH_ERROR_MESSAGE = (
-        f"Country name must be at least {COUNTRY_MIN_LENGTH} characters long"
-    )
-
-    COUNTRY_MAX_LENGTH = 255
-    COUNTRY_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Country name cannot be longer than {COUNTRY_MAX_LENGTH} characters"
-    )
-
-    COUNTRY_ONLY_LETTERS_ERROR_MESSAGE = (
-        "Please make sure the Country name contains only letters"
-    )
-
-    CITY_EMPTY_ERROR_MESSAGE = "Please enter your City"
-
-    CITY_MIN_LENGTH = 2
-    CITY_MIN_LENGTH_ERROR_MESSAGE = (
-        f"City name must be at least {CITY_MIN_LENGTH} characters long"
-    )
-
-    CITY_MAX_LENGTH = 255
-    CITY_MAX_LENGTH_ERROR_MESSAGE = (
-        f"City name cannot be longer than {CITY_MAX_LENGTH} characters"
-    )
-
-    CITY_ONLY_LETTERS_ERROR_MESSAGE = (
-        "Please make sure the City name contains only letters"
     )
 
     STREET_EMPTY_ERROR_MESSAGE = "Please enter your Street"
@@ -147,8 +83,6 @@ class UserShippingDetails(models.Model):
         pattern=NAME_RULES.pattern,
         pattern_error_message=NAME_RULES.pattern_error_message,
     )
-        
-    
 
     phone_number = models.CharField(
         error_messages={
