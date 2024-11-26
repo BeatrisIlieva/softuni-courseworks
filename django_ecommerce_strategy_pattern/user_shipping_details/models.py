@@ -7,6 +7,7 @@ from django.core.validators import (
 
 from django_ecommerce_strategy_pattern.user_shipping_details.constants import (
     NAME_RULES,
+    PHONE_NUMBER_RULES,
 )
 
 from django_ecommerce_strategy_pattern.common.utils import create_char_field
@@ -22,22 +23,6 @@ from django.core.validators import (
 
 
 class UserShippingDetails(models.Model):
-
-    PHONE_NUMBER_EMPTY_ERROR_MESSAGE = "Please enter your Phone Number"
-
-    PHONE_NUMBER_MIN_LENGTH = 7
-    PHONE_NUMBER_MIN_LENGTH_ERROR_MESSAGE = (
-        f"Phone Number must be at least {PHONE_NUMBER_MIN_LENGTH} digits long"
-    )
-
-    PHONE_NUMBER_MAX_LENGTH = 15
-    PHONE_NUMBER_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Phone Number cannot be longer than {PHONE_NUMBER_MAX_LENGTH} digits"
-    )
-
-    PHONE_NUMBER_ONLY_DIGITS_ERROR_MESSAGE = (
-        "Please make sure your Phone Number contains only digits"
-    )
 
     STREET_EMPTY_ERROR_MESSAGE = "Please enter your Street"
 
@@ -84,24 +69,11 @@ class UserShippingDetails(models.Model):
         pattern_error_message=NAME_RULES.pattern_error_message,
     )
 
-    phone_number = models.CharField(
-        error_messages={
-            "blank": PHONE_NUMBER_EMPTY_ERROR_MESSAGE,
-        },
-        validators=[
-            RegexValidator(
-                regex="^[0-9]+$",
-                message=PHONE_NUMBER_ONLY_DIGITS_ERROR_MESSAGE,
-            ),
-            MinLengthValidator(
-                limit_value=PHONE_NUMBER_MIN_LENGTH,
-                message=PHONE_NUMBER_MIN_LENGTH_ERROR_MESSAGE,
-            ),
-            MaxLengthValidator(
-                limit_value=PHONE_NUMBER_MAX_LENGTH,
-                message=PHONE_NUMBER_MAX_LENGTH_ERROR_MESSAGE,
-            ),
-        ],
+    phone_number = create_char_field(
+        max_length=PHONE_NUMBER_RULES.max_length,
+        min_length=PHONE_NUMBER_RULES.min_length,
+        pattern=PHONE_NUMBER_RULES.pattern,
+        pattern_error_message=PHONE_NUMBER_RULES.pattern_error_message,
     )
 
     country = create_char_field(
