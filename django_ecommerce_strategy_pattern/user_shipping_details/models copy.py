@@ -1,60 +1,5 @@
 from django.db import models
 
-from abc import ABC, abstractmethod
-
-
-from django.core.validators import (
-    RegexValidator,
-)
-
-
-class BaseUserDetails(models.Model, ABC):
-    BLANK_FIELD_ERROR_MESSAGE = "This field is required"
-
-    class Meta:
-        abstract = True
-
-    def base_regex_validator(self, pattern, error_message):
-        return RegexValidator(
-            regex=pattern,
-            message=error_message,
-        )
-        
-    def base_min_length_validator(self, number, error_message):
-        return MinLengthValidator(limit_value=number, message=error_message)
-        
-
-    # This field can only contain letters, spaces, hyphens, apostrophes, and periods, and must start and end with a letter
-
-    def base_only_letters_validator(self):
-        return RegexValidator(
-            regex="^[A-Za-z]{2,255}$",
-            message="This field requires 2-255 letters",
-        )
-
-    @property
-    @abstractmethod
-    def required_field_error_message(self) -> str:
-        pass
-
-    def hook_phone_number_validator():
-        pass
-
-    def hook_card_holder_validator():
-        pass
-
-    def hook_card_number_validator():
-        pass
-
-    def hook_cvv_code_validator():
-        pass
-
-    def hook_expiry_date_validator():
-        pass
-
-
-from django.db import models
-
 
 from django.core.validators import (
     MinLengthValidator,
@@ -72,9 +17,9 @@ class UserShippingDetails(models.Model):
         f"First Name must be at least {FIRST_NAME_MIN_LENGTH} characters long"
     )
 
-    FIRST_NAME_MAX_LENGTH = 5
+    FIRST_NAME_MAX_LENGTH = 255
     FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-        f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters"
+        f"First Name cannot be longer than {FIRST_NAME_MAX_LENGTH} characters",
     )
 
     FIRST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
@@ -90,7 +35,7 @@ class UserShippingDetails(models.Model):
 
     LAST_NAME_MAX_LENGTH = 255
     LAST_NAME_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Last Name cannot be longer than {LAST_NAME_MAX_LENGTH} characters"
+        f"Last Name cannot be longer than {LAST_NAME_MAX_LENGTH} characters",
     )
 
     LAST_NAME_ONLY_LETTERS_ERROR_MESSAGE = (
@@ -122,7 +67,7 @@ class UserShippingDetails(models.Model):
 
     COUNTRY_MAX_LENGTH = 255
     COUNTRY_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Country name cannot be longer than {COUNTRY_MAX_LENGTH} characters"
+        f"Country name cannot be longer than {COUNTRY_MAX_LENGTH} characters",
     )
 
     COUNTRY_ONLY_LETTERS_ERROR_MESSAGE = (
@@ -138,7 +83,7 @@ class UserShippingDetails(models.Model):
 
     CITY_MAX_LENGTH = 255
     CITY_MAX_LENGTH_ERROR_MESSAGE = (
-        f"City name cannot be longer than {CITY_MAX_LENGTH} characters"
+        f"City name cannot be longer than {CITY_MAX_LENGTH} characters",
     )
 
     CITY_ONLY_LETTERS_ERROR_MESSAGE = (
@@ -154,14 +99,14 @@ class UserShippingDetails(models.Model):
 
     STREET_MAX_LENGTH = 255
     STREET_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Street cannot be longer than {STREET_MAX_LENGTH} characters"
+        f"Street cannot be longer than {STREET_MAX_LENGTH} characters",
     )
 
     APARTMENT_MIN_LENGTH = 0
 
     APARTMENT_MAX_LENGTH = 10
     APARTMENT_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Apartment cannot be longer than {APARTMENT_MAX_LENGTH} characters"
+        f"Apartment cannot be longer than {APARTMENT_MAX_LENGTH} characters",
     )
 
     POSTAL_CODE_EMPTY_ERROR_MESSAGE = "Please enter your Postal Code"
@@ -173,14 +118,12 @@ class UserShippingDetails(models.Model):
 
     POSTAL_CODE_MAX_LENGTH = 15
     POSTAL_CODE_MAX_LENGTH_ERROR_MESSAGE = (
-        f"Postal Code cannot be longer than {POSTAL_CODE_MAX_LENGTH} characters"
+        f"Postal Code cannot be longer than {POSTAL_CODE_MAX_LENGTH} characters",
     )
 
     first_name = models.CharField(
-        max_length=FIRST_NAME_MAX_LENGTH,
         error_messages={
             "blank": FIRST_NAME_EMPTY_ERROR_MESSAGE,
-            "max_length": FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
         },
         validators=[
             RegexValidator(
@@ -190,6 +133,10 @@ class UserShippingDetails(models.Model):
             MinLengthValidator(
                 limit_value=FIRST_NAME_MIN_LENGTH,
                 message=FIRST_NAME_MIN_LENGTH_ERROR_MESSAGE,
+            ),
+            MaxLengthValidator(
+                limit_value=FIRST_NAME_MAX_LENGTH,
+                message=FIRST_NAME_MAX_LENGTH_ERROR_MESSAGE,
             ),
         ],
     )
