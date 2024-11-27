@@ -30,7 +30,15 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS("Starting data initialization..."))
 
-        self.bulk_create_colors()
+        # self.bulk_create_colors()
+        
+        # self.bulk_create_first_image_urls()
+        
+        # self.bulk_create_second_image_urls()
+        
+        # self.bulk_create_descriptions()
+        
+        self.create_earrings()
 
         self.stdout.write(
             self.style.SUCCESS("Data initialization completed successfully.")
@@ -84,18 +92,18 @@ class Command(BaseCommand):
     def bulk_create_descriptions(self):
         Description.objects.bulk_create(
             [
-                Description(address=PINK_FACTORY["earring"]["description"]),
-                Description(address=PINK_FACTORY["bracelet"]["description"]),
-                Description(address=PINK_FACTORY["necklace"]["description"]),
-                Description(address=PINK_FACTORY["ring"]["description"]),
-                Description(address=BLUE_FACTORY["earring"]["description"]),
-                Description(address=BLUE_FACTORY["bracelet"]["description"]),
-                Description(address=BLUE_FACTORY["necklace"]["description"]),
-                Description(address=BLUE_FACTORY["ring"]["description"]),
-                Description(address=WHITE_FACTORY["earring"]["description"]),
-                Description(address=WHITE_FACTORY["bracelet"]["description"]),
-                Description(address=WHITE_FACTORY["necklace"]["description"]),
-                Description(address=WHITE_FACTORY["ring"]["description"]),
+                Description(content=PINK_FACTORY["earring"]["description"]),
+                Description(content=PINK_FACTORY["bracelet"]["description"]),
+                Description(content=PINK_FACTORY["necklace"]["description"]),
+                Description(content=PINK_FACTORY["ring"]["description"]),
+                Description(content=BLUE_FACTORY["earring"]["description"]),
+                Description(content=BLUE_FACTORY["bracelet"]["description"]),
+                Description(content=BLUE_FACTORY["necklace"]["description"]),
+                Description(content=BLUE_FACTORY["ring"]["description"]),
+                Description(content=WHITE_FACTORY["earring"]["description"]),
+                Description(content=WHITE_FACTORY["bracelet"]["description"]),
+                Description(content=WHITE_FACTORY["necklace"]["description"]),
+                Description(content=WHITE_FACTORY["ring"]["description"]),
             ]
         )
 
@@ -129,7 +137,7 @@ class Command(BaseCommand):
             Description.objects.get(pk=9),
         ]
 
-        for color, index in enumerate(colors):
+        for index, color in enumerate(colors):
             factory = ProductFactory(color=color)
 
             for size in sizes:
@@ -139,6 +147,8 @@ class Command(BaseCommand):
                     description=descriptions[index],
                     size=size,
                 )
+                
+                
 
         # first_image_urls = [FirstImageUrl.objects.get(pk=2), FirstImageUrl.objects.get(pk=6),FirstImageUrl.objects.get(pk=10),]
         # second_image_urls = [FirstImageUrl.objects.get(pk=2), FirstImageUrl.objects.get(pk=6),FirstImageUrl.objects.get(pk=10),]
