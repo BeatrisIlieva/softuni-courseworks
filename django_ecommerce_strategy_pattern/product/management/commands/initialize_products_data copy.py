@@ -3,8 +3,10 @@ import django
 from django.core.management.base import BaseCommand
 
 from django_ecommerce_strategy_pattern.product.models import (
+    Description,
     Color,
-    PinkFactory,
+    Product,
+    Category,
 )
 
 
@@ -17,10 +19,26 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS("Starting data initialization..."))
 
+        self.bulk_create_category()
+
         self.bulk_create_color()
+
+        self.bulk_create_description()
+
+        self.bulk_create_product()
 
         self.stdout.write(
             self.style.SUCCESS("Data initialization completed successfully.")
+        )
+
+    def bulk_create_category(self):
+        Category.objects.bulk_create(
+            [
+                Category(title=Category.TITLE_CHOICES[0][0]),
+                Category(title=Category.TITLE_CHOICES[1][0]),
+                Category(title=Category.TITLE_CHOICES[2][0]),
+                Category(title=Category.TITLE_CHOICES[3][0]),
+            ]
         )
 
     def bulk_create_color(self):

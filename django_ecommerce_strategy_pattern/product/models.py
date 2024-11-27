@@ -91,20 +91,22 @@ class Ring(BaseProduct):
 
 
 class PinkFactory(ProductAbstractFactory):
+    COLOR = Color.objects.get(title="P")
+    
     def create_earring(
         self,
         first_image_url: str,
         second_image_url: str,
         description: str,
         drop_length: Decimal,
-    ):
+    ) -> Earring:
 
         return Earring.objects.create(
-            first_image_url,
-            second_image_url,
-            Color.TITLE_CHOICES[0][0],
-            description,
-            drop_length,
+            first_image_url=first_image_url,
+            second_image_url=second_image_url,
+            color=PinkFactory.COLOR,
+            description=description,
+            drop_length=drop_length,
         )
 
     def create_bracelet(
@@ -113,12 +115,44 @@ class PinkFactory(ProductAbstractFactory):
         second_image_url: str,
         description: str,
         wrist_size: Decimal,
-    ):
+    ) -> Bracelet:
 
         return Bracelet.objects.create(
-            first_image_url,
-            second_image_url,
-            Color.TITLE_CHOICES[0][0],
-            description,
-            wrist_size,
+            first_image_url=first_image_url,
+            second_image_url=second_image_url,
+            color=PinkFactory.COLOR,
+            description=description,
+            wrist_size=wrist_size,
+        )
+
+    def create_necklace(
+        self,
+        first_image_url: str,
+        second_image_url: str,
+        description: str,
+        neckline_length: Decimal,
+    ) -> Necklace:
+
+        return Necklace.objects.create(
+            first_image_url=first_image_url,
+            second_image_url=second_image_url,
+            color=PinkFactory.COLOR,
+            description=description,
+            neckline_length=neckline_length,
+        )
+
+    def create_ring(
+        self,
+        first_image_url: str,
+        second_image_url: str,
+        description: str,
+        finger_circumference: Decimal,
+    ) -> Ring:
+
+        return Ring.objects.create(
+            first_image_url=first_image_url,
+            second_image_url=second_image_url,
+            color=PinkFactory.COLOR,
+            description=description,
+            finger_circumference=finger_circumference,
         )
