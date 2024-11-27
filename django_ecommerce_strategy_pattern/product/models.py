@@ -21,12 +21,6 @@ class Color(models.Model):
         return self.title
 
 
-class Description(models.Model):
-    content = models.TextField(
-        max_length=300,
-    )
-
-
 class ProductAbstractFactory(ABC):
     @abstractmethod
     def create_earring(self):
@@ -45,9 +39,9 @@ class ProductAbstractFactory(ABC):
         pass
 
 
-class Product(models.Model):
+class BaseProduct(models.Model):
     class Meta:
-        unique_together = ("category", "color")
+        abstract = True
 
     objects = ProductManager()
 
@@ -55,10 +49,8 @@ class Product(models.Model):
 
     second_image_url = models.URLField()
 
-    category = models.ForeignKey(
-        to=Category,
-        on_delete=models.CASCADE,
-        related_name="category",
+    description = models.TextField(
+        max_length=300,
     )
 
     color = models.ForeignKey(
@@ -67,8 +59,52 @@ class Product(models.Model):
         related_name="color",
     )
 
-    description = models.ForeignKey(
-        to=Description,
-        on_delete=models.CASCADE,
-        related_name="description",
+
+class Earring(BaseProduct):
+    drop_length = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
     )
+
+
+class Bracelet(BaseProduct):
+    wrist_size = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+    )
+
+
+class Necklace(BaseProduct):
+    neckline_length = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+    )
+
+
+class Ring(BaseProduct):
+    finger_circumference = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+    )
+
+
+class PinkFactory(ProductAbstractFactory):
+    def create_earring(
+        self, first_image_url: str, second_image_url: str, description: str, drop_length
+    ):
+
+        return Earring.objects.create(
+            first_image_url,
+            second_image_url,
+            Color.TITLE_CHOICES[0][0],
+            description,
+            drop_length,
+        )
+
+    def create_bracelet(
+        self, first_image_url: str, second_image_url: str, description: str
+    ):
+
+        return Bracelet.objects.create(
+            first_image_url, second_image_url, Color.TITLE_CHOICES[0][0], description
+        )
