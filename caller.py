@@ -38,24 +38,24 @@ from django_ecommerce_strategy_pattern.user_payment_details.models import UserPa
 #     print(e.messages[0])
 
 
-user_sp = UserShippingDetails.objects.get(pk=1)
-user_sp.first_name = "be"
-user_sp.last_name = "ilieva"
-user_sp.phone_number = "111111111"
-user_sp.country = "b b"
-user_sp.city = "Sofia-s"
-user_sp.street_address = "Some street"
-user_sp.apartment = ""
-user_sp.postal_code = "1 11"
+# user_sp = UserShippingDetails.objects.get(pk=1)
+# user_sp.first_name = "be"
+# user_sp.last_name = "ilieva"
+# user_sp.phone_number = "111111111"
+# user_sp.country = "b b"
+# user_sp.city = "Sofia-s"
+# user_sp.street_address = "Some street"
+# user_sp.apartment = ""
+# user_sp.postal_code = "1 11"
 
-user_sp.full_clean()  
-user_sp.save()
+# user_sp.full_clean()  
+# user_sp.save()
 
-try:
-    user_sp.full_clean() 
-    user_sp.save()
-except ValidationError as e:
-     print(e.messages)
+# try:
+#     user_sp.full_clean() 
+#     user_sp.save()
+# except ValidationError as e:
+#      print(e.messages)
 
 
 # user_cd = UserPaymentDetails.objects.get(pk=1)
@@ -81,3 +81,6 @@ except ValidationError as e:
 
 # year, month, _ = current_date.split("-")
 # print(year[-2:])
+
+
+

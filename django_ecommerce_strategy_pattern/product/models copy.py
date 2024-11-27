@@ -1,48 +1,21 @@
-from abc import ABC, abstractmethod
-
 from django.db import models
 
 from django_ecommerce_strategy_pattern.product.managers import ProductManager
 
 
-class ColorAbstractFactory(ABC):
-    @abstractmethod
-    def create_pink_color(self):
-        pass
+class Category(models.Model):
 
-    @abstractmethod
-    def create_blue_color(self):
-        pass
-
-    @abstractmethod
-    def create_white_color(self):
-        pass
-
-
-class PinkColor(models.Model):
-    title = models.CharField(
-        max_length=10,
+    TITLE_CHOICES = (
+        ("E", "Earrings"),
+        ("B", "Bracelets"),
+        ("N", "Necklaces"),
+        ("R", "Rings"),
     )
-    
-    def __str__(self):
-        return self.title
-    
-class BlueColor(models.Model):
+
     title = models.CharField(
-        max_length=10,
+        max_length=15,
+        choices=TITLE_CHOICES,
     )
-    
-    def __str__(self):
-        return self.title
-    
-    
-class WhiteColor(models.Model):
-    title = models.CharField(
-        max_length=10,
-    )
-    
-    def __str__(self):
-        return self.title
 
 
 class Color(models.Model):
@@ -56,9 +29,6 @@ class Color(models.Model):
         max_length=10,
         choices=TITLE_CHOICES,
     )
-    
-    def __str__(self):
-        return self.title
 
 
 class Description(models.Model):
