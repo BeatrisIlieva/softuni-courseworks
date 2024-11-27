@@ -2,12 +2,20 @@ import os
 import django
 from django.core.management.base import BaseCommand
 
-from django_ecommerce_strategy_pattern.product.models import (
+from django_ecommerce_strategy_pattern.product.models.color import (
     Color,
+)
+
+from django_ecommerce_strategy_pattern.product.models.description import (
+    Description,
+)
+
+from django_ecommerce_strategy_pattern.product.models.image_url import (
     FirstImageUrl,
     SecondImageUrl,
-    Description,
-    ProductFactory,
+)
+
+from django_ecommerce_strategy_pattern.product.models.product import (
     Earring,
     Bracelet,
     Necklace,
@@ -20,6 +28,10 @@ from django_ecommerce_strategy_pattern.product.management.commands.constants imp
     WHITE_FACTORY,
 )
 
+from django_ecommerce_strategy_pattern.product.factories.product_factory import (
+    ProductFactory,
+)
+
 
 class Command(BaseCommand):
     help = "Initialize data for your Django app"
@@ -30,15 +42,15 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS("Starting data initialization..."))
 
-        # self.bulk_create_colors()
+        self.bulk_create_colors()
 
-        # self.bulk_create_first_image_urls()
+        self.bulk_create_first_image_urls()
 
-        # self.bulk_create_second_image_urls()
+        self.bulk_create_second_image_urls()
 
-        # self.bulk_create_descriptions()
+        self.bulk_create_descriptions()
 
-        # self.create_earrings()
+        self.create_earrings()
 
         self.create_bracelets()
 
