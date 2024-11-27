@@ -17,7 +17,7 @@ from django_ecommerce_strategy_pattern.product.models import (
 from django_ecommerce_strategy_pattern.product.management.commands.constants import (
     PINK_FACTORY,
     BLUE_FACTORY,
-    WHITE_FACTORY
+    WHITE_FACTORY,
 )
 
 
@@ -62,7 +62,7 @@ class Command(BaseCommand):
                 FirstImageUrl(address=WHITE_FACTORY["ring"]["first_image_url"]),
             ]
         )
-        
+
     def bulk_create_second_image_urls(self):
         SecondImageUrl.objects.bulk_create(
             [
@@ -80,6 +80,7 @@ class Command(BaseCommand):
                 SecondImageUrl(address=WHITE_FACTORY["ring"]["second_image_url"]),
             ]
         )
+
     def bulk_create_descriptions(self):
         Description.objects.bulk_create(
             [
@@ -112,7 +113,17 @@ class Command(BaseCommand):
             Earring.DROP_LENGTH_CHOICES[2][0],
         ]
 
-        for color in colors:
+        first_image_urls = [FirstImageUrl.objects.get(pk=1), FirstImageUrl.objects.get(pk=5),FirstImageUrl.objects.get(pk=9),]
+        second_image_urls = [FirstImageUrl.objects.get(pk=1), FirstImageUrl.objects.get(pk=5),FirstImageUrl.objects.get(pk=9),]
+        
+        
+
+        
+        second_image_urls = []
+        
+        descriptions = []
+
+        for color, index in enumerate(colors):
             factory = ProductFactory(color=color)
 
             for size in sizes:
@@ -155,3 +166,14 @@ class Command(BaseCommand):
             second_image_url=PINK_FACTORY["ring"]["second_image_url"],
             description=PINK_FACTORY["ring"]["description"],
         )
+
+
+        # first_image_urls = [FirstImageUrl.objects.get(pk=2), FirstImageUrl.objects.get(pk=6),FirstImageUrl.objects.get(pk=10),]
+        # second_image_urls = [FirstImageUrl.objects.get(pk=2), FirstImageUrl.objects.get(pk=6),FirstImageUrl.objects.get(pk=10),]
+        
+        
+        # first_image_urls = [FirstImageUrl.objects.get(pk=3), FirstImageUrl.objects.get(pk=7),FirstImageUrl.objects.get(pk=11),]
+        # second_image_urls = [FirstImageUrl.objects.get(pk=3), FirstImageUrl.objects.get(pk=7),FirstImageUrl.objects.get(pk=11),]
+        
+        # first_image_urls = [FirstImageUrl.objects.get(pk=4), FirstImageUrl.objects.get(pk=8),FirstImageUrl.objects.get(pk=12),]
+        # second_image_urls = [FirstImageUrl.objects.get(pk=4), FirstImageUrl.objects.get(pk=8),FirstImageUrl.objects.get(pk=12),]
