@@ -54,7 +54,7 @@ class Earring(BaseProduct):
         max_length=1,
         choices=DROP_LENGTH_CHOICES,
     )
-    
+
     def __str__(self):
         return f"{self.color.get_title_display()} - {self.__class__.__name__}"
 
@@ -70,9 +70,9 @@ class Bracelet(BaseProduct):
         max_length=1,
         choices=WRIST_SIZE_CHOICES,
     )
-    
+
     def __str__(self):
-        return f"{self.color.title.get_title_display()} - {self.__class__.__name__}"
+        return f"{self.color.get_title_display()} - {self.__class__.__name__}"
 
 
 class Necklace(BaseProduct):
@@ -86,9 +86,9 @@ class Necklace(BaseProduct):
         max_length=1,
         choices=NECKLINE_CHOICES,
     )
-    
+
     def __str__(self):
-        return f"{self.color.title.get_title_display()} - {self.__class__.__name__}"
+        return f"{self.color.get_title_display()} - {self.__class__.__name__}"
 
 
 class Ring(BaseProduct):
@@ -102,6 +102,6 @@ class Ring(BaseProduct):
         max_length=1,
         choices=FINGER_CIRCUMFERENCE_CHOICES,
     )
-    
+
     def __str__(self):
-        return f"{self.color.title.get_title_display()} - {self.__class__.__name__}"
+        return f"{self.color.get_title_display()} - {self.__class__.__name__}"
