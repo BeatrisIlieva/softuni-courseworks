@@ -76,16 +76,30 @@ class Earring(BaseProduct):
 
 
 class Bracelet(BaseProduct):
+    WRIST_SIZE_CHOICES = (
+        ("S", 15.02),
+        ("M", 17.08),
+        ("L", 19.03),
+    )
+
     wrist_size = models.DecimalField(
         max_digits=4,
         decimal_places=2,
+        choices=WRIST_SIZE_CHOICES,
     )
 
 
 class Necklace(BaseProduct):
+    NECKLINE_CHOICES = (
+        ("S", 40.64),
+        ("M", 43.18),
+        ("L", 45.72),
+    )
+
     neckline_length = models.DecimalField(
         max_digits=4,
         decimal_places=2,
+        choices=NECKLINE_CHOICES,
     )
 
 
@@ -104,16 +118,18 @@ class PinkFactory(ProductAbstractFactory):
         first_image_url: str,
         second_image_url: str,
         description: str,
-        drop_length: Decimal,
     ) -> Earring:
 
-        return Earring.objects.create(
-            first_image_url=first_image_url,
-            second_image_url=second_image_url,
-            color=PinkFactory.COLOR,
-            description=description,
-            drop_length=drop_length,
-        )
+        for choice in Earring.DROP_LENGTH_CHOICES:
+            measurement = choice[0]
+
+            return Earring.objects.create(
+                first_image_url=first_image_url,
+                second_image_url=second_image_url,
+                color=PinkFactory.COLOR,
+                description=description,
+                drop_length=measurement,
+            )
 
     def create_bracelet(
         self,
