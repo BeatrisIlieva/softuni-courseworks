@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 from django.db import models
 
-from django_ecommerce_strategy_pattern.product.managers import ProductManager
+# from django_ecommerce_strategy_pattern.product.managers import ProductManager
 
 
 class Color(models.Model):
@@ -22,20 +22,24 @@ class Color(models.Model):
 
 
 class ProductAbstractFactory(ABC):
+    @staticmethod
     @abstractmethod
-    def create_earring(self):
+    def create_earring():
         pass
 
+    @staticmethod
     @abstractmethod
-    def create_bracelet(self):
+    def create_bracelet():
+        pass
+    
+    @staticmethod
+    @abstractmethod
+    def create_necklace():
         pass
 
+    @staticmethod
     @abstractmethod
-    def create_necklace(self):
-        pass
-
-    @abstractmethod
-    def create_ring(self):
+    def create_ring():
         pass
 
 
@@ -43,7 +47,7 @@ class BaseProduct(models.Model):
     class Meta:
         abstract = True
 
-    objects = ProductManager()
+    # objects = ProductManager()
 
     first_image_url = models.URLField()
 
@@ -56,7 +60,7 @@ class BaseProduct(models.Model):
     color = models.ForeignKey(
         to=Color,
         on_delete=models.CASCADE,
-        related_name="color",
+        # related_name="color",
     )
 
 
@@ -113,10 +117,9 @@ class Ring(BaseProduct):
 
 
 class PinkFactory(ProductAbstractFactory):
-    COLOR = Color.objects.get(title="P")
-
+    PINK_COLOR_DB_TITLE = Color.TITLE_CHOICES[0][0]
+    
     def create_earring(
-        self,
         first_image_url: str,
         second_image_url: str,
         description: str,
@@ -128,13 +131,12 @@ class PinkFactory(ProductAbstractFactory):
             return Earring.objects.create(
                 first_image_url=first_image_url,
                 second_image_url=second_image_url,
-                color=PinkFactory.COLOR,
+                color=Color.objects.get(title=PinkFactory.PINK_COLOR_DB_TITLE),
                 description=description,
                 drop_length=measurement,
             )
 
     def create_bracelet(
-        self,
         first_image_url: str,
         second_image_url: str,
         description: str,
@@ -146,13 +148,12 @@ class PinkFactory(ProductAbstractFactory):
             return Bracelet.objects.create(
                 first_image_url=first_image_url,
                 second_image_url=second_image_url,
-                color=PinkFactory.COLOR,
+                color=Color.objects.get(title=PinkFactory.PINK_COLOR_DB_TITLE),
                 description=description,
                 wrist_size=measurement,
             )
 
     def create_necklace(
-        self,
         first_image_url: str,
         second_image_url: str,
         description: str,
@@ -164,13 +165,12 @@ class PinkFactory(ProductAbstractFactory):
             return Necklace.objects.create(
                 first_image_url=first_image_url,
                 second_image_url=second_image_url,
-                color=PinkFactory.COLOR,
+                color=Color.objects.get(title=PinkFactory.PINK_COLOR_DB_TITLE),
                 description=description,
                 neckline_length=measurement,
             )
 
     def create_ring(
-        self,
         first_image_url: str,
         second_image_url: str,
         description: str,
@@ -182,7 +182,7 @@ class PinkFactory(ProductAbstractFactory):
             return Ring.objects.create(
                 first_image_url=first_image_url,
                 second_image_url=second_image_url,
-                color=PinkFactory.COLOR,
+                color=Color.objects.get(title=PinkFactory.PINK_COLOR_DB_TITLE),
                 description=description,
                 finger_circumference=measurement,
             )
