@@ -50,29 +50,40 @@ class Command(BaseCommand):
             second_image_url=PINK_FACTORY["earring"]["second_image_url"],
             description=PINK_FACTORY["earring"]["description"],
         )
-        # PinkFactory.create_earring(
-        #     first_image_url=PINK_FACTORY["earring"]["first_image_url"],
-        #     second_image_url=PINK_FACTORY["earring"]["second_image_url"],
-        #     description=PINK_FACTORY["earring"]["description"],
-        # )
         
-        # PinkFactory.create_bracelet(
-        #     first_image_url=PINK_FACTORY["bracelet"]["first_image_url"],
-        #     second_image_url=PINK_FACTORY["bracelet"]["second_image_url"],
-        #     description=PINK_FACTORY["bracelet"]["description"],
-        # )
+    def create_pink_color_small_size_bracelet(self):
+        color = Color.objects.get(title=Color.TITLE_CHOICES[0][0])
+        size = Bracelet.WRIST_SIZE_CHOICES[0][0]
+        factory  = ProductFactory(color=color, size=size)
         
-        # PinkFactory.create_necklace(
-        #     first_image_url=PINK_FACTORY["necklace"]["first_image_url"],
-        #     second_image_url=PINK_FACTORY["necklace"]["second_image_url"],
-        #     description=PINK_FACTORY["necklace"]["description"],
-        # )
+        factory.create_bracelet(
+            first_image_url=PINK_FACTORY["bracelet"]["first_image_url"],
+            second_image_url=PINK_FACTORY["bracelet"]["second_image_url"],
+            description=PINK_FACTORY["bracelet"]["description"],
+        )
         
-        # PinkFactory.create_ring(
-        #     first_image_url=PINK_FACTORY["ring"]["first_image_url"],
-        #     second_image_url=PINK_FACTORY["ring"]["second_image_url"],
-        #     description=PINK_FACTORY["ring"]["description"],
-        # )
+    def create_pink_color_small_size_necklace(self):
+        color = Color.objects.get(title=Color.TITLE_CHOICES[0][0])
+        size = Necklace.NECKLINE_CHOICES[0][0]
+        factory  = ProductFactory(color=color, size=size)
+        
+        factory.create_bracelet(
+            first_image_url=PINK_FACTORY["necklace"]["first_image_url"],
+            second_image_url=PINK_FACTORY["necklace"]["second_image_url"],
+            description=PINK_FACTORY["necklace"]["description"],
+        )
+        
+    def create_pink_color_small_size_ring(self):
+        color = Color.objects.get(title=Color.TITLE_CHOICES[0][0])
+        size = Ring.FINGER_CIRCUMFERENCE_CHOICES[0][0]
+        factory  = ProductFactory(color=color, size=size)
+        
+        factory.create_bracelet(
+            first_image_url=PINK_FACTORY["ring"]["first_image_url"],
+            second_image_url=PINK_FACTORY["ring"]["second_image_url"],
+            description=PINK_FACTORY["ring"]["description"],
+        )
+        
 
     # def bulk_create_description(self):
     #     Description.objects.bulk_create(

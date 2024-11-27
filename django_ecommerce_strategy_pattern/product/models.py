@@ -21,6 +21,27 @@ class Color(models.Model):
         return self.title
 
 
+class BaseImageUrl(models.Model):
+    class Meta:
+        abstract = True
+
+    address = models.URLField()
+
+
+class FirstImageUrl(BaseImageUrl):
+    pass
+
+
+class SecondImageUrl(BaseImageUrl):
+    pass
+
+
+class Description(models.Model):
+    content = models.TextField(
+        max_length=300,
+    )
+
+
 class AbstractProductFactory(ABC):
     @abstractmethod
     def create_earring(self):
@@ -45,18 +66,24 @@ class BaseProduct(models.Model):
 
     # objects = ProductManager()
 
-    first_image_url = models.URLField()
-
-    second_image_url = models.URLField()
-
-    description = models.TextField(
-        max_length=300,
-    )
-
     color = models.ForeignKey(
         to=Color,
         on_delete=models.CASCADE,
-        # related_name="color",
+    )
+
+    first_image_url = models.ForeignKey(
+        to=FirstImageUrl,
+        on_delete=models.CASCADE,
+    )
+
+    second_image_url = models.ForeignKey(
+        to=SecondImageUrl,
+        on_delete=models.CASCADE,
+    )
+
+    description = models.ForeignKey(
+        to=Description,
+        on_delete=models.CASCADE,
     )
 
 
