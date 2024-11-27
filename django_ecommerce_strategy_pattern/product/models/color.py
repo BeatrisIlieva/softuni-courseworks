@@ -1,3 +1,6 @@
+from django.db import models
+
+
 class Color(models.Model):
     TITLE_CHOICES = (
         ("P", "Pink"),
