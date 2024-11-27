@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 
-from decimal import Decimal
-
 from django.db import models
 
 from django_ecommerce_strategy_pattern.product.managers import ProductManager

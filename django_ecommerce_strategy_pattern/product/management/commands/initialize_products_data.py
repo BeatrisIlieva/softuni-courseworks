@@ -36,17 +36,34 @@ class Command(BaseCommand):
         
     def create_pink_products(self):
         PinkFactory.create_earring(
-            first_image_url: PINK_FACTORY["earring"],
-            second_image_url: str,
-            description: str,
-            drop_length: Decimal,
+            first_image_url=PINK_FACTORY["earring"]["first_image_url"],
+            second_image_url=PINK_FACTORY["earring"]["second_image_url"],
+            description=PINK_FACTORY["earring"]["description"],
+        )
+        
+        PinkFactory.create_bracelet(
+            first_image_url=PINK_FACTORY["bracelet"]["first_image_url"],
+            second_image_url=PINK_FACTORY["bracelet"]["second_image_url"],
+            description=PINK_FACTORY["bracelet"]["description"],
+        )
+        
+        PinkFactory.create_necklace(
+            first_image_url=PINK_FACTORY["necklace"]["first_image_url"],
+            second_image_url=PINK_FACTORY["necklace"]["second_image_url"],
+            description=PINK_FACTORY["necklace"]["description"],
+        )
+        
+        PinkFactory.create_ring(
+            first_image_url=PINK_FACTORY["ring"]["first_image_url"],
+            second_image_url=PINK_FACTORY["ring"]["second_image_url"],
+            description=PINK_FACTORY["ring"]["description"],
         )
 
     def bulk_create_description(self):
         Description.objects.bulk_create(
             [
                 Description(
-                    content="28 pear-shaped and round brilliant sapphires weighing a total of approximately 3.20 carats and 28 marquise and round brilliant diamonds weighing a total of approximately 1.98 carats, set in platinum."
+                    content=""
                 ),
                 Description(
                     content="28 pear-shaped and round brilliant sapphires weighing a total of approximately 3.00 carats and 28 marquise and round brilliant diamonds weighing a total of approximately 1.98 carats, set in platinum."
@@ -55,7 +72,7 @@ class Command(BaseCommand):
                     content="A medley of marquise, pear-shaped, and round brilliant diamonds, weighing a total of approximately 4.38 carats, set in platinum."
                 ),
                 Description(
-                    content="45 pear-shaped and round brilliant sapphires weighing a total of approximately 4.36 carats and 33 pear-shaped, marquise and round brilliant diamonds weighing a total of approximately 4.24 carats, set in platinum."
+                    content=""
                 ),
                 Description(
                     content="45 pear-shaped and round brilliant sapphires weighing a total of approximately 4.17 carats and 33 pear-shaped, marquise and round brilliant diamonds weighing a total of approximately 4.24 carats, set in platinum."
@@ -64,7 +81,7 @@ class Command(BaseCommand):
                     content="78 pear-shaped, marquise, and round brilliant diamonds, weighing a total of approximately 7.46 carats, set in platinum."
                 ),
                 Description(
-                    content="78 pear-shaped and round brilliant sapphires weighing a total of approximately 8.61 carats and 99 marquise and round brilliant diamonds weighing a total of approximately 8.60 carats, set in platinum."
+                    content=""
                 ),
                 Description(
                     content="78 pear-shaped and round brilliant sapphires weighing a total of approximately 8.61 carats and 99 marquise and round brilliant diamonds weighing a total of approximately 8.37 carats, set in platinum."
@@ -73,7 +90,7 @@ class Command(BaseCommand):
                     content="177 pear-shaped, marquise, and round brilliant diamonds, weighing a total of approximately 15.35 carats, set in platinum."
                 ),
                 Description(
-                    content="6 pear-shaped sapphires weighing a total of approximately 2.22 carats and 1 round brilliant diamond weighing approximately 0.05 carats, set in platinum."
+                    content=""
                 ),
                 Description(
                     content="6 pear-shaped sapphires weighing a total of approximately 2.15 carats and 1 round brilliant diamond weighing approximately 0.05 carats, set in platinum."
@@ -92,8 +109,8 @@ class Command(BaseCommand):
         Product.objects.bulk_create(
             [
                 Product(
-                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714885/forget-me-not-collection/earrings/forget_me_not_drop_earrings_diamond_and_pink_sapphire_eapspdrflrfmn_ee-1_zzaw4q.webp",
-                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714886/forget-me-not-collection/earrings/forget_me_not_drop_earrings_diamond_and_pink_sapphire_eapspdrflrfmn_ee-2_p9jicb.webp",
+                    first_image_url="",
+                    second_image_url="",
                     category=categories[0],
                     color=colors[0],
                     description=descriptions[0],
@@ -113,8 +130,8 @@ class Command(BaseCommand):
                     description=descriptions[2],
                 ),
                 Product(
-                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714894/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_1_vz9pv4.avif",
-                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714893/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_2_kdpnm6.avif",
+                    first_image_url="",
+                    second_image_url="",
                     category=categories[1],
                     color=colors[0],
                     description=descriptions[3],
@@ -134,8 +151,8 @@ class Command(BaseCommand):
                     description=descriptions[5],
                 ),
                 Product(
-                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714890/forget-me-not-collection/necklaces/forget_me_not_lariat_necklace_diamond_and_pink_sapphire_nkpspltflrfmn_e_1_kuxbds.webp",
-                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714890/forget-me-not-collection/necklaces/forget_me_not_lariat_necklace_diamond_and_pink_sapphire_nkpspltflrfmn_e_2_d2fc78.webp",
+                    first_image_url="",
+                    second_image_url="",
                     category=categories[2],
                     color=colors[0],
                     description=descriptions[6],
@@ -155,8 +172,8 @@ class Command(BaseCommand):
                     description=descriptions[8],
                 ),
                 Product(
-                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714892/forget-me-not-collection/rings/forget_me_not_ring_diamond_and_pink_sapphire_frpsprfflrfmn_e_1_qfumu3.webp",
-                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714892/forget-me-not-collection/rings/forget_me_not_ring_diamond_and_pink_sapphire_frpsprfflrfmn_e_2_k7nhpe.avif",
+                    first_image_url="",
+                    second_image_url="",
                     category=categories[3],
                     color=colors[0],
                     description=descriptions[9],
