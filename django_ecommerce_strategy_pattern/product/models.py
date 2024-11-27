@@ -21,25 +21,21 @@ class Color(models.Model):
         return self.title
 
 
-class ProductAbstractFactory(ABC):
-    @staticmethod
+class AbstractProductFactory(ABC):
     @abstractmethod
-    def create_earring():
+    def create_earring(self):
         pass
 
-    @staticmethod
     @abstractmethod
-    def create_bracelet():
-        pass
-    
-    @staticmethod
-    @abstractmethod
-    def create_necklace():
+    def create_bracelet(self):
         pass
 
-    @staticmethod
     @abstractmethod
-    def create_ring():
+    def create_necklace(self):
+        pass
+
+    @abstractmethod
+    def create_ring(self):
         pass
 
 
@@ -116,73 +112,67 @@ class Ring(BaseProduct):
     )
 
 
-class PinkFactory(ProductAbstractFactory):
-    PINK_COLOR_DB_TITLE = Color.TITLE_CHOICES[0][0]
-    
+class ProductFactory(AbstractProductFactory):
+    def __init__(self, color: Color, size: str) -> None:
+        self.color = color
+        self.size = size
+
     def create_earring(
+        self,
         first_image_url: str,
         second_image_url: str,
         description: str,
     ) -> Earring:
 
-        for choice in Earring.DROP_LENGTH_CHOICES:
-            measurement = choice[0]
-
-            return Earring.objects.create(
-                first_image_url=first_image_url,
-                second_image_url=second_image_url,
-                color=Color.objects.get(title=PinkFactory.PINK_COLOR_DB_TITLE),
-                description=description,
-                drop_length=measurement,
-            )
+        return Earring.objects.create(
+            color=self.color,
+            drop_length=self.size,
+            first_image_url=first_image_url,
+            second_image_url=second_image_url,
+            description=description,
+        )
 
     def create_bracelet(
+        self,
         first_image_url: str,
         second_image_url: str,
         description: str,
     ) -> Bracelet:
 
-        for choice in Bracelet.WRIST_SIZE_CHOICES:
-            measurement = choice[0]
-
-            return Bracelet.objects.create(
-                first_image_url=first_image_url,
-                second_image_url=second_image_url,
-                color=Color.objects.get(title=PinkFactory.PINK_COLOR_DB_TITLE),
-                description=description,
-                wrist_size=measurement,
-            )
+        return Bracelet.objects.create(
+            color=self.color,
+            wrist_size=self.size,
+            first_image_url=first_image_url,
+            second_image_url=second_image_url,
+            description=description,
+        )
 
     def create_necklace(
+        self,
         first_image_url: str,
         second_image_url: str,
         description: str,
     ) -> Necklace:
 
-        for choice in Necklace.NECKLINE_CHOICES:
-            measurement = choice[0]
-
-            return Necklace.objects.create(
-                first_image_url=first_image_url,
-                second_image_url=second_image_url,
-                color=Color.objects.get(title=PinkFactory.PINK_COLOR_DB_TITLE),
-                description=description,
-                neckline_length=measurement,
-            )
+        return Necklace.objects.create(
+            color=self.color,
+            neckline_length=self.size,
+            first_image_url=first_image_url,
+            second_image_url=second_image_url,
+            description=description,
+        )
 
     def create_ring(
+        self,
         first_image_url: str,
         second_image_url: str,
         description: str,
     ) -> Ring:
 
-        for choice in Ring.FINGER_CIRCUMFERENCE_CHOICES:
-            measurement = choice[0]
-
-            return Ring.objects.create(
-                first_image_url=first_image_url,
-                second_image_url=second_image_url,
-                color=Color.objects.get(title=PinkFactory.PINK_COLOR_DB_TITLE),
-                description=description,
-                finger_circumference=measurement,
-            )
+        return Ring.objects.create(
+            color=self.color,
+            finger_circumference=self.size,
+            first_image_url=first_image_url,
+            second_image_url=second_image_url,
+            description=description,
+        )

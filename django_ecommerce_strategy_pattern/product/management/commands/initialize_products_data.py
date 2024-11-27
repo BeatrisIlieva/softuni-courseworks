@@ -4,7 +4,11 @@ from django.core.management.base import BaseCommand
 
 from django_ecommerce_strategy_pattern.product.models import (
     Color,
-    PinkFactory,
+    ProductFactory,
+    Earring,
+    Bracelet,
+    Necklace,
+    Ring,
 )
 
 from django_ecommerce_strategy_pattern.product.management.commands.constants import PINK_FACTORY
@@ -19,9 +23,9 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS("Starting data initialization..."))
 
-        self.bulk_create_color()
+        # self.bulk_create_color()
         
-        self.create_pink_products()
+        self.create_pink_color_small_size_earring()
 
         self.stdout.write(
             self.style.SUCCESS("Data initialization completed successfully.")
@@ -36,30 +40,39 @@ class Command(BaseCommand):
             ]
         )
         
-    def create_pink_products(self):
-        PinkFactory.create_earring(
+    def create_pink_color_small_size_earring(self):
+        color = Color.objects.get(title=Color.TITLE_CHOICES[0][0])
+        size = Earring.DROP_LENGTH_CHOICES[0][0]
+        factory  = ProductFactory(color=color, size=size)
+        
+        factory.create_earring(
             first_image_url=PINK_FACTORY["earring"]["first_image_url"],
             second_image_url=PINK_FACTORY["earring"]["second_image_url"],
             description=PINK_FACTORY["earring"]["description"],
         )
+        # PinkFactory.create_earring(
+        #     first_image_url=PINK_FACTORY["earring"]["first_image_url"],
+        #     second_image_url=PINK_FACTORY["earring"]["second_image_url"],
+        #     description=PINK_FACTORY["earring"]["description"],
+        # )
         
-        PinkFactory.create_bracelet(
-            first_image_url=PINK_FACTORY["bracelet"]["first_image_url"],
-            second_image_url=PINK_FACTORY["bracelet"]["second_image_url"],
-            description=PINK_FACTORY["bracelet"]["description"],
-        )
+        # PinkFactory.create_bracelet(
+        #     first_image_url=PINK_FACTORY["bracelet"]["first_image_url"],
+        #     second_image_url=PINK_FACTORY["bracelet"]["second_image_url"],
+        #     description=PINK_FACTORY["bracelet"]["description"],
+        # )
         
-        PinkFactory.create_necklace(
-            first_image_url=PINK_FACTORY["necklace"]["first_image_url"],
-            second_image_url=PINK_FACTORY["necklace"]["second_image_url"],
-            description=PINK_FACTORY["necklace"]["description"],
-        )
+        # PinkFactory.create_necklace(
+        #     first_image_url=PINK_FACTORY["necklace"]["first_image_url"],
+        #     second_image_url=PINK_FACTORY["necklace"]["second_image_url"],
+        #     description=PINK_FACTORY["necklace"]["description"],
+        # )
         
-        PinkFactory.create_ring(
-            first_image_url=PINK_FACTORY["ring"]["first_image_url"],
-            second_image_url=PINK_FACTORY["ring"]["second_image_url"],
-            description=PINK_FACTORY["ring"]["description"],
-        )
+        # PinkFactory.create_ring(
+        #     first_image_url=PINK_FACTORY["ring"]["first_image_url"],
+        #     second_image_url=PINK_FACTORY["ring"]["second_image_url"],
+        #     description=PINK_FACTORY["ring"]["description"],
+        # )
 
     # def bulk_create_description(self):
     #     Description.objects.bulk_create(
