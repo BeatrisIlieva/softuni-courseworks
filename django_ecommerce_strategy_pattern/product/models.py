@@ -5,46 +5,6 @@ from django.db import models
 from django_ecommerce_strategy_pattern.product.managers import ProductManager
 
 
-class ColorAbstractFactory(ABC):
-    @abstractmethod
-    def create_pink_color(self):
-        pass
-
-    @abstractmethod
-    def create_blue_color(self):
-        pass
-
-    @abstractmethod
-    def create_white_color(self):
-        pass
-
-
-class PinkColor(models.Model):
-    title = models.CharField(
-        max_length=10,
-    )
-    
-    def __str__(self):
-        return self.title
-    
-class BlueColor(models.Model):
-    title = models.CharField(
-        max_length=10,
-    )
-    
-    def __str__(self):
-        return self.title
-    
-    
-class WhiteColor(models.Model):
-    title = models.CharField(
-        max_length=10,
-    )
-    
-    def __str__(self):
-        return self.title
-
-
 class Color(models.Model):
     TITLE_CHOICES = (
         ("P", "Pink"),
@@ -56,7 +16,7 @@ class Color(models.Model):
         max_length=10,
         choices=TITLE_CHOICES,
     )
-    
+
     def __str__(self):
         return self.title
 
@@ -65,6 +25,24 @@ class Description(models.Model):
     content = models.TextField(
         max_length=300,
     )
+
+
+class ProductAbstractFactory(ABC):
+    @abstractmethod
+    def create_earring(self):
+        pass
+
+    @abstractmethod
+    def create_bracelet(self):
+        pass
+
+    @abstractmethod
+    def create_necklace(self):
+        pass
+
+    @abstractmethod
+    def create_ring(self):
+        pass
 
 
 class Product(models.Model):
