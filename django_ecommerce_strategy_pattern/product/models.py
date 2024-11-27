@@ -82,9 +82,8 @@ class Bracelet(BaseProduct):
         ("L", 19.03),
     )
 
-    wrist_size = models.DecimalField(
-        max_digits=4,
-        decimal_places=2,
+    wrist_size = models.CharField(
+        max_length=1,
         choices=WRIST_SIZE_CHOICES,
     )
 
@@ -96,17 +95,22 @@ class Necklace(BaseProduct):
         ("L", 45.72),
     )
 
-    neckline_length = models.DecimalField(
-        max_digits=4,
-        decimal_places=2,
+    neckline_length = models.CharField(
+        max_length=1,
         choices=NECKLINE_CHOICES,
     )
 
 
 class Ring(BaseProduct):
-    finger_circumference = models.DecimalField(
-        max_digits=4,
-        decimal_places=2,
+    FINGER_CIRCUMFERENCE_CHOICES = (
+        ("S", 4.07),
+        ("M", 4.09),
+        ("L", 5.05),
+    )
+
+    finger_circumference = models.CharField(
+        max_length=1,
+        choices=FINGER_CIRCUMFERENCE_CHOICES,
     )
 
 
@@ -136,45 +140,51 @@ class PinkFactory(ProductAbstractFactory):
         first_image_url: str,
         second_image_url: str,
         description: str,
-        wrist_size: Decimal,
     ) -> Bracelet:
 
-        return Bracelet.objects.create(
-            first_image_url=first_image_url,
-            second_image_url=second_image_url,
-            color=PinkFactory.COLOR,
-            description=description,
-            wrist_size=wrist_size,
-        )
+        for choice in Bracelet.WRIST_SIZE_CHOICES:
+            measurement = choice[0]
+
+            return Bracelet.objects.create(
+                first_image_url=first_image_url,
+                second_image_url=second_image_url,
+                color=PinkFactory.COLOR,
+                description=description,
+                wrist_size=measurement,
+            )
 
     def create_necklace(
         self,
         first_image_url: str,
         second_image_url: str,
         description: str,
-        neckline_length: Decimal,
     ) -> Necklace:
 
-        return Necklace.objects.create(
-            first_image_url=first_image_url,
-            second_image_url=second_image_url,
-            color=PinkFactory.COLOR,
-            description=description,
-            neckline_length=neckline_length,
-        )
+        for choice in Necklace.NECKLINE_CHOICES:
+            measurement = choice[0]
+
+            return Necklace.objects.create(
+                first_image_url=first_image_url,
+                second_image_url=second_image_url,
+                color=PinkFactory.COLOR,
+                description=description,
+                neckline_length=measurement,
+            )
 
     def create_ring(
         self,
         first_image_url: str,
         second_image_url: str,
         description: str,
-        finger_circumference: Decimal,
     ) -> Ring:
 
-        return Ring.objects.create(
-            first_image_url=first_image_url,
-            second_image_url=second_image_url,
-            color=PinkFactory.COLOR,
-            description=description,
-            finger_circumference=finger_circumference,
-        )
+        for choice in Ring.FINGER_CIRCUMFERENCE_CHOICES:
+            measurement = choice[0]
+
+            return Ring.objects.create(
+                first_image_url=first_image_url,
+                second_image_url=second_image_url,
+                color=PinkFactory.COLOR,
+                description=description,
+                finger_circumference=measurement,
+            )
