@@ -113,67 +113,38 @@ class Command(BaseCommand):
             Earring.DROP_LENGTH_CHOICES[2][0],
         ]
 
-        first_image_urls = [FirstImageUrl.objects.get(pk=1), FirstImageUrl.objects.get(pk=5),FirstImageUrl.objects.get(pk=9),]
-        second_image_urls = [FirstImageUrl.objects.get(pk=1), FirstImageUrl.objects.get(pk=5),FirstImageUrl.objects.get(pk=9),]
-        
-        
-
-        
-        second_image_urls = []
-        
-        descriptions = []
+        first_image_urls = [
+            FirstImageUrl.objects.get(pk=1),
+            FirstImageUrl.objects.get(pk=5),
+            FirstImageUrl.objects.get(pk=9),
+        ]
+        second_image_urls = [
+            SecondImageUrl.objects.get(pk=1),
+            SecondImageUrl.objects.get(pk=5),
+            SecondImageUrl.objects.get(pk=9),
+        ]
+        descriptions = [
+            Description.objects.get(pk=1),
+            Description.objects.get(pk=5),
+            Description.objects.get(pk=9),
+        ]
 
         for color, index in enumerate(colors):
             factory = ProductFactory(color=color)
 
             for size in sizes:
                 factory.create_earring(
-                    first_image_url=PINK_FACTORY["earring"]["first_image_url"],
-                    second_image_url=PINK_FACTORY["earring"]["second_image_url"],
-                    description=PINK_FACTORY["earring"]["description"],
+                    first_image_url=first_image_urls[index],
+                    second_image_url=second_image_urls[index],
+                    description=descriptions[index],
                     size=size,
                 )
 
-    def create_pink_color_small_size_bracelet(self):
-        color = Color.objects.get(title=Color.TITLE_CHOICES[0][0])
-        size = Bracelet.WRIST_SIZE_CHOICES[0][0]
-        factory = ProductFactory(color=color, size=size)
-
-        factory.create_bracelet(
-            first_image_url=PINK_FACTORY["bracelet"]["first_image_url"],
-            second_image_url=PINK_FACTORY["bracelet"]["second_image_url"],
-            description=PINK_FACTORY["bracelet"]["description"],
-        )
-
-    def create_pink_color_small_size_necklace(self):
-        color = Color.objects.get(title=Color.TITLE_CHOICES[0][0])
-        size = Necklace.NECKLINE_CHOICES[0][0]
-        factory = ProductFactory(color=color, size=size)
-
-        factory.create_bracelet(
-            first_image_url=PINK_FACTORY["necklace"]["first_image_url"],
-            second_image_url=PINK_FACTORY["necklace"]["second_image_url"],
-            description=PINK_FACTORY["necklace"]["description"],
-        )
-
-    def create_pink_color_small_size_ring(self):
-        color = Color.objects.get(title=Color.TITLE_CHOICES[0][0])
-        size = Ring.FINGER_CIRCUMFERENCE_CHOICES[0][0]
-        factory = ProductFactory(color=color, size=size)
-
-        factory.create_bracelet(
-            first_image_url=PINK_FACTORY["ring"]["first_image_url"],
-            second_image_url=PINK_FACTORY["ring"]["second_image_url"],
-            description=PINK_FACTORY["ring"]["description"],
-        )
-
-
         # first_image_urls = [FirstImageUrl.objects.get(pk=2), FirstImageUrl.objects.get(pk=6),FirstImageUrl.objects.get(pk=10),]
         # second_image_urls = [FirstImageUrl.objects.get(pk=2), FirstImageUrl.objects.get(pk=6),FirstImageUrl.objects.get(pk=10),]
-        
-        
+
         # first_image_urls = [FirstImageUrl.objects.get(pk=3), FirstImageUrl.objects.get(pk=7),FirstImageUrl.objects.get(pk=11),]
         # second_image_urls = [FirstImageUrl.objects.get(pk=3), FirstImageUrl.objects.get(pk=7),FirstImageUrl.objects.get(pk=11),]
-        
+
         # first_image_urls = [FirstImageUrl.objects.get(pk=4), FirstImageUrl.objects.get(pk=8),FirstImageUrl.objects.get(pk=12),]
         # second_image_urls = [FirstImageUrl.objects.get(pk=4), FirstImageUrl.objects.get(pk=8),FirstImageUrl.objects.get(pk=12),]
