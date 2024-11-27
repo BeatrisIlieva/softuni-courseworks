@@ -14,4 +14,4 @@ class Color(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return self.get_title_display()

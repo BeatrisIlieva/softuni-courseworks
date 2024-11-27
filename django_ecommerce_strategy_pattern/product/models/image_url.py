@@ -7,6 +7,9 @@ class BaseImageUrl(models.Model):
 
     address = models.URLField()
 
+    def __str__(self):
+        return f"{self.address}"
+
 
 class FirstImageUrl(BaseImageUrl):
     pass
