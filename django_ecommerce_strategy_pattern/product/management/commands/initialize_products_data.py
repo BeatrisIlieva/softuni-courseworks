@@ -31,14 +31,20 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Starting data initialization..."))
 
         # self.bulk_create_colors()
-        
+
         # self.bulk_create_first_image_urls()
-        
+
         # self.bulk_create_second_image_urls()
-        
+
         # self.bulk_create_descriptions()
-        
-        self.create_earrings()
+
+        # self.create_earrings()
+
+        self.create_bracelets()
+
+        self.create_necklaces()
+
+        self.create_rings()
 
         self.stdout.write(
             self.style.SUCCESS("Data initialization completed successfully.")
@@ -147,14 +153,126 @@ class Command(BaseCommand):
                     description=descriptions[index],
                     size=size,
                 )
-                
-                
 
-        # first_image_urls = [FirstImageUrl.objects.get(pk=2), FirstImageUrl.objects.get(pk=6),FirstImageUrl.objects.get(pk=10),]
-        # second_image_urls = [FirstImageUrl.objects.get(pk=2), FirstImageUrl.objects.get(pk=6),FirstImageUrl.objects.get(pk=10),]
+    def create_bracelets(self):
 
-        # first_image_urls = [FirstImageUrl.objects.get(pk=3), FirstImageUrl.objects.get(pk=7),FirstImageUrl.objects.get(pk=11),]
-        # second_image_urls = [FirstImageUrl.objects.get(pk=3), FirstImageUrl.objects.get(pk=7),FirstImageUrl.objects.get(pk=11),]
+        colors = [
+            Color.objects.get(title=Color.TITLE_CHOICES[0][0]),
+            Color.objects.get(title=Color.TITLE_CHOICES[1][0]),
+            Color.objects.get(title=Color.TITLE_CHOICES[2][0]),
+        ]
 
-        # first_image_urls = [FirstImageUrl.objects.get(pk=4), FirstImageUrl.objects.get(pk=8),FirstImageUrl.objects.get(pk=12),]
-        # second_image_urls = [FirstImageUrl.objects.get(pk=4), FirstImageUrl.objects.get(pk=8),FirstImageUrl.objects.get(pk=12),]
+        sizes = [
+            Bracelet.WRIST_SIZE_CHOICES[0][0],
+            Bracelet.WRIST_SIZE_CHOICES[1][0],
+            Bracelet.WRIST_SIZE_CHOICES[2][0],
+        ]
+
+        first_image_urls = [
+            FirstImageUrl.objects.get(pk=2),
+            FirstImageUrl.objects.get(pk=6),
+            FirstImageUrl.objects.get(pk=10),
+        ]
+        second_image_urls = [
+            SecondImageUrl.objects.get(pk=2),
+            SecondImageUrl.objects.get(pk=6),
+            SecondImageUrl.objects.get(pk=10),
+        ]
+        descriptions = [
+            Description.objects.get(pk=2),
+            Description.objects.get(pk=6),
+            Description.objects.get(pk=10),
+        ]
+
+        for index, color in enumerate(colors):
+            factory = ProductFactory(color=color)
+
+            for size in sizes:
+                factory.create_bracelet(
+                    first_image_url=first_image_urls[index],
+                    second_image_url=second_image_urls[index],
+                    description=descriptions[index],
+                    size=size,
+                )
+
+    def create_necklaces(self):
+
+        colors = [
+            Color.objects.get(title=Color.TITLE_CHOICES[0][0]),
+            Color.objects.get(title=Color.TITLE_CHOICES[1][0]),
+            Color.objects.get(title=Color.TITLE_CHOICES[2][0]),
+        ]
+
+        sizes = [
+            Necklace.NECKLINE_CHOICES[0][0],
+            Necklace.NECKLINE_CHOICES[1][0],
+            Necklace.NECKLINE_CHOICES[2][0],
+        ]
+
+        first_image_urls = [
+            FirstImageUrl.objects.get(pk=3),
+            FirstImageUrl.objects.get(pk=7),
+            FirstImageUrl.objects.get(pk=11),
+        ]
+        second_image_urls = [
+            SecondImageUrl.objects.get(pk=3),
+            SecondImageUrl.objects.get(pk=7),
+            SecondImageUrl.objects.get(pk=11),
+        ]
+        descriptions = [
+            Description.objects.get(pk=3),
+            Description.objects.get(pk=7),
+            Description.objects.get(pk=11),
+        ]
+
+        for index, color in enumerate(colors):
+            factory = ProductFactory(color=color)
+
+            for size in sizes:
+                factory.create_necklace(
+                    first_image_url=first_image_urls[index],
+                    second_image_url=second_image_urls[index],
+                    description=descriptions[index],
+                    size=size,
+                )
+
+    def create_rings(self):
+
+        colors = [
+            Color.objects.get(title=Color.TITLE_CHOICES[0][0]),
+            Color.objects.get(title=Color.TITLE_CHOICES[1][0]),
+            Color.objects.get(title=Color.TITLE_CHOICES[2][0]),
+        ]
+
+        sizes = [
+            Ring.FINGER_CIRCUMFERENCE_CHOICES[0][0],
+            Ring.FINGER_CIRCUMFERENCE_CHOICES[1][0],
+            Ring.FINGER_CIRCUMFERENCE_CHOICES[2][0],
+        ]
+
+        first_image_urls = [
+            FirstImageUrl.objects.get(pk=4),
+            FirstImageUrl.objects.get(pk=8),
+            FirstImageUrl.objects.get(pk=12),
+        ]
+        second_image_urls = [
+            SecondImageUrl.objects.get(pk=4),
+            SecondImageUrl.objects.get(pk=8),
+            SecondImageUrl.objects.get(pk=12),
+        ]
+        descriptions = [
+            Description.objects.get(pk=4),
+            Description.objects.get(pk=8),
+            Description.objects.get(pk=12),
+        ]
+
+        for index, color in enumerate(colors):
+            factory = ProductFactory(color=color)
+
+            for size in sizes:
+                factory.create_ring(
+                    first_image_url=first_image_urls[index],
+                    second_image_url=second_image_urls[index],
+                    description=descriptions[index],
+                    size=size,
+                )
