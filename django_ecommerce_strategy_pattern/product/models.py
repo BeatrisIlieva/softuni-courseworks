@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from decimal import Decimal
+
 from django.db import models
 
 from django_ecommerce_strategy_pattern.product.managers import ProductManager
@@ -90,7 +92,11 @@ class Ring(BaseProduct):
 
 class PinkFactory(ProductAbstractFactory):
     def create_earring(
-        self, first_image_url: str, second_image_url: str, description: str, drop_length
+        self,
+        first_image_url: str,
+        second_image_url: str,
+        description: str,
+        drop_length: Decimal,
     ):
 
         return Earring.objects.create(
@@ -102,9 +108,17 @@ class PinkFactory(ProductAbstractFactory):
         )
 
     def create_bracelet(
-        self, first_image_url: str, second_image_url: str, description: str
+        self,
+        first_image_url: str,
+        second_image_url: str,
+        description: str,
+        wrist_size: Decimal,
     ):
 
         return Bracelet.objects.create(
-            first_image_url, second_image_url, Color.TITLE_CHOICES[0][0], description
+            first_image_url,
+            second_image_url,
+            Color.TITLE_CHOICES[0][0],
+            description,
+            wrist_size,
         )
