@@ -15,7 +15,7 @@ class Color(models.Model):
     )
 
     title = models.CharField(
-        max_length=10,
+        max_length=1,
         choices=TITLE_CHOICES,
     )
 
@@ -63,9 +63,15 @@ class BaseProduct(models.Model):
 
 
 class Earring(BaseProduct):
-    drop_length = models.DecimalField(
-        max_digits=4,
-        decimal_places=2,
+    DROP_LENGTH_CHOICES = (
+        ("S", 4.05),
+        ("M", 4.98),
+        ("L", 5.86),
+    )
+
+    drop_length = models.CharField(
+        max_length=1,
+        choices=DROP_LENGTH_CHOICES,
     )
 
 
@@ -92,7 +98,7 @@ class Ring(BaseProduct):
 
 class PinkFactory(ProductAbstractFactory):
     COLOR = Color.objects.get(title="P")
-    
+
     def create_earring(
         self,
         first_image_url: str,

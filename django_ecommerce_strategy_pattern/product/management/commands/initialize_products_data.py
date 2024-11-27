@@ -7,6 +7,8 @@ from django_ecommerce_strategy_pattern.product.models import (
     PinkFactory,
 )
 
+from django_ecommerce_strategy_pattern.product.management.commands.constants import PINK_FACTORY
+
 
 class Command(BaseCommand):
     help = "Initialize data for your Django app"
@@ -30,6 +32,14 @@ class Command(BaseCommand):
                 Color(title=Color.TITLE_CHOICES[1][0]),
                 Color(title=Color.TITLE_CHOICES[2][0]),
             ]
+        )
+        
+    def create_pink_products(self):
+        PinkFactory.create_earring(
+            first_image_url: PINK_FACTORY["earring"],
+            second_image_url: str,
+            description: str,
+            drop_length: Decimal,
         )
 
     def bulk_create_description(self):
