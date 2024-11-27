@@ -1,3 +1,26 @@
+from abc import ABC, abstractmethod
+
+from django_ecommerce_strategy_pattern.product.models.color import (
+    Color,
+)
+
+from django_ecommerce_strategy_pattern.product.models.image_url import (
+    FirstImageUrl,
+    SecondImageUrl,
+)
+
+from django_ecommerce_strategy_pattern.product.models.description import (
+    Description,
+)
+
+from django_ecommerce_strategy_pattern.product.models.product import (
+    Earring,
+    Bracelet,
+    Necklace,
+    Ring,
+)
+
+
 class AbstractProductFactory(ABC):
     @abstractmethod
     def create_earring(self):
