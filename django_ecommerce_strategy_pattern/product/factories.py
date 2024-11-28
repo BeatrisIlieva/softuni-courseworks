@@ -1,16 +1,14 @@
 from abc import ABC, abstractmethod
 
-from django_ecommerce_strategy_pattern.product.models.color import (
-    Color,
-)
-
-from django_ecommerce_strategy_pattern.product.models.category import (
-    Category,
-)
 
 from django_ecommerce_strategy_pattern.product.strategies import (
     get_entity_details,
     FiltrationMethod,
+)
+
+from .models import (
+    Color,
+    Category,
 )
 
 

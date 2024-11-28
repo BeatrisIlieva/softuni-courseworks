@@ -4,17 +4,44 @@ from django_ecommerce_strategy_pattern.product.managers import (
     ProductManager,
 )
 
-from .color import (
-    Color,
-)
 
-from .category import (
-    Category,
-)
+class Category(models.Model):
+    TITLE_CHOICES = (
+        ("E", "Earrings"),
+        ("B", "Bracelets"),
+        ("N", "Necklaces"),
+        ("R", "Rings"),
+    )
 
-from .description import (
-    Description,
-)
+    title = models.CharField(
+        max_length=1,
+        choices=TITLE_CHOICES,
+    )
+
+    def __str__(self):
+        return self.get_title_display()
+
+
+class Color(models.Model):
+    TITLE_CHOICES = (
+        ("P", "Pink"),
+        ("B", "Blue"),
+        ("W", "White"),
+    )
+
+    title = models.CharField(
+        max_length=1,
+        choices=TITLE_CHOICES,
+    )
+
+    def __str__(self):
+        return self.get_title_display()
+
+
+class Description(models.Model):
+    content = models.TextField(
+        max_length=300,
+    )
 
 
 class Product(models.Model):

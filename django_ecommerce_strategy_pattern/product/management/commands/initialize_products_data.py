@@ -2,10 +2,12 @@ import os
 import django
 from django.core.management.base import BaseCommand
 
-from django_ecommerce_strategy_pattern.product.models.category import Category
-from django_ecommerce_strategy_pattern.product.models.color import Color
-from django_ecommerce_strategy_pattern.product.models.product import Product
-from django_ecommerce_strategy_pattern.product.models.description import Description
+from django_ecommerce_strategy_pattern.product.models import (
+    Category,
+    Color,
+    Product,
+    Description,
+)
 
 
 class Command(BaseCommand):

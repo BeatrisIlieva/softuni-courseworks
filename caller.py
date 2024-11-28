@@ -22,7 +22,7 @@ from django_ecommerce_strategy_pattern.user_shipping_details.models import (
 from django_ecommerce_strategy_pattern.user_payment_details.models import UserPaymentDetails
 
 
-from django_ecommerce_strategy_pattern.product.factories.product_set import PinkProductSetFactory, BlueProductSetFactory, WhiteProductSetFactory
+from django_ecommerce_strategy_pattern.product.factories import PinkProductSetFactory, BlueProductSetFactory, WhiteProductSetFactory
 
 # from django_ecommerce_strategy_pattern.user_payment_details.models import UserPaymentDetails
 

@@ -2,7 +2,7 @@ import os
 import django
 from django.core.management.base import BaseCommand
 
-from django_ecommerce_strategy_pattern.product.models.product import (
+from django_ecommerce_strategy_pattern.product.models import (
     Product,
 )
 

@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
 
-from django_ecommerce_strategy_pattern.product.models.product import (
+from django_ecommerce_strategy_pattern.product.models import (
     Product,
 )
 

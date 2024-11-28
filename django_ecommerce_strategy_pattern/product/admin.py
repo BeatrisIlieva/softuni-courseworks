@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models.product import (
+from .models import (
     Product,
 )
 
