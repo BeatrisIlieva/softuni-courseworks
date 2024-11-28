@@ -40,3 +40,25 @@ class RegularHomeDeliveryStrategy(DeliveryStrategy):
 
     def get_delivery_details(self) -> str:
         return "Regular home delivery within 3-5 business days."
+
+
+class DeliveryContext:
+    def __init__(self, strategy: DeliveryStrategy) -> None:
+        self.strategy = strategy
+
+    def set_delivery_method(self):
+        cost = self.strategy.calculate_delivery_cost()
+        details = self.strategy.get_delivery_details()
+
+        return {"delivery_cost": cost, "shipping_details": details}
+
+
+def execute_setting_delivery_method(method):
+    strategies = {
+        DeliveryMethod.STORE_PICKUP: StorePickupStrategy(),
+        DeliveryMethod.EXPRESS_HOME: ExpressHomeDeliveryStrategy(),
+        DeliveryMethod.REGULAR_HOME: RegularHomeDeliveryStrategy(),
+    }
+
+    context = DeliveryContext(strategy=strategies[method])
+    return context.set_delivery_method()
