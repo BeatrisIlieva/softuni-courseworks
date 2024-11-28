@@ -22,7 +22,7 @@ from django_ecommerce_strategy_pattern.user_shipping_details.models import (
 from django_ecommerce_strategy_pattern.user_payment_details.models import UserPaymentDetails
 
 
-from django_ecommerce_strategy_pattern.product.factories.product_set import PinkProductSetFactory
+from django_ecommerce_strategy_pattern.product.factories.product_set import PinkProductSetFactory, BlueProductSetFactory, WhiteProductSetFactory
 
 # from django_ecommerce_strategy_pattern.user_payment_details.models import UserPaymentDetails
 
@@ -86,6 +86,10 @@ from django_ecommerce_strategy_pattern.product.strategies import (
 # print(year[-2:])
 
 pink_factory = PinkProductSetFactory()
+blue_factory = BlueProductSetFactory()
+white_factory = WhiteProductSetFactory()
 
 print(pink_factory.generate_product_set())
+print(blue_factory.generate_product_set())
+print(white_factory.generate_product_set())
 
