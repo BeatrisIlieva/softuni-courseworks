@@ -35,10 +35,7 @@ class ShortEntityDetails(FiltrationStrategy):
 
             for inventory in data.product_inventory.all():
                 result.append(f"  Inventory Quantity: {inventory.quantity}")
-                result.append(
-                    f"  Size Measurement: {inventory.size.get_measurement_display()}"
-                )
-                result.append(f"  Price Amount: {inventory.price.amount}")
+                result.append(f"  Price Amount: {inventory.price}")
                 result.append(
                     f"  Is Sold Out: {'Yes' if inventory.is_sold_out else 'No'}"
                 )
@@ -62,13 +59,13 @@ class FullEntityDetails(FiltrationStrategy):
 
             for inventory in data.product_inventory.all():
                 result.append(
-                    f"Size Measurement: {inventory.size.get_measurement_display()}"
+                    f"Size Measurement: {inventory.size}"
                 )
                 result.append(f"Inventory Quantity: {inventory.quantity}")
                 result.append(
-                    f"Size Measurement: {inventory.size.get_measurement_display()}"
+                    f"Size Measurement: {inventory.size}"
                 )
-                result.append(f"Price Amount: {inventory.price.amount}")
+                result.append(f"Price Amount: {inventory.price}")
                 result.append(
                     f"Is Sold Out: {'Yes' if inventory.is_sold_out else 'No'}"
                 )

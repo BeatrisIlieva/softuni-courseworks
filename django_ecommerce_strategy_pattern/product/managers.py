@@ -9,10 +9,10 @@ class ProductManager(models.Manager):
         return (
             self.filter(category__pk=category_pk, color__pk=color_pk)
             .select_related("category", "color")
-            .prefetch_related("product_inventory__price")
+            .prefetch_related("product_inventory")
             .annotate(
-                min_price=Min("product_inventory__price__amount"),
-                max_price=Max("product_inventory__price__amount"),
+                min_price=Min("product_inventory__price"),
+                max_price=Max("product_inventory__price"),
             )
         )
 
@@ -20,5 +20,5 @@ class ProductManager(models.Manager):
         return (
             self.filter(category__pk=category_pk, color__pk=color_pk)
             .select_related("category", "description", "color")
-            .prefetch_related("product_inventory__size", "product_inventory__price")
+            .prefetch_related("product_inventory")
         )

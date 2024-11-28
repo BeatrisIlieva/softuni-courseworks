@@ -30,7 +30,7 @@ from django_ecommerce_strategy_pattern.product.strategies import (
 )
 
 
-print(get_entity_details(2, 2, FiltrationMethod.FULL_DETAILS))
+print(get_entity_details(2, 2, FiltrationMethod.SHORT_DETAILS))
 
 # try:
 #     user_cr = UserCredentialDetails.objects.create(email="bea@icloud.com")
