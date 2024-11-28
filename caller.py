@@ -21,6 +21,9 @@ from django_ecommerce_strategy_pattern.user_shipping_details.models import (
 
 from django_ecommerce_strategy_pattern.user_payment_details.models import UserPaymentDetails
 
+
+from django_ecommerce_strategy_pattern.product.factories.product_set import PinkProductSetFactory
+
 # from django_ecommerce_strategy_pattern.user_payment_details.models import UserPaymentDetails
 
 
@@ -30,7 +33,7 @@ from django_ecommerce_strategy_pattern.product.strategies import (
 )
 
 
-# print(get_entity_details(2, 2, FiltrationMethod.SHORT_DETAILS))
+# print(get_entity_details(2, 2, FiltrationMethod.FULL_DETAILS))
 
 # try:
 #     user_cr = UserCredentialDetails.objects.create(email="bea@icloud.com")
@@ -82,5 +85,7 @@ from django_ecommerce_strategy_pattern.product.strategies import (
 # year, month, _ = current_date.split("-")
 # print(year[-2:])
 
+pink_factory = PinkProductSetFactory()
 
+print(pink_factory.create_earring())
 
