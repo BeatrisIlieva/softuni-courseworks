@@ -87,5 +87,5 @@ from django_ecommerce_strategy_pattern.product.strategies import (
 
 pink_factory = PinkProductSetFactory()
 
-print(pink_factory.create_earring())
+print(pink_factory.generate_product_set())
 
