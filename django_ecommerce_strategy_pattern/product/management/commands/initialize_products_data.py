@@ -2,35 +2,10 @@ import os
 import django
 from django.core.management.base import BaseCommand
 
-from django_ecommerce_strategy_pattern.product.models.color import (
-    Color,
-)
-
-from django_ecommerce_strategy_pattern.product.models.description import (
-    Description,
-)
-
-from django_ecommerce_strategy_pattern.product.models.image_url import (
-    FirstImageUrl,
-    SecondImageUrl,
-)
-
-from django_ecommerce_strategy_pattern.product.models.product import (
-    Earring,
-    Bracelet,
-    Necklace,
-    Ring,
-)
-
-from django_ecommerce_strategy_pattern.product.management.commands.constants import (
-    PINK_FACTORY,
-    BLUE_FACTORY,
-    WHITE_FACTORY,
-)
-
-from django_ecommerce_strategy_pattern.product.factories.product_factory import (
-    ProductFactory,
-)
+from django_ecommerce_strategy_pattern.product.models.category import Category
+from django_ecommerce_strategy_pattern.product.models.color import Color
+from django_ecommerce_strategy_pattern.product.models.product import Product
+from django_ecommerce_strategy_pattern.product.models.description import Description
 
 
 class Command(BaseCommand):
@@ -42,27 +17,29 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.SUCCESS("Starting data initialization..."))
 
-        self.bulk_create_colors()
+        self.bulk_create_category()
 
-        self.bulk_create_first_image_urls()
+        self.bulk_create_color()
 
-        self.bulk_create_second_image_urls()
+        self.bulk_create_description()
 
-        self.bulk_create_descriptions()
-
-        self.create_earrings()
-
-        self.create_bracelets()
-
-        self.create_necklaces()
-
-        self.create_rings()
+        self.bulk_create_product()
 
         self.stdout.write(
             self.style.SUCCESS("Data initialization completed successfully.")
         )
 
-    def bulk_create_colors(self):
+    def bulk_create_category(self):
+        Category.objects.bulk_create(
+            [
+                Category(title=Category.TITLE_CHOICES[0][0]),
+                Category(title=Category.TITLE_CHOICES[1][0]),
+                Category(title=Category.TITLE_CHOICES[2][0]),
+                Category(title=Category.TITLE_CHOICES[3][0]),
+            ]
+        )
+
+    def bulk_create_color(self):
         Color.objects.bulk_create(
             [
                 Color(title=Color.TITLE_CHOICES[0][0]),
@@ -71,220 +48,138 @@ class Command(BaseCommand):
             ]
         )
 
-    def bulk_create_first_image_urls(self):
-        FirstImageUrl.objects.bulk_create(
-            [
-                FirstImageUrl(address=PINK_FACTORY["earring"]["first_image_url"]),
-                FirstImageUrl(address=PINK_FACTORY["bracelet"]["first_image_url"]),
-                FirstImageUrl(address=PINK_FACTORY["necklace"]["first_image_url"]),
-                FirstImageUrl(address=PINK_FACTORY["ring"]["first_image_url"]),
-                FirstImageUrl(address=BLUE_FACTORY["earring"]["first_image_url"]),
-                FirstImageUrl(address=BLUE_FACTORY["bracelet"]["first_image_url"]),
-                FirstImageUrl(address=BLUE_FACTORY["necklace"]["first_image_url"]),
-                FirstImageUrl(address=BLUE_FACTORY["ring"]["first_image_url"]),
-                FirstImageUrl(address=WHITE_FACTORY["earring"]["first_image_url"]),
-                FirstImageUrl(address=WHITE_FACTORY["bracelet"]["first_image_url"]),
-                FirstImageUrl(address=WHITE_FACTORY["necklace"]["first_image_url"]),
-                FirstImageUrl(address=WHITE_FACTORY["ring"]["first_image_url"]),
-            ]
-        )
-
-    def bulk_create_second_image_urls(self):
-        SecondImageUrl.objects.bulk_create(
-            [
-                SecondImageUrl(address=PINK_FACTORY["earring"]["second_image_url"]),
-                SecondImageUrl(address=PINK_FACTORY["bracelet"]["second_image_url"]),
-                SecondImageUrl(address=PINK_FACTORY["necklace"]["second_image_url"]),
-                SecondImageUrl(address=PINK_FACTORY["ring"]["second_image_url"]),
-                SecondImageUrl(address=BLUE_FACTORY["earring"]["second_image_url"]),
-                SecondImageUrl(address=BLUE_FACTORY["bracelet"]["second_image_url"]),
-                SecondImageUrl(address=BLUE_FACTORY["necklace"]["second_image_url"]),
-                SecondImageUrl(address=BLUE_FACTORY["ring"]["second_image_url"]),
-                SecondImageUrl(address=WHITE_FACTORY["earring"]["second_image_url"]),
-                SecondImageUrl(address=WHITE_FACTORY["bracelet"]["second_image_url"]),
-                SecondImageUrl(address=WHITE_FACTORY["necklace"]["second_image_url"]),
-                SecondImageUrl(address=WHITE_FACTORY["ring"]["second_image_url"]),
-            ]
-        )
-
-    def bulk_create_descriptions(self):
+    def bulk_create_description(self):
         Description.objects.bulk_create(
             [
-                Description(content=PINK_FACTORY["earring"]["description"]),
-                Description(content=PINK_FACTORY["bracelet"]["description"]),
-                Description(content=PINK_FACTORY["necklace"]["description"]),
-                Description(content=PINK_FACTORY["ring"]["description"]),
-                Description(content=BLUE_FACTORY["earring"]["description"]),
-                Description(content=BLUE_FACTORY["bracelet"]["description"]),
-                Description(content=BLUE_FACTORY["necklace"]["description"]),
-                Description(content=BLUE_FACTORY["ring"]["description"]),
-                Description(content=WHITE_FACTORY["earring"]["description"]),
-                Description(content=WHITE_FACTORY["bracelet"]["description"]),
-                Description(content=WHITE_FACTORY["necklace"]["description"]),
-                Description(content=WHITE_FACTORY["ring"]["description"]),
+                Description(
+                    content="28 pear-shaped and round brilliant sapphires weighing a total of approximately 3.20 carats and 28 marquise and round brilliant diamonds weighing a total of approximately 1.98 carats, set in platinum."
+                ),
+                Description(
+                    content="28 pear-shaped and round brilliant sapphires weighing a total of approximately 3.00 carats and 28 marquise and round brilliant diamonds weighing a total of approximately 1.98 carats, set in platinum."
+                ),
+                Description(
+                    content="A medley of marquise, pear-shaped, and round brilliant diamonds, weighing a total of approximately 4.38 carats, set in platinum."
+                ),
+                Description(
+                    content="45 pear-shaped and round brilliant sapphires weighing a total of approximately 4.36 carats and 33 pear-shaped, marquise and round brilliant diamonds weighing a total of approximately 4.24 carats, set in platinum."
+                ),
+                Description(
+                    content="45 pear-shaped and round brilliant sapphires weighing a total of approximately 4.17 carats and 33 pear-shaped, marquise and round brilliant diamonds weighing a total of approximately 4.24 carats, set in platinum."
+                ),
+                Description(
+                    content="78 pear-shaped, marquise, and round brilliant diamonds, weighing a total of approximately 7.46 carats, set in platinum."
+                ),
+                Description(
+                    content="78 pear-shaped and round brilliant sapphires weighing a total of approximately 8.61 carats and 99 marquise and round brilliant diamonds weighing a total of approximately 8.60 carats, set in platinum."
+                ),
+                Description(
+                    content="78 pear-shaped and round brilliant sapphires weighing a total of approximately 8.61 carats and 99 marquise and round brilliant diamonds weighing a total of approximately 8.37 carats, set in platinum."
+                ),
+                Description(
+                    content="177 pear-shaped, marquise, and round brilliant diamonds, weighing a total of approximately 15.35 carats, set in platinum."
+                ),
+                Description(
+                    content="6 pear-shaped sapphires weighing a total of approximately 2.22 carats and 1 round brilliant diamond weighing approximately 0.05 carats, set in platinum."
+                ),
+                Description(
+                    content="6 pear-shaped sapphires weighing a total of approximately 2.15 carats and 1 round brilliant diamond weighing approximately 0.05 carats, set in platinum."
+                ),
+                Description(
+                    content="6 pear-shaped and 1 round brilliant diamond, weighing a total of approximately 1.66 carats, set in platinum."
+                ),
             ]
         )
 
-    def create_earrings(self):
+    def bulk_create_product(self):
+        categories = Category.objects.all()
+        colors = Color.objects.all()
+        descriptions = Description.objects.all()
 
-        colors = [
-            Color.objects.get(title=Color.TITLE_CHOICES[0][0]),
-            Color.objects.get(title=Color.TITLE_CHOICES[1][0]),
-            Color.objects.get(title=Color.TITLE_CHOICES[2][0]),
-        ]
-
-        sizes = [
-            Earring.DROP_LENGTH_CHOICES[0][0],
-            Earring.DROP_LENGTH_CHOICES[1][0],
-            Earring.DROP_LENGTH_CHOICES[2][0],
-        ]
-
-        first_image_urls = [
-            FirstImageUrl.objects.get(pk=1),
-            FirstImageUrl.objects.get(pk=5),
-            FirstImageUrl.objects.get(pk=9),
-        ]
-        second_image_urls = [
-            SecondImageUrl.objects.get(pk=1),
-            SecondImageUrl.objects.get(pk=5),
-            SecondImageUrl.objects.get(pk=9),
-        ]
-        descriptions = [
-            Description.objects.get(pk=1),
-            Description.objects.get(pk=5),
-            Description.objects.get(pk=9),
-        ]
-
-        for index, color in enumerate(colors):
-            factory = ProductFactory(color=color)
-
-            for size in sizes:
-                factory.create_earring(
-                    first_image_url=first_image_urls[index],
-                    second_image_url=second_image_urls[index],
-                    description=descriptions[index],
-                    size=size,
-                )
-
-    def create_bracelets(self):
-
-        colors = [
-            Color.objects.get(title=Color.TITLE_CHOICES[0][0]),
-            Color.objects.get(title=Color.TITLE_CHOICES[1][0]),
-            Color.objects.get(title=Color.TITLE_CHOICES[2][0]),
-        ]
-
-        sizes = [
-            Bracelet.WRIST_SIZE_CHOICES[0][0],
-            Bracelet.WRIST_SIZE_CHOICES[1][0],
-            Bracelet.WRIST_SIZE_CHOICES[2][0],
-        ]
-
-        first_image_urls = [
-            FirstImageUrl.objects.get(pk=2),
-            FirstImageUrl.objects.get(pk=6),
-            FirstImageUrl.objects.get(pk=10),
-        ]
-        second_image_urls = [
-            SecondImageUrl.objects.get(pk=2),
-            SecondImageUrl.objects.get(pk=6),
-            SecondImageUrl.objects.get(pk=10),
-        ]
-        descriptions = [
-            Description.objects.get(pk=2),
-            Description.objects.get(pk=6),
-            Description.objects.get(pk=10),
-        ]
-
-        for index, color in enumerate(colors):
-            factory = ProductFactory(color=color)
-
-            for size in sizes:
-                factory.create_bracelet(
-                    first_image_url=first_image_urls[index],
-                    second_image_url=second_image_urls[index],
-                    description=descriptions[index],
-                    size=size,
-                )
-
-    def create_necklaces(self):
-
-        colors = [
-            Color.objects.get(title=Color.TITLE_CHOICES[0][0]),
-            Color.objects.get(title=Color.TITLE_CHOICES[1][0]),
-            Color.objects.get(title=Color.TITLE_CHOICES[2][0]),
-        ]
-
-        sizes = [
-            Necklace.NECKLINE_CHOICES[0][0],
-            Necklace.NECKLINE_CHOICES[1][0],
-            Necklace.NECKLINE_CHOICES[2][0],
-        ]
-
-        first_image_urls = [
-            FirstImageUrl.objects.get(pk=3),
-            FirstImageUrl.objects.get(pk=7),
-            FirstImageUrl.objects.get(pk=11),
-        ]
-        second_image_urls = [
-            SecondImageUrl.objects.get(pk=3),
-            SecondImageUrl.objects.get(pk=7),
-            SecondImageUrl.objects.get(pk=11),
-        ]
-        descriptions = [
-            Description.objects.get(pk=3),
-            Description.objects.get(pk=7),
-            Description.objects.get(pk=11),
-        ]
-
-        for index, color in enumerate(colors):
-            factory = ProductFactory(color=color)
-
-            for size in sizes:
-                factory.create_necklace(
-                    first_image_url=first_image_urls[index],
-                    second_image_url=second_image_urls[index],
-                    description=descriptions[index],
-                    size=size,
-                )
-
-    def create_rings(self):
-
-        colors = [
-            Color.objects.get(title=Color.TITLE_CHOICES[0][0]),
-            Color.objects.get(title=Color.TITLE_CHOICES[1][0]),
-            Color.objects.get(title=Color.TITLE_CHOICES[2][0]),
-        ]
-
-        sizes = [
-            Ring.FINGER_CIRCUMFERENCE_CHOICES[0][0],
-            Ring.FINGER_CIRCUMFERENCE_CHOICES[1][0],
-            Ring.FINGER_CIRCUMFERENCE_CHOICES[2][0],
-        ]
-
-        first_image_urls = [
-            FirstImageUrl.objects.get(pk=4),
-            FirstImageUrl.objects.get(pk=8),
-            FirstImageUrl.objects.get(pk=12),
-        ]
-        second_image_urls = [
-            SecondImageUrl.objects.get(pk=4),
-            SecondImageUrl.objects.get(pk=8),
-            SecondImageUrl.objects.get(pk=12),
-        ]
-        descriptions = [
-            Description.objects.get(pk=4),
-            Description.objects.get(pk=8),
-            Description.objects.get(pk=12),
-        ]
-
-        for index, color in enumerate(colors):
-            factory = ProductFactory(color=color)
-
-            for size in sizes:
-                factory.create_ring(
-                    first_image_url=first_image_urls[index],
-                    second_image_url=second_image_urls[index],
-                    description=descriptions[index],
-                    size=size,
-                )
+        Product.objects.bulk_create(
+            [
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714885/forget-me-not-collection/earrings/forget_me_not_drop_earrings_diamond_and_pink_sapphire_eapspdrflrfmn_ee-1_zzaw4q.webp",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714886/forget-me-not-collection/earrings/forget_me_not_drop_earrings_diamond_and_pink_sapphire_eapspdrflrfmn_ee-2_p9jicb.webp",
+                    category=categories[0],
+                    color=colors[0],
+                    description=descriptions[0],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714886/forget-me-not-collection/earrings/forget_me_not_drop_earrings_diamond_and_sapphire_easpdrflrfmn_ee-1_zx2cga.webp",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714886/forget-me-not-collection/earrings/forget_me_not_drop_earrings_diamond_and_sapphire_easpdrflrfmn_ee-2_vtkyhb.webp",
+                    category=categories[0],
+                    color=colors[1],
+                    description=descriptions[1],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714890/forget-me-not-collection/earrings/forget_me_not_diamond_drop_earrings_eadpdrflrfmn_ee-1_knlt2u.webp",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714886/forget-me-not-collection/earrings/forget_me_not_diamond_drop_earrings_eadpdrflrfmn_ee-2_sksk7o.webp",
+                    category=categories[0],
+                    color=colors[2],
+                    description=descriptions[2],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714894/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_1_vz9pv4.avif",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714893/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_2_kdpnm6.avif",
+                    category=categories[1],
+                    color=colors[0],
+                    description=descriptions[3],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714894/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_sapphire_brsprfflrfmn_e_1_fokzrw.webp",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714895/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_sapphire_brsprfflrfmn_e_2_ojfbze.avif",
+                    category=categories[1],
+                    color=colors[1],
+                    description=descriptions[4],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714893/forget-me-not-collection/bracelets/forget_me_not_diamond_bracelet_brdprfflrfmn_e-1_muieri.avif",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714894/forget-me-not-collection/bracelets/forget_me_not_bracelet_diamond_and_pink_sapphire_brpsprfflrfmn_e_2_1_pvbpcb.png",
+                    category=categories[1],
+                    color=colors[2],
+                    description=descriptions[5],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714890/forget-me-not-collection/necklaces/forget_me_not_lariat_necklace_diamond_and_pink_sapphire_nkpspltflrfmn_e_1_kuxbds.webp",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714890/forget-me-not-collection/necklaces/forget_me_not_lariat_necklace_diamond_and_pink_sapphire_nkpspltflrfmn_e_2_d2fc78.webp",
+                    category=categories[2],
+                    color=colors[0],
+                    description=descriptions[6],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714891/forget-me-not-collection/necklaces/forget_me_not_lariat_necklace_diamond_and_sapphire_nkspltflrfmn_e_1_p2uxlj.webp",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714890/forget-me-not-collection/necklaces/forget_me_not_lariat_necklace_diamond_and_sapphire_nkspltflrfmn_e_2_hxgdcy.avif",
+                    category=categories[2],
+                    color=colors[1],
+                    description=descriptions[7],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714886/forget-me-not-collection/necklaces/forget_me_not_lariat_diamond_necklace_nkdpltflrfmn_e-1_u0gwpv.avif",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714891/forget-me-not-collection/necklaces/forget_me_not_lariat_diamond_necklace_nkdpltflrfmn_e-2_tuh8ru.webp",
+                    category=categories[2],
+                    color=colors[2],
+                    description=descriptions[8],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714892/forget-me-not-collection/rings/forget_me_not_ring_diamond_and_pink_sapphire_frpsprfflrfmn_e_1_qfumu3.webp",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714892/forget-me-not-collection/rings/forget_me_not_ring_diamond_and_pink_sapphire_frpsprfflrfmn_e_2_k7nhpe.avif",
+                    category=categories[3],
+                    color=colors[0],
+                    description=descriptions[9],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714893/forget-me-not-collection/rings/forget_me_not_ring_diamond_and_sapphire_frsprfflrfmn_e_1_pm9u6t.avif",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714891/forget-me-not-collection/rings/forget_me_not_ring_diamond_and_sapphire_frsprfflrfmn_e_2_ucppcd.avif",
+                    category=categories[3],
+                    color=colors[1],
+                    description=descriptions[10],
+                ),
+                Product(
+                    first_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714891/forget-me-not-collection/rings/forget_me_not_diamond_ring_frdprfflrfmn_e-1h_yueh2k.webp",
+                    second_image_url="https://res.cloudinary.com/deztgvefu/image/upload/v1723714891/forget-me-not-collection/rings/forget_me_not_diamond_ring_frdprfflrfmn_e-2h_mktny9.webp",
+                    category=categories[3],
+                    color=colors[2],
+                    description=descriptions[11],
+                ),
+            ]
+        )

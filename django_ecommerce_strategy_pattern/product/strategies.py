@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
-from django_ecommerce_strategy_pattern.product.models import Product
+from django_ecommerce_strategy_pattern.product.models.product import (
+    Product,
+)
 
 
 class FiltrationMethod(Enum):
