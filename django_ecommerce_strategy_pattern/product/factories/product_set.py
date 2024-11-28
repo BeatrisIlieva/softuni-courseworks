@@ -65,6 +65,11 @@ class ProductMixin:
         )
 
 
+"""
+Concrete Products are created by corresponding Concrete Factories.
+"""
+
+
 class Earring(ProductMixin):
     CATEGORY_TITLE = "E"
 
@@ -91,6 +96,11 @@ class Ring(ProductMixin):
 
     def __init__(self, color_pk: str) -> None:
         super().__init__(color_pk, Ring.CATEGORY_TITLE)
+
+
+"""
+Each Concrete Factory has a corresponding product variant.
+"""
 
 
 class PinkProductSetFactory(AbstractProductSetFactory):
