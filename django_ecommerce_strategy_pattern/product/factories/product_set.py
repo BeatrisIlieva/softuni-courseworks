@@ -1,10 +1,12 @@
 from abc import ABC, abstractmethod
 
-from django_ecommerce_strategy_pattern.product.models.product import Product
+from django_ecommerce_strategy_pattern.product.models.color import (
+    Color,
+)
 
-from django_ecommerce_strategy_pattern.product.models.color import Color
-
-from django_ecommerce_strategy_pattern.product.models.category import Category
+from django_ecommerce_strategy_pattern.product.models.category import (
+    Category,
+)
 
 from django_ecommerce_strategy_pattern.product.strategies import (
     get_entity_details,
@@ -13,6 +15,17 @@ from django_ecommerce_strategy_pattern.product.strategies import (
 
 
 class AbstractProductSetFactory(ABC):
+    """
+    The Abstract Factory interface declares a set of methods that return
+    different abstract products. These products are called a family and are
+    related by a high-level theme or concept. A family of products may have
+    several variants, but the products of one variant are incompatible with
+    products of another.
+
+    In this case, the products are jewelry items (earrings, bracelets,
+    necklaces, and rings) of different colors (variants).
+    """
+
     @abstractmethod
     def create_earring(self):
         pass
@@ -33,41 +46,49 @@ class AbstractProductSetFactory(ABC):
     def generate_product_set(self):
         pass
 
+
 class ProductMixin:
+    """
+    The ProductMixin class provides common functionality for creating jewelry
+    items of specific categories (earrings, bracelets, necklaces, rings)
+    with a specific color. It holds the logic to retrieve a product from
+    the system using category and color information.
+    """
+
     def __init__(self, color_pk: int, category_title: str) -> None:
         self.color_pk = color_pk
         self.category_pk = Category.objects.get(title=category_title).pk
 
-    
     def get_product(self):
-        """
-        Fetch product details using the shared logic for all product types.
-        """
-        return get_entity_details(self.category_pk, self.color_pk, FiltrationMethod.SHORT_DETAILS)
+        return get_entity_details(
+            self.category_pk, self.color_pk, FiltrationMethod.SHORT_DETAILS
+        )
+
 
 class Earring(ProductMixin):
     CATEGORY_TITLE = "E"
-    
+
     def __init__(self, color_pk: str) -> None:
         super().__init__(color_pk, Earring.CATEGORY_TITLE)
-        
-        
+
+
 class Bracelet(ProductMixin):
     CATEGORY_TITLE = "B"
-    
+
     def __init__(self, color_pk: str) -> None:
         super().__init__(color_pk, Bracelet.CATEGORY_TITLE)
-        
-        
+
+
 class Necklace(ProductMixin):
     CATEGORY_TITLE = "N"
-    
+
     def __init__(self, color_pk: str) -> None:
         super().__init__(color_pk, Necklace.CATEGORY_TITLE)
-        
+
+
 class Ring(ProductMixin):
     CATEGORY_TITLE = "R"
-    
+
     def __init__(self, color_pk: str) -> None:
         super().__init__(color_pk, Ring.CATEGORY_TITLE)
 
@@ -92,6 +113,7 @@ class PinkProductSetFactory(AbstractProductSetFactory):
         bracelet = self.create_bracelet()
         necklace = self.create_necklace()
         ring = self.create_ring()
+
         return [earring, bracelet, necklace, ring]
 
 
@@ -115,8 +137,9 @@ class BlueProductSetFactory(AbstractProductSetFactory):
         bracelet = self.create_bracelet()
         necklace = self.create_necklace()
         ring = self.create_ring()
+
         return [earring, bracelet, necklace, ring]
-    
+
 
 class WhiteProductSetFactory(AbstractProductSetFactory):
     COLOR_PK = Color.objects.get(title="W").pk
@@ -138,4 +161,5 @@ class WhiteProductSetFactory(AbstractProductSetFactory):
         bracelet = self.create_bracelet()
         necklace = self.create_necklace()
         ring = self.create_ring()
+
         return [earring, bracelet, necklace, ring]
