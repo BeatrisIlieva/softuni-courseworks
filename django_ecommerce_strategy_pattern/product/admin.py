@@ -7,17 +7,16 @@ from .models import (
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    pass
 
-    # list_filter = ("color",)
+    list_filter = ("color", "category")
 
-    # fieldsets = (
-    #     ("Details", {"fields": ("color", "drop_length", "description")}),
-    #     (
-    #         "Images",
-    #         {
-    #             "fields": ("first_image_url", "second_image_url"),
-    #             "classes": ("collapse",),
-    #         },
-    #     ),
-    # )
+    fieldsets = (
+        ("Details", {"fields": ("category", "color", "description")}),
+        (
+            "Images",
+            {
+                "fields": ("first_image_url", "second_image_url"),
+                "classes": ("collapse",),
+            },
+        ),
+    )

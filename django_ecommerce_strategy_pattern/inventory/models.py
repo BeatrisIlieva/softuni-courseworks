@@ -10,6 +10,7 @@ class Inventory(models.Model):
 
     class Meta:
         unique_together = ("product", "size")
+        verbose_name_plural = ("Inventories")
 
     quantity = models.PositiveIntegerField(
         validators=[
@@ -33,6 +34,15 @@ class Inventory(models.Model):
     price = models.DecimalField(
         max_digits=7,
         decimal_places=2,
+    )
+    
+    created_at = models.DateField(
+        auto_now_add=True,
+    )
+    
+    
+    updated_at = models.DateField(
+        auto_now=True,
     )
 
     @property
