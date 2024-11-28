@@ -35,12 +35,11 @@ class Inventory(models.Model):
         max_digits=7,
         decimal_places=2,
     )
-    
+
     created_at = models.DateField(
         auto_now_add=True,
     )
-    
-    
+
     updated_at = models.DateField(
         auto_now=True,
     )

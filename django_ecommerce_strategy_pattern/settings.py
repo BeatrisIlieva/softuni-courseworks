@@ -17,6 +17,7 @@ CUSTOM_APPS = [
     "django_ecommerce_strategy_pattern.user_credential_details",
     "django_ecommerce_strategy_pattern.user_shipping_details",
     "django_ecommerce_strategy_pattern.user_payment_details",
+    "django_ecommerce_strategy_pattern.shopping_bag",
     "django_ecommerce_strategy_pattern.common",
 ]
 
