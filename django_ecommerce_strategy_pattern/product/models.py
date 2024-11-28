@@ -38,15 +38,6 @@ class Color(models.Model):
         return self.get_title_display()
 
 
-class Description(models.Model):
-    content = models.TextField(
-        max_length=300,
-    )
-    
-    def __str__(self):
-        return self.content
-
-
 class Product(models.Model):
 
     objects = ProductManager()
@@ -67,10 +58,8 @@ class Product(models.Model):
         related_name="color",
     )
 
-    description = models.ForeignKey(
-        to=Description,
-        on_delete=models.CASCADE,
-        related_name="description",
+    description = models.TextField(
+        max_length=300,
     )
 
     def __str__(self):

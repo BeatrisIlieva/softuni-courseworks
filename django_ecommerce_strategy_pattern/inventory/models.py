@@ -10,7 +10,7 @@ class Inventory(models.Model):
 
     class Meta:
         unique_together = ("product", "size")
-        verbose_name_plural = ("Inventories")
+        verbose_name_plural = "Inventories"
 
     quantity = models.PositiveIntegerField(
         validators=[
