@@ -23,14 +23,20 @@ class FiltrationMethod(Enum):
 class FiltrationStrategy(ABC):
     """
     The FiltrationStrategy interface declares a method for fetching entity details.
-    
+
     The Context uses this interface to call the algorithm defined by Concrete
     Strategies.
     """
-    
+
     @abstractmethod
     def get_entity_details(self, category_pk, color_pk):
         pass
+
+
+"""
+Concrete Strategies implementing the algorithm while following the base Strategy
+interface. The interface makes them interchangeable in the Context.
+"""
 
 
 class ShortEntityDetails(FiltrationStrategy):
@@ -85,14 +91,43 @@ class FullEntityDetails(FiltrationStrategy):
 
 
 class FiltrationContext:
+    """
+    The Context maintains a reference to one of the Strategy objects.
+    """
+
     def __init__(self, strategy: FiltrationStrategy):
-        self.strategy = strategy
+        """
+        Initialize the context with a specific filtration strategy.
+        """
+        self._strategy = strategy
+
+    @property
+    def strategy(self) -> FiltrationStrategy:
+        """
+        Get the current strategy.
+        """
+        return self._strategy
+
+    @strategy.setter
+    def strategy(self, strategy: FiltrationStrategy) -> None:
+        """
+        Set a new filtration strategy.
+        """
+
+        self._strategy = strategy
 
     def get_entity_details(self, category_pk, color_pk):
-        return self.strategy.get_entity_details(category_pk, color_pk)
+        """
+        Delegates the fetching of product details to the strategy.
+        """
+        return self._strategy.get_entity_details(category_pk, color_pk)
 
 
-def get_entity_details(category_pk, color_pk, method):
+def get_entity_details(category_pk, color_pk, method: FiltrationMethod):
+    """
+    Factory function to fetch product details based on the selected filtration method.
+    """
+
     strategies = {
         FiltrationMethod.SHORT_DETAILS: ShortEntityDetails(),
         FiltrationMethod.FULL_DETAILS: FullEntityDetails(),
