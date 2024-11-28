@@ -1,3 +1,8 @@
+"""
+This module implements the Strategy Design Pattern to provide a flexible and scalable
+approach for retrieving different levels of product details based on user preferences.
+"""
+
 from abc import ABC, abstractmethod
 from enum import Enum
 
@@ -7,12 +12,22 @@ from django_ecommerce_strategy_pattern.product.models.product import (
 
 
 class FiltrationMethod(Enum):
+    """
+    The FiltrationMethod Enum defines the available filtration strategies.
+    """
 
     SHORT_DETAILS = "short_details"
     FULL_DETAILS = "full_details"
 
 
 class FiltrationStrategy(ABC):
+    """
+    The FiltrationStrategy interface declares a method for fetching entity details.
+    
+    The Context uses this interface to call the algorithm defined by Concrete
+    Strategies.
+    """
+    
     @abstractmethod
     def get_entity_details(self, category_pk, color_pk):
         pass
