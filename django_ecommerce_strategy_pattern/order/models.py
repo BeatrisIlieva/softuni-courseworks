@@ -17,7 +17,14 @@ class Order(models.Model):
     )
 
 
+class DeliveryMethods(models.TextChoices):
+    STORE_PICKUP = "SP", "Store Pickup"
+    EXPRESS_HOME = "EH", "Express Home Delivery"
+    REGULAR_HOME = "RH", "Regular Home Delivery"
+
+
 class OrderProducts(models.Model):
+
     order = models.ForeignKey(
         to=Order,
         on_delete=models.CASCADE,
@@ -25,7 +32,9 @@ class OrderProducts(models.Model):
     )
 
     product = models.ForeignKey(
-        to=Product, on_delete=models.CASCADE, related_name="product"
+        to=Product,
+        on_delete=models.CASCADE,
+        related_name="product",
     )
 
     size = models.DecimalField(
@@ -38,4 +47,9 @@ class OrderProducts(models.Model):
     total_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
+    )
+
+    delivery_method = models.CharField(
+        max_length=2,
+        choices=DeliveryMethods.choices,
     )
