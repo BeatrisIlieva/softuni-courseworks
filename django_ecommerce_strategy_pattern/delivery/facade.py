@@ -38,7 +38,7 @@ class UpdateDeliveryAddress:
 
 
 class SetDeliveryMethod:
-    def get_user_preferred_delivery_method(user, method):
+    def get_user_preferred_delivery_method(self, user, method):
         return execute_context(user, method)
 
 
@@ -51,15 +51,15 @@ class Facade:
         self._update_delivery_address = update_delivery_address
         self._set_delivery_method = set_delivery_method
 
-    def operation(self, user=None):
+    def operation(self, user, method):
         result = []
         
         result.append(self._update_delivery_address.get_user_details(user))
-        result.append(self._set_delivery_method())
+        result.append(self._set_delivery_method.get_user_preferred_delivery_method(user, method))
 
         return "\n".join(result)
     
-def client_code(facade: Facade, user=None):
-    return facade.operation(user)
+def client_code(facade: Facade, user, method):
+    return facade.operation(user, method)
 
 
