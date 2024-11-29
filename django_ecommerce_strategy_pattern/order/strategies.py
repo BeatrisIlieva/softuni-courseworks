@@ -1,9 +1,12 @@
 from abc import ABC, abstractmethod
 from enum import Enum
+from decimal import Decimal
 
 from django.core.exceptions import ValidationError
 
-
+from django_ecommerce_strategy_pattern.shopping_bag.models import (
+    ShoppingBag,
+)
 
 
 class DeliveryMethod(Enum):
@@ -31,8 +34,17 @@ class StorePickupStrategy(DeliveryStrategy):
 
 
 class ExpressHomeDeliveryStrategy(DeliveryStrategy):
-    def calculate_delivery_cost(self) -> float:
-        return 20.0
+    def calculate_delivery_cost(self, user) -> float:
+        shopping_bag_total_price = ShoppingBag.objects.calculate_total_price(user)
+
+        delivery_cost = Decimal(30)
+
+        if shopping_bag_total_price > Decimal(250_000):
+            delivery_cost = Decimal(0)
+        elif shopping_bag_total_price > Decimal(150_000):
+            delivery_cost = Decimal(20)
+
+        return delivery_cost
 
     def get_delivery_details(self, user) -> str:
         pass
@@ -41,8 +53,15 @@ class ExpressHomeDeliveryStrategy(DeliveryStrategy):
 
 
 class RegularHomeDeliveryStrategy(DeliveryStrategy):
-    def calculate_delivery_cost(self) -> float:
-        return 10.0
+    def calculate_delivery_cost(self, user) -> float:
+        shopping_bag_total_price = ShoppingBag.objects.calculate_total_price(user)
+
+        delivery_cost = Decimal(20)
+
+        if shopping_bag_total_price > Decimal(150_000):
+            delivery_cost = Decimal(0)
+
+        return delivery_cost
 
     def get_delivery_details(self, user) -> str:
         return "Regular home delivery within 3-5 business days."
