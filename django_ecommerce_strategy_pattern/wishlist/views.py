@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from .models import Wishlist
 
-# Create your views here.
+from django.core.exceptions import ValidationError
+
+def add_to_wishlist(product, user):
+    try:
+        Wishlist.objects.create(product=product, user=user)
+    except ValidationError as e:
+        print(e.messages[0])

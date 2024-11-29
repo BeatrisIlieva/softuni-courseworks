@@ -63,4 +63,4 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return f"{self.color.get_title_display()} - {self.category.get_title_display()}"
+        return f"{self.color.get_title_display()} {self.category.get_title_display()}"

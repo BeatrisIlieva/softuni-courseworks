@@ -16,8 +16,8 @@ class FiltrationMethod(Enum):
     The FiltrationMethod Enum defines the available filtration strategies.
     """
 
-    SHORT_DETAILS = "short_details"
-    FULL_DETAILS = "full_details"
+    INTO_PRODUCTS_LIST = "into_products_list"
+    INTO_PRODUCT_PAGE = "into_product_page"
 
 
 class FiltrationStrategy(ABC):
@@ -39,9 +39,9 @@ interface. The interface makes them interchangeable in the Context.
 """
 
 
-class ShortEntityDetails(FiltrationStrategy):
+class IntoProductsListDetails(FiltrationStrategy):
     def get_entity_details(self, category_pk, color_pk):
-        entity = Product.objects.get_product_entity_short_details(category_pk, color_pk)
+        entity = Product.objects.represent_entity_into_products_list(category_pk, color_pk)
 
         result = []
 
@@ -55,8 +55,8 @@ class ShortEntityDetails(FiltrationStrategy):
             result.append(f"Price Range: {data.min_price} - {data.max_price}")
 
             for inventory in data.product_inventory.all():
-                result.append(f"  Inventory Quantity: {inventory.quantity}")
-                result.append(f"  Price Amount: {inventory.price}")
+                result.append(f"Inventory Quantity: {inventory.quantity}")
+                result.append(f"Price Amount: {inventory.price}")
                 result.append(
                     f"  Is Sold Out: {'Yes' if inventory.is_sold_out else 'No'}"
                 )
@@ -64,9 +64,9 @@ class ShortEntityDetails(FiltrationStrategy):
         return "\n".join(result)
 
 
-class FullEntityDetails(FiltrationStrategy):
+class IntoProductPageDetails(FiltrationStrategy):
     def get_entity_details(self, category_pk, color_pk):
-        entity = Product.objects.get_product_entity_full_details(category_pk, color_pk)
+        entity = Product.objects.represent_entity_into_product_page(category_pk, color_pk)
 
         result = []
 
@@ -76,7 +76,7 @@ class FullEntityDetails(FiltrationStrategy):
             result.append(f"Color: {data.color.get_title_display()}")
             result.append(f"First Image: {data.first_image_url}")
             result.append(f"Second Image: {data.second_image_url}")
-            result.append(f"Description: {data.description.content}")
+            result.append(f"Description: {data.description}")
 
             for inventory in data.product_inventory.all():
                 result.append(f"Size Measurement: {inventory.size}")
@@ -129,8 +129,8 @@ def get_entity_details(category_pk, color_pk, method: FiltrationMethod):
     """
 
     strategies = {
-        FiltrationMethod.SHORT_DETAILS: ShortEntityDetails(),
-        FiltrationMethod.FULL_DETAILS: FullEntityDetails(),
+        FiltrationMethod.INTO_PRODUCTS_LIST: IntoProductsListDetails(),
+        FiltrationMethod.INTO_PRODUCT_PAGE: IntoProductPageDetails(),
     }
 
     context = FiltrationContext(strategy=strategies[method])
