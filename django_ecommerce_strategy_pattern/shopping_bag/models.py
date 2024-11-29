@@ -1,5 +1,7 @@
 from django.db import models
 
+from .managers import ShoppingBagManager
+
 from django_ecommerce_strategy_pattern.product.models import (
     Product,
 )
@@ -15,6 +17,8 @@ class ShoppingBag(models.Model):
             "user",
             "product",
         )
+
+    objects = ShoppingBagManager()
 
     quantity = models.PositiveIntegerField()
 

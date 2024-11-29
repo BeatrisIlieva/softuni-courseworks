@@ -1,6 +1,10 @@
-from .models import Order
+from django.core.exceptions import ValidationError
 
-from .strategies import (DeliveryMethod, execute_setting_delivery_method,)
 
-def checkout(method, user):
-    return execute_setting_delivery_method(method, user)
+from django_ecommerce_strategy_pattern.user_shipping_details.models import (
+    UserShippingDetails,
+)
+
+
+def checkout(user):
+    pass

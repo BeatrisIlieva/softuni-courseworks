@@ -3,9 +3,7 @@ from enum import Enum
 
 from django.core.exceptions import ValidationError
 
-from django_ecommerce_strategy_pattern.user_shipping_details.models import (
-    UserShippingDetails,
-)
+
 
 
 class DeliveryMethod(Enum):
@@ -37,25 +35,7 @@ class ExpressHomeDeliveryStrategy(DeliveryStrategy):
         return 20.0
 
     def get_delivery_details(self, user) -> str:
-        user_pk = user.pk
-        user_sd = UserShippingDetails.objects.get(user_id=user_pk)
-        
-        print("Please enter any delivery instructions")
-        user_sd.first_name = input("First Name*: ")
-        user_sd.last_name = input("Last Name*: ")
-        user_sd.phone_number = input("Phone Number*: ")
-        user_sd.country = input("Country*: ")
-        user_sd.city = input("City*: ")
-        user_sd.street_address = input("Street Address*: ")
-        user_sd.apartment = input("Apartment: ")
-        user_sd.postal_code = input("Postal Code*: ")
-
-        try:
-            user_sd.full_clean()
-            user_sd.save()
-        except ValidationError as e:
-            print(e.messages)
-
+        pass
         # delivery_instructions = input("Please enter any delivery instructions (e.g., leave at the door, etc.): ")
         # preferred_delivery_time = input("Preferred delivery time (e.g., morning, afternoon, etc.): ")
 
