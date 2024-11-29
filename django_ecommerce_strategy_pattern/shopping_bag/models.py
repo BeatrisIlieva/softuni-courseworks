@@ -17,7 +17,7 @@ class ShoppingBag(models.Model):
             "user",
             "product",
         )
-
+        
     objects = ShoppingBagManager()
 
     quantity = models.PositiveIntegerField()
@@ -38,3 +38,4 @@ class ShoppingBag(models.Model):
         on_delete=models.CASCADE,
         related_name="user_shopping_bag",
     )
+    

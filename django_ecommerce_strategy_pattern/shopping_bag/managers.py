@@ -1,15 +1,16 @@
 from django.db import models
 
+from django.db.models import Sum, F
+
 
 class ShoppingBagManager(models.Manager):
     def calculate_total_price(self, user):
-        """
-        Calculates the total price of all items in the shopping bag for a specific user.
-        """
-        shopping_bag_items = self.filter(user=user)
-        total_price = sum(
-            item.quantity
-            * item.product.product_inventory.filter(size=item.size).first().price
-            for item in shopping_bag_items
+        total_price = (
+            self.filter(user=user)
+            .filter(product__product_inventory__size=F('size'))  
+            .annotate(
+                item_total=F('quantity') * F('product__product_inventory__price') 
+            )
+            .aggregate(total=Sum('item_total'))['total']
         )
-        return total_price
+        return total_price or 0.0
