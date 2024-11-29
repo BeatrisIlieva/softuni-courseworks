@@ -17,11 +17,6 @@ class Order(models.Model):
     )
 
 
-class DeliveryMethods(models.TextChoices):
-    STORE_PICKUP = "SP", "Store Pickup"
-    EXPRESS_HOME = "EH", "Express Home Delivery"
-    REGULAR_HOME = "RH", "Regular Home Delivery"
-
 
 class OrderProducts(models.Model):
 
@@ -49,7 +44,4 @@ class OrderProducts(models.Model):
         decimal_places=2,
     )
 
-    delivery_method = models.CharField(
-        max_length=2,
-        choices=DeliveryMethods.choices,
-    )
+    
