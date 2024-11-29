@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from .models import Order
 
-# Create your views here.
+from .strategies import (DeliveryMethod, execute_setting_delivery_method,)
+
+def checkout(method, user):
+    return execute_setting_delivery_method(method, user)

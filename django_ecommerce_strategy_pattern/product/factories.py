@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from enum import Enum
 
 
 from django_ecommerce_strategy_pattern.product.filtration_strategy import (
@@ -11,7 +10,6 @@ from .models import (
     Color,
     Category,
 )
-
 
 
 class AbstractProductSetFactory(ABC):
@@ -173,6 +171,3 @@ class WhiteProductSetFactory(AbstractProductSetFactory):
         ring = self.create_ring()
 
         return [earring, bracelet, necklace, ring]
-
-
-
