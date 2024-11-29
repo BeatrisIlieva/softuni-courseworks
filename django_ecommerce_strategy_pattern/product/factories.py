@@ -189,18 +189,18 @@ class ProductSetStrategy(ABC):
 
 
 class PinkProductSet(ProductSetStrategy):
-    def get_product_set(self, color_pk):
+    def get_product_set(self):
         factory = PinkProductSetFactory()
         return factory.generate_product_set()
 
 
 class BlueProductSet(ProductSetStrategy):
-    def get_product_set(self, color_pk):
+    def get_product_set(self):
         return BlueProductSetFactory()
 
 
 class WhiteProductSet(ProductSetStrategy):
-    def get_product_set(self, color_pk):
+    def get_product_set(self):
         return WhiteProductSetFactory()
 
 
@@ -217,11 +217,11 @@ class ProductSetContext:
 
         self._strategy = strategy
 
-    def get_product_set(self, color_pk):
-        return self._strategy.get_product_set(color_pk)
+    def get_product_set(self):
+        return self._strategy.get_product_set()
     
 
-def get_product_set(color_pk, method: ProductSetMethod):
+def get_product_set( method: ProductSetMethod):
 
 
     strategies = {
@@ -231,4 +231,4 @@ def get_product_set(color_pk, method: ProductSetMethod):
     }
 
     context = ProductSetContext(strategy=strategies[method])
-    return context.get_product_set(color_pk)
+    return context.get_product_set()
