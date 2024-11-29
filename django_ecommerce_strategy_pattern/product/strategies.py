@@ -8,7 +8,20 @@ from enum import Enum
 
 from .models import (
     Product,
+    Color,
 )
+
+
+class ProductSetMethod(Enum):
+    PINK_SET = "pink_set"
+    BLUE_SET = "blue_set"
+    WHITE_SET = "white_set"
+
+
+class ProductSetStrategy(ABC):
+    @abstractmethod
+    def get_product_set(color_pk):
+        pass
 
 
 class FiltrationMethod(Enum):
@@ -41,7 +54,9 @@ interface. The interface makes them interchangeable in the Context.
 
 class IntoProductsListDetails(FiltrationStrategy):
     def get_entity_details(self, category_pk, color_pk):
-        entity = Product.objects.represent_entity_into_products_list(category_pk, color_pk)
+        entity = Product.objects.represent_entity_into_products_list(
+            category_pk, color_pk
+        )
 
         result = []
 
@@ -66,7 +81,9 @@ class IntoProductsListDetails(FiltrationStrategy):
 
 class IntoProductPageDetails(FiltrationStrategy):
     def get_entity_details(self, category_pk, color_pk):
-        entity = Product.objects.represent_entity_into_product_page(category_pk, color_pk)
+        entity = Product.objects.represent_entity_into_product_page(
+            category_pk, color_pk
+        )
 
         result = []
 
