@@ -31,10 +31,10 @@ class UpdateDeliveryAddress:
             user_sd.full_clean()
             user_sd.save()
 
-            return True
+            return "Shipping Details saved successfully"
 
         except ValidationError as e:
-            print(e.messages)
+            return e.messages
 
 
 class SetDeliveryMethod:
@@ -52,12 +52,14 @@ class Facade:
         self._set_delivery_method = set_delivery_method
 
     def operation(self, user=None):
-        self._update_delivery_address.get_user_details(user)
-        self._set_delivery_method()
+        result = []
+        
+        result.append(self._update_delivery_address.get_user_details(user))
+        result.append(self._set_delivery_method())
 
-        return None
+        return "\n".join(result)
     
 def client_code(facade: Facade, user=None):
-    facade.operation(user)
+    return facade.operation(user)
 
 

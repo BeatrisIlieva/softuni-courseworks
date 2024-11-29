@@ -11,5 +11,4 @@ class OrderProductsAdmin(admin.ModelAdmin):
         "size",
         "quantity",
         "total_price",
-        "delivery_method",
     )
