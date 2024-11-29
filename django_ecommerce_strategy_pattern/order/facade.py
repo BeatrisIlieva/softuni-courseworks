@@ -59,8 +59,8 @@ class Facade:
         self._delete_shopping_bag = delete_shopping_bag
         self._send_confirmation_email = send_confirmation_email
 
-    def operation(self):
-        has_provided_delivery_details = self._update_delivery_address.get_user_details()
+    def operation(self, user=None):
+        has_provided_delivery_details = self._update_delivery_address.get_user_details(user)
         has_selected_delivery_method = self._set_delivery_method()
         has_successfully_processed_payment = self._execute_payment()
 
@@ -74,3 +74,8 @@ class Facade:
             self._send_confirmation_email()
 
         return None
+    
+def client_code(facade: Facade, user=None):
+    facade.operation(user)
+
+
