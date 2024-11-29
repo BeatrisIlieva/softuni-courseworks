@@ -11,6 +11,12 @@ from .models import (
     Color,
 )
 
+from .factories import (
+    PinkProductSetFactory,
+    BlueProductSetFactory,
+    WhiteProductSetFactory,
+)
+
 
 class ProductSetMethod(Enum):
     PINK_SET = "pink_set"
@@ -22,6 +28,21 @@ class ProductSetStrategy(ABC):
     @abstractmethod
     def get_product_set(color_pk):
         pass
+
+
+class PinkProductSet(ProductSetStrategy):
+    def get_product_set(color_pk):
+        return PinkProductSetFactory()
+
+
+class BlueProductSet(ProductSetStrategy):
+    def get_product_set(color_pk):
+        return BlueProductSetFactory()
+
+
+class WhiteProductSet(ProductSetStrategy):
+    def get_product_set(color_pk):
+        return WhiteProductSetFactory()
 
 
 class FiltrationMethod(Enum):
