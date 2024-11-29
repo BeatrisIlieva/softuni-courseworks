@@ -11,10 +11,6 @@ from .models import (
 )
 
 
-
-
-
-
 class FiltrationMethod(Enum):
     """
     The FiltrationMethod Enum defines the available filtration strategies.
