@@ -4,8 +4,12 @@ from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = Product
+        fields = "__all__"
 
 
 class ProductsApiViews(api_views.ListAPIView):
-    queryset = ...
+    queryset = Product.objects.all()
+    
+    serializer_class = ProductSerializer

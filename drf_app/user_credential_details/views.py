@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from rest_framework import generics as api_views, serializers
 
-# Create your views here.
+from .models import UserCredentialDetails
+
+
+class UserCredentialDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserCredentialDetails
+        fields = "__all__"
+
+
+class UserCredentialDetailsApiViews(api_views.ListAPIView):
+    queryset = UserCredentialDetails.objects.all()
+    
+    serializer_class = UserCredentialDetailsSerializer
