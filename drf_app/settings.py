@@ -31,6 +31,10 @@ ALLOWED_HOSTS = []
 CUSTOM_APPS = [
     "drf_app.product",
     "drf_app.inventory",
+    "drf_app.user_credential_details",
+    "drf_app.user_shipping_details",
+    "drf_app.user_payment_details",
+    "drf_app.common",
 ]
 
 INSTALLED_APPS = [
