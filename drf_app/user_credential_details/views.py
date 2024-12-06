@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 
+from django.contrib.auth.password_validation import validate_password
+
 from rest_framework.authtoken.models import Token
 
 from rest_framework.authtoken import views as api_auth_views
@@ -43,6 +45,11 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     # JSON -> Model
     # def to_internal_value(self, data):
     #     pass
+    
+    def validate(self, attrs):
+        password = attrs.get("password", None)
+        
+        result = validate_password(password)
 
 class ApiRegisterUserView(api_views.CreateAPIView):
 
