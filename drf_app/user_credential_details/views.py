@@ -49,7 +49,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         password = attrs.get("password", None)
         
-        result = validate_password(password)
+        validate_password(password)
 
 class ApiRegisterUserView(api_views.CreateAPIView):
 
