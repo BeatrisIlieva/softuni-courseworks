@@ -4,24 +4,30 @@ from rest_framework import  viewsets
 
 from .models import UserCredentialDetails
 
-class ApiLoginView(ObtainAuthToken):
+class ApiLoginUserView(ObtainAuthToken):
     pass
 
+
+class ApiRegisterUserView(ObtainAuthToken):
+    pass
+
+class ApiLogoutUserView(ObtainAuthToken):
+    pass
 class UserCredentialDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCredentialDetails
-        fields = ("email", "password")
+        fields = ("email", "password",)
 
 
-class UserCredentialDetailsApiViews(api_views.CreateAPIView):
-    queryset = UserCredentialDetails.objects.all()
+# class UserCredentialDetailsApiViews(api_views.CreateAPIView):
+#     queryset = UserCredentialDetails.objects.all()
     
-    serializer_class = UserCredentialDetailsSerializer
+#     serializer_class = UserCredentialDetailsSerializer
     
-    # permission_classes = (
-    #     permissions.IsAuthenticated
-    # )
+#     # permission_classes = (
+#     #     permissions.IsAuthenticated
+#     # )
     
-class UserCredentialsApiViewSet(viewsets.ModelViewSet):
-    queryset =UserCredentialDetails.objects.all()
-    serializer_class = UserCredentialDetailsSerializer
+# class UserCredentialsApiViewSet(viewsets.ModelViewSet):
+#     queryset =UserCredentialDetails.objects.all()
+#     serializer_class = UserCredentialDetailsSerializer
