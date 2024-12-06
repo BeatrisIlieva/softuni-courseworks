@@ -7,7 +7,7 @@ from drf_app.user_credential_details.views import (
     ApiLogoutUserView,
 )
 
-urlpatterns = (
+urlpatterns = [
     path(
         "register/",
         ApiRegisterUserView.as_view(),
@@ -23,7 +23,9 @@ urlpatterns = (
         ApiLogoutUserView.as_view(),
         name="api_logout_user_view",
     ),
-)
+]
+
+
 
 # from drf_app.user_credential_details.views import (
 #     UserCredentialDetailsApiViews,

@@ -52,10 +52,6 @@ class UserCredentialDetails(AbstractBaseUser, PermissionsMixin):
         verbose_name="user permissions",
     )
 
-    def clean(self):
-        if UserCredentialDetails.objects.filter(email=self.email).exists():
-            raise ValidationError("User with that email address already exists")
-
     def save(self, *args, **kwargs):
         self.clean()
 
