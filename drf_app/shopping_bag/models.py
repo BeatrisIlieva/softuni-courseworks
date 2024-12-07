@@ -2,9 +2,7 @@ from django.db import (
     models,
 )
 
-from .managers import (
-    ShoppingBagManager,
-)
+from drf_app.shopping_bag.managers import ShoppingBagManager
 
 from drf_app.inventory.models import (
     Inventory,

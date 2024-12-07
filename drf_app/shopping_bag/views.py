@@ -2,11 +2,7 @@ from rest_framework import generics as api_views, serializers
 
 from drf_app.shopping_bag.models import ShoppingBag
 
-
-class ShoppingBagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ShoppingBag
-        fields = "__all__"
+from drf_app.shopping_bag.serializers import ShoppingBagSerializer
 
 
 class ShoppingBagApiView(api_views.ListCreateAPIView):
