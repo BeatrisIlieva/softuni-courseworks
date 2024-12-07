@@ -1,5 +1,3 @@
-
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,7 +17,7 @@ ALLOWED_HOSTS = []
 
 CORS_ALLOWED_ORIGINS = ("http://localhost:3000",)
 
-AUTH_USER_MODEL = 'user_credential_details.UserCredentialDetails'
+AUTH_USER_MODEL = "user_credential_details.UserCredentialDetails"
 
 THIRD_PARTY_APPS = [
     "cities_light",
@@ -61,6 +59,13 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+}
 
 ROOT_URLCONF = "drf_app.urls"
 

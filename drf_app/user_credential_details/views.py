@@ -48,8 +48,10 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     
     def validate(self, attrs):
         password = attrs.get("password", None)
-        
-        validate_password(password)
+        try:
+            validate_password(password)
+        finally:
+            return attrs
 
 class ApiRegisterUserView(api_views.CreateAPIView):
 
@@ -59,8 +61,19 @@ class ApiRegisterUserView(api_views.CreateAPIView):
     #     result = super().post(request, *args, **kwargs)
     #     return result
 
-class ApiLogoutUserView(api_views.ListAPIView):
-    pass
+class ApiLogoutUserView(api_views.views.APIView):
+    def post(self, request, *args, **kwargs):
+        return self.__perform_logout(request)
+    
+    def get(self, request, *args, **kwargs):
+        return self.__perform_logout(request)
+        
+    def __perform_logout(self, request):
+        request.user.auth_token.delete()
+        
+        return Response({
+            "message": "user logged out"
+        })
 
 # class UserCredentialDetailsSerializer(serializers.ModelSerializer):
 #     class Meta:
