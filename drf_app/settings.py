@@ -31,6 +31,7 @@ CUSTOM_APPS = [
     "drf_app.user_credential_details",
     "drf_app.user_shipping_details",
     "drf_app.user_payment_details",
+    "drf_app.shopping_bag",
     "drf_app.common",
 ]
 
@@ -42,7 +43,7 @@ INSTALLED_APPS = (
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
-        #1:
+        # 1:
         "rest_framework",
         "rest_framework.authtoken",
         "corsheaders",
@@ -54,7 +55,7 @@ INSTALLED_APPS = (
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    #2:
+    # 2:
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
