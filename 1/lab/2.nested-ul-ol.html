@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <!-- ul>li*4 -->
+      <ul>
+        <li>List Item 1</li>
+        <li>
+          List Item 2
+          <!-- ul>li[styles="list-style-type: circle"]*4{List Item 2 1} -->
+          <ul>
+            <li styles="list-style-type: circle">List Item 2 1</li>
+            <li styles="list-style-type: circle">List Item 2 2</li>
+            <li styles="list-style-type: circle">
+              List Item 2 3
+              <ul>
+                <li styles="list-style-type: square">List Item 2 3 1</li>
+                <li styles="list-style-type: square">List Item 2 3 2</li>
+                <li styles="list-style-type: square">List Item 2 3 3</li>
+                <li styles="list-style-type: square">List Item 2 3 4</li>
+              </ul>
+            </li>
+            <li styles="list-style-type: circle">List Item 2 4</li>
+          </ul>
+        </li>
+        <li>List Item 3</li>
+        <li>List Item 4</li>
+      </ul>
+
+      <ol>
+        <li>List Item 1</li>
+        <li>
+          List Item 2
+          <ol>
+            <li>List Item 2 1</li>
+            <li>List Item 2 2</li>
+            <li>
+              List Item 2 3
+              <ol>
+                <li>List Item 2 3 1</li>
+                <li>List Item 2 3 2</li>
+                <li>List Item 2 3 3</li>
+                <li>List Item 2 3 4</li>
+              </ol>
+            </li>
+            <li>List Item 2 4</li>
+          </ol>
+        </li>
+        <li>List Item 3</li>
+        <li>List Item 4</li>
+      </ol>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+a {
+    text-decoration: none;
+}
+
+nav ul li:nth-child(1) {
+    font-weight: 900;
+}
+
+nav ul li:nth-child(3) {
+    font-style: italic;
+}
+
+.content section article {
+    background-color: aquamarine;
+}
+
+section > header {
+    background-color: aliceblue;
+}
