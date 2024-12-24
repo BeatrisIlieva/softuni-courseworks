@@ -1,0 +1,41 @@
+/* align-content: center */
+
+/* the first element will not have margin */
+/* .site > * + * {
+  margin-top: 2em;
+} */
+
+/* padding-inline -> padding left padding right */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  color: inherit;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+html {
+  box-sizing: border-box;
+  color: black; 
+  /* this way all elements will inherit the color including a tags */
+}
+
+
+
+/* For the course */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
