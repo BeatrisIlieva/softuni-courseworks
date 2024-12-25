@@ -1,0 +1,23 @@
+.flex-container {
+    display: flex;
+    padding: 1em;
+    border: 1px solid blue;
+    width: 400px;
+    height: 500px;
+    align-items: flex-start;
+}
+
+.flex-container .flex-item {
+    background: lightgray;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.center .flex-item:nth-child(2){
+    align-self: center;
+}
+
+.end .flex-item:nth-child(2){
+    align-self: flex-end;
+}
+
