@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.list li {
+    list-style: none outside;
+    display: inline-block;
+    padding: 1em;
+    background: lightcyan;
+    border-radius: 50%;
+}
+
+.list li a {
+    color: black;
+}
