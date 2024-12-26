@@ -1,11 +1,5 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #eee;
-  font: 14px/1.5 Lato, sans-serif;
-  padding: 2em;
+table, th, td {
+  border: 1px solid black;
+  text-align: left;
+  border-collapse: collapse;
 }
