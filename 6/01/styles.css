@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eee;
+  font: 14px/1.5 Lato, sans-serif;
+  padding: 2em;
+}
+
+.site {
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 0.3em;
+  box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1em;
+  gap: 1em;
+}
+
+.site > * {
+  border: 2px solid lightgray;
+  border-radius: 0.3em;
+  box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.1);
+}
+
+.site > * > * {
+  padding: 1em;
+}
+
+.site header {
+  flex: 1 1 100%;
+}
+
+.site main {
+  flex: 1 1 60%;
+}
+
+.site aside {
+  flex: 1 1 auto;
+}
+
+.site footer {
+  flex: 1 1 100%;
+}

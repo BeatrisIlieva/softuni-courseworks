@@ -7,7 +7,6 @@
 
 /* padding-inline -> padding left padding right */
 
-
 /* list-style: none outside; */
 
 * {
@@ -22,19 +21,33 @@
   color: inherit;
 }
 
+html {
+  box-sizing: border-box;
+  color: black;
+  /* this way all elements will inherit the color including a tags */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 img {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
-html {
-  box-sizing: border-box;
-  color: black; 
-  /* this way all elements will inherit the color including a tags */
+.media {
+  display: block;
+  background: white;
+  border-radius: 0.3em;
+  overflow: hidden;
+  box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.3);
+  outline: 2px solid white;
 }
-
-
 
 /* For the course */
 * {
@@ -46,4 +59,3 @@ html {
 body {
   min-height: 100vh;
 }
-

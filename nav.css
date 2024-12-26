@@ -1,0 +1,25 @@
+.site-header nav {
+  background: white;
+  color: black;
+}
+
+.site-header nav ul {
+  display: flex;
+}
+
+.site-header nav a {
+  color: inherit;
+  display: block;
+  padding: 1em 1.5em;
+  text-decoration: none;
+}
+
+.site-header nav li {
+  display: block;
+  list-style: none outside;
+}
+
+.site-header nav a:hover {
+  background: pink;
+  color: white;
+}
