@@ -16,7 +16,8 @@ body,
 input,
 select,
 option,
-button {
+button,
+textarea {
   font: inherit;
 }
 
@@ -31,8 +32,24 @@ form {
 form h2 {
   margin-bottom: 1rem;
 }
+
+fieldset {
+  border: 1px solid lightgray;
+  padding: 2em;
+  border-radius: 0.3em;
+  margin-bottom: 2em;
+}
+
+fieldset legend {
+  padding: 0 1em;
+  margin-left: -1em;
+  font-weight: bold;
+}
+
 input,
 label {
+  display: block;
+  width: 100%;
   /* display: block; */
   /* width: 100%; */
 }
@@ -55,6 +72,8 @@ input[required] ~ label::after {
   padding-left: 0.3em;
   color: red;
 }
+
+select,
 textarea,
 input {
   padding: 0.5em 0.8em;
@@ -73,7 +92,8 @@ input:user-invalid {
 
 /* for submit !!!!! */
 
-input:user-invalid ~ label {
+input:user-invalid ~ label,
+input:user-invalid ~ .helper {
   color: red;
 }
 
@@ -81,9 +101,18 @@ input:user-valid {
   border-color: green;
 }
 
-input:user-valid ~ label{
-    color: green;
-  }
+input:user-valid ~ label {
+  color: green;
+}
+
+input:user-valid ~ label::before {
+  display: block;
+  font-family: "Font Awesome 6 Free";
+  content: "\f560";
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
 input:focus {
   border-color: pink;
@@ -118,6 +147,15 @@ input:not(:placeholder-shown) + label {
   /* # */
   position: relative;
 }
-.field label {
-  /* order: -1; */
+
+.field-radio {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1em;
+}
+
+.field .helper {
+  font-size: 0.9em;
+  font-style: italic;
+  opacity: 0.6;
 }
