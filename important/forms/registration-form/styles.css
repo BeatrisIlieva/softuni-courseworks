@@ -1,0 +1,108 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 2em;
+}
+
+html {
+  font: 14px/1.5 Lato, sans-serif;
+}
+
+body,
+input,
+select,
+option,
+button {
+  font: inherit;
+}
+
+form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2em;
+  background: white;
+  border-radius: 0.3em;
+}
+
+form h2 {
+  margin-bottom: 1rem;
+}
+input,
+label {
+  /* display: block; */
+  /* width: 100%; */
+}
+
+label {
+  font-weight: bold;
+
+  /* # */
+
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  pointer-events: none;
+}
+
+input[required] ~ label::after {
+  display: inline-block;
+  font-family: "Font Awesome 6 Free";
+  content: "\2a";
+  padding-left: 0.3em;
+  color: red;
+}
+
+input {
+  padding: 0.5em 0.8em;
+  border: 2px solid lightgray;
+  background: white;
+  /* border-top: none;
+  border-left: none;
+  border-right: none; */
+  border-radius: 0.3em;
+  outline: none;
+}
+input:focus {
+  border-color: pink;
+}
+
+input:user-invalid {
+  border-color: red;
+}
+
+input:user-valid {
+  border-color: green;
+}
+
+input[type="submit"] {
+  border-color: lightgray;
+}
+
+/* # */
+input::placeholder {
+  opacity: 0;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  transform: translateY(calc(-50% - 0.75rem)) scale(0.8);
+  color: black;
+}
+
+/* # */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1em;
+
+  /* # */
+  position: relative;
+}
+.field label {
+  /* order: -1; */
+}
