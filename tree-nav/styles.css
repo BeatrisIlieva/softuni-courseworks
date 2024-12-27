@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 2em;
+    font: 18px/1.5 Lato, sans-serif;
+}
+
+ul {
+    list-style: none outside;
+    padding: 0.2em 0  0 2em;
+    position: relative;
+}
+
+
+.tree ul {
+    border-left: 2px solid black;
+    align-items: center;
+    margin-left: 0.25em;
+}
+
+
+
+
+details {
+    position: relative;
+}
+
+details ul {
+    /* display: flex;
+    flex-direction: column;
+    gap: 1em; */
+}
+
+summary::marker{
+    color: transparent;
+}
+
+summary::before{
+    position: absolute;
+    content: "+";
+    width: 1.3em;
+    top: 0.2em;
+    left: -0.7em;
+    background: green;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    text-align: center;
+}
+
+details[open] > summary::before {
+    content: "-";
+}
+
+li::before {
+    position: absolute;
+    content: "";
+    /* top: 10px; */
+    left: 5px;
+    width: 1.7em;
+    height: 0.5em;;
+    background: red;
+    margin-top: 9px;
+}
+
+
+
+
+.tree summary::before {
+    content: "";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: -1;
+    flex: 0 0 1.4em;
+    width: 1.4em;
+    height: 1.4em;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 50%;
+    background: #ddd;
+    margin-right: 0.4em;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: -0.3em;
+
+    content: "+";
+    background-color: #696;
+    z-index: 1;
+    color: #fff;
+    line-height: calc(2 * var(--radius) - 2px);
+    text-align: center;
+}
+
+.tree ul li:before {
+    content: "";
+    order: -2;
+    display: block;
+    align-self: flex-start;
+    flex: 0 0 1.4em;
+    width: 1.4em;
+    height: 1.1em;
+    border: solid var(--border-color);
+    border-width: 0 0 var(--border-size) var(--border-size);
+    position: relative;
+    top: -0.5em;
+    left: calc( var(--border-size) * -0.91 );
+}
+
+.tree ul li:last-child:before {
+    border-bottom-left-radius: 0.5em;
+}
+
+.tree li, .tree summary {
+    line-height: 1.2;
+    display: flex;
+    flex: 1 1 auto;
+}
