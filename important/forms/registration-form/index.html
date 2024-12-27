@@ -9,22 +9,34 @@
 <body>
     <form action="#" method="get">
         <h2>Registration</h2>
+        
+        <fieldset>
+            <legend>Login Information</legend>
+            
+            <p class="field">
+                <input type="email" name="register-email" id="register-email" placeholder="Email" required>
+                <label for="register-email">Email</label>
+            </p>
+            
+            <p class="field">
+                <input type="password" name="register-pass" id="register-pass" placeholder="Password" required>
+                <label for="register-pass">Password</label>
+            </p>
+        </fieldset>
 
-        <p class="field">
-            <input type="text" name="register-name" id="register-name" placeholder="Full Name">
-            <label for="register-name">Full Name</label>
-        </p>
+        <fieldset>
+            <legend>Additional Information</legend>
+            <p class="field">
+                <input type="text" name="register-name" id="register-name" placeholder="Full Name">
+                <label for="register-name">Full Name</label>
+            </p>
 
-        <p class="field">
-            <input type="email" name="register-email" id="register-email" placeholder="Email" required>
-            <label for="register-email">Email</label>
-        </p>
-
-        <p class="field">
-            <input type="password" name="register-pass" id="register-pass" placeholder="Password" required>
-            <label for="register-pass">Password</label>
-        </p>
-
+            <p class="field">
+                <textarea name="register-bio" id="register-bio"></textarea>
+                <label for="register-bio">Bio</label>
+            </p>
+        </fieldset>
+        
         <input type="submit" value="Register">
     </form>
 </body>
