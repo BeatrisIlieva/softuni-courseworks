@@ -114,6 +114,16 @@ input:user-valid ~ label::before {
   right: 0;
 }
 
+.error-message {
+  display: none;
+  color: red;
+  font-size: 14px;
+}
+
+input:invalid ~ .error-message {
+  display: block;
+}
+
 input:focus {
   border-color: pink;
 }
