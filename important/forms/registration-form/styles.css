@@ -97,6 +97,10 @@ input:user-invalid ~ .helper {
   color: red;
 }
 
+input:user-invalid ~ .helper.error {
+  display: block;
+}
+
 input:user-valid {
   border-color: green;
 }
@@ -114,14 +118,10 @@ input:user-valid ~ label::before {
   right: 0;
 }
 
-.error-message {
+.field .helper.error {
   display: none;
   color: red;
   font-size: 14px;
-}
-
-input:invalid ~ .error-message {
-  display: block;
 }
 
 input:focus {
