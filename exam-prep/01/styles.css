@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font: 14px/1.5 "Kode Mono", sans-serif;
+}
+
+body,
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+body {
+  padding: 2em;
+  background: #c1bdba;
+  color: white;
+}
+
+.section {
+  background: #24333c;
+  max-width: 745px;
+}
+
+.section .section-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0;
+}
+
+.section .section-links li {
+  display: block;
+  list-style: none outside;
+  background: #1ab188;
+}
+
+.section .section-links a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  padding: 1em 4em;
+}
+
+.section fieldset {
+  border: none;
+}
+
+.section legend {
+  text-align: center;
+  margin-bottom: 2rem;
+}

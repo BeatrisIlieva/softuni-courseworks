@@ -19,4 +19,7 @@ button {
 
 body {
   padding: 2em;
+  background: #24333C;
 }
+
+/* get the px for padding from figma and divide it into 14px to get it in ems */
