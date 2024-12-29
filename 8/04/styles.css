@@ -1,0 +1,80 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font: 14px/1.5, sans-serif;
+}
+
+body {
+  padding: 2em;
+  background: lightgray;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login {
+  flex: 0 1 400px;
+  background: white;
+  padding: 2em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.login legend {
+  margin-bottom: 2em;
+}
+
+.login fieldset {
+  border: none;
+}
+
+.login .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  position: relative;
+}
+
+.login .field + .field {
+  margin-top: 1em;
+}
+
+.login label {
+  order: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.login .help-text {
+  font-size: 8px;
+  color: gray;
+}
+
+.login input {
+  border: none;
+  border-bottom: 2px solid gray;
+  outline: none;
+}
+
+.login input:focus {
+  border-bottom-color: orange;
+}
+
+.login input::placeholder {
+  color: transparent;
+}
+
+
+.login .field:has(input:not(:placeholder-shown)) label {
+  color: rebeccapurple;
+  transform: translateY(-1.5em);
+}

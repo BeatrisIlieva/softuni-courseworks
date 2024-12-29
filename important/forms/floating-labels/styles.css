@@ -43,7 +43,6 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  /* padding-top:0.5em; */
 }
 
 .login .field label {
@@ -52,8 +51,6 @@ body {
   top: 1em;
   line-height: 1;
   left: 0;
-  /* opacity: 0; */
-  /* transition: transform 0.3s ease-in-out, opacity 0.3s ease-in; */
   transition: transform 0.3s ease-in-out;
 }
 
