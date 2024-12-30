@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font: 14px/1.2 "Gochi Hand", sans-serif;
+}
+
+body,
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+body {
+  background: #e0e0e0;
+  padding: 1.85em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  max-width: 995px;
+  margin: 0 auto;
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+
+.card figure {
+  position: relative;
+  overflow: hidden;
+  padding: 2em;
+}
+
+.card figcaption {
+  position: absolute;
+  left: 2em;
+  bottom: 2em;
+  right: 2em;
+  background: #f3f3f3;
+  margin: 0 1.85em 1em 1.85em;
+  text-align: center;
+  border-radius: 0.6rem;
+  padding: 1em;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+}
+
+.card h2 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.card p {
+  opacity: 0.6;
+  font-size: 1.2em;
+}
+
+.card footer {
+  background: #f9f9f9;
+  border-top: 1px solid #d3d3d3;
+  padding: 3.75em;
+}
+
+.card ul li {
+  display: block;
+  list-style: none outside;
+  opacity: 0.6;
+}
+
+.card ul li:not(:last-of-type) {
+  margin-bottom: 0.5em;
+}
