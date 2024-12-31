@@ -9,21 +9,21 @@ nav_items:
           - name: "Earrings"
             link: "brilliant-diamond-earrings"
           - name: "Necklaces"
-            link: "brilliant-diamond-necklaces"
+            link: /brilliant-diamond-necklaces/
 
       - name: "Pink Sapphire"
         sub_items:
           - name: "Earrings"
             link: "pink-sapphire-earrings"
           - name: "Necklaces"
-            link: "pink-sapphire-necklaces"
+            link: /pink-sapphire-necklaces/
 
       - name: "Blue Sapphire"
         sub_items:
           - name: "Earrings"
-            link: "blue-sapphire-earrings"
+            link: /blue-sapphire-earrings/
           - name: "Necklaces"
-            link: "blue-sapphire-necklaces"
+            link: /blue-sapphire-necklaces/
 
   - name: Search
     type: "popup"
@@ -31,7 +31,7 @@ nav_items:
 
   - name: Home
     link: /
-    icon: "https://res.cloudinary.com/deztgvefu/image/upload/v1726147546/forget-me-not-collection/miniImages/logo_cxqq0t.png"
+    url: "https://res.cloudinary.com/deztgvefu/image/upload/v1726147546/forget-me-not-collection/miniImages/logo_cxqq0t.png"
 
   - name: Wishlist
     link: /wishlist/
