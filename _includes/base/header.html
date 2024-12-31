@@ -4,19 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page.title}} - {{ site.title }}</title>
-    <link rel="stylesheet" href="/assets/styles/site.css">
+    <link rel="stylesheet" href="/assets/styles/site.css" />
     <script>
         window.addEventListener("load", (event) => {
-            document.querySelector("body").classList.add("loaded")
-          });
+            document.querySelector("body").classList.add("loaded");
+        });
     </script>
 </head>
 <body class="layout-{{ page.layout }} page-{{ page.title | slugify }}">
-    
     <div class="site">
-        
         <header class="site-header">
-            <h1 class="site-title">{{ site.title }}</h1>
-            
             {% include navigation.html%}
         </header>
+    </div>
+</body>
+</html>
