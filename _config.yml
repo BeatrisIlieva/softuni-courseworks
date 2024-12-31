@@ -6,17 +6,25 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username: jekyll
 
+
+        # ("E", "Earrings"),
+        # ("B", "Bracelets"),
+        # ("N", "Necklaces"),
+        # ("R", "Rings"),
+        # ("C", "Charms"),
+        # ("P", "Pendants"),
+
 plugins:
   - jekyll-feed
 
 collections:
-  brilliant_diamonds:
+  brilliant_diamond:
     output: true
 
-  pink_sapphires:
+  pink_sapphire:
     output: true
 
-  blue_sapphires:
+  blue_sapphire:
     output: true
 # exclude:
 #   - .sass-cache/
