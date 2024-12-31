@@ -4,20 +4,20 @@
         {% if item.type == "dropdown" %}
         <li class="dropdown">
             <a href="#" class="dropdown-toggle">
-                <i class="{{ item.icon }}"></i> {{ item.name }}
-                <i class="fa fa-caret-down"></i>
+                <i class="{{ item.icon }}"></i> 
+                {{ item.name }}
             </a>
             <ul class="dropdown-menu">
                 {% for sub_item in item.sub_items %}
                 <li class="dropdown-subitem">
                     <a href="#">{{ sub_item.name }}</a>
-                    {% if sub_item.sub_items %}
                     <ul class="sub-sub-menu">
                         {% for sub_sub_item in sub_item.sub_items %}
-                        <li><a href="{{ sub_sub_item.link }}">{{ sub_sub_item.name }}</a></li>
+                        <li>
+                            <a href="{{ sub_sub_item.link }}">{{ sub_sub_item.name }}</a>
+                        </li>
                         {% endfor %}
                     </ul>
-                    {% endif %}
                 </li>
                 {% endfor %}
             </ul>
