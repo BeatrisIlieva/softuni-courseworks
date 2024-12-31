@@ -1,11 +1,11 @@
 ---
 layout: main
 
-first_image_url: "https://res.cloudinary.com/deztgvefu/image/upload/v1733838284/forget-me-not-collection/pendants/forget_me_not_pendant_diamond_and_pink_sapphire_pepsprfflrfmn_e_1_ddzgzr.webp"
+first_image_url: "https://res.cloudinary.com/deztgvefu/image/upload/v1733838279/forget-me-not-collection/pendants/forget_me_not_diamond_pendant_pedprfflrfmn_e-1h_ijqoqu.webp"
 
-second_image_url: "https://res.cloudinary.com/deztgvefu/image/upload/v1733838281/forget-me-not-collection/pendants/forget_me_not_pendant_diamond_and_pink_sapphire_pepsprfflrfmn_e_2_alppwn.avif"
+second_image_url: "https://res.cloudinary.com/deztgvefu/image/upload/v1733838277/forget-me-not-collection/pendants/forget_me_not_diamond_pendant_pedprfflrfmn_e-2h_xdbhby.webp"
 
-description: "6 pear-shaped pink sapphires weighing a total of approximately 1.44 carats and 1 round brilliant diamond weighing approximately 0.04 carats, set in platinum."
+description: "6 pear-shaped and 1 round brilliant diamond weighing a total of approximately 1.07 carats, set in platinum."
 
 size: [40.64, 43.18, 45.71]
 
