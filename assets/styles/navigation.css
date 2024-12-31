@@ -1,0 +1,22 @@
+.main-nav ul {
+    display: flex;
+    padding: 0;
+}
+
+.main-nav li {
+    display: block;
+    list-style: none outside;
+}
+
+.main-nav a {
+    color: orange;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+}
+
+.main-nav li.current-page > a,
+.main-nav a:hover{
+    background: darkorange;
+    color: white;
+}

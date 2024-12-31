@@ -1,6 +1,6 @@
 ---
-layout: page
-title: About 2
+layout: main
+title: About
 permalink: /about/
 ---
 This change will be deployed 

@@ -1,0 +1,52 @@
+body {
+  padding: 2em;
+}
+
+.site {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2em;
+}
+
+.site-title {
+  margin-bottom: 0;
+  line-height: 1;
+}
+
+.site-footer {
+  padding-top: 1em;
+  border-top: 1px solid #eee;
+  margin-top: 2em;
+}
+
+.site-footer p {
+  font-style: italic;
+  opacity: 0.6;
+}
+
+body.layout-blog .site {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+
+body.layout-blog .site .site-header,
+body.layout-blog .site .site-footer {
+  flex: 0 0 100%;
+}
+
+body.layout-blog .site > main {
+  flex: 1 1 600px;
+}
+
+body.layout-blog .site > aside {
+  flex: 1 1 200px;
+}
