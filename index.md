@@ -4,7 +4,7 @@ title: Homepage
 permalink: /
 ---
 
-<ul>
+<!-- <ul>
   {% for product in site.pink_sapphire %}
   <li>
     <img src="{{ product.first_image_url }}" alt="">
@@ -29,4 +29,4 @@ permalink: /
     <p>{{ product.description }}</p>
   </li>
   {% endfor %}
-</ul>
+</ul> -->
