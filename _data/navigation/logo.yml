@@ -1,4 +1,3 @@
-logo_items:
-  - name: Home
-    link: /
-    url: "https://res.cloudinary.com/deztgvefu/image/upload/v1726147546/forget-me-not-collection/miniImages/logo_cxqq0t.png"
+name: Home
+link: /
+url: "https://res.cloudinary.com/deztgvefu/image/upload/v1726147546/forget-me-not-collection/miniImages/logo_cxqq0t.png"

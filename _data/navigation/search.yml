@@ -1,3 +1,2 @@
-search_items:
-  - name: Search
-    icon: "fa-solid fa-magnifying-glass"
+name: Search
+icon: "fa-solid fa-magnifying-glass"

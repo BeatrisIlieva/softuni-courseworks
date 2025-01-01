@@ -1,0 +1,14 @@
+.main-nav > ul {
+    display: flex;
+}
+
+.main-nav .logo {
+    width: 5rem;
+}
+
+.main-nav .logo img {
+    width: 100%;
+    height: auto;
+}
+
+

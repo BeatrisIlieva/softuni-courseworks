@@ -1,24 +1,23 @@
-- name: Collection
-  icon: "fa-solid fa-gem"
+name: Collection
+icon: "fa-solid fa-gem"
+sub_items:
+  - name: "Brilliant Diamond"
+    sub_items:
+      - name: "Earrings"
+        link: "brilliant-diamond-earrings"
+      - name: "Necklaces"
+        link: /brilliant-diamond-necklaces/
 
-  sub_items:
-    - name: "Brilliant Diamond"
-      sub_items:
-        - name: "Earrings"
-          link: "brilliant-diamond-earrings"
-        - name: "Necklaces"
-          link: /brilliant-diamond-necklaces/
+  - name: "Pink Sapphire"
+    sub_items:
+      - name: "Earrings"
+        link: "pink-sapphire-earrings"
+      - name: "Necklaces"
+        link: /pink-sapphire-necklaces/
 
-    - name: "Pink Sapphire"
-      sub_items:
-        - name: "Earrings"
-          link: "pink-sapphire-earrings"
-        - name: "Necklaces"
-          link: /pink-sapphire-necklaces/
-
-    - name: "Blue Sapphire"
-      sub_items:
-        - name: "Earrings"
-          link: /blue-sapphire-earrings/
-        - name: "Necklaces"
-          link: /blue-sapphire-necklaces/
+  - name: "Blue Sapphire"
+    sub_items:
+      - name: "Earrings"
+        link: /blue-sapphire-earrings/
+      - name: "Necklaces"
+        link: /blue-sapphire-necklaces/

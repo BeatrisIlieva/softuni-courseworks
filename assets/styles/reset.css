@@ -1,0 +1,47 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  color: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  color: black;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* aspect-ratio: 1/1;
+    object-fit: cover; */
+}
+
+/* .media {
+  display: block;
+  background: white;
+  border-radius: 0.3em;
+  overflow: hidden;
+  box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.3);
+  outline: 2px solid white;
+} */
+
+summary {
+  list-style: none outside;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
