@@ -1,32 +1,42 @@
-<nav>
+<nav class="main-nav">
     <ul>
         {% for item in site.data.navigation.nav_items %}
         {% if item.type == "dropdown" %}
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle">
-                <i class="{{ item.icon }}"></i> 
-                {{ item.name }}
-            </a>
-            <ul class="dropdown-menu">
-                {% for sub_item in item.sub_items %}
-                <li class="dropdown-subitem">
-                    <a href="#">{{ sub_item.name }}</a>
-                    <ul class="sub-sub-menu">
-                        {% for sub_sub_item in sub_item.sub_items %}
-                        <li>
-                            <a href="{{ sub_sub_item.link }}">{{ sub_sub_item.name }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% endfor %}
-            </ul>
+            <details>
+                <summary class="dropdown-toggle">
+                    <i class="{{ item.icon }}"></i> 
+                    {{ item.name }} 
+                </summary>
+                <ul class="dropdown-menu">
+                    {% for sub_item in item.sub_items %}
+                    <li class="dropdown-subitem">
+                        <details>
+                            <summary>
+                                {{ sub_item.name }}
+                            </summary>
+                            <ul class="sub-sub-menu">
+                                {% for sub_sub_item in sub_item.sub_items %}
+                                <li>
+                                    <a href="{{ sub_sub_item.link }}">{{ sub_sub_item.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </details> 
+                    </li>
+                    {% endfor %}
+                </ul>
+            </details>
         </li>
         {% else %}
         {% if item.name == "Home" and item.url %}
-        <img src="{{ item.url }}" alt="logo" />
+        <li class="logo">
+            <a href="{{ item.link }}">
+                <img src="{{ item.url }}" alt="logo" />
+            </a>
+        </li>
         {% else %}
-        <li>
+        <li class="link">
             <a href="{{ item.link }}">
                 <i class="{{ item.icon }}"></i> {{ item.name }}
             </a>

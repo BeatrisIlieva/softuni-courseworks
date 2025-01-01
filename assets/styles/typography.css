@@ -84,6 +84,10 @@ ol {
   padding-left: 1.5em;
 }
 
+ul li, ol li {
+  list-style: none outside;
+}
+
 blockquote {
   font-style: italic;
   border-left: 5px solid #ddd;
