@@ -1,4 +1,16 @@
+body {
+  min-height: 100vh;
+  display: flex;
+}
+
 .site {
-    margin: 0 auto;
-    padding: 0 max(calc((100vw - 1700px) / 2), 2.5em);
+  margin: 0 auto;
+  padding: 0 max(calc((100vw - 1700px) / 2), 2.5em);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+}
+
+.site-content {
+  flex: 1 1 auto;
 }

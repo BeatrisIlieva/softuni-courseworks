@@ -12,7 +12,7 @@
 
 html {
   box-sizing: border-box;
-  color: black;
+  color: var(--clr-gray);
 }
 
 li {
@@ -45,7 +45,12 @@ img {
 
 summary {
   list-style: none outside;
+  cursor: pointer;
 }
+
+/* details {
+  cursor: pointer;
+} */
 
 button {
   all: unset;
