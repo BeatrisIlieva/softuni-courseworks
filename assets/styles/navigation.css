@@ -1,5 +1,6 @@
 .main-nav {
   position: sticky;
+  padding: var(--container-padding);
 }
 
 .main-nav > ul {

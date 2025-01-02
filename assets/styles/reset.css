@@ -48,10 +48,6 @@ summary {
   cursor: pointer;
 }
 
-/* details {
-  cursor: pointer;
-} */
-
 button {
   all: unset;
   cursor: pointer;

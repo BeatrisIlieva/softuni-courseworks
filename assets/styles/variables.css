@@ -8,4 +8,6 @@
   --clr-green: #00b200;
   --clr-gray: #4c4a49;
   --clr-browser-gray: #cccdcd;
+
+  --container-padding: 0 max(calc((100vw - 1700px) / 2), 2.5em);
 }
