@@ -8,12 +8,12 @@ body {
 .site-header {
   border-bottom: 1px solid var(--clr-browser-gray);
   position: sticky;
-  height: 7rem;
+  height: var(--nav-top-position);
 }
 
 .logo {
   display: block;
-  width: 6.2rem;
+  width: var(--logo-size);
   position: absolute;
   top: 0;
   left: 50%;

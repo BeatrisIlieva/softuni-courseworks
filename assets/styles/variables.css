@@ -10,4 +10,31 @@
   --clr-browser-gray: #cccdcd;
 
   --container-padding: 0 max(calc((100vw - 1700px) / 2), 2.5em);
+  --nav-top-position: 7rem;
+  --logo-size: 6.2rem;
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --container-padding: 0 max(calc((100vw - 1200px) / 2), 1.5em);
+    --nav-top-position: 5rem;
+    --logo-size: 5rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 0 1em;
+    --nav-top-position: 4rem;
+    --logo-size: 4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 0 0.5em;
+    --nav-top-position: 3rem;
+    --logo-size: 3rem;
+  }
 }
