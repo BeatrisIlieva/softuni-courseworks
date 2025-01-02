@@ -2,16 +2,18 @@
     <ul>
         <li class="dropdown">
             <details>
-                <summary class="dropdown-toggle">
-                    <span>
+                
+                <summary class="dropdown-toggle" for="main-nav-toggle">
+                    <span class="open" for="main-nav-toggle">
                         <i class="{{ site.data.navigation.dropdown.icon }}"></i> 
                         {{ site.data.navigation.dropdown.name }} 
                     </span>
                 </summary>
+                
                 <ul class="dropdown-menu">
                     {% for sub_item in site.data.navigation.dropdown.sub_items %}
                     <li class="dropdown-subitem">
-                        <details>
+                        <details open>
                             <summary>
                                 {{ sub_item.name }}
                             </summary>
@@ -36,11 +38,6 @@
                 </span>
             </button>
         </li>
-        <!-- <li class="logo">
-            <a href="{{ site.data.navigation.logo.link }}">
-                <img src="{{ site.data.navigation.logo.url }}" alt="logo" />
-            </a>
-        </li> -->
         {% for item in site.data.navigation.user_links %}
         <li class="user-link">
             <a href="{{ item.link }}">

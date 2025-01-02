@@ -9,12 +9,11 @@
   height: 100%;
 }
 
-
-.main-nav > ul li:nth-child(3) {
+.main-nav > ul > li:nth-child(3) {
   margin-left: auto;
 }
 
-.main-nav li + li {
+.main-nav > ul > li + li {
   margin-left: 1.5rem;
 }
 
@@ -30,4 +29,21 @@
 
 .main-nav .user-link i {
   font-size: 18px;
+}
+
+.main-nav .dropdown-menu {
+  position: absolute;
+  left: 0;
+  top: 7rem;
+  background: white;
+  width: 100%;
+  padding: 1.5rem 3rem;
+}
+
+.main-nav .dropdown-menu .dropdown-subitem {
+  margin-left: 1.5rem;
+}
+
+.main-nav .dropdown-menu .dropdown-subitem li {
+  margin-left: 1.5rem;
 }

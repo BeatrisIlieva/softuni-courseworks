@@ -41,9 +41,14 @@ img {
   outline: 2px solid white;
 } */
 
-summary {
+/* summary {
   list-style: none outside;
   cursor: pointer;
+} */
+
+details summary {
+  /* display: block; */
+  background: #000;
 }
 
 button {

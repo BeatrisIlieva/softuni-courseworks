@@ -20,13 +20,6 @@ body {
   transform: translate(-50%, 0);
 }
 
-/* .logo img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1/1;
-  object-fit: contain;
-} */
-
 main {
   padding: var(--container-padding);
 }
