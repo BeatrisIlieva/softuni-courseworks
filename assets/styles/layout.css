@@ -5,6 +5,28 @@ body {
   flex-direction: column;
 }
 
+.site-header {
+  border-bottom: 1px solid var(--clr-browser-gray);
+  position: sticky;
+  height: 7rem;
+}
+
+.logo {
+  display: block;
+  width: 6.2rem;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+/* .logo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+} */
+
 main {
   padding: var(--container-padding);
 }
@@ -16,7 +38,7 @@ main {
 .site-footer {
   opacity: 0.8;
   text-align: center;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   border-top: 1px solid var(--clr-browser-gray);
   position: relative;
 }
