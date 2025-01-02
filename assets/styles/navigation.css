@@ -28,7 +28,33 @@
 }
 
 .main-nav .user-link i {
-  font-size: 18px;
+  font-size: 1.2em;
+}
+
+.main-nav ul .dropdown li {
+  display: flex;
+}
+
+.main-nav ul .dropdown li:last-child {
+  border-color: transparent;
+}
+
+.main-nav ul .dropdown li {
+  border-left: 2px solid var(--clr-gray);
+}
+
+.main-nav ul .dropdown li::before {
+  display: block;
+  content: "";
+  border: solid var(--clr-gray);
+  border-width: 0 0 2px 2px;
+  border-bottom-left-radius: 0.3em;
+  width: 1em;
+  height: 1.3em;
+  margin-right: 0.5em;
+  position: relative;
+  top: -0.5em;
+  left: -2px;
 }
 
 .main-nav .dropdown-menu {
@@ -37,13 +63,38 @@
   top: 7rem;
   background: white;
   width: 100%;
-  padding: 1.5rem 3rem;
+  padding: 0rem 2.9rem;
+}
+
+.main-nav .dropdown-menu details summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.main-nav .dropdown-menu details summary::before {
+  display: block;
+  content: "+";
+  background: var(--clr-pink);
+  width: 1.2em;
+  aspect-ratio: 1/1;
+  text-align: center;
+  align-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  line-height: 1;
+  position: relative;
+  z-index: 100;
+}
+
+.main-nav .dropdown-menu details[open] summary::before {
+  content: "-";
 }
 
 .main-nav .dropdown-menu .dropdown-subitem {
-  margin-left: 1.5rem;
+  /* margin-left: 1.5rem; */
 }
 
 .main-nav .dropdown-menu .dropdown-subitem li {
-  margin-left: 1.5rem;
+  margin-left: 0.5rem;
 }
