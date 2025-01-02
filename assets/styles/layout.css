@@ -1,0 +1,4 @@
+.site {
+    margin: 0 auto;
+    padding: 0 max(calc((100vw - 1700px) / 2), 2.5em);
+}

@@ -3,8 +3,10 @@
         <li class="dropdown">
             <details>
                 <summary class="dropdown-toggle">
-                    <i class="{{ site.data.navigation.dropdown.icon }}"></i> 
-                    {{ site.data.navigation.dropdown.name }} 
+                    <span>
+                        <i class="{{ site.data.navigation.dropdown.icon }}"></i> 
+                        {{ site.data.navigation.dropdown.name }} 
+                    </span>
                 </summary>
                 <ul class="dropdown-menu">
                     {% for sub_item in site.data.navigation.dropdown.sub_items %}
@@ -28,8 +30,10 @@
         </li>
         <li class="search">
             <button>
-                <i class="{{ site.data.navigation.search.icon }}"></i> 
-                {{ site.data.navigation.search.name }}
+                <span>
+                    <i class="{{ site.data.navigation.search.icon }}"></i> 
+                    {{ site.data.navigation.search.name }}
+                </span>
             </button>
         </li>
         <li class="logo">

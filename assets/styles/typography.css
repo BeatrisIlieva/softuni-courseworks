@@ -76,10 +76,6 @@ p {
   padding-bottom: 1.5em;
 }
 
-li {
-  list-style: none outside;
-}
-
 blockquote {
   font-style: italic;
   border-left: 5px solid #ddd;

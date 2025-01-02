@@ -15,7 +15,13 @@ html {
   color: black;
 }
 
+li {
+  display: block;
+  list-style: none outside;
+}
+
 a {
+  display: block;
   color: inherit;
   text-decoration: none;
 }

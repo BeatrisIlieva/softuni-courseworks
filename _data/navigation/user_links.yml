@@ -1,3 +1,7 @@
+- name: "My Account"
+  icon: "fa-solid fa-user"
+  link: /account/
+
 - name: Wishlist
   link: /wishlist/
   icon: "fa-solid fa-heart"
@@ -5,7 +9,3 @@
 - name: "My Bag"
   icon: "fa-solid fa-bag-shopping"
   link: /my-bag/
-
-- name: "My Account"
-  icon: "fa-solid fa-user"
-  link: /account/

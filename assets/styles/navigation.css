@@ -1,14 +1,42 @@
+.main-nav {
+  position: sticky;
+}
+
 .main-nav > ul {
-    display: flex;
+  display: flex;
+  align-items: flex-end;
+  height: 7rem;
 }
 
 .main-nav .logo {
-    width: 5rem;
+  width: 7rem;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .main-nav .logo img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: contain;
 }
 
+.main-nav > ul li:nth-child(4) {
+  margin-left: auto;
+}
 
+.main-nav li + li {
+    margin-left: 1.5rem;
+}
+
+.main-nav span {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.main-nav .user-link i {
+  font-size: 18px;
+}
