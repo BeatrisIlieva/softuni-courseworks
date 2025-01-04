@@ -124,3 +124,93 @@ while (indexOfEurope >= 0) {
 
     indexOfEurope = continents.indexOf('Europe', indexOfEurope + 1);
 }
+
+// we use forEach when we want to apply an action for each element in an array
+// ! this is an expression
+continents.forEach((continent) => console.log(continent));
+
+// we use for of when we want to apply an action for each element in an array
+// ! this is a statement
+for (const continent of continents) {
+    console.log('---');
+    console.log(continent);
+}
+
+
+// Map creates a new array - new reference that contains the same number of elements 
+// that are derivative of the original elements
+let integers  = [1, 2, 3, 4, 5]
+let doubleNumbers = integers.map(num => num * 2);
+console.log(doubleNumbers);
+
+//Filter
+
+let oddNumber = integers.filter(number => number % 2 !== 0);
+console.log(oddNumber);
+
+//Reduce
+
+let sum = integers.reduce((acc, curr) => acc + curr, 0)
+console.log(sum);
+
+
+// Strings
+
+// All string methods are non mutable because strings are immutable
+
+let name = 'Pesho';
+name += ' e super'
+console.log(name);
+// Pesho e super
+// !!! The variable name does not change its value -> 
+// it disappears and a new variable gets created
+
+
+// concat does the same
+let greet = 'Hi'
+greet = greet.concat(', there!')
+console.log(greet);
+// Hi, there!
+
+// indexOf
+let text = 'I am JavaScript developer'
+let indexOfJava = text.indexOf('Java') // it is case Sensitive
+console.log(indexOfJava);
+
+// substring
+let theBestLanguage = text.substring(indexOfJava, 15);
+console.log(theBestLanguage);
+
+//replace
+let pythonText = text.replace('JavaScript', 'Python')
+console.log(pythonText);
+
+//replaceAll
+let textToReplace = 'Java java Java java'
+let replacedText = textToReplace.replaceAll('java', 'Java')
+console.log(replacedText);
+
+//split ! needs a separator
+let textToSplit = 'I am new developer'
+let words = textToSplit.split(' ')
+console.log(words);
+// if there is ' ' in the text it will enter as an empty string
+
+// includes
+console.log(text.includes('JavaScript'));
+
+// repeat
+
+console.log('tro'.repeat(10));
+
+// startsWith
+
+console.log(text.startsWith('I am'));
+
+// padStart
+console.log('10'.padStart(10, '0'));
+
+// Reversed text
+let textToReverse = 'I am JavaScript developer'
+let reversedString = textToReverse.split('').reverse().join('')
+console.log(reversedString);
