@@ -212,5 +212,41 @@ let textToReverse = 'I am JavaScript developer';
 let reversedString = textToReverse.split('').reverse().join('');
 console.log(reversedString);
 
+// sort -> it mutates the original array and create a new variables
+// that points to the same reference in the memory
+// it returns a reference to the same array
+//it returns it so as we could chain it for example with map
+// otherwise there is no point to save it in a new variable
+let notSortedArray = ['Bob', 'Ema', 'Alex'];
+let sortedArray = notSortedArray.sort();
+console.log(notSortedArray);
+console.log(sortedArray);
+console.log(notSortedArray === sortedArray);
 
+//(3) ['Alex', 'Bob', 'Ema']
+//(3) ['Alex', 'Bob', 'Ema']
+//true
+
+// it sorts by ascii table
+const namesToSort = ['Bob', 'Ema', 'alex', 'Abdrew'];
+
+namesToSort.sort().forEach((name, index) => {
+    console.log(`${index + 1}.${name}`);
+});
+
+// 1.Bob
+//2.Ema
+//3.alex !!!
+
+//localeCompare
+
+namesToSort.sort((a, b) => a.localeCompare(b)).forEach((name, index) => {
+    console.log(`${index + 1}.${name}`)
+})
+
+// desc
+
+namesToSort.sort((a, b) => b.localeCompare(a)).forEach((name, index) => {
+    console.log(`${index + 1}.${name}`)
+})
 

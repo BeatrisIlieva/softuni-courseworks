@@ -1,5 +1,3 @@
-let string = '123456'
-let startIdx = 1
-let count = 4
+let arr = [1, 2, 3]
 
-console.log(string.substring(startIdx, count));
+console.log(arr.filter(2, 1));
