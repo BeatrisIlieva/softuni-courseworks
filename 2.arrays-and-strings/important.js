@@ -5,8 +5,8 @@ console.log(names.length);
 // 11
 
 console.log(names);
-// This is means sparse -> at the place of the dots there are undefined;
-// no memory is allocated fo the undefined
+// This means sparse -> at the place of the dots there are undefined;
+// no memory is allocated for the undefined
 // ['Elen', 'Mark', 'Stephen', …, 'Peter']
 
 console.log(names[4]);
@@ -67,7 +67,7 @@ console.log(reversedMusicians);
 // ['singer', 'guitarist']
 console.log(reversedMusicians === reversedMusicians);
 // true -> the two arrays point to one and the same address in the memory
-// !! it creates a new variables that point to the same address in memory
+// !! it creates a new variable that points to the same address in memory
 // points to the same value that is stored in the heap
 
 let countries = ['Bulgaria', 'Japan', 'UK', 'China'];
@@ -93,6 +93,7 @@ let cities = ['Sofia', 'Varna', 'Burgas', 'Plovdiv'];
 let newCities = cities.slice(1);
 console.log(newCities);
 // ['Varna', 'Burgas', 'Plovdiv'
+
 console.log(cities.includes('Plovdiv', 1));
 // true
 console.log(cities.indexOf('Belgrade'));
@@ -102,7 +103,6 @@ let varnaElement = cities.find((city) => city[0] === 'V');
 // city => city === 'Varna' -> predicate
 // gives me the first city which first letter is 'V'
 console.log(varnaElement);
-
 
 // find with indexOf all occurrences
 let continents = [
@@ -136,45 +136,42 @@ for (const continent of continents) {
     console.log(continent);
 }
 
-
-// Map creates a new array - new reference that contains the same number of elements 
+// Map creates a new array - new reference that contains the same number of elements
 // that are derivative of the original elements
-let integers  = [1, 2, 3, 4, 5]
-let doubleNumbers = integers.map(num => num * 2);
+let integers = [1, 2, 3, 4, 5];
+let doubleNumbers = integers.map((num) => num * 2);
 console.log(doubleNumbers);
 
 //Filter
 
-let oddNumber = integers.filter(number => number % 2 !== 0);
+let oddNumber = integers.filter((number) => number % 2 !== 0);
 console.log(oddNumber);
 
 //Reduce
 
-let sum = integers.reduce((acc, curr) => acc + curr, 0)
+let sum = integers.reduce((acc, curr) => acc + curr, 0);
 console.log(sum);
-
 
 // Strings
 
 // All string methods are non mutable because strings are immutable
 
 let name = 'Pesho';
-name += ' e super'
+name += ' e super';
 console.log(name);
 // Pesho e super
-// !!! The variable name does not change its value -> 
+// !!! The variable name does not change its value ->
 // it disappears and a new variable gets created
 
-
 // concat does the same
-let greet = 'Hi'
-greet = greet.concat(', there!')
+let greet = 'Hi';
+greet = greet.concat(', there!');
 console.log(greet);
 // Hi, there!
 
 // indexOf
-let text = 'I am JavaScript developer'
-let indexOfJava = text.indexOf('Java') // it is case Sensitive
+let text = 'I am JavaScript developer';
+let indexOfJava = text.indexOf('Java'); // it is case Sensitive
 console.log(indexOfJava);
 
 // substring
@@ -182,17 +179,17 @@ let theBestLanguage = text.substring(indexOfJava, 15);
 console.log(theBestLanguage);
 
 //replace
-let pythonText = text.replace('JavaScript', 'Python')
+let pythonText = text.replace('JavaScript', 'Python');
 console.log(pythonText);
 
 //replaceAll
-let textToReplace = 'Java java Java java'
-let replacedText = textToReplace.replaceAll('java', 'Java')
+let textToReplace = 'Java java Java java';
+let replacedText = textToReplace.replaceAll('java', 'Java');
 console.log(replacedText);
 
 //split ! needs a separator
-let textToSplit = 'I am new developer'
-let words = textToSplit.split(' ')
+let textToSplit = 'I am new developer';
+let words = textToSplit.split(' ');
 console.log(words);
 // if there is ' ' in the text it will enter as an empty string
 
@@ -211,6 +208,9 @@ console.log(text.startsWith('I am'));
 console.log('10'.padStart(10, '0'));
 
 // Reversed text
-let textToReverse = 'I am JavaScript developer'
-let reversedString = textToReverse.split('').reverse().join('')
+let textToReverse = 'I am JavaScript developer';
+let reversedString = textToReverse.split('').reverse().join('');
 console.log(reversedString);
+
+
+
