@@ -1,5 +1,5 @@
 function solve(string) {
-    const words = string.match(/[A-Za-z\'\-]+/g);
+    const words = string.match(/[A-Za-z]+/g);
 
     for (let i = 0; i < words.length; i++) {
         words[i] = words[i].toUpperCase();
@@ -8,4 +8,4 @@ function solve(string) {
     console.log(words.join(', '));
 }
 
-solve('hello\'');
+solve('Hi, how are you?');
