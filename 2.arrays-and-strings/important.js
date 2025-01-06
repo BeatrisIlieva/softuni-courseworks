@@ -212,10 +212,10 @@ let textToReverse = 'I am JavaScript developer';
 let reversedString = textToReverse.split('').reverse().join('');
 console.log(reversedString);
 
-// sort -> it mutates the original array and create a new variables
+// sort -> it mutates the original array and creates a new variable
 // that points to the same reference in the memory
 // it returns a reference to the same array
-//it returns it so as we could chain it for example with map
+// it returns it so as we could chain it for example with map
 // otherwise there is no point to save it in a new variable
 let notSortedArray = ['Bob', 'Ema', 'Alex'];
 let sortedArray = notSortedArray.sort();
@@ -249,4 +249,14 @@ namesToSort.sort((a, b) => a.localeCompare(b)).forEach((name, index) => {
 namesToSort.sort((a, b) => b.localeCompare(a)).forEach((name, index) => {
     console.log(`${index + 1}.${name}`)
 })
+
+let numsToSort  = [10, 1, 56, 6];
+console.log(numsToSort.sort());
+// [1, 10, 56, 6]
+
+console.log(numsToSort.sort((a, b) => a - b));
+// [1, 6, 10, 56]
+
+console.log(numsToSort.sort((a, b) => b - a));
+// [56, 10, 6, 1]
 
