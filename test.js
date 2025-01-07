@@ -1,3 +1,11 @@
-let arr = [1, 2, 3]
+function printGrade(grade) {
+    return formatText(grade);
 
-console.log(arr.filter(2, 1));
+    function formatText(grade) {
+        return `Grade is ${grade}`;
+    }
+}
+
+// console.log(printGrade(6));
+
+console.log(formatText);
