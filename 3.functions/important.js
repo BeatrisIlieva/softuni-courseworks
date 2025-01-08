@@ -55,9 +55,9 @@ console.log(printGrade(6));
 function printGrade2(grade) {
     return formatText(grade);
 
-    const formatText = function(grade) {
+    const formatText = function (grade) {
         return `Grade is ${grade}`;
-    }
+    };
 }
 
 console.log(printGrade(6));
