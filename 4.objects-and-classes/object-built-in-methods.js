@@ -36,3 +36,9 @@ const someKeyValues = [
 ];
 const someObj = Object.fromEntries(someKeyValues);
 console.log(someObj);
+
+
+// delete entry
+
+delete cat.bite
+console.log(cat);

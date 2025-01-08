@@ -50,8 +50,20 @@ console.log(person3);
 
 // Object literal with shorthand syntax
 // it takes a variable with a name as the given key and takes its value
-const shortPerson = {
-    firstName,
-    lastName,
-    age,
-};
+// const shortPerson = {
+//     firstName,
+//     lastName,
+//     age,
+// };
+
+// Object Destructuring assignment
+
+const newPerson = { name: 'Alex', age: '28', grade: 6 };
+const { name: newName, age: newAge, grade } = newPerson;
+console.log(newName, newAge, grade);
+
+// Object Destructuring assignment with rest
+const secondNewPerson = { name: 'Alex', age: '28', grade: 6 };
+const { name: newName2, ...restInfo } = secondNewPerson;
+console.log(JSON.stringify(newName2));
+console.log(JSON.stringify(restInfo));
