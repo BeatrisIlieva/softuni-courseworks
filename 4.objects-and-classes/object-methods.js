@@ -12,6 +12,9 @@ const cat = {
     bite(value) {
         console.log(`Biting ${value}`);
     },
+    owner: {
+        name: 'Beatris',
+    },
 };
 
 // Invoke method
