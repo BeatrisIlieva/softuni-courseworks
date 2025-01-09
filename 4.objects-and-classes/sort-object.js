@@ -4,7 +4,7 @@ const phoneBook = {
     'Cvan Ivanov': '+35987645447',
 };
 
-let sortedArray = Object.entries(phoneBook).sort((a, b) => a[0].localeCompare(b));
+let sortedArray = Object.entries(phoneBook).sort((a, b) => a[0].localeCompare(b[0]));
 console.log(JSON.stringify(sortedArray));
 console.log(phoneBook);
 
