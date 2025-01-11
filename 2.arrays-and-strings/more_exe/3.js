@@ -1,45 +1,39 @@
-function solve(base, increment) {
-    const materialsUsed = {
-        stone: 0,
-        marble: 0,
-        'lapis-lazuli': 0,
-        gold: 0,
-    };
+function pyramidConstruction(base, increment) {
+    let totalStone = 0;
+    let totalMarble = 0;
+    let totalLapis = 0;
+    let gold = 0;
+    let height = 0;
 
-    let counter = 1;
+    let currentBase = base;
+    while (currentBase > 0) {
+        height++;
 
-    while (base - 2 > 0) {
-        const totalArea = base * base;
-
-        const stoneArea = (base - 2) * (base - 2) * increment;
-        materialsUsed.stone += stoneArea;
-
-        if (counter % 5 === 0) {
-            const lapisArea = (totalArea - stoneArea) * increment;
-            materialsUsed['lapis-lazuli'] += lapisArea;
-        } else {
-            const marbleArea = (totalArea - stoneArea) * increment;
-            materialsUsed.marble += marbleArea;
+        if (currentBase === 1 || currentBase === 2) {
+            gold += currentBase * currentBase * increment;
+            break;
         }
 
-        base -= 2;
+        let totalBlocks = currentBase * currentBase;
+        let innerBlocks = (currentBase - 2) * (currentBase - 2);
+        let outerBlocks = totalBlocks - innerBlocks;
 
-        counter += 1;
+        totalStone += innerBlocks * increment;
+
+        if (height % 5 === 0) {
+            totalLapis += outerBlocks * increment;
+        } else {
+            totalMarble += outerBlocks * increment;
+        }
+
+        currentBase -= 2;
     }
 
-    materialsUsed.gold += base * base * increment;
+    const totalHeight = Math.floor(height * increment);
 
-    console.log(`Stone required: ${Math.ceil(materialsUsed.stone)}`);
-    console.log(`Marble required: ${Math.ceil(materialsUsed.marble)}`);
-    console.log(
-        `Lapis Lazuli required: ${Math.ceil(materialsUsed['lapis-lazuli'])}`
-    );
-    console.log(`Gold required: ${Math.ceil(materialsUsed.gold)}`);
-    console.log(`Final pyramid height: ${Math.floor(counter * increment)}`);
+    console.log(`Stone required: ${Math.ceil(totalStone)}`);
+    console.log(`Marble required: ${Math.ceil(totalMarble)}`);
+    console.log(`Lapis Lazuli required: ${Math.ceil(totalLapis)}`);
+    console.log(`Gold required: ${Math.ceil(gold)}`);
+    console.log(`Final pyramid height: ${totalHeight}`);
 }
-
-solve(
-    11,
-
-    0.75
-);
