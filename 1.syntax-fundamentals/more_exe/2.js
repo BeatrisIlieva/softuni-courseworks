@@ -1,11 +1,9 @@
-function solve(string) {
-    const words = string.match(/[A-Za-z]+/g);
+function extractAndConvertToUpper(input) {
+    const words = input.match(/\w+/g);
 
-    for (let i = 0; i < words.length; i++) {
-        words[i] = words[i].toUpperCase();
-    }
+    const upperCaseWords = words.map((word) => word.toUpperCase());
 
-    console.log(words.join(', '));
+    console.log(upperCaseWords.join(', '));
 }
 
 solve('Hi, how are you?');

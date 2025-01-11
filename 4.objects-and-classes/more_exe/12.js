@@ -9,6 +9,19 @@ function solve(input) {
     const addCourseCommand = ': ';
     const addStudentCommand = ' with email ';
 
+    function createUser(credits, username, email, courseName) {
+        const course = checkIfCourseExists(courseName);
+        if (course) {
+            const courseId = Number(course[0]);
+            const availablePlaces = course[1].placesLeft;
+
+            if (availablePlaces > 0) {
+                students.push({ credits, username, email, courseId });
+                courses[courseId].placesLeft -= 1;
+            }
+        }
+    }
+
     function checkIfRowContainsCommand(row, command) {
         return row.includes(command);
     }
@@ -40,10 +53,45 @@ function solve(input) {
             } else {
                 createCourse(courseName, Number(availablePlaces));
             }
+        } else if (checkIfRowContainsCommand(row, addStudentCommand)) {
+            const [firstSubstring, secondSubstring] = row.split(addStudentCommand);
+
+            const bracketSymbolIndex = firstSubstring.indexOf('[');
+            const username = firstSubstring.substring(0, bracketSymbolIndex);
+            const credits = firstSubstring.substring(
+                bracketSymbolIndex + 1,
+                firstSubstring.length - 1
+            );
+
+            const [userEmail, courseName] = secondSubstring.split(' joins ');
+
+            createUser(credits, username, userEmail, courseName);
         }
     });
 
-    console.log(courses);
+    function findStudentsPerCourse(courseId) {
+        return students.filter((student) => student.courseId === Number(courseId));
+    }
+
+    function printCoursesData() {
+        const sortedCourses = Object.entries(courses).sort((a, b) => {
+            return findStudentsPerCourse(b[0]).length - findStudentsPerCourse(a[0]).length;
+        });
+
+        sortedCourses.forEach((course) => {
+            console.log(`${course[1].name}: ${course[1].placesLeft} places left`);
+
+            const students = findStudentsPerCourse(Number(course[0])).sort((a, b) => {
+                return Number(b.credits) - Number(a.credits);
+            });
+
+            students.forEach((student) => {
+                console.log(`--- ${student.credits}: ${student.username}, ${student.email}`);
+            });
+        });
+    }
+
+    printCoursesData();
 }
 
 solve([
