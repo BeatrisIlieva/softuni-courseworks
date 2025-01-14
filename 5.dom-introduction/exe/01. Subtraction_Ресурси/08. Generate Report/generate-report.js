@@ -10,7 +10,6 @@ function solve() {
             return { element: inputElement, name: inputElement.name, index: i };
         })
         .filter((object) => object.element.checked);
-    console.log(checkedInputElements);
 
     const result = [...tBodyElements].map((row) => {
         const dataElements = row.querySelectorAll('td');
