@@ -1,3 +1,0 @@
-function attachGradientEvents() {
-    //TODO
-}
