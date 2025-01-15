@@ -4,12 +4,10 @@ function solve() {
     const contentElement = document.getElementById('content');
     const formElement = document.getElementById('task-input');
 
-    const sections = formElement.querySelector('input[type=text]').value.split(', ');
-
     formElement.addEventListener('submit', (e) => {
         e.preventDefault();
 
-
+        const sections = formElement.querySelector('input[type=text]').value.split(', ');
 
         sections.forEach((section) => {
             const pElement = document.createElement('p');
