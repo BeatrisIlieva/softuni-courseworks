@@ -76,7 +76,7 @@ function solve() {
 
         textAreaElement.value = `Bought furniture: ${furnitureNames.join(', ')}\n`;
         textAreaElement.value += `Total price: ${totalPrice}\n`;
-        const averageDecFactor = (totalAverageFactor / furnitureNames.length).toFixed(2)
+        const averageDecFactor = totalAverageFactor / furnitureNames.length;
         textAreaElement.value += `Average decoration factor: ${averageDecFactor}`;
     });
 }
