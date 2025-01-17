@@ -1,3 +1,0 @@
-function getInfo() {
-    // TODO:
-}
