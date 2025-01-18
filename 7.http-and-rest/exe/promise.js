@@ -43,6 +43,22 @@ const groupPromise = Promise.all([
     Promise.resolve('First promise'),
     createTimeoutPromise('Second promise', 3000),
     createTimeoutPromise('Third promise', 1000),
+    Promise.reject('sorry')
 ]);
 
-groupPromise.then((values) => console.log(values));
+groupPromise
+    .then((values) => console.log(values))
+    .catch((error) => console.log(error))
+// ['First promise', 'Second promise', 'Third promise']
+
+const secondGroupPromise = Promise.allSettled([
+    Promise.resolve('First promise'),
+    createTimeoutPromise('Second promise', 3000),
+    createTimeoutPromise('Third promise', 1000),
+    Promise.reject('sorry')
+]);
+
+secondGroupPromise
+    .then((values) => console.log(values))
+    .catch((error) => console.log(error))
+// [{…}, {…}, {…}, {…}]

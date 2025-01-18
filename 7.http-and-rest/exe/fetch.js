@@ -1,5 +1,6 @@
 const url = 'https://swapi.dev/api';
 
+// promise chaining
 // Fetch returns a promise
 fetch(`${url}/people/1`)
     .then((response) => response.json())
