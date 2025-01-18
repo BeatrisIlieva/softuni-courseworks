@@ -15,12 +15,34 @@ const weddingPromise = new Promise((resolve, reject) => {
 // with 'then' we say -> when the promise is fulfilled
 // we pass to then a function that needs to accept a value
 weddingPromise
-    .then((message) => {
-        console.log(message);
+    .then((value) => {
+        console.log(value);
     })
-    .catch((message) => {
-        console.log(message);
+    .catch((reason) => {
+        console.log(reason);
     })
     .finally(() => {
         console.log('Love always win');
-    })
+    });
+
+// Always rejecting promise
+const rejectingPromise = Promise.reject('Next time');
+rejectingPromise.catch((message) => console.log(message));
+
+// Multiple parallel promises
+
+const createTimeoutPromise = function (message, time) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(message);
+        }, time);
+    });
+};
+
+const groupPromise = Promise.all([
+    Promise.resolve('First promise'),
+    createTimeoutPromise('Second promise', 3000),
+    createTimeoutPromise('Third promise', 1000),
+]);
+
+groupPromise.then((values) => console.log(values));

@@ -42,15 +42,11 @@ fetch(`${booksUrl}/385bfc3a-f2bb-4141-aeac-0e7dc96a7fdc`, {
         author: 'C.S.Lewis',
         _id: '385bfc3a-f2bb-4141-aeac-0e7dc96a7fdc',
     }),
-})
-    .then((response) => response.json())
-    .then((result) => console.log(result))
-    .catch((error) => console.log(error));
+});
 
 // DELETE
 fetch(`${booksUrl}/385bfc3a-f2bb-4141-aeac-0e7dc96a7fdc`, {
     method: 'DELETE',
 })
-    .then((response) => response.json())
     .then((result) => console.log(result))
     .catch((error) => console.log(error));
