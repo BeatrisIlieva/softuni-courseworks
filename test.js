@@ -1,3 +1,8 @@
-const array = [1, 2, 3, 4]
-const [a] = array
-console.log(a); 
+let data = {};
+
+const newData = { name: 'peter', age: 12 };
+
+data = {...data, ...newData}
+
+// Object.assign(data, newData);
+console.log(data);
