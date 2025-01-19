@@ -9,13 +9,21 @@ function getInfo() {
     fetch(`${baseUrl}/${stopId}`)
         .then((response) => response.json())
         .then((result) => {
-            return createElement(result, stopNameElement, busesElement);
+            renderBusInfo(result, busesElement);
+            renderStopInfo(result.name, stopNameElement);
+
+            stopIdElement.value = '';
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            renderStopInfo('Error', stopNameElement);
+        });
 }
 
-function renderBusInfo(data, stopNameElement, busesElement) {
-    stopNameElement.textContent = data.name;
+function renderStopInfo(value, stopNameElement) {
+    stopNameElement.textContent = value;
+}
+
+function renderBusInfo(data, busesElement) {
     const buses = data.buses;
 
     for (const busId in buses) {
