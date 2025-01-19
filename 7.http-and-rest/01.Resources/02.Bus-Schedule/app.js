@@ -1,54 +1,34 @@
 function solve() {
-    // const infoElement = document.querySelector('#info .info');
-    // const departInputElement = document.getElementById('depart');
-    // const arriveInputElement = document.getElementById('arrive');
+    const infoElement = document.querySelector('#info .info');
+    const departInputElement = document.getElementById('depart');
+    const arriveInputElement = document.getElementById('arrive');
+    const baseUrl = 'http://localhost:3030/jsonstore/bus/schedule/';
 
-    let currentStop = 'depot';
-    let nextStop = 'depot';
+    let [nextId, location] = ['depot', null];
 
-    function depart() {
-        fetch(`http://localhost:3030/jsonstore/bus/schedule/${currentStop}`)
+    async function depart() {
+        departInputElement.disabled = true;
+        arriveInputElement.disabled = false;
+
+        fetch(`${baseUrl}${nextId}`)
             .then(response => response.json())
             .then(result => {
-                const infoElement = document.querySelector('#info .info');
-                const departInputElement = document.getElementById('depart');
-                const arriveInputElement = document.getElementById('arrive');
-                nextStop = result.next;
+                location = result.name;
+                nextId = result.next;
 
-                infoElement.textContent = `Next stop ${result.name}`;
-                toggleButton(departInputElement);
-                toggleButton(arriveInputElement);
+                infoElement.textContent = `Next stop ${location}`;
             })
             .catch(() => {
-                infoElement.textContent = 'Error';
 
-                toggleButton(departInputElement);
+                infoElement.textContent = 'Error';
             });
     }
 
-    async function arrive() {
-        fetch(`http://localhost:3030/jsonstore/bus/schedule/${currentStop}`)
-            .then(response => response.json())
-            .then(result => {
-                const infoElement = document.querySelector('#info .info');
-                const departInputElement = document.getElementById('depart');
-                const arriveInputElement = document.getElementById('arrive');
-                currentStop = nextStop;
+    function arrive() {
+        departInputElement.disabled = false;
+        arriveInputElement.disabled = true;
 
-                infoElement.textContent = `Arriving at ${result.name}`;
-
-                toggleButton(departInputElement);
-                toggleButton(arriveInputElement);
-            })
-            .catch(() => {
-                infoElement.textContent = 'Error';
-
-                toggleButton(arriveInputElement);
-            });
-    }
-
-    function toggleButton(button) {
-        button.disabled = !button.disabled;
+        infoElement.textContent = `Arriving at ${location}`;
     }
 
     return {
