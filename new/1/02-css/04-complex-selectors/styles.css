@@ -1,0 +1,17 @@
+nav a.bolded {
+    font-size: 24px;
+}
+
+div.special > section {
+    background: lightblue;
+}
+
+
+
+section ~ header {
+    background: pink;
+}
+
+section + header {
+    background: yellow;
+}

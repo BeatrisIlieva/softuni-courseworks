@@ -1,0 +1,26 @@
+/* A compound selector is a sequence of simple selectors that are not separated by a combinator. */
+
+div{
+    margin-bottom: 14px;
+}
+
+
+p.highlighted {
+    color: lightblue;
+    font-size: 26px;
+}
+
+div#special {
+    background: orange;
+    padding: 6px;
+}
+
+a[href^="http"] {
+    color: orange;
+    border-bottom: 1px solid orange;
+    padding-bottom: 2px;
+}
+
+p.fancy.highlighted{
+    background: #000;
+}
