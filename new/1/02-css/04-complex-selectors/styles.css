@@ -8,10 +8,18 @@ div.special > section {
 
 
 
-section ~ header {
+/* section ~ header {
     background: pink;
 }
 
 section + header {
     background: yellow;
+}
+
+h2 ~ p {
+    background: #000;
+} */
+
+header >  p {
+    background: pink;
 }
