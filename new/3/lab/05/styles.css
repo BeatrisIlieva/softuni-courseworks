@@ -1,0 +1,12 @@
+.container {
+    border: 1px solid blue;
+    padding: 2em;
+    width: 300px;
+    display: flex;
+}
+
+.box {
+    background: lightcyan;
+    padding: 1em;
+    border: 1px solid black;
+}

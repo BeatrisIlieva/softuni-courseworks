@@ -1,0 +1,50 @@
+section {
+    margin: 40px 0;
+}
+
+div {
+    padding: 2em;
+    position: relative;
+}
+
+div::before {
+    position: absolute;
+    top: 0.2em;
+    left: 0.2em;
+}
+
+.margin {
+    background: orange;
+}
+
+.margin::before {
+    content: 'margin';
+}
+
+.border {
+    background: lightsalmon;
+}
+
+.border::before {
+    content: 'border';
+}
+
+.padding {
+    background: green;
+}
+
+.padding::before {
+    content: 'padding';
+}
+
+.content {
+    background: lightgoldenrodyellow;
+    text-align: center;
+}
+
+.content::before {
+    content: 'Content';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

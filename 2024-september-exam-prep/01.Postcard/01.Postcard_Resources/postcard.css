@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font: clamp(12px, 1.6vw, 18px)/1.2 'Gochi Hand', sans-serif;
+    color: #333333;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table {
+    font: inherit;
+    color: inherit;
+}
+
+body {
+    background: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 1.6rem; */
+    font-size: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin-bottom: 0.25em;
+}
+
+h1 {
+    font-size: 2.6em;
+}
+h2 {
+    font-size: 2.2em;
+}
+h3 {
+    font-size: 1.8em;
+}
+h4 {
+    font-size: 1.6em;
+}
+h5 {
+    font-size: 1.4em;
+}
+h6 {
+    font-size: 1.2em;
+}
+
+p:not(:last-of-type) {
+    padding-bottom: 0.75em;
+}
+
+.postcard,
+.postcard-top > .message {
+    border: 0.05rem solid #cccccc;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.5em 0 rgb(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.postcard {
+    max-width: 1000px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    gap: 1.4rem;
+}
+
+.postcard p {
+    opacity: 0.7;
+}
+
+.postcard-top {
+    position: relative;
+    padding: 1.4rem 1.4rem 0 1.4rem;
+}
+
+/* .postcard h2 {
+    font-size: 1.5em;
+} */
+
+.postcard-top > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 1em 1em 0 0;
+    overflow: hidden;
+}
+
+.postcard-top > .message {
+    position: absolute;
+    bottom: 0.8rem;
+    left: 3.2rem;
+    right: 3.2rem;
+    background: #f5f5f4;
+    padding: 1rem;
+    text-align: center;
+}
+
+.postcard-bottom {
+    display: flex;
+    flex-direction: column;
+    /* gap: 1em; */
+    padding: 1.4rem 3.2rem;
+    background: #f9f9f9;
+    border-top: 0.05rem solid #d3d3d3;
+}
