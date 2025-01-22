@@ -99,13 +99,8 @@
     flex-wrap: wrap-reverse;
 }
 
-.section.section-main
-    .wrapper
-    > article
-    > section
-    section
-    div.container.justify-content-flex-start {
-    flex-direction: column;
+.section.section-main .wrapper > article > section section div.container.justify-content,
+.section.section-main .wrapper > article > section section div.container.justify-content.center {
     height: 16em;
     position: relative;
 }
@@ -115,18 +110,8 @@
     > article
     > section
     section
-    div.container.justify-content-flex-start::before {
-    position: absolute;
-    top: 60%;
-    left: 60%;
-    transform: translate(-60%, -60%);
-    width: 0.1em;
-    height: 13em;
-    background: var(--clr-red);
-    content: '  Main Axis';
-    white-space: pre;
-    color: var(--clr-red);
-    font-size: 14px;
+    div.container.justify-content.flex-start {
+    flex-direction: column;
 }
 
 .section.section-main
@@ -134,18 +119,56 @@
     > article
     > section
     section
-    div.container.justify-content-flex-start::after {
+    div.container.justify-content.flex-start::before,
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content.center::before {
+    position: absolute;
+    top: 60%;
+    left: 60%;
+    transform: translate(-60%, -60%);
+    width: 0.08em;
+    height: 13em;
+    background: var(--clr-dark-red);
+    content: '  Main Axis';
+    white-space: pre;
+    color: var(--clr-dark-red);
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content.center::before {
+    content: '  Cross Axis';
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content.flex-start::after,
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content.center::after {
     position: absolute;
     top: 54%;
     left: 60%;
     transform: translate(-54%, -60%);
     width: 13em;
-    height: 0.1em;
-    background: var(--clr-red);
+    height: 0.08em;
+    background: var(--clr-dark-red);
     content: '  Cross Axis';
     white-space: pre;
-    color: var(--clr-red);
-    font-size: 14px;
+    color: var(--clr-dark-red);
 }
 
 .section.section-main
@@ -153,7 +176,23 @@
     > article
     > section
     section
-    div.container.justify-content-flex-start
+    div.container.justify-content.center::after {
+    content: '  Main Axis';
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content.flex-start
+    div:first-child,
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content.center
     div:first-child {
     position: relative;
     overflow: visible;
@@ -164,14 +203,39 @@
     > article
     > section
     section
-    div.container.justify-content-flex-start
+    div.container.justify-content.flex-start
+    div:first-child::before,
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content.center
     div:first-child::before {
-        position: absolute;
-        top: 0;
-        left: 4.6em;
-        content: 'Flex-Direction: Column';
-        white-space: pre;
-        font-size: 14px;
+    position: absolute;
+    top: 0;
+    left: 4.6em;
+    content: 'Flex-Direction: Column';
+    white-space: pre;
+    color: var(--clr-dark-purple);
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content.center
+    div:first-child::before {
+    content: 'Flex-Direction: Row';
+    top: 4em;
+    left: -3em;
+    color: var(--clr-dark-purple);
+}
+
+.section.section-main .wrapper > article > section section div.container.justify-content.center {
+    justify-content: center;
+    flex-direction: row;
 }
 
 @media (max-width: 927px) {
