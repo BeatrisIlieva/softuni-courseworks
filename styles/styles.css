@@ -23,6 +23,7 @@
 
 .section.section-main .wrapper > article > section > h3 {
     flex: 1 1 100%;
+    text-align: center;
 }
 
 .section.section-main .wrapper > article > section section {
@@ -30,10 +31,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-content: flex-start;
 }
 
 .section.section-main .wrapper > article > section section > h4 {
     flex: 1 1 100%;
+    text-align: center;
 }
 
 .section.section-main .wrapper > article > section section div.container {
@@ -47,7 +50,6 @@
     padding: 1em;
     gap: 0.5rem;
     align-items: flex-start;
-
 }
 
 .section.section-main .wrapper > article > section section div.container div {
@@ -83,29 +85,14 @@
     flex-flow: column-reverse;
 }
 
-.section.section-main
-    .wrapper
-    > article
-    > section
-    section
-    div.container.flex-wrap-no-wrap {
+.section.section-main .wrapper > article > section section div.container.flex-wrap-no-wrap {
     flex-wrap: nowrap;
 }
 
-.section.section-main
-    .wrapper
-    > article
-    > section
-    section
-    div.container.flex-wrap-wrap {
+.section.section-main .wrapper > article > section section div.container.flex-wrap-wrap {
     flex-wrap: wrap;
 }
 
-.section.section-main
-    .wrapper
-    > article
-    > section
-    section
-    div.container.flex-wrap-wrap-reverse {
+.section.section-main .wrapper > article > section section div.container.flex-wrap-wrap-reverse {
     flex-wrap: wrap-reverse;
 }
