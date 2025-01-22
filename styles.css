@@ -66,14 +66,28 @@
     text-align: center;
 } */
 
+body {
+    background: #fffdf6;
+    padding: 2em;
+}
+
 .flexbox > article {
     display: flex;
     flex-direction: column;
 }
 
+.flexbox > article > h2 {
+    text-align: center;
+}
+
+.flexbox > article > h2:not(:first-child){
+    margin-top: 2em;
+}
+
 .flexbox > article > section {
     display: flex;
     flex-wrap: wrap;
+    gap: 1em;
 }
 
 .flexbox > article > section > h3 {
@@ -94,6 +108,14 @@
     gap: 0.5rem;
 }
 
-.flexbox > article > section section div .flex-direction-row-reverse{
+.flexbox > article > section section div.flex-direction-row-reverse{
     flex-direction: row-reverse;
+}
+
+.flexbox > article > section section div.flex-direction-column{
+    flex-direction: column;
+}
+
+.flexbox > article > section section div.flex-direction-column-reverse{
+    flex-flow: column-reverse;
 }
