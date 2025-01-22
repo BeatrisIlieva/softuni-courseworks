@@ -3,3 +3,15 @@
 html {
     font: clamp(12px, 4dvw, 16px) / 1.4 'Tisa Sans Pro', sans-serif;
 }
+
+h1 {
+    font-size: 1.8em;
+}
+
+h2 {
+    font-size: 1.4em;
+}
+
+h3 {
+    font-size: 1em;
+}
