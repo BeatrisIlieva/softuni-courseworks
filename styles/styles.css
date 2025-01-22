@@ -117,15 +117,16 @@
     section
     div.container.justify-content-flex-start::before {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 60%;
+    left: 60%;
+    transform: translate(-60%, -60%);
     width: 0.1em;
-    height: 10em;
+    height: 13em;
     background: var(--clr-red);
-    content: ' Main Axis';
+    content: '  Main Axis';
     white-space: pre;
     color: var(--clr-red);
+    font-size: 14px;
 }
 
 .section.section-main
@@ -135,13 +136,42 @@
     section
     div.container.justify-content-flex-start::after {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10em;
+    top: 54%;
+    left: 60%;
+    transform: translate(-54%, -60%);
+    width: 13em;
     height: 0.1em;
     background: var(--clr-red);
-    content: '';
+    content: '  Cross Axis';
+    white-space: pre;
+    color: var(--clr-red);
+    font-size: 14px;
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content-flex-start
+    div:first-child {
+    position: relative;
+    overflow: visible;
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content-flex-start
+    div:first-child::before {
+        position: absolute;
+        top: 0;
+        left: 4.6em;
+        content: 'Flex-Direction: Column';
+        white-space: pre;
+        font-size: 14px;
 }
 
 @media (max-width: 927px) {
