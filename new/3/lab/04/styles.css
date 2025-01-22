@@ -10,3 +10,23 @@
     padding: 1em;
     border: 1px solid black;
 }
+
+.container.flex-end {
+    justify-content: flex-end;
+}
+
+.container.center {
+    justify-content: center;
+}
+
+.container.space-evenly {
+    justify-content: space-evenly;
+}
+
+.container.space-around {
+    justify-content: space-around;
+}
+
+.container.space-between {
+    justify-content: space-between;
+}

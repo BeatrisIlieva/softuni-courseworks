@@ -3,10 +3,27 @@
     padding: 2em;
     width: 300px;
     display: flex;
+    height: 300px;
 }
 
 .box {
     background: lightcyan;
     padding: 1em;
     border: 1px solid black;
+}
+
+.container.start {
+    align-items: start;
+}
+
+.container.end {
+    align-items: end;
+}
+
+.container.center {
+    align-items: center;
+}
+
+.container.baseline {
+    align-items: baseline;
 }

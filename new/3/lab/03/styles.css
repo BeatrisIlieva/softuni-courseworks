@@ -10,3 +10,11 @@
     padding: 1em;
     border: 1px solid black;
 }
+
+.container.wrap {
+    flex-wrap: wrap;
+}
+
+.container.wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
