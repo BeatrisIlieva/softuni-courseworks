@@ -28,20 +28,27 @@
 .section.section-main .wrapper > article > section section {
     flex: 0 1 400px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.section.section-main .wrapper > article > section section > h4 {
+    flex: 1 1 100%;
 }
 
 .section.section-main .wrapper > article > section section div.container {
-    max-width: 320px;
+    width: 320px;
+    flex-grow: 0;
+    flex-shrink: 1;
     display: flex;
     background: var(--clr-yellow);
     box-shadow: 0 0 0.5em 0 rgb(0, 0, 0, 0.2);
     border-radius: 0.5rem;
     padding: 1em;
     gap: 0.5rem;
+    align-items: flex-start;
+
 }
-
-
 
 .section.section-main .wrapper > article > section section div.container div {
     padding: 0.75em 1.5em;
