@@ -2,6 +2,7 @@
 
 html {
     font: clamp(12px, 4dvw, 16px) / 1.4 'Tisa Sans Pro', sans-serif;
+    font-variant-caps: small-caps;
 }
 
 h1 {

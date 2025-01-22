@@ -1,14 +1,20 @@
-.section-header,
+body {
+    background: var(--hdr-gradient), var(--sdr-gradient);
+}
+
+/* .section-header,
 .section-footer {
-    background: lightblue;
+    background: var(--hdr-gradient), var(--sdr-gradient);
 }
 
 .section-main {
-    background: pink;
-}
+    background: var(--hdr-gradient), var(--sdr-gradient);
+    
+} */
 
 .section .wrapper {
     max-width: 1200px;
     margin: 0 auto;
     padding: 1em;
 }
+

@@ -35,6 +35,13 @@
     gap: 0.5rem;
 }
 
+.section.section-main .wrapper main > article {
+    background: #fff;
+    padding: 1em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.1);
+}
+
 .section.section-main .wrapper main > article > section section div.flex-direction-row-reverse {
     flex-direction: row-reverse;
 }
