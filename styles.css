@@ -1,55 +1,81 @@
-.section.section-main .wrapper main > article {
+.section.section-main .wrapper > article {
     display: flex;
     flex-direction: column;
+    background: var(--clr-white);
+    padding: 2em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.3);
 }
 
-.section.section-main .wrapper main > article > h2 {
+.section.section-main .wrapper > article > h2 {
     text-align: center;
 }
 
-.section.section-main .wrapper main > article > h2:not(:first-child) {
+.section.section-main .wrapper > article > h2:not(:first-child) {
     margin-top: 2em;
 }
 
-.section.section-main .wrapper main > article > section {
+.section.section-main .wrapper > article > section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.section.section-main .wrapper main > article > section > h3 {
+.section.section-main .wrapper > article > section > h3 {
     flex: 1 1 100%;
 }
 
-.section.section-main .wrapper main > article > section section {
-    flex: 0 1 49%;
+.section.section-main .wrapper > article > section section {
+    flex: 0 1 48.6%;
     display: flex;
     flex-direction: column;
 }
 
-.section.section-main .wrapper main > article > section section div {
+.section.section-main .wrapper > article > section section div.container {
     display: flex;
-    background: #ffecdf;
-    border: 0.05rem dotted pink;
-    padding: 0.75em; 
+    background: var(--clr-yellow);
+    box-shadow: 0 0 0.5em 0 rgb(0, 0, 0, 0.2);
+    border-radius: 0.5rem;
+    padding: 1em;
     gap: 0.5rem;
 }
 
-.section.section-main .wrapper main > article {
-    background: #fff;
-    padding: 1em;
-    border-radius: 0.5em;
-    box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.1);
+.section.section-main .wrapper > article > section section div.container div {
+    padding: 0.75em 1.5em;
+    color: black;
+    background: var(--clr-pink);
+    border: 0.1rem solid var(--clr-violet);
+    border-radius: 0.5rem;
+    overflow: hidden;
 }
 
-.section.section-main .wrapper main > article > section section div.flex-direction-row-reverse {
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.flex-direction-row-reverse {
     flex-direction: row-reverse;
 }
 
-.section.section-main .wrapper main > article > section section div.flex-direction-column {
+.section.section-main .wrapper > article > section section div.container.flex-direction-column {
     flex-direction: column;
 }
 
-.section.section-main .wrapper main > article > section section div.flex-direction-column-reverse {
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.flex-direction-column-reverse {
+    flex-flow: column-reverse;
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.flex-direction-column-reverse {
     flex-flow: column-reverse;
 }
