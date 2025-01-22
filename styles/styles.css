@@ -127,11 +127,11 @@
     section
     div.container.justify-content.center::before {
     position: absolute;
-    top: 60%;
+    top: 70%;
     left: 60%;
-    transform: translate(-60%, -60%);
+    transform: translate(-70%, -60%);
     width: 0.08em;
-    height: 13em;
+    height: 12em;
     background: var(--clr-dark-red);
     content: '  Main Axis';
     white-space: pre;
@@ -160,10 +160,10 @@
     section
     div.container.justify-content.center::after {
     position: absolute;
-    top: 54%;
-    left: 60%;
-    transform: translate(-54%, -60%);
-    width: 13em;
+    top: 60%;
+    left: 70%;
+    transform: translate(-70%, -60%);
+    width: 12em;
     height: 0.08em;
     background: var(--clr-dark-red);
     content: '  Cross Axis';
@@ -217,7 +217,8 @@
     left: 4.6em;
     content: 'Flex-Direction: Column';
     white-space: pre;
-    color: var(--clr-dark-purple);
+    font-weight: 700;
+    color: var(--clr-dark-violet);
 }
 
 .section.section-main
@@ -229,8 +230,9 @@
     div:first-child::before {
     content: 'Flex-Direction: Row';
     top: 4em;
-    left: -3em;
-    color: var(--clr-dark-purple);
+    left: -3.5em;
+    font-weight: 700;
+    color: var(--clr-dark-violet);
 }
 
 .section.section-main .wrapper > article > section section div.container.justify-content.center {
