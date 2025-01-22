@@ -1,0 +1,14 @@
+.section:not(:first-child) {
+    margin-top: 1em;
+}
+
+.section-header,
+.section-footer {
+    background: lightblue;
+}
+
+.section .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1em;
+}
