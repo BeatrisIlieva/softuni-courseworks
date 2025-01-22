@@ -1,20 +1,27 @@
 body {
     background: var(--hdr-gradient), var(--sdr-gradient);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* .section-header,
-.section-footer {
-    background: var(--hdr-gradient), var(--sdr-gradient);
+.section-header {
+    flex-shrink: 0;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
 }
 
 .section-main {
-    background: var(--hdr-gradient), var(--sdr-gradient);
-    
-} */
+    flex: 1 0 auto;
+}
+
+.section-footer {
+    flex-shrink: 0;
+}
 
 .section .wrapper {
     max-width: 1000px;
     margin: 0 auto;
     padding: 1em;
 }
-
