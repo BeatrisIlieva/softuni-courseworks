@@ -240,6 +240,14 @@
     flex-direction: row;
 }
 
+.section.section-main .wrapper > article > section section div.container.flex-end {
+    justify-content: flex-end;
+}
+
+.section.section-main .wrapper > article > section section div.container.space-between {
+    justify-content: space-between;
+}
+
 @media (max-width: 927px) {
     .section.section-main .wrapper > article > section {
         justify-content: center;
