@@ -26,12 +26,13 @@
 }
 
 .section.section-main .wrapper > article > section section {
-    flex: 0 1 48.6%;
+    flex: 0 1 400px;
     display: flex;
     flex-direction: column;
 }
 
 .section.section-main .wrapper > article > section section div.container {
+    max-width: 320px;
     display: flex;
     background: var(--clr-yellow);
     box-shadow: 0 0 0.5em 0 rgb(0, 0, 0, 0.2);
@@ -40,14 +41,17 @@
     gap: 0.5rem;
 }
 
+
+
 .section.section-main .wrapper > article > section section div.container div {
     padding: 0.75em 1.5em;
-    color: black;
+    color: var(--clr-black);
     background: var(--clr-pink);
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 0 0.8em 0 rgb(0, 0, 0, 0.2), 0 0 0.5em 0 rgb(0, 0, 0, 0.2) inset;
-    outline: 0.1em solid white;
+    outline: 0.1em solid var(--clr-white);
+    text-align: center;
 }
 
 .section.section-main
@@ -77,6 +81,24 @@
     > article
     > section
     section
-    div.container.flex-direction-column-reverse {
-    flex-flow: column-reverse;
+    div.container.flex-wrap-no-wrap {
+    flex-wrap: nowrap;
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.flex-wrap-wrap {
+    flex-wrap: wrap;
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.flex-wrap-wrap-reverse {
+    flex-wrap: wrap-reverse;
 }
