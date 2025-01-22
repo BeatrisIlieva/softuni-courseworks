@@ -1,71 +1,3 @@
-/* body {
-    background: #fffdf6;
-    padding: 2em;
-}
-
-.flexbox,
-.flexbox > article section {
-    display: flex;
-    flex-direction: column;
-}
-
-.flexbox {
-    margin: 0 auto;
-    gap: 1.5rem;
-}
-
-.flexbox > article {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2em;
-}
-
-.flexbox > article > h2 {
-    flex: 1 1 100%;
-    text-align: center;
-}
-
-.flexbox > article section {
-    flex: 1 1 40%;
-}
-
-.flexbox > article section h3 {
-    font-weight: 400;
-    font-variant-caps: small-caps;
-}
-
-.flexbox > article section .wrapper,
-.flexbox > article section .wrapper .box {
-    border-radius: 0.5rem;
-}
-
-.flexbox > article section .wrapper {
-    display: flex;
-    flex: 0 1 50%;
-    background: #ffecdf;
-    border: 0.05rem dotted pink;
-    padding: 0.75em;
-    gap: 0.5rem;
-}
-
-.flexbox > article section .wrapper.flex-direction-row-reverse {
-    flex-flow: row-reverse;
-}
-
-.flexbox > article section .wrapper.flex-direction-column {
-    flex-direction: column;
-}
-
-.flexbox > article section .wrapper.flex-direction-column-reverse {
-    flex-flow: column-reverse;
-}
-
-.flexbox > article section .wrapper .box {
-    padding: 0.5em 1em;
-    border: 0.05rem solid gray;
-    text-align: center;
-} */
-
 body {
     background: #fffdf6;
     padding: 2em;
@@ -80,7 +12,7 @@ body {
     text-align: center;
 }
 
-.flexbox > article > h2:not(:first-child){
+.flexbox > article > h2:not(:first-child) {
     margin-top: 2em;
 }
 
@@ -95,7 +27,7 @@ body {
 }
 
 .flexbox > article > section section {
-    flex: 1 1 40%;
+    flex: 0 1 calc(50% - 1em);
     display: flex;
     flex-direction: column;
 }
@@ -108,14 +40,14 @@ body {
     gap: 0.5rem;
 }
 
-.flexbox > article > section section div.flex-direction-row-reverse{
+.flexbox > article > section section div.flex-direction-row-reverse {
     flex-direction: row-reverse;
 }
 
-.flexbox > article > section section div.flex-direction-column{
+.flexbox > article > section section div.flex-direction-column {
     flex-direction: column;
 }
 
-.flexbox > article > section section div.flex-direction-column-reverse{
+.flexbox > article > section section div.flex-direction-column-reverse {
     flex-flow: column-reverse;
 }
