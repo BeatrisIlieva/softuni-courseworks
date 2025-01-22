@@ -5,6 +5,7 @@
     padding: 2em;
     border-radius: 0.5em;
     box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.3);
+    gap: 2em;
 }
 
 .section.section-main .wrapper > article > h2 {
@@ -19,6 +20,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 2em;
 }
 
 .section.section-main .wrapper > article > section > h3 {
@@ -27,7 +29,7 @@
 }
 
 .section.section-main .wrapper > article > section section {
-    flex: 0 1 400px;
+    flex: 0 1 25em;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -40,7 +42,7 @@
 }
 
 .section.section-main .wrapper > article > section section div.container {
-    width: 320px;
+    width: 19em;
     flex-grow: 0;
     flex-shrink: 1;
     display: flex;
@@ -53,7 +55,7 @@
 }
 
 .section.section-main .wrapper > article > section section div.container div {
-    padding: 0.75em 1.5em;
+    padding: 0.5em 1.4em;
     color: var(--clr-black);
     background: var(--clr-pink);
     border-radius: 0.5rem;
@@ -61,6 +63,7 @@
     box-shadow: 0 0 0.8em 0 rgb(0, 0, 0, 0.2), 0 0 0.5em 0 rgb(0, 0, 0, 0.2) inset;
     outline: 0.1em solid var(--clr-white);
     text-align: center;
+    align-items: stretch;
 }
 
 .section.section-main
@@ -95,4 +98,22 @@
 
 .section.section-main .wrapper > article > section section div.container.flex-wrap-wrap-reverse {
     flex-wrap: wrap-reverse;
+}
+
+@media (max-width: 927px) {
+    .section.section-main .wrapper > article > section {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 565px) {
+    .section.section-main .wrapper > article > h2,
+    .section.section-main .wrapper > article > section > h3,
+    .section.section-main .wrapper > article > section section > h4 {
+        text-align: left;
+    }
+
+    .section.section-main .wrapper > article > section section {
+        justify-content: flex-start;
+    }
 }
