@@ -1,10 +1,10 @@
-.section:not(:first-child) {
-    margin-top: 1em;
-}
-
 .section-header,
 .section-footer {
     background: lightblue;
+}
+
+.section-main {
+    background: pink;
 }
 
 .section .wrapper {
