@@ -256,6 +256,14 @@
     justify-content: space-evenly;
 }
 
+.section.section-main .wrapper > article > section section div.container.align-items {
+    height: 8em;
+}
+
+.section.section-main .wrapper > article > section section div.container.align-items.stretch {
+    align-items: stretch;
+}
+
 @media (max-width: 927px) {
     .section.section-main .wrapper > article > section {
         justify-content: center;
