@@ -42,7 +42,7 @@
 }
 
 .section.section-main .wrapper > article > section section div.container {
-    width: 19em;
+    width: 18em;
     flex-grow: 0;
     flex-shrink: 1;
     display: flex;
@@ -63,7 +63,6 @@
     box-shadow: 0 0 0.8em 0 rgb(0, 0, 0, 0.2), 0 0 0.5em 0 rgb(0, 0, 0, 0.2) inset;
     outline: 0.1em solid var(--clr-white);
     text-align: center;
-    align-items: stretch;
 }
 
 .section.section-main
@@ -98,6 +97,51 @@
 
 .section.section-main .wrapper > article > section section div.container.flex-wrap-wrap-reverse {
     flex-wrap: wrap-reverse;
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content-flex-start {
+    flex-direction: column;
+    height: 16em;
+    position: relative;
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content-flex-start::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.1em;
+    height: 10em;
+    background: var(--clr-red);
+    content: ' Main Axis';
+    white-space: pre;
+    color: var(--clr-red);
+}
+
+.section.section-main
+    .wrapper
+    > article
+    > section
+    section
+    div.container.justify-content-flex-start::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10em;
+    height: 0.1em;
+    background: var(--clr-red);
+    content: '';
 }
 
 @media (max-width: 927px) {
