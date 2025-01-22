@@ -248,6 +248,14 @@
     justify-content: space-between;
 }
 
+.section.section-main .wrapper > article > section section div.container.space-around {
+    justify-content: space-around;
+}
+
+.section.section-main .wrapper > article > section section div.container.space-evenly {
+    justify-content: space-evenly;
+}
+
 @media (max-width: 927px) {
     .section.section-main .wrapper > article > section {
         justify-content: center;
