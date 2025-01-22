@@ -4,55 +4,65 @@ body {
 }
 
 .flexbox,
-.flexbox .section {
+.flexbox > article section {
     display: flex;
     flex-direction: column;
 }
 
 .flexbox {
-    max-width: 50dvw;
     margin: 0 auto;
     gap: 1.5rem;
 }
 
-.flexbox .section {
-    gap: 0.25rem;
+.flexbox > article {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
 }
 
-.flexbox .section h2 {
+.flexbox > article > h2 {
+    flex: 1 1 100%;
+    text-align: center;
+}
+
+.flexbox > article section {
+    flex: 1 1 40%;
+}
+
+.flexbox > article section h3 {
     font-weight: 400;
     font-size: 1.2em;
     font-variant-caps: small-caps;
 }
 
-.flexbox .section .wrapper,
-.flexbox .section .wrapper .box {
+.flexbox > article section .wrapper,
+.flexbox > article section .wrapper .box {
     border-radius: 0.5rem;
 }
 
-.flexbox .section .wrapper {
+.flexbox > article section .wrapper {
     display: flex;
     flex: 0 1 50%;
     background: #ffecdf;
     border: 0.05rem dotted pink;
-    padding: 1em;
+    padding: 0.75em;
     gap: 0.5rem;
 }
 
-.flexbox .section .wrapper.flex-direction-row-reverse {
+.flexbox > article section .wrapper.flex-direction-row-reverse {
     flex-flow: row-reverse;
 }
 
-.flexbox .section .wrapper.flex-direction-column {
+.flexbox > article section .wrapper.flex-direction-column {
     flex-direction: column;
 }
 
-.flexbox .section .wrapper.flex-direction-column-reverse {
+.flexbox > article section .wrapper.flex-direction-column-reverse {
     flex-flow: column-reverse;
 }
 
-.flexbox .section .wrapper .box {
-    padding: 1em;
+.flexbox > article section .wrapper .box {
+    padding: 0.5em 1em;
     border: 0.05rem solid gray;
     text-align: center;
 }
