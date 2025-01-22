@@ -264,6 +264,14 @@
     align-items: stretch;
 }
 
+.section.section-main .wrapper > article > section section div.container.align-items.flex-start {
+    align-items: flex-start;
+}
+
+.section.section-main .wrapper > article > section section div.container.align-items.center {
+    align-items: center;
+}
+
 @media (max-width: 927px) {
     .section.section-main .wrapper > article > section {
         justify-content: center;
