@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/typography.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/main.css">
     <title>Flexbox</title>
 </head>
@@ -17,32 +18,17 @@
             <nav class="main-nav">
                 <ul>
                     <li>
-                        Properties
+                        <a href="">Properties</a>
                         <ul>
                             <li>
-                                Parent
+                                <a href="">Parent</a>
                                 <ul>
-                                    <li>
-                                        Flex-Direction
-                                        <ul>
-                                            <li>Row</li>
-                                            <li>Row-Reverse</li>
-                                            <li>Column</li>
-                                            <li>Column-Reverse</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        Flex-Wrap
-                                        <ul>
-                                            <li>No-Wrap</li>
-                                            <li>Wrap</li>
-                                            <li>Wrap-Reverse</li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="#flex-direction">Flex-Direction</a></li>
+                                    <li><a href="#flex-wrap">Flex-Wrap</a></li>
                                 </ul>
                             </li>
                             <li>
-                                Children
+                                <a href="">Children</a>
                                 <ul></ul>
                             </li>
                         </ul>
@@ -56,7 +42,7 @@
         <div class="wrapper">
             <article>
                 <h2>Parent Properties</h2>
-                <section>   
+                <section id="flex-direction">   
                     <h3>Flex Direction</h3>
                     <section id="special">
                         <h4>Flex-Direction: Row (Default)</h4>
@@ -95,7 +81,7 @@
                         </div>
                     </section>
                 </section>
-                <section>   
+                <section id="flex-wrap">   
                     <h3>Flex Wrap</h3>
                     <section>
                         <h4>Flex-Wrap: No-Wrap (Default)</h4>
