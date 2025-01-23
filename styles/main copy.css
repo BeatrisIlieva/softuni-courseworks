@@ -358,18 +358,6 @@
     z-index: 10;
 }
 
-section#special {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-details p{
-    position: absolute;
-    top: 100%;
-    left: 0;
-}
-
 @media (max-width: 927px) {
     .section.section-main .wrapper > article > section {
         justify-content: center;
