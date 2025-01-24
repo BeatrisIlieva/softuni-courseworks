@@ -10,3 +10,21 @@
     padding: 1em;
     border: 1px solid black;
 }
+
+.container.grow1 .box {
+    flex-grow: 1;
+}
+.container.second .box:nth-child(2) {
+    flex-grow: 1;
+}
+.container.proportionaly .box:nth-child(1) {
+    flex-grow: 1;
+}
+
+.container.proportionaly .box:nth-child(2) {
+    flex-grow: 2;
+}
+
+.container.proportionaly .box:nth-child(3) {
+    flex-grow: 3;
+}

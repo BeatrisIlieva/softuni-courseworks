@@ -9,4 +9,15 @@
     background: lightcyan;
     padding: 1em;
     border: 1px solid black;
+    flex-basis: 300px;
 }
+
+.container.shrink .box{
+    flex-shrink: 0;
+}
+
+.container.second .box:not(:nth-child(2)){
+    flex-shrink: 0;
+}
+
+

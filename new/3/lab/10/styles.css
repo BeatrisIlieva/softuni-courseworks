@@ -1,7 +1,7 @@
 .container {
     border: 1px solid blue;
     padding: 2em;
-    width: 300px;
+    width: 500px;
     display: flex;
 }
 
@@ -9,4 +9,13 @@
     background: lightcyan;
     padding: 1em;
     border: 1px solid black;
+    flex-basis: 5em;    
+}
+
+.container.shrink .box {
+    flex-shrink: 0;
+}
+
+.container.grow .box {
+    flex-grow: 1;
 }
