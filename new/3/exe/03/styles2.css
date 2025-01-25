@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    background: white;
+}
+.container > * {
+    border: 1px solid gray;
+    text-align: center;
+}
+
+.container main {
+    flex-grow: 3;
+    border: 1px solid gray;
+}
+
+main .label {
+    padding: 1em; 
+    border: 1px solid gray;
+}
+
+main .row {
+    display: flex;
+}
+
+main .row p {
+    flex-grow: 1;
+    border: 1px solid gray;
+    padding: 1em;
+}
+
+.container aside {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container aside div {
+    flex-grow: 1;
+    border: 1px solid gray;
+}
