@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    /* --border-radius:;
+    --box-shadow:; */
+
+    --clr-white: #fff;
+    --clr-pink: #f195b2;
+    --clr-light-blue: #c8e7f8;
+    --clr-dark-blue: #62c3e7;
+    --clr-dark-gray: #555555;
+
+    --border-radius: 3rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+li,
+img,
+a {
+    display: block;
+}
+
+html {
+    box-sizing: border-box;
+    font: 14px/1.4 Poppins, sans-serif;
+    color: var(--clr-dark-gray);
+}
+
+@media (min-width: 1500px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1700px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1900px) {
+    html {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 2200px) {
+    html {
+        font-size: 26px;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: 3.8em;
+}
+
+h2 {
+    font-size: 2.2em;
+}
+
+h3 {
+    font-size: 1.8em;
+}
+
+h4 {
+    font-size: 1.6em;
+}
+
+h5 {
+    font-size: 1.4em;
+}
+
+h6 {
+    font-size: 1.2em;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.site-layout {
+    padding: 0 clamp(2dvw, calc((100dvw - 1400px) / 2), calc(100dvw / 2));
+    z-index: 30;
+}
+
+.btn {
+    all: unset;
+    border-radius: var(--border-radius);
+    background: var(--clr-pink);
+    width: fit-content;
+    padding: 0.5em 1.25em;
+    color: var(--clr-white);
+}
+
+.btn.blue {
+    background: var(--clr-dark-blue);
+}
+
+header.site-layout {
+    background: var(--clr-pink);
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+header.site-layout nav > ul {
+    display: flex;
+    gap: 2em;
+}
+
+header.site-layout a {
+    text-decoration: none;
+}
+
+header .header-top {
+    color: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    align-items: center;
+    padding-top: 1em;
+    margin-bottom: 0.75em;
+}
+
+.header-top .support-nav li {
+    position: relative;
+}
+
+.header-top .support-nav li::after {
+    position: absolute;
+    top: 0.2em;
+    right: -1em;
+    content: '';
+    width: 0.1em;
+    height: 1em;
+    background: var(--clr-white);
+    margin-left: 20px;
+}
+
+.header-top .support-nav li:last-child::after {
+    display: none;
+}
+
+header .header-bottom {
+    display: flex;
+    gap: 2em;
+    background: var(--clr-white);
+    justify-content: center;
+    border-radius: var(--border-radius);
+    align-items: center;
+    font-weight: 700;
+}
+
+.logo {
+    font-size: 3em;
+    padding: 0 0.75em;
+    color: var(--clr-pink);
+}
+
+.logo > span span {
+    color: var(--clr-dark-blue);
+}
+
+main.site-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-white);
+    text-align: center;
+    background-image: url('images/carousel-1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    flex-grow: 1;
+    z-index: 2;
+    padding: 6em 0;
+}
+
+main.site-layout::after {
+    position: absolute;
+    content: '';
+    inset: 0;
+    background: #000;
+    opacity: 0.3;
+    z-index: 0;
+    display: block;
+}
+
+main.site-layout > * {
+    z-index: 30;
+}
+
+main.site-layout h1 {
+    font-weight: 700;
+    max-width: 16ch;
+}
+
+main.site-layout h3 {
+    font-weight: 500;
+}
+
+aside.site-layout {
+    background: var(--clr-light-blue);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    column-gap: 2em;
+}
+
+aside.site-layout .text,
+aside.site-layout .image {
+    flex: 1 1 30%;
+    padding-bottom: 4rem;
+}
+
+aside.site-layout .text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    padding-top: 3em;
+}
+
+aside.site-layout h2 {
+    flex: 0 1 100%;
+    padding-top: 5rem;
+    font-weight: 700;
+    position: relative;
+    text-align: center;
+}
+
+aside.site-layout h2::before {
+    position: absolute;
+    content: '';
+    width: 3em;
+    height: 0.15em;
+    background: var(--clr-pink);
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+aside.site-layout .image {
+    display: flex;
+    border-radius: 0.3em;
+    overflow: hidden;
+}
+
+aside.site-layout .image img {
+    width: 100%;
+    height: auto;
+}
+
+aside.site-layout h4 {
+    font-weight: 600;
+}
+
+aside.site-layout p.highlighted {
+    font-weight: 600;
+}
+aside.site-layout p {
+    opacity: 0.7;
+}
+
+aside.site-layout ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+aside.site-layout ul li {
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+aside.site-layout ul li i {
+    color: var(--clr-dark-blue);
+    padding-right: 0.5em;
+}
+
+footer.site-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    align-items: center;
+    padding-bottom: 4em;
+}
+
+footer.site-layout .logo {
+}
+
+footer.site-layout .socials {
+    display: flex;
+    gap: 0.25em;
+}
+
+footer.site-layout .socials li {
+    border: 0.11em solid var(--clr-light-blue);
+    border-radius: 50%;
+    display: flex;
+    flex: 1 1 15%;
+    padding: 0.75em;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+footer.site-layout .socials li i {
+    color: var(--clr-dark-blue);
+}
+
+footer.site-layout .contacts {
+    display: flex;
+    gap: 2rem;
+}
+
+footer.site-layout .contacts h5 {
+    font-size: 1em;
+    font-weight: 700;
+}
+
+footer.site-layout .contacts p {
+    opacity: 0.7;
+    font-weight: 200;
+}
+
+footer.site-layout .contacts div:first-child {
+    position: relative;
+}
+
+footer.site-layout .contacts div:first-child::after {
+    position: absolute;
+    top: 0;
+    right: -1rem;
+    background: var(--clr-dark-gray);
+    height: 6em;
+    width: 0.09rem;
+    content: '';
+}
+
+footer.site-layout p + p {
+    margin-top: 0.5em;
+}
+
+footer.site-layout p span {
+    color: var(--clr-pink);
+}
