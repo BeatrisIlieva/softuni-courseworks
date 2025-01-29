@@ -1,0 +1,88 @@
+@import url('');
+
+:root {
+    /* --border-radius:;
+    --box-shadow:; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+li,
+img,
+a {
+    display: block;
+}
+
+html {
+    box-sizing: border-box;
+    /* font: 16px/1.5 Margarine, sans-serif; */
+    /* color: var(--clr-text); */
+}
+
+h1 {
+    font-size: 3.2em;
+}
+
+h2 {
+    font-size: 2.4em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.6em;
+}
+
+h5 {
+    font-size: 1.4em;
+}
+
+h6 {
+    font-size: 1.2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin-bottom: 0.5em;
+}
+
+body {
+    min-height: 100dvh;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.site-layout {
+    /* padding: 0 clamp(2dvh, calc((100dvw - 1366px) / 2), calc(100dvw / 2)); */
+}

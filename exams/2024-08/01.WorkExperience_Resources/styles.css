@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Margarine&display=swap');
+
+:root {
+    --clr-blue: #2991e6;
+    --clr-border: #9a9a9a;
+    --clr-background: #fff0e4;
+    --clr-text: #000;
+    --clr-white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+li,
+img,
+a {
+    display: block;
+}
+
+html {
+    box-sizing: border-box;
+    font: 16px/1.5 Margarine, sans-serif;
+    color: var(--clr-text);
+}
+
+h2 {
+    font-size: 2.4em;
+}
+
+h4 {
+    font-size: 1.6em;
+}
+
+h2,
+h4 {
+    font-weight: normal;
+}
+
+h2 {
+    margin-bottom: 1em;
+}
+
+h4 {
+    opacity: 0.6;
+}
+
+body {
+    min-height: 100dvh;
+    background: var(--clr-background);
+    padding: 8em 0;
+}
+
+.site-layout {
+    padding: 0 clamp(2dvh, calc((100dvw - 1366px) / 2), calc(100dvw / 2));
+    display: flex;
+    gap: 2em;
+}
+
+.wrapper {
+    background: var(--clr-background);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper.left {
+    padding: 1em;
+    flex: 0 1 33%;
+}
+
+.wrapper.right {
+    padding: 4em 2em 2em 2em;
+    flex: 0 1 65%;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.list.small-gap {
+    gap: 1em;
+}
+
+.list.larger-gap {
+    gap: 2em;
+}
+
+.list li {
+    display: flex;
+    gap: 1em;
+}
+
+.wrapper > .list > li + li {
+    /* border-top: 2px solid black; */
+}
+
+.wrapper > .list > li + li {
+    position: relative;
+}
+
+.wrapper > .list > li + li::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 0.05em;
+    top: -1em;
+    left: 0;
+    background: var(--clr-border);
+}
+
+.list li.skills {
+    flex-direction: column;
+}
+
+.highlighted {
+    color: var(--clr-blue);
+}
+
+div.highlighted {
+    color: var(--clr-white);
+    background: var(--clr-blue);
+    border-radius: 5rem;
+    padding: 0.1em;
+    text-align: center;
+}
+
+div.highlighted.width-90 {
+    width: 90%;
+}
+
+div.highlighted.width-80 {
+    width: 80%;
+}
+
+div.highlighted.width-75 {
+    width: 75%;
+}
+
+div.highlighted.width-50 {
+    width: 50%;
+}
+
+.wrapper.right h2 {
+    text-align: center;
+}
