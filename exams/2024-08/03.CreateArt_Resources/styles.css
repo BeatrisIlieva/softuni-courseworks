@@ -131,6 +131,20 @@ p {
     padding-bottom: 2em;
 }
 
+textarea {
+    margin-top: 1em;
+}
+
+input,
+textarea {
+    outline: none;
+    border: none;
+    background: var(--clr-blue);
+    border-radius: 1em;
+    padding: 0.5em;
+    color: var(--clr-white);
+}
+
 .site-layout {
     padding: 0 clamp(2dvh, calc((100dvw - 1465px) / 2), calc(100dvw / 2));
 }
@@ -150,12 +164,13 @@ header.site-layout {
     border-radius: 0.3em;
 }
 
-.main-nav ul{
+.main-nav ul {
     display: flex;
     gap: 1.5em;
 }
 
-.btn, .main-nav {
+.btn,
+.main-nav {
     all: unset;
     font-family: 'Roboto';
     color: var(--clr-blue);
@@ -164,7 +179,7 @@ header.site-layout {
     font-weight: 700;
 }
 
-.main-nav ul li:first-child{
+.main-nav ul li:first-child {
     color: var(--clr-red);
 }
 
@@ -213,7 +228,6 @@ footer.site-layout {
     margin-top: 2em;
 }
 
-
 .section .thumbnail img {
     width: 100%;
     height: auto;
@@ -254,7 +268,7 @@ footer.site-layout {
 }
 
 .text-wrapper {
-    max-width: 66ch;
+    max-width: 56ch;
     text-align: center;
 }
 
@@ -270,6 +284,37 @@ footer.site-layout {
     color: var(--clr-dark-gray);
 }
 
-.section-info, .section-hero {
+.section-info,
+.section-hero {
     margin: 0 1em 1em 1em;
+}
+
+.section.section-contacts {
+    flex-grow: 1;
+}
+
+.section.section-contacts form {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.section.section-contacts form .field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.section.section-contacts form .field label {
+    order: -1;
+    position: absolute;
+    top: 0.4em;
+    left: 0.5em;
+    color: var(--clr-white);
+}
+
+.section.section-contacts form {
+    width: 100%;
 }

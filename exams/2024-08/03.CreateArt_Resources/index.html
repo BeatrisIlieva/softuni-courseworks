@@ -53,12 +53,11 @@
     </section>
     
     <main class="site-layout">
-        
-        
         <section class="section section-about">
             <div class="thumbnail">
                 <img src="images/company.jpg" alt="company">
             </div>
+
             <div class="text-wrapper">
                 <h6 class="highlighted">OUR COMPANY</h6>
                 <h2 class="title">Some Fine<br>Words About Us</h2>
@@ -66,9 +65,25 @@
             </div>
         </section>
         
-        <section class="section-contacts">
+        <section class="site-layout section section-contacts">
             <h6 class="highlighted">CONTACT US</h6>
             <h2 class="title">Get in Touch</h2>
+
+            <form action="#" method="POST">
+                <div class="field">
+                    <input type="email" name="email" id="email">
+                    <label for="email">Your Email</label>
+                </div>
+
+                <div class="field">
+                    <input type="text" name="subject" id="subject">
+                    <label for="subject">Subject</label>
+                </div>
+
+                <div class="field">
+                    <textarea name="message" id="message" rows="6" cols="">Message here...</textarea>
+                </div>
+            </form>
         </section>
     </main>
     
