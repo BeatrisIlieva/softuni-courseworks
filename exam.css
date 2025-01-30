@@ -34,6 +34,11 @@ a {
     display: block;
 }
 
+img {
+    width: 100%;
+    height: auto;
+}
+
 html {
     box-sizing: border-box;
     /* font: 12px/1.5 Poppins, sans-serif; */
@@ -52,9 +57,15 @@ html {
     }
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 1600px) {
     html {
         font-size: 18px;
+    }
+}
+
+@media (min-width: 1900px) {
+    html {
+        font-size: 22px;
     }
 }
 
@@ -107,3 +118,7 @@ body {
 /* .site-layout {
     padding: 0 clamp(2dvh, calc((100dvw - 1805px) / 2), calc(100dvw / 2));
 } */
+
+.thumbnail {
+    display: flex;
+}
