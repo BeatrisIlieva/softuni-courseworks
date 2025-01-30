@@ -9,6 +9,7 @@
     --clr-form-background: #24333c;
     --clr-form-text-color: #8e989e;
     --clr-body-background: #c1bdba;
+    --clr-input-border: #a0b3b0;
 }
 
 * {
@@ -113,19 +114,84 @@ body {
 
 .site-layout {
     padding: 2em clamp(2dvh, calc((100dvw - 744px) / 2), calc(100dvw / 2));
+    font-size: 1.1em;
+}
+
+.form-wrapper {
     display: flex;
     flex-wrap: wrap;
+    background: var(--clr-form-background);
+    padding: 2.25em;
 }
 
 button {
+    all: unset;
     flex: 1 1 50%;
+    background: var(--clr-not-hovered);
+    color: var(--clr-not-hovered-text-color);
+    padding: 0.75em 0;
+    text-align: center;
+}
+
+button.active {
+    background: var(--clr-green);
+    color: var(--clr-white);
+}
+
+button:hover {
+    background: var(--clr-hovered);
+    color: var(--clr-white);
 }
 
 fieldset {
     display: flex;
     border: none;
-    justify-content: center;
     flex-wrap: wrap;
+    row-gap: 2.25em;
+    column-gap: 1.25em;
+}
+
+legend {
+    text-align: center;
+    padding: 1em 0;
+    font-size: 2em;
+}
+
+.field {
+    display: flex;
+    position: relative;
+}
+
+label {
+    order: -1;
+    position: absolute;
+    top: 0.25em;
+    left: 0.5em;
+    color: var(--clr-form-text-color);
+}
+
+label::after {
+    content: '*';
+    color: var(--clr-green);
+    top: 0;
+    left: 0;
+}
+
+input {
+    width: 100%;
+    background: transparent;
+    border: 0.03em solid var(--clr-input-border);
+    padding: 0.25em 0;
+}
+
+input[type='submit'] {
+    padding: 0.5em 0;
+    background: var(--clr-green);
+    border: none;
+    font-weight: 600;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
 }
 
 .field,
