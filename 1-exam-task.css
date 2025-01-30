@@ -39,8 +39,32 @@ a {
 
 html {
     box-sizing: border-box;
-    /* font: 16px/1.5 Margarine, sans-serif; */
+    /* font: 12px/1.5 Margarine, sans-serif; */
     /* color: var(--clr-text); */
+}
+
+@media (min-width: 360px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 800px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1800px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 2200px) {
+    html {
+        font-size: 20px;
+    }
 }
 
 h1 {

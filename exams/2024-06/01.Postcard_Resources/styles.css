@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
+:root {
+    /* --border-radius:;
+    --box-shadow:; */
+
+    --clr-white: #fff;
+    --clr-body-background: #e0e0e0;
+    --clr-message-background: #f6f6f5;
+    --clr-footer-background: #f9f9f9;
+    --clr-gray-border: #d3d3d3;
+    --clr-dark-gray: #333333;
+
+    --border-radius: 1rem;
+    --box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+li,
+img,
+a {
+    display: block;
+}
+
+html {
+    box-sizing: border-box;
+    font: 12px/1.1 'Gochi Hand', sans-serif;
+    color: var(--clr-dark-gray);
+}
+
+@media (min-width: 360px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 800px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1800px) {
+    html {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 2200px) {
+    html {
+        font-size: 19px;
+    }
+}
+
+h2 {
+    font-size: 1.6em;
+    margin-bottom: 0.4em;
+    font-weight: 700;
+}
+
+body {
+    min-height: 100dvh;
+    padding: 2em clamp(2dvh, calc((100dvw - 995px) / 2), calc(100dvw / 2));
+    background: var(--clr-body-background);
+    display: flex;
+}
+
+.site-layout {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--box-shadow);
+}
+
+main {
+    background: var(--clr-white);
+    flex-grow: 3;
+    padding: 1.5em;
+    display: flex;
+}
+
+.wrapper {
+    background-image: url(images/nature.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.message {
+    align-self: flex-end;
+    background: var(--clr-message-background);
+    margin: 0 1.5em 1em 1.5em;
+    overflow: hidden;
+    padding: 1.25em;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.message h2 {
+    text-align: center;
+}
+
+.message p {
+    opacity: 0.7;
+    font-weight: 700;
+    text-align: center;
+    max-width: 85ch;
+}
+
+footer {
+    background-color: var(--clr-footer-background);
+    padding: 2em 0 2.5em 3em;
+    border-top: 0.05em solid var(--clr-gray-border);
+}
+
+footer h2 {
+    margin-bottom: 0.75em;
+}
+
+footer ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    opacity: 0.7;
+}
