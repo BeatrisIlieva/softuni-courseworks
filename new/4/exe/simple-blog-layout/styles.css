@@ -1,0 +1,48 @@
+.site {
+    background: #fff;
+    padding: 2em;
+    max-width: 60em;
+    /* 60em * 16px -> 960px*/
+    margin: 0 auto;
+}
+
+.site-header,
+.content-main,
+.content-aside,
+.site-footer {
+    border: 2px solid #ccc;
+    padding: 1.5em 2em;
+}
+
+.site-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 1em 0;
+}
+
+.content-main {
+    flex: 1 1 400px;
+}
+
+.content-aside {
+    flex: 1 1 200px;
+}
+
+
+
+/* @media (max-width: 800px) {
+    .site-content {
+        display: flex;
+        gap: 1em;
+    }
+
+    .content-main {
+        flex-basis: 200px;
+        flex-grow: 1;
+    }
+
+    .content-aside {
+        flex-basis: 200px;
+    }
+} */

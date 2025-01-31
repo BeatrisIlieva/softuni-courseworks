@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.site-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+[class^='content'] {
+    padding: 2em;
+    border: 1px solid gray;
+}
+
+.content-main,
+.content-aside,
+.content-footer {
+    margin-top: 2em;
+}
+
+@media (min-width: 800px) {
+    main {
+        display: flex;
+        gap: 2em;
+    }
+
+    .content-main {
+        flex: 1 1 auto;
+    }
+
+    .content-aside {
+        flex: 0 1 200px;
+    }
+}

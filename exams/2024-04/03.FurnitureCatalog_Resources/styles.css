@@ -270,3 +270,17 @@ figcaption {
     max-width: 20ch;
     text-align: left;
 }
+
+.section-furniture {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.section-furniture .furniture-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-furniture .furniture-card .thumbnail {
+    /* flex: 0 1 30%; */
+}
