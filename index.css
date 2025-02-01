@@ -1,0 +1,22 @@
+:root {
+    interpolate-size: allow-keywords;
+}
+
+details {
+    overflow: hidden;
+}
+
+
+
+details::details-content {
+    font-size: 0.9em;
+    block-size: 0;
+    transition: block-size 1s;
+
+    transition:  content-visibility 1s, block-size 1s;
+transition-behavior: allow-discrete;
+}
+
+details[open]::details-content {
+    block-size: auto;
+}
