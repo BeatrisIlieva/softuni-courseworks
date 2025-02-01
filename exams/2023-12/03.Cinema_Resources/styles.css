@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+
+:root {
+    --clr-white: #fff;
+    --clr-black: #000;
+
+    --clr-dark-bg: #353434;
+    --clr-light-green: #56dbb1;
+    --clr-dark-green: #1b9772;
+    --clr-brown: #974d1b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+img,
+a {
+    display: block;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+html {
+    box-sizing: border-box;
+    font: 12px/1.5 Ubuntu, sans-serif;
+}
+
+@media (min-width: 360px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 800px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1600px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1900px) {
+    html {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 2200px) {
+    html {
+        font-size: 26px;
+    }
+}
+
+h1 {
+    font-size: 3.2em;
+}
+
+h2 {
+    font-size: 2.4em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.6em;
+}
+
+h5 {
+    font-size: 1.4em;
+}
+
+h6 {
+    font-size: 1.2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin-bottom: 0.5em;
+}
+
+body {
+    min-height: 100dvh;
+    background: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 0 clamp(2dvh, calc((100dvw - 1800px) / 2), calc(100dvw / 2));
+}
+
+main > *,
+footer {
+    padding: 0 clamp(2dvh, calc((100dvw - 1570px) / 2), calc(100dvw / 2));
+}
+
+main {
+    flex-grow: 1;
+}
+
+.media {
+    display: flex;
+}
+
+section.intro {
+    background: var(--clr-light-green);
+}
+
+section.intro p {
+    text-align: center;
+    color: var(--clr-black);
+}
+
+section.features {
+    display: flex;
+    gap: 2em;
+    background: var(--clr-dark-bg);
+}
+
+section.action {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    background: var(--clr-dark-green);
+}
