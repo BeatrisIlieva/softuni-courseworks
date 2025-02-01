@@ -1,0 +1,139 @@
+@media (max-width: 600px) {
+    .placeholder {
+        height: 160px;
+    }
+
+    .parallax-window {
+        height: auto;
+        position: static;
+    }
+
+    .tm-header-inner {
+        justify-content: center;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tm-header {
+        position: static;
+    }
+
+    .tm-welcome-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2em 0;
+    }
+
+    .tm-site-logo {
+        width: 60px;
+    }
+
+    .tm-site-title {
+        font-size: 1.7rem;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .tm-site-description {
+        font-size: 0.9rem;
+        padding-right: 10px;
+    }
+
+    .tm-nav {
+        margin-top: 20px;
+    }
+
+    .tm-nav a {
+        font-size: 12px;
+    }
+
+    .text-center {
+        max-width: 40ch;
+    }
+
+    .tm-section-title {
+        margin-left: 0;
+        max-width: 16ch;
+        text-align: center;
+    }
+
+    .row {
+        flex-wrap: unset;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    .tm-description-figure {
+        display: flex;
+    }
+
+    .img-fluid {
+        width: 100%;
+    }
+
+    .col-lg-3,
+    .col-md-4,
+    .col-md-6,
+    .col-sm-6,
+    .col-12 {
+        padding: 0;
+        position: static;
+    }
+
+    .tm-gallery-page {
+        margin: 0;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tm-gallery-item {
+        max-width: unset;
+        display: flex;
+    }
+
+    .tm-gallery-item figure {
+        display: flex;
+        flex-direction: column;
+        /* max-width: 420px; */
+        max-width: auto;
+    }
+
+    .tm-gallery-item img {
+        width: 100%;
+        height: auto;
+    }
+
+    .tm-cta-section {
+        width: auto;
+    }
+
+    .tm-container-inner {
+        padding: 0 2em;
+    }
+
+    .tm-description-figure {
+        width: unset;
+        display: flex;
+    }
+
+    .tm-description-box {
+        width: auto;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main > * {
+        padding: 0 3.5em;
+    }
+
+    .tm-paging-links {
+        padding: 0;
+    }
+}
