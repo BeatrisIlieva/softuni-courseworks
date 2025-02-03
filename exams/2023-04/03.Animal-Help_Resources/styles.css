@@ -162,7 +162,7 @@ p.larger-text {
 }
 
 .link {
-    padding: 1em 3em;
+    padding: 1em 4em;
     border: 0.1em solid var(--clr-black);
     border-radius: var(--border-radius);
     background: var(--clr-black);
@@ -198,9 +198,10 @@ p.larger-text {
 }
 
 .hero {
-    padding-left: clamp(14.1em, calc((100dvw - 1558px) / 2 * 2), calc(100dvw / 2));
-    padding-right: clamp(4.7em, calc((100dvw - 1558px) / 2), calc(100dvw / 2));
+    padding-left: clamp(11.75em, calc((100dvw - 2560px) / 2 * 2), calc(100dvw / 2));
+    padding-right: clamp(4.7em, calc((100dvw - 2560px) / 2), calc(100dvw / 2));
     display: flex;
+    gap: 7em;
 }
 
 .hero > div {
@@ -228,4 +229,91 @@ main section:nth-child(3) {
 main section.max-width {
     max-width: 1552px;
     margin: 0 auto;
+}
+
+main section:nth-child(2),
+main section:nth-child(3),
+main section:nth-child(4) {
+    padding-left: clamp(4.7em, calc((100dvw - 1380px) / 2), calc(100dvw / 2));
+    padding-right: clamp(4.7em, calc((100dvw - 1380px) / 2), calc(100dvw / 2));
+}
+
+.about {
+    padding-top: 1em;
+    padding-bottom: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.8em;
+    column-gap: 6em;
+    justify-content: center;
+    align-items: center;
+}
+
+.about h5 {
+    flex: 1 1 100%;
+}
+
+.about h5,
+.about p {
+    text-align: center;
+}
+
+.about p.larger-text {
+    flex: 1 1 100%;
+}
+
+.about .wrapper {
+    flex: 0 1 28%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about .wrapper i {
+    margin-bottom: 0.15em;
+    font-size: 6em;
+    color: var(--clr-blue);
+}
+
+.about .wrapper p {
+    max-width: 38ch;
+}
+
+.goals {
+    padding-top: 3em;
+    padding-bottom: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5em;
+}
+
+.goals > div {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.goals h2 {
+    flex: 1 1 100%;
+    text-align: center;
+}
+
+.goals ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    flex: 0 1 30%;
+}
+
+.goals ul li {
+    display: flex;
+    gap: 0.4em;
+}
+
+.goals .link {
+    padding-left: 6em;
+    padding-right: 6em;
+    /* flex: 0 1 30%; */
 }
