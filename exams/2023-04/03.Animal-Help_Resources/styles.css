@@ -3,7 +3,7 @@
     --clr-black: #000;
     --clr-blue: #85dcff;
     --clr-box-shadow: #c3d5dd;
-    --border-radius: 0.5em;
+    --border-radius: 0.3em;
     --clr-border: #dcdcdc;
 }
 
@@ -79,6 +79,7 @@ html {
 
 h1 {
     font-size: 2.6em;
+    font-weight: 700;
 }
 
 h2 {
@@ -162,7 +163,7 @@ p.larger-text {
 }
 
 .link {
-    padding: 1em 4em;
+    padding: 0.5em 4em;
     border: 0.1em solid var(--clr-black);
     border-radius: var(--border-radius);
     background: var(--clr-black);
@@ -226,14 +227,11 @@ main section:nth-child(3) {
     background: var(--clr-blue);
 }
 
-main section.max-width {
-    max-width: 1552px;
-    margin: 0 auto;
-}
-
 main section:nth-child(2),
 main section:nth-child(3),
-main section:nth-child(4) {
+main section:nth-child(4),
+main section:nth-child(5),
+footer {
     padding-left: clamp(4.7em, calc((100dvw - 1380px) / 2), calc(100dvw / 2));
     padding-right: clamp(4.7em, calc((100dvw - 1380px) / 2), calc(100dvw / 2));
 }
@@ -271,7 +269,7 @@ main section:nth-child(4) {
 
 .about .wrapper i {
     margin-bottom: 0.15em;
-    font-size: 6em;
+    font-size: 8em;
     color: var(--clr-blue);
 }
 
@@ -315,5 +313,131 @@ main section:nth-child(4) {
 .goals .link {
     padding-left: 6em;
     padding-right: 6em;
-    /* flex: 0 1 30%; */
+}
+
+.animals {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.animals h1,
+.animals p {
+    text-align: center;
+}
+
+.animals .wrapper {
+    display: flex;
+    gap: 2em;
+}
+
+.work {
+    padding-top: 3em;
+    padding-bottom: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.work h4 {
+    margin-bottom: 1.5em;
+}
+
+.work p {
+    max-width: 110ch;
+}
+
+.work details {
+    overflow: hidden;
+}
+
+.work details + details {
+    margin-top: 1.5em;
+}
+
+.work details > summary {
+    list-style: none;
+    background: var(--clr-blue);
+    padding: 1em;
+    overflow: hidden;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    border-top: 0.1em solid var(--clr-border);
+    border-left: 0.1em solid var(--clr-border);
+    border-right: 0.1em solid var(--clr-border);
+}
+
+.work details p {
+    overflow: hidden;
+    padding: 1.5em;
+    background: transparent;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom: 0.1em solid var(--clr-border);
+    border-left: 0.1em solid var(--clr-border);
+    border-right: 0.1em solid var(--clr-border);
+}
+
+.subscribe {
+    max-width: 1552px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4em;
+}
+
+.subscribe h3 {
+    font-weight: 500;
+}
+
+.subscribe .media {
+    flex: 1 1 50%;
+}
+
+.subscribe .interaction {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+    margin-right: 4em;
+}
+
+.subscribe .interaction .field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.subscribe .field label {
+    order: -1;
+    position: absolute;
+    top: 20%;
+    left: 1em;
+    font-weight: 600;
+    opacity: 0.5;
+}
+
+.subscribe .field input {
+    padding: 0.5em;
+    border: 0.1em solid var(--clr-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    width: 50%;
+}
+
+button[type='submit'] {
+    width: 25%;
+    align-self: flex-start;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+footer div {
+    display: flex;
+    gap: 1em;
 }
