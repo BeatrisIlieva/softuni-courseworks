@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap)');
+
+:root {
+    --clr-white: #fff;
+    --clr-black: #000;
+    --clr-mint: #ade2df;
+    --clr-border: #dbdbdb;
+    --clr-gray-bg: #f3f5fa;
+
+    --border-radius: 0.5em;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+img,
+a,
+li {
+    display: block;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+html {
+    box-sizing: border-box;
+    font: 12px/1.5 Inter, sans-serif;
+    color: var(--clr-black);
+}
+
+@media (min-width: 360px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 800px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1900px) {
+    html {
+        font-size: 24px;
+    }
+}
+
+h1 {
+    font-size: 3.4em;
+}
+
+h2 {
+    font-size: 3.2em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.4em;
+}
+
+h5 {
+    font-size: 1.2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 500;
+    margin-bottom: 0.5em;
+}
+
+p {
+    padding-bottom: 1.5em;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--clr-white);
+}
+
+main {
+    flex-grow: 1;
+}
+
+.site-header {
+    padding: 2em clamp(2dvh, calc((100dvw - 1460px) / 2), calc(100dvw / 2));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-header .main-nav ul {
+    display: flex;
+    gap: 2em;
+}
+
+.site-layout {
+    padding: 0 clamp(2dvh, calc((100dvw - 1920px) / 2), calc(100dvw / 2));
+}
+
+.site-footer {
+    padding: 0 clamp(2dvh, calc((100dvw - 1780px) / 2), calc(100dvw / 2));
+}
+
+.media {
+    display: flex;
+}
+
+.links-wrapper {
+    display: flex;
+    gap: 1em;
+}
+
+.link {
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    padding: 1em 2em;
+}
+
+.site-header .links-wrapper {
+    gap: 0.25em;
+}
+
+.site-header .link {
+    padding: 0.5em 2em;
+}
+
+.link:hover {
+    background: var(--clr-mint);
+    color: var(--clr-black);
+}
+
+.dark-theme {
+    background: var(--clr-black);
+    color: var(--clr-white);
+}
+
+.light-theme {
+    background: var(--clr-mint);
+    color: var(--clr-black);
+}
+
+main .site-layout:nth-child(1),
+main .site-layout:nth-child(3),
+main .site-layout:nth-child(5) {
+    background: var(--clr-mint);
+}
+
+main .site-layout:nth-child(5) {
+    background: var(--clr-gray-bg);
+}
+
+main .site-layout:nth-child(1),
+main .site-layout:nth-child(2),
+main .site-layout:nth-child(3),
+main .site-layout:nth-child(4),
+main .site-layout:nth-child(5) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .site-layout:nth-child(1),
+main .site-layout:nth-child(2),
+main .site-layout:nth-child(5) {
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+
+main .site-layout:nth-child(1),
+main .site-layout:nth-child(5) {
+    flex-direction: column;
+}
+
+main .site-layout:nth-child(4) {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+main .site-layout:nth-child(5) h2 {
+    margin-bottom: 0;
+    max-width: 70%;
+}
+
+main .site-layout:nth-child(1) .links-container,
+main .site-layout:nth-child(5) .links-container {
+    display: flex;
+    gap: 1em;
+}
+
+.icon-text-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    position: relative;
+}
+
+main .site-layout:nth-child(3) .icon-text-wrapper:after {
+    position: absolute;
+    content: '';
+    height: 0.08em;
+    width: 11.5em;
+    background: var(--clr-black);
+    bottom: 0;
+    left: 0;
+}
+
+main .site-layout:nth-child(2) .wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 30%;
+}
+
+main .site-layout:nth-child(2) .wrapper {
+    border-left: 0.1em solid var(--clr-border);
+}
+
+main .site-layout:nth-child(2) .wrapper:last-child {
+    border-right: 0.1em solid var(--clr-border);
+}
+
+main .site-layout:nth-child(2) .wrapper p,
+main .site-layout:nth-child(2) .wrapper h3 {
+    text-align: center;
+}
