@@ -111,6 +111,10 @@ h6 {
     margin-bottom: 0.5em;
 }
 
+p {
+    padding-bottom: 1.5em;
+}
+
 body {
     min-height: 100dvh;
     /* display: flex;
