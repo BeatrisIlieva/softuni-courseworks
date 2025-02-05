@@ -88,7 +88,7 @@ h6 {
 }
 
 p {
-    padding-bottom: 1.5em;
+    padding-bottom: 1.25em;
 }
 
 body {
@@ -134,14 +134,13 @@ header.site-header .media {
 }
 
 main.site-layout {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-image: url(images/calculator-icon.svg);
     background-repeat: no-repeat;
-    background-position: left -6em top 12.5%;
-    background-size: 18em;
+    background-position: left -5.5em top 12.5%;
+    background-size: 13em;
 }
 
 main .taxes {
@@ -150,20 +149,22 @@ main .taxes {
     align-items: center;
     gap: 1em;
     padding-block: 4em;
+    width: 100%;
 }
 
 main .taxes h1 {
     color: var(--clr-white);
-    margin-bottom: 1em;
+    margin-bottom: 0.75em;
 }
 
 main .taxes .wrapper {
     display: flex;
-    gap: 1.75em;
+    width: 100%;
+    justify-content: space-between;
 }
 
 main .taxes .wrapper .card {
-    flex: 1 1 30%;
+    flex: 0 1 32%;
     background: var(--clr-white);
     border-radius: 0.5em;
     display: flex;
@@ -187,7 +188,7 @@ main .taxes .wrapper .card .heading p {
 main .taxes .wrapper .card .heading p {
     font-size: 1.1em;
     opacity: 0.8;
-    max-width: 46ch;
+    max-width: 38ch;
 }
 
 main .taxes .wrapper .card ul {
@@ -195,7 +196,8 @@ main .taxes .wrapper .card ul {
     display: flex;
     gap: 2em;
     justify-content: center;
-    padding-block: 2em;
+    padding-top: 1em;
+    padding-bottom: 1.5em;
     align-items: center;
 }
 
@@ -203,18 +205,23 @@ main .taxes .wrapper .card:nth-child(1) h2 {
     margin-bottom: 0;
 }
 
+
+
 main .taxes .wrapper .card:nth-child(1) a {
     text-decoration: none;
-    text-align: center;
-    background: #9a5dc6;
-    padding: 0.5em 2em;
-    justify-self: center;
-    align-self: center;
-    border-radius: 3em;
-    box-shadow: 0.2em 0.2em 0.5em 0 rgb(0, 0, 0, 0.2);
     color: var(--clr-white);
     font-variant-caps: all-small-caps;
     margin: auto;
+    font-size: 1.4em;
+    padding: 0.25em 2em 0.5em 2em;
+    border-radius: 3em;
+    box-shadow: 0.2em 0.2em 0.5em 0 rgb(0, 0, 0, 0.2);
+    background: #9a5dc6;
+
+}
+
+main .taxes .wrapper .card:nth-child(1) p {
+    font-size: 1.3em;
 }
 
 main .taxes .wrapper .card:nth-child(1) ul {
@@ -244,7 +251,7 @@ main .taxes .wrapper .card:nth-child(3) ul {
 main .taxes .wrapper .card ul li {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.5em;
 }
 
 main .taxes .wrapper .card ul li:nth-child(2) {
@@ -257,12 +264,20 @@ main .taxes .wrapper .card ul li:nth-child(2)::before {
     width: 0.05em;
     height: 100%;
     top: 0;
-    left: -1em;
+    left: -1.5em;
     background: var(--clr-white);
 }
 
 main .taxes .wrapper .card ul li span {
     text-align: center;
+}
+
+main .taxes .wrapper .card ul li span:nth-child(1) {
+    font-size: 1.8em;
+}
+
+main .taxes .wrapper .card ul li span:nth-child(2) {
+    font-size: 1.2em;
 }
 
 main .benefits {
