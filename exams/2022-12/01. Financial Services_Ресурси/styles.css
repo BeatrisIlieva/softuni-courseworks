@@ -1,0 +1,159 @@
+/* padding-left: clamp(9.4em, calc(100dvw - 2560px / 2 * 2), calc(100dvw / 2));
+padding-right: clamp(2.35em, calc((100dvw - 2560px) / 2), calc(100dvw / 2)); */
+
+@import url('https://fonts.google.com/specimen/Poppins');
+
+:root {
+    --clr-white: #fff;
+    --clr-black: #000;
+    --clr-dark-blue: #819daf;
+    --clr-light-blue: #327dc4;
+    --border-radius: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+img,
+a {
+    display: block;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+html {
+    box-sizing: border-box;
+    font: clamp(11px, 11px + 0.5dvw, 22px) / 1.5 'Tisa Sans Pro', sans-serif;
+    color: var(--clr-black);
+    letter-spacing: 0.02em;
+}
+
+h1 {
+    font-size: 2.2em;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+h2,
+h3 {
+    margin-bottom: 0.5em;
+}
+
+h1 span:nth-child(2) {
+    color: var(--clr-light-blue);
+}
+
+h3,
+a {
+    text-transform: capitalize;
+}
+
+h1,
+h2 {
+    font-weight: 500;
+}
+
+h1,
+h3 {
+    text-align: center;
+}
+
+h3 {
+    font-weight: 200;
+}
+
+p {
+    padding-bottom: 1.5em;
+    opacity: 0.8;
+}
+
+a {
+    text-decoration: none;
+    background: var(--clr-light-blue);
+    color: var(--clr-white);
+    border-radius: var(--border-radius);
+    border: 0.1em solid blue;
+    padding: 0.3em 1.5em;
+    overflow: hidden;
+    width: fit-content;
+    outline: 0.1em solid var(--clr-white);
+    font-size: 0.8em;
+}
+
+.media {
+    display: flex;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+body {
+    min-height: 100dvh;
+    padding-block: 2em;
+    background: var(--clr-white);
+}
+
+.site-layout {
+    padding: 0 clamp(2dvh, calc((100dvw - 1650px) / 2), calc(100dvw / 2));
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    gap: 0.5em;
+    background: var(--clr-dark-blue);
+    flex: 0 0 32%;
+}
+
+.card img {
+    flex-grow: 1;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.card .wrapper {
+    padding: 1em;
+}
