@@ -61,7 +61,7 @@ h2 {
 }
 
 h3 {
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 h4 {
@@ -141,6 +141,7 @@ main.site-layout {
     background-repeat: no-repeat;
     background-position: left -5.5em top 12.5%;
     background-size: 13em;
+    gap: 6em;
 }
 
 main .taxes {
@@ -148,7 +149,7 @@ main .taxes {
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    padding-block: 4em;
+    padding-top: 4em;
     width: 100%;
 }
 
@@ -205,8 +206,6 @@ main .taxes .wrapper .card:nth-child(1) h2 {
     margin-bottom: 0;
 }
 
-
-
 main .taxes .wrapper .card:nth-child(1) a {
     text-decoration: none;
     color: var(--clr-white);
@@ -217,7 +216,6 @@ main .taxes .wrapper .card:nth-child(1) a {
     border-radius: 3em;
     box-shadow: 0.2em 0.2em 0.5em 0 rgb(0, 0, 0, 0.2);
     background: #9a5dc6;
-
 }
 
 main .taxes .wrapper .card:nth-child(1) p {
@@ -280,14 +278,83 @@ main .taxes .wrapper .card ul li span:nth-child(2) {
     font-size: 1.2em;
 }
 
-main .benefits {
-    max-width: 80%;
+main .advantages {
+    max-width: 85%;
+    font-size: 1.3em;
 }
 
-main.financing {
+main .advantages > p {
+    margin-bottom: 2em;
+}
+
+main .advantages .table {
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+    overflow: hidden;
+}
+
+main .advantages .table .row {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+
+main .advantages .table .row p {
+    padding: 0;
+    margin: 0;
+}
+
+main .advantages .table .row:nth-child(odd) {
+    background: #e6e6e6;
+}
+
+main .advantages .table .row:nth-child(even) {
+    background: #f8f8f8;
+}
+
+main .advantages .table .media {
+    max-width: 4.5em;
+}
+
+main .advantages .table .row .checkmarks {
+    display: flex;
+    gap: 9em;
+}
+
+main .advantages .table .row .checkmarks div:nth-child(2) {
+    margin-right: 3em;
+}
+
+main .financing {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4em;
+}
+
+main .financing .wrapper {
+    flex: 0 1 73%;
+}
+
+main .financing .media {
+    flex: 0 1 23%;
+}
+
+main .financing .media img {
+    object-fit: contain;
 }
 
 footer.site-layout {
     background: var(--clr-dark-violet);
+    padding: 1.75em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer.site-layout p {
+    color: var(--clr-white);
+    opacity: 0.5;
+    padding: 0;
 }
