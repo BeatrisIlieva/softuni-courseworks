@@ -1,127 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="styles.css" />
 	<title>NewsLetter</title>
 </head>
 <body>
 	<header class="site-layout">
-		<a href="/">
-			<span class="logo-main">NewsLetter</span>
-			<span class="logo-secondary">by SoftUni</span>
-		</a>
-		<nav class="main-nav">
+		<div class="logo-wrapper">
+			<h2>NewsLetter</h2>
+			<span>by SoftUni</span>
+		</div>
+		
+		<nav>
 			<ul>
-				<li>Welcome</li>
-				<li>News</li>
-				<li>About Us</li>
-				<li>Contacts</li>
+				<li><a href="#">Welcome</a></li>
+				<li><a href="#">News</a></li>
+				<li><a href="#">About Us</a></li>
+				<li><a href="#">Contacts</a></li>
 			</ul>
 		</nav>
 	</header>
-	<main class="site-layout">
-		<section class="welcome">
-			<div class="left">
+	
+	<section class="site-layout welcome">
+		<div class="outer-wrapper">
+			<div class="wrapper-left">
 				<h1>Welcome to NewsLetter!</h1>
-				<p>We offer a catalog of news.</p>
+				<h2>We offer a catalog of news.</h2>
 			</div>
-			<div class="right">
-				<button class="btn primary">
+			
+			<div class="wrapper-right">
+				<a class="link" href="#">
 					<span>Ok let's go</span>
 					<i class="fa-solid fa-circle-arrow-right"></i>
-				</button>
-				<button class="btn secondary">
+				</a>
+				<a class="link light-theme" href="#">
 					<span>More info</span>
 					<i class="fa-solid fa-circle-question"></i>
-				</button>
+				</a>
 			</div>
-		</section>
-		<section class="features">
-			<div class="thumbnail">
-				<img src="images/html.jpg" alt="">
-			</div>
-			<div class="text">
-				<h3>Put something here</h3>
-				<h4>Maybe here as well I think</h4>
-				<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-			</div>
-		</section>
-		<section class="features">
-			<div class="thumbnail">
-				<img src="images/css.jpg" alt="">
-			</div>
-			<div class="text">
-				<h3>An interesting title</h3>
-				<h4>This is also an interesting subtitle</h4>
-				<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-			</div>
-		</section>
-		<section class="features">
-			<div class="thumbnail">
-				<img src="images/html-css.jpg" alt="">
-			</div>
-			<div class="text">
-				<h3>Oh, and finally ...</h3>
-				<h4>Here's another intriguing subtitle</h4>
-				<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-			</div>
-		</section>
-	</main>
+		</div>
+	</section>
 	
-	<aside class="site-layout">
+	<section class="site-layout technologies">
 		
-		<section class="interesting">
-			<h3>
-				Interesting stuff
-			</h3>
-			
-			<div class="images">
-				<div>
-					<img src="images/pic04.jpg" alt="">
-				</div>
-				<div>
-					<img src="images/pic05.jpg" alt="">
-				</div>
-				<div>
-					<img src="images/pic06.jpg" alt="">
-				</div>
-				<div>
-					<img src="images/pic07.jpg" alt="">
-				</div>
+		<article>
+			<div class="media">
+				<img src="images/html.jpg" alt="HTML">
 			</div>
-			
-			<button class="btn">
-				<span>More</span>
+			<div class="wrapper">
+				<h4>Put something here</h4>
+				<p>Maybe here as well I think</p>
+				<p>Phasellus quam turpis, feugiat sit amet in,<br>hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+			</div>
+		</article>
+		
+		<article>
+			<div class="media">
+				<img src="images/css.jpg" alt="CSS">
+			</div>
+			<div class="wrapper">
+				<h4>An interesting title</h4>
+				<p>This is also an interesting subtitle</p>
+				<p>Phasellus quam turpis, feugiat sit amet in,<br>hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+			</div>
+		</article>
+		
+		<article>
+			<div class="media">
+				<img src="images/html-css.jpg" alt="HTML&CSS">
+			</div>
+			<div class="wrapper">
+				<h4>Oh, and finally ...</h4>
+				<p>Here's another intriguing subtitle</p>
+				<p>Phasellus quam turpis, feugiat sit amet in,<br>hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
+			</div>
+		</article>
+	</section>
+	
+	<section class="site-layout about">
+		<article class="colors">
+			<h4>Interesting stuff</h4>
+			<div class="wrapper">
+				<div class="media"><img src="images/pic04.jpg" alt="color"></div>
+				<div class="media"><img src="images/pic05.jpg" alt="color"></div>
+				<div class="media"><img src="images/pic06.jpg" alt="color"></div>
+				<div class="media"><img src="images/pic07.jpg" alt="color"></div>
+			</div>
+			<a href="#" class="link">
 				<i class="fa-regular fa-file-lines"></i>
-			</button>
-		</section>
+				<span>More</span>
+			</a>
+		</article>
 		
-		<section class="info">
-			<h2>
-				So what's this all about?
-			</h2>
-			
-			<p>
-				This is NewsLetter, a simple HTML and CSS site designed as a task for students to recreate it from an image during their retake exam.
-			</p>
-			
-			<p>
-				Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper bibendum ipsum, et tristique augue fringilla eu. Vivamus id risus vel dolor auctor euismod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat. Aliquam luctus mattis lectus sit amet phasellus quam turpis.
-			</p>
-			
-			<button class="btn">
-				<span>Continue Reading</span>
+		<article class="details">
+			<h3>So what's this all about?</h3>
+			<p>This is <strong>NewsLetter</strong>, a simple HTML and CSS site designed as a task for students to recreate it from an image during their retake exam.</p>
+			<p>Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper bibendum ipsum, et tristique augue fringilla eu. Vivamus id risus vel dolor auctor euismod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat. Aliquam luctus mattis lectus sit amet phasellus quam turpis.</p>
+			<a href="#" class="link">
 				<i class="fa-solid fa-circle-arrow-right"></i>
-			</button>
-		</section>
-		
-	</aside>
-	
+				<span>Continue Reading</span>
+			</a>
+		</article>
+	</section>
 	<footer class="site-layout">
-		<div>
-			<h3>Random Stuff</h3>
+		<div class="wrapper">
+			<h4>Random Stuff</h4>
 			<ul>
 				<li><a href="#">Etiam feugiat condimentum</a></li>
 				<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
@@ -130,8 +115,9 @@
 				<li><a href="#">Nullam scelerisque blandit leo</a></li>
 			</ul>
 		</div>
-		<div>
-			<h3>Random Stuff</h3>
+		
+		<div class="wrapper">
+			<h4>Random Stuff</h4>
 			<ul>
 				<li><a href="#">Etiam feugiat condimentum</a></li>
 				<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
@@ -140,8 +126,8 @@
 				<li><a href="#">Nullam scelerisque blandit leo</a></li>
 			</ul>
 		</div>
-		<div>
-			<h3>Random Stuff</h3>
+		<div class="wrapper">
+			<h4>Random Stuff</h4>
 			<ul>
 				<li><a href="#">Etiam feugiat condimentum</a></li>
 				<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
@@ -150,20 +136,23 @@
 				<li><a href="#">Nullam scelerisque blandit leo</a></li>
 			</ul>
 		</div>
-		<div>
-			<h3>Contact Us</h3>
+		
+		<div class="wrapper">
+			<h4>Contact Us</h4>
 			<ul>
-				<li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-				<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-				<li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-				<li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
-				<li><a href="#"><i class="fa-brands fa-pinterest-p"></i></a></li>
+				<li><i class="fa-brands fa-x-twitter"></i></li>
+				<li><i class="fa-brands fa-square-facebook"></i></li>
+				<li><i class="fa-brands fa-square-instagram"></i></li>
+				<li><i class="fa-brands fa-square-dribbble"></i></li>
+				<li><i class="fa-brands fa-square-pinterest"></i></li>
 			</ul>
+			
 			<p>Fictional Address</p>
 			<p>City, Postcode</p>
 			<p>(359) 000 00 00 00</p>
 		</div>
-		<p>© NewsLetter</p>
+		<p>	© NewsLetter</p>
 	</footer>
+	
 </body>
 </html>
