@@ -1,63 +1,14 @@
-/* padding: clamp(2em, calc((100dvw - 2095px) / 2), calc(100dvw / 2)); */
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-    font: inherit;
-}
-
-body,
-input,
-button,
-textarea,
-select,
-table,
-i {
-    box-sizing: inherit;
-    font: inherit;
-}
-
-html {
-    box-sizing: border-box;
-    font: clamp(14px, 1dvh, 18px) / 1.4 Verdana, sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: normal;
-    margin-bottom: 0.5em;
-}
-
-h1 {
-    font-size: 1.8em;
-}
-
-h2 {
-    font-size: 1.6em;
-}
-
-body {
-    min-height: 100dvh;
-}
-
 @media (max-width: 600px) {
     nav ul {
         display: none;
     }
 
-    nav .checkbtn {
+    .checkbtn {
         display: block;
-        order: 1;
+    }
+
+    .logo {
+        order: -1;
     }
 
     .site-header {
@@ -65,58 +16,50 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 1.5rem;
+        gap: 1.5em;
     }
 
     .site-header > i,
     h1 {
         text-align: center;
-        position: unset;
+        position: static;
         bottom: unset;
     }
 
-    .site-header > i {
-        left: unset;
-    }
-
-    .fa-3x {
-        font-size: 3.5em;
+    .site-header > h1 {
+        margin: 0;
     }
 
     .about {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        gap: 2em;
     }
 
     .about-header {
         text-align: center;
-        position: unset;
-        width: initial;
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 45%;
-        gap: 1rem;
+        width: unset;
+        display: block;
+        position: static;
+        flex: 1 1 50%;
     }
 
     .about-text {
-        flex: 1 1 45%;
-        width: initial;
-        display: initial;
+        width: unset;
+        display: block;
         margin-left: 0;
-        line-height: 2.3;
-        overflow: hidden;
-        word-wrap: break-word;
-    }
-
-    .p-50 {
-        padding-left: 0;
+        flex: 1 1 50%;
     }
 
     .gallery {
-        margin: unset;
+        margin: 0;
         display: flex;
-        justify-content: center;
         flex-wrap: wrap;
+        gap: 1em;
+        justify-content: center;
+    }
+
+    .gallery-item {
+        margin: 0;
     }
 }
