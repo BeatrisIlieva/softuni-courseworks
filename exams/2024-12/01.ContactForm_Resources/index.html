@@ -3,82 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <title>Contact Form</title>
-    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="container">
-        
-        <main>
-            <h2>Get in Touch</h2>
+    <main class="site-content">
+        <fieldset>
+            <legend>Get in Touch</legend>
+
+            <div class="field">
+                <input type="text" name="name" id="name">
+                <label for="name">Name</label>
+            </div>
             
-            <form action="#" method="POST">
-                <div class="field">
-                    <input type="text" name="user-name" id="user-name">
-                    <label for="user-name">
-                        Name
-                    </label>
-                </div>
-                
-                <div class="field">
-                    <input type="email" name="user-email" id="user-email">
-                    <label for="user-email">
-                        Email
-                    </label>
-                </div>
-                
-                <div class="field">
-                    <textarea name="user-message" id="user-message" rows="1" cols=""></textarea>
-                    <label for="user-message">
-                        Message
-                    </label>
-                </div>
-                
-                <input type="submit" value="Send">
-                
-            </form>
+            <div class="field">
+                <input type="email" name="email" id="email">
+                <label for="email">Email</label>
+            </div>
             
-        </main>
+            <textarea name="message" id="message" placeholder="Message" rows="1"></textarea>
+            
+            <input type="submit" value="Send">
+
+            <footer>
+                <p>© Untitled. All rights reserved</p>
+                <p>Design: <span>HTML & CSS</span></p>
+            </footer>
+        </fieldset>
         
-        <aside>
+        <section class="socials">
             <h2>Follow</h2>
             
-            <section class="icons">
-                <div class="icon">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </div>
-                <div class="icon">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </div>
-                <div class="icon">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-                <div class="icon">
-                    <i class="fa-brands fa-github"></i>
-                </div>
-                <div class="icon">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </div>
-                <div class="icon">
-                    <i class="fa-brands fa-pinterest-p"></i>
-                </div>
-                <div class="icon">
-                    <i class="fa-brands fa-threads"></i>
-                </div>
-                <div class="icon">
-                    <i class="fa-solid fa-phone"></i>
-                </div>
-                <div class="icon">
-                    <i class="fa-solid fa-envelope"></i>
-                </div>
-            </section>
-        </aside>
+            <div class="icons-wrapper">
+                <div class="media"><i class="fa-brands fa-x-twitter"></i></div>
+                <div class="media"><i class="fa-brands fa-facebook-f"></i></div>
+                <div class="media"><i class="fa-brands fa-instagram"></i></div>
+                <div class="media"><i class="fa-brands fa-github"></i></div>
+                <div class="media"><i class="fa-brands fa-linkedin-in"></i></div>
+                <div class="media"><i class="fa-brands fa-pinterest-p"></i></div>
+                <div class="media"><i class="fa-brands fa-threads"></i></div>
+                <div class="media"><i class="fa-solid fa-phone"></i></div>
+                <div class="media"><i class="fa-solid fa-envelope"></i></div>
+            </div>
+            
+        </section>
         
-        <footer>
-            <p>© Untitled. All rights reserved</p>
-            <p>Design: <strong>HTML & CSS</strong></p>
-        </footer>
-    </div>
+    </main>    
 </body>
 </html>
