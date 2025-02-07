@@ -1,8 +1,15 @@
-document.addEventListener('invalid', (function(){
-    return function(e) {
-      //prevent the browser from showing default error bubble / hint
-      e.preventDefault();
-      // optionally fire off some custom validation handler
-      // myValidation();
-    };
-})(), true);
+document.addEventListener(
+    'invalid',
+    (function () {
+        return function (e) {
+            e.preventDefault();
+
+            const inputElements = document.querySelectorAll('input:user-invalid');
+
+            const firstInputElement = inputElements[0];
+
+            firstInputElement.focus();
+        };
+    })(),
+    true
+);
