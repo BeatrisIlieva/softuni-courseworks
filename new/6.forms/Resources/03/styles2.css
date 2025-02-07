@@ -1,0 +1,40 @@
+.container {
+    background: white;
+    padding: 1em;
+    width: 100dvw;
+    max-width: 40em;
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+
+    input {
+        background: lightgray;
+        padding: 0.5em;
+        border: none;
+        display: block;
+        width: 100%;
+    }
+
+    .field:nth-child(1),
+    input[type='submit'] {
+        flex: 1 1 15ch;
+    }
+
+    .field:nth-child(2) {
+        flex: 1 1 30ch;
+    }
+
+    label {
+        display: none;
+    }
+
+    input[type='submit'] {
+        border: none;
+        background: orange;
+        color: white;
+        padding: 0.5em;
+    }
+}
