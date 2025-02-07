@@ -1,0 +1,89 @@
+fieldset {
+    border: 2px solid #ccc;
+    border-radius: 0.3em;
+    padding: 2em;
+}
+
+fieldset legend {
+    padding: 0 1em;
+    font-weight: 700;
+}
+
+fieldset:not(:last-child) {
+    margin-bottom: 2em;
+}
+
+fieldset p {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+}
+
+fieldset p:last-child{
+    padding-bottom: 0;
+}
+
+input[type='radio'] {
+    appearance: none;
+    border: 2px solid darkorange;
+    border-radius: 50%;
+    width: 2em;
+    aspect-ratio: 1/1;
+    background: orange;
+    position: relative;
+    cursor: pointer;
+}
+
+input[type='radio']::after {
+    display: block;
+    content: '';
+    position: absolute;
+    inset: 0.2em;
+    background: white;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+
+input[type='radio']:checked::after {
+    opacity: 1;
+}
+
+
+input[type='checkbox'] {
+    appearance: none;
+    border: 2px solid darkorange;
+    border-radius: 3em;
+    width: 4em;
+    aspect-ratio: 2/1;
+    background: orange;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s ease-in, border-color 0.2s ease-in;
+}
+
+input[type='checkbox']::after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 1.5em;
+    top: 50%;
+    left: 0.2em;
+    transform: translate(0, -50%);
+    aspect-ratio: 1/1;
+    border: 2px solid darkorange;
+    background: white;
+    border-radius: inherit;
+    transition: left 0.2s ease-in, border-color 0.2s ease-in;
+}
+
+input[type='checkbox']:checked {
+    background: green;
+    border-color: green;
+}
+
+input[type='checkbox']:checked::after {
+    left: calc(100% - 1.5em);
+    border-color: green;
+
+}

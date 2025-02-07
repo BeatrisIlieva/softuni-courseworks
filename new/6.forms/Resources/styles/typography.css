@@ -1,5 +1,5 @@
 html {
-    font-size: clamp(11px, 11px + 0.25dvh, 18px);
+    font-size: clamp(11px, 11px + 3dvh, 18px);
     font: Verdana, sans-serif;
 }
 
