@@ -25,6 +25,7 @@ fieldset {
         display: flex;
         flex-direction: column;
         padding-bottom: 1em;
+        position: relative;
     }
 
     label {
@@ -38,6 +39,12 @@ fieldset {
         padding-left: 0.25em;
     }
 
+    i {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
     input,
     button {
         border-radius: 0.2em;
@@ -46,6 +53,11 @@ fieldset {
     input {
         border: 2px solid lightgray;
         padding: 0.25em;
+    }
+
+    .helper {
+        font-size: 0.6em;
+        opacity: 0.7;
     }
 
     button {
