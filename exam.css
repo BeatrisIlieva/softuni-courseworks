@@ -35,8 +35,13 @@ a {
 }
 
 img,
-a {
+a,
+li {
     display: block;
+}
+
+a {
+    text-decoration: none;
 }
 
 img {
@@ -92,7 +97,9 @@ h6 {
     margin-bottom: 0.5em;
 }
 
-p {
+p,
+ul,
+ol {
     padding-bottom: 1.5em;
 }
 

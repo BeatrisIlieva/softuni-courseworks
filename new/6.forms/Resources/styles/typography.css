@@ -1,0 +1,10 @@
+html {
+    font-size: clamp(11px, 11px + 0.25dvh, 18px);
+    font: Verdana, sans-serif;
+}
+
+p,
+ul,
+ol {
+    padding-bottom: 1.5em;
+}
