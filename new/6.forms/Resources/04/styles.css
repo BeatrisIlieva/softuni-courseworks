@@ -1,0 +1,116 @@
+h2 {
+    font-size: 1.2em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #ccc;
+    display: inline-block;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    padding-bottom: 0.2em;
+    transition: translate 0.3s ease-in;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'] {
+    display: block;
+    width: 100%;
+    padding: 0.8em 0;
+    border: none;
+    border-bottom: 2px solid #aaa;
+    outline: none;
+}
+
+input[type='text']:user-valid,
+input[type='email']:user-valid,
+input[type='password']:user-valid {
+    border-color: green;
+}
+
+input[type='text']:user-invalid,
+input[type='email']:user-invalid,
+input[type='password']:user-invalid {
+    border-color: red;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus {
+    border-color: orange;
+}
+
+button {
+    display: block;
+    border: none;
+    background: orange;
+    color: white;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 0.2em;
+    padding: 0.8em 1em;
+}
+
+.field {
+    margin-top: 1em;
+    padding-bottom: 2.5em;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.field .icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.field label {
+    order: -1;
+    position: absolute;
+    top: 0.8em;
+    left: 0;
+}
+
+.field input::placeholder {
+    color: transparent;
+}
+
+.field input:focus ~ label,
+.field input:not(:placeholder-shown) ~ label {
+    translate: 0 -1.5em;
+}
+
+.field input:required ~ label::after {
+    content: '*';
+    color: red;
+    margin-left: 0.25em;
+}
+
+.field input:focus ~ .icon,
+.field input:focus ~ label {
+    color: orange;
+}
+
+.field input:user-valid ~ .icon,
+.field input:user-valid ~ label {
+    color: green;
+}
+
+.field input:user-invalid ~ .icon,
+.field input:user-invalid ~ label {
+    color: red;
+}
+
+.field .helper {
+    display: block;
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.container {
+    width: calc(100dvw - 2em);
+    max-width: 25em;
+}

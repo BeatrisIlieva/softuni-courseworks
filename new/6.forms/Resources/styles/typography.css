@@ -3,6 +3,14 @@ html {
     font: Verdana, sans-serif;
 }
 
+body,
+input,
+button,
+select,
+textarea {
+    font: inherit;
+}
+
 p,
 ul,
 ol {
