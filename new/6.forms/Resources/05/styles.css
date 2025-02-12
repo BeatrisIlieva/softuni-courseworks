@@ -1,0 +1,43 @@
+.container {
+    width: 100dvw;
+    max-width: 40em;
+
+    fieldset {
+        padding: 0.5em;
+    }
+
+    fieldset:not(:last-child) {
+        margin-bottom: 2em;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 1em;
+
+        label {
+            order: -1;
+        }
+
+        input {
+            border: none;
+            border-bottom: 2px solid lightgray;
+        }
+
+        .hepler {
+            font-size: 0.8em;
+            opacity: 0.6;
+        }
+
+        &:has(input[type='date']) label {
+            margin-bottom: 2em;
+        }
+    }
+
+    input[type='submit'] {
+        display: block;
+        width: 100%;
+        border: none;
+        padding: 0.5em;
+    }
+}

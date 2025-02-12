@@ -1,15 +1,14 @@
+/* padding-left: clamp(9.4em, calc(100dvw - 2560px / 2 * 2), calc(100dvw / 2));
+padding-right: clamp(2.35em, calc((100dvw - 2560px) / 2), calc(100dvw / 2)); */
+
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
 
 :root {
     --clr-white: #fff;
+    --clr-black: #000;
     --clr-green: #1ab188;
-    --clr-hovered: #179a77;
-    --clr-not-hovered: #435359;
-    --clr-not-hovered-text-color: #8fa1a0;
-    --clr-form-background: #24333c;
-    --clr-form-text-color: #8e989e;
-    --clr-body-background: #c1bdba;
-    --clr-input-border: #a0b3b0;
+    --clr-bg: #24333c;
+    --clr-form-text: #92989b;
 }
 
 * {
@@ -39,133 +38,141 @@ a {
 }
 
 img,
-a {
+a,
+li {
     display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
 }
 
 html {
     box-sizing: border-box;
-    font: 12px/1.5 'Kode Mono', sans-serif;
+    font: clamp(14px, 14px + 0.7dvw, 26px) / 1.5 'Kode Mono', sans-serif;
     color: var(--clr-white);
 }
 
-@media (min-width: 360px) {
-    html {
-        font-size: 14px;
-    }
-}
-
-@media (min-width: 800px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-@media (min-width: 1800px) {
-    html {
-        font-size: 18px;
-    }
-}
-
-@media (min-width: 2200px) {
-    html {
-        font-size: 26px;
-    }
+h1 {
+    font-size: 1.5em;
+    font-weight: 500;
+    text-align: center;
 }
 
 body {
     min-height: 100dvh;
-    background: var(--clr-body-background);
+    display: flex;
+    justify-content: center;
+    background: #c1bdba;
 }
 
-.site-layout {
-    padding: 2em clamp(2dvh, calc((100dvw - 744px) / 2), calc(100dvw / 2));
-    font-size: 1.2em;
+.wrapper {
+    background: var(--clr-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 2em;
 }
 
-.form-wrapper {
+form {
     display: flex;
     flex-wrap: wrap;
-    background: var(--clr-form-background);
-    padding: 2.25em;
+    row-gap: 1.75em;
+    column-gap: 1em;
 }
 
-button {
-    all: unset;
-    flex: 1 1 50%;
-    background: var(--clr-not-hovered);
-    color: var(--clr-not-hovered-text-color);
-    padding: 0.75em 0;
-    text-align: center;
-}
-
-button.active {
-    background: var(--clr-green);
-    color: var(--clr-white);
-}
-
-button:hover {
-    background: var(--clr-hovered);
-    color: var(--clr-white);
-}
-
-fieldset {
-    display: flex;
-    border: none;
-    flex-wrap: wrap;
-    row-gap: 2.25em;
-    column-gap: 1.25em;
-}
-
-legend {
-    text-align: center;
-    padding: 1em 0;
-    font-size: 2em;
-}
-
-.field {
-    display: flex;
-    position: relative;
-}
-
-label {
-    order: -1;
-    position: absolute;
-    top: 0.25em;
-    left: 0.5em;
-    color: var(--clr-form-text-color);
-}
-
-label::after {
-    content: '*';
-    color: var(--clr-green);
-    top: 0;
-    left: 0;
-}
-
-input {
+form input {
+    display: block;
     width: 100%;
+    padding: 0.25em;
     background: transparent;
-    border: 0.03em solid var(--clr-input-border);
-    padding: 0.25em 0;
+    border: 0.06rem solid #a0b3b0;
 }
 
-input[type='submit'] {
-    padding: 0.5em 0;
-    background: var(--clr-green);
-    border: none;
-    font-weight: 600;
-    font-size: 1.8em;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-}
-
-.field,
+form .field,
 input[type='submit'] {
     flex: 1 1 100%;
 }
 
-.field:nth-of-type(1),
-.field:nth-of-type(2) {
-    flex: 1 1 46%;
+form .field:nth-child(1),
+form .field:nth-child(2) {
+    flex: 1 1 40%;
+}
+
+.links-wrapper {
+    display: flex;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.field label {
+    order: -1;
+    position: absolute;
+    top: 0.25em;
+    left: 0.7em;
+}
+
+.site-layout {
+    padding: 2em clamp(2dvh, calc((100dvw - 760px) / 2), calc(100dvw / 2));
+}
+
+.media {
+    display: flex;
+}
+
+input[type='submit'] {
+    font-size: 1.7em;
+    padding: 0.35em;
+    border: none;
+    margin-top: 0.35em;
+}
+
+.link {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0.75em 2em;
+}
+
+.link,
+input[type='submit'] {
+    background: #435359;
+}
+
+.link:hover {
+    background: #179a77;
+    color: var(--clr-white);
+}
+
+form,
+.link {
+    color: var(--clr-form-text);
+}
+
+.link.active,
+input[type='submit'] {
+    background: var(--clr-green);
+    color: var(--clr-white);
+}
+
+.field label::after {
+    content: '*';
+    color: var(--clr-green);
+    margin-left: -0.5em;
 }

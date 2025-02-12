@@ -8,6 +8,35 @@
     <title>Registration</title>
 </head>
 <body>
-    
+    <div class="container">
+        <fieldset>
+            <legend>Login Information</legend>
+
+            <form action="#">
+                <div class="field">
+                    <input type="email" id="email" name="email">
+                    <label for="email">Email</label>
+                    <span class="hepler">helper text</span>
+                </div>
+
+                <div class="field">
+                    <input type="password" id="password" name="password">
+                    <label for="password">Password</label>
+                    <span class="hepler">helper text</span>
+                </div>
+            </form>
+        </fieldset>
+
+        <fieldset>
+            <legend>Additional Information</legend>
+
+            <div class="field">
+                <input type="date" name="date" id="date">
+                <label for="date">Date of birth</label>
+            </div>
+        </fieldset>
+
+        <input type="submit" value="Register">
+    </div>
 </body>
 </html>

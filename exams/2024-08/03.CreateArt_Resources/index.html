@@ -7,95 +7,99 @@
     <title>CreateArt</title>
 </head>
 <body>
+    
     <header class="site-layout">
-        <nav class="main-nav">
+        
+        <nav>
             <ul>
-                <li><a href="#"></a>Home</li>
-                <li><a href="#"></a>About Us</li>
-                <li><a href="#"></a>Portfolio</li>
-                <li><a href="#"></a>Blog</li>
-                <li><a href="#"></a>Contact Us</li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li> 
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact Us</a></li>
             </ul>
         </nav>
-        <button class="btn nav-button">Contact Us</button>
+        
+        <a href="#" class="contact">Contact Us</a>
     </header>
-    
-    <section class="site-layout section section-hero">
-        <div class="thumbnail">
-            <img src="images/header.jpg" alt="header">
-        </div>
-        <div class="text-wrapper">
-            <h1 class="title">The Spirit of<br>Digital Agency</h1>
-            <p class="description">Vestibulum ac diam sit amet quam vehicula elementum<br>amet est on dui. Nulla porttitor accumsan tincidunt</p>
-            <button class="btn primary">More About us </button>
-            <button class="btn secondary">Get in Touch</button>
-        </div>
-    </section>
-    
-    <section class="site-layout section section-info">
-        <div class="thumbnail">
-            <img src="images/design.jpg" alt="design">
-        </div>
-        <div class="text-wrapper">
-            <h3 class="title">Web & Graphic<br>Design</h3>
-            <p class="description">Vestibulum ac diam sit amet quam vehicula elementum amet est on dui. Nulla porttitor accumsan tincidunt.</p>
-        </div>
-    </section>
-    
-    <section class="site-layout section section-info">
-        <div class="thumbnail">
-            <img src="images/development.jpg" alt="development">
-        </div>
-        <div class="text-wrapper">
-            <h3 class="title">Web & App<br>Development</h3>
-            <p class="description">Vestibulum ac diam sit amet quam vehicula elementum amet est on dui. Nulla porttitor accumsan tincidunt.</p>
-        </div>
-    </section>
-    
-    <main class="site-layout">
-        <section class="section section-about">
-            <div class="thumbnail">
-                <img src="images/company.jpg" alt="company">
+    <main>
+        <section class="site-layout hero">
+            <div class="wrapper-left">
+                <h1>The Spirit of<br>Digital Agency</h1>
+                <p class="subtle">Vestibulum ac diam sit amet quam vehicula elementum amet est on dui. Nulla porttitor accumsan tincidunt</p>
+                
+                <div class="links-wrapper">
+                    <a href="#" class="btn primary">More About us</a>
+                    <a href="#" class="btn">Get in Touch</a>
+                </div>
             </div>
-
-            <div class="text-wrapper">
-                <h6 class="highlighted">OUR COMPANY</h6>
-                <h2 class="title">Some Fine<br>Words About Us</h2>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et pellentesque libero. Curabitur eu ante suscipit, iaculis ex sit amet, ultricies nunc. Ut tincidunt feugiat ipsum elementum congue. Nam et arcu sodales, viverra ex a, ullamcorper augue. Cras quis mauris luctus, mollis nisl sed, condimentum lacus. Aliquam varius aliquet elit eget facilisis. In eget faucibus ex. Sed dictum neque neque, et rutrum magna malesuada id. Aliquam lacinia cursus enim, ac facilisis sem pharetra a. Duis vehicula arcu ut urna fringilla imperdiet.</p>
+            
+            <div class="media">
+                <img src="images/header.jpg" alt="people">
             </div>
         </section>
         
-        <section class="site-layout section section-contacts">
-            <h6 class="highlighted">CONTACT US</h6>
-            <h2 class="title">Get in Touch</h2>
-
+        <section class="site-layout info">
+            <div class="wrapper">
+                <div class="media">
+                    <img src="images/design.jpg" alt="design">
+                </div>
+                <h3>Web & Graphic<br>Design</h3>
+                <p>Vestibulum ac diam sit amet quam vehicula elementum amet est on dui. Nulla porttitor accumsan tincidunt.</p>
+            </div>
+        </section>
+        
+        <section class="site-layout info">
+            <div class="wrapper">
+                <div class="media">
+                    <img src="images/development.jpg" alt="development">
+                </div>
+                <h3>Web & App<br>Development</h3>
+                <p>Vestibulum ac diam sit amet quam vehicula elementum amet est on dui. Nulla porttitor accumsan tincidunt.</p>
+            </div>
+        </section>
+        
+        <section class="site-layout about">
+            <div class="media">
+                <img src="images/company.jpg" alt="company">
+            </div>
+            <h4>OUR COMPANY</h4>
+            <h2>Some Fine<br>Words About Us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et pellentesque libero. Curabitur eu ante suscipit, iaculis ex sit amet, ultricies nunc. Ut tincidunt feugiat ipsum elementum congue. Nam et arcu sodales, viverra ex a, ullamcorper augue. Cras quis mauris luctus, mollis nisl sed, condimentum lacus. Aliquam varius aliquet elit eget facilisis. In eget faucibus ex. Sed dictum neque neque, et rutrum magna malesuada id. Aliquam lacinia cursus enim, ac facilisis sem pharetra a. Duis vehicula arcu ut urna fringilla imperdiet.</p>
+        </section>
+        
+        <section class="site-layout contacts">
+            <h4>CONTACT US</h4>
+            <h2>Get in Touch</h2>
+            
             <form action="#" method="POST">
                 <div class="field">
                     <input type="email" name="email" id="email">
-                    <label for="email">Your Email</label>
+                    <label for="email">Your email</label>
                 </div>
-
+                
                 <div class="field">
                     <input type="text" name="subject" id="subject">
                     <label for="subject">Subject</label>
                 </div>
-
+                
                 <div class="field">
-                    <textarea name="message" id="message" rows="6" cols="">Message here...</textarea>
+                    <textarea name="message" id="message" placeholder="Message here..." rows="6"></textarea>
                 </div>
             </form>
+            
         </section>
     </main>
-    
     <footer class="site-layout">
         <ul>
-            <li><a href="#"></a>Home</li>
-            <li><a href="#"></a>About Us</li>
-            <li><a href="#"></a>Portfolio</li>
-            <li><a href="#"></a>Blog</li>
-            <li><a href="#"></a>Contact</li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
-        <p>©2024 - <span>CreateArt</span></p>
+        
+        <p>©2024 - CreateArt</p>
     </footer>
 </body>
 </html>
