@@ -1,6 +1,7 @@
 /* padding-left: clamp(9.4em, calc(100dvw - 2560px / 2 * 2), calc(100dvw / 2));
 padding-right: clamp(2.35em, calc((100dvw - 2560px) / 2), calc(100dvw / 2)); */
 
+/* &copy; */
 @import url('');
 
 :root {
