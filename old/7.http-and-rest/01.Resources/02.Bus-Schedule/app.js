@@ -2,7 +2,7 @@ function solve() {
     const infoElement = document.querySelector('#info .info');
     const departInputElement = document.getElementById('depart');
     const arriveInputElement = document.getElementById('arrive');
-    const baseUrl = 'http://localhost:3030/jsonstore/bus/schedule/';
+    const baseUrl = 'http://localhost:3030/jsonstore/bus/schedule';
 
     let [nextId, location] = ['depot', null];
 
@@ -10,7 +10,7 @@ function solve() {
         departInputElement.disabled = true;
         arriveInputElement.disabled = false;
 
-        fetch(`${baseUrl}${nextId}`)
+        fetch(`${baseUrl}/${nextId}`)
             .then(response => response.json())
             .then(result => {
                 location = result.name;
@@ -19,7 +19,6 @@ function solve() {
                 infoElement.textContent = `Next stop ${location}`;
             })
             .catch(() => {
-
                 infoElement.textContent = 'Error';
             });
     }
