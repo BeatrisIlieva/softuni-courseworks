@@ -24,7 +24,7 @@ console.log(upperCarsShort);
 
 // Includes -> both for strings and arrays
 let hasAudi = cars.includes('Audi');
-console.log(hasAudi, 'here');
+console.log(hasAudi);
 
 // Non mutating
 // Some -> returns true or false
