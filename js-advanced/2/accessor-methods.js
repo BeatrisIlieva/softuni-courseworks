@@ -10,7 +10,7 @@ let allCars = moreCars.concat(cars);
 
 console.log(allCars);
 
-let carsWithoutPush = allCars.concat('Porche');
+let carsWithoutPush = allCars.concat('Porche', 'Audi');
 console.log(carsWithoutPush);
 
 // Slice
@@ -29,3 +29,21 @@ console.log(copy);
 
 // the variables point to two different places in memory
 console.log(copy === carsWithoutPush); // false
+
+// Indexof
+let audiIndex = carsWithoutPush.indexOf('Audi');
+console.log(audiIndex);
+
+let notExisting = carsWithoutPush.indexOf('Trabant');
+
+if (notExisting < 0) {
+    console.log('cannot find');
+}
+
+//seacrh from a given index
+let nonExistingAudiIndex = carsWithoutPush.indexOf('Audi', 2);
+console.log(nonExistingAudiIndex);
+// - 1
+
+let latAudiIndex = carsWithoutPush.lastIndexOf('Audi');
+console.log(latAudiIndex);
