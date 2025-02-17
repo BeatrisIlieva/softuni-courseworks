@@ -1,3 +1,17 @@
+function factory(library, orders) {
+    const result = [];
+
+    for (const order of orders) {
+        let obj = order.template;
+
+        for (const part of order.parts) {
+            obj[part] = library[part];
+        }
+
+        result.push(obj);
+    }
+}
+
 const library = {
     print: function () {
         console.log(`${this.name} is printing a page`);
