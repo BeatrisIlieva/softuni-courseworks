@@ -2,7 +2,8 @@ function factory(library, orders) {
     const result = [];
 
     for (const order of orders) {
-        let obj = order.template;
+        // let obj = Object.assign({}, order.template);
+        let obj = { ...order.template }; // shallow copy - it will not copy nested objects
 
         for (const part of order.parts) {
             obj[part] = library[part];
@@ -10,6 +11,8 @@ function factory(library, orders) {
 
         result.push(obj);
     }
+
+    return result;
 }
 
 const library = {
