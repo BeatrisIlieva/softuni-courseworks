@@ -9,10 +9,10 @@ function solve(matrix) {
         }
     }
 
-    for (let i = 0; i < matrix.length - 1; i++){
-        for (let j = 0; j < matrix[i].length; j++){
-            if(matrix[i][j] === matrix[i + 1][j]){
-                countOfPair += 1
+    for (let i = 0; i < matrix.length - 1; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (matrix[i][j] === matrix[i + 1][j]) {
+                countOfPair += 1;
             }
         }
     }
