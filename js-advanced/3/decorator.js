@@ -11,3 +11,13 @@ function canScan(device) {
         console.log(`${this.name} is scanning a page`);
     };
 }
+
+let printer = { name: 'Printer' };
+canPrint(printer);
+printer.print();
+
+let copier = { name: 'Copier' };
+canPrint(copier);
+canScan(copier);
+copier.scan();
+copier.print();
