@@ -16,7 +16,7 @@ function solve(length, maxCount) {
             }
         }
 
-        result.push(sum)
+        result.push(sum);
     }
 
     return result;
