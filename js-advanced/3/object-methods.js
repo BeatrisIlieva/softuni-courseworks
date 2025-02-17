@@ -6,6 +6,7 @@ let cat = {
 
 cat.sleep();
 
+// add method using method notation
 let car = {
     drive() {
         console.log('Brrrum');
