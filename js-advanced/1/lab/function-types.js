@@ -24,9 +24,8 @@ print4('some');
 
 // Default Parameters
 
-function hello(name = 'guest'){
+function hello(name = 'guest') {
     console.log(`Hi, ${name}`);
 }
 
 hello();
-
