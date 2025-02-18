@@ -36,6 +36,6 @@ console.log(
         power: 200,
         color: 'red',
         carriage: 'coupe',
-        wheelsize: 21
+        wheelsize: 21,
     })
 );
