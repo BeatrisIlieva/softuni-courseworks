@@ -11,11 +11,13 @@ function solve(worker) {
 }
 
 console.log(
-    solve({ weight: 120,
+    solve({
+        weight: 120,
 
         experience: 20,
-        
+
         levelOfHydrated: 200,
-        
-        dizziness: true })
+
+        dizziness: true,
+    })
 );
