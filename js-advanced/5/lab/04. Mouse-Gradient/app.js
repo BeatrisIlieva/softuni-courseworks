@@ -3,11 +3,11 @@ function attachGradientEvents() {
     const resultElement = document.getElementById('result');
 
     gradientElement.addEventListener('mousemove', e => {
-        const gradientElementWidth = e.currentTarget.offsetWidth;
+        const gradientElementWidth = gradientElement.offsetWidth;
 
         const mousePosition = e.offsetX;
-        const percentage = Math.floor((mousePosition / gradientElementWidth) * 100);
+        const percentage = Math.floor((Number(mousePosition) / Number(gradientElementWidth)) * 100);
 
-        resultElement.textContent = percentage;
+        resultElement.textContent = `${percentage}%`;
     });
 }
