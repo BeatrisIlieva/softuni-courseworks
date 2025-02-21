@@ -1,3 +1,4 @@
-let array = [1, 2, 3, 4, 5]
+const number = 9;
+number = 12;
 
-console.log(array.at(2));
+console.log(number);
