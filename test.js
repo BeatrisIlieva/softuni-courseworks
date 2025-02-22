@@ -1,2 +1,2 @@
-const operand = '*';
-console.log(3 operand 3);
+const string = 'asdf'
+console.log([...string]);
