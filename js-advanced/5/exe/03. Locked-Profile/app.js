@@ -4,24 +4,19 @@ function lockedProfile() {
     showMoreButtonElements.forEach(button => {
         button.addEventListener('click', e => {
             const parentElement = button.parentElement;
-            const unlockRadio = parentElement.querySelector('input[value=lock]');
+            const lockRadio = parentElement.querySelector('input[value=lock]');
 
-            if (unlockRadio.checked) {
+            if (lockRadio.checked) {
                 return;
             }
 
             const buttonText = button.textContent;
             const hiddenContent = parentElement.querySelector('div');
 
-            if (buttonText === 'Show more') {
-                hiddenContent.style.display = 'block';
+            const isInShowMoreState = buttonText === 'Show more';
 
-                button.textContent = 'Hide it';
-            } else {
-                hiddenContent.style.display = 'none';
-
-                button.textContent = 'Show more';
-            }
+            hiddenContent.style.display = isInShowMoreState ? 'block' : 'none';
+            button.textContent = isInShowMoreState ? 'Hide it' : 'Show more';
         });
     });
 }
