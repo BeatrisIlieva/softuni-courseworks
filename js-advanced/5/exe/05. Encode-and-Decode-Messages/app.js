@@ -13,16 +13,18 @@ function encodeAndDecodeMessages() {
     );
 
     decodeButtonElement.addEventListener('click', e =>
-        handleMessage(e, decodeTextareaElement, encodeTextareaElement, -1)
+        handleMessage(e, decodeTextareaElement, decodeTextareaElement, -1)
     );
 
     function handleMessage(e, sourceTextarea, targetTextarea, delta) {
         const input = sourceTextarea.value;
 
-        const message = createMessage(input, delta);
-
-        targetTextarea.value = message;
-        sourceTextarea.value = '';
+        if (input.length > 0) {
+            const message = createMessage(input, delta);
+            
+            sourceTextarea.value = '';
+            targetTextarea.value = message;
+        }
     }
 
     function createMessage(text, delta) {
