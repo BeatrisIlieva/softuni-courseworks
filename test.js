@@ -1,2 +1,2 @@
-const string = 'asdf'
-console.log([...string]);
+const string = ' '
+console.log(!!string);
