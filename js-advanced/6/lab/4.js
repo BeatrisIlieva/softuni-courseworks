@@ -1,22 +1,13 @@
 function solve(data, criteria) {
     const people = JSON.parse(data);
     const [key, value] = criteria.split('-');
-    console.log(people);
-    console.log(key, value);
+    let counter = 0;
 
-    for (let i = 0; i < people.length; i++) {
-        const currentPerson = people[i];
+    people.forEach(person => selectByCriteria.call(person));
 
-        if (key == 'all') {
-            console.log(
-                `${i}. ${currentPerson.first_name} ${currentPerson.last_name} - ${currentPerson.email}`
-            );
-        } else {
-            if (currentPerson[key] === value) {
-                console.log(
-                    `${i}. ${currentPerson.first_name} ${currentPerson.last_name} - ${currentPerson.email}`
-                );
-            }
+    function selectByCriteria() {
+        if (this[key] === value || criteria === 'all') {
+            return console.log(`${counter++}. ${this.first_name} ${this.last_name} - ${this.email}`);
         }
     }
 }
