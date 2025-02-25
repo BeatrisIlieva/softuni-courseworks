@@ -1,3 +1,13 @@
-let num = 912
+function sayHi(){
+    console.log(`my name ${this.name}`);
+}
 
-console.log(num.toString(16).toUpperCase());
+
+let person = {
+    name: 'Pesho',
+    saySomething(){
+        sayHi()
+    }
+}
+
+person.saySomething()
