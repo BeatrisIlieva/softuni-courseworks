@@ -19,7 +19,7 @@
             // Hi my name is password
         }
 
-        button.addEventListener('click', sayHi)
+        button.addEventListener('click', sayHi.bind({name: 'Pesho'})) // Hi my name is Pesho
      </script>
 </body>
 </html>
