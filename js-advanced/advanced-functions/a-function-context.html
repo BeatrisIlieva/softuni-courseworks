@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Execute as event listener -->
+     <input type="button" value="Click" name="password">
+
+     <script>
+        const button = document.querySelector('input');
+
+        function sayHi() {
+            console.log(this); // this here is the element
+            // this == event.currentTarget == button
+            console.log(`Hi my name is ${this.name}`);
+            // Hi my name is password
+        }
+
+        button.addEventListener('click', sayHi)
+     </script>
+</body>
+</html>
