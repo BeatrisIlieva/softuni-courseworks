@@ -1,10 +1,15 @@
-function riskyOperation(){
-    if (Math.random() < 0.5){
-        throw new Error('Task failed')
+function riskyOperation() {
+    if (Math.random() < 0.5) {
+        throw new Error('Task failed');
     }
 
-    return 'Task successfull'
+    return 'Task successfull';
 }
 
-const result = riskyOperation()
-console.log(console.log(result.message));
+try {
+    const result = riskyOperation();
+    console.log(result);
+} catch (err) {
+    // Error handling
+    console.log(err.message);
+}
