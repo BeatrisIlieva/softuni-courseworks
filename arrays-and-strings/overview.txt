@@ -19,3 +19,4 @@ The memory is divided into two types:
 
     2. Heap - the memory of the machine
         - all reference data types VALUES are kept in the heap
+
