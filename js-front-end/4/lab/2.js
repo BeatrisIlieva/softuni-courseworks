@@ -1,9 +1,17 @@
-function solve(string) {
-    const obj = JSON.parse(string);
-
-    for (let key in obj) {
-        console.log(`${key}: ${obj[key]}`);
+function solve(input) {
+    for (let key in input) {
+        console.log(`${key} -> ${input[key]}`);
     }
 }
 
-solve('{"name": "George", "age": 40, "town": "Sofia"}');
+solve({
+    name: 'Plovdiv',
+
+    area: 389,
+
+    population: 1162358,
+
+    country: 'Bulgaria',
+
+    postCode: '4000'
+});
