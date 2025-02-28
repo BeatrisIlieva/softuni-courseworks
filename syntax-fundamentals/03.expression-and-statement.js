@@ -9,10 +9,11 @@ const a = 5;
 const b = 7;
 
 // Statement
-if (a > b) {
+if (a > b) { // block start
     // Expression
-    console.log(tru);
-} else {
+    console.log(true);
+} // block end
+else {
     // Expression
     console.log(false);
 }

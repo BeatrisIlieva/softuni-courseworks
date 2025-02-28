@@ -12,7 +12,7 @@
  */
 
 /*
-    Seven primitive (value types) data types:
+    Seven primitive data types (value types):
         1. String (immutable)
         2. Number
         3. Boolean
@@ -20,7 +20,25 @@
         5. Undefined
         6. BigInt
         7. Symbol (unique and immutable)
+
+        Both the variables and the VALUES of the primitive data types 
+        are stored in the execution context that is in the CALLSTACK;
+
+        Callstack is a memory dedicated for the execution of the program;
+        
 */
+
+
+
+let word = 'some'; // A string is created in memory; the variable word points to it
+let num = 5; // A number is created in memory; the variable num points to it
+
+word = 'some2'; // A new string is created in memory; The original string is not modified
+              // 'some' is no longer referenced so it can be garbage collected
+num = 6; // The number 5 is replaced with 6
+
+console.log(word); // some2
+console.log(num); // 6
 
 
 const a = 10;
@@ -46,3 +64,11 @@ console.log(result, typeof result); // 10asd string
 
 result = a - c;
 console.log(result, typeof result); // NaN number
+
+/* 
+    Reference data types (structure types):
+        1. Objects
+        2. Arrays (they are also objects)
+        3. Functions (they are also objects)
+*/
+
