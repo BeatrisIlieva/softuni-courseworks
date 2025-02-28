@@ -1,5 +1,7 @@
 /* 
     In JS the values have types not the variables
+    / Literal is the way we write down a given value 
+      so the interpreted can understand of what type it is /
     - string literal '' to define a string 
     - array literal [] to define an array
     - object literal {} to define an object

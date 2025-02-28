@@ -10,7 +10,12 @@ let c = 3;
 
 function outer() { // block start
     const a = 1;
-    // console.log(b); ReferenceError: b is not defined
+    try{
+        console.log(b); 
+
+    } catch(err) {
+        console.log(err.name, err.message); // ReferenceError b is not defined
+    }
 
     function inner() { // block start
         console.log(a); // 1
@@ -20,7 +25,13 @@ function outer() { // block start
         const b = 2;
     } // block start
 
-    // console.log(b); ReferenceError: b is not defined
+    try {
+        console.log(b); 
+
+    } catch(err) {
+
+        console.log(err.name, err.message); // ReferenceError b is not defined
+    }
 
     inner();
 } // block start
