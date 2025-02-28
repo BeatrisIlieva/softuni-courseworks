@@ -7,7 +7,7 @@ function solve(input) {
         return acc;
     }, {});
 
-    for (let key in result){
+    for (let key in result) {
         console.log(`${key} -> ${result[key]}`);
     }
 }
