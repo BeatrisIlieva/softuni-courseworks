@@ -1,0 +1,36 @@
+A function is a named block of code. 
+That code is logically related towards the execution of a specific task. 
+A function should execute only one task.
+A function should do what it's name says.
+Functions are executed when they are invoked. 
+The parameters are the variables that will hold the values that 
+will be passed when the function is invoked
+The values that will be passed to the parameters are called arguments
+
+Using functions allows us to split an entire problem into sub-problems. This makes the code
+more understandable when we read it. It also makes it reusable, which means that there would
+be less amount of code, and also that if we have a certain logic at only one place, but not into
+multiple places, we would be having to fix the code only at the single place. 
+
+
+In the callstack the execution contexts are stored. 
+One function calls another function, calls another function...
+Until the function returns, it's execution context stays in the callstack.
+
+I n JS a function itself is a value. It can be assigned as a value to a variable.
+A function is kept as a reference data type in memory - in the Heap.
+So the variable holds a reference to the place where the function is stored in memory.
+
+A parameter is a variable in the scope of a function. When we exit the scope of the function
+that variable stops existing.
+
+A function consists of a name, parameters and body.
+The default return value of  a function is undefined.
+
+Only function declarations can be hoisted. The rest of the function types are being declared only
+after the interpreter reads the row where they are declared and defined. 
+This is because function declaration is a statement. 
+
+First class is a specific feature of functions in JS. This means that functions are values.
+It can be passed as an argument to another function, it can be returned as a result from 
+another function and it can be assigned as a value to a variable.

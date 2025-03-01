@@ -1,6 +1,7 @@
-let a = 6;
-let b = a;
+function log(str){
+    return str + '!'
+}
 
-b = 7
-
-console.log(a);
+let string = 'asd'
+string = log(string)
+console.log(string);
