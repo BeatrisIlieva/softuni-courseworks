@@ -49,7 +49,9 @@ names.length = 20;
 // this is the current length of the array, not the one with which it was create
 const namesLength = names.length;
 
-console.log(namesLength);
+console.log(namesLength); // 20
+names.length = 3;
+console.log(names.length);
 
 console.log(names[21]); // undefined
 
