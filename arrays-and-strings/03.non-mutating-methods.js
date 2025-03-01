@@ -52,9 +52,9 @@ console.log(fish); // fish
 console.log(fish === fishAnimal); // true
 
 // With it includes() we receive boolean
-// With indexOf() we receive index
-// With find() we receive on element
-// With filter() we receive multiple elements
+// With indexOf() we receive index (finds the first one and stops)
+// With find() we receive on element (finds the first oen and stops)
+// With filter() we receive multiple elements (this is an iterating method)
 
 const animalNamesContainingLetterS = animals.filter(element =>
     element.includes('s')
