@@ -20,3 +20,8 @@ The memory is divided into two types:
     2. Heap - the memory of the machine
         - all reference data types VALUES are kept in the heap
 
+
+Array methods are divided into two groups - mutating and non-mutating.
+The mutating methods change the original array by reference.
+
+Predicate is a function that returns true or false

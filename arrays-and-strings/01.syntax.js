@@ -61,3 +61,11 @@ let [firstNum, secondNum, ...rest] = newNumbers;
 console.log(firstNum);
 console.log(secondNum);
 console.log(rest);
+
+const array = [1, 2, 3, 4, 5];
+const length = array.length;
+
+array.length = 10;
+
+console.log(array.length); // 10
+console.log(length); // 5

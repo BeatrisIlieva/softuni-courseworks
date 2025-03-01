@@ -1,7 +1,6 @@
-const array = [1, 2, 3, 4, 5]
-const length = array.length;
+let a = 6;
+let b = a;
 
-array.length = 10;
+b = 7
 
-console.log(array.length);
-console.log(length);
+console.log(a);
