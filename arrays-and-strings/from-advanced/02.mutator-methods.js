@@ -49,3 +49,17 @@ console.log(numbers); // [0, 2, 3, 3, 0]
 
 numbers.fill(5, 2, 5);
 console.log(numbers); // [0, 2, 5, 5, 5]
+
+const empty = [];
+empty.length = 10;
+console.log(empty);
+empty.fill(1, 0, 10);
+console.log(empty);
+
+// reverse()
+// returns the reference
+const numArray = [1, 2, 3, 4, 5];
+const result3 = numArray.reverse();
+console.log(numArray); // [5, 4, 3, 2, 1]
+console.log(result3 === numArray); // true
+

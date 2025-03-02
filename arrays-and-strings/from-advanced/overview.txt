@@ -4,3 +4,16 @@ to declare a variable 'firstNames' and to assign it as a value an array that
 contains all the names compared to creating a separate variable for each first name.
 
 In JS nor the length of an array is fixed, nor the value types it contains. 
+
+When comparing reference types, the comparison is not by value but by reference;
+
+The reason why methods like reverse and others return the reference 
+is because this allows us to make chaining
+
+reverse() and sort() return the same reference; they are mutating methods
+
+a callback function does not return a result but executes an action over an element
+
+It is not  a good practice to use forEach and for ... of when we modify the elements
+
+Predicate is a function that accepts an input and returns a boolean
