@@ -1,0 +1,20 @@
+body {
+    min-height: 100dvh;
+    background: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+    background: var(--clr-white);
+}
+
+main {
+    flex-grow: 1;
+}
+
+header.site-layout {
+    padding: 0 clamp(2dvh, calc((100dvw - 1015px) / 2), calc(100dvw / 2));
+}
+
+section.site-layout,
+footer.site-layout {
+    padding: 0 clamp(2dvh, calc((100dvw - 1235px) / 2), calc(100dvw / 2));
+}

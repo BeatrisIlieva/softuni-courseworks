@@ -1,0 +1,9 @@
+:root {
+    --clr-white: #fff;
+    --clr-black: #000;
+    --clr-bg-gray: #F6F8FB;
+    --clr-text-gray: #52575C;
+    --clr-border-gray: #C2C7CC;
+    --clr-red: #F35872;
+    --border-radius: 0.5rem;
+}

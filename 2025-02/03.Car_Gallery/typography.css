@@ -1,0 +1,50 @@
+html {
+    box-sizing: border-box;
+    font: clamp(14px, 8px + 0.53dvw, 18px) / 1.5 'Source Sans Pro', sans-serif;
+    color: var(--clr-text-gray);
+    font-weight: 200;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: 3.2em;
+}
+
+h2 {
+    font-size: 2.4em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+h4 {
+    font-size: 1.6em;
+}
+
+h5 {
+    font-size: 1.4em;
+}
+
+h6 {
+    font-size: 1.2em;
+}
+
+p,
+ul,
+ol {
+    padding-bottom: 1.5em;
+}
+
+ul,
+ol {
+    padding-left: 1.5em;
+}
