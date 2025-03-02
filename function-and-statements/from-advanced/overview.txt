@@ -53,3 +53,14 @@ In JS there is :
 1. Global Scope
     In the Browser window === this === globalThis (we can access the global scope through them)
 2. Function Scope
+2. Block Scope
+
+The difference between let and const is that, when we define a variable with let we expect
+that its value will change, when we define a variable we const we do not expect its value
+to change in the future. 
+
+Method is a function that is attached or belongs to an object.
+String is an object in JS. It has its methods:
+someString.toLowerCase()
+
+toLowerCase() is a method of the string

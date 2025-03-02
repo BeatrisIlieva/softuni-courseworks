@@ -1,11 +1,11 @@
-// When logical AND if the left side is truthy it will return the right value 
+// When logical AND if the left side is truthy it will return the right value
 console.log(true && false);
 // false
 
 console.log(true && 'Pesho');
 // Pesho
 
-// When logical AND if the left side is falsy it will return the left value 
+// When logical AND if the left side is falsy it will return the left value
 console.log(false && 'Pesho');
 // false
 
