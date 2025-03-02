@@ -1,7 +1,8 @@
-📌 Academy Exam Preparations
-This repository contains exam preparation tasks provided by SoftUni.
+## 📌 Academy Exam Preparations
 
-📝 Task Overview:
+##### This repository contains exam preparation tasks provided by SoftUni.
+
+#### 📝 Task Overview:
 1️⃣ HTML & CSS Mirroring – Recreate a provided screenshot using HTML and CSS.
 2️⃣ Responsive Design – Improve a given static webpage by making it responsive using media queries.
 
