@@ -1,0 +1,55 @@
+JS is the core technology of the service World Wide Web. World Wide Web is the service
+in the Internet that allows us to access web content. The other core technologies in
+World Wide Web are HTML and CSS. HTML is the content, CSS styles the content, 
+JS makes the content interactive.
+
+Dynamic typing, means that we do not declare the types of the variables. The values have type
+not the variables. There is no step in which the code is firstly compiled. In compiled
+languages the code is firstly compiled and turned into files 
+containing machine code. Then this files are executed. In JS the code is directly interpreted
+and executed. This, in compiled time languages the errors are caught before execution, while
+in interpreted languages they are caught at execution.
+
+Because JS is dynamically types language, we can change the values of the variables or 
+to add new properties to the objects at runtime.
+
+In the Chromium based Browsers, there is built-in JS interpreter named V8. 
+ECMAScript is the standard that describes what JS should be. V8 follows ECMAScript rules.
+
+Node.js also integrates the V8 engine. 
+
+There are two types of memory - the Stack and the Heap.
+The stack is a relatively small amount of memory dedicated for the runtime of the program.
+The Heap is the machine memory.
+
+The value of the primitive data types stay in the stack. 
+The value of the primitive data types stay in the heap.
+
+The callstack is in the Stack. The callstack contains the execution contexts. 
+Function execution context stay in the stack. If a function call another function
+a new execution context is created. Each execution context has its variables. 
+
+In JS all numbers (integers and decimals) are of one type -> Number.
+In Python we have float and integer. 
+
+Null - represent an intentional absence of any object value. We declare a variable 
+and we define value null.
+Undefined - means that something still does not have a value. We declare a variable
+but we do not define any value.
+
+Identifier = the name of the variable or a function:
+
+let name = 'Pesho' -> name is Identifier
+function solve(){} -> solve is identifier
+let obj = {name: "pesho"} -> name is a property identifier
+
+Variables that are assigned a non-primitive value are given a reference to that value
+
+The keyword var and function declarations have the characteristic of function scope hoisting.
+This means that their declarations go at the top. And later, when the interpreted
+reaches to the line where they are declared, they get defined. 
+
+In JS there is :
+1. Global Scope
+    In the Browser window === this === globalThis (we can access the global scope through them)
+2. Function Scope

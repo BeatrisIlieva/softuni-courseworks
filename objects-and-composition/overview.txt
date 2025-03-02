@@ -1,0 +1,9 @@
+Arrays are collections that is meant to contain a list of uniform data. 
+
+An object is a collection of non uniform data that is related to one and the same thing.
+The keys are always a string. 
+Values can be af any type.
+
+Objects are a reference data type. 
+
+Reference data type - the variable holds a reference to the value that is kept in the heap.

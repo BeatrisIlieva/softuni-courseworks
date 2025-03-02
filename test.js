@@ -1,7 +1,13 @@
-function log(str){
-    return str + '!'
+function log(str) {
+    let a = 5;
+    function inner() {
+        let b = 7;
+        a = 6
+        console.log(a);
+    }
+
+
+    inner()
 }
 
-let string = 'asd'
-string = log(string)
-console.log(string);
+log()

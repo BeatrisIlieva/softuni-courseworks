@@ -1,0 +1,4 @@
+Arrays are a structure data should contain uniform data. They provide us with the flexibility
+to store, iterate or access large amount of uniform data. For example, it is much easier
+to declare a variable 'firstNames' and to assign it as a value an array that 
+contains all the names compared to creating a separate variable for each first name.

@@ -34,3 +34,5 @@ This is because function declaration is a statement.
 First class is a specific feature of functions in JS. This means that functions are values.
 It can be passed as an argument to another function, it can be returned as a result from 
 another function and it can be assigned as a value to a variable.
+
+Hoisting allows us to call a function declaration before it being declared.
