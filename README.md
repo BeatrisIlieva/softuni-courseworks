@@ -1,6 +1,6 @@
 ## 📌 Academy Exam Preparations
 
-##### This repository contains exam preparation tasks provided by SoftUni.
+##### This repository contains exam preparation tasks provided by *SoftUni*.
 
 #### 📝 Task Overview:
 1️⃣ HTML & CSS Mirroring – Recreate a provided screenshot using HTML and CSS.
