@@ -55,4 +55,15 @@ console.log(simpleObj === anotherObj); // true
 const simpleObj2 = { second: 2 };
 console.log(simpleObj === simpleObj2); // false
 simpleObj.second = 20;
-console.log(anotherObj);
+console.log(anotherObj); // {second: 20}
+
+// use dynamic property name in object literal
+const propName = 'isEco';
+
+const house = {
+    color: 'Pink',
+    isMultiFamily: true,
+    [propName]: true
+};
+
+console.log(house);
