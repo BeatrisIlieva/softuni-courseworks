@@ -47,3 +47,26 @@ dog.chaise = function (catName) {
 
 const catName = 'Daisy';
 dog.chaise(catName); // Chasing Daisy
+
+let count = 5;
+
+const commands = {
+    increment() { count++ },
+    decrement() { count-- },
+    reset() { count = 0 },
+};
+
+let command = 'increment';
+commands[command]();
+console.log(count); // 6
+
+command = 'decrement';
+commands[command]();
+console.log(count); // 5
+
+command = 'reset';
+commands[command]();
+console.log(count); // 0
+
+
+
