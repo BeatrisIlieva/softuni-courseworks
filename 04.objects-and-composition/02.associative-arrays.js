@@ -33,15 +33,15 @@ values.forEach(value => console.log(`${value}`));
 // iterate with Object.keys()
 // Object.keys() give as an array that contains nested arrays with each key-value pair
 const keys = Object.keys(phoneBook);
-keys.forEach(key =>
-    console.log(`${key} -> ${phoneBook[key]}`)
-);
+keys.forEach(key => console.log(`${key} -> ${phoneBook[key]}`));
 
 // iterate with Object.entries()
 // Object.entries() give as an array that contains nested arrays with each key-value pair
 const keyValuePairs = Object.entries(phoneBook);
-keyValuePairs.forEach(([key, value]) => console.log(`${key} -> ${value}`))
+keyValuePairs.forEach(([key, value]) =>
+    console.log(`${key} -> ${value}`)
+);
 
-for(const [key, value] of keyValuePairs){
+for (const [key, value] of keyValuePairs) {
     console.log(`${key} -> ${value}`);
 }
