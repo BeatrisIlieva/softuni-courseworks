@@ -47,7 +47,6 @@ const animalLibrary = [
 
 console.log(factory(animalActions, animalLibrary));
 
-console.log(animalLibrary);
 // [
 //     { name: 'Elephant', walk: [Function: walk] },
 //     { name: 'Shark', swim: [Function: swim] },

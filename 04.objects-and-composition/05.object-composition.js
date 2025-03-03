@@ -14,8 +14,8 @@ const student = {
 };
 
 // !!! the 'student' variable holds a reference to the address in memory where the object
-// is located. The variable 'courses' points to another object which is 
-// also of reference data type. The property-name 'courses' in this case is 
+// is located. The property-name 'courses' points to another object which is 
+// also of reference data type. The property-name 'courses' is 
 // located in the Heap. The property-name 'courses' points to 
 // another place is the Heap where the object
 // { 'JS Advanced': 6.0, 'Django Basics': 6.0 } is located.
