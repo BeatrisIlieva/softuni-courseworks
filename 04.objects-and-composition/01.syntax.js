@@ -10,7 +10,7 @@ cat.eyeColor = 'Amber';
 console.log(cat);
 
 // shorthand syntax
-const firstName = 'Pesho';
+const firstName = 'John';
 const person = {
     firstName,
     age: 20
@@ -28,7 +28,7 @@ console.log(person[dynamicPropertyName]);
 
 // set property name that does not apply to identifier rules
 const employee = {
-    'first-name': 'Gosho'
+    'first-name': 'Steven'
 };
 
 console.log(employee['first-name']);

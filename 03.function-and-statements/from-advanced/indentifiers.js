@@ -12,5 +12,5 @@ function functionName() { // functionName is an identifier
 }
 
 const obj = {
-    propertyName: 'Pesho' // propertyName is an identifier
+    propertyName: 'John' // propertyName is an identifier
 };

@@ -10,8 +10,8 @@ function timeLoggerBuilder(date) {
 
 const todayLogger = timeLoggerBuilder('02.01.2009');
 const yesterdayLogger = timeLoggerBuilder('01.01.2009');
-todayLogger('Hi, Pesho!');
-yesterdayLogger('Hi, Pesho!');
+todayLogger('Hi, John!');
+yesterdayLogger('Hi, John!');
 
 // every time the timeLoggerBuilder returns a new reference - a new function
 console.log(todayLogger === yesterdayLogger); // false

@@ -3,14 +3,14 @@
     All string methods return a new string
 */
 
-let name = 'Pesho';
+let name = 'John';
 name[0] = 'G';
 
-console.log(name); // Pesho
+console.log(name); // John
 
-name = 'Gosho';
+name = 'Philip';
 
-console.log(name); // Gosho
+console.log(name); // Philip
 
 const text = 'Hi ' + 'there'; // concatenation
 console.log(text);

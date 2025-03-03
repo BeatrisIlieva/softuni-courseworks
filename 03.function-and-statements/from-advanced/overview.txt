@@ -39,9 +39,9 @@ but we do not define any value.
 
 Identifier = the name of the variable or a function:
 
-let name = 'Pesho' -> name is Identifier
+let name = 'John' -> name is Identifier
 function solve(){} -> solve is identifier
-let obj = {name: "pesho"} -> name is a property identifier
+let obj = {name: "John"} -> name is a property identifier
 
 Variables that are assigned a non-primitive value are given a reference to that value
 
