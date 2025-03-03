@@ -1,4 +1,4 @@
-const cars = ['BMW', 'Mercedes', 'Audi', 'Toyota', 'Alfa'];
+const cars = ['BMW', 'Mercedes', 'Audi', 'Toyota', 'Alfa', 'Audi'];
 
 // join()
 
@@ -24,3 +24,24 @@ console.log(lastCars); // ['Toyota', 'Alfa']
 // includes()
 const hasAudi = cars.includes('Audi');
 console.log(hasAudi); // true
+
+// indexOf
+const audiIndex = cars.indexOf('Audi');
+console.log(audiIndex); // 2
+
+const audiIndexFromStartPosition = cars.indexOf('Audi', 3);
+console.log(audiIndexFromStartPosition); // -1
+
+const nonExistingIndex = cars.indexOf('Trabant');
+console.log(nonExistingIndex); // -1
+
+if (nonExistingIndex < 0) {
+    console.log('sorry cannot find');
+}
+
+const lastAudi = cars.lastIndexOf('Audi');
+console.log(lastAudi); // 5
+
+
+
+

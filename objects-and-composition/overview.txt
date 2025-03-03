@@ -7,3 +7,15 @@ Values can be af any type.
 Objects are a reference data type. 
 
 Reference data type - the variable holds a reference to the value that is kept in the heap.
+
+In JS arrays have indices which are integers, the object have properties which are strings. 
+The value can be of any type.
+
+Objects are created with object literal.
+
+There are two types of memory. Stack and Heap. The stack is memory dedicated for the runtime 
+execution of our program. The heap is the memory of the machine. When we create a variable 
+and assign it a value of primitive type, both the variable and the value are kept in the 
+stack. When we assign to a variable a value of reference type, the variable stays in the stack.
+The value is kept in the heap. So the variable holds a reference to where the object
+is located in memory. 
