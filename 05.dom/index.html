@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My first JS page</title>
+</head>
+<body>
+    <h1>Hello from JS</h1>
+    <h4>Learn JS in four hours.</h4>
+
+    <script>
+        console.dir(location);
+        console.log(location.pathname); // /05.dom/index.html
+
+        // In the Browser window in the global object, below it is document, history, location etc.
+        console.dir(window);
+
+        // In the Browser this === window === globalThis
+        console.log(this === window); // true
+        console.log(window === globalThis); // true
+        console.log(this === globalThis); // true
+        console.log(this === window === globalThis); // false
+
+        const a = 6;
+        console.log(window.a); // undefined
+
+        var b = 8;
+        console.log(window.b); // 8
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+Document Object Model (DOM) - part of the Browser's API
+Browser Object Model (BOM) - part of DOM. BOM give us provides us with objects that we can use 
+to manipulate the content on a page. For example, window, screen, navigator, history, 
+location, document etc. These features are not available in Node.js. 
+Node.js does not have access to BOM. 
+
+origin: protocol + hostname + protocol
