@@ -1,0 +1,23 @@
+DOM events allows us to react to user actions and thus to create a better user experience.
+
+We can create (a new element), remove(existing element) and append(create a new element at append it
+or take an element from one place and append it to another).
+
+document.createElement() - is a factory method
+
+When we create an element, we create it in memory. 
+Only after we append it to the DOM, then it becomes part of the tree.
+
+The variable hold a reference to the element that is in the tree. If we change the element
+by reference, the change will be reflected into the DOM tree.
+
+methods:
+- parentElement.append(child1, child2)
+- parentElement.removeChild(child)
+- childElement.remove()
+- parentElement.prepend()
+- parentElement.replaceWith()
+- parentElement.replaceAll()
+- parentElement.replaceChildren()
+- childElement.closest()
+- childElement.replace()

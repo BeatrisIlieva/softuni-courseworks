@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parentNode vs parenElement</title>
+</head>
+<body>
+    <h1>parentNode vs parenElement</h1>
+
+    <script>
+        const headingElement = document.querySelector('h1');
+
+        console.log(headingElement.parentElement == 'body'); // false
+
+        console.log(headingElement.parentElement == headingElement.parentNode); // true
+        console.log(headingElement.parentElement.parentElement == headingElement.parentNode.parentNode); // true
+        console.log(headingElement.parentElement.parentElement.parentElement); // null
+        console.log(headingElement.parentNode.parentNode.parentNode); // document =>
+        <!-- the parent node of the HTML element -->
+    </script>
+</body>
+</html>
