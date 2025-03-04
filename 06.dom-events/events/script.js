@@ -23,3 +23,5 @@ console.log(firstMovieShallowCopyElement); // <li class="first-movie"></li>
 const firstMovieDeepCopyElement = firstMovieElement.cloneNode(true); // it copies with the text content
 console.log(firstMovieDeepCopyElement); // <li class="first-movie">First Movie</li>
 
+movieListElement.append(firstMovieDeepCopyElement);
+movieListElement.append(firstMovieShallowCopyElement);
