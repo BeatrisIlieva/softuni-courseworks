@@ -22,9 +22,6 @@ setTimeout(() => {
     contentLiveHtmlCollection.item(0).remove(); 
 }, 2000)
 
-// Live HTML Collection means that if we modify the collection (change place, remove, add)
-// this change will be reflected at the DOM tree
-
 // Remove element from STATIC Node List
 setTimeout(() => {
     contentStaticNodeList.item(1).remove(); 
@@ -34,7 +31,6 @@ setTimeout(() => {
 for (const element of contentLiveHtmlCollection) {
     console.log(element);
 }
-
 
 // Node list can be iterated with forEach
 contentLiveNodeList.forEach(element => console.log(element))
