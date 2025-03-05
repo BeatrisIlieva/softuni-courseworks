@@ -1,5 +1,6 @@
 /* 
    A fragment is a type of NODE. It is NOT an element. It does not appear in the HTML.
+   The fragment live only in memory.
    We can use it as a parent container. It stays in the memory.
    We can use it to attach multiple children for it.
    Then, after we are done attaching, we can attach the fragment to the DOM. 
@@ -11,6 +12,8 @@
    Rule: we first attach the children, then we attach the parent to the DOM. 
    Generally, is more expensive to attach elements to DOM 
    than iterating through collections in memory.
+
+   Our goal is to achieve want we need with as little interactions with DOM as possible.
 */
 
 function create(words) {
