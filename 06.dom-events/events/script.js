@@ -27,3 +27,12 @@ function onIncrement(event) {
 
     countElement.textContent = increasedCount;
 }
+
+// remove event listener
+// to remove an event listener, we firstly need to specify the type of the event
+// and secondly we need to pass a reference to the event handler that we
+// need to remove
+
+setTimeout(() => {
+    resetButtonElement.removeEventListener('click', resetCount);
+}, 3000);
