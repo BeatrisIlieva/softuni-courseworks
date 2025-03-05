@@ -15,7 +15,7 @@ movieListElement.append(firstMovieElement);
 // Prepend existing element
 movieListElement.prepend(firstMovieElement);
 
-// Clone existing element 
+// Clone existing element
 // It creates a new reference
 const firstMovieShallowCopyElement = firstMovieElement.cloneNode(); // it just copies the tags
 console.log(firstMovieShallowCopyElement); // <li class="first-movie"></li>
@@ -25,3 +25,11 @@ console.log(firstMovieDeepCopyElement); // <li class="first-movie">First Movie</
 
 movieListElement.append(firstMovieDeepCopyElement);
 movieListElement.append(firstMovieShallowCopyElement);
+
+const thirdMovieElement = document.createElement('li');
+thirdMovieElement.textContent = 'Lord of the rings';
+movieListElement.insertBefore(thirdMovieElement, secondMovieElement);
+
+const fourthMovieElement = document.createElement('li');
+fourthMovieElement.textContent = 'Case for Christ';
+thirdMovieElement.after(fourthMovieElement);

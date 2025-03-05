@@ -21,3 +21,10 @@ methods:
 - parentElement.replaceChildren()
 - childElement.closest()
 - childElement.replace()
+
+We can register events and initiate an appropriate action.
+
+Event object holds the information about the event. It is passed as an argument to the function
+responsible for handling the event. As an object, the vents has properties. The properties give
+us information about, for example, which is the element tha triggered the event, what is the 
+type of the event (mouse-events, keyboard events, touch events, focus events, form events)
