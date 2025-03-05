@@ -14,6 +14,15 @@
    than iterating through collections in memory.
 
    Our goal is to achieve want we need with as little interactions with DOM as possible.
+
+   ---
+
+   Event delegation: instead of attaching multiple event listeners on each child, 
+   we can attach a single event on their parent element.
+
+   ---
+   currentTarget: the element that we attach the event to
+   target: the element that fires the event (for example the button that has been clicked)
 */
 
 function create(words) {
@@ -30,15 +39,25 @@ function create(words) {
         return divElement;
     });
 
-    divElements.forEach(element =>
-        element.addEventListener('click', () => {
-            const pElement = element.querySelector('p');
-            pElement.style.display = 'block';
-        })
-    );
-
+    // Document Fragment
     const divElementsFragment = document.createDocumentFragment();
     divElementsFragment.append(...divElements);
 
+    // Event Delegation
+    contentElement.addEventListener('click', clickHandler);
+
     contentElement.append(divElementsFragment);
+
+    // Difference between target and currentTarget
+    function clickHandler(e) {
+        console.log(e.currentTarget); // <div id="content"><div><p style="display: none;">Section 1</p></div><div><p style="display: none;">Section 2</p></div><div><p style="display: none;">Section 3</p></div><div><p style="display: none;">Section 4</p></div></div>
+        console.log(e.target); // <div><p style="display: none;">Section 1</p></div>
+
+        if (e.target.tagName === 'DIV') {
+            const pElement = e.target.querySelector('p');
+            pElement.style.display = 'block';
+        } else {
+            console.log(e.target);
+        }
+    }
 }
