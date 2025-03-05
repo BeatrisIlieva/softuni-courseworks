@@ -58,6 +58,8 @@ function create(words) {
             pElement.style.display = 'block';
         } else {
             console.log(e.target);
+            // after the paragraph has been displayed:
+            // <p style="display: block;">Section 1</p>
         }
     }
 }
