@@ -25,6 +25,12 @@ methods:
 We can register events and initiate an appropriate action.
 
 Event object holds the information about the event. It is passed as an argument to the function
-responsible for handling the event. As an object, the vents has properties. The properties give
-us information about, for example, which is the element tha triggered the event, what is the 
-type of the event (mouse-events, keyboard events, touch events, focus events, form events)
+(event handler) responsible for handling the event. As an object, the vents has properties. 
+The properties give us information about, for example, which is the element 
+that triggered the event, what is the type of the event 
+(mouse-events, keyboard events, touch events, focus events, form events)
+
+Three ways to register an event listener:
+1. HTML attribute
+2. DOM element property
+3. DOM event handler

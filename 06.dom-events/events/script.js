@@ -1,35 +1,29 @@
-// DOM query
-const movieListElement = document.getElementById('movies');
-const firstMovieElement = document.querySelector('.first-movie');
+const countElement = document.getElementById('count');
+const resetButtonElement = document.getElementById('reset');
 
-// Create element
-const secondMovieElement = document.createElement('li');
-secondMovieElement.textContent = 'Second Movie';
+// adding event listener using EVEN HANDLER
+resetButtonElement.addEventListener('click', resetCount);
+// callback function
+function resetCount(event) {
+    countElement.textContent = 0;
+}
 
-// Append new element to DOM
-movieListElement.append(secondMovieElement);
+const decrementButtonElement = document.getElementById('decrement');
+// adding event listener using DOM element PROPERTY
+decrementButtonElement.onclick = function () {
+    const currentCount = Number(countElement.textContent);
 
-// Append existing element to DOM
-movieListElement.append(firstMovieElement);
+    const decreasedCount = currentCount - 1;
 
-// Prepend existing element
-movieListElement.prepend(firstMovieElement);
+    countElement.textContent = decreasedCount;
+};
 
-// Clone existing element
-// It creates a new reference
-const firstMovieShallowCopyElement = firstMovieElement.cloneNode(); // it just copies the tags
-console.log(firstMovieShallowCopyElement); // <li class="first-movie"></li>
+// adding event listener using HTML ATTRIBUTE
+function onIncrement(event) {
+    console.log(event);
 
-const firstMovieDeepCopyElement = firstMovieElement.cloneNode(true); // it copies with the text content
-console.log(firstMovieDeepCopyElement); // <li class="first-movie">First Movie</li>
+    const currentCount = Number(countElement.textContent);
+    const increasedCount = currentCount + 1;
 
-movieListElement.append(firstMovieDeepCopyElement);
-movieListElement.append(firstMovieShallowCopyElement);
-
-const thirdMovieElement = document.createElement('li');
-thirdMovieElement.textContent = 'Lord of the rings';
-movieListElement.insertBefore(thirdMovieElement, secondMovieElement);
-
-const fourthMovieElement = document.createElement('li');
-fourthMovieElement.textContent = 'Case for Christ';
-thirdMovieElement.after(fourthMovieElement);
+    countElement.textContent = increasedCount;
+}
