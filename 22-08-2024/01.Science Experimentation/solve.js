@@ -1,65 +1,93 @@
 function solve(input) {
     const data = [...input];
-    const number = data.shift();
+    const number = Number(data.shift());
 
     const chemicals = [];
 
     for (let i = 0; i < number; i++) {
         let [name, quantity] = data.shift().split(' # ');
 
-        quantity = Math.min(Number(quantity), 500);
+        quantity = Number(quantity);
 
-        chemicals.push({ name, quantity });
+        chemicals.push({
+            name,
+            quantity: Number(quantity),
+            formula: null
+        });
     }
 
     const actions = {
         Mix(rest) {
-            let [firstChemicalName, secondChemicalName, quantity] =
-                rest;
-
-            quantity = Number(quantity);
+            const [firstChemical, secondChemical, amount] = rest;
 
             let firstChemicalObj = null;
-
             let secondChemicalObj = null;
 
-            for (let i = 0; i < chemicals.length; i++) {
-                const currentElementObj = chemicals[i];
+            chemicals.forEach(chemicalObj => {
+                const chemicalName = chemicalObj.name;
 
-                if (currentElementObj.name == firstChemicalName) {
-                    firstChemicalObj = currentElementObj;
-                } else if (
-                    currentElementObj.name == secondChemicalName
-                ) {
-                    secondChemicalObj = currentElementObj;
+                if (chemicalName === firstChemical) {
+                    firstChemicalObj = chemicalObj;
+                } else if (chemicalName === secondChemical) {
+                    secondChemicalObj = chemicalObj;
                 }
-            }
+            });
 
-            const firstChemicalAmountSufficient =
-                firstChemicalObj.quantity >= quantity;
+            const mixNotPossible =
+                !firstChemicalObj ||
+                !secondChemicalObj ||
+                firstChemicalObj.quantity < amount ||
+                secondChemicalObj.quantity < amount;
 
-            const secondChemicalAmountSufficient =
-                secondChemicalObj.quantity >= quantity;
-
-            if (
-                !firstChemicalAmountSufficient ||
-                !secondChemicalAmountSufficient
-            ) {
+            if (mixNotPossible) {
                 console.log(
-                    `Insufficient quantity of ${firstChemicalName}/${secondChemicalName} to mix.`
+                    `Insufficient quantity of ${firstChemical}/${secondChemical} to mix.`
                 );
             } else {
-                firstChemicalObj.quantity -= quantity;
-                secondChemicalObj.quantity -= quantity;
+                firstChemicalObj.quantity -= amount;
+                secondChemicalObj.quantity -= amount;
 
                 console.log(
-                    `${firstChemicalName} and ${secondChemicalName} have been mixed. ${quantity} units of each were used.`
+                    `${firstChemical} and ${secondChemical} have been mixed. ${amount} units of each were used.`
                 );
             }
         },
         Replenish(rest) {
-            let [chemicalName, quantity] = rest;
-            quantity = Number(quantity);
+            let [chemicalName, amount] = rest;
+            amount = Number(amount);
+
+            const chemicalObj = chemicals.find(
+                chemical => chemical.name === chemicalName
+            );
+
+            if (!chemicalObj) {
+                console.log(
+                    `The Chemical ${chemicalName} is not available in the lab.`
+                );
+            } else {
+                const chemicalQuantity = Math.min(
+                    chemicalObj.quantity + amount,
+                    500
+                );
+
+                const addedAmount =
+                    chemicalQuantity - chemicalObj.quantity;
+
+                chemicalObj.quantity = chemicalQuantity;
+
+                if (chemicalQuantity === 500) {
+                    console.log(
+                        `${chemicalName} quantity increased by ${addedAmount} units, reaching maximum capacity of 500 units!`
+                    );
+                } else {
+                    console.log(
+                        `${chemicalName} quantity increased by ${addedAmount} units!`
+                    );
+                }
+            }
+        },
+        'Add Formula'(rest) {
+            const [chemicalName, formula] = rest;
 
             const chemicalObj = chemicals.find(
                 element => element.name === chemicalName
@@ -69,59 +97,37 @@ function solve(input) {
                 console.log(
                     `The Chemical ${chemicalName} is not available in the lab.`
                 );
-            } else if (chemicalObj.quantity + quantity > 500) {
-                chemicalObj.quantity === 500;
-
-                console.log(
-                    `${chemicalName} quantity increased by ${quantity} units, reaching maximum capacity of 500 units!`
-                );
             } else {
-                chemicalObj.quantity += quantity;
-
-                console.log(
-                    `${chemicalName} quantity increased by ${quantity} units!`
-                );
-            }
-        },
-        'Add Formula'(rest) {
-            const [chemicalName, formula] = rest;
-
-            const chemicalObj = chemicals.find(
-                element => element.name == chemicalName
-            );
-
-            if (!chemicalObj) {
-                console.log(
-                    `The Chemical ${chemicalName} is not available in the lab.`
-                );
-            } else {
-                chemicalObj['formula'] = formula;
-
+                chemicalObj.formula = formula;
                 console.log(
                     `${chemicalName} has been assigned the formula ${formula}.`
                 );
             }
         },
         End() {
-            chemicals.forEach(element => {
-                if (element.hasOwnProperty('formula')) {
+            chemicals.forEach(chemical => {
+                if (chemical.formula) {
                     console.log(
-                        `Chemical: ${element.name}, Quantity: ${element.quantity}, Formula: ${element.formula}`
+                        `Chemical: ${chemical.name}, Quantity: ${chemical.quantity}, Formula: ${chemical.formula}`
                     );
                 } else {
                     console.log(
-                        `Chemical: ${element.name}, Quantity: ${element.quantity}`
+                        `Chemical: ${chemical.name}, Quantity: ${chemical.quantity}`
                     );
                 }
             });
         }
     };
 
-    data.forEach(element => {
+    for (const element of data) {
         let [action, ...rest] = element.split(' # ');
 
         actions[action](rest);
-    });
+
+        if (action === 'End') {
+            break;
+        }
+    }
 }
 
 solve([
@@ -133,5 +139,6 @@ solve([
     'Mix # Water # Salt # 50',
     'Replenish # Salt # 150',
     'Add Formula # Acid # H2SO4',
-    'End'
+    'End',
+    'Add Formula # Acid # H2SO4'
 ]);

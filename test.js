@@ -1,3 +1,7 @@
-let quantity = 550
-let num = Math.min(Number(quantity), 500);
-console.log(num);
+
+first = 100;
+second = 50;
+
+needed = 60;
+
+console.log(first < needed || second < needed);
