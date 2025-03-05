@@ -36,3 +36,18 @@ function onIncrement(event) {
 setTimeout(() => {
     resetButtonElement.removeEventListener('click', resetCount);
 }, 3000);
+
+// use input event
+const inputNumberElement = document.getElementById('number');
+
+inputNumberElement.addEventListener('input', event => {
+    countElement.textContent = event.target.value;
+});
+
+// multiple listeners
+// we can have multiple events on one and the same element,
+// including events of one and the same type
+// for example different events for 'click'
+resetButtonElement.addEventListener('click', event => {
+    countElement.textContent = '';
+});
