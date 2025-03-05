@@ -4,8 +4,10 @@
     2. Target
     3. Bubble
 
-    It starts from the most outer element, until it reaches the most inner element - the target. 
-    Then it starts bubbling from the target until it reaches the most outer element again.
+    The even execution starts searching from the most outer element, 
+    until it finds the most inner element - 
+    the target. Then it starts bubbling from the target until it reaches 
+    the most outer element again.
 
     However, the events in DOM, be default, execute in bubbling order.
 */
@@ -21,13 +23,18 @@ orangeElement.addEventListener('click', e => {
 
 
 // we can change the default order of execution from bubbling to capture
+// we can prevent the propagation from spreading
 greenElement.addEventListener('click', e => {
+    e.stopPropagation();
+    // green clicked
     console.log('green clicked');
 }, { capture: true });
 // green clicked
 // orange clicked
 
 yellowElement.addEventListener('click', e => {
+    // e.stopPropagation();
+
     console.log('yellow clicked');
 });
 // yellow clicked

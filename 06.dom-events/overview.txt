@@ -34,3 +34,9 @@ Three ways to register an event listener:
 1. HTML attribute
 2. DOM element property
 3. DOM event handler
+
+
+By default a button that is inside a form is with type 'submit'. Otherwise
+it is with type 'button'.
+
+By default submit refreshes the page. Using preventDefault() we can stop that.
