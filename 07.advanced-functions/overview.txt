@@ -14,10 +14,10 @@ FUNCTION CONTEXT:
 EXECUTION CONTEXT: depends on how the function is invoked.
 
 Ways to invoke a function:
-- global invocation
-- as a method through an object
-- as a DOM event handler (in this case the BROWSER invokes the function)
-- using call(), apply(), bind()
+- function invocation -> the context is the global context
+- as a method through an object -> the context is the object
+- as a DOM event handler (in this case the BROWSER invokes the function) -> the context is the element
+- using call(), apply(), bind() -> we define the context
 
 THIS refers to an object that is the context of a function. The context is an 
 object that we access with 'this'.
