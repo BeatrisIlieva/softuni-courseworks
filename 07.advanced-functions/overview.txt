@@ -17,7 +17,16 @@ Ways to invoke a function:
 - function invocation -> the context is the global context
 - as a method through an object -> the context is the object
 - as a DOM event handler (in this case the BROWSER invokes the function) -> the context is the element
-- using call(), apply(), bind() -> we define the context
+- using call(), apply(), bind() -> we define the context by explicitly binding it; 
+these three methods change the context
+
+call() and apply() change the context and execute the function
+bind() only changes the context without invoking the function
 
 THIS refers to an object that is the context of a function. The context is an 
 object that we access with 'this'.
+
+Upon creation arrow function inherits the context of the outer function.
+
+Functions are of reference type. Variables hold a reference point to the address where 
+the functions are kept in memory
