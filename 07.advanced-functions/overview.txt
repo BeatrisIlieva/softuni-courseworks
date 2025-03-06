@@ -1,0 +1,23 @@
+EXECUTION CONTEXT: the environment in which a function is executed. Each function executes in its 
+own environment that we call execution context. In the execution context there are:
+
+- variables; the variables have live (they live in a certain scope), 
+because when we exit the function, the execution context changes
+- this binding; in the execution context is set to what 'this' to refer to
+- scope chaining; a scope can access variables from upper scopes (generally, an outer scope cannot 
+access variables from inner scope).
+
+FUNCTION CONTEXT: 
+- function context is the object that we access with the 'this' keyword. 
+- when we talk about an execution context we refer to the object that is bind to 'this'.
+
+EXECUTION CONTEXT: depends on how the function is invoked.
+
+Ways to invoke a function:
+- global invocation
+- as a method through an object
+- as a DOM event handler (in this case the BROWSER invokes the function)
+- using call(), apply(), bind()
+
+THIS refers to an object that is the context of a function. The context is an 
+object that we access with 'this'.
