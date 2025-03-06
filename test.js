@@ -1,7 +1,10 @@
+const arr = [1, 2, 3];
 
-first = 100;
-second = 50;
+const result = arr.some(el => {
+    if (el == 2) {
+        return true;
+    }
 
-needed = 60;
-
-console.log(first < needed || second < needed);
+    console.log('iter');
+});
+console.log(result);
