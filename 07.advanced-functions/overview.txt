@@ -46,3 +46,5 @@ This means that pure functions do not execute actions that would change the resu
 depends only on the parameters they receive
 
 The closure is kept into the Heap.
+
+Currying is a technique for function decomposition.
