@@ -1,0 +1,19 @@
+Error handling is the process of making unexpected errors expected
+1. The fundamental principe of error handlings says that a function/ method
+2. should either do what its name says or indicate an error
+
+A function that fails to do what its name says should:
+1. return silent error: undefined, false, -1
+2. throw an exception / error
+
+Errors:
+1. During parsing:
+- Syntax error:
+    console.log(something; SyntaxError: missing ) after argument list
+
+- Type error:
+    const num = 1;
+    console.log(num.toUpperCase()) TypeError: num.toUpperCase is not a function
+
+- Reference error:
+    console.log(num);
