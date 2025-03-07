@@ -84,8 +84,6 @@ function solve(input) {
         actions[command](...rest);
     }
 
-    console.log(JSON.stringify(heroes));
-
     function getHero(name) {
         return heroes.find(hero => hero.name === name);
     }
