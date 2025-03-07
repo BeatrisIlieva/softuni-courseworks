@@ -23,3 +23,6 @@ when we work through the class we can access the static methods
 but we cannot access the instance methods 
 
 Math.floor() -> example of a static method that we access through the type Math
+
+A static method is a method of the class
+An instance method is a method of the instance
