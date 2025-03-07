@@ -7,7 +7,7 @@ A function that fails to do what its name says should:
 2. throw an exception / error
 
 Errors:
-1. During parsing:
+1. During parsing (before execution):
 - Syntax error:
     console.log(something; SyntaxError: missing ) after argument list
 
@@ -15,5 +15,22 @@ Errors:
     const num = 1;
     console.log(num.toUpperCase()) TypeError: num.toUpperCase is not a function
 
+    const pi = 3.14;
+    pi = 3.14159; TypeError: Assignment to constant variable.
+
 - Reference error:
-    console.log(num);
+    console.log(num); ReferenceError: num is not defined
+
+2. Runtime error (during execution):
+    const sum = arr => arr.reduce((acc, curr) => acc + curr, 0);
+    console.log(sum(1, 2, 3)); TypeError: arr.reduce is not a function
+    The code is written correctly but the input data is invalid
+
+3. Logical errors (during execution; JS will not throw an error):
+- The application works but does not produce the correct output
+    let x = 5;
+
+    if (x = 10) { This assigns 10 to x instead of checking equality
+        console.log("X is 10"); X is 10
+    }
+    console.log(x); 10
