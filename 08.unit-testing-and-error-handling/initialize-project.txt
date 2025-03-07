@@ -1,6 +1,14 @@
 INTO THE PROJECT DIRECTORY
 
-npm init --yes (creates the package.json)
+npm init -y (creates the package.json)
 npm install calculator
 
 npm i (to install dependencies)
+
+npm i -D chai mocha 
+
+create folder test
+cerate test file
+
+modify package.json file (type = module, text = mocha)
+

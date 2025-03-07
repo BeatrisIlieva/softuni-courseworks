@@ -1,5 +1,5 @@
 /*
-    In JS we expressions and statements.
+    In JS we have expressions and statements.
     Expressions end with semi-column ;
     Statements don't
 */
