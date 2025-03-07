@@ -1,10 +1,5 @@
-const arr = [1, 2, 3];
+const string = 'Alakamaz';
+const result = string.match('maz');
+console.log(result[0].reverse());
 
-const result = arr.some(el => {
-    if (el == 2) {
-        return true;
-    }
 
-    console.log('iter');
-});
-console.log(result);
