@@ -26,14 +26,17 @@ function solve(input) {
         },
 
         Reverse(substring) {
-            const matchedSubstring = spell.match(substring);
+            substring = substring[0];
 
-            if(!matchedSubstring) {
+            const isContained = spell.includes(substring);
+
+            if(!isContained) {
                 console.log('Error')
             } else {
-                const reversedMatchedSubstring = matchedSubstring[0].split('').reverse().join('');
+                const reversedSubstring = substring.split('').reverse().join('');
 
-                spell = spell.replace(substring, reversedMatchedSubstring);
+                spell = spell.replace(substring, '');
+                spell += reversedSubstring;
 
                 console.log(spell);
             }
