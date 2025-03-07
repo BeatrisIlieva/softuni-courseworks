@@ -26,3 +26,7 @@ Math.floor() -> example of a static method that we access through the type Math
 
 A static method is a method of the class
 An instance method is a method of the instance
+
+DOM objects are instances of Classes
+document.createElement('div') is a factory function that creates these instances
+in this case it creates an element that is an instance of the div class

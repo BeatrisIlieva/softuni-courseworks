@@ -78,6 +78,27 @@ const cat = {
         console.log(`${this.name} is eating`);
     }
 };
+
+// !!! Important
+// the difference between using a class to create cats and creating a second cat object
+// is that with creating a second object we create new functions in memory
+// does not matter that they are one and the same functions
+// while when using classes the methods are created only once in memory
+// and then they are being reused from the different instances
+// so using classes is more memory efficient in this example
+// however we can achieve optimization by creating the methods separately from the object
+// and then attach them as methods to the objects
+const cat2 = {
+    name: 'copyCat',
+    sleep() {
+        console.log(`${this.name} Zzzz`);
+    },
+    eat() {
+        console.log(`${this.name} is eating`);
+    }
+};
+
+
 // the question here is not if the
 // two are one and the same but if cat has been created through the class Cat
 console.log(cat instanceof Cat); // false -> not created from Cat
