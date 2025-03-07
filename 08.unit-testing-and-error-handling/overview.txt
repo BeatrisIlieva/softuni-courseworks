@@ -34,3 +34,70 @@ Errors:
         console.log("X is 10"); X is 10
     }
     console.log(x); 10
+
+Unit testing: is an automated way of checking in isolation if 
+a specific functionality works as expected. 
+
+Unit testing helps us detecting incorrect behaviour during the development of an application.
+
+Reasons to write unit tests:
+1. Unit tests help us to reduce the chance of REGRESSION happening
+    REGRESSION - is when a certain piece of code produced the correct result in the past 
+    but after we change that existing piece of code, it stops working properly
+2. Helps us to quickly identify bugs
+
+(AAA - triple A) A unit test contains of three parts: 
+1. Arrange -> we define the input and the expected output
+2. Act -> action to obtain a result
+3. Assert -> check if the result equals to the expected
+
+JS LIBRARIES for testing -> Mocha, Jest (testing and assertion), etc.
+JS ASSERTION FRAMEWORKS -> Chai
+
+MOCKING - means faking the usage of external dependencies such as libraries
+
+MODULES are separate files. They allows us to divide the code 
+into logically related groups of functionalities. This makes the code more 
+understandable and easy to extend if needed. The resolve the problem with naming collisions.
+For example we can have multiple get functions.
+Modules allows encapsulation => we can export the functionalities that we need so other files can use 
+and not to export other functionalities
+
+Two types of modules in JS 
+
+1. ES6 modules 
+- uses import export syntax
+- natively supported in Browsers
+- not natively supported in Node.js
+
+2. Common JS modules
+
+
+package.json:
+- contains all the information about the project
+- it contains the meta data about the project like project name
+- it contains a list with all project dependencies (installed packages and libraries)
+- scripts - for starting or testing the project
+
+2 TYPES OF DEPENDENCIES:
+- the dependencies on which the execution of the application dependencies (react)
+- dependencies that the developers use while developing the project (devDependencies); these 
+do not effect the end product (mocha, chai)
+
+NPM repository for libraries
+
+LIBRARY NAME: 1.0.0 (install this exact version)
+              Major.Minor.Patch
+
+Patch - a bug has been fixed 
+Minor - a feature has been added 
+Major - breaking change - the way the library works has been changed
+
+LIBRARY NAME: ^1.0.0 (install the newest major version of 1)
+in this case if there is a version 2 it will not be installed; 
+it will install the newest version of 1
+
+MOCHA - JS testing framework 
+It gives us functionalities such as describe and it / test
+
+CHAI - JS assertion framework

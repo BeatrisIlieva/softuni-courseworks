@@ -1,0 +1,6 @@
+INTO THE PROJECT DIRECTORY
+
+npm init --yes (creates the package.json)
+npm install calculator
+
+npm i (to install dependencies)
