@@ -77,5 +77,6 @@ function newOperator(constructor, ...args) {
 
 const person3 = newOperator(Person, 'Brian', 'Smith');
 console.log(person3); // Person {firstName: 'Brian', lastName: 'Smith', sing: ƒ}
+person3.efficientSing(); // Brian, sing for me.
 
 

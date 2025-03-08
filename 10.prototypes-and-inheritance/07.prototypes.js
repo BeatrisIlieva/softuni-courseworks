@@ -114,3 +114,33 @@ Object.setPrototypeOf(secondCat2, cat);
 // in this case both cats use one and the same method meow
 firstCat2.meow(); // Daisy meow...
 secondCat2.meow(); // Tom meow...
+
+// object assign new object with copy OWN members
+const copyCat = Object.assign({}, firstCat2);
+console.log(copyCat); // {name: 'Daisy'}
+// copyCat.meow(); TypeError: copyCat.meow is not a function ->
+// throws error because 'meow' is a prototype method
+
+// only the own members get copied
+
+// Object create
+// IT COPIES THE OWN MEMBERS AND ALSO ALL THE PROTOTYPE'S MEMBERS
+const copyCat2 = Object.create(firstCat2);
+
+copyCat2.meow(); // Daisy meow...
+console.log(copyCat2.__proto__); // {name: 'Daisy'}
+console.log(firstCat2.name); // Daisy
+console.log(copyCat2.__proto__.__proto__); // {meow: ƒ}
+
+// !!! 
+console.log(copyCat2); // {} the object is empty because the copying of the members is not
+// literally copying but it assigns the prototype to the new object which is much more efficient
+
+// if there are one and the same method to the object and to the prototype
+// the one that is attached to the OBJECT will be copied
+// and it will rewrite the one that is on the prototype
+
+// the difference between __proto__ and .prototype is that __proto__ is attached to the objects
+// and refers to the prototype of the object
+// and .prototype is a property of the function that will be set as a prototype to the objects
+// that are created through the function constructor from that function with the keyword 'new'

@@ -13,3 +13,4 @@ Every object has four properties:
 
 Once we define a property as non-configurable, the only behavior we can change is to set 
 writable to 'false'
+
