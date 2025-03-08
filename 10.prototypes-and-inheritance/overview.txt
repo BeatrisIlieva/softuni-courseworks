@@ -1,0 +1,15 @@
+const obj = {
+    the entire row is a property
+    property-name property-value
+
+    name:         'Peter'
+}
+
+Every object has four properties:
+1. Enumerable -> can be iterated with for ... in (enumerable properties are returned by OBject.keys)
+2. Configurable -> modify behavior (we can only delete configurable properties)
+3. Writable -> modify values (assign a new value)
+4. Value
+
+Once we define a property as non-configurable, the only behavior we can change is to set 
+writable to 'false'
