@@ -1,5 +1,4 @@
-const string = 'Alakamaz';
-console.log(string.indexOf('maz'))
-console.log(string.lastIndexOf('maz'))
+const some = 'asd: 1';
 
+console.log(some.split('asd:'))
 
