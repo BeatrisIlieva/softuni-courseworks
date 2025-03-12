@@ -1,0 +1,11 @@
+HTTP/1.1 20 OK -> HTTP RESPONSE status line
+Content-Type: text/html -> RESPONSE HEADER
+<CRLF> 
+<html>
+    <head>
+        <title>Test title</title>
+    </head>
+    <body>
+        <h1>Test content</h1>
+    </body>
+</html>

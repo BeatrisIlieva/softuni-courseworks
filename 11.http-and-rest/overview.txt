@@ -1,0 +1,68 @@
+HTTP is a protocol for communication between client and a server
+
+HTTP - Hyper Text Transfer Protocol - it is text base - exchange of text
+The form of the request is text and the form of the response is also text
+
+HTTP allows us to transfer resources like HTML, JSON, JS files, images CSS styles and others. 
+
+We transfer these resources via HTTP.
+
+Through the HTTP protocol we are able to send requests from the 
+client through the server using for example JSON
+
+WEB (access to web content like websites) is a service in the Internet
+
+HTTP is request-response based. A server cannot send a response without a request being made.
+The Client makes a request. The server returns a response based on that request. 
+The initiator od the communication is always the Client. 
+
+The Web Client is a Software. A Web Client for example is the Browser -> the Browser is a software.
+
+A Server is a Software. The machine on which this Software runs becomes a Web Server.
+
+Web servers serve web content through the HTTP protocol. 
+
+DEVELOPMENT WEB SERVER - LIVE SERVER - serves the content while we develop
+
+HTTP defines methods to indicate the desired action to be performed - get, post, put, patch, delete, head, options
+
+The method defines the goal of the request is. 
+
+GET - when the Client make a get request, the Server understand that we want receive some content ->
+loading a home or profile page, getting search results
+
+POST - the Client send information to the Server so a content to be created ->
+creating a profile or a post
+
+PUT - the client sends updated information to the server -> 
+editing an existing comment
+
+DELETE - The Client says to the Server to delete a content 
+
+PATCH - partial update
+
+REST - representational state transfer
+REST is a convention about how to structure our requests and responses
+
+REST is an architecture for client-server communication over HTTP
+
+REST defines a set of rules for achieving a standard communication between a Client and a Server
+
+Simply said, we can make all CRUD operations using one and the same URI -> 
+we need only the name of the resource and a unique identifier 
+if we need to get, update or delete a specific item
+
+A resource is a logical part of our application. For example, products, users, likes
+We write the resource name in plural
+Resources can be nested -> https://github.com/BeatrisIlieva/devto-articles/commits/main/
+BeatrisIlieva/devto-articles/ - double identificator
+devto-articles is a resource
+commits is a nested resource
+
+DIFFERENCE BETWEEN URL AND URI - the URL is the entire address, 
+URI is the part in the URL that is related to the concrete resource 
+
+https://github.com/BeatrisIlieva/devto-articles -> URL
+BeatrisIlieva/devto-articles -> URI
+
+NPM - Node Package Manager - allows us to install libraries and packages

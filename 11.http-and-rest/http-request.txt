@@ -1,0 +1,22 @@
+REQUEST HEADER - REQUEST LINE
+GET        /users/username/repos   HTTP/1.1 (obligatory)
+(method)   (pathname)              (http version)
+---
+REQUEST HEADER - hederName: value
+Host: https://github.com    (obligatory)
+(domain name -> the client checks in NAME SERVER (the goal of a NAME SERVER is to 
+resolve a url and return an API Address) what IP Address corresponds to the given domain name)
+---
+THE REST HEADERS ARE OPTIONAL AND GIVE ADDITIONAL INFORMATION ABOUT THE REQUEST
+
+
+(The header contains the meta data about the request)
+POST  /users/username/repos/repo1   HTTP/1.1  -> header
+Host: https://github.com    (obligatory) -> header
+Content-Type: application/json -> header
+<CRLF> (new line that separates the HEAD part of the request from the body part)
+(The body contains the information that we sent; in this example a JSON string)
+{
+    "title": "Found a bug" -> body
+}
+<CRLF> 
