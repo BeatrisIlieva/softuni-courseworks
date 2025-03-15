@@ -66,3 +66,16 @@ https://github.com/BeatrisIlieva/devto-articles -> URL
 BeatrisIlieva/devto-articles -> URI
 
 NPM - Node Package Manager - allows us to install libraries and packages
+
+(network) INTERNET - interconnected network -> network of connected networks 
+(service) WWW - world wide web - is a service in the Internet -> it allows us to access servers 
+and to exchange we content 
+
+www - allows the communication between Client and a Server to happen -> it happens through HTTP 
+HTTP protocol is a set of instructions for communication between a client and a server
+
+!!!
+HTTP is text based protocol for communication between a Client and a Server through the Service 
+World Wide Web fo transferring web resources like JSON, HTML, JavaScript, CSS, images, fonts and others
+
+Web document -> HTML file
