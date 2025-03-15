@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+<body>
+    <button id="fetch-repos">Fetch Repos</button>
+    <script>
+        const fetchButton = document.getElementById('fetch-repos');
+        
+        fetchButton.addEventListener('click', () => {
+            
+            const url = 'https://api.github.com/users/testnakov/repos';
+            
+            const fetchPromise = fetch(url); // returns a promise
+            fetchPromise.then(response => {
+                response.json() // returns a new promise
+                .then(result => {
+                    console.log(result)
+                })
+            }); 
+        })
+        
+    </script>
+    
+</body>
+</html>
