@@ -1,0 +1,17 @@
+{
+  "name": "09.symmetry",
+  "version": "1.0.0",
+  "main": "symmetry.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "mocha": "^11.1.0"
+  }
+}

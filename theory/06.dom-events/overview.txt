@@ -1,0 +1,124 @@
+DOM events allows us to react to user actions and thus to create a better user experience.
+
+We can create (a new element), remove(existing element) and append(create a new element at append it
+or take an element from one place and append it to another).
+
+document.createElement() - is a factory method
+
+When we create an element, we create it in memory. 
+Only after we append it to the DOM, then it becomes part of the tree.
+
+The variable hold a reference to the element that is in the tree. If we change the element
+by reference, the change will be reflected into the DOM tree.
+
+methods:
+- parentElement.append(child1, child2)
+- parentElement.removeChild(child)
+- childElement.remove()
+- parentElement.prepend()
+- parentElement.replaceWith()
+- parentElement.replaceAll()
+- parentElement.replaceChildren()
+- childElement.closest()
+- childElement.replace()
+
+We can register events and initiate an appropriate action.
+
+Event object holds the information about the event. It is passed as an argument to the function
+(event handler) responsible for handling the event. As an object, the vents has properties. 
+The properties give us information about, for example, which is the element 
+that triggered the event, what is the type of the event 
+(mouse-events, keyboard events, touch events, focus events, form events)
+
+Three ways to register an event listener:
+1. HTML attribute
+2. DOM element property
+3. DOM event handler
+
+
+By default a button that is inside a form is with type 'submit'. Otherwise
+it is with type 'button'.
+
+By default submit refreshes the page. Using preventDefault() we can stop that.
+
+DOM - Document Object Model is part of the Browser's API
+
+USER INTERFACE: includes all the visual elements 
+and interactions that allow users to navigate, input data, 
+and receive feedback from the system.
+
+To modify DOM means to modify the interface. 
+Using JS, through DOM we can modify the interface.
+
+BOM - Browser Object Model - it gives us access to objects that are part of the Browser.
+For example, document, location and history.
+
+DOM === document => It might be said that DOM is part of BOM *
+
+The global object in the Browser is called 'window'; Inside itself it has
+objects like document, history, location, screen and navigator. 
+
+In the Browser
+window === globalThis === this
+
+InNode.js
+global === globalThis * 'this' in that case refers to the current module
+
+DOM is a tree like structure that contains objects. 
+
+A tree is a nested structure of data. Each element has maximum of 1 parent. 
+Only the root element does not have a parent.
+Each element can have 0, 1 or more children. 
+
+The text inside an element is called a Text Node.
+
+1. The Browser receives HTML from the server as text
+2. Reads it line by line and parses it to DOM tree that lives in the memory
+3. Uses the DOM tree to visualize the page content
+4. We use JS to modify DOM
+
+
+In the elements tab in the Browser we see the DOM tree
+
+Node LIst and HTML Collection can be indexed and iterated but they are not arrays.
+
+Only Node List can be iterated with forEach()
+
+CRUD 
+
+READ:
+
+getElementByID()
+getElementsByClassName()
+getElementsByTagName()
+querySelector()
+querySelectorAll()
+
+UPDATE
+
+textContent
+value 
+style
+classList.add()
+classList.remove()
+setAttribute()
+removeAttribute()
+
+CREATE 
+
+createElement()
+
+
+Variables that hold HTML elements are live. When we change by reference the DOM element  
+through the variable, the change reflects at the DOM. 
+
+We can create, append and remove elements or change their position.
+
+createElement() -> factory function (function that create instances of a given object)
+
+parent.append()
+parent.prepend()
+parent.removeChild()
+parent.replaceChild()
+
+child.remove()

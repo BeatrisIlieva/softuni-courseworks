@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execute function as event listener</title>
+</head>
+<body>
+    <input type="button" value="Click" name="button">
+
+    <script>
+        const button = document.querySelector('input');
+
+        button.addEventListener('click', sayHi);
+
+        function sayHi() {
+            console.log(`Hello my name is ${this.name}!`); // Hello my name is button!
+            console.log(this); // <input type="button" value="Click" name="button">
+        }
+
+    </script>
+</body>
+</html>

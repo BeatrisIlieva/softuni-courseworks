@@ -1,0 +1,65 @@
+Document Object Model (DOM) - part of the Browser's API
+Browser Object Model (BOM) - part of DOM. BOM give us provides us with objects that we can use 
+to manipulate the content on a page. For example, window, screen, navigator, history, 
+location, document etc. These features are not available in Node.js. 
+Node.js does not have access to BOM. 
+
+origin: protocol + hostname + protocol
+
+var written in the global scopes, makes the variables to become global 
+and are being attached to the global object
+
+API - access to resources and functionalities through programming way. 
+It give us access to use given already created functionalities or to receive information. 
+For example, BOM is part of the Browser's API. BOM provides us with the tools to check, for example,
+the user's current location or screen size through the 'location' and 'screen' objects.
+
+A - application - the application is the Browser
+P - programming - using programming language
+I - interface - we have access through that interface 
+
+DOM === document - part of Browser's API. 
+
+DOM - is a logical structure that contains JS objects. It is represented in a tree-like structure.
+Each node has only ONE parent. Each node can have 0, 1 or more children. 
+
+The Browser receive, for example HTML as text from the server and parses it.
+Parsing - a program that reads the texts and extracts information from that text. 
+The Browser receive the HTML as text and parses it to a logically related tree-like structure
+in memory. The DOM tree consists of HTML elements. The HTML elements are not anymore just 
+opening and a closing tags containing text content but JS objects. These objects have properties,
+methods and events. 
+
+The Browser parse HTML and creates a DOM tree. 
+
+Document -> DOM tree
+HTML TAG -> root element 
+HEAD and BODY -> siblings
+
+The Browser knows how to visualize the content only after creating the DOM tree.
+The BROWSER receive the HTML  as text from the server, parses it to DOM tree and
+visualize the content, based on the DOM tree. 
+
+The reason why ths JS script needs to be loaded last is because it runs over the HTML elements.
+Firstly, the HTML needs to be parsed.
+If the DOM tree is not created, JS would not be having objects to operate with.
+
+DOM methods are actions we can perform on HTML elements - JS elements. 
+
+DOM properties are values that we can set on HTML elements or change
+
+Using JS we can interact with the DOM with the goal to:
+- modify elements style 
+- read user input and interact to events
+- create or remove elements
+
+Once we open a webpage, the first request is made. The response to that request 
+from the server is HTML as pure text. The Browser takes that text and starts reading line by line.
+And parses it to DOM tree. The DOM tree stays in memory. Then, based on the DOM tree, the Browser
+display the content that wee see on the page. 
+
+The DOM tree consists of HTML elements.
+HTML elements can be access and modified like regular JS objects.
+To work with an HTML element we need to firstly select it an obtain its reference.
+
+In DOM, HTML attributes become DOM properties. 

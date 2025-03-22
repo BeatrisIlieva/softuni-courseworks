@@ -1,0 +1,13 @@
+ASYNCHRONOUS FUNCTION: 
+- it always returns a promise and we  need to resolve it
+- contains 'await' expression
+- await replaces '.then()'
+- await resolves a promise
+
+A FUNCTION CAN BE ASYNCHRONOUS either because it is written with the async await syntax
+or because it executes asynchronous action
+
+In an asynchronous function the code will be executed synchronously - row by row 
+but if the row contains an asynchronous action it will be executed asynchronously 
+
+POSTMAN is a program that allows us to make requests to a server

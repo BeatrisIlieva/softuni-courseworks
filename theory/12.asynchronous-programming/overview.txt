@@ -1,0 +1,42 @@
+JS is not a multithreaded language. 
+JS is a single-threaded language. And at the same time it is asynchronous language. 
+
+Synchronous code: code that executes line by line (a line may be executed more than one 
+in a cycle or to be skipped in a condition)
+
+Asynchronous code: two pieces of code execute at the same time. 
+
+Process - thread
+
+Multithreaded programming - two pieces of code that execute in parallel 
+into two different processes (threads)
+
+In JS there are three ways to execute asynchronous operations:
+1. Callbacks - passing a function to be executed later on (it is the old way)
+2. Promises 
+2. Async functions - syntactic sugar for promises
+
+Always firstly the synchronous code is executed after that the asynchronous.
+
+Callback: a function that we pass to be executed when another (asynchronous) task is completed
+
+PROMISE STATES:
+- Pending
+- Fulfilled
+- Failed
+
+AJAX Asynchronous JavaScript and XML - asynchronous way of making requests 
+
+We have an accordion element. A user clicks to open to see the hidden content. 
+An AJAX request is made to the server to get the data. Once this asynchronous operation
+is resolved, the function to display the content will be invoked. The hidden content will then 
+be displayed. 
+
+FETCH API - provided by the Browser
+It is based on Promises
+
+The response of a fetch() request is a Stream
+
+fetch() returns a promise for the response
+
+TRAILING SLASH -> at the beginning not at the end

@@ -105,6 +105,7 @@ dist
 .cache
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # vitepress build output
 **/.vitepress/dist
@@ -113,6 +114,8 @@ dist
 **/.vitepress/cache
 
 >>>>>>> remote-branch/main
+=======
+>>>>>>> remote/main
 # Docusaurus cache and generated files
 .docusaurus
 
