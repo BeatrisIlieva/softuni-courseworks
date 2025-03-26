@@ -1,4 +1,5 @@
-const string = 'Total Points 0pts'
+const arr = [1, 2, 3];
 
-const result = string.match(/\d+/);
-console.log(result[0]);
+const el = arr.splice(0, 1, 5);
+
+console.log(arr);
