@@ -2,42 +2,33 @@ const baseUrl = 'http://localhost:3030/jsonstore/tasks';
 
 const formElement = document.querySelector('form');
 
-const titleInputElement = document.getElementById('course-name');
-const typeInputElement = document.getElementById('course-type');
-const teacherInputElement = document.getElementById('teacher-name');
-const descriptionTextareaElement = document.getElementById('description');
-
-const listDivElement = document.getElementById('list');
-
-const loadButtonElement = document.getElementById('load-course');
+const loadCourseButtonElement = document.getElementById('load-course');
 const addCourseButtonElement = document.getElementById('add-course');
 const editCourseButtonElement = document.getElementById('edit-course');
+const listElement = document.getElementById('list');
 
-loadButtonElement.addEventListener('click', loadHandler);
+loadCourseButtonElement.addEventListener('click', loadHandler);
 addCourseButtonElement.addEventListener('click', addHandler);
-editCourseButtonElement.addEventListener('click', editOuterHandler);
+editCourseButtonElement.addEventListener('click', editHandler);
+formElement.addEventListener('submit', e => e.preventDefault());
 
 function loadHandler() {
     fetch(baseUrl)
         .then(response => response.json())
         .then(result => {
-            listDivElement.innerHTML = '';
+            listElement.innerHTML = '';
 
             const fragment = document.createDocumentFragment();
 
             Object.values(result).forEach(item => {
-                const containerDivElement = createContainerDivElement(item);
-                fragment.appendChild(containerDivElement);
+                fragment.appendChild(createContainerDivElement(item));
             });
 
-            listDivElement.appendChild(fragment);
-        })
-        .catch(err => console.log(err.message));
+            listElement.appendChild(fragment);
+        });
 }
 
-function addHandler(e) {
-    e.preventDefault();
-
+function addHandler() {
     if (!isFormValid()) {
         return;
     }
@@ -58,8 +49,10 @@ function addHandler(e) {
         .catch(err => console.log(err.message));
 }
 
-function editOuterHandler(e) {
-    e.preventDefault();
+function editHandler() {
+    if (!isFormValid()) {
+        return;
+    }
 
     const itemId = formElement.getAttribute('data-id');
     const inputValues = getInputValues();
@@ -67,14 +60,12 @@ function editOuterHandler(e) {
 
     fetch(`${baseUrl}/${itemId}`, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     })
         .then(() => {
-            loadHandler();
             clearInputValues();
+            loadHandler();
             toggleButtons(addCourseButtonElement, editCourseButtonElement);
         })
         .catch(err => console.log(err.message));
@@ -96,7 +87,7 @@ function createContainerDivElement(data) {
     const editButtonElement = document.createElement('button');
     editButtonElement.classList.add('edit-btn');
     editButtonElement.textContent = 'Edit Course';
-    editButtonElement.addEventListener('click', e => editHandler(e, data));
+    editButtonElement.addEventListener('click', e => innerEditHandler(e, data));
 
     const finishButtonElement = document.createElement('button');
     finishButtonElement.classList.add('finish-btn');
@@ -115,59 +106,59 @@ function createContainerDivElement(data) {
     return containerDivElement;
 }
 
-function editHandler(e, data) {
+function innerEditHandler(e, data) {
+    const itemId = data._id;
+
+    formElement.setAttribute('data-id', itemId);
+
     const containerDivElement = e.currentTarget.parentElement;
     containerDivElement.remove();
 
     setInputValues(data);
 
     toggleButtons(editCourseButtonElement, addCourseButtonElement);
-
-    formElement.setAttribute('data-id', data._id);
 }
 
 function finishHandler(e, data) {
     const itemId = data._id;
-    const containerDivElement = e.currentTarget.parentElement;
 
     fetch(`${baseUrl}/${itemId}`, {
         method: 'DELETE'
-    }).then(() => {
-        containerDivElement.remove();
-        loadHandler();
-    });
+    })
+        .then(loadHandler)
+        .catch(err => console.log(err.message));
 }
 
-function clearInputValues() {
-    document.getElementById('course-name').value = '';
-    document.getElementById('course-type').value = '';
-    document.getElementById('teacher-name').value = '';
-    document.getElementById('description').value = '';
+function getInputValues() {
+    const title = document.getElementById('course-name').value;
+    const type = document.getElementById('course-type').value;
+    const description = document.getElementById('description').value;
+    const teacher = document.getElementById('teacher-name').value;
+
+    return { title, type, description, teacher };
 }
 
 function setInputValues(data) {
     document.getElementById('course-name').value = data.title;
     document.getElementById('course-type').value = data.type;
-    document.getElementById('teacher-name').value = data.teacher;
     document.getElementById('description').value = data.description;
+    document.getElementById('teacher-name').value = data.teacher;
 }
 
-function getInputValues() {
-    const title = document.getElementById('course-name').value.trim();
-    const type = document.getElementById('course-type').value.trim();
-    const teacher = document.getElementById('teacher-name').value.trim();
-    const description = document.getElementById('description').value.trim();
-
-    return { title, type, teacher, description };
+function clearInputValues() {
+    document.getElementById('course-name').value = '';
+    document.getElementById('course-type').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('teacher-name').value = '';
 }
 
 function isFormValid() {
     const title = document.getElementById('course-name').value.trim();
     const type = document.getElementById('course-type').value.trim();
-    const teacher = document.getElementById('teacher-name').value.trim();
     const description = document.getElementById('description').value.trim();
+    const teacher = document.getElementById('teacher-name').value.trim();
 
-    return title && type && teacher && description;
+    return title && type && description && teacher;
 }
 
 function toggleButtons(buttonToEnable, buttonToDisable) {
