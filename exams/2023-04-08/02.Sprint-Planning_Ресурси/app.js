@@ -1,24 +1,7 @@
 window.addEventListener('load', solve);
 
 function solve() {
-    let articlesCount = 0;
-    const taskIdInputElement = document.getElementById('task-id');
-
-    const formElement = document.getElementById('create-task-form');
-
-    const titleInputElement = document.getElementById('title');
-    const descriptionTextareaElement = document.getElementById('description');
-    const labelSelectElement = document.getElementById('label');
-    const pointsInputElement = document.getElementById('points');
-    const assigneeInputElement = document.getElementById('assignee');
-
-    const createButtonElement = document.getElementById('create-task-btn');
-    const deleteButtonElement = document.getElementById('delete-task-btn');
-
-    const totalCountElement = document.getElementById('total-sprint-points');
-    const taskSectionElement = document.getElementById('tasks-section');
-
-    const totalSprintPointsElement = document.getElementById('total-sprint-points');
+    let taskCount = 0;
 
     const codeIcons = {
         Feature: '&#8865;',
@@ -32,31 +15,15 @@ function solve() {
         'High Priority Bug': 'high-priority'
     };
 
-    createButtonElement.addEventListener('click', createHandler);
-    deleteButtonElement.addEventListener('click', deleteHandler);
+    const hiddenInput = document.getElementById('task-id');
+    const taskSectionElement = document.getElementById('tasks-section');
+    const totalPointsElement = document.getElementById('total-sprint-points');
 
-    function deleteHandler() {
-        const inputValues = getInputValues();
-        clearInputValues();
-        toggleButtons(createButtonElement, deleteButtonElement);
+    const createTaskButtonElement = document.getElementById('create-task-btn');
+    const deleteTaskButtonElement = document.getElementById('delete-task-btn');
 
-        const articleId = taskIdInputElement.value;
-
-        const articleElement = document.getElementById(articleId);
-        articleElement.remove();
-
-        document.getElementById('title').removeAttribute('disabled');
-        document.getElementById('description').removeAttribute('disabled');
-        document.getElementById('label').removeAttribute('disabled');
-        document.getElementById('points').removeAttribute('disabled');
-        document.getElementById('assignee').removeAttribute('disabled');
-
-        const currentTotalPoints = Number(totalSprintPointsElement.textContent.match(/\d+/)[0]);
-
-        totalSprintPointsElement.textContent = `Total Points ${
-            currentTotalPoints - Number(inputValues.points)
-        }pts`;
-    }
+    createTaskButtonElement.addEventListener('click', createHandler);
+    deleteTaskButtonElement.addEventListener('click', deleteHandler);
 
     function createHandler() {
         if (!isFormValid()) {
@@ -64,17 +31,16 @@ function solve() {
         }
 
         const inputValues = getInputValues();
-        taskSectionElement.appendChild(createTaskArticle(inputValues));
-
         clearInputValues();
+        taskSectionElement.appendChild(createArticleElement(inputValues));
     }
 
-    function createTaskArticle(data) {
-        articlesCount += 1;
+    function createArticleElement(data) {
+        taskCount += 1;
 
-        const currentTotalPoints = Number(totalSprintPointsElement.textContent.match(/\d+/)[0]);
+        const currentTotalPoints = Number(totalPointsElement.textContent.match(/\d+/)[0]);
 
-        totalSprintPointsElement.textContent = `Total Points ${
+        totalPointsElement.textContent = `Total Points ${
             currentTotalPoints + Number(data.points)
         }pts`;
 
@@ -100,7 +66,7 @@ function solve() {
 
         const buttonElement = document.createElement('button');
         buttonElement.textContent = 'Delete';
-        buttonElement.addEventListener('click', e => deleteButtonHandler(e, data));
+        buttonElement.addEventListener('click', e => innerDeleteHandler(e, data));
 
         const actionsDivElement = document.createElement('div');
         actionsDivElement.classList.add('task-card-actions');
@@ -108,7 +74,7 @@ function solve() {
 
         const articleElement = document.createElement('article');
         articleElement.classList.add('task-card');
-        articleElement.setAttribute('id', `task-${articlesCount}`);
+        articleElement.setAttribute('id', `task-${taskCount}`);
 
         articleElement.appendChild(labelDivElement);
         articleElement.appendChild(titleH3Element);
@@ -120,35 +86,33 @@ function solve() {
         return articleElement;
     }
 
-    function deleteButtonHandler(e, data) {
+    function deleteHandler() {
+        const inputValues = getInputValues();
+        const currentTotalPoints = Number(totalPointsElement.textContent.match(/\d+/)[0]);
+
+        totalPointsElement.textContent = `Total Points ${
+            currentTotalPoints - Number(inputValues.points)
+        }pts`;
+
+        clearInputValues();
+        toggleButtons(createTaskButtonElement, deleteTaskButtonElement);
+
+        const articleId = hiddenInput.value;
+
+        const articleElement = document.getElementById(articleId);
+        articleElement.remove();
+
+        enableInputFields();
+    }
+
+    function innerDeleteHandler(e, data) {
         setInputValues(data);
-        toggleButtons(deleteButtonElement, createButtonElement);
 
-        const articleElement = e.currentTarget.parentElement.parentElement;
-        const articleId = articleElement.getAttribute('id');
-        taskIdInputElement.value = articleId;
+        disableInputFields();
 
-        document.getElementById('title').setAttribute('disabled', 'disabled');
-        document.getElementById('description').setAttribute('disabled', 'disabled');
-        document.getElementById('label').setAttribute('disabled', 'disabled');
-        document.getElementById('points').setAttribute('disabled', 'disabled');
-        document.getElementById('assignee').setAttribute('disabled', 'disabled');
-    }
+        toggleButtons(deleteTaskButtonElement, createTaskButtonElement);
 
-    function clearInputValues() {
-        document.getElementById('title').value = '';
-        document.getElementById('description').value = '';
-        document.getElementById('label').value = 'Feature';
-        document.getElementById('points').value = '';
-        document.getElementById('assignee').value = '';
-    }
-
-    function setInputValues(data) {
-        document.getElementById('title').value = data.title;
-        document.getElementById('description').value = data.description;
-        document.getElementById('label').value = data.label;
-        document.getElementById('points').value = data.points;
-        document.getElementById('assignee').value = data.assignee;
+        hiddenInput.value = e.currentTarget.parentElement.parentElement.id;
     }
 
     function getInputValues() {
@@ -159,6 +123,22 @@ function solve() {
         const assignee = document.getElementById('assignee').value.trim();
 
         return { title, description, label, points, assignee };
+    }
+
+    function setInputValues(data) {
+        document.getElementById('title').value = data.title;
+        document.getElementById('description').value = data.description;
+        document.getElementById('label').value = data.label;
+        document.getElementById('points').value = data.points;
+        document.getElementById('assignee').value = data.assignee;
+    }
+
+    function clearInputValues() {
+        document.getElementById('title').value = '';
+        document.getElementById('description').value = '';
+        document.getElementById('label').value = 'Feature';
+        document.getElementById('points').value = '';
+        document.getElementById('assignee').value = '';
     }
 
     function isFormValid() {
@@ -174,5 +154,21 @@ function solve() {
     function toggleButtons(buttonToEnable, buttonToDisable) {
         buttonToEnable.removeAttribute('disabled');
         buttonToDisable.setAttribute('disabled', 'disabled');
+    }
+
+    function disableInputFields() {
+        document.getElementById('title').setAttribute('disabled', 'disabled');
+        document.getElementById('description').setAttribute('disabled', 'disabled');
+        document.getElementById('label').setAttribute('disabled', 'disabled');
+        document.getElementById('points').setAttribute('disabled', 'disabled');
+        document.getElementById('assignee').setAttribute('disabled', 'disabled');
+    }
+
+    function enableInputFields() {
+        document.getElementById('title').removeAttribute('disabled');
+        document.getElementById('description').removeAttribute('disabled');
+        document.getElementById('label').removeAttribute('disabled');
+        document.getElementById('points').removeAttribute('disabled');
+        document.getElementById('assignee').removeAttribute('disabled');
     }
 }
