@@ -1,28 +1,24 @@
 window.addEventListener('load', solve);
 
 function solve() {
-    const publishButtonElement = document.getElementById('publish-btn');
+    const reviewListUlElement = document.getElementById('review-list');
+    const publishedListUlElement = document.getElementById('published-list');
 
-    const reviewListUlListElement = document.getElementById('review-list');
-    const publishedListUlListElement = document.getElementById('published-list');
+    const publishButtonElement = document.getElementById('publish-btn');
 
     publishButtonElement.addEventListener('click', publishHandler);
 
-    function publishHandler() {
+    function publishHandler(e) {
         if (!isFormValid()) {
             return;
         }
 
         const inputValues = getInputValues();
-        const postLiElement = createPostLiElement(inputValues);
-
-        reviewListUlListElement.appendChild(postLiElement);
-
         clearInputValues();
-        // disabledPublishButton();
+        reviewListUlElement.appendChild(createRPostLiElement(inputValues));
     }
 
-    function createPostLiElement(data) {
+    function createRPostLiElement(data) {
         const titleH4Element = document.createElement('h4');
         titleH4Element.textContent = data.title;
 
@@ -47,30 +43,27 @@ function solve() {
         postButtonElement.textContent = 'Post';
         postButtonElement.addEventListener('click', e => postHandler(e, data));
 
-        const postLiElement = document.createElement('li');
-        postLiElement.classList.add('rpost');
-        postLiElement.appendChild(articleElement);
-        postLiElement.appendChild(editButtonElement);
-        postLiElement.appendChild(postButtonElement);
+        const liElement = document.createElement('li');
+        liElement.classList.add('rpost');
+        liElement.appendChild(articleElement);
+        liElement.appendChild(editButtonElement);
+        liElement.appendChild(postButtonElement);
 
-        return postLiElement;
+        return liElement;
     }
 
     function editHandler(e, data) {
-        const postLiElement = e.currentTarget.parentElement;
-        postLiElement.remove();
-
         setInputValues(data);
-        // enabledPublishButton();
+
+        e.currentTarget.parentElement.remove();
     }
 
     function postHandler(e, data) {
-        const postLiElement = e.currentTarget.parentElement;
-
-        const buttons = postLiElement.querySelectorAll('button');
+        const liElement = e.currentTarget.parentElement;
+        const buttons = liElement.querySelectorAll('button');
         Array.from(buttons).forEach(button => button.remove());
 
-        publishedListUlListElement.appendChild(postLiElement);
+        publishedListUlElement.appendChild(liElement);
     }
 
     function getInputValues() {
@@ -81,22 +74,22 @@ function solve() {
         return { title, category, content };
     }
 
-    function clearInputValues() {
-        document.getElementById('task-title').value = '';
-        document.getElementById('task-category').value = '';
-        document.getElementById('task-content').value = '';
-    }
-
     function setInputValues(data) {
         document.getElementById('task-title').value = data.title;
         document.getElementById('task-category').value = data.category;
         document.getElementById('task-content').value = data.content;
     }
 
+    function clearInputValues(data) {
+        document.getElementById('task-title').value = '';
+        document.getElementById('task-category').value = '';
+        document.getElementById('task-content').value = '';
+    }
+
     function isFormValid() {
-        const title = document.getElementById('task-title').value;
-        const category = document.getElementById('task-category').value;
-        const content = document.getElementById('task-content').value;
+        const title = document.getElementById('task-title').value.trim();
+        const category = document.getElementById('task-category').value.trim();
+        const content = document.getElementById('task-content').value.trim();
 
         return title && category && content;
     }
