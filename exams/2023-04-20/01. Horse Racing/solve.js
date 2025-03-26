@@ -4,11 +4,13 @@ function solve(input) {
     let command = input.shift();
 
     while (command !== 'Finish') {
-        const [action, ...args] = command.split(' ');
+        const line = command.split(' ');
+        const action = line.shift();
 
         switch (action) {
             case 'Retake':
-                const [overtakingHorse, overtakenHorse] = args;
+                const overtakingHorse = line.shift();
+                const overtakenHorse = line.shift();
 
                 const overtakingHorseIndex = horses.indexOf(overtakingHorse);
                 const overtakenHorseIndex = horses.indexOf(overtakenHorse);
@@ -21,41 +23,32 @@ function solve(input) {
 
                     console.log(`${overtakingHorse} retakes ${overtakenHorse}.`);
                 }
+
                 break;
-
             case 'Trouble':
-                const horseName = args.pop();
-
-                const horseIndex = horses.indexOf(horseName);
+                const horse = line.shift();
+                const horseIndex = horses.indexOf(horse);
 
                 if (horseIndex > 0) {
                     horses.splice(horseIndex, 1);
-                    horses.splice(horseIndex - 1, 0, horseName);
+                    horses.splice(horseIndex - 1, 0, horse);
 
-                    console.log(`Trouble for ${horseName} - drops one position.`);
+                    console.log(`Trouble for ${horse} - drops one position.`);
                 }
                 break;
-
             case 'Rage':
-                const horsesLength = horses.length;
-                const ragingHorseName = args.pop();
-                const ragingHorseIndex = horses.indexOf(ragingHorseName);
+                const ragingHorse = line.shift();
+                const ragingHorseIndex = horses.indexOf(ragingHorse);
+                const ragingHorseNewIndex = Math.min(ragingHorseIndex + 2, horses.length - 1);
 
-                const itsAlreadyInFirstPosition = horsesLength - 1 === ragingHorseIndex;
+                horses.splice(ragingHorseIndex, 1);
+                horses.splice(ragingHorseNewIndex, 0, ragingHorse);
 
-                if (!itsAlreadyInFirstPosition) {
-                    const newIndex = Math.min(ragingHorseIndex + 2, horsesLength - 1);
-
-                    horses.splice(ragingHorseIndex, 1);
-                    horses.splice(newIndex, 0, ragingHorseName);
-                }
-
-                console.log(`${ragingHorseName} rages 2 positions ahead.`);
-
+                console.log(`${ragingHorse} rages 2 positions ahead.`);
                 break;
-
             case 'Miracle':
-                const miracleHorse = horses.splice(0, 1);
+                const miracleHorse = horses.shift();
+
                 horses.push(miracleHorse);
 
                 console.log(`What a miracle - ${miracleHorse} becomes first.`);
@@ -64,10 +57,10 @@ function solve(input) {
 
         command = input.shift();
     }
-    const winner = horses[horses.length - 1];
 
     console.log(horses.join('->'));
-    console.log(`The winner is: ${winner}`);
+
+    console.log(`The winner is: ${horses[horses.length - 1]}`);
 }
 
 solve([
