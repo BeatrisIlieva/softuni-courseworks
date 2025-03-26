@@ -10,59 +10,69 @@ function solve(input) {
             assignees[assignee] = [];
         }
 
-        const task = { taskId, title, status, estimatedPoints: Number(estimatedPoints) };
-
-        assignees[assignee].push(task);
+        assignees[assignee].push({
+            taskId,
+            title,
+            status,
+            estimatedPoints: Number(estimatedPoints)
+        });
     }
 
-    input.forEach(element => {
-        const [action, assignee, ...args] = element.split(':');
+    input.forEach(item => {
+        const [action, assignee, ...args] = item.split(':');
+        switch (action) {
+            case 'Add New':
+                if (!assignees.hasOwnProperty(assignee)) {
+                    console.log(`Assignee ${assignee} does not exist on the board!`);
+                } else {
+                    const [taskId, title, status, estimatedPoints] = args;
 
-        if (action === 'Add New') {
-            if (!assignees.hasOwnProperty(assignee)) {
-                console.log(`Assignee ${assignee} does not exist on the board!`);
-            } else {
-                const task = {
-                    taskId: args[0],
-                    title: args[1],
-                    status: args[2],
-                    estimatedPoints: Number([args[3]])
-                };
+                    assignees[assignee].push({
+                        taskId,
+                        title,
+                        status,
+                        estimatedPoints: Number(estimatedPoints)
+                    });
+                }
+                break;
+            case 'Change Status':
+                if (!assignees.hasOwnProperty(assignee)) {
+                    console.log(`Assignee ${assignee} does not exist on the board!`);
+                } else {
+                    const [taskId, status] = args;
 
-                assignees[assignee].push(task);
-            }
-        } else if (action === 'Change Status') {
-            if (!assignees.hasOwnProperty(assignee)) {
-                console.log(`Assignee ${assignee} does not exist on the board!`);
-            } else {
-                let task;
-                Object.values(assignees).forEach(element => {
-                    element.forEach(item => {
-                        if (item.taskId === args[0]) {
-                            task = item;
+                    const assigneeTasks = assignees[assignee];
+
+                    let taskExists = false;
+
+                    assigneeTasks.forEach(task => {
+                        if (task.taskId === taskId) {
+                            taskExists = true;
+                            task.status = status;
                         }
                     });
-                });
 
-                if (!task) {
-                    console.log(`Task with ID ${args[0]} does not exist for ${assignee}!`);
-                } else {
-                    task.status = args[1];
+                    if (!taskExists) {
+                        console.log(`Task with ID ${taskId} does not exist for ${assignee}!`);
+                    }
                 }
-            }
-        } else if (action === 'Remove Task') {
-            if (!assignees.hasOwnProperty(assignee)) {
-                console.log(`Assignee ${assignee} does not exist on the board!`);
-            } else {
-                const index = Number(args[0]);
-                const length = assignees[assignee].length;
 
-                if (index >= length || index < 0) {
-                    console.log('Index is out of range!');
+                break;
+            case 'Remove Task':
+                if (!assignees.hasOwnProperty(assignee)) {
+                    console.log(`Assignee ${assignee} does not exist on the board!`);
                 } else {
-                    assignees[assignee].splice(index, 1);
+                    const index = Number(args[0]);
+
+                    const assigneeTasks = assignees[assignee];
+
+                    if (index < 0 || index >= assigneeTasks.length) {
+                        console.log(`Index is out of range!`);
+                    } else {
+                        assigneeTasks.splice(index, 1);
+                    }
                 }
-            }
+                break;
         }
     });
 
@@ -71,16 +81,16 @@ function solve(input) {
     let codeReviewTasksTotalPoints = 0;
     let doneTasksTotalPoints = 0;
 
-    Object.values(assignees).forEach(element => {
-        element.forEach(item => {
-            if (item.status === 'ToDo') {
-                toDoTasksTotalPoints += item.estimatedPoints;
-            } else if (item.status === 'In Progress') {
-                inProgressTasksTotalPoints += item.estimatedPoints;
-            } else if (item.status === 'Code Review') {
-                codeReviewTasksTotalPoints += item.estimatedPoints;
-            } else if (item.status === 'Done') {
-                doneTasksTotalPoints += item.estimatedPoints;
+    Object.values(assignees).forEach(tasks => {
+        tasks.forEach(task => {
+            if (task.status === 'ToDo') {
+                toDoTasksTotalPoints += task.estimatedPoints;
+            } else if (task.status === 'In Progress') {
+                inProgressTasksTotalPoints += task.estimatedPoints;
+            } else if (task.status === 'Code Review') {
+                codeReviewTasksTotalPoints += task.estimatedPoints;
+            } else if (task.status === 'Done') {
+                doneTasksTotalPoints += task.estimatedPoints;
             }
         });
     });
@@ -90,9 +100,8 @@ function solve(input) {
     console.log(`Code Review: ${codeReviewTasksTotalPoints}pts`);
     console.log(`Done Points: ${doneTasksTotalPoints}pts`);
 
-    const success =
-        doneTasksTotalPoints >=
-        toDoTasksTotalPoints + inProgressTasksTotalPoints + codeReviewTasksTotalPoints;
+    const sum = inProgressTasksTotalPoints + codeReviewTasksTotalPoints + toDoTasksTotalPoints;
+    const success = doneTasksTotalPoints >= sum;
 
     if (success) {
         console.log(`Sprint was successful!`);
@@ -102,14 +111,14 @@ function solve(input) {
 }
 
 solve([
-    '5',
-    'Kiril:BOP-1209:Fix Minor Bug:ToDo:3',
-    'Mariya:BOP-1210:Fix Major Bug:In Progress:3',
-    'Peter:BOP-1211:POC:Code Review:5',
-    'Georgi:BOP-1212:Investigation Task:Done:2',
-    'Mariya:BOP-1213:New Account Page:In Progress:13',
-    'Add New:Kiril:BOP-1217:Add Info Page:In Progress:5',
-    'Change Status:Peter:BOP-1211:ToDo',
-    'Remove Task:Mariya:1',
-    'Remove Task:Joro:1'
+    '4',
+    'Kiril:BOP-1213:Fix Typo:Done:1',
+    'Peter:BOP-1214:New Products Page:In Progress:2',
+    'Mariya:BOP-1215:Setup Routing:ToDo:8',
+    'Georgi:BOP-1216:Add Business Card:Code Review:3',
+    'Add New:Sam:BOP-1237:Testing Home Page:Done:3',
+    'Change Status:Georgi:BOP-1216:Done',
+    'Change Status:Will:BOP-1212:In Progress',
+    'Remove Task:Georgi:3',
+    'Change Status:Mariya:BOP-1215:Done'
 ]);
