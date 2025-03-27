@@ -63,3 +63,20 @@ A collection of configurations and apps.
 ## What is Psycopg>
 
 Psycopg is a PostgreSQL adapter for Python. It allows us to connect to a PostgreSQL database, execute queries, and retrieve data within our Python applications
+
+## What is a View?
+
+A view is a function or a class that receives an HTTP request and returns an HTTP response. Along with the request, a view can receive other parameters as well. A view implements the business logic that needs to be executed when a given url is reached.
+
+## How is a view called?
+
+In the project’s urls.py file we configure which function or class to be called when reaching a given url.
+In Django, URLs are defined in the project's urls.py file, which acts as a central place for managing routes. To include the URLs for individual apps, we reference each app’s urls.py in the project’s urls.py using the `include()` function. Django then checks the requested URL against the URL patterns defined in the urls.py files. These patterns are created using the `path()` function. When a match is found, Django calls the corresponding view function, passing the HTTP request to it. The view processes the request and returns an HTTP response.
+
+## What is a Django Template
+
+It is a text file written in special syntax that allows dynamic generation of HTML. It plays a crucial role in separating the presentation layer from the business logic in the MVT architecture. It uses markup language know as Django Template Language (DTL).
+
+## `render()`
+
+It accepts as parameters the request, the template name and context. Using the Django Template Engine it generates HTML. It returns an HTTP response with the generated HTML, the content type (by default HTML) and the status. 
