@@ -42,6 +42,24 @@ MVT is a design pattern that separates the business logic from the user interfac
 
 2. View contains the business logic. A View receives an HTTP request and returns an HTTP response.
 
-3. Template defines presentational logic (what the user sees). In Django templates are HTML files. They support Django Template Language. 
+3. Template defines presentational logic (what the user sees). In Django templates are HTML files. They support Django Template Language.
 
+## What is manage.py file?
 
+The manage.py file helps manage tasks in a Django project, like running the server, applying database migrations, and creating new apps.
+
+## What is a middleware?
+
+Code that executes before or after every request.
+
+## What is a Django App?
+
+An app is part of the project that does something particular (Single Responsibility).
+
+## What is a Django Project?
+
+A collection of configurations and apps.
+
+## What is Psycopg>
+
+Psycopg is a PostgreSQL adapter for Python. It allows us to connect to a PostgreSQL database, execute queries, and retrieve data within our Python applications
