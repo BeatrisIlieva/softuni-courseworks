@@ -51,3 +51,40 @@ python manage.py migrate
 ```python
 python manage.py runserver
 ```
+
+10. To make html files being recognized:
+
+```
+Cmd + ,
+```
+
+```
+emmet.includeLanguages
+```
+
+```
+"django-html": "html"
+```
+
+11. Single quotes:
+
+```
+pip install pylint
+```
+
+```
+pip install pylint-quotes
+```
+
+```
+Cmd + Shift + P
+```
+
+add to settings.json -> workspace-settings:
+
+```
+"python.linting.pylintArgs": [
+    "--load-plugins",
+    "pylint_quotes"
+],
+```
