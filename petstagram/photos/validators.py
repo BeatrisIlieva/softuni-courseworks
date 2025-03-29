@@ -17,7 +17,8 @@ class FileSizeValidator:
         if value is None:
             self.__message = f'File size must be below or equal to {self.file_size_mb}MB'
 
-        self.__message = value
+        else:
+            self.__message = value
 
     def __call__(self, value):
         if value.size > self.file_size_mb * 1024 * 1024:
