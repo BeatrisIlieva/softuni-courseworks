@@ -15,14 +15,13 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-%9=-elyc%+^a7v9vq!*jz=6)%+_%y8o#rwpu_#za#hkc5*hz=d'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# python manage.py runserver --insecure
+# DEBUG = False
+
+# ALLOWED_HOSTS = ['127.0.0.1']
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -77,13 +76,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'petstagram.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "petstagram_db",
+        "USER": "postgres",
+        "PASSWORD": "S@3ana3a",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
 
