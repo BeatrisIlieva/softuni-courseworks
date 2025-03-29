@@ -7,6 +7,7 @@ from petstagram.photos.validators import FileSizeValidator
 class Photo(models.Model):
     # pip install Pillow
     photo = models.ImageField(
+        upload_to='mediafiles',
         validators=[
             FileSizeValidator(5),
         ],
