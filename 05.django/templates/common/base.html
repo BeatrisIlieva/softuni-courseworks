@@ -1,0 +1,22 @@
+{% load static %}
+{% load current_time %}
+{% load user_info %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum App</title>
+</head>
+<body>
+    {% include 'common/nav.html' %}
+    <p>Last refresh: {% current_time %}</p>
+    {% block content %}
+    <h1>From Base</h1>
+    {% endblock %}
+    <div>
+        {% user_info request.user%}
+    </div>
+</body>
+</html>

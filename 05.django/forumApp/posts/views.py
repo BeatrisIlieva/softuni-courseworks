@@ -1,25 +1,25 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from forumApp.posts.forms import PostForm, PostDeleteForm, SearchForm
+from forumApp.posts.forms import PostForm, PostDeleteForm, SearchForm, PostEditForm
 from forumApp.posts.models import Post
 
 
 def index(request):
     context = {}
 
-    return render(request, 'base.html', context)
+    return render(request, 'common/index.html', context)
 
 
 def dashboard(request):
     form = SearchForm(request.GET)
     posts = Post.objects.all()
-    
+
     if request.method == 'GET':
-        
+
         if form.is_valid():
             query = form.cleaned_data['query']
-            
+
             posts = posts.filter(title__icontains=query)
 
     context = {
@@ -56,7 +56,24 @@ def details_post(request, pk: int):
 
 
 def edit_post(request, pk: int):
-    pass
+    post = Post.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = PostEditForm(request.POST, instance=post)
+
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+
+    else:
+        form = PostEditForm(instance=post)
+
+    context = {
+        'form': form,
+        'post': post
+    }
+    
+    return render(request, 'posts/edit-post.html', context)
 
 
 def delete_post(request, pk: int):

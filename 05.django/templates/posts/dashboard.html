@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% include 'nav.html' %}
-    {% include 'posts/search-form.html' %}
-    
-    <ul>
-        {% for post in posts %}
-        <a href="{% url 'details-post' post.pk %}">
-            <li>{{ post.title }}</li>
-        </a>
-        {% empty %}
-        <li>No posts yet</li>
-        {% endfor %}
-    </ul>
-    
-</body>
-</html>
+{% extends 'common/base.html' %}
+
+{% block content %}
+{% include 'common/nav.html' %}
+{% include 'posts/search-form.html' with x='Hello' %}
+
+<ul>
+    {% for post in posts %}
+    <a href="{% url 'details-post' post.pk %}">
+        <li>{{ post.title }}</li>
+    </a>
+    {% empty %}
+    <li>No posts yet</li>
+    {% endfor %}
+</ul>
+{% endblock %}
