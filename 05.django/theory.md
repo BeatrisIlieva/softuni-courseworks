@@ -121,7 +121,7 @@ We need to register each app in the `settings.py` file and to create its own `ur
 
 ## `path()`
 
-The path function in Django is used to define URL patterns in the urls.py file. It maps a specific URL to a corresponding view. 
+The path function in Django is used to define URL patterns in the urls.py file. It maps a specific URL to a corresponding view.
 
 1. First argument: The URL pattern.
 
@@ -150,6 +150,41 @@ Code `301` - moved permanently
 
 ## `reverse()` vs `reverse_lazy()`
 
-1. reverse() -> Resolves the URL right away when the code is executed 
+1. reverse() -> Resolves the URL right away when the code is executed
 
-2. reverse_lazy() -> Does not resolve the URL immediately. Instead, it waits until the URL is actually needed. At that point all the apps are already loaded so it does not throw an error. 
+2. reverse_lazy() -> Does not resolve the URL immediately. Instead, it waits until the URL is actually needed. At that point all the apps are already loaded so it does not throw an error.
+
+## Templates
+
+Templates allows us to separate the business logic from the presentational logic. Unlike plain HTML, templates allows us to use variables, filters and tags.
+
+## Filters
+
+A filter is used to modify variable before it is displayed. To apply a filter to a variable we use the symbol pipe '|' followed by the filter name.
+
+## Tags
+
+To define a tag we use `{% %}`. Tags can be used to insert HTMl or to execute logic.
+
+-   There are self-closing tags; tags can accepts parameters
+
+```
+{% include 'nav.html' %} -> this tag includes HTML
+```
+
+-   There are tags that we need to close explicitly:
+
+```
+{% if %}
+{% else %}
+{% endif %} -> this tag executes logic
+```
+
+## CSRF attack
+
+The action in which someone else sends a POST request on our behalf without us being aware.
+
+CSRF token is placed in forms that have as a method POST.
+CSRF token is a random string that Django generates on every requests and sends it with the response. It expects to receive it on the next request. It throws and error if the same CSRF token is not sent with the next request. This is done by the CSRF middleware.
+
+We place the CSRF token tag in the form. It is present in the form as an input with type hidden.
