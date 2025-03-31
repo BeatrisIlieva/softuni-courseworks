@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" id="card-number" maxlength="19" placeholder="1234 5678 9012 3456" />
+
+        <script>
+            document.getElementById('card-number').addEventListener('input', function (e) {
+                let cursorPosition = e.target.selectionStart; // Get cursor position
+                let value = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || ''; // Add spaces every 4 digits
+
+                // Calculate new cursor position
+                let spacesBefore = (e.target.value.slice(0, cursorPosition).match(/ /g) || [])
+                    .length;
+                let spacesAfter = (formattedValue.slice(0, cursorPosition).match(/ /g) || [])
+                    .length;
+                let newCursorPosition = cursorPosition + (spacesAfter - spacesBefore);
+
+                e.target.value = formattedValue;
+                e.target.setSelectionRange(newCursorPosition, newCursorPosition); // Set cursor correctly
+            });
+        </script>
+    </body>
+</html>
