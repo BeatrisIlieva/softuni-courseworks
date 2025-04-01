@@ -188,3 +188,13 @@ CSRF token is placed in forms that have as a method POST.
 CSRF token is a random string that Django generates on every requests and sends it with the response. It expects to receive it on the next request. It throws and error if the same CSRF token is not sent with the next request. This is done by the CSRF middleware.
 
 We place the CSRF token tag in the form. It is present in the form as an input with type hidden.
+
+On every refresh of the page a new CSRF token is returned by the server and set as a cookie. The CSRF token is valid until a new one is generated. 
+
+## Widget
+
+Each form input has a corresponding default widget. For example, `CharField` uses `TextInput` widget by default. We can set a different widget using the widget argument on a field
+
+## `@deconstructible`
+
+Serializes and deserializes a validator class so the validator class can be recreated from a migration file.
