@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.media {
+    display: flex;
+}
+
+header.site-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em 5.75em;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+header.site-layout ul {
+    display: flex;
+    align-items: baseline;
+    padding: 0;
+}
+
+header.site-layout ul li {
+    display: block;
+    line-height: 1;
+}
+
+header.site-layout ul li a {
+    text-decoration: none;
+}
+
+header.site-layout nav ul {
+    gap: 5em;
+}
+
+header.site-layout > ul {
+    gap: 1.5em;
+}
+
+header.site-layout > ul .media {
+    max-width: 1.35em;
+}
+
+main.site-layout {
+    display: flex;
+    gap: 8em;
+    padding-block: 4em;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+main.site-layout .wrapper-info {
+    flex: 1 1 auto;
+}
+
+main.site-layout .media {
+    flex: 0 0 33%;
+}
+
+main.site-layout h1 {
+    color: var(--clr-white);
+    font-weight: 700;
+    margin-bottom: 0.75em;
+}
+
+main.site-layout .media {
+    border-radius: 50%;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+}
+
+main.site-layout p {
+    padding-bottom: 1.15em;
+}
+
+main.site-layout a {
+    background: var(--clr-green);
+    color: var(--clr-white);
+    border-radius: 0.2em;
+    text-decoration: none;
+    padding: 0.85em 2.75em;
+    display: inline-block;
+}
+
+footer.site-layout {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3em;
+}
+
+footer.site-layout h6 {
+    font-weight: 700;
+    color: var(--clr-white);
+    margin-bottom: 0.65em;
+    margin-left: 0.25em;
+}
+
+footer.site-layout ul {
+    display: flex;
+    gap: 3em;
+    justify-content: space-between;
+    padding: 0;
+}
+
+footer.site-layout ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 25%;
+}
+
+footer.site-layout .media {
+    border: 0.1em solid var(--clr-footer-text);
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+    height: 2em;
+    aspect-ratio: 2.5/1;
+}
+
+footer.site-layout ul li:last-of-type .media img {
+    width: 4em;
+    display: flex;
+    align-items: center;
+}

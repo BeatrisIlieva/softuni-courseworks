@@ -1,0 +1,65 @@
+@media (max-width: 600px) {
+    nav ul {
+        display: none;
+    }
+
+    .checkbtn {
+        display: block;
+    }
+
+    .logo {
+        order: -1;
+    }
+
+    .site-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5em;
+    }
+
+    .site-header > i,
+    h1 {
+        text-align: center;
+        position: static;
+        bottom: unset;
+    }
+
+    .site-header > h1 {
+        margin: 0;
+    }
+
+    .about {
+        display: flex;
+        align-items: center;
+        gap: 2em;
+    }
+
+    .about-header {
+        text-align: center;
+        width: unset;
+        display: block;
+        position: static;
+        flex: 1 1 50%;
+    }
+
+    .about-text {
+        width: unset;
+        display: block;
+        margin-left: 0;
+        flex: 1 1 50%;
+    }
+
+    .gallery {
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+        justify-content: center;
+    }
+
+    .gallery-item {
+        margin: 0;
+    }
+}

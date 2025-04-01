@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --clr-white: #fff;
+    --clr-black: #000;
+    --clr-green: #7ab730;
+    --clr-gray: #f3f3f3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+img,
+a,
+li {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
+
+html {
+    box-sizing: border-box;
+    font: clamp(11px, 11px + 0.4dvw, 16px) / 1.5 'Poppins', sans-serif;
+    color: var(--clr-black);
+}
+
+h1,
+h6 {
+    font-weight: 600;
+    font-variant-caps: all-small-caps;
+}
+
+h1 {
+    font-size: 4.4em;
+    line-height: 0.9;
+}
+
+h6 {
+    font-size: 1.2em;
+    color: var(--clr-green);
+}
+
+h1 {
+    margin-bottom: 0.25em;
+}
+h6 {
+    margin-bottom: 0.5em;
+}
+
+p {
+    padding-bottom: 1.5em;
+    opacity: 0.6;
+    line-height: 1.1;
+}
+
+body {
+    min-height: 100dvh;
+}
+
+.site-layout {
+    padding: 2em clamp(2dvh, calc((100dvw - 1810px) / 2), calc(100dvw / 2));
+}
+
+.outer-wrapper {
+    display: flex;
+    padding: 2em 6em;
+    background: var(--clr-white);
+    justify-content: space-between;
+    box-shadow: 0 1em 3em 0 rgb(0, 0, 0, 0.5);
+}
+
+.media {
+    display: flex;
+}
+
+p.special {
+    opacity: 0.6;
+    font-weight: 700;
+    padding-top: 1.5em;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+ul {
+    display: flex;
+    margin-bottom: 1em;
+}
+
+ul li {
+    flex: 0 0 50%;
+}
+
+ul li a {
+    background: #f0f0f0;
+    color: var(--clr-green);
+    padding: 0.25em 1.25em;
+    font-variant-caps: all-small-caps;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+ul li:first-child a,
+ul li a :hover {
+    background: var(--clr-green);
+    color: var(--clr-white);
+}
+
+.wrapper-left {
+    flex: 0 1 39%;
+    display: flex;
+}
+
+.wrapper-right {
+    flex: 0 1 58%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wrapper-right .about,
+.wrapper-right .mission {
+    background: var(--clr-gray);
+}
+
+.wrapper-right .mission {
+    padding: 1.5em;
+}
+
+.wrapper-right .about {
+    padding: 2em 3em;
+    border-left: 0.3em solid var(--clr-green);
+}

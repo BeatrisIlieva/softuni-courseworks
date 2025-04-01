@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+
+:root {
+    --clr-white: #fff;
+    --clr-black: #000;
+    --clr-mint: #d5ebea;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+img,
+a {
+    display: block;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+html {
+    box-sizing: border-box;
+    font: 12px/1.5 Agbalumo, sans-serif;
+    color: var(--clr-black);
+}
+
+@media (min-width: 360px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 800px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1600px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1900px) {
+    html {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 2200px) {
+    html {
+        font-size: 26px;
+    }
+}
+
+h1 {
+    font-size: 2.6em;
+    padding-top: 0.5em;
+}
+
+h2 {
+    font-size: 1.4em;
+    display: inline-block;
+    color: var(--clr-white);
+    background: var(--clr-black);
+    padding: 0 2em;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h1,
+h3 {
+    font-weight: normal;
+    margin-bottom: 0.25em;
+}
+
+h1,
+h3 {
+    border-bottom: 0.1rem solid var(--clr-black);
+    margin: 0 3rem 0 1rem;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+}
+
+.site-content {
+    max-width: 840px;
+    border: 0.1em solid var(--clr-black);
+}
+
+header.site-layout,
+dl.site-layout {
+    background: var(--clr-mint);
+}
+
+header.site-layout {
+    text-align: center;
+}
+
+.media {
+    display: flex;
+}
+
+main.site-layout {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+main.site-layout figure {
+    border: 0.1rem solid var(--clr-black);
+    flex: 0 1 35%;
+    padding: 0.75em;
+}
+
+main.site-layout figcaption {
+    font-size: 0.66em;
+    text-align: left;
+    padding-top: 1.25em;
+    text-indent: 4ch;
+}
+
+main.site-layout .wrapper {
+    flex: 0 1 62%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    justify-content: flex-end;
+}
+
+main.site-layout .wrapper p {
+    text-indent: 4ch;
+    max-width: 49ch;
+}
+
+footer {
+    padding-top: 1.25em;
+}
+
+footer .site-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0.5em 2em;
+}
+
+footer .site-layout .wrapper {
+    display: flex;
+}
+
+footer .site-layout .wrapper dt {
+    font-weight: 700;
+}
+
+footer .site-layout .wrapper dd {
+    opacity: 0.7;
+    font-size: 0.9em;
+}
+
+footer .site-layout .wrapper span {
+    padding-right: 0.25em;
+}

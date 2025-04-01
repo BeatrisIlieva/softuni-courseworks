@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|PT+Serif:400,400i,700,700i&amp;display=swap ');
+
+:root {
+    --clr-white: #fff;
+    --clr-black: #000;
+    --clr-blue: #60acc1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+img,
+a,
+li {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+strong {
+    font-weight: 700;
+}
+
+em {
+    font-style: italic;
+}
+
+html {
+    box-sizing: border-box;
+    font: clamp(14px, 14px + 0.4dvw, 22px) / 1.5 ' PT Sans', sans-serif;
+    color: var(--clr-black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    font-size: 2.8em;
+    margin-bottom: 0.25em;
+}
+
+h2 {
+    font-size: 1.6em;
+    font-weight: 700;
+    opacity: 0.6;
+    margin-bottom: 0.01em;
+}
+
+h3 {
+    font-size: 1.4em;
+    margin-bottom: 0.05em;
+}
+
+h4 {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 0.75em;
+}
+
+h5 {
+    font-size: 1.4em;
+}
+
+h6 {
+    font-size: 1.2em;
+}
+
+p {
+    padding-bottom: 1.5em;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.site-layout {
+    padding: 0 clamp(2dvh, calc((100dvw - 1920px) / 2), calc(100dvw / 2));
+}
+
+.media {
+    display: flex;
+}
+
+section.catalog {
+    background: var(--clr-blue);
+}
+
+section.catalog h3,
+section.catalog h4,
+section.catalog p {
+    text-align: center;
+}
+
+section.catalog h3 {
+    font-weight: 700;
+}
+
+header.site-layout,
+section.catalog,
+section.about,
+section.furniture,
+footer.site-layout {
+    display: flex;
+}
+
+section.catalog,
+section.about,
+section.furniture {
+    padding-block: 2em;
+}
+
+header.site-layout,
+section.catalog,
+section.about {
+    flex-direction: column;
+}
+
+header.site-layout {
+    padding-top: 2em;
+    background-image: url(images/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 28dvh;
+    min-height: 27.6em;
+    position: relative;
+}
+
+header.site-layout::before {
+    position: absolute;
+    content: '';
+    inset: 0;
+    background: var(--clr-white);
+    opacity: 0.2;
+    z-index: 5;
+}
+
+header.site-layout .wrapper-top,
+header.site-layout .wrapper-bottom {
+    margin: 0 11em;
+    z-index: 10;
+}
+
+header.site-layout .wrapper-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header.site-layout .wrapper-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto 0;
+}
+
+header.site-layout .wrapper-bottom h1 {
+    font-weight: 700;
+}
+
+header.site-layout .wrapper-bottom p {
+    font-weight: 500;
+    max-width: 81ch;
+}
+
+header.site-layout .wrapper-bottom a {
+    background: #e7eef0;
+    color: #686666;
+    border-radius: 0.3em;
+    font-variant-caps: all-small-caps;
+    overflow: hidden;
+    padding: 0.25em 0.75em;
+    font-weight: 700;
+}
+
+header.site-layout .wrapper-bottom p {
+    text-align: center;
+}
+
+header.site-layout .wrapper-top .media {
+    max-width: 6em;
+}
+
+header.site-layout .wrapper-top nav ul {
+    display: flex;
+    gap: 1.25em;
+    font-weight: 700;
+    font-size: 0.86em;
+}
+
+main section.catalog .wrapper-bottom,
+main section.about .wrapper-bottom {
+    display: flex;
+}
+
+main section.about .wrapper {
+    justify-content: space-between;
+}
+
+
+
+main section.catalog:nth-of-type(1) .wrapper-bottom {
+    justify-content: space-evenly;
+    font-size: 0.9em;
+    gap: 8em;
+}
+
+main section.catalog:nth-of-type(1) .wrapper-bottom .card {
+    flex: 0 1 41%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.5);
+    border-right: 0.7em solid var(--clr-blue);
+}
+
+main section.catalog:nth-of-type(1) .wrapper-bottom .card:nth-child(1) {
+    background-image: url(images/home-set.jpg);
+}
+
+main section.catalog:nth-of-type(1) .wrapper-bottom .card:nth-child(2) {
+    background-image: url(images/beach-set.jpg);
+}
+
+main section.catalog:nth-of-type(1) .wrapper-bottom .card .text-content {
+    flex: 0 1 44%;
+    background: var(--clr-white);
+    padding: 1.5em;
+}
+
+main section.catalog:nth-of-type(1) .wrapper-bottom .card .text-content h4 {
+    margin-top: 1.5em;
+}
+
+main section.catalog:nth-of-type(1) .wrapper-bottom .card .text-content p {
+    text-align: left;
+}
+
+section.furniture {
+    padding-bottom: 2.5em;
+    gap: 4em;
+}
+
+section.furniture .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section.furniture .card .media {
+    max-width: 10em;
+    aspect-ratio: 1/1;
+    margin-bottom: 0.5em;
+}
+
+section.furniture .card h4 {
+    opacity: 0.7;
+}
+
+section.furniture .card h4,
+section.furniture .card p {
+    text-align: center;
+}
+
+section.furniture .card p  {
+    padding-bottom: 0;
+}
+
+main section.catalog:nth-child(3) .wrapper-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 5em;
+}
+
+main section.catalog:nth-child(3) .wrapper-bottom .media {
+    flex: 0 1 25%;
+    box-shadow: 0 0 1em 0 rgb(0,0,0,0.4);
+}
+
+section.site-layout.about  {
+    display: flex;
+    align-items: center;
+}
+
+section.site-layout.about p {
+    text-align: center;
+    padding-bottom: 0;
+}
+
+section.site-layout.about p:first-of-type {
+    font-style: italic;
+    opacity: 0.7;
+}
+
+section.site-layout.about p:nth-of-type(2){
+    max-width: 100ch;
+}
+
+footer.site-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2D333C;
+    color: var(--clr-white);
+    padding: 1em;
+}
+
+footer.site-layout p {
+    padding-bottom: 0;
+}

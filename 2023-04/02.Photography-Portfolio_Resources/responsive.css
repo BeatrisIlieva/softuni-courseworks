@@ -1,0 +1,106 @@
+@media (max-width: 600px) {
+    html {
+        font-size: 12px;
+    }
+    .navigation-nav {
+        display: none;
+    }
+
+    .home-text {
+        display: none;
+    }
+
+    .Heading2 {
+        font-size: 32px;
+        letter-spacing: 0.03em;
+    }
+
+    .home-text02 {
+        margin-bottom: 28px;
+    }
+
+    .button-secondary {
+        margin-bottom: 1.75em;
+    }
+
+    .tab-selector-btn {
+        font-size: 12px;
+    }
+
+    .home-text03 {
+        margin-right: 26px;
+    }
+
+    .home-tab-selector-cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.75em;
+    }
+
+    .portofolio-card-speaker-card {
+        flex: 1 1 100%;
+        align-items: stretch;
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .portofolio-card-image-container {
+        justify-content: unset;
+        display: flex;
+        flex-grow: 1;
+        margin-bottom: 10px;
+        max-height: 250px;
+        min-height: 250px;
+    }
+
+    .portofolio-card-image {
+        width: 100%;
+        display: flex;
+    }
+
+    .portofolio-card-first-name {
+        font-size: 14px;
+    }
+
+    .home-max-width1 {
+        flex-direction: column;
+    }
+
+    .section-container {
+        padding-top: 20px;
+    }
+
+    .Heading2 {
+        font-size: 32px;
+        line-height: 36px;
+    }
+
+    .home-image {
+        display: none;
+    }
+
+    .home-text10 {
+        margin-right: 20px;
+    }
+
+    .home-top-part {
+        flex-direction: column;
+    }
+
+    .home-text13 {
+        margin-bottom: 18px;
+    }
+
+    .home-links-container {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .home-subscribe-container {
+        width: 100%;
+    }
+
+    .button {
+        padding: 1.25em 2.25em;
+    }
+}

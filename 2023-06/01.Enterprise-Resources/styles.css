@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap');
+
+:root {
+    --clr-white: #fff;
+    --clr-black: #000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+img,
+a {
+    display: block;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    /* object-fit: cover; */
+}
+
+html {
+    box-sizing: border-box;
+    font: 12px/1.5 Inter, sans-serif;
+    color: #595959;
+}
+
+@media (min-width: 360px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 800px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1900px) {
+    html {
+        font-size: 20px;
+    }
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+h4 {
+    font-size: 1.2em;
+    font-variant-caps: all-small-caps;
+    font-weight: 700;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+h2 {
+    margin-bottom: 0.5em;
+    padding-bottom: 1em;
+}
+
+p,
+h6 {
+    opacity: 0.8;
+}
+
+span {
+    opacity: 0.5;
+}
+
+body {
+    min-height: 100dvh;
+    background: #d9d9d9;
+    padding: 2em;
+}
+
+body > * {
+    background: #d9d9d9;
+}
+
+.site-layout {
+    display: flex;
+    gap: 2em;
+}
+
+article {
+    box-shadow: 0.5em 0.5em 1em 0 rgb(0, 0, 0, 0.2);
+    flex: 0 1 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    display: flex;
+    flex: 1 0 250px;
+}
+
+section.content {
+    flex: 0 1 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+footer {
+    flex: 0 0 auto;
+}
+
+section {
+    padding: 2em;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.1em solid var(--clr-black);
+    margin: 0 2em 0 2em;
+    padding: 1em 0 2em 0;
+}
+
+footer .media {
+    max-width: 2.5em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+footer .wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}

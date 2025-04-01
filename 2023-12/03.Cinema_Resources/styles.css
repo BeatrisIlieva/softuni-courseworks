@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
+
+:root {
+    --clr-white: #fff;
+    --clr-black: #000;
+
+    --clr-dark-bg: #353434;
+    --clr-light-green: #56dbb1;
+    --clr-dark-green: #1b9772;
+    --clr-brown: #974d1b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+body,
+input,
+button,
+textarea,
+select,
+table,
+i,
+a {
+    box-sizing: inherit;
+    font: inherit;
+    color: inherit;
+}
+
+img,
+a {
+    display: block;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+html {
+    box-sizing: border-box;
+    font: 12px/1.5 Ubuntu, sans-serif;
+}
+
+@media (min-width: 360px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 800px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1600px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1900px) {
+    html {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 2200px) {
+    html {
+        font-size: 26px;
+    }
+}
+
+h1 {
+    font-size: 3.2em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.6em;
+}
+
+h4 {
+    font-size: 1.6em;
+}
+
+h5 {
+    font-size: 1.4em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin-bottom: 0.5em;
+}
+
+body {
+    min-height: 100dvh;
+    background: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 1rem clamp(2dvh, calc((100dvw - 1800px) / 2), calc(100dvw / 2));
+    padding-bottom: 0;
+    letter-spacing: 0.2rem;
+}
+
+main > *,
+footer {
+    padding: 0 clamp(2dvh, calc((100dvw - 1570px) / 2), calc(100dvw / 2));
+}
+
+main {
+    flex-grow: 1;
+}
+
+.media {
+    display: flex;
+}
+
+header {
+    background-image: url('images/background.jpg');
+    background-size: cover;
+    background-position: top 7rem center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    height: 34rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .left-wrapper {
+    display: flex;
+    gap: 4rem;
+    align-items: baseline;
+}
+
+header .left-wrapper h1 {
+    color: #313131;
+    position: relative;
+}
+
+header .left-wrapper h1::before {
+    position: absolute;
+    content: '';
+    width: 0.03em;
+    height: 70%;
+    right: -2rem;
+    bottom: 15%;
+    background: #dbdbdb;
+}
+
+header .left-wrapper h6 {
+    color: #808082;
+}
+
+header .right-wrapper ul {
+    display: flex;
+    gap: 0.09em;
+}
+
+header .right-wrapper ul li {
+    display: block;
+}
+
+header .right-wrapper ul a {
+    text-decoration: none;
+    color: #696969;
+    background: #ececec;
+    padding: 1em 1.25em;
+}
+
+header .right-wrapper ul li:nth-child(1) a {
+    background: #56dbb1;
+    color: #000;
+}
+
+section.intro {
+    background: var(--clr-light-green);
+    padding: 4em;
+}
+
+section.intro p {
+    text-align: center;
+    color: var(--clr-black);
+}
+
+section.features {
+    display: flex;
+    gap: 2em;
+    background: var(--clr-dark-bg);
+    padding-top: 6em;
+    padding-bottom: 6em;
+    color: #fff;
+}
+
+section.features .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section.features i {
+    background: var(--clr-light-green);
+    padding: 0.5em;
+    font-size: 3.5em;
+    margin-bottom: 0.5em;
+}
+
+section.features .wrapper h6 {
+    padding-bottom: 0.75em;
+    position: relative;
+}
+
+section.features .wrapper h6::after {
+    position: absolute;
+    content: '';
+    width: 140%;
+    height: 0.07em;
+    background: #fff;
+    bottom: 0;
+    left: -20%;
+}
+
+section.features .wrapper p {
+    text-align: center;
+    opacity: 0.3;
+    font-size: 0.8em;
+    line-height: 2;
+    margin-top: 0.5em;
+
+}
+
+section.action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4em;
+}
+
+section.action h2 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    color: #5F5F5F;
+    letter-spacing: 0.1rem;
+}
+
+section.action p {
+    color: #C3BCB8;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+}
+
+section.action a{
+    text-decoration: none;
+    background: #974D1B;
+    color: #fff;
+    padding: 1em 2.25em;
+}
+
+footer {
+    background: var(--clr-dark-green);
+    padding: 3em;
+}
+
+footer p {
+    text-align: center;
+    color: var(--clr-light-green);
+}
+
+footer p span {
+    color: #fff;
+    letter-spacing: 0.2rem;
+    font-weight: 200;
+}
