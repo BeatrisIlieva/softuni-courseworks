@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+}
+
+.orange {
+    background: darkorange;
+    padding: 3em;
+}
+
+.green {
+    background: green;
+    padding: 3em;
+}
+
+.yellow {
+    background: yellow;
+    padding: 3em;
+}

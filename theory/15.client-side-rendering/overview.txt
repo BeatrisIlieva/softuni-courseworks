@@ -1,0 +1,19 @@
+UI RENDERING - In web this means - not visualization bit generation of HTML -> building web content.
+RENDERING - means to dynamically generate content; In a static website there is no rendering 
+because the content is already present. In a Web Application rendering happens because for example 
+when a user click on a button to see additional data a request to the server is made and 
+new content is rendered. 
+
+SERVER-SIDE-RENDERING:
+
+1. User sends a requests
+2. Server generates HTML
+3. HTML is sent to the Client
+4. Browser interprets is
+
+CLIENT-SIDE-RENDERING:
+1. User sends a requests
+2. Initial static files such as JS, CSS, Fonts and others are sent by the Server
+3. JS starts working on the Client
+4. JS generates DOM elements
+5. JS starts delegating to the Browser to make AJAX requests

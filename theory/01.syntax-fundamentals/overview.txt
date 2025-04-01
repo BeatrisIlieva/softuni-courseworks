@@ -1,0 +1,56 @@
+JS is a high level programming language (in high level programming languages 
+an interpreter (a program) reads the script line by line 
+and directly executes the instructions without converting it into machine 
+code as it happens in compile time languages)
+
+C-like syntax (curly-brackets, identifiers, operators).
+The block of codes are defined by the curly-brackets
+Identifiers (name of a variable) - can start with _ and letters; it cannot start with a number
+With const we say that we do not want the value of the variable to be changed
+
+Variables and functions are written in camelCase
+
+The type of a variable is defined by the type of the literal 
+that is used to define the variable value (
+    (declaration) (definition)
+     const a =  [1, 2, 3] 
+    -> array literal 
+    -> the type of the variable is object
+    )
+
+JS can be executed both on the server and on the client.
+It can run in the Browser and in Node.js - server-side JS runtime that executes 
+the code on the machine. Node.js is based on the V8 engine.
+
+Multi-paradigm (imperative, OOP and functional programming).
+Dynamic typing:
+
+- Dynamically typed languages: Types are checked at runtime (e.g., Python, JavaScript).
+- Statically typed languages: Types are checked at compile time (e.g., Java, C++).
+
+- Dynamically typed: Variables can change types and new properties 
+and methods can be added to objects at runtime
+- Statically typed: Variables must have a fixed type, declared explicitly 
+
+- Dynamic typing catches type errors at runtime
+- Static typing catches type errors before runtime
+
+ECMAScript is a standard for scripting languages such as JavaScript. 
+It defines the rules for how JavaScript should behave.
+
+Chromium is an open source Browser engine. V8 is an interpreter for JS in the 
+Chromium based Browsers. 
+
+ECMASript standards are implemented in the V8 engine. So it knows how to run JS according
+to these standards. 
+
+The Client is a software that makes HTTP requests in order to access 
+content through the HTTP protocol.
+
+The Server is a software that listens on a given port for HTTP requests and answers them.
+It may provide content back such as HTML, JSON or JS files. 
+
+
+NPM package manager allows us to install libraries
+
+String interpolation with `` with backticks

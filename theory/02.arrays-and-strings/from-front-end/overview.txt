@@ -1,0 +1,48 @@
+Arrays are a reference type. This means that the variable points to an address in memory.
+Their members are called 'elements'.
+
+The memory is divided into two types:
+    /The data types are also divided into two types - reference and primitive;
+    the reference data types are kept in the heap because they contain structured data,
+    and structured data can become too large to be kept in the heap. 
+    For example, the length of an array does not have a limit for its length
+    /
+    1. Callstack - it is a relatively small memory dedicated for the runtime of the application
+        - all primitive data types (value types) are stored in the callstack, both
+          VARIABLES and VALUES
+
+        - the VARIABLES of the reference data types are also stored in the callstack
+        - the REFERENCE (pointer, address) of the reference data types are kept in the callstack
+        - in the stack is kept the address in memory where the value is stored
+        - the variable is stored in the stack and it is associated with 
+          the address in memory where the reference types is stored
+
+    2. Heap - the memory of the machine
+        - all reference data types VALUES are kept in the heap
+
+
+Array methods are divided into two groups - mutating and non-mutating.
+The mutating methods change the original array by reference.
+
+Predicate is a function that returns true or false
+
+Mutating methods:
+1. pop()
+2. push()
+3. shift()
+4. unshift()
+5. splice()
+6. reverse()
+7. sort()
+
+Non-mutating:
+1. map()
+2. reduce()
+3. filter()
+4. forEach()
+5. indexOf()
+6. find()
+7. includes()
+8. slice()
+
+

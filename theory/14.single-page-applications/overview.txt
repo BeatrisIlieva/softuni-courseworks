@@ -1,0 +1,31 @@
+WEB SITE - a collection of pages (brochure website about a beauty salon for example -> it contains 
+working time, address, contacts, services etc. -> with other words static websites)
+
+WEB APPLICATION - software accessible from a Browser that provides interactivity 
+and rich functionality; if a website provides user registration and personalized services 
+like user being  able to upload content or be provided with personalized content, then this a web 
+application
+
+MULTI-PAGE APPLICATION - the Browser makes a request to the Server -> the Server makes a call to 
+the DB -> The Server retrieves the data from the database, compiles it, and then wraps it in HTML
+an returns the HTML to the Browser. The Browser then just renders the HTML; reloads the entire page
+
+SINGLE-PAGE APPLICATION - an application that loads a single HTML file. After that we use AJAX
+to make requests in the background and then using JavaScript and the DOM API we generate new 
+elements and content dynamically without reloading the page. 
+
+The Client (Browser) initiates the communication by sending an HTTP request to the server. 
+The server responds with all the assets needed to render the HTML file. 
+Then the application starts working on the Client. When 
+an interaction happens an AJAX request is made. After the initial request, all other requests are 
+made with AJAX. Then se Server responds with JSON data. The the application decides how to visualize 
+the newly received data.  
+
+MODULES: a set of related functionality 
+     - benefits:
+     1. splitting large functionality
+     2. resolves the problem with naming collisions
+     3. we can decide what functionalities to expose out from the module and what not to 
+
+HIGH COHESION - the functionality inside the modules is strongly related 
+LOOSE COUPLING - the modules themselves are not related

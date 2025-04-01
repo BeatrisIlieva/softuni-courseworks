@@ -1,0 +1,22 @@
+[
+    {
+        "characteristics": [
+            "JavaScript Object Notation.",
+            "JSON is a standard for textual representation of data.",
+            "It serves us to exchange data, for example between the Client and the Server.",
+            "It is similar to JS objects. The syntax is a bit different.",
+            "It is language independent.",
+            "Elements are double quoted",
+            "No trailing comma"
+        ],
+
+        "name": "John",
+        "age": 20,
+        "isMale": true,
+        "grades": [3, 4, 5, 6],
+        "location": {
+            "latitude": 7363,
+            "longitude": 8363
+        }
+    }
+]

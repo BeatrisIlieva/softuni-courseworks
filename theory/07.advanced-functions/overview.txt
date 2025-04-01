@@ -1,0 +1,50 @@
+EXECUTION CONTEXT: the environment in which a function is executed. Each function executes in its 
+own environment that we call execution context. In the execution context there are:
+
+- variables; the variables have live (they live in a certain scope), 
+because when we exit the function, the execution context changes
+- this binding; in the execution context is set to what 'this' to refer to
+- scope chaining; a scope can access variables from upper scopes (generally, an outer scope cannot 
+access variables from inner scope).
+
+FUNCTION CONTEXT: 
+- function context is the object that we access with the 'this' keyword. 
+- when we talk about an execution context we refer to the object that is bind to 'this'.
+
+EXECUTION CONTEXT: depends on how the function is invoked.
+
+Ways to invoke a function:
+- function invocation -> the context is the global context
+- as a method through an object -> the context is the object
+- as a DOM event handler (in this case the BROWSER invokes the function) -> the context is the element
+- using call(), apply(), bind() -> we define the context by explicitly binding it; 
+these three methods change the context
+
+call() and apply() change the context and execute the function
+bind() only changes the context without invoking the function
+
+THIS refers to an object that is the context of a function. The context is an 
+object that we access with 'this'.
+
+Upon creation arrow function inherits the context of the outer function.
+
+Functions are of reference type. Variables hold a reference point to the address where 
+the functions are kept in memory
+
+Higher order function -> a function that either accepts another function as a parameter
+or return another function as result or both
+
+Predicate -> function that returns boolean. Usually, their name becomes with 'is' or 'has';
+They accept a parameter and use it to return true or false
+
+Built-in higher order functions -> map(), reduce(), filter(); they accept a function 
+as a parameter; filter() accepts a predicate
+
+Pure function -> returns one and the same result when invoked with one and the same arguments
+Pure functions does not produce side effects
+This means that pure functions do not execute actions that would change the result; their result 
+depends only on the parameters they receive
+
+The closure is kept into the Heap.
+
+Currying is a technique for function decomposition.
