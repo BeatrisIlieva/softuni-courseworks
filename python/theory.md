@@ -55,3 +55,17 @@ Ordered collection. It consists of key-value pairs. Values can be of any type an
 ### Database
 
 A database is a collection of organized data, that can be accessed and managed. 
+
+#### Database Management System  (DBMS)
+
+`DBMS` is a software that allows us to store data and execute queries so as to apply CRUD operations.
+
+There are two types of databases:
+
+1. Relational / SQL (Structured Query language) database (PostgreSQL)
+- holds data into tables 
+- there are relations between the tables
+- we use SQL language to apply CRUD operations
+
+2. Non-Relational / NoSQL database (MongoDB)
+- hols data into documents or key-value pairs

@@ -1,10 +1,12 @@
-## What is a Framework?
+## Django
+
+### What is a Framework?
 
 1. A framework is a structured foundation with rules and constraints that we follow when building an application. It provides ready-made solutions and built-in functionalities, helping us speed up the development process.
 
 2. In contrast, a library does not impose restrictions—it simply offers additional functionalities that we can use when needed.
 
-## What is Django?
+### What is Django?
 
 Django is a high-level Python Web Framework. It is know for it:
 
@@ -34,7 +36,7 @@ Django is a high-level Python Web Framework. It is know for it:
 
 -   One of the key benefits is that if we're unsure how something works, we can access and debug the Django code directly to better understand its behavior.
 
-## What is MVT(Model View Template)?
+### What is MVT(Model View Template)?
 
 MVT is a design pattern that separates the business logic from the user interface. In Django:
 
@@ -44,44 +46,44 @@ MVT is a design pattern that separates the business logic from the user interfac
 
 3. Template defines presentational logic (what the user sees). In Django templates are HTML files. They support Django Template Language.
 
-## What is manage.py file?
+### What is manage.py file?
 
 The manage.py file helps manage tasks in a Django project, like running the server, applying database migrations, and creating new apps.
 
-## What is a middleware?
+### What is a middleware?
 
 Code that executes before or after every request.
 
-## What is a Django App?
+### What is a Django App?
 
 An app is part of the project that does something particular (Single Responsibility).
 
-## What is a Django Project?
+### What is a Django Project?
 
 A collection of configurations and apps.
 
-## What is Psycopg?
+### What is Psycopg?
 
 Psycopg is a PostgreSQL adapter for Python. It allows us to connect to a PostgreSQL database, execute queries, and retrieve data within our Python applications
 
-## What is a View?
+### What is a View?
 
 A view is a function or a class that receives an HTTP request and returns an HTTP response. Along with the request, a view can receive other parameters as well. A view implements the business logic that needs to be executed when a given url is reached.
 
-## How is a view called?
+### How is a view called?
 
 In the project’s urls.py file we configure which function or class to be called when reaching a given url.
 In Django, URLs are defined in the project's urls.py file, which acts as a central place for managing routes. To include the URLs for individual apps, we reference each app’s urls.py in the project’s urls.py using the `include()` function. Django then checks the requested URL against the URL patterns defined in the urls.py files. These patterns are created using the `path()` function. When a match is found, Django calls the corresponding view function, passing the HTTP request to it. The view processes the request and returns an HTTP response.
 
-## What is a Django Template
+### What is a Django Template
 
 It is a text file written in special syntax that allows dynamic generation of HTML. It plays a crucial role in separating the presentation layer from the business logic in the MVT architecture. It uses markup language know as Django Template Language (DTL).
 
-## `render()`
+### `render()`
 
 It accepts as parameters the request, the template name and context. Using the Django Template Engine it generates HTML. It returns an HTTP response with the generated HTML, the content type (by default HTML) and the status.
 
-## Url
+### Url
 
 A URL is a path to a resource.
 
@@ -114,12 +116,12 @@ A URL contains of:
 
 To find the matching url, Django iterates through all the urls in the project `urls.py` file. It stops when it finds the first match.
 
-## App in Django
+### App in Django
 
 An app is Django is a sub application responsible for a single unit of the entire application.
 We need to register each app in the `settings.py` file and to create its own `urls.py` file.
 
-## `path()`
+### `path()`
 
 The path function in Django is used to define URL patterns in the urls.py file. It maps a specific URL to a corresponding view.
 
@@ -129,15 +131,15 @@ The path function in Django is used to define URL patterns in the urls.py file. 
 
 3. Optional name argument: A unique identifier for referencing the URL.
 
-## `include()`
+### `include()`
 
 We use the `include()` function in the main `urls.py` file to tell Django to include the urls defined in the `urls.py` file of a given app.
 
-## `render()`
+### `render()`
 
 Accepts as parameters request, template name, context etc. Uses the Django Template Engine and populates the context into the provided template name. Thus generates content which is of type HTML and returns it together with the content type and status.
 
-## `redirect()`
+### `redirect()`
 
 Two types of redirect:
 
@@ -148,21 +150,21 @@ Two types of redirect:
 Code `302` - for redirect to another website/web application
 Code `301` - moved permanently
 
-## `reverse()` vs `reverse_lazy()`
+### `reverse()` vs `reverse_lazy()`
 
 1. reverse() -> Resolves the URL right away when the code is executed
 
 2. reverse_lazy() -> Does not resolve the URL immediately. Instead, it waits until the URL is actually needed. At that point all the apps are already loaded so it does not throw an error.
 
-## Templates
+### Templates
 
 Templates allows us to separate the business logic from the presentational logic. Unlike plain HTML, templates allows us to use variables, filters and tags.
 
-## Filters
+### Filters
 
 A filter is used to modify variable before it is displayed. To apply a filter to a variable we use the symbol pipe '|' followed by the filter name.
 
-## Tags
+### Tags
 
 To define a tag we use `{% %}`. Tags can be used to insert HTMl or to execute logic.
 
@@ -180,7 +182,7 @@ To define a tag we use `{% %}`. Tags can be used to insert HTMl or to execute lo
 {% endif %} -> this tag executes logic
 ```
 
-## CSRF attack
+### CSRF attack
 
 The action in which someone else sends a POST request on our behalf without us being aware.
 
@@ -191,10 +193,10 @@ We place the CSRF token tag in the form. It is present in the form as an input w
 
 On every refresh of the page a new CSRF token is returned by the server and set as a cookie. The CSRF token is valid until a new one is generated. 
 
-## Widget
+### Widget
 
 Each form input has a corresponding default widget. For example, `CharField` uses `TextInput` widget by default. We can set a different widget using the widget argument on a field
 
-## `@deconstructible`
+### `@deconstructible`
 
 Serializes and deserializes a validator class so the validator class can be recreated from a migration file.
