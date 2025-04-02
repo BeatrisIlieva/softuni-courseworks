@@ -114,3 +114,26 @@ There are two types of databases:
 
 Binary system is used in computer systems. Its alphabet consists of `0` and `1`
 
+### Lists as Stacks and Queues
+
+####  Big O notation 
+
+Big O notation represents an algorithm's worst case complexity.
+
+O(n) -> `n` is the number of elements in the collection
+
+Using stack we have a constant complexity of 1 `O(1)` because we only remove the last element and the rest of the elements do not change their indices. The same is when we append.
+
+`append()` -> O(1)
+`pop()` -> O(1)
+`insert()` -> O(n)
+
+#### Deque
+
+Deque is a double-linked list. The elements are spread at different locations in memory. Each element in a deque knows only about the address in memory of the element before it and after it. The first element left pointer is Null and the last element right pointer is Null. When we remove the first or last element from a deque the only thing that happens is that the first or respectively the last element's pointer starts pointing to Null. 
+
+When working with a deque the only methods that we use are `append()` and `popleft()`
+
+`append()` -> O(1)
+`appendleft()` -> O(1)
+`popleft()` -> O(1)
