@@ -116,7 +116,7 @@ Binary system is used in computer systems. Its alphabet consists of `0` and `1`
 
 ### Lists as Stacks and Queues
 
-####  Big O notation 
+#### Big O notation
 
 Big O notation represents an algorithm's worst case complexity.
 
@@ -130,7 +130,7 @@ Using stack we have a constant complexity of 1 `O(1)` because we only remove the
 
 #### Deque
 
-Deque is a double-linked list. The elements are spread at different locations in memory. Each element in a deque knows only about the address in memory of the element before it and after it. The first element left pointer is Null and the last element right pointer is Null. When we remove the first or last element from a deque the only thing that happens is that the first or respectively the last element's pointer starts pointing to Null. 
+Deque is a double-linked list. The elements are spread at different locations in memory. Each element in a deque knows only about the address in memory of the element before it and after it. The first element left pointer is Null and the last element right pointer is Null. When we remove the first or last element from a deque the only thing that happens is that the first or respectively the last element's pointer starts pointing to Null.
 
 When working with a deque the only methods that we use are `append()` and `popleft()`
 
@@ -138,8 +138,7 @@ When working with a deque the only methods that we use are `append()` and `pople
 `appendleft()` -> O(1)
 `popleft()` -> O(1)
 
-
-### Tuples and Sets 
+### Tuples and Sets
 
 #### Tuples
 
@@ -149,16 +148,17 @@ When working with a deque the only methods that we use are `append()` and `pople
 
 #### Sets
 
-1. unordered 
+1. unordered
 2. each element is unique
 3. mutable
 4. set has methods:
-- union
-- intersection
-- symmetric difference 
-- difference
-- issubset
-- issuperset
+
+-   union
+-   intersection
+-   symmetric difference
+-   difference
+-   issubset
+-   issuperset
 
 ▪ Tuples are immutable
 ▪ Tuples can hold nonunique elements
@@ -168,4 +168,47 @@ When working with a deque the only methods that we use are `append()` and `pople
 ▪ Sets hold unique elements
 ▪ Sets are unordered collections
 
+## OOP
 
+### Scopes:
+
+1. Built-in
+2. Global
+3. Enclosed
+4. Local
+
+### Class
+
+A class is a template that describes what an object would be when it is instantiated. In python everything is an object -> there are no primitive data types.
+
+### **init** method
+
+In the **init** method we describe what properties and object will have when it is instantiated. When we instantiate an object of a given class, the object gets automatically passed to the constructor. `self` refers to the object itself.
+
+### Characteristics of an object
+
+1. An object has a `state` -> properties
+2. An object has `behavior` -> methods
+
+### Attributes
+
+1. data attributes
+
+-   instance attributes
+    -   unique for every instance
+-   class attributes
+    -   shared between all instances
+
+2. methods
+
+-   we can access attributes using methods
+
+-   we can change the attributes of an object using methods
+
+▪ Instance objects are individual objects of
+a class
+▪ Methods are functions that belong to
+an object
+▪ Instance variables are unique to
+each instance
+▪ Class Variables are shared by all instances

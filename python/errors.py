@@ -60,11 +60,13 @@ except ValueError as error:
     print(error)  # invalid literal for int() with base 10: 'a'
 
 # Try, Except, Finally
+## Finally will execute even if the exception was not handled
 try:
     a = 1
     b = 'b'
     b = int(b)
     print(a + b)
+    print(result)
 except (ValueError, TypeError) as error:
     print(error)  # invalid literal for int() with base 10: 'b'
 finally:
