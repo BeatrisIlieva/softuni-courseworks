@@ -212,3 +212,17 @@ an object
 ▪ Instance variables are unique to
 each instance
 ▪ Class Variables are shared by all instances
+
+1. Inheritance:
+
+Allows us to reuse code. This makes it easier for us because our code becomes much easier to read and navigate and we write less. It also allows us to add new features without modifying the existing ones.
+
+2. Encapsulation:
+
+Encapsulation give us to features. The first one is that it allows us to protect sensitive data attributes. The second one is validation. We can protect sensitive data attributes by turning them from public to protected or private. We can do that by using single and respectively double underscore before the attribute name. If an attribute is protected we should not access it outside the class or its descendants. If an attribute is private, it should be accessed only within the class it is defined it. However, encapsulation in python is just a convention. This means that if an attribute is protected we can access it from everywhere. If an attribute is private we can access it from every where by the formula \_TheNameOfTheClass\_\_the_name_of_the_variable. The right way to get or set protected or private attributes is by using getters and setters. The validation part of the encapsulation is done within the setters where we can set an attribute only after the provided value pass a validation.
+
+3. Static methods:
+   Static methods can be placed outside the class and work the same way because they do not need to have knowledge about the class ot its instances. The data they need comes from outside. However we place static methods inside the classes when their action is logically related to the class.
+
+4. Class methods:
+   The main application of class methods is to create an instance of a given class in a controlled manner. We also use class method when we only need to access the class attributes but do not need access to the instance attributes.
