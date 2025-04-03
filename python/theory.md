@@ -137,3 +137,35 @@ When working with a deque the only methods that we use are `append()` and `pople
 `append()` -> O(1)
 `appendleft()` -> O(1)
 `popleft()` -> O(1)
+
+
+### Tuples and Sets 
+
+#### Tuples
+
+1. immutable (but the objects inside are mutable)
+2. has only two available methods - `count()` and `index()`
+3. tuple `unpacking` allows to extract elements and assign them to variables
+
+#### Sets
+
+1. unordered 
+2. each element is unique
+3. mutable
+4. set has methods:
+- union
+- intersection
+- symmetric difference 
+- difference
+- issubset
+- issuperset
+
+▪ Tuples are immutable
+▪ Tuples can hold nonunique elements
+▪ Tuples are ordered collections
+
+▪ Sets are mutable
+▪ Sets hold unique elements
+▪ Sets are unordered collections
+
+
