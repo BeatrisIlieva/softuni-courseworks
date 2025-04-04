@@ -289,3 +289,20 @@ Dependency Inversion principle says that we should not instantiate a class if we
 5. Dependency Inversion
 
 Нарушаваме принципа ако създадем инстанция от даден клас в текущия клас. Спазваме принципа ако подаваме инстанцията отвън. 
+
+## Iterators and generators
+
+### Iterator
+Iterators we implement in classes using the dunders methods iter and next. We keep the state in an attribute in the init method. 
+Iterator is an object that can be iterated. Iterator object must implement the iterator protocol by implementing two methods __iter__() and __next__(). The __iter__() method casts an object to an iterator. When we pass through all the elements in an itterator it gets exausted. 
+
+### Generator
+Generators we implement in functions. 
+If a function contains the keyword `yield` it becomes a generator. Both `yield` and `return` returns value from a function. The difference between `yield` and `return` is that `return` terminates the exectuion of a function. `yield` pauses the function and keeps its state. 
+The generator is a function. A simpler way to create an iterator. A generator uses the keyword 'yield'. The generators, instead of us, keep the state and raise `StopIterationError`. `yield` tells python that the object is iterable and raises StopIterationError. 
+
+### Decorators
+
+Closure - nested function access the scope of an eclosing function
+
+Decorators allows us to modify the behaviour of a function or a class. 
