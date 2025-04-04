@@ -216,6 +216,8 @@ each instance
 1. Inheritance:
 
 Allows us to reuse code. This makes it easier for us because our code becomes much easier to read and navigate and we write less. It also allows us to add new features without modifying the existing ones.
+We can apply inheritance only if we know that all the attributes - properties and methods
+are valid for the descendant.
 
 2. Encapsulation:
 
@@ -234,6 +236,56 @@ This allows us not make checking when we invoke the method on a specific instanc
 
 6. Abstraction:
 
-The parent class becomes a template for the children
+When a class is abstract this means that would cannot make instances of this class. For a class to become abstract it needs to inherit the ABC module and to have at least one abstract method. All the descendants of an abstract class must implement all the abstract methods in the parent class.
+The parent class becomes a template for the children. The abstract class does not have its own implementation of the methods it just forces the children to implement the abstract methods.
 
 The difference between polymorphism and duck typing is that with duck typing there is no inheritance. In duck typing the classes do not have anything in common. They just have methods with the same name.
+
+### Solid
+
+1. Single Responsibility:
+
+A class should be responsible for only one thing. This does not mean having only one method but having methods related to one and the same context.
+This helps to achieve `loose coupling` which means that the separate components of the application are weakly related. This allows us to easily extend them.
+
+2. Open-Closed principle:
+
+Classes are closed for modification but are open for extension.
+This means that we do not add elif if we need to add a new feature but inherit the existing
+class and extends its functionality within a new class.
+
+3. Liskov Substitution
+
+We go against the Liskov Substitution principle if:
+- we inherit a class but some of the attributes in the parent class are not valid for the child
+- we override a method from the parent by leaving it empty
+- the base class starts depending on its descendants
+
+4. Interface Segregation
+
+We comply with the Interface segregation by using mixins and multiple inheritance. By separating the different functionalities into mixins and inheriting these mixins in the subclasses that need the specific functionality we resolve the problem with overwriting attributes that are not valid for the subclasses. 
+
+5. Dependency Inversion
+
+Dependency Inversion principle says that we should not instantiate a class if we need its instance in another class but pass it from outside and thus to inject it. 
+
+
+1. Single Responsibility
+
+Всеки клас трябва да е съдържа атрибути, които са логически свързани само в един определен контекст.
+
+2. Open Closed Principle
+
+Класовете трябва да бъдат затворени за модофикация, но отворени за разширение. Това означава, да че ако имаме нужда да добавим нова функционалност следва да създадем нов клас, който да наследява съществуващия и да разшири неговата функционалност, вместо да използваме проверки чрез който да сравняваме от какъв тип е дадената инстанция. За да следваме този принцип бихме могли да приложим абстракцкия, да дефинираме метод в бащиния клас и да имплементираме конкретната за всеки наследник логика в абтрактния метод, който те наследяват от абстракния клас.
+
+3. Liskov Substitution
+
+Бихме спазили принципа ако спазваме принципите за наследяване според които един клас може да бъде наследник само ако всички атрибути в бащиния клас са валидни и за наследника. Бихме нарушили приципа ако заобикаляме правилата за наследяване като например сложим pass на наследения метод.
+
+4. Interface Segragation
+
+За да спазим принципа отново следваме правилата за наследяваме. Постигаме спазването за наследяване използвайки миксини и множествено наследяване. Т.е. разпределяме отделните функционалности в миксини и ги наследяваме където се нуждаем оттях вместо да държим всички функционалности в един клас вместо да нарушаваме и Liskov Substituion принципа като пренапишем методите от които нямаме нужда в наследниците.
+
+5. Dependency Inversion
+
+Нарушаваме принципа ако създадем инстанция от даден клас в текущия клас. Спазваме принципа ако подаваме инстанцията отвън. 
