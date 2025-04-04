@@ -226,3 +226,14 @@ Encapsulation give us to features. The first one is that it allows us to protect
 
 4. Class methods:
    The main application of class methods is to create an instance of a given class in a controlled manner. We also use class method when we only need to access the class attributes but do not need access to the instance attributes.
+
+5. Polymorphism:
+
+All descendants rewrite a method that their parent class implement in order to change the implementation of the method according to its own needs.
+This allows us not make checking when we invoke the method on a specific instance owing to the fact that the method has one and the same name for all instances - classes.
+
+6. Abstraction:
+
+The parent class becomes a template for the children
+
+The difference between polymorphism and duck typing is that with duck typing there is no inheritance. In duck typing the classes do not have anything in common. They just have methods with the same name.
