@@ -200,3 +200,9 @@ Each form input has a corresponding default widget. For example, `CharField` use
 ### `@deconstructible`
 
 Serializes and deserializes a validator class so the validator class can be recreated from a migration file.
+
+### filters vs tags
+
+Both filters and tags in Django are functions. Filters modify existing value, tags can generate new content (tags) or modify existing tags. 
+
+There are self-closing tags (include) and tags that need to be closed (if - endif). Self closing tags can receive parameters. 
