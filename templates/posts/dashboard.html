@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for post in posts %}
+    <h2>{{ post.title|capfirst }}</h2>
+
+    {% if not post.content %}
+        {% lorem 3 p %}
+    {% else %}
+        {{ post.content|truncatechars:10 }}
+    {% endif%}
+
+    <div>
+        <span>
+            Posted by: {{ post.author|default:'Anonymous' }} on {{ post.created_at|date:'d-M-Y' }}
+        </span>
+    </div>
+{% empty %}
+    <h2>No posts</h2>
+{% endfor %}
+{% endblock %}
