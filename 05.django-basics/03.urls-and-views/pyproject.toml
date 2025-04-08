@@ -1,0 +1,4 @@
+[tool.black]
+line-length = 88       # Optional: Set max line length (default is 88)
+single_quote = true    # Use single quotes instead of double quotes
+skip-string-normalization = true

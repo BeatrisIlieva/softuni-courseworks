@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+    
+    <h1>Hello user!</h1>
+
+    <!-- {% include 'nav.html' %}
+    {% if some_text == 'Hi'%}
+    <h1>{{ some_text}}</h1>
+    {% else %}
+    <p>No results</p>
+    {% endif %}
+    <h1>{{ some_text|default:'Nothing was passed'|capfirst|truncatewords:5 }}</h1>
+    <h2>Current time is: {{ current_time|date:'D M Y' }}</h2>
+    <p>{{ person.age }}</p>
+    <p>First ID: {{ ids.1|join:', ' }}</p>
+    
+    <ul>
+        {% for user in users %}
+        <li>{{ user }}</li>
+        {% endfor %}
+    </ul> -->
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% include 'nav.html' %}
+
+<div>
+    {% for post in posts %}
+    <div>
+        <h2>{{ post.title|capfirst}}</h2>
+        
+        {% if not post.content %}
+        {% lorem 3 p %}
+        
+        {% else %}
+        {{ post.content|truncatechars:10 }}
+        {% endif %}
+        
+        <div>
+            <span>Posted by: {{post.author|default:'anonymous'}} on {{ post.cerated_at }}</span>
+        </div>
+        
+    </div>
+    {% empty %}
+    <h2>No posts</h2>
+    {% endfor %}
+</div>
