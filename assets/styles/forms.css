@@ -1,0 +1,167 @@
+
+
+form {
+
+}
+
+fieldset {
+  padding: 1em 1.5em;
+  border: 2px solid #CCC;
+  border-radius: 0.2em;
+  margin: 0 0 1em 0;
+}
+
+legend {
+  padding: 0.5em;
+  margin-left: -0.5em;
+}
+
+textarea,
+label,
+input {
+  display: block;
+  width: 100%;
+}
+
+input, textarea {
+  outline: none;
+  padding: 0.6em 0.8em;
+}
+
+input[type="submit"] {
+  padding: 0.8em 0.8em;
+  background-color: rgba(21, 32, 42, 1);
+  border: none;
+  border-radius: 0.4em;
+  color: darkorange;
+  margin-top: 2em;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: darkorange;
+  color: white;
+}
+
+input:is([type="text"], [type="email"], [type="password"], [type="textarea"]) {
+  border: 2px solid #ccc;
+  border-radius: 0.4em;
+  background-color: transparent;
+  color: darkorange;
+
+  &:focus {
+    border-color: darkorange;
+
+    & ~ label {
+      color: darkorange;
+    }
+
+    & ~ i {
+      border-color: darkorange;
+      background-color: darkorange;
+      color: white;
+    }
+  }
+
+  &.invalid {
+    border-color: red;
+
+    & ~ label {
+      color: red;
+    }
+
+    & ~ i {
+      border-color: red;
+      background-color: red;
+      color: #ccc;
+    }
+  }
+}
+
+.contact {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px 0 rgb(255, 255, 255, 0.051);
+  border-radius: 0.5em;
+}
+
+.contact .header {
+  position: relative;
+  padding: 2em 0;
+  margin-bottom: 2em;
+}
+
+.contact .header::before {
+  position: absolute;
+  inset: 0;
+  display: block;
+  content: "";
+  background-color: rgb(0, 0, 0, 0.2);
+  padding: 2em;
+  transform: perspective(60px) rotateX(-2deg) rotateY(-1deg) translateX(-0.3em);
+}
+
+.contact .header h1 {
+  text-align: center;
+  z-index: 1000;
+  color: darkorange;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  letter-spacing: 0.1em;
+}
+
+.field {
+  padding-bottom: 0.5em;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+}
+
+.field label {
+  order: -1;
+}
+
+.field i {
+  display: flex;
+  align-items: center;
+  padding: 0 1em;
+  border: 2px solid #ccc;
+  border-radius: 0.4em;
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.field textarea,
+.field input {
+  width: auto;
+  flex: 1 0 auto;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.field .helper {
+  display: block;
+  flex: 0 0 100%;
+  color: #999;
+  font-style: italic;
+  opacity: 0.7;
+  order: 20;
+
+  &.error {
+    display: none;
+    color: red;
+  }
+}
+
+.field input.invalid ~ .helper.error {
+  display: block;
+
+  & ~ .helper {
+    display: none;
+  }
+}

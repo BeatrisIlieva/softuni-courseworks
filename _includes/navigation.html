@@ -1,0 +1,11 @@
+<nav class="main-nav">
+    <ul>
+        {% for item in site.data.navigation %}
+        <li {% if page.permalink == item.link %} class="current-page" {% endif %}
+        {% if item.link == '/blog/' and page.layout == 'blog' %} class="current-page" {% endif %}
+        >
+            <a href="{{ item.link }}">{{ item.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>

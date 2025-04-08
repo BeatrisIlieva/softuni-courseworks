@@ -1,0 +1,7 @@
+:root {
+}
+
+body.theme {
+  --clr-background: #fff;
+  --clr-text: black;
+}
