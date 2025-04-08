@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title}} - {{ site.title }}</title>
+    <link rel="stylesheet" href="/assets/styles/site.css" />
+    <script>
+        window.addEventListener("load", (event) => {
+            document.querySelector("body").classList.add("loaded");
+        });
+    </script>
+</head>
+<!-- class="layout-{{ page.layout }} page-{{ page.title | slugify }}" -->
+<body>
+    <header class="site-header">
+        <a class="logo" href="{{ site.data.navigation.logo.link }}">
+            <img src="{{ site.data.navigation.logo.url }}" alt="logo" />
+        </a>
+        {% include navigation.html%}
+    </header>
+    
+    <main>
+        
+        
+        

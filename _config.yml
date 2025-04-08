@@ -1,0 +1,39 @@
+title: Vanilla Gems
+email: beatrisilieve@icloud.com
+description: CSS and HTML are awesome
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: jekyllrb
+github_username: jekyll
+
+
+        # ("E", "Earrings"),
+        # ("B", "Bracelets"),
+        # ("N", "Necklaces"),
+        # ("R", "Rings"),
+        # ("C", "Charms"),
+        # ("P", "Pendants"),
+
+plugins:
+  - jekyll-feed
+
+collections:
+  brilliant_diamond:
+    output: true
+
+  pink_sapphire:
+    output: true
+
+  blue_sapphire:
+    output: true
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
