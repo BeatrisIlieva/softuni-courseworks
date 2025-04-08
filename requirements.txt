@@ -1,4 +1,5 @@
 asgiref==3.8.1
+<<<<<<< HEAD
 Django==5.1.4
 django-autoslug==1.9.9
 django-cities-light==3.10.1
@@ -11,3 +12,8 @@ pytz==2024.2
 sqlparse==0.5.2
 typing_extensions==4.12.2
 Unidecode==1.3.8
+=======
+Django==5.1.3
+psycopg2-binary==2.9.10
+sqlparse==0.5.2
+>>>>>>> remote17/main
