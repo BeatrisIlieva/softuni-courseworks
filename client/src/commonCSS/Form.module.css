@@ -1,0 +1,185 @@
+.title {
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.sub-title {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.714);
+}
+
+.input-field-container {
+  width: 500px;
+  height: 40px;
+}
+
+.input-field-container-login {
+  width: 300px;
+  height: 40px;
+}
+
+.input-field-container-profile {
+  width: 350px;
+  height: 40px;
+}
+
+.input-field-container-name {
+  width: 293px;
+  height: 40px;
+}
+
+.input-field-container-details {
+  width: 626px;
+  height: 40px;
+}
+
+.input-field-container-card {
+  width: 540px;
+  height: 40px;
+}
+
+/* .input-field-container input[type="text"],
+.input-field-container input[type="password"],
+.input-field-container input[type="email"],
+.input-field-container-login input[type="text"],
+.input-field-container-login input[type="password"],
+.input-field-container-login input[type="email"],
+.input-field-container-profile input[type="text"],
+.input-field-container-profile input[type="password"],
+.input-field-container-profile input[type="email"],
+.input-field-container-details input[type="text"],
+.input-field-container-details input[type="password"],
+.input-field-container-details input[type="email"],
+.input-field-container-name input[type="text"],
+.input-field-container-name input[type="password"],
+.input-field-container-name input[type="email"],
+.input-field-container-card input[type="text"],
+.input-field-container-card input[type="password"],
+.input-field-container-card input[type="email"] {
+  border: none;
+  width: 32ch;
+  background-color: transparent;
+} */
+
+/* .input-field-container input:-webkit-autofill,
+.input-field-container input:-webkit-autofill:hover,
+.input-field-container input:-webkit-autofill:focus,
+.input-field-container input:-internal-autofill-selected,
+.input-field-container-login input:-webkit-autofill,
+.input-field-container-login input:-webkit-autofill:hover,
+.input-field-container-login input:-webkit-autofill:focus,
+.input-field-container-login input:-internal-autofill-selected,
+.input-field-container-profile input:-webkit-autofill,
+.input-field-container-profile input:-webkit-autofill:hover,
+.input-field-container-profile input:-webkit-autofill:focus,
+.input-field-container-profile input:-internal-autofill-selected,
+.input-field-container-details input:-webkit-autofill,
+.input-field-container-details input:-webkit-autofill:hover,
+.input-field-container-details input:-webkit-autofill:focus,
+.input-field-container-details input:-internal-autofill-selected,
+.input-field-container-name input:-webkit-autofill,
+.input-field-container-name input:-webkit-autofill:hover,
+.input-field-container-name input:-webkit-autofill:focus,
+.input-field-container-name input:-internal-autofill-selected,
+.input-field-container-card input:-webkit-autofill,
+.input-field-container-card input:-webkit-autofill:hover,
+.input-field-container-card input:-webkit-autofill:focus,
+.input-field-container-card input:-internal-autofill-selected {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+} */
+
+/* .input-field-container input[type="text"]:focus,
+.input-field-container input[type="password"]:focus,
+.input-field-container input[type="email"]:focus,
+.input-field-container-login input[type="text"]:focus,
+.input-field-container-login input[type="password"]:focus,
+.input-field-container-login input[type="email"]:focus,
+.input-field-container-profile input[type="text"]:focus,
+.input-field-container-profile input[type="password"]:focus,
+.input-field-container-profile input[type="email"]:focus,
+.input-field-container-details input[type="text"]:focus,
+.input-field-container-details input[type="password"]:focus,
+.input-field-container-details input[type="email"]:focus,
+.input-field-container-name input[type="text"]:focus,
+.input-field-container-name input[type="password"]:focus,
+.input-field-container-name input[type="email"]:focus,
+.input-field-container-card input[type="text"]:focus,
+.input-field-container-card input[type="password"]:focus,
+.input-field-container-card input[type="email"]:focus {
+  outline: none;
+} */
+
+.field-box {
+  height: 100px;
+}
+
+.filed-container {
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  border-bottom-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+  border: 1px solid #fc8eac;
+  padding: 2px;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+.placeholder {
+  padding: 12px;
+  margin: 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.placeholder-on-blur {
+  font-size: 10px;
+  margin: 0;
+  cursor: pointer;
+  padding-left: 12px;
+}
+
+.input-spot {
+  padding: 0;
+  margin: 0;
+  padding: 4px;
+  margin-left: 12px;
+  overflow: hidden;
+}
+
+.form-list {
+  list-style-type: circle !important;
+  margin-left: 12px !important;
+  font-size: 14px;
+}
+
+ul.form-list {
+  margin-bottom: 20px;
+}
+
+.form-item-list {
+  padding-bottom: 2px;
+}
+
+.form-vertical-line {
+  border-left: 1px solid pink;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.error-message {
+  font-size: 14px;
+  color: red;
+  padding-top: 4px;
+  text-align: center;
+  margin: 0px;
+  padding-bottom: 0px;
+  /* display: none; */
+}
+
+.visible {
+  display: block;
+}

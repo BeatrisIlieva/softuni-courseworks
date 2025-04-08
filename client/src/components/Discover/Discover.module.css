@@ -1,0 +1,29 @@
+.discover-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+  width: auto;
+}
+
+.discover-image {
+  width: 20vw;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.discover-img {
+
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: blue;
+}
+
+.discover-button {
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    background-color: blue;
+    padding: 8px;
+}

@@ -1,0 +1,121 @@
+.jewelry-details-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+
+.jewelry-details-images-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.jewelry-details-image {
+  width: calc(48vw - 96px);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.jewelry-details-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: rgba(255, 192, 203, 0.238);
+}
+
+.zoom-image {
+  transition: transform 0.3s ease;
+}
+
+.jewelry-details-image:hover .zoom-image {
+  transform: scale(1.4);
+}
+
+.jewelry-details-composition-container {
+  width: auto;
+}
+
+.jewelry-details-composition-sticky {
+  position: sticky;
+  top: calc(18vh + 42px);
+}
+
+.jewelry-details-jewelry-title {
+  color: black;
+  margin-top: 0;
+  font-weight: 600;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.jewelry-details-composition-metals {
+  color: black;
+  margin-top: 22px;
+  font-size: 16px;
+}
+
+.jewelry-details-composition-stones {
+  color: black;
+  margin-top: 22px;
+  font-size: 16px;
+}
+
+.jewelry-details-composition-price {
+  font-size: 16px;
+  margin-top: 22px;
+  font-weight: 600;
+}
+
+.jewelry-details-composition-size {
+  font-size: 16px;
+  margin-top: 22px;
+}
+
+.jewelry-details-composition-size-title {
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.composition-item {
+  line-height: 2;
+  font-size: 16px;
+}
+
+.radio-container {
+  display: flex;
+}
+
+input[type="radio"] {
+  display: none;
+  &:not(:disabled) ~ label {
+    cursor: pointer;
+  }
+  &:disabled ~ label {
+    color: hsla(150, 5%, 75%, 1);
+    border-color: hsla(150, 5%, 75%, 1);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+label {
+  display: flex;
+  gap: 1px;
+  background: white;
+  border: 1px solid pink;
+  border-radius: 16px;
+  padding: 4px 16px;
+  margin-right: 4px;
+  margin-top: 4px;
+  margin-bottom: 22px;
+  text-align: center;
+}
+input[type="radio"]:checked + label {
+  background-color: rgba(255, 192, 203, 0.179);
+}
+
+.add-to-bag-button {
+  margin-top: 22px;
+  min-width: 300px !important;
+}

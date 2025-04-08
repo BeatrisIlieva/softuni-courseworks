@@ -1,0 +1,13 @@
+.footer {
+    grid-area: footer;
+    display: flex;
+    background-color: var(--dark-blue);
+    font-size: 16px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-top-color: var(--dark-pink);
+    border-top-width: 2px;
+    border-top-style: ridge;
+    z-index: 10;
+}

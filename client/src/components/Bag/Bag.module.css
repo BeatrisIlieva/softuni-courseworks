@@ -1,0 +1,243 @@
+.bag-title {
+  font-size: 30px;
+  padding-top: 0px;
+  padding-bottom: 28px;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.bag-sub-title {
+  text-align: center;
+}
+.bag-sub-title p {
+  line-height: 0;
+  font-size: 16px;
+}
+
+.bag-sub-title h3 {
+  font-weight: 300;
+  font-size: 26px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.bag-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  gap: 32px;
+}
+
+.bag-left-container {
+  width: 70%;
+}
+
+.bag-left-container-title {
+  padding-bottom: 16px;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.bag-left-container-title-with-padding {
+  padding-right: 10px;
+}
+
+.delivery-span {
+  padding-bottom: 16px;
+  font-size: 14px;
+  font-weight: 200;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+  color: rgba(0, 0, 0, 0.739);
+}
+
+.bag-left-sub-container {
+  border-radius: 16px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 8px 32px -12px,
+    rgba(0, 0, 0, 0.3) 0px 6px 12px -18px;
+  padding: 32px;
+  padding-bottom: 0px;
+}
+
+.bag-left-sub-left-container {
+  display: flex;
+  padding-bottom: 32px;
+}
+
+.jewelry-bag-image {
+  width: 36%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.jewelry-bag-img {
+  border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: rgba(255, 192, 203, 0.238);
+}
+
+.jewelry-bag-composition {
+  width: 50%;
+  position: relative;
+}
+
+.jewelry-bag-composition-title {
+  font-size: 16px;
+  padding: 8px;
+  padding-bottom: 16px;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+  line-height: 0;
+}
+
+.jewelry-bag-composition {
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 16px;
+}
+
+.bag-composition-metal {
+  padding: 4px 0px 4px 8px;
+}
+
+.bag-composition-stone {
+  padding: 4px 0px 4px 8px;
+}
+.composition-item-bag {
+  font-size: 16px;
+}
+
+.jewelry-bag-composition-size {
+  padding: 8px;
+}
+
+.jewelry-bag-composition-button-container {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+
+.jewelry-bag-composition-button {
+  padding: 0px 8px 0px 8px;
+  text-decoration: underline;
+  text-decoration-color: black;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.589);
+  font-size: 14.8px;
+}
+
+.jewelry-bag-composition-button:hover {
+  text-decoration: none;
+}
+
+.jewelry-bag-price-quantity {
+  position: relative;
+  width: 14%;
+}
+
+.jewelry-bag-price {
+  position: absolute;
+  right: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.jewelry-bag-quantity {
+  display: flex;
+  position: absolute;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.19);
+  padding: 2px;
+}
+.jewelry-bag-quantity-button,
+.jewelry-bag-composition-button {
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+}
+.jewelry-bag-quantity-button {
+  text-decoration: none;
+  width: 4ch;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.335);
+  font-size: 12px;
+}
+
+.jewelry-bag-quantity-input input[type="text"] {
+  width: 4ch;
+  text-align: center;
+  border: none;
+  color: black;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.jewelry-bag-quantity-input input[type="text"]:focus {
+  outline: none;
+}
+
+.bag-right-container {
+  width: 24%;
+}
+
+.bag-right-container-sticky {
+  position: sticky;
+  top: calc(18vh + 42px);
+}
+
+.bag-right-container-title {
+  font-size: 20px;
+  font-weight: 500;
+  padding-bottom: 16px;
+}
+
+.bag-right-sub-container-bold {
+  font-weight: 600;
+  letter-spacing: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bag-right-sub-container-not-bold {
+  font-weight: 100;
+  color: rgba(0, 0, 0, 0.552);
+}
+
+.bag-right-sub-container {
+  position: relative;
+}
+
+.bag-right-sub-right-container {
+  display: flex;
+}
+
+.horizontal-line {
+  background-color: pink;
+  height: 1px;
+  border: none;
+  margin: 12px 0px 20px 0px;
+}
+
+.bag-right-sub-container-absolute {
+  position: absolute;
+  right: 0;
+}
+
+.bag-right-sub-container p {
+  padding: 0;
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+.continue-checkout-button {
+  width: 100% !important;
+  margin-top: 12px;
+}
+
+

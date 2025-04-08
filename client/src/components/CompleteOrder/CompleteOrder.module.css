@@ -1,0 +1,76 @@
+#complete-order-box {
+  margin: 68px 0px 68px 0px;
+  position: relative;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.title-sub-container {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.title {
+  font-size: 28px;
+}
+
+.arrow {
+  height: 12px;
+}
+
+.main-sub-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+.arrow,
+.sub-title {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.283);
+  font-weight: 600;
+}
+
+.complete-order-container {
+  display: flex;
+  position: relative;
+  gap: 30px;
+}
+
+.left-container {
+  width: 60%;
+  padding: 30px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 8px 32px -12px,
+    rgba(0, 0, 0, 0.3) 0px 6px 12px -18px;
+}
+
+.left-top-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.left-top-container-title {
+  font-size: 20px;
+}
+
+.left-top-container-email {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.472);
+}
+
+.right-container {
+  width: 40%;
+  position: sticky;
+  top: 30px;
+}
+
+.right-container-img {
+  border-radius: 16px;
+}

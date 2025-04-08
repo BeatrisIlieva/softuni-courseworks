@@ -1,0 +1,51 @@
+.modal-dialog{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+}
+
+.slideIn {
+    animation: slideIn 0.4s forwards;
+  }
+  
+  .slideOut {
+    animation: slideOut 0.4s forwards;
+  }
+  
+  @keyframes slideIn  {
+    from {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  @keyframes slideOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+  }
+
+.button {
+  margin-top: 20px;
+  width: 290px;
+}
+
+.password-input {
+  width: 28ch !important;
+}
+
+.field-box {
+  height: 80px;
+  width: 290px;
+}

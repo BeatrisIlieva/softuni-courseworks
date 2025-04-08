@@ -1,0 +1,42 @@
+.app {
+  display: grid;
+  margin: 0px;
+  padding: 0px;
+  font-size: 0px;
+  line-height: 1.5;
+  letter-spacing: 1.2px;
+  font-family: FranklinGothic;
+  background-color: white;
+  grid-template-columns: 100vw;
+  grid-template-rows: 140px auto 40px;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+.main {
+  grid-area: main;
+  font-size: 16px;
+  margin: 0px 0px 30px 0px;
+}
+
+input[type="text"],
+[type="password"],
+[type="email"] {
+  border: none;
+  background-color: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-internal-autofill-selected {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  outline: none;
+}
