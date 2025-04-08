@@ -1,0 +1,7 @@
+ul li {
+    display: block;
+}
+
+ul li:not(:first-child){
+    display: none;
+}
