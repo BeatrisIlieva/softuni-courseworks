@@ -1,0 +1,23 @@
+.jewelry-item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*justify-content: center;*/
+    /*width: 33.33%;*/
+    /*position: relative;*/
+}
+
+.jewelry-item .img-cover {
+    max-width: 100%; /* Ensure images don't exceed their container's width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/*.like-button {*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    !*z-index: 1;*!*/
+/*    cursor: pointer;*/
+/*}*/

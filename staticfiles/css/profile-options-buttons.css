@@ -1,0 +1,13 @@
+.profile-options-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 32px;
+}
+
+.option-buttons {
+    padding: 132px 22px;
+    /*padding: 62px;*/
+    font-size: 22px;
+}

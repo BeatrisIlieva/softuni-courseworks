@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% load dict %}
+{% load static %}
+{% block page_content %}
+    <form action="{% url 'display_jewelries_by_stone_color' selected_pk %}?page={{ page_obj.number }}" method="GET">
+        <div class="center-container">
+            <div class="checkbox-list">
+                {% for field in form %}
+                    <div class="dropdown-checkboxes" role="list" tabindex="0">
+                        <label for="{{ field.id_for_label }}">
+                            <strong class="label-title">{{ field.label }}</strong> <i
+                                class="space fa-solid fa-sort-down"></i>
+                            <div class="dropdown-checkboxes-content">
+                                {% for subfield in field %}
+                                    <div class="dropdown-subfield">
+                                        {{ subfield }}
+                                        {% if subfield.choice_label in jewelries_count_by_category.keys %}
+                                            <span>({{ jewelries_count_by_category|get_value_from_dict:subfield.choice_label }})</span>
+                                        {% elif subfield.choice_label in jewelries_count_by_metal.keys %}
+                                            <span>({{ jewelries_count_by_metal|get_value_from_dict:subfield.choice_label }})</span>
+                                        {% elif subfield.choice_label in jewelries_count_by_stone_type.keys %}
+                                            <span>({{ jewelries_count_by_stone_type|get_value_from_dict:subfield.choice_label }})</span>
+                                        {% elif subfield.choice_label in jewelries_count_by_price.keys %}
+                                            <span>({{ jewelries_count_by_price|get_value_from_dict:subfield.choice_label }})</span>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                                <br>
+                                <button class="drop-down-button button filled_pink">Apply</button>
+                                {% csrf_token %}
+                            </div>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </form>
+    {% include 'jewelry/jewelry-card.html' %}
+    {% include 'jewelry/pagination.html' %}
+{% endblock %}
+
+
+
+
+
+

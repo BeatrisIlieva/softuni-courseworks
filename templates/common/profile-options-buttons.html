@@ -1,0 +1,30 @@
+<div class="profile-options-buttons">
+    <div class="fieldset-button">
+        <a href="{% url 'update_user' pk=object.pk %}">
+            <button class="option-buttons button hover filled_green">
+                <i class="fa-regular fa-id-badge"></i> Update Profile
+            </button>
+        </a>
+    </div>
+    <div class="fieldset-button">
+        <a href="{% url 'update_email' pk=object.pk %}">
+            <button class="option-buttons button hover filled_blue">
+                <i class="fa-solid fa-envelope"></i> Update Email
+            </button>
+        </a>
+    </div>
+    <div class="fieldset-button">
+        <a href="{% url 'update_password' pk=object.pk %}">
+            <button class="option-buttons button hover filled_pink">
+                <i class="fa-solid fa-lock"></i> Update Password
+            </button>
+        </a>
+    </div>
+    <div class="fieldset-button">
+        <a href="{% url 'delete_user' pk=object.pk %}">
+            <button class="option-buttons button hover filled_red">
+                <i class="fa-solid fa-user-slash"></i> Delete Profile
+            </button>
+        </a>
+    </div>
+</div>

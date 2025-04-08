@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <article class="card-details-card">
+        <img class="img-bg-card-details"
+             src="https://res.cloudinary.com/deztgvefu/image/upload/v1706546636/template_images/MobileWallet_CB2_mobile_shxokh.jpg"
+             alt="">
+        <form method="post">
+            <div class="card-details-container">
+                <section class="card-details">
+                    <fieldset>
+                        <legend id="information-title">Card Details</legend>
+                        <span class="card-element-label">
+                            {{ form.card_number.label }}
+                        </span>
+                        <span class="card-element-field">
+                            {{ form.card_number }}
+                        </span>
+                        <span class="card-element-label">
+                            {{ form.expiration_date.label }}
+                        </span>
+                        <span class="card-element-field">
+                            {{ form.expiration_date }}
+                        </span>
+                        <span class="card-element-label">
+                            {{ form.cvv_code.label }}
+                        </span>
+                        <span class="card-element-field">
+                            {{ form.cvv_code }}
+                        </span>
+                        <span class="card-element-field">
+                            <button class="button hover filled_pink" type="submit"><i class="fa-regular fa-credit-card"></i> Make Payment</button>
+                        </span>
+                        {% csrf_token %}
+                    </fieldset>
+                </section>
+            </div>
+        </form>
+{#                    <div class="error-container">#}
+{#                {% for field, error in form.errors.items %}#}
+{#                    <div class="error">{{ error }}</div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+    </article>
+        {% if form.errors.items %}
+        {% include 'error-messages/error-messages.html' %}
+    {% endif %}
+{% endblock %}

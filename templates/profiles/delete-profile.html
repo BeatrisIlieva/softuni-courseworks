@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+    <article class="wish-list-card">
+        <img class="img-bg"
+             src="https://res.cloudinary.com/deztgvefu/image/upload/v1706630328/template_images/8138196_1_f9hgnv.jpg"
+             alt="image">
+        <div class="delete-profile-top">
+            <h2 class="wish-list-tag">
+                Are you sure you want to delete your profile?
+            </h2>
+            <div class="delete-button">
+                <form method="post" action="{% url 'delete_user' pk=request.user.pk %}">
+                    <button class="button hover filled_red">Yes</button>
+                    {% csrf_token %}
+                </form>
+            </div>
+            <div class="delete-button">
+                <button class="button filled_green">
+                    <a id="go-back" href="{% url 'update_user' pk=request.user.pk %}">Go Back</a>
+                </button>
+            </div>
+        </div>
+    </article>
+    {% if count_liked_jewelries %}
+        {% include 'wishlist/jewelry-card.html' %}
+    {% endif %}
+    {% include 'common/pagination.html' %}
+{% endblock %}

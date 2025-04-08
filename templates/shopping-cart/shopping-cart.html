@@ -1,0 +1,128 @@
+{% extends 'base/base.html' %}
+{% load dict %}
+{% load static %}
+{% block page_content %}
+    {% if not jewelries_by_quantity_and_size %}
+        <article class="wish-list-card">
+        <img class="img-bg"
+             src="https://res.cloudinary.com/deztgvefu/image/upload/v1706465957/template_images/229937_m9taue.png"
+             alt="image">
+        <div class="shopping-cart-content-top">
+            <h2 class="wish-list-tag" id="empty-shopping-cart">
+                Your Shopping Bag Is Empty
+            </h2>
+            <div id="bigger-size">
+                {% include 'jewelry/last-seen-jewelries.html' %}
+            </div>
+        </div>
+    {% else %}
+        <section class="grid-container-shopping-cart-top">
+            <div class="shopping-cart-header">
+                <h2>Shopping Bag</h2>
+            </div>
+            <div class="shopping-cart-item-label">
+                <h3>Item</h3>
+            </div>
+            <div class="shopping-cart-materials-and-size-label">
+                <h3>Composition</h3>
+            </div>
+            <div class="shopping-cart-quantity-label">
+                <h3>Quantity</h3>
+            </div>
+            <div class="shopping-cart-total-label">
+                <h3>Total</h3>
+            </div>
+        </section>
+        {% for jewelry, details in jewelries_by_quantity_and_size.items %}
+            <section class="grid-container-shopping-cart">
+
+                <div class="shopping-cart-item">
+                    <article class="card">
+                        <div class="thumbnail">
+                            <a
+                                    href="{% url 'view_jewelry' jewelry.pk %}?page={{ page_obj.number }}"
+                                    title="{{ jewelry.title }}">
+                                <img
+                                        class="thumbnail__img"
+                                        src="{{ jewelry.first_image_url }}"
+                                        alt="{{ jewelry.title }} image"
+                                />
+                            </a>
+                        </div>
+
+                    </article>
+                </div>
+                <div class="shopping-cart-materials-and-size">
+                    <div class="content">
+                        {#                    <h2 class="content__title">#}
+                        {#                        {{ jewelry.title }}#}
+                        {#                    </h2>#}
+                        {#                    <p class="content__category">#}
+                        {#                        {{ jewelry.category.get_title_display }}#}
+                        {#                    </p>#}
+                        <ul class="content__characteristics" role="list">
+                            {% for metal_info in jewelry.jewelry_metals.all %}
+                                <li class="characteristic">
+                                    {% if metal_info.gold_carat %}
+                                        <span>Metal: {{ metal_info.gold_carat.get_weight_display }} {{ metal_info.metal.get_title_display }}</span>
+                                    {% else %}
+                                        <span>Metal: {{ metal_info.metal.get_title_display }}</span>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                            {% for stone_info in jewelry.jewelry_stones.all %}
+                                <li class="characteristic">
+                                    {% if stone_info.stone_carat %}
+                                        <span>Stone: {{ stone_info.stone_color.get_title_display }} {{ stone_info.stone_type.get_title_display }} {{ stone_info.stone_carat }}ct.</span>
+                                    {% else %}
+                                        <span>Stone: {{ stone_info.stone_color.get_title_display }} {{ stone_info.stone_type.get_title_display }}</span>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                            <li class="characteristic">
+                                <span>Size: {{ details.size }} cm.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="shopping-cart-quantity">
+                    <form action="{% url 'update_shopping_cart' jewelry.pk %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="jewelry_id" value="{{ jewelry.pk }}">
+                        <input type="number" name="quantity" value="{{ details.quantity }}"
+                               min={{ details.min_quantity }} max={{ details.max_quantity }}>
+                        <button type="submit" name="update_quantity" class="button hover filled_blue">
+                            <i class="fa-solid fa-pencil"></i> UPDATE
+                        </button>
+                    </form>
+                </div>
+                <div class="shopping-cart-price">
+                    {{ details.jewelry_total_price }}
+                </div>
+            </section>
+        {% endfor %}
+        <section class="grid-container-shopping-cart-bottom">
+            <div class="shopping-cart-total-price-label">
+                TOTAL
+            </div>
+            <div class="shopping-cart-total-price-sum">
+                {{ total_price }}
+            </div>
+            <div class="shopping-cart-checkout">
+                {% if request.user.is_authenticated %}
+                    <form action="{% url 'complete_order' request.user.pk %}" method="get">
+                        <button style="background-color: green" class="button hover filled_green">
+                            <i class="fa-regular fa-credit-card"></i> CHECKOUT
+                        </button>
+                        {% csrf_token %}
+                    </form>
+                {% else %}
+                    <a href="{% url 'login_or_register_user' %}?next={{ request.path }}" class="button hover filled_green">
+                        <i class="fa-regular fa-credit-card"></i> CHECKOUT</a>
+                {% endif %}
+            </div>
+        </section>
+        {% include 'jewelry/last-seen-jewelries.html' %}
+    {% endif %}
+</article>
+{% endblock %}

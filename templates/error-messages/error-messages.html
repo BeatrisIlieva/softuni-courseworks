@@ -1,0 +1,15 @@
+{#<input type="checkbox" id="closeError" class="close-error" style="display: none">#}
+<div class="error-container">
+    <label for="closeError" class="close-button">×</label>
+    {% for field, error in form.errors.items %}
+        <input type="checkbox" id="errorCheckbox{{ forloop.index }}" class="error-checkbox" >
+        <div class="error" id="errorContainer{{ forloop.index }}">
+            <label for="errorCheckbox{{ forloop.index }}" class="close-button">×</label>
+            {{ error }}
+        </div>
+    {% endfor %}
+</div>
+
+
+
+

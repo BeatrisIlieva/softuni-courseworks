@@ -1,0 +1,63 @@
+.button {
+    padding: 6px 16px;
+    top: 4px;
+    bottom: 4px;
+    left: 12px;
+    right: 12px;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 16px;
+    border-top-right-radius: 26px;
+    border-top-left-radius: 26px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    font-weight: 400;
+    font-family: FranklinGothic;
+}
+
+.button.filled_green {
+    color: black;
+    background-color: #BEE5B0;
+}
+
+.button.filled_green:hover {
+    color: white;
+    background-color: #72896a;
+    transition: background-color 300ms linear, color 300ms;
+}
+
+
+.button.filled_blue {
+    color: black;
+    background-color: #89cff0;
+}
+
+.button.filled_blue:hover {
+    color: white;
+    background-color: #527c90;
+    transition: background-color 300ms linear, color 300ms;
+}
+
+.button.filled_red {
+    color: black;
+    background-color: var(--red-pink);
+}
+
+.button.filled_red:hover {
+    color: white;
+    background-color: #993f3a;
+    transition: background-color 300ms linear, color 300ms;
+}
+
+.button.filled_pink {
+    color: #040720;
+    background-color: #ffd4e2;
+}
+
+.button.filled_pink:hover {
+    color: white;
+    background-color: #ffb7ce;
+    transition: background-color 300ms linear, color 300ms;
+}

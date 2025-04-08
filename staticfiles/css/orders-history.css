@@ -1,0 +1,30 @@
+.orders-section {
+    text-align: center;
+    padding: 16px 32px;
+    border-bottom: 2px solid #ffa6c9;
+}
+
+.orders-section .order-title {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.orders-section .order-content {
+    font-size: 16px;
+    margin-bottom: 4px;
+    width: 50vh;
+}
+
+.order-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+}
+
+.order-title-content {
+    text-align: center;
+}
+
+

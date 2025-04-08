@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+{% load countries %}
+{% get_countries as countries %}
+{% load static %}
+{% block page_content %}
+    <form method="post" action="{% url 'update_user' pk=object.pk %}">>
+        <div class="fieldset-container-update">
+            <fieldset class="fieldset-content">
+                <legend class="fieldset-title">Personal Information</legend>
+                <ul role="list">
+                    <li class="fieldset-element">
+                        {{ form.first_name.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.first_name }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.last_name.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.last_name }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.phone_number.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.phone_number }}
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset class="fieldset-content">
+                <legend class="fieldset-title">Delivery Information</legend>
+                <ul role="list">
+                    <li class="fieldset-element">
+                        {{ form.country.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.country }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.city.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.city }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.delivery_address.label }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.delivery_address }}
+                    </li>
+                </ul>
+            </fieldset>
+            <button class="edit-btn button hover filled_green " type="submit"><i class="fa-solid fa-pencil"></i>
+                Update Profile
+            </button>
+            {% csrf_token %}
+        </div>
+    </form>
+    {% include 'error-messages/error-messages.html' %}
+{% endblock %}

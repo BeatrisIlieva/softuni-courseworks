@@ -1,0 +1,12 @@
+.fieldset-container-update {
+    color: black;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 40px  16px;
+}
+
+.fieldset-content {
+    margin: 16px  32px;
+    padding: 16px 32px;
+}

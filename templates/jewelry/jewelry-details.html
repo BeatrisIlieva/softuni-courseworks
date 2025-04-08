@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block page_content %}
+    <section class="jewelry-details">
+        <div class="row">
+            <div class="row-image-first ">
+                <div class="thumbnail">
+                    <img class="thumbnail__img zoom-image" src="{{ jewelry.first_image_url }}" alt="image1">
+                </div>
+            </div>
+            <div class="row-image-first">
+                <div class="thumbnail">
+                    <img class="thumbnail__img zoom-image" src="{{ jewelry.second_image_url }}" alt="image1">
+                </div>
+            </div>
+            <div class="row-text">
+                <h3 class="materials">{{ jewelry.title }}</h3>
+                <span class="materials-details">{{ jewelry.category.get_title_display }}</span>
+                <h3 class="materials">Materials:</h3>
+                <ul class="materials-details" role="list">
+                    {% for metal_info in jewelry.jewelry_metals.all %}
+                        <li>
+                            <i class="metal__icon fa-solid fa-coins"></i>
+                            {% if metal_info.gold_carat %}
+                                <span>{{ metal_info.gold_carat.get_weight_display }} {{ metal_info.metal.get_title_display }}</span>
+                            {% else %}
+                                <span>{{ metal_info.metal.get_title_display }}</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    {% for stone_info in jewelry.jewelry_stones.all %}
+                        <li>
+                            <i class="stone__icon fa-solid fa-gem"></i>
+                            {% if stone_info.stone_carat %}
+                                <span>{{ stone_info.stone_color.get_title_display }} {{ stone_info.stone_type.get_title_display }} {{ stone_info.stone_carat }}ct.</span>
+                            {% else %}
+                                <span>{{ stone_info.stone_color.get_title_display }} {{ stone_info.stone_type.get_title_display }}</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <form method="POST">
+                    {% for field in form %}
+                        <label for="{{ field.id_for_label }}">
+                        <h3 class="materials">{{ field.label }}</h3>
+                        <ul class="materials-details" role="list">
+                            <li>{{ field }}</li>
+                        </ul>
+                        <button class="button hover filled_green" type="submit">ADD TO BAG</button>
+                        {% csrf_token %}
+                    {% endfor %}
+                    </label>
+                </form>
+            </div>
+        </div>
+    </section>
+    {% include 'jewelry/last-seen-jewelries.html' %}
+{% endblock %}

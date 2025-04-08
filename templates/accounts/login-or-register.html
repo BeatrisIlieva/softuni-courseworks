@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% load countries %}
+{% get_countries as countries %}
+{% load static %}
+{% block page_content %}
+    <div class="fieldset-container">
+        <fieldset class="smaller-fieldset">
+            <legend class="fieldset-title">Registered Customers</legend>
+            <h4 class="fieldset-sub-title">Please Sign In to access your account</h4>
+            <form method="post" action="{% url 'login_or_register_user' %}">
+                <ul role="list">
+                    <li class="fieldset-element">
+                        {{ form.username }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.password }}
+                    </li>
+                </ul>
+                <input type="hidden" value="{{ next }}" name="next"/>
+                <button class="button hover filled_blue">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Login
+                </button>
+                {% csrf_token %}
+            </form>
+            {% include 'error-messages/error-messages.html' %}
+        </fieldset>
+        <fieldset class="larger-fieldset">
+            <legend class="fieldset-title">New Customers</legend>
+            <h4 class="fieldset-sub-title">Register with <i>FINE JEWELRIES</i> for the following benefits:</h4>
+            <ul>
+                <li class="fieldset-element-styled">Faster checkout</li>
+                <li class="fieldset-element-styled">Access your order status</li>
+                <li class="fieldset-element-styled">View order history</li>
+                <li class="fieldset-element-styled">Enjoy the convenience of saving your wishlist permanently</li>
+            </ul>
+            <div class="fieldset-button">
+                <a href="{% url 'register_user' %}?next={{ next }}" >
+                    <button class="button hover filled_green">
+                        <i class="fa-solid fa-user-plus"></i> Register
+                    </button>
+                </a>
+            </div>
+        </fieldset>
+    </div>
+{% endblock %}
+

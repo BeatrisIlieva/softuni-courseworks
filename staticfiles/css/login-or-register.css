@@ -1,0 +1,44 @@
+.fieldset-container {
+    color: black;
+    display: grid;
+    grid-template-columns: 1.2fr 1.8fr;
+    margin: 14px 28px;
+    gap: 12px;
+}
+
+.fieldset-container .larger-fieldset, .smaller-fieldset {
+    margin: 8px 16px;
+    padding: 8px 16px;
+}
+
+.fieldset-title {
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+.fieldset-sub-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.fieldset-element {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+ul .fieldset-element-styled {
+    font-size: 18px;
+    list-style-type: circle;
+}
+
+.fieldset-button {
+    margin-top: 12px;
+}
+
+.fieldset-button a {
+    margin-top: 12px;
+}
+
+#padding-30 {
+    padding-top: 30px
+}

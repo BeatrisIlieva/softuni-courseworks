@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+{% load countries %}
+{% get_countries as countries %}
+{% load static %}
+{% block page_content %}
+    <div class="fieldset-container">
+        <fieldset class="smaller-fieldset">
+            <legend class="fieldset-title">New Customer</legend>
+            <form method="post" action="{% url 'register_user' %}">
+                <ul role="list">
+                    <li class="fieldset-element">
+                        {{ form.email }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.password1 }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.password2 }}
+                    </li>
+                    <li class="fieldset-element">
+                        {{ form.consent }} I agree to the terms and conditions
+                    </li>
+                </ul>
+                <input type="hidden" value="{{ next }}" name="next"/>
+                <button class="register-button button filled_green">Register</button>
+                {% csrf_token %}
+            </form>
+        </fieldset>
+        <fieldset class="larger-fieldset">
+            <legend class="fieldset-title">Password Requirements:</legend>
+            <form>
+                <ul class="fieldset-element" role="list" id="padding-30">
+                    <li class="fieldset-element">{{ form.password1.help_text }}</li>
+                </ul>
+            </form>
+        </fieldset>
+    </div>
+    {% include 'error-messages/error-messages.html' %}
+{% endblock %}
+
+
+
+
+{#{% extends 'base/base.html' %}#}
+{#{% load dict %}#}
+{#{% load static %}#}
+{#{% block page_content %}#}
+{#    <div class="register-container">#}
+{#        <h2>New Customer</h2>#}
+{#        <form#}
+{#                action="{% url 'register_user' %}"#}
+{#                method="post">#}
+{#            <p>{{ form.email }}</p>#}
+{#            <p>{{ form.password1 }}</p>#}
+{#            <p>{{ form.password2 }}</p>#}
+{#            <p>{{ form.consent }} I agree to the terms and conditions</p>#}
+{#            <h3> Password Requirements: </h3>#}
+{#            {{ form.password1.help_text }}#}
+{#            <input type="hidden" value="{{ next }}" name="next"/>#}
+{#            <div>#}
+{#                <button class="register-button button filled_green">Register</button>#}
+{#            </div>#}
+{#            {% csrf_token %}#}
+{#        </form>#}
+{#    </div>#}
+{#{% endblock %}#}

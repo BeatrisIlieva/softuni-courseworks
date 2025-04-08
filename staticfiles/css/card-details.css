@@ -1,0 +1,114 @@
+.card-details-card {
+    height: 100vh;
+    font-size: 20px;
+    line-height: 1.5;
+    color: white;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.card-details-card::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.card-details-card .img-bg-card-details {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-details-container {
+    /*font-size: 18px;*/
+    color: white;
+    display: flex;
+    margin-top: 44px;;
+    margin-bottom: 12px;;
+    position: absolute;
+    justify-content: space-evenly;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.card-details-container section {
+    display: flex;
+    align-items: center;
+}
+
+.card-details-container .card-details {
+    flex-wrap: wrap;
+    padding: 6px;
+    width: 48vh;
+}
+
+.card-element-label {
+    padding: 12px;
+    display: inline-block;
+    width: 100%;
+}
+
+.card-element-field {
+    padding: 12px;
+    display: inline-block;
+    width: 100%;
+}
+
+.card-details-input {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-details-input label {
+    width: 100%;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.card-details-input .expiry-cvv {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card-details-input .expiry-cvv label {
+    width: 60%;
+    margin-bottom: 5px;
+}
+
+.card-details-input .expiry-cvv input {
+    width: 60%;
+    margin-bottom: 10px;
+}
+
+.card-details-input .card-number-input {
+    width: 70%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-height: 30px;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+
+}
+
+.card-details-input .card-number-input::placeholder {
+    color: #aaa;
+}
+
+.card-details-input .card-number-input:focus {
+    border-color: dodgerblue;
+}
