@@ -306,3 +306,52 @@ The generator is a function. A simpler way to create an iterator. A generator us
 Closure - nested function access the scope of an eclosing function
 
 Decorators allows us to modify the behaviour of a function or a class. 
+
+## Django ORM
+
+**ORM** maps django models to database table. 
+
+**A model** is a class that inherits the base Django model. Thus the ORM knows to map the model to a database table. 
+
+**Afield** in a model repressents a column in the table. A field in a model is a class attribute.
+Each field has a type. 
+
+**Benefits of using models instead of row SQL**:
+- Allows us to write code only in Python instead of Python together with SQL
+- Allows us to reuse queries
+- Limits the chance for an SQL Injection
+
+**Migartions** follow for changes in our models. In order to apply a change into the databse we need to create a  migrations. The migration reflects the changes. 
+
+By running the command `makemigrations` the ORM checks if there are any changes in the models and if there are such a migration file gets cerated. With the command `migrate` we apply the change into the database. 
+
+**psycopg** is the connection between the Django ORM and postgres.
+
+**DBMS** allows us to perporfm CRUD and to protect the data. 
+
+**Postgres** relational database managment system.
+
+1. The ORM converts the python code into SQL
+2. Psycopg sends the SQL to Postgres
+
+Django generates the primary key as GENERATED ALWAYS AS IDENTITY
+
+**Migration** allows us to keep history of the databse states and to revert to a previous state if needed. 
+
+**First Noemal Form**
+Tables must contain unique records. 
+
+**Second Normal Form**
+We achive the first normal form using primary keys. 
+
+**Third Normal Form**
+We comply with the first and the second normal form by seperating data into different tables.
+
+**Fourth Normal Form**
+
+We comply with the first, the second normal and the third normal form. Even if each row in a table is unique by itself it still may consists duplicate data. Thus we comply with the fourth normal form by seperating the table into more tables.
+
+We comply with the first, second, and third normal forms. However, even if each row is unique, a table can still contain independent multivalued data, leading to redundancy. To achieve Fourth Normal Form, we separate such data into multiple related tables, ensuring that each table contains information about one independent fact.
+
+**Fifth Normal Form**
+It should not be necessary to join a second table in order to associate data from the first and third tables.
