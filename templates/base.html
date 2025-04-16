@@ -9,9 +9,31 @@
     {% include 'nav.html' %}
     {% block content %}
     {% endblock %}
-    <h1>Current time is: {{ current_time }}</h1>
+    <!-- <h1>Current time is: {{ current_time }}</h1>
     <p>{{ person.name }}</p>
     <p>{{ ids.1 }}</p>
-    <p>{{ some_text|truncatechars:5|capfirst|slugify }}</p>
+    <p>{{ some_text|truncatechars:5|capfirst|slugify }}</p> -->
+    
+    <form action="/" method="POST" id="form">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            
+            {% if field.errors %}
+            <div class="error-message">
+                {% for error in field.errors %}
+                <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button>Submit</button>
+    </form>
+    
+    
+    <script src="static/js/script.js"></script>
 </body>
 </html>
