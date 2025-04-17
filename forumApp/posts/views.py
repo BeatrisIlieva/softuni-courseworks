@@ -2,8 +2,8 @@ from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from forumApp.posts.forms import PersonForm, PostCreateForm, PostDeleteForm, SearchForm
-from forumApp.posts.models import Post
+from forumApp.posts.forms import CommentFormSet, PersonForm, PostCreateForm, PostDeleteForm, PostEditForm, SearchForm
+from forumApp.posts.models import Comment, Post
 
 
 def index(request):
@@ -47,7 +47,7 @@ def dashboard(request):
 
 
 def add_post(request):
-    form = PostCreateForm(request.POST or None)
+    form = PostCreateForm(request.POST or None, request.FILES or None)
     
     if request.method == 'POST':
         if form.is_valid():
@@ -80,12 +80,48 @@ def delete_post(request, pk: int):
 
 def details_post(request, pk:int):
     post = Post.objects.get(pk=pk)
+    
+    formset = CommentFormSet(request.POST or None)
+    
+    if request.method == 'POST':
+        if formset.is_valid():
+            for form in formset:
+                if form.cleaned_data:
+                    comment = form.save(commit=False)
+                    comment.post = post
+                    comment.save()
+                    
+            return redirect('details-post', pk=post.id)
+        
+    comments = Comment.objects.all()
 
     context = {
         'post': post,
+        'formset': formset,
+        'comments': comments
     }
     
     return render(request, 'posts/details-post.html', context)
     
+
+def edit_post(request, pk:int):
+    post = Post.objects.get(pk=pk)
     
+    if request.method == 'POST':
+        form = PostEditForm(request.POST, instance=post)
+        
+        if form.is_valid():
+            form.save()
+            
+            return redirect('dashboard')
+        
+    else:
+        form = PostEditForm(instance=post)
+            
+    context = {
+        'form': form,
+        'post': post,
+    }
+    
+    return render(request, 'posts/edit-post.html', context)
     

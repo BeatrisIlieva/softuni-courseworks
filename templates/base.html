@@ -1,3 +1,6 @@
+{% load current_time %}
+{% load user_info %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,12 +10,14 @@
 </head>
 <body>
     {% include 'nav.html' %}
+    {% user_info request.user %}
     {% block content %}
     {% endblock %}
     <!-- <h1>Current time is: {{ current_time }}</h1>
     <p>{{ person.name }}</p>
     <p>{{ ids.1 }}</p>
     <p>{{ some_text|truncatechars:5|capfirst|slugify }}</p> -->
+    <p>Last refresh : {% current_time '%Y-%D' %}</p>
     
     <form action="/" method="POST" id="form">
         {% csrf_token %}

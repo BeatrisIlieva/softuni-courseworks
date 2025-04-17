@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        {{form.as_div}}
+    </form>
+    <hr>
+    <form action="">
+        {% for field in form %}
+        <div>
+            {{field.label_tag}}
+            {{field}}
+        </div>
+        {% if field.errors%}
+        <div>
+            {{field.errors}}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </form>
+    
+    <hr>
+    <form action="">
+        {% for field in form %}
+        <div>
+            {{field.label_tag}}
+            <input 
+            type="{{field.widget_type}}"
+            name="{{field.html_name}}"
+            id="{{field.id_for_label}}"
+            >
+        </div>
+        {% if field.errors%}
+        <div>
+            {{field.errors}}
+        </div>
+        
+        {% endif %}
+        {% endfor %}
+    </form>
+    
+</body>
+</html>

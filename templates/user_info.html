@@ -6,13 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-
-    <form action="{% url 'add-post' %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        {{ form }}
-
-        <button>Submit</button>
-    </form>
+    <p>Hello {{ username }}</p>
 </body>
 </html>
