@@ -23,7 +23,7 @@
 
     <h2>Comments</h2>
 
-    {% for comment in comments%}
+    {% for comment in post.comments.all %}
         {{comment.author}}
         {{comment.content}}
     {% endfor %}

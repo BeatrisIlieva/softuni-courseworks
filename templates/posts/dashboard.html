@@ -4,7 +4,7 @@
 {% block content %}
 {{ block.super }}
 {% include 'posts/search-form.html' %}
-{% for post in posts %}
+{% for post in object_list %}
 
 <a href="{% url 'details-post' post.pk %}">
 
