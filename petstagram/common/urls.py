@@ -4,4 +4,5 @@ from petstagram.common import views
 
 urlpatterns = [
     path('', views.home_page, name='home-page'),
+    path('like/<int:pk>/', views.like_functionality, name='like'),
 ]
