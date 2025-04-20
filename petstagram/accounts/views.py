@@ -9,6 +9,10 @@ def login(request):
     return render(request, 'accounts/login-page.html')
 
 
+def logout(request):
+    return render(request, 'accounts/login-page.html')
+
+
 def details(request, pk: int):
     return render(request, 'accounts/profile-details-page.html')
 
