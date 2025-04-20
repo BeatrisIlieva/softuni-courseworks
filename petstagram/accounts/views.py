@@ -2,20 +2,20 @@ from django.shortcuts import render
 
 
 def register(request):
-    pass
+    return render(request, 'accounts/register-page.html')
 
 
 def login(request):
-    pass
+    return render(request, 'accounts/login-page.html')
 
 
 def details(request, pk: int):
-    pass
+    return render(request, 'accounts/profile-details-page.html')
 
 
 def edit(request, pk: int):
-    pass
+    return render(request, 'accounts/profile-edit-page.html')
 
 
 def delete(request, pk: int):
-    pass
+    return render(request, 'accounts/profile-delete-page.html')
