@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section id="catalogPage">
+	
+	{% for album in object_list %}
+	
+		{% include 'base/partials/card-box.html' %}
+	
+	{% empty %}
+
+		<p>No Albums in Catalog!</p>
+	
+	{% endfor %}
+	
+</section>
+
+{% endblock %}
