@@ -5,6 +5,26 @@ from petstagram.common.forms import CommentForm, SearchForm
 from petstagram.common.models import Like
 from petstagram.photos.models import Photo
 
+from django.views import generic as views
+
+
+class HomePageView(views.ListView):
+    model = Photo
+    template_name = 'common/home-page.html'
+    context_object_name = 'all_photos'
+    paginate_by = 2
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        comment_form = CommentForm()
+        search_form = SearchForm(self.request.GET)
+        
+        context['search_form'] = search_form
+        context['comment_form'] = comment_form
+        
+        return context
+
 
 def home_page(request):
     all_photos = Photo.objects.all()

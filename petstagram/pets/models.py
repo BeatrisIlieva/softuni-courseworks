@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 class Pet(models.Model):
@@ -23,7 +24,8 @@ class Pet(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
-        self.slug = f'{self.name}-{self.pk}'
+        if not self.slug:
+            self.slug = slugify(f'{self.name}-{self.pk}')
 
         return super().save(*args, **kwargs)
 
