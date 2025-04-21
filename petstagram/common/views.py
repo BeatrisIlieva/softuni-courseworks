@@ -1,14 +1,25 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, resolve_url
+from pyperclip import copy
 
+from petstagram.common.forms import CommentForm, SearchForm
 from petstagram.common.models import Like
 from petstagram.photos.models import Photo
 
 
 def home_page(request):
     all_photos = Photo.objects.all()
+    comment_form = CommentForm()
+    search_form = SearchForm(request.GET)
+
+    if search_form.is_valid():
+        pet_name = search_form.cleaned_data['pet_name']
+
+        all_photos = all_photos.filter(tagged_pets__name__icontains=pet_name)
 
     context = {
         'all_photos': all_photos,
+        'comment_form': comment_form,
+        'search_form': search_form,
     }
 
     return render(request, 'common/home-page.html', context)
@@ -25,3 +36,28 @@ def like_functionality(request, pk: int):
         Like.objects.create(to_photo=photo)
 
     return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
+
+
+def share_functionality(request, pk: int):
+    copy(request.META['HTTP_HOST'] + resolve_url('photo-details', pk))
+
+    return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
+
+
+def comment_functionality(request, pk: int):
+
+    if request.method == 'POST':
+        photo = Photo.objects.get(pk=pk)
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.to_photo = photo
+
+            comment.save()
+
+            return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
+
+
+def search_functionality(request):
+    pass

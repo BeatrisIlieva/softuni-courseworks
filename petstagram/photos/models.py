@@ -11,6 +11,7 @@ class Photo(models.Model):
     DESCRIPTION_MAX_LENGTH = 300
 
     photo = models.ImageField(
+        upload_to='images',
         validators=[
             FileSizeValidator(MAX_FILE_SIZE),
         ],
