@@ -1,9 +1,9 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 
 from myMusicApp.profiles.models import Profile
-from myMusicApp.profiles.forms import CreateProfileForm, DeleteProfileForm
+from myMusicApp.profiles.forms import CreateProfileForm
+from myMusicApp.core.utils import get_profile_object
 
 
 class CreateProfileView(views.CreateView):
@@ -14,19 +14,21 @@ class CreateProfileView(views.CreateView):
 
 
 class DetailsProfileView(views.DetailView):
-    model = Profile
+    # model = Profile
     template_name = 'profiles/profile-details.html'
 
-    def get_object(self):
-        return Profile.objects.first()
+    def get_object(self, queryset=None):
+        profile = get_profile_object()
+        
+        return profile
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
 
-        albums_count = self.object.album_set.count()
-        context['albums_count'] = albums_count
+    #     albums_count = self.object.album_set.count()
+    #     context['albums_count'] = albums_count
 
-        return context
+    #     return context
 
 
 class DeleteProfileView(views.DeleteView):
@@ -34,13 +36,15 @@ class DeleteProfileView(views.DeleteView):
     template_name = 'profiles/profile-delete.html'
     success_url = reverse_lazy('home-page')
 
-    def get_object(self, ):
-        return Profile.objects.first()
+    def get_object(self, queryset=None):
+        profile = get_profile_object()
+        
+        return profile
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
 
-        form = DeleteProfileForm
-        context['form'] = form
+    #     form = DeleteProfileForm
+    #     context['form'] = form
 
-        return context
+    #     return context

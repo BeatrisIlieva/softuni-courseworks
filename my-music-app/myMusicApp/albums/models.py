@@ -42,5 +42,4 @@ class Album(models.Model):
     owner = models.ForeignKey(
         to='profiles.Profile',
         on_delete=models.CASCADE,
-        editable=False,
     )

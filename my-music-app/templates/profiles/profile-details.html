@@ -19,7 +19,8 @@
 			{% if profile.age or profile.age == 0 %}
 				<h1>Age: {{ profile.age }}</h1>
 			{% endif %}
-			<h1>Albums: {{ albums_count }}</h1>
+			<h1>Albums: {{ profile.album_set.count }}</h1>
+			<!-- <h1>Albums: {{ albums_count }}</h1> -->
 		</div>
 		
 		<div class="actionBtn">

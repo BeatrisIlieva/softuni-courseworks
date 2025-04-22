@@ -1,51 +1,48 @@
 from django import forms
 
 from myMusicApp.albums.models import Album
+from myMusicApp.core.mixins import PlaceHolderMixin, ReadOnlyMixin
 
 
 class BaseAlbumForm(forms.ModelForm):
     class Meta:
         model = Album
-        fields = '__all__'
+        exclude = ('owner',)
 
-        widgets = {
-            'album_name': forms.TextInput(attrs={
-                'placeholder': 'Album Name'
-            }),
-            'artist': forms.TextInput(attrs={
-                'placeholder': 'Artist'
-            }),
-            'description': forms.Textarea(attrs={
-                'placeholder': 'Description'
-            }),
-            'image_url': forms.URLInput(attrs={
-                'placeholder': 'Image URL'
-            }),
-            'price': forms.NumberInput(attrs={
-                'placeholder': 'Price'
-            }),
-        }
+        # widgets = {
+        #     'album_name': forms.TextInput(attrs={
+        #         'placeholder': 'Album Name'
+        #     }),
+        #     'artist': forms.TextInput(attrs={
+        #         'placeholder': 'Artist'
+        #     }),
+        #     'description': forms.Textarea(attrs={
+        #         'placeholder': 'Description'
+        #     }),
+        #     'image_url': forms.URLInput(attrs={
+        #         'placeholder': 'Image URL'
+        #     }),
+        #     'price': forms.NumberInput(attrs={
+        #         'placeholder': 'Price'
+        #     }),
+        # }
 
-        labels = {
-            'album_name': 'Album Name',
-            'artist': 'Artist',
-            'description': 'Description',
-            'image_url': 'Image URL',
-            'price': 'Price',
-        }
+        # labels = {
+        #     'album_name': 'Album Name',
+        #     'artist': 'Artist',
+        #     'description': 'Description',
+        #     'image_url': 'Image URL',
+        #     'price': 'Price',
+        # }
 
 
-class CreateAlbumForm(BaseAlbumForm):
+class CreateAlbumForm(PlaceHolderMixin, BaseAlbumForm):
     pass
 
 
-class EditAlbumForm(BaseAlbumForm):
+class EditAlbumForm(PlaceHolderMixin, BaseAlbumForm):
     pass
 
 
-class DeleteAlbumForm(BaseAlbumForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['disabled'] = 'disabled'
-            field.widget.attrs['read-only'] = 'read-only'
+class DeleteAlbumForm(ReadOnlyMixin, BaseAlbumForm):
+    read_only_fields = ['album_name', 'artist', 'genre', 'price', 'description', 'image_url']

@@ -1,27 +1,28 @@
-from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic as views
+from django.views.generic.edit import BaseFormView
 
 from myMusicApp.albums.models import Album
 from myMusicApp.profiles.forms import CreateProfileForm
-from myMusicApp.common.utils import is_user_authenticated
+from myMusicApp.core.utils import get_profile_object
 
 
-class HomePageView(views.ListView):
+# DetailView and ListView are the only ones that do not have logic for a form
+class HomePageView(views.ListView, BaseFormView):
     model = Album
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        form = CreateProfileForm()
-
-        context['form'] = form
-
-        return context
+    form_class = CreateProfileForm
+    success_url = reverse_lazy('home-page')
 
     def get_template_names(self):
-        if is_user_authenticated():
+        profile = get_profile_object()
+
+        if profile:
             return ['common/home-with-profile.html']
 
         return ['common/home-no-profile.html']
-
-
+    
+    def form_valid(self, form):
+        form.save()
+        
+        return super().form_valid(form)
+    

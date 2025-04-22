@@ -21,7 +21,7 @@ class CreateProfileForm(forms.ModelForm):
         }
 
 
-class DeleteProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = []
+# class DeleteProfileForm(forms.ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = []

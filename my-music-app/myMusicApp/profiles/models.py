@@ -7,7 +7,6 @@ from myMusicApp.profiles.validators import AlphanumericUnderscoreValidator
 class Profile(models.Model):
     USERNAME_MAX_LENGTH = 15
     USERNAME_MIN_LENGTH = 2
-    USERNAME_ERROR_MESSAGE = 'Ensure this value contains only letters, numbers, and underscore.'
 
     username = models.CharField(
         max_length=USERNAME_MAX_LENGTH,
@@ -15,9 +14,7 @@ class Profile(models.Model):
             MinLengthValidator(
                 USERNAME_MIN_LENGTH,
             ),
-            AlphanumericUnderscoreValidator(
-                message=USERNAME_ERROR_MESSAGE,
-            )
+            AlphanumericUnderscoreValidator()
         ],
     )
 

@@ -12,7 +12,6 @@
       <form action="{% url 'delete-profile' %}" method="POST">
 
         {% csrf_token %}
-        {{ form }}
 
         <button class="delete-profile" type="submit">Delete</button>
       </form>
