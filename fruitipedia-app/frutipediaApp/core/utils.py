@@ -1,4 +1,4 @@
-from myMusicApp.profiles.models import Profile
+from frutipediaApp.profiles.models import Profile
 
 
 def get_profile_object():

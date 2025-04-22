@@ -1,0 +1,21 @@
+{% load has_profile %}
+
+<nav>
+    {% has_profile as profiles_exist %}
+    
+    {% if profiles_exist %}
+        <div class="user">
+
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="{% url 'fruit-create' %}">Add Fruit</a>
+            <a href="{% url 'profile-details' %}">Profile</a>
+            
+        </div>
+    {% else %}
+        <div class="guest">
+            
+            <a href="{% url 'profile-create' %}">Create Profile</a>
+            
+        </div>
+    {% endif %}
+</nav>

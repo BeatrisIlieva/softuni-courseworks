@@ -62,24 +62,18 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles/'
 ```
 
 ```
-def get_profile_object():
-    return Profile.objects.first()
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+...
+{% endblock %}
 ```
 
-```
-from django import template
-
-from myMusicApp.common.utils import get_profile_object
-
-register = template.Library()
-
-@register.simple_tag
-def has_profiles():
-    return get_profile_object()
-```
 
 ```
-{% has_profiles as profiles_exist %}
+{% has_profile as profiles_exist %}
 
 {% if profiles_exist %}
     ...
