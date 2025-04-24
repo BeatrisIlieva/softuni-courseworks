@@ -1,0 +1,15 @@
+{% load static %}
+
+{% if recipe.image_url %}
+    <img
+    class="recipe-img"
+    src="{{ recipe.image_url }}"
+    alt="recipe image"
+    />
+{% else %}
+    <img
+    class="recipe-img"
+    src="{% static 'images/default_recipe_img.png' %}"
+    alt="recipe image"
+    />
+{% endif %}

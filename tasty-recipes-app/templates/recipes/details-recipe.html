@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% load split_string_by_comma_and_space %}
+
+{% block content %}
+<section id="recipe-details">
+	<h1>Recipe Details</h1>
+	<div class="info-section">
+		<div class="recipe-header">
+			
+			{% include 'recipes/recipe-image.html' %}
+			
+			<!-- recipe title -->
+			<h1>{{ recipe.title }}</h1>
+			<!-- recipe cuisine type -->
+			<p><span class="description-recipe">Cuisine Type: {{ recipe.cuisine_type }}</span></p>
+			<!-- recipe cooking time -->
+			<p><span class="description-recipe">Cooking Time: {{ recipe.cooking_time }}</span></p>
+			<!-- recipe ingredients -->
+			<div class="ingredients">
+				<p><span class="description-recipe">Ingredients:</span></p>
+				<ul>
+					{% for ingredient in recipe.ingredients|split_string_by_comma_and_space %}
+					<!-- recipe ingredient -->
+					<li>{{ ingredient }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<p>
+				<span class="description-recipe"
+				>{{ recipe.instructions }}</span
+				>
+			</p>
+		</div>
+		
+		<!-- Edit/Delete buttons -->
+		<div class="buttons">
+			<a href="{% url 'recipe-update' recipe.pk %}" class="edit-button">Edit</a>
+			<a href="{% url 'recipe-delete' recipe.pk %}" class="delete-button">Delete</a>
+		</div>
+	</div>
+</section>
+{% endblock %}

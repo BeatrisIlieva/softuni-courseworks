@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if recipe_list %}
+<section id="catalogue">
+	{% for recipe in recipe_list %}
+	<div class="recipe-card">
+		<div class="image-wrap">
+			{% include 'recipes/recipe-image.html' %}
+		</div>
+		<!-- recipe title -->
+		<h3>{{ recipe.title }}</h3>
+		<!-- recipe cooking time -->
+		<h1>Cooking time: {{ recipe.cooking_time }}</h1>
+		<!-- recipe instructions -->
+		<h1>{{ recipe.instructions|truncatechars:35 }}</h1>
+		<div class="details-buttons">
+			<!-- recipe details button -->
+			<a href="{% url 'recipe-detail' recipe.pk %}" class="details-btn">Details</a>
+		</div>
+	</div>
+	{% endfor %}
+	
+</section>
+{% else %}
+<p class="no-articles">There are currently no recipes available.</p>
+{% endif %}
+
+{% endblock %}
