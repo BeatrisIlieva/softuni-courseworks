@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<section id="edit">
+	<div class="form">
+		<h1>You are about to delete your Author's Profile</h1>
+		
+		<form id="delete" class="register-form" method="POST" action="{% url 'author-delete' %}">
+			{% csrf_token %}
+			<button type="submit">Confirm</button>
+		</form>
+		
+	</div>
+</section>
+{% endblock %}

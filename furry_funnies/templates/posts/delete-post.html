@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<section id="edit">
+	<div class="form">
+		<h2>Delete Post</h2>
+		
+		<form class="edit-form" method="POST" action="{% url 'post-delete' post.pk %}">
+
+			{% csrf_token %}
+			{{ form.as_div }}
+
+			<button type="submit">Delete</button>
+		</form>
+	</div>
+</section>
+{% endblock %}

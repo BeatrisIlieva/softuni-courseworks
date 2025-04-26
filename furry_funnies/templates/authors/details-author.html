@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% load concat_strings %}
+
+{% block content %}
+<section id="details">
+	<div id="details-wrapper">
+		<h2>Author's Profile Details</h2>
+		
+		{% if author.image_url %}
+			<img
+			id="details-img"
+			src="{{ author.image_url }}"
+			alt="profile img"
+			/>
+		{% else %}
+			<img
+			id="details-img"
+			src="{% static '/images/default.png' %}"
+			alt="profile img"
+			/>
+		{% endif %}
+		
+		<p id="details-title">{{ author.first_name|concat_strings:author.last_name }}</p>
+		
+		<p id="nutrition">Published Posts: {{ posts_count }}</p>
+		
+		<div id="info-wrapper">
+			<div id="details-description">
+				<p>Pets Number: {{ author.pets_number }}</p>
+				
+				 {% if profile.info %}
+					<p>{{ profile.info }}</p>
+				{% endif %}
+
+				<p>-------------------------------</p>
+
+				{% if last_updated_post %}
+				<p>
+					Last Updated Post:
+					<strong>{{ last_updated_post.title }}</strong>
+				</p>
+				{% else %}
+				<p>
+					Last Updated Post:
+					<strong>N/A</strong>
+				</p>
+				{% endif %}
+			</div>
+			
+			<div id="action-buttons">
+				<a href="{% url 'author-update' %}" id="edit-btn">Edit</a>
+				<a href="{% url 'author-delete' %}" id="delete-btn">Delete</a>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
