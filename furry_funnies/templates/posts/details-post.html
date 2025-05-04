@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<section id="details">
+  <div id="details-wrapper">
+
+    <h2>Post Details</h2>
+    <img
+    id="details-img"
+    src="{{ post.image_url }}"
+    alt="{{ post.title }}"
+    />
+    <p id="details-title">{{ post.title }}</p>
+    <div id="info-wrapper">
+      <div id="details-description">
+        <p>{{ post.content }}</p>
+      </div>
+      
+      <div id="action-buttons">
+        <a href="{% url 'post-update' post.pk %}" id="edit-btn">Edit</a>
+        <a href="{% url 'post-delete' post.pk %}" id="delete-btn">Delete</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

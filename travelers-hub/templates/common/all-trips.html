@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+{% if trips_count > 0 %}
+    <h2>{{trips_count}} Shared Trips</h2>
+{% else %}
+    <h2>No shared trips</h2>
+{% endif %}
+
+<section id="dashboard">
+    
+    {% for trip in trip_list%}
+    <div class="post">
+        
+        {% if trip.image_url %}
+            <img src="{{ trip.image_url }}" alt="{{ trip.destination }}" />
+        {% else %}
+            <img src="{% static 'images/default-trip.jpg' %}" alt="no-image">
+        {% endif %}
+        
+        <h3 class="title">{{ trip.destination}}</h3>
+        <p class="description">{{ trip.start_date }}</p>
+        <a class="details-btn" href="{% url 'trip-detail' trip.pk %}">Details</a>
+
+    </div>
+    {% endfor %}
+    
+</section>
+{% endblock %}

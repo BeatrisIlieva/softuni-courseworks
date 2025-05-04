@@ -1,0 +1,17 @@
+{% load has_profile %}
+
+<nav>
+    {% has_profile as profile %}
+    
+    {% if profile %}
+    <div class="user">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'post-create' %}">New Post</a>
+        <a href="{% url 'author-detail' %}">Author's Profile</a>
+    </div>
+    {% else %}
+    <div class="guest">
+        <a href="{% url 'author-create' %}">Create Author's Profile</a>
+    </div>
+    {% endif %}
+</nav>

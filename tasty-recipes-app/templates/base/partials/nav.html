@@ -1,0 +1,13 @@
+
+{% load has_profile %}
+<nav>
+    {% has_profile as profile %}
+    
+    {% if profile %}
+        <a href="{% url 'recipe-list' %}">Catalogue</a>
+        <a href="{% url 'recipe-create' %}">Create Recipe</a>
+        <a href="{% url 'profile-detail' %}">Profile</a>
+    {% else %}
+        <a href="{% url 'profile-create' %}">Create Profile</a>
+    {% endif %}
+</nav>

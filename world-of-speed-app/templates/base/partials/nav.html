@@ -1,0 +1,17 @@
+{% load has_profile %}
+
+<nav>
+    {% has_profile as profile %}
+    
+    {% if profile %}
+
+    <a href="{% url 'car-list' %}">Catalogue</a>
+    <a href="{% url 'car-create' %}">Create Car</a>
+    <a href="{% url 'profile-detail' %}">Profile</a>
+    
+    {% else %}
+    
+    <a href="{% url 'profile-create' %}">Create Profile</a>
+    
+    {% endif %}
+</nav>
