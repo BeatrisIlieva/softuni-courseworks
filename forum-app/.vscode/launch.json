@@ -13,8 +13,12 @@
             ],
             "django": true,
             "autoStartBrowser": false,
+<<<<<<< HEAD
             "program": "${workspaceFolder}/manage.py",
             "justMyCode": false
+=======
+            "program": "${workspaceFolder}/manage.py"
+>>>>>>> forum/main
         }
     ]
 }
