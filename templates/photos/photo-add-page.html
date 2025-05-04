@@ -1,0 +1,14 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<div class="edit-delete edit-photo">
+    <h2>Add photo</h2>
+    <!-- Start Add Photo Form -->
+    <form method="POST" action="{% url 'add-photo' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="add-btn" type="submit">Add Photo</button>
+    </form>
+    <!-- End Add Photo Form -->
+</div>
+{% endblock %}
