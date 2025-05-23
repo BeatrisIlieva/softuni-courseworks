@@ -42,5 +42,3 @@ visitFloor({ train() {}, number: 1, hallway: 'A' });
 visitFloor({ dine() {}, number: 2, hallway: 'A', pass: 'Guest' });
 visitFloor({ sleep() {}, number: 3, hallway: 'A' });
 visitFloor({ dine() {}, number: 2, hallway: 'C' });
-
-
