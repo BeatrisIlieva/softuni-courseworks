@@ -1,20 +1,16 @@
-enum daysOfTheWeek {
-    Monday = 1,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday,
-    Sunday
-}
-
-function printDay(integer: number): string {
-    if (integer in daysOfTheWeek) {
-        return daysOfTheWeek[integer];
+function printDay(dayNum: number): string {
+    enum daysOfTheWeek {
+        Monday = 1,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday
     }
 
-    return 'error';
+    return daysOfTheWeek[dayNum] || 'error';
 }
 
-const number = -2;
+const number = 1;
 console.log(printDay(number));

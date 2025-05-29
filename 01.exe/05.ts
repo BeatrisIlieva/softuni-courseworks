@@ -5,30 +5,17 @@ function summarizePerson(
     age: number,
     middleName?: string,
     hobbies?: string[],
-    workInfo?: (string | number)[]
+    workInfo?: [string, number]
 ): [number, string, number, string, string] {
-    let personNames = '';
-    if (middleName) {
-        personNames = `${firstName} ${middleName} ${lastName}`;
-    } else {
-        personNames = `${firstName} ${lastName}`;
-    }
+    const fullName = middleName
+        ? `${firstName} ${middleName} ${lastName}`
+        : `${firstName} ${lastName}`;
 
-    let personHobbies = '';
-    if (!hobbies || hobbies.length === 0) {
-        personHobbies += '-';
-    } else {
-        personHobbies += hobbies.join(', ');
-    }
+    const hobbiesString = hobbies ? hobbies.join(', ') : '-';
 
-    let personWorkInfo = '';
-    if (!workInfo) {
-        personWorkInfo += '-';
-    } else {
-        personWorkInfo += `${workInfo[0]} -> ${workInfo[1]}`;
-    }
+    const workInfoString = workInfo ? `${workInfo[0]} -> ${workInfo[1]}` : '-';
 
-    return [personId, personNames, age, personHobbies, personWorkInfo];
+    return [personId, fullName, age, hobbiesString, workInfoString];
 }
 
 console.log(

@@ -1,5 +1,5 @@
 enum Months {
-    January = 1,
+    January,
     February,
     March,
     April,
@@ -20,7 +20,7 @@ function fridayThirteenth(dateInput: unknown[]): void {
             const date = el.getDate();
 
             if (isFriday && date === 13) {
-                const monthNumber = el.getMonth() + 1;
+                const monthNumber = el.getMonth();
                 const monthName = Months[monthNumber];
                 console.log(`${date}-${monthName}-${el.getFullYear()}`);
             }

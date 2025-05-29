@@ -1,10 +1,6 @@
-function unkownReponse(objInput: {
-    code: number;
-    text: string;
-    value?: any;
-}): string {
-    if (typeof objInput.value === 'string') {
-        return objInput.value;
+function unkownReponse(arg: unknown): string {
+    if ('value' in (arg as any) && typeof (arg as any).value === 'string') {
+        return (arg as any).value;
     }
 
     return '-';
