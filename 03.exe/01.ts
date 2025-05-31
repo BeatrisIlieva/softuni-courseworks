@@ -1,6 +1,22 @@
+// class Person {
+//     private firstName: string;
+//     protected lastName: string;
+//     public age: number;
+
+//     constructor(firstName: string, lastName: string, age: number) {
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//         this.age = age;
+//     }
+
+//     public introduce(): string {
+//         return `My name is ${this.firstName} ${this.lastName} and I am ${this.age} years old.`;
+//     }
+// }
+
 class Person {
-    private firstName: string;
-    protected lastName: string;
+    public firstName: string;
+    public lastName: string;
     public age: number;
 
     constructor(firstName: string, lastName: string, age: number) {
@@ -9,7 +25,7 @@ class Person {
         this.age = age;
     }
 
-    public introduce(): string {
+    introduce() {
         return `My name is ${this.firstName} ${this.lastName} and I am ${this.age} years old.`;
     }
 }

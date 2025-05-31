@@ -1,3 +1,28 @@
+// class Vehicle {
+//     public brand: string;
+
+//     constructor(brand: string) {
+//         this.brand = brand;
+//     }
+
+//     public drive(): string {
+//         return `Driving ${this.brand}`;
+//     }
+// }
+
+// class Car extends Vehicle {
+//     public model: string;
+
+//     constructor(brand: string, model: string) {
+//         super(brand);
+//         this.model = model;
+//     }
+
+//     public override drive(): string {
+//         return `Driving ${this.brand} ${this.model}`;
+//     }
+// }
+
 class Vehicle {
     public brand: string;
 
@@ -6,7 +31,7 @@ class Vehicle {
     }
 
     public drive(): string {
-        return `Driving ${this.brand}`;
+        return `Driving a ${this.brand}`;
     }
 }
 

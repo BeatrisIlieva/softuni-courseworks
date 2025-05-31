@@ -1,3 +1,15 @@
+// class Counter {
+//     private static count = 0;
+
+//     public static increment(): void {
+//         Counter.count++;
+//     }
+
+//     public static getCount(): number {
+//         return Counter.count;
+//     }
+// }
+
 class Counter {
     private static count = 0;
 
