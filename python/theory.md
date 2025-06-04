@@ -587,3 +587,35 @@ The Access Token contains the Secret Key.
 
 WRITE-ONLY - the data is not returned in the response 
 READ-ONLY - the data cannot be sent 
+
+## Django Basics
+
+Internet is a network of mkultiple devices that can connect and exchange information. This can happen owing to for example fiber optics, satellites, cell phone network 
+
+
+## Forms
+
+In `form.cleaned_data.get('some_filed')` stays the data after validations (form validations, model validations). It is the same as `full_clean` in models.
+
+In the forms all data comes as a string and upon `form.is_valid()` they are being casted to the data types specified in the form fields (`IntegerField`, `CharField` etc.).
+
+The `widget` says as what type the input to be visualized as. For example a `CharField` may be visualized as `IntegerField`.
+
+
+## Templates
+
+filters are functions that can accept one argument; filters can be chained
+
+to use custome filters or tags we need to create a directory with the name `templatetags`. to use it in a template we need to load it using the name of the file. 
+
+As a first value the filter accepts the value that it is applied at in the template. as a second parameter it may accept an argument that is passed in the template using `:`.
+
+To use a filter we need to register it in the Library. Then to use a decorator 
+
+the `url` tag is a simple tag because it returns the url as a string to which we need to redirect. 
+
+`simple tag` can accept as many parameteres as we need. 
+
+`inclusion tag` returns context and renders it into html. In the decorator as a first paarmeter we sai what the name of the template is.  If we want to get the entire context, we can say `takes_context=true` in the decorator. Then as a first parameter in the fictuion we need to accept the context
+
+`tag` (just tag) always accepts parser and a token and it returns a queryset.
