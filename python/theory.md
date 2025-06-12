@@ -616,6 +616,21 @@ the `url` tag is a simple tag because it returns the url as a string to which we
 
 `simple tag` can accept as many parameteres as we need. 
 
-`inclusion tag` returns context and renders it into html. In the decorator as a first paarmeter we sai what the name of the template is.  If we want to get the entire context, we can say `takes_context=true` in the decorator. Then as a first parameter in the fictuion we need to accept the context
+`inclusion tag` returns context and renders it into html. In the decorator as a first paarmeter we say what the name of the template is.  If we want to get the entire context, we can say `takes_context=true` in the decorator. Then as a first parameter in the fictuion we need to accept the context
 
-`tag` (just tag) always accepts parser and a token and it returns a queryset.
+`tag` (just tag) always accepts parser and a token and it returns a queryset. tags mignt be both self-closing andf tags that we need to close. 
+
+`custom tags` accept at leat two arguments - a parse and a token, Django uses the parser to go throug each element of the template so as to parse it. The token contains information where the tag starts and where it ends. 
+
+`@deconstructible` turns a python object - validator into a serializable structure -> tuple that has 3 elements -> the path to the validator, arguments and key-word arguments. We need `deconstructible` because validators are part of the migration files. So it turns a python object into a tuple and then from tuple into a python object.
+
+`Mixins` - are classes that we should not initialize. 
+
+
+
+When we use on forms the method `forms.is_valid()`, the `is_valid()` method acces the `errors` property that calls the method `full_clean` (it cleans the fields and the form).The we can call `clean` method. `clean` method comes from `BaseModelForm`. It does not have implementation. It just returns `cleaned_data`. We use it to validate data if the validation includes two or more fields. 
+
+We can clean a specific field by using `clean_fieldname`. However the validation is goign to be only applied on the form level - not the model. 
+
+is_valid -> self.errors -> full_clean -> _clean_fileds 
+The `_clean_fileds` checks if we have used `clean_fieldname` and if we have it ut calls it 
