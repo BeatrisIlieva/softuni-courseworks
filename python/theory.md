@@ -634,3 +634,9 @@ We can clean a specific field by using `clean_fieldname`. However the validation
 
 is_valid -> self.errors -> full_clean -> _clean_fileds 
 The `_clean_fileds` checks if we have used `clean_fieldname` and if we have it ut calls it 
+
+`modelform_factory` is a function that helps us to create dynamic forms (for example the form to include certain fields if a user is admin or a regular user)
+
+`modelformset_factory` is a function that allows us to generate multiple forms. 
+
+`crispy forms` we mainly use to achieve better stilization. 
