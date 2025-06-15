@@ -257,18 +257,18 @@ class and extends its functionality within a new class.
 3. Liskov Substitution
 
 We go against the Liskov Substitution principle if:
-- we inherit a class but some of the attributes in the parent class are not valid for the child
-- we override a method from the parent by leaving it empty
-- the base class starts depending on its descendants
+
+-   we inherit a class but some of the attributes in the parent class are not valid for the child
+-   we override a method from the parent by leaving it empty
+-   the base class starts depending on its descendants
 
 4. Interface Segregation
 
-We comply with the Interface segregation by using mixins and multiple inheritance. By separating the different functionalities into mixins and inheriting these mixins in the subclasses that need the specific functionality we resolve the problem with overwriting attributes that are not valid for the subclasses. 
+We comply with the Interface segregation by using mixins and multiple inheritance. By separating the different functionalities into mixins and inheriting these mixins in the subclasses that need the specific functionality we resolve the problem with overwriting attributes that are not valid for the subclasses.
 
 5. Dependency Inversion
 
-Dependency Inversion principle says that we should not instantiate a class if we need its instance in another class but pass it from outside and thus to inject it. 
-
+Dependency Inversion principle says that we should not instantiate a class if we need its instance in another class but pass it from outside and thus to inject it.
 
 1. Single Responsibility
 
@@ -288,46 +288,49 @@ Dependency Inversion principle says that we should not instantiate a class if we
 
 5. Dependency Inversion
 
-Нарушаваме принципа ако създадем инстанция от даден клас в текущия клас. Спазваме принципа ако подаваме инстанцията отвън. 
+Нарушаваме принципа ако създадем инстанция от даден клас в текущия клас. Спазваме принципа ако подаваме инстанцията отвън.
 
 ## Iterators and generators
 
 ### Iterator
-Iterators we implement in classes using the dunders methods iter and next. We keep the state in an attribute in the init method. 
-Iterator is an object that can be iterated. Iterator object must implement the iterator protocol by implementing two methods __iter__() and __next__(). The __iter__() method casts an object to an iterator. When we pass through all the elements in an itterator it gets exausted. 
+
+Iterators we implement in classes using the dunders methods iter and next. We keep the state in an attribute in the init method.
+Iterator is an object that can be iterated. Iterator object must implement the iterator protocol by implementing two methods **iter**() and **next**(). The **iter**() method casts an object to an iterator. When we pass through all the elements in an itterator it gets exausted.
 
 ### Generator
-Generators we implement in functions. 
-If a function contains the keyword `yield` it becomes a generator. Both `yield` and `return` returns value from a function. The difference between `yield` and `return` is that `return` terminates the exectuion of a function. `yield` pauses the function and keeps its state. 
-The generator is a function. A simpler way to create an iterator. A generator uses the keyword 'yield'. The generators, instead of us, keep the state and raise `StopIterationError`. `yield` tells python that the object is iterable and raises StopIterationError. 
+
+Generators we implement in functions.
+If a function contains the keyword `yield` it becomes a generator. Both `yield` and `return` returns value from a function. The difference between `yield` and `return` is that `return` terminates the exectuion of a function. `yield` pauses the function and keeps its state.
+The generator is a function. A simpler way to create an iterator. A generator uses the keyword 'yield'. The generators, instead of us, keep the state and raise `StopIterationError`. `yield` tells python that the object is iterable and raises StopIterationError.
 
 ### Decorators
 
 Closure - nested function access the scope of an eclosing function
 
-Decorators allows us to modify the behaviour of a function or a class. 
+Decorators allows us to modify the behaviour of a function or a class.
 
 ## Django ORM
 
-**ORM** maps django models to database table. 
+**ORM** maps django models to database table.
 
-**A model** is a class that inherits the base Django model. Thus the ORM knows to map the model to a database table. 
+**A model** is a class that inherits the base Django model. Thus the ORM knows to map the model to a database table.
 
 **Afield** in a model repressents a column in the table. A field in a model is a class attribute.
-Each field has a type. 
+Each field has a type.
 
 **Benefits of using models instead of row SQL**:
-- Allows us to write code only in Python instead of Python together with SQL
-- Allows us to reuse queries
-- Limits the chance for an SQL Injection
 
-**Migartions** follow for changes in our models. In order to apply a change into the databse we need to create a  migrations. The migration reflects the changes. 
+-   Allows us to write code only in Python instead of Python together with SQL
+-   Allows us to reuse queries
+-   Limits the chance for an SQL Injection
 
-By running the command `makemigrations` the ORM checks if there are any changes in the models and if there are such a migration file gets cerated. With the command `migrate` we apply the change into the database. 
+**Migartions** follow for changes in our models. In order to apply a change into the databse we need to create a migrations. The migration reflects the changes.
+
+By running the command `makemigrations` the ORM checks if there are any changes in the models and if there are such a migration file gets cerated. With the command `migrate` we apply the change into the database.
 
 **psycopg** is the connection between the Django ORM and postgres.
 
-**DBMS** allows us to perporfm CRUD and to protect the data. 
+**DBMS** allows us to perporfm CRUD and to protect the data.
 
 **Postgres** relational database managment system.
 
@@ -336,13 +339,13 @@ By running the command `makemigrations` the ORM checks if there are any changes 
 
 Django generates the primary key as GENERATED ALWAYS AS IDENTITY
 
-**Migration** allows us to keep history of the databse states and to revert to a previous state if needed. 
+**Migration** allows us to keep history of the databse states and to revert to a previous state if needed.
 
 **First Noemal Form**
-Tables must contain unique records. 
+Tables must contain unique records.
 
 **Second Normal Form**
-We achive the first normal form using primary keys. 
+We achive the first normal form using primary keys.
 
 **Third Normal Form**
 We comply with the first and the second normal form by seperating data into different tables.
@@ -356,8 +359,7 @@ We comply with the first, second, and third normal forms. However, even if each 
 **Fifth Normal Form**
 It should not be necessary to join a second table in order to associate data from the first and third tables.
 
-**The two main purposes of normal forms** are to store less data and to change only at one place when a change is needed. 
-
+**The two main purposes of normal forms** are to store less data and to change only at one place when a change is needed.
 
 ## Django
 
@@ -552,7 +554,7 @@ CSRF token is a random string that Django generates on every requests and sends 
 
 We place the CSRF token tag in the form. It is present in the form as an input with type hidden.
 
-On every refresh of the page a new CSRF token is returned by the server and set as a cookie. The CSRF token is valid until a new one is generated. 
+On every refresh of the page a new CSRF token is returned by the server and set as a cookie. The CSRF token is valid until a new one is generated.
 
 ### Widget
 
@@ -564,9 +566,9 @@ Serializes and deserializes a validator class so the validator class can be recr
 
 ### filters vs tags
 
-Both filters and tags in Django are functions. Filters modify existing value, tags can generate new content (tags) or modify existing tags. 
+Both filters and tags in Django are functions. Filters modify existing value, tags can generate new content (tags) or modify existing tags.
 
-There are self-closing tags (include) and tags that need to be closed (if - endif). Self closing tags can receive parameters. 
+There are self-closing tags (include) and tags that need to be closed (if - endif). Self closing tags can receive parameters.
 
 ## DRF
 
@@ -579,19 +581,18 @@ REFRESH TOKEN -> used to get new Access Token; valid for 1day/1week/2weeks
 3. The client asks the server if the refresh token is still valid and if it is the server sends us a new access token
 4. After the refresh token also expires, we neeed to login again
 
-When we login we receive both access token and a refresh token. They are a random string. 
-We log in via the Access Token. 
-When the Access Token expires, the frontend sends a request with the refresh token so as to receive a new access token. 
+When we login we receive both access token and a refresh token. They are a random string.
+We log in via the Access Token.
+When the Access Token expires, the frontend sends a request with the refresh token so as to receive a new access token.
 
-The Access Token contains the Secret Key. 
+The Access Token contains the Secret Key.
 
-WRITE-ONLY - the data is not returned in the response 
-READ-ONLY - the data cannot be sent 
+WRITE-ONLY - the data is not returned in the response
+READ-ONLY - the data cannot be sent
 
 ## Django Basics
 
-Internet is a network of mkultiple devices that can connect and exchange information. This can happen owing to for example fiber optics, satellites, cell phone network 
-
+Internet is a network of mkultiple devices that can connect and exchange information. This can happen owing to for example fiber optics, satellites, cell phone network
 
 ## Forms
 
@@ -601,42 +602,49 @@ In the forms all data comes as a string and upon `form.is_valid()` they are bein
 
 The `widget` says as what type the input to be visualized as. For example a `CharField` may be visualized as `IntegerField`.
 
-
 ## Templates
 
 filters are functions that can accept one argument; filters can be chained
 
-to use custome filters or tags we need to create a directory with the name `templatetags`. to use it in a template we need to load it using the name of the file. 
+to use custome filters or tags we need to create a directory with the name `templatetags`. to use it in a template we need to load it using the name of the file.
 
 As a first value the filter accepts the value that it is applied at in the template. as a second parameter it may accept an argument that is passed in the template using `:`.
 
-To use a filter we need to register it in the Library. Then to use a decorator 
+To use a filter we need to register it in the Library. Then to use a decorator
 
-the `url` tag is a simple tag because it returns the url as a string to which we need to redirect. 
+the `url` tag is a simple tag because it returns the url as a string to which we need to redirect.
 
-`simple tag` can accept as many parameteres as we need. 
+`simple tag` can accept as many parameteres as we need.
 
-`inclusion tag` returns context and renders it into html. In the decorator as a first paarmeter we say what the name of the template is.  If we want to get the entire context, we can say `takes_context=true` in the decorator. Then as a first parameter in the fictuion we need to accept the context
+`inclusion tag` returns context and renders it into html. In the decorator as a first paarmeter we say what the name of the template is. If we want to get the entire context, we can say `takes_context=true` in the decorator. Then as a first parameter in the fictuion we need to accept the context
 
-`tag` (just tag) always accepts parser and a token and it returns a queryset. tags mignt be both self-closing andf tags that we need to close. 
+`tag` (just tag) always accepts parser and a token and it returns a queryset. tags mignt be both self-closing andf tags that we need to close.
 
-`custom tags` accept at leat two arguments - a parse and a token, Django uses the parser to go throug each element of the template so as to parse it. The token contains information where the tag starts and where it ends. 
+`custom tags` accept at leat two arguments - a parse and a token, Django uses the parser to go throug each element of the template so as to parse it. The token contains information where the tag starts and where it ends.
 
 `@deconstructible` turns a python object - validator into a serializable structure -> tuple that has 3 elements -> the path to the validator, arguments and key-word arguments. We need `deconstructible` because validators are part of the migration files. So it turns a python object into a tuple and then from tuple into a python object.
 
-`Mixins` - are classes that we should not initialize. 
+`Mixins` - are classes that we should not initialize.
 
+When we use on forms the method `forms.is_valid()`, the `is_valid()` method acces the `errors` property that calls the method `full_clean` (it cleans the fields and the form).The we can call `clean` method. `clean` method comes from `BaseModelForm`. It does not have implementation. It just returns `cleaned_data`. We use it to validate data if the validation includes two or more fields.
 
+We can clean a specific field by using `clean_fieldname`. However the validation is goign to be only applied on the form level - not the model.
 
-When we use on forms the method `forms.is_valid()`, the `is_valid()` method acces the `errors` property that calls the method `full_clean` (it cleans the fields and the form).The we can call `clean` method. `clean` method comes from `BaseModelForm`. It does not have implementation. It just returns `cleaned_data`. We use it to validate data if the validation includes two or more fields. 
-
-We can clean a specific field by using `clean_fieldname`. However the validation is goign to be only applied on the form level - not the model. 
-
-is_valid -> self.errors -> full_clean -> _clean_fileds 
-The `_clean_fileds` checks if we have used `clean_fieldname` and if we have it ut calls it 
+is_valid -> self.errors -> full_clean -> \_clean_fileds
+The `_clean_fileds` checks if we have used `clean_fieldname` and if we have it ut calls it
 
 `modelform_factory` is a function that helps us to create dynamic forms (for example the form to include certain fields if a user is admin or a regular user)
 
-`modelformset_factory` is a function that allows us to generate multiple forms. 
+`modelformset_factory` is a function that allows us to generate multiple forms.
 
-`crispy forms` we mainly use to achieve better stilization. 
+`crispy forms` we mainly use to achieve better stilization.
+
+`view` is a callable, that accepts at least one parameter - the request and retirns an https response.
+
+the class `View` is the base class for all views.
+
+The `View` class has an `as_view` method. Owing to the `as_view` method a CBV is callable. Inside the `as_view` method is the `view` function.
+The `as_view` method returns the `view` function. The `view` function returns the `dispath` method.
+The `dispath` method checks if the http method in the request is present in the allowed http methods. 
+If we haven't defined the requested method in our CBV the `dispatch` method returns `http_method_not_allowed`.
+The `dispatch` mthod returns `handler` if e have defined a method with the request name. The handler is our method. 
