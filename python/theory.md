@@ -648,3 +648,7 @@ The `as_view` method returns the `view` function. The `view` function returns th
 The `dispath` method checks if the http method in the request is present in the allowed http methods. 
 If we haven't defined the requested method in our CBV the `dispatch` method returns `http_method_not_allowed`.
 The `dispatch` mthod returns `handler` if e have defined a method with the request name. The handler is our method. 
+
+We use CBV because they allows us inheritence, allows us to skip wirting the common logic and concetrate only on the business logic. In CBV we use a declarative way to only say for example is the template, what is the form, what is the success url to redirect to. 
+
+`mixins` implement common functionalitiy. We should not initialize mixins. Ather classes inherit mixins. 
