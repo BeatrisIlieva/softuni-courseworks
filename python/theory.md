@@ -652,3 +652,39 @@ The `dispatch` mthod returns `handler` if e have defined a method with the reque
 We use CBV because they allows us inheritence, allows us to skip wirting the common logic and concetrate only on the business logic. In CBV we use a declarative way to only say for example is the template, what is the form, what is the success url to redirect to. 
 
 `mixins` implement common functionalitiy. We should not initialize mixins. Ather classes inherit mixins. 
+
+
+`AnonymousUser` is a hardcoded class that has all properties and methods of a real user. It allows us to treat an anonymous user as it is an authenticated user. 
+
+Django gives us three options to create a user.
+
+1. To directly inherit the `AbstractUser` class. It is an astract class. By inheriting it we get all its fields and we cn add more as we need. It comes with a manager.  
+
+2. We do not want all the fields from AbstractUser. Then we can inherit directly `AbstractBaseUser`. It contains the `password` field. 
+
+
+The `UserManager` has three methods:
+
+`create_super_user`
+`create_user` -> it takes care to hash the password
+
+Owing to the auth Django cerates three tables for authentication
+1. Users
+2. Groups
+3. Permissions
+
+And three m2m tables for the realtions between them.
+
+`Permissions mixin` holds the fields for `is_super_user`, `groups` and `user_permissions`
+
+The build in `authenticate`function receives the user credentials. It iterates though all backeds (logic that knows how to authenticated a user) and if the credentials are valid it returns the user otherwise returns None. By default Django tries to authenticate us by username and password.
+
+Each custom backedn that we create needs to have the `authenticate` method
+
+The default `authenticatez method gets the user, gets the password, hashes it and it compares if the password matches. 
+
+Authentication and Loginare two diffrent processs. In the authentication we prove who we are. In the login the session gets attached to the request. This way a user does not need to reauthenticate themselves on every request. 
+
+`Hashing` is one way. 
+
+Django uses `sha256`
