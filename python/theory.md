@@ -688,3 +688,24 @@ Authentication and Loginare two diffrent processs. In the authentication we prov
 `Hashing` is one way. 
 
 Django uses `sha256`
+
+
+`Middleware` is a callable that executes, before, after or before and after each request. 
+Middlewares generally have two methods - `process_request` and `process_response`. 
+
+`SecurityMiddleware`, it makes sure that we use https.
+
+`SessionMiddleare` - in process_request the session gets atatched on the request. In process_response
+the cookie is attacged into the headers. 
+
+`CommonMiddleware` for example validates if there is a slash at the end of the url
+
+`CSRFMiddleware` if the request is post it checks if the csrf token is present and if it valid and also if the client made the request is in the allowed hosts. 
+
+`AuthenticationMiddleware` has only prcess_request. It attaches the user on the request. 
+
+Each middleware inherits `MiddleWareMixin`. It contains the `__call__` method (the __call__ method allows us to call the instances of our classes)
+
+Django cerates an instance of each middle ware in a subsequant order and callse them in that order when a request is made. 
+
+Sessions allows us to keep state netween the requests. 
