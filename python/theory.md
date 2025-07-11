@@ -709,3 +709,27 @@ Each middleware inherits `MiddleWareMixin`. It contains the `__call__` method (t
 Django cerates an instance of each middle ware in a subsequant order and callse them in that order when a request is made. 
 
 Sessions allows us to keep state netween the requests. 
+
+
+## REST
+
+`API` the way we use an application. `Rest` is the way we use
+
+We represent a stated (python objects) into json and transfer it. We convert the dats from python objects to json and from json to python objects. The transfering happens though HTTP. 
+
+### Benefits of REST
+- SPA apps - no refresh on like buton click
+- multiple clients can use one server (web, mobile)
+- it allsows us to mainain only one server that diffrent clients can use
+
+`Restful API` is an appliction thst follows the REST principles.
+
+`Serializers` are like in forms in the basic django. The job of the serializers is to take a python object and convert it to json. The mothod `to_representation` converts the python object into json. 
+
+`serializer.data` returns a dictionary
+
+the `Response` that at the bottom inherits HTTPResponse class by default returns json.
+
+When we work with the REST framework the data does not come in request.post but in request.data
+
+`APIView` is like `View` in django. APIView inherits the View. 
