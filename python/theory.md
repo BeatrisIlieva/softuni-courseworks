@@ -733,3 +733,16 @@ the `Response` that at the bottom inherits HTTPResponse class by default returns
 When we work with the REST framework the data does not come in request.post but in request.data
 
 `APIView` is like `View` in django. APIView inherits the View. 
+
+## Tests
+
+3 Types:
+
+1. Unit tests: test a small isolated part of the code. We do not test its dependencies (other functions that it result depends on). We mock the outer dependencies if there are such. Unit tests are fsater that Integration and End to end tests, because they test a small isolated part. 
+
+
+When would mock: when we have an external service that we do not have a control on - for example a payment service. We mock using patch
+
+2. Integrations tests test an entire flow. We use it when we want to test an endpoitn. usually when we reach an end point, a few actions get executed -> gettig the data, passing it to the serializer, validation, modifitcation and returning of a result.
+
+3. End-to-end - mimics actual user experience
