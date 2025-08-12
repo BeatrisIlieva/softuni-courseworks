@@ -130,7 +130,7 @@ Using stack we have a constant complexity of 1 `O(1)` because we only remove the
 
 #### Deque
 
-Deque is a double-linked list. The elements are spread at different locations in memory. Each element in a deque knows only about the address in memory of the element before it and after it. The first element left pointer is Null and the last element right pointer is Null. When we remove the first or last element from a deque the only thing that happens is that the first or respectively the last element's pointer starts pointing to Null.
+Deque is a double-linked list. The elements are spread at different locations in memory. Each element in a deque knows only about the address in memory of the element before it and after it. The first element left pointer is None and the last element right pointer is None. When we remove the first or last element from a deque the only thing that happens is that the first or respectively the last element's pointer starts pointing to Null.
 
 When working with a deque the only methods that we use are `append()` and `popleft()`
 
