@@ -47,3 +47,34 @@ The AI agent decides what function to use depending on the request
 ### Streaming
 
 Reduces the time for waiting. The AI writes letter by letter. It does not wait for the entire response to arrive but write it letter by letter. 
+
+
+## Vector Databases and Embeddings
+
+### Types of memory
+
+1. Short Term Memory
+
+Keeps knowledge about the current session (conversation). To maintain the short term memory we pass the question and the response with the `assistant` parameter in every next question.
+
+2. Long Term memory
+
+We need to functions -> one for saving the user info and one for reading it. 
+
+3. Semantic Memory
+
+The model's built in memory. This memory is built during training. 
+
+4. Working memory
+
+The bot splits the question into sub-problems (thinking). The it uses the solutions of the sub-problems to provide a solution.
+
+5. RAG
+
+Uses external databases to get information. It is a combination between a language model and vector search. 
+
+- What is Embedding -> a way to represent words into list of numbers into a vector. Vector is a list with numbers. We give the AI a text. Then before the text enters into the AI neural network it is being converted into numbers. The AI does not understand words - it understands numbers. Embedding means to turn text into predefined exact count of numbers. The count of numbers depends on the model. Each num ber represents a coordinate in a single latent space. The more similar by meaning the words are the closer their coordinates.
+
+- An AI trained to convert the words into numbers creates the embedding
+
+- The search happens by the embedding (the coordinates). The returned result is the text on the row where similiarity by the vectors is found. 
