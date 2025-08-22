@@ -67,13 +67,13 @@ The model's built in memory. This memory is built during training.
 
 4. Working memory
 
-The bot splits the question into sub-problems (thinking). The it uses the solutions of the sub-problems to provide a solution.
+The bot splits the question into sub-problems (thinking). Then it uses the solutions of the sub-problems to provide a solution.
 
 5. RAG
 
 Uses external databases to get information. It is a combination between a language model and vector search. 
 
-- What is Embedding -> a way to represent words into list of numbers into a vector. Vector is a list with numbers. We give the AI a text. Then before the text enters into the AI neural network it is being converted into numbers. The AI does not understand words - it understands numbers. Embedding means to turn text into predefined exact count of numbers. The count of numbers depends on the model. Each num ber represents a coordinate in a single latent space. The more similar by meaning the words are the closer their coordinates.
+- What is Embedding -> a way to represent words into list of numbers into a vector. Vector is a list with numbers. We give the AI a text. Then before the text enters into the AI neural network it is being converted into numbers. The AI does not understand words - it understands numbers. Embedding means to turn text into predefined exact count of numbers. The count of numbers depends on the model. Each number represents a coordinate in a single latent space. The more similar by meaning the words are the closer their coordinates.
 
 - An AI trained to convert the words into numbers creates the embedding
 
